@@ -800,7 +800,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
 
 ### P0 — Bootstrap and spikes
 
-- [ ] **T0.1 — Initialize the repository and run the Nuxt UI spike**
+- [x] **T0.1 — Initialize the repository and run the Nuxt UI spike** (2026-09-24, b456ba4)
   - REQs: REQ-020, REQ-031
   - Depends on: none
   - Scope: Initialize git with `README.md`, `SPEC.md`, the owner-supplied `CLAUDE.md` and `.claude/` (committed unchanged), `docs/06-governance/decisions/0000-adr-template.md`, and `docs/00-overview/brand-context-source.md` plus its `.sha256`. The owner places `cup_noobles_desgin_context.md` at the repository root; move it to that path with `mv` so its bytes stay identical. Never retype or re-save it. In `spikes/0001-nuxt-ui/`, build the smallest Nuxt app that extends a local layer, themes `UButton` from CSS variables, and forces dark mode.
