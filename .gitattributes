@@ -1,0 +1,3 @@
+# The brand source is hash-locked (REQ-006). Never convert its line endings.
+docs/00-overview/brand-context-source.md -text
+docs/00-overview/brand-context-source.md.sha256 -text

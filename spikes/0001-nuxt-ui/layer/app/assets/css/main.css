@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* Stand-in for dist/css/tokens.css. Value: BR-01. */
+:root {
+  --cn-color-brand-primary: #ef80ae;
+}
+
+/*
+ * Nuxt UI color aliases read an 11-step scale (--color-<name>-50 … -950).
+ * Per C-06 / OD-04 option (c), every shade is the single brand hex (status: derived-pending).
+ */
+@theme static {
+  --color-cn-pink-50: var(--cn-color-brand-primary);
+  --color-cn-pink-100: var(--cn-color-brand-primary);
+  --color-cn-pink-200: var(--cn-color-brand-primary);
+  --color-cn-pink-300: var(--cn-color-brand-primary);
+  --color-cn-pink-400: var(--cn-color-brand-primary);
+  --color-cn-pink-500: var(--cn-color-brand-primary);
+  --color-cn-pink-600: var(--cn-color-brand-primary);
+  --color-cn-pink-700: var(--cn-color-brand-primary);
+  --color-cn-pink-800: var(--cn-color-brand-primary);
+  --color-cn-pink-900: var(--cn-color-brand-primary);
+  --color-cn-pink-950: var(--cn-color-brand-primary);
+}
