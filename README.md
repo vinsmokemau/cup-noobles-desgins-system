@@ -41,4 +41,16 @@ pnpm test
 | `pnpm test:all` | `pnpm test`. The build, email, static generation, and end-to-end stages are added by later tasks (SPEC.md §0.3). |
 | `pnpm format` | Rewrites code with Prettier and fixes what markdownlint can fix |
 
+## CI and branch protection
+
+`.github/workflows/ci.yml` runs `pnpm test:all` on every push and every pull request (SPEC.md REQ-074). The job runs inside one container image, pinned by tag and digest (SPEC.md A-12). Its check is named `test:all`. Pull requests use `.github/pull_request_template.md`, which carries the docs-sync checklist (REQ-075).
+
+The default branch is `main`. Branch protection is a repository setting, so the owner applies it once by hand (REQ-074 AC2). In **Settings → Branches → Add branch protection rule** (or an equivalent ruleset), for the branch name pattern `main`:
+
+- Turn on **Require a pull request before merging**.
+- Turn on **Require status checks to pass before merging**, then **Require branches to be up to date before merging**, and add the status check `test:all`.
+- Leave **Allow force pushes** and **Allow deletions** off.
+
+With these settings, changes reach `main` through pull requests, and a red `test:all` check blocks the merge.
+
 Prettier formats code only; Markdown is checked by markdownlint. `SPEC.md`, `CLAUDE.md`, `AGENTS.md`, the skills, and the hash-locked brand source are not linted, because tasks may not reformat them.

@@ -1,0 +1,29 @@
+# CI (T1.4, REQ-074 AC1): runs the full suite on every push and pull request.
+# The job runs inside one pinned container image (A-12), so screenshots and fonts render the same on every run.
+# The image tag matches the Playwright version the end-to-end tasks install; bump both together, with an ADR.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-all:
+    # Branch protection on `main` requires this check by name (README.md, REQ-074 AC2).
+    name: test:all
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Reads the pnpm version from `packageManager` in package.json.
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:all
