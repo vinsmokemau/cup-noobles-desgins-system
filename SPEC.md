@@ -807,7 +807,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Record in ADR-0001: the pinned Nuxt UI version and license; the exact theme variable names and `app.config` keys; whether color aliases require shade scales (feeds C-06 and OD-04); how dark mode is forced; whether layers work under SSR; the confirmed component names for §4.10; and whether header and footer components exist.
   - Done when: ADR-0001 is merged, it answers every item above, and the spike app renders a themed button whose background computes to `#ef80ae`.
 
-- [ ] **T0.2 — Nuxt Content spike**
+- [x] **T0.2 — Nuxt Content spike** (2026-09-25, 14af4a6)
   - REQs: REQ-051, REQ-008
   - Depends on: T0.1
   - Scope: In `spikes/0002-nuxt-content/`, render a Markdown directory that sits outside the app directory. Validate frontmatter with a schema. Intercept `<!-- cn:generated -->` blocks at render time. Generate a static build. Evaluate the search options.
