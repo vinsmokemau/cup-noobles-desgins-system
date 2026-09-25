@@ -848,7 +848,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: ESLint (flat config), Prettier, markdownlint, `vue-tsc`, and a Vitest workspace. Add stub `pnpm test` and `pnpm test:all` scripts wired to the commands in §0.3.
   - Done when: `pnpm test` runs lint, typecheck, and an empty Vitest suite, and exits 0.
 
-- [ ] **T1.3 — Custom lint rules and architecture tests**
+- [x] **T1.3 — Custom lint rules and architecture tests** (2026-09-25, ded5169)
   - REQs: REQ-016, REQ-021, REQ-022 (AC1, AC2), REQ-020 (AC3)
   - Depends on: T1.2
   - Scope: a raw-value rule (REQ-016); a `Cn*.vue` naming test; a forbidden-domain-term test with `scripts/domain-terms.txt`; a hardcoded-text-node rule; the forbidden-primitive scan (REQ-020 AC3). Each rule gets a fixture violation and a test proving it fails.
