@@ -1,0 +1,12 @@
+{
+  "name": "spike-0004-email",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs dist",
+    "verify": "node verify.mjs"
+  },
+  "devDependencies": {
+    "mjml": "5.4.1"
+  }
+}
