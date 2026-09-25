@@ -836,7 +836,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
 
 ### P1 — Repository and tooling
 
-- [ ] **T1.1 — Workspace scaffold**
+- [x] **T1.1 — Workspace scaffold** (2026-09-25, ac83716)
   - REQs: REQ-050 (AC2), REQ-013 (AC3)
   - Depends on: T0.1–T0.5
   - Scope: Create the tree from §4.1: pnpm workspace, empty `package.json` files for the 3 packages and 2 apps, `tsconfig.base.json`, `.nvmrc`, and git-ignored `reports/` and `dist/`. Delete `spikes/`.
