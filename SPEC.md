@@ -842,7 +842,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: Create the tree from §4.1: pnpm workspace, empty `package.json` files for the 3 packages and 2 apps, `tsconfig.base.json`, `.nvmrc`, and git-ignored `reports/` and `dist/`. Delete `spikes/`.
   - Done when: `pnpm install` succeeds from a clean clone, every path in §4.1 that is a directory exists, and `spikes/` is gone.
 
-- [ ] **T1.2 — Lint, format, typecheck, and test runners**
+- [x] **T1.2 — Lint, format, typecheck, and test runners** (2026-09-25, 411c0ed)
   - REQs: REQ-074 (AC1, partial)
   - Depends on: T1.1
   - Scope: ESLint (flat config), Prettier, markdownlint, `vue-tsc`, and a Vitest workspace. Add stub `pnpm test` and `pnpm test:all` scripts wired to the commands in §0.3.
