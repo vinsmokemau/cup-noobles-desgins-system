@@ -828,7 +828,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Record in ADR-0004: the version, confirmation that `{{ }}` survives compilation, inlining behavior, and the output size.
   - Done when: ADR-0004 is merged, and the compiled HTML contains the injected hex, an intact `{{ label }}`, and no `var(`.
 
-- [ ] **T0.5 — Baseline ADRs**
+- [x] **T0.5 — Baseline ADRs** (2026-09-25, 6c98c03)
   - REQs: REQ-073
   - Depends on: T0.1
   - Scope: ADR-0005 records assumptions A-01 through A-14 and conflicts C-01 through C-06 with their current resolution status. ADR-0006 records the placeholder-value policy from §4.4, listing each placeholder value explicitly.
