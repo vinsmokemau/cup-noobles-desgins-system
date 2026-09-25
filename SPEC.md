@@ -821,7 +821,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Record in ADR-0003: the version, how the DTCG format is configured, custom format needs, and the determinism result.
   - Done when: ADR-0003 is merged, and all four outputs were produced deterministically.
 
-- [ ] **T0.4 — MJML email spike**
+- [x] **T0.4 — MJML email spike** (2026-09-25, fb3add4)
   - REQs: REQ-041, REQ-044
   - Depends on: T0.1 (OD-12 decided: MJML)
   - Scope: In `spikes/0004-email/`, write one MJML button that uses `$cn(...)` injection and a `{{ label }}` slot, compile it, and inspect the output.
