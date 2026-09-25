@@ -1,0 +1,10 @@
+{
+  "tile": {
+    "shipping": {
+      "bg": { "$value": "{color.bg.base}", "$description": "Fixture: REQ-022 AC1 violation." }
+    },
+    "border": {
+      "width": { "$value": "{border.width.base}", "$description": "Fixture: allowed; border is not order." }
+    }
+  }
+}

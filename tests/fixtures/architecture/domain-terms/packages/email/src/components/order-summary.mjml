@@ -1,0 +1,6 @@
+<!-- Fixture: REQ-022 AC1 violations in an email component name and its slots. -->
+<mjml>
+  <mj-body>
+    <mj-text>{{ preorder_date }} {{ title }}</mj-text>
+  </mj-body>
+</mjml>

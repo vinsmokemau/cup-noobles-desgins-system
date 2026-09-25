@@ -15,6 +15,7 @@
     "test:all": "pnpm test"
   },
   "devDependencies": {
+    "@eslint/css": "2.0.0",
     "@eslint/js": "10.0.1",
     "@types/node": "24.13.6",
     "eslint": "10.11.0",

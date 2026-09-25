@@ -6,6 +6,9 @@ dist/
 reports/
 pnpm-lock.yaml
 
+# Deliberate lint-rule violations (T1.3); tests/lint-rules.test.ts reads them byte for byte.
+tests/fixtures/
+
 # Markdown is linted by markdownlint, not reformatted by Prettier. This also keeps Prettier away from
 # the hash-locked brand source (REQ-006), SPEC.md, and the owner-supplied CLAUDE.md, AGENTS.md, and skills.
 *.md

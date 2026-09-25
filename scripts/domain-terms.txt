@@ -1,0 +1,11 @@
+product
+cart
+order
+price
+stock
+checkout
+sku
+variant
+preorder
+shipping
+payment

@@ -1,17 +1,25 @@
-// ESLint flat config (T1.2). Formatting is Prettier's job, so eslint-config-prettier goes last.
+// ESLint flat config (T1.2, custom rules T1.3). Formatting is Prettier's job, so eslint-config-prettier goes last.
+import css from '@eslint/css'
 import js from '@eslint/js'
 import prettier from 'eslint-config-prettier'
 import vue from 'eslint-plugin-vue'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
+import { defineConfig } from 'eslint/config'
+import cn from './scripts/eslint-plugin-cn/index.js'
 
-export default tseslint.config(
+const code = ['**/*.{js,mjs,cjs,ts,mts,cts,vue}']
+
+// defineConfig intersects each extended config's own `files` with the outer `files` (tseslint.config replaces them).
+export default defineConfig(
   {
-    ignores: ['**/node_modules/', '**/dist/', '**/.nuxt/', '**/.output/', '**/.data/', 'reports/'],
+    // tests/fixtures/ holds deliberate rule violations; tests/lint-rules.test.ts lints them on purpose.
+    ignores: ['**/node_modules/', '**/dist/', '**/.nuxt/', '**/.output/', '**/.data/', 'reports/', 'tests/fixtures/'],
   },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...vue.configs['flat/recommended'],
+  {
+    files: code,
+    extends: [js.configs.recommended, ...tseslint.configs.recommended, ...vue.configs['flat/recommended']],
+  },
   {
     files: ['**/*.vue'],
     languageOptions: {
@@ -19,11 +27,32 @@ export default tseslint.config(
     },
   },
   {
+    files: code,
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
       globals: { ...globals.node },
     },
+  },
+  {
+    // CSS is parsed so cn/no-raw-values can read it. Tailwind at-rules are tolerated, not validated.
+    files: ['**/*.css'],
+    plugins: { css },
+    language: 'css/css',
+    languageOptions: { tolerant: true },
+  },
+  {
+    // REQ-016: no raw visual values in the Nuxt layer or the showcase. Tests assert computed values, so they are exempt.
+    files: ['packages/nuxt/**/*.{js,mjs,ts,vue,css}', 'apps/showcase/**/*.{js,mjs,ts,vue,css}'],
+    ignores: ['**/tests/**', '**/*.{test,spec}.ts'],
+    plugins: { cn },
+    rules: { 'cn/no-raw-values': 'error' },
+  },
+  {
+    // REQ-022 AC2: component templates render no hardcoded text.
+    files: ['packages/nuxt/components/**/*.vue'],
+    plugins: { cn },
+    rules: { 'cn/no-hardcoded-text': 'error' },
   },
   prettier,
 )

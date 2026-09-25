@@ -1,0 +1,26 @@
+/* Fixture: deliberate REQ-016 violations in CSS. Arbitrary test data, not brand values. #fedcba 99px */
+@import 'tailwindcss';
+
+:root {
+  --ui-radius: 12px;
+  --ui-primary: var(--cn-color-brand-primary);
+}
+
+.fixture {
+  color: rgb(1 2 3);
+  transition-duration: 150ms;
+  background: #123456;
+  margin: 0;
+  padding: 0px;
+  gap: var(--cn-space-2);
+}
+
+@media (min-width: 768px) {
+  #abc {
+    inset: 0;
+  }
+}
+
+.fixture-apply {
+  @apply p-[4px];
+}

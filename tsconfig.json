@@ -13,5 +13,5 @@
     "apps/**/*.ts",
     "apps/**/*.vue"
   ],
-  "exclude": ["**/node_modules", "**/dist", "**/.nuxt", "**/.output"]
+  "exclude": ["**/node_modules", "**/dist", "**/.nuxt", "**/.output", "tests/fixtures"]
 }
