@@ -814,7 +814,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Record in ADR-0002: the version, the content source configuration, the interception approach, the search approach, and the fallback if an external directory is unsupported (a build-time copy into a git-ignored directory is allowed, because REQ-051 forbids only *committed* copies).
   - Done when: ADR-0002 is merged, and the spike statically renders two Markdown files taken from the parent directory.
 
-- [ ] **T0.3 — Style Dictionary and DTCG spike**
+- [x] **T0.3 — Style Dictionary and DTCG spike** (2026-09-25, 1bb49ff)
   - REQs: REQ-010, REQ-013
   - Depends on: T0.1
   - Scope: In `spikes/0003-tokens/`, build 3 DTCG tokens into CSS, flat JSON, TS, and resolved email JSON, then run a second build and compare.
