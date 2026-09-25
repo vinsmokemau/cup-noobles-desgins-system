@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.6 |
+| Spec version | 1.7 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -148,7 +148,7 @@ These are measurements, not new rules. REQ-015 enforces them.
 
 | ID | Conflict | Resolution in this spec | Status |
 |---|---|---|---|
-| C-01 | EC §3.3 says "Do not build a design system." This project builds one. | OA-1 chose **Option A**. The design system is a documented theming layer over Nuxt UI. Tokens drive Nuxt UI's theme, and themed Nuxt UI components serve as the atoms and most molecules. Custom `Cn*` components exist only where Nuxt UI has no equivalent: logo, decorative motifs, the featured media card, and the site header and footer (unless T0.1 finds Nuxt UI equivalents). ER-01 stays in force. | Resolved (OA-1) |
+| C-01 | EC §3.3 says "Do not build a design system." This project builds one. | OA-1 chose **Option A**. The design system is a documented theming layer over Nuxt UI. Tokens drive Nuxt UI's theme, and themed Nuxt UI components serve as the atoms and most molecules. Custom `Cn*` components exist only where Nuxt UI has no equivalent: logo, decorative motifs, and the featured media card. The site header and footer are themed `UHeader` and `UFooter`, because T0.1 found Nuxt UI equivalents (ADR-0001). ER-01 stays in force. | Resolved (OA-1) |
 | C-02 | Option A, as first proposed, put commerce components (ProductCard, VariantSelector, PriceTag, AvailabilityBadge) in the design system. OA-4 requires the system to be project-agnostic. | **Default:** commerce components stay in the storefront repo and are built from design system parts. The design system ships generic parts such as Card, MediaCard, Badge, and FormField. REQ-022 enforces this with a list of forbidden domain terms. | Resolved (OD-01, OA-10) |
 | C-03 | ER-02 limits consuming apps to "Tailwind for layout only." But BR-10 and BR-13 (glow, thick outlines, rounded corners) require visual styling somewhere. | Visual styling lives **only** inside `packages/nuxt`: the Nuxt UI theme configuration and the token CSS. A consuming app keeps ER-02 as written and does no visual styling of its own. REQ-016 enforces that no raw values appear anywhere. | Resolved (OD-11, OA-10) |
 | C-04 | BC §Usage Context lists stream overlays as a use of the system. OA-4 limits scope to the storefront and emails. | Overlays are a non-goal (§1.3). The `tokens` package ships framework-free CSS and JSON, so an overlay project can adopt it later without changes. | Needs confirmation (OD-10) |
@@ -769,7 +769,7 @@ The Nuxt UI component names below are provisional; T0.1 confirms them against th
 | alert · toast · tooltip | molecule | nuxt-ui | UAlert · UToast · UTooltip | T8.3 |
 | tabs · breadcrumb · pagination | molecule | nuxt-ui | UTabs · UBreadcrumb · UPagination | T8.4 |
 | modal · slideover | organism | nuxt-ui | UModal · USlideover | T8.5 |
-| site-header · site-footer | organism | custom (see ADR-0001) | CnSiteHeader · CnSiteFooter; slot-based, no domain content | T8.6 |
+| site-header · site-footer | organism | nuxt-ui | UHeader · UFooter (ADR-0001); slot-based, no domain content | T8.6 |
 
 ---
 ## 5. Implementation phases
@@ -1258,6 +1258,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.4 | 2026-09-23 | Added `CLAUDE.md` and the `/task` skill to the file tree; T0.1 now moves the owner's brand file into place. | Owner request |
 | 1.5 | 2026-09-23 | OD-01 (a), OD-02 (public, GitHub Pages), and OD-11 (confirmed) decided; C-02 and C-03 resolved. Added OD-14 (repository visibility). T5.6 targets the GitHub Pages project subpath. | OA-10 |
 | 1.6 | 2026-09-23 | OD-14 decided: the repository is public and was created empty. No open decision blocks any task in P0–P12 anymore; only the brand inputs (OD-04 through OD-09) remain, and they gate stable status and 1.0, not the tasks. | OA-11 |
+| 1.7 | 2026-09-25 | `site-header` and `site-footer` are `source: nuxt-ui` (themed `UHeader` and `UFooter`), following the ADR-0001 finding. Updated the C-01 custom-component list and the §4.10 row. | Owner decision in chat; ADR-0001 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

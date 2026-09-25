@@ -46,7 +46,7 @@ Every assumption below is in force until the owner overrides it. An override nee
 
 | ID | Conflict (short) | Resolution in force | Status on 2026-09-25 | Decided by |
 |---|---|---|---|---|
-| C-01 | EC §3.3 says "Do not build a design system," and this project builds one. | **Option A.** The design system is a documented theming layer over Nuxt UI. Tokens drive Nuxt UI's theme; themed Nuxt UI components are the atoms and most molecules. Custom `Cn*` components exist only where Nuxt UI has no equivalent. ER-01 stays in force. | Resolved | OA-1 |
+| C-01 | EC §3.3 says "Do not build a design system," and this project builds one. | **Option A.** The design system is a documented theming layer over Nuxt UI. Tokens drive Nuxt UI's theme; themed Nuxt UI components are the atoms and most molecules. Custom `Cn*` components exist only where Nuxt UI has no equivalent: the logo, the decorative motifs, and the featured media card. ER-01 stays in force. | Resolved | OA-1; owner, 2026-09-25 (header and footer) |
 | C-02 | Option A as first proposed put commerce components in the design system, but OA-4 requires it to be project-agnostic. | Commerce components stay in the storefront repo and are built from design system parts. The design system ships generic parts only. REQ-022 enforces this with a forbidden domain-term list. | Resolved | OA-10 (OD-01 (a)) |
 | C-03 | ER-02 limits consuming apps to "Tailwind for layout only," but BR-10 and BR-13 need visual styling somewhere. | Visual styling lives only inside `packages/nuxt` (the Nuxt UI theme configuration and the token CSS). Consuming apps keep ER-02 as written. REQ-016 forbids raw values everywhere. | Resolved | OA-10 (OD-11 confirmed) |
 | C-04 | BC lists stream overlays as a use of the system, but OA-4 limits scope to the storefront and emails. | Overlays are a non-goal (SPEC.md §1.3). The `tokens` package stays framework-free so an overlay project can adopt it later. | Needs confirmation | Awaits OD-10 |
@@ -57,7 +57,7 @@ Every assumption below is in force until the owner overrides it. An override nee
 
 These are findings, not new resolutions. They do not change any status above.
 
-- **C-01.** ADR-0001 §7 found that `@nuxt/ui` 4.11.2 ships `UHeader` and `UFooter`. Under C-01's own rule ("unless T0.1 finds Nuxt UI equivalents") and SPEC.md §4.10, `site-header` and `site-footer` become `source: nuxt-ui`, and the custom `Cn*` set shrinks to the logo, the decorative motifs, and the featured media card. The §4.10 table row and the C-01 wording still name `CnSiteHeader` and `CnSiteFooter`. Updating that text is an owner amendment (SPEC.md §8), still outstanding.
+- **C-01.** ADR-0001 §7 found that `@nuxt/ui` 4.11.2 ships `UHeader` and `UFooter`. Under C-01's own rule ("unless T0.1 finds Nuxt UI equivalents") and SPEC.md §4.10, `site-header` and `site-footer` become `source: nuxt-ui`, and the custom `Cn*` set shrinks to the logo, the decorative motifs, and the featured media card. The owner confirmed this in chat on 2026-09-25, and SPEC.md 1.7 updated the C-01 wording and the §4.10 row to `UHeader` and `UFooter`.
 - **C-06.** ADR-0001 §3 confirmed that each Nuxt UI color alias reads all 11 shades (`50` to `950`), and that dark mode uses shade 400 for `--ui-<alias>`. The C-06 default (11 copies of one brand hex, `derived-pending`) is therefore required, not hypothetical. TBD-08 and OD-04 stay open.
 - **C-05.** ADR-0001 noted that Nuxt UI's dark defaults set `--ui-bg` to neutral-900. The layer must remap it to `--cn-color-bg-base` (`#000000`, BR-03), which is consistent with C-05's interim rule.
 
@@ -65,5 +65,5 @@ These are findings, not new resolutions. They do not change any status above.
 
 - Later tasks cite this ADR when they rely on an assumption or a conflict resolution, for example T1.1 (A-03), T1.4 (A-12), T5.1 (A-02, C-03, C-06), T8.1 (C-05), and T10.x (A-08, A-14).
 - When the owner decides OD-04, OD-05, or OD-10, or overrides an assumption, a new ADR records the decision and states which row of this ADR it supersedes. This ADR is not edited to change a decision; only its status moves to `deprecated` once every row is superseded.
-- The §4.10 and C-01 wording for `site-header` and `site-footer` stays out of date until the owner amends SPEC.md. Until then, the SPEC.md text and ADR-0001 disagree, so T8.6 hits SPEC.md §0.1 rule 5 (stop and ask the owner) if it is still unsettled.
+- T8.6 builds `site-header` and `site-footer` as themed `UHeader` and `UFooter` (SPEC.md 1.7).
 - Revisit this ADR at the P0 exit review (SPEC.md §5) and before release `1.0.0`.
