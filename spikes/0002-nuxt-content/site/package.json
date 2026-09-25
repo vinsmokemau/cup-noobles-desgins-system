@@ -1,0 +1,14 @@
+{
+  "name": "spike-0002-nuxt-content",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "nuxt generate",
+    "verify": "node ../verify.mjs"
+  },
+  "dependencies": {
+    "@nuxt/content": "3.16.1",
+    "nuxt": "4.5.2",
+    "yaml": "2.9.1"
+  }
+}
