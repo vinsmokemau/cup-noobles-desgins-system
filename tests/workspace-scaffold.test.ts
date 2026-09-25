@@ -88,8 +88,10 @@ test('reports/ and dist/ are git-ignored, but reports/ itself is kept', () => {
     try {
       execFileSync('git', ['check-ignore', '-q', '--no-index', path], { cwd: root })
       return true
-    } catch {
-      return false
+    } catch (error) {
+      // Exit status 1 means "not ignored"; anything else is a git failure and must not pass as a result.
+      if ((error as { status?: number }).status === 1) return false
+      throw error
     }
   }
   assert.ok(ignored('reports/tbd-report.json'))
