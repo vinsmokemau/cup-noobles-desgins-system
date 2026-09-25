@@ -1,0 +1,24 @@
+{
+  "globs": ["**/*.md"],
+  "ignores": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "reports/**",
+    // Hash-locked and owner-supplied verbatim (REQ-006); it must never be edited, so it is not linted.
+    "docs/00-overview/brand-context-source.md",
+    // Owner-controlled files that tasks may not reformat (CLAUDE.md, SPEC.md §8).
+    "SPEC.md",
+    "CLAUDE.md",
+    "AGENTS.md",
+    ".claude/**",
+    ".agents/**",
+  ],
+  "config": {
+    "default": true,
+    // Prose is written one paragraph per line, and tables use the compact `|---|` style.
+    "MD013": false,
+    "MD060": false,
+    // Docs repeat the frontmatter `title` as the H1 (SPEC.md §4.2), so the frontmatter title is not a heading.
+    "MD025": { "front_matter_title": "" },
+  },
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.nuxt/
+.output/
+.data/
+reports/
+pnpm-lock.yaml
+
+# Markdown is linted by markdownlint, not reformatted by Prettier. This also keeps Prettier away from
+# the hash-locked brand source (REQ-006), SPEC.md, and the owner-supplied CLAUDE.md, AGENTS.md, and skills.
+*.md

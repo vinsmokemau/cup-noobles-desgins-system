@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": [
+    "*.ts",
+    "scripts/**/*.ts",
+    "tests/**/*.ts",
+    "packages/**/*.ts",
+    "packages/**/*.vue",
+    "apps/**/*.ts",
+    "apps/**/*.vue"
+  ],
+  "exclude": ["**/node_modules", "**/dist", "**/.nuxt", "**/.output"]
+}

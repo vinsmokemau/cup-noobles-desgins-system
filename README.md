@@ -8,7 +8,7 @@ The design system for Cup Noobles: design tokens, a Nuxt UI theme layer with a f
 
 ## Status
 
-Phase 1 (repository and tooling). The pnpm workspace and the directory tree from SPEC.md §4.1 exist, but the packages and apps are still empty. The commands in SPEC.md §0.3 arrive from T1.2 onward.
+Phase 1 (repository and tooling). The pnpm workspace and the directory tree from SPEC.md §4.1 exist, but the packages and apps are still empty. `pnpm test` and `pnpm test:all` exist; the other commands in SPEC.md §0.3 arrive with their tasks.
 
 ## Layout
 
@@ -29,5 +29,16 @@ Requirements: Node.js 24.19.0 (see `.nvmrc`) and pnpm 12.6.0 (see `packageManage
 
 ```sh
 pnpm install
-pnpm test:scaffold
+pnpm test
 ```
+
+| Command | Runs |
+|---|---|
+| `pnpm test` | `pnpm lint`, then `pnpm typecheck`, then `pnpm test:unit` |
+| `pnpm lint` | ESLint (`eslint.config.js`), `prettier --check`, and markdownlint (`.markdownlint-cli2.jsonc`) |
+| `pnpm typecheck` | `vue-tsc --noEmit` over `tsconfig.json` |
+| `pnpm test:unit` | The Vitest workspace in `vitest.config.ts` |
+| `pnpm test:all` | `pnpm test`. The build, email, static generation, and end-to-end stages are added by later tasks (SPEC.md §0.3). |
+| `pnpm format` | Rewrites code with Prettier and fixes what markdownlint can fix |
+
+Prettier formats code only; Markdown is checked by markdownlint. `SPEC.md`, `CLAUDE.md`, `AGENTS.md`, the skills, and the hash-locked brand source are not linted, because tasks may not reformat them.
