@@ -1,0 +1,9 @@
+{
+  "name": "cup-noobles-desgins-system",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.6.0",
+  "scripts": {
+    "test:scaffold": "node --test \"tests/**/*.test.mjs\""
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+
+# Build output
+dist/
+.nuxt/
+.output/
+.data/
+
+# Generated reports (SPEC.md §4.1). The directory itself is kept.
+reports/*
+!reports/.gitkeep

@@ -1,9 +1,0 @@
-<mjml>
-  <mj-body>
-    <mj-section>
-      <mj-column>
-        <mj-button background-color="$cn(button.primary.bg)" color="$cn(button.primary.label)" href="{{ url }}">{{ label }}</mj-button>
-      </mj-column>
-    </mj-section>
-  </mj-body>
-</mjml>

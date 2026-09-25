@@ -8,27 +8,26 @@ The design system for Cup Noobles: design tokens, a Nuxt UI theme layer with a f
 
 ## Status
 
-Phase 0 (bootstrap and spikes). The workspace, packages, and commands described in SPEC.md §0.3 arrive in Phase 1.
+Phase 1 (repository and tooling). The pnpm workspace and the directory tree from SPEC.md §4.1 exist, but the packages and apps are still empty. The commands in SPEC.md §0.3 arrive from T1.2 onward.
 
-## Layout so far
+## Layout
+
+The full tree is in SPEC.md §4.1. Empty directories hold a `.gitkeep` until their files arrive.
 
 | Path | Contents |
 |---|---|
 | `docs/00-overview/brand-context-source.md` | The owner-supplied brand context, verbatim and hash-locked (`.sha256` next to it). Never edit it. |
 | `docs/06-governance/decisions/` | Architecture decision records (ADRs), starting from `0000-adr-template.md` |
-| `spikes/` | Throwaway technical spikes from Phase 0, removed in T1.1 |
+| `tokens/` | DTCG token sources |
+| `packages/` | `tokens`, `nuxt`, and `email`, published as `@vinsmokemau/cup-noobles-*` |
+| `apps/` | `showcase` and `consumer-fixture` |
+| `reports/` | Generated reports (git-ignored) |
 
 ## Setup
 
-Requirements: Node.js LTS (24.x) and pnpm.
-
-To run the Nuxt UI spike:
+Requirements: Node.js 24.19.0 (see `.nvmrc`) and pnpm 12.6.0 (see `packageManager` in `package.json`).
 
 ```sh
-cd spikes/0001-nuxt-ui
 pnpm install
-pnpm build
-pnpm verify
+pnpm test:scaffold
 ```
-
-`pnpm verify` uses the locally installed Microsoft Edge.
