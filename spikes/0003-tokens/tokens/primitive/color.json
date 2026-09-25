@@ -1,0 +1,12 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "pink": {
+        "$value": "#ef80ae",
+        "$description": "Brand pink, the protagonist color.",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      }
+    }
+  }
+}

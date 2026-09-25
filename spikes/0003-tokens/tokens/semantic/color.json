@@ -1,0 +1,12 @@
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.brand.pink}",
+        "$description": "Primary brand role.",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      }
+    }
+  }
+}
