@@ -903,7 +903,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: Validate DTCG structure, the tier reference rules, required `$description` and `$extensions.cn.status`, the `source` BR ID on stable brand tokens, and the naming pattern.
   - Done when: `pnpm check:tokens` passes on an empty token set, and fixtures prove each rule fails.
 
-- [ ] **T3.2 — Primitive tokens**
+- [x] **T3.2 — Primitive tokens** (2026-09-27, e365b02)
   - REQs: REQ-011 (AC1), REQ-005 (AC2)
   - Depends on: T3.1
   - Scope: `color.json` holds the three brand colors (status `stable`, sources BR-01 through BR-03). `_placeholder.json` holds the values from ADR-0006. Every other primitive group from §4.7 references a placeholder and has status `tbd`, with the TBD ID in its description. Extend `check-tbd` to read `$extensions.cn.tbd`: fail on an ID not in §2.4 or on a resolved ID, and count tokens per TBD item in `reports/tbd-report.json`.
