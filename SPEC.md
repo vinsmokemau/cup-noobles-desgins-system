@@ -897,7 +897,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
 
 ### P3 — Token pipeline
 
-- [ ] **T3.1 — Token schema and `check-tokens`**
+- [x] **T3.1 — Token schema and `check-tokens`** (2026-09-27, b22aca0)
   - REQs: REQ-010, REQ-014, REQ-017
   - Depends on: T2.4, T0.3
   - Scope: Validate DTCG structure, the tier reference rules, required `$description` and `$extensions.cn.status`, the `source` BR ID on stable brand tokens, and the naming pattern.
