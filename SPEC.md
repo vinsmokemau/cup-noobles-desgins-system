@@ -868,7 +868,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
 
 ### P2 — Docs skeleton and doc tooling
 
-- [ ] **T2.1 — Template and frontmatter schema**
+- [x] **T2.1 — Template and frontmatter schema** (2026-09-27, 22242a7)
   - REQs: REQ-002, REQ-003
   - Depends on: T1.5
   - Scope: `docs/_template.md` with all 16 headings from §4.2 and guidance comments; `docs/_schema/frontmatter.schema.json` implementing §4.3, including the conditional fields for components.
