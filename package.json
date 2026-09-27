@@ -13,7 +13,8 @@
     "test:unit": "vitest run",
     "check:docs": "node scripts/check-docs.ts && pnpm check:links",
     "check:links": "node scripts/check-links.ts",
-    "test": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm check:docs",
+    "check:tbd": "node scripts/check-tbd.ts",
+    "test": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm check:docs && pnpm check:tbd",
     "test:all": "pnpm test"
   },
   "devDependencies": {

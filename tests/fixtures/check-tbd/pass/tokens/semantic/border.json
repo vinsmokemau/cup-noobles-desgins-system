@@ -1,0 +1,12 @@
+{
+  "border": {
+    "width": {
+      "default": {
+        "$value": "{placeholder.border.width}",
+        "$type": "dimension",
+        "$description": "Fixture token",
+        "$extensions": { "cn": { "status": "tbd" } }
+      }
+    }
+  }
+}

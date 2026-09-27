@@ -1,0 +1,24 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "pink": {
+        "$value": "#ef80ae",
+        "$description": "Fixture token",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      },
+      "pink-400": {
+        "$value": "{color.brand.pink}",
+        "$description": "Fixture token",
+        "$extensions": { "cn": { "status": "derived-pending" } }
+      }
+    },
+    "neutral": {
+      "500": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Fixture token",
+        "$extensions": { "cn": { "status": "tbd" } }
+      }
+    }
+  }
+}
