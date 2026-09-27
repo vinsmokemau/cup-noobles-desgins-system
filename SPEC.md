@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.11 |
+| Spec version | 1.12 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -660,7 +660,7 @@ updated: 2026-09-23            # required, ISO date
 
 - **In docs:** `> **TBD (TBD-12):** Glow blur, spread, and opacity are not defined. Owner input needed.`
 - **Content pending in docs:** a doc section that has not been written yet holds exactly `> **TBD:** Content pending (Tn.n).`, where `Tn.n` is the §6 task that writes it. This callout marks unwritten content, not an undefined value, so it carries no TBD ID. `check-tbd` accepts only these two callout forms: it validates the task ID against §6 and reports these callouts separately from TBD-NN items. Any other `> **TBD…` callout fails.
-- **In tokens:** a TBD token gets `$extensions.cn.status: "tbd"`, and its value is a reference into `tokens/primitive/_placeholder.json`.
+- **In tokens:** a TBD token gets `$extensions.cn.status: "tbd"`, and its value is a reference into `tokens/primitive/_placeholder.json`. It also names the §2.4 items it stands in for in `$extensions.cn.tbd`, a non-empty list of TBD IDs (for example `["TBD-05"]`). This applies to the placeholder tokens too, which take their IDs from the "Stands in for" column of ADR-0006. A `derived-pending` token has `$extensions.cn.tbd: ["TBD-08"]` (C-06). A `stable` or `deprecated` token has no `tbd` field. `check-tokens` enforces these rules, and `check-tbd` fails on an unknown ID or on an ID whose §2.4 row is resolved, and counts tokens per TBD item.
 - **Placeholder values:** `_placeholder.json` holds one set of deliberately non-brand placeholder values, and every one of them has status `tbd`. Colors use a single neutral placeholder. Dimensions use the Nuxt UI default the component would have anyway. These placeholder values are recorded in ADR-0006 (T0.5) and are never described as brand values.
 - **In the showcase:** TBD previews carry a hatched overlay and a "TBD-NN" badge (REQ-054 AC4).
 - **Resolution:** the owner supplies the value, an ADR records it, the token changes to `stable`, the callout is removed, and §2.4 marks the row resolved by writing `Resolved (ADR-NNNN)` in it (REQ-073). `check-tbd` fails if a row that says `Resolved` names no existing ADR, or if a callout still cites a resolved ID.
@@ -1266,6 +1266,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.9 | 2026-09-27 | REQ-004 AC2: ADRs are exempt from the hex-literal rule, because §4.4 has ADRs record values. REQ-008 AC1: the MDC check applies outside fenced code blocks only. | Owner decision in chat (T2.2 open questions) |
 | 1.10 | 2026-09-27 | §4.4: added the content-pending callout (`> **TBD:** Content pending (Tn.n).`) that T2.3's stubs use. It has no TBD ID, `check-tbd` validates its task ID against §6 and reports it separately, and any other `> **TBD…` form fails. | Owner decision in chat (T2.3 open question) |
 | 1.11 | 2026-09-27 | §7.2: the six decided ODs that cited only owner answers (OD-01, OD-02, OD-03, OD-11, OD-13, OD-14) now also cite ADR-0007, which records them, so REQ-073 AC2 holds. §4.4: a resolved §2.4 row is marked `Resolved (ADR-NNNN)`. | Owner decision in chat (T2.4 open questions); ADR-0007 |
+| 1.12 | 2026-09-27 | §4.4: TBD and `derived-pending` tokens name their §2.4 items in `$extensions.cn.tbd` (`derived-pending` is always `["TBD-08"]`); `stable` and `deprecated` tokens have no such field. `check-tokens` enforces it, and `check-tbd` validates the IDs and counts tokens per item. | Owner decision in chat (T2.4 open question) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
