@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.9 |
+| Spec version | 1.10 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -659,6 +659,7 @@ updated: 2026-09-23            # required, ISO date
 ### 4.4 TBD convention
 
 - **In docs:** `> **TBD (TBD-12):** Glow blur, spread, and opacity are not defined. Owner input needed.`
+- **Content pending in docs:** a doc section that has not been written yet holds exactly `> **TBD:** Content pending (Tn.n).`, where `Tn.n` is the §6 task that writes it. This callout marks unwritten content, not an undefined value, so it carries no TBD ID. `check-tbd` accepts only these two callout forms: it validates the task ID against §6 and reports these callouts separately from TBD-NN items. Any other `> **TBD…` callout fails.
 - **In tokens:** a TBD token gets `$extensions.cn.status: "tbd"`, and its value is a reference into `tokens/primitive/_placeholder.json`.
 - **Placeholder values:** `_placeholder.json` holds one set of deliberately non-brand placeholder values, and every one of them has status `tbd`. Colors use a single neutral placeholder. Dimensions use the Nuxt UI default the component would have anyway. These placeholder values are recorded in ADR-0006 (T0.5) and are never described as brand values.
 - **In the showcase:** TBD previews carry a hatched overlay and a "TBD-NN" badge (REQ-054 AC4).
@@ -1263,6 +1264,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.7 | 2026-09-25 | `site-header` and `site-footer` are `source: nuxt-ui` (themed `UHeader` and `UFooter`), following the ADR-0001 finding. Updated the C-01 custom-component list and the §4.10 row. | Owner decision in chat; ADR-0001 |
 | 1.8 | 2026-09-27 | §4.2: row 14 (Context · Decision · Consequences) is three H2 headings, as in the ADR template and ADRs 0001–0006. | Owner decision in chat (T2.1 open question) |
 | 1.9 | 2026-09-27 | REQ-004 AC2: ADRs are exempt from the hex-literal rule, because §4.4 has ADRs record values. REQ-008 AC1: the MDC check applies outside fenced code blocks only. | Owner decision in chat (T2.2 open questions) |
+| 1.10 | 2026-09-27 | §4.4: added the content-pending callout (`> **TBD:** Content pending (Tn.n).`) that T2.3's stubs use. It has no TBD ID, `check-tbd` validates its task ID against §6 and reports it separately, and any other `> **TBD…` form fails. | Owner decision in chat (T2.3 open question) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
