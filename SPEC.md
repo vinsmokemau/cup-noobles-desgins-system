@@ -889,7 +889,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: Create every doc listed in §4.1 as a stub with `status: tbd`, valid frontmatter, and the headings its layer requires, each section containing only `> **TBD:** Content pending (Tn.n).` Create `DESIGN.md`, grouped per REQ-001 AC4, with a one-line description per link. Create `scripts/check-links.ts`.
   - Done when: `pnpm check:docs` passes, there are zero orphan docs and zero broken links, and the number of stubs equals the number of files listed in §4.1.
 
-- [ ] **T2.4 — TBD convention and `check-tbd`**
+- [x] **T2.4 — TBD convention and `check-tbd`** (2026-09-27, 73175fb)
   - REQs: REQ-005, REQ-009 (AC1), REQ-073 (AC2)
   - Depends on: T2.3
   - Scope: `scripts/check-tbd.ts` collects doc callouts and token statuses (tokens are read once P3 exists; until then the token list is empty), writes `reports/tbd-report.json`, and validates that every TBD ID exists in §2.4 of `SPEC.md` and that resolved items link an ADR.
