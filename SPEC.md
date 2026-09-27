@@ -854,7 +854,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: a raw-value rule (REQ-016); a `Cn*.vue` naming test; a forbidden-domain-term test with `scripts/domain-terms.txt`; a hardcoded-text-node rule; the forbidden-primitive scan (REQ-020 AC3). Each rule gets a fixture violation and a test proving it fails.
   - Done when: `pnpm test` is green, and every rule's fixture test confirms the rule triggers.
 
-- [ ] **T1.4 — CI and PR template**
+- [x] **T1.4 — CI and PR template** (2026-09-27, 9198c11, bc1b6d3)
   - REQs: REQ-074, REQ-075 (AC1)
   - Depends on: T1.2
   - Scope: `ci.yml` runs `pnpm test:all` on push and pull request in a pinned container image (A-12). Add `pull_request_template.md` with the docs-sync checklist. Document the required branch protection in `README.md`.
