@@ -2,7 +2,7 @@
 title: "ADR-0007: Owner decisions on record"
 slug: adr-0007-owner-decisions-on-record
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: []
 tbd: []
