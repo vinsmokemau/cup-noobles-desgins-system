@@ -7,6 +7,7 @@
 | TBD-01 | Display typeface | `font.family.display` | Resolved (ADR-0001) |
 | TBD-02 | Neutral scale | `color.neutral.*` | Hex set |
 | TBD-03 | Stroke widths | `border.width.*` | Values |
+| TBD-08 | Brand tints and shades | Nuxt UI alias scales | Decision |
 
 ### 2.5 Owner answers on record
 

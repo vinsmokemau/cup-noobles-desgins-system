@@ -6,6 +6,8 @@
     "reports/**",
     // Deliberate check-docs violations (T2.2); tests/check-docs.test.ts asserts their exact line numbers.
     "tests/fixtures/**",
+    // Changesets entries are frontmatter plus a changelog line with no heading (§4.8); `changeset version` consumes them.
+    ".changeset/*.md",
     // Hash-locked and owner-supplied verbatim (REQ-006); it must never be edited, so it is not linted.
     "docs/00-overview/brand-context-source.md",
     // Owner-controlled files that tasks may not reformat (CLAUDE.md, SPEC.md §8).

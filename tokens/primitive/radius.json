@@ -1,0 +1,20 @@
+{
+  "radius": {
+    "$type": "dimension",
+    "sm": {
+      "$value": "{placeholder.radius.sm}",
+      "$description": "Small corner radius. TBD-10: \"rounded\" (BR-10) has no values; this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+    },
+    "md": {
+      "$value": "{placeholder.radius.md}",
+      "$description": "Medium corner radius. TBD-10: \"rounded\" (BR-10) has no values; this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+    },
+    "lg": {
+      "$value": "{placeholder.radius.lg}",
+      "$description": "Large corner radius. TBD-10: \"rounded\" (BR-10) has no values; this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+    }
+  }
+}

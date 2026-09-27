@@ -1,19 +1,42 @@
 // T2.4: `pnpm check:tbd` collects every open item and writes reports/tbd-report.json (SPEC.md §0.3, REQ-005 AC3).
 // Rules: callout (§4.4 callout forms), unknown-id (REQ-005 AC1), unknown-task (§4.4 content pending),
 // resolved-callout (§4.4 resolution), missing-adr (REQ-073 AC2), token-file (REQ-005 AC2), spec (SPEC.md layout).
+// T3.2 adds token IDs: `$extensions.cn.tbd` names §2.4 items (unknown-id), never resolved ones (resolved-token).
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { prose, readFrontmatter, scan } from './check-docs.ts'
 
 export type TbdRule =
-  'callout' | 'unknown-id' | 'unknown-task' | 'resolved-callout' | 'missing-adr' | 'token-file' | 'spec'
+  | 'callout'
+  | 'unknown-id'
+  | 'unknown-task'
+  | 'resolved-callout'
+  | 'resolved-token'
+  | 'missing-adr'
+  | 'token-file'
+  | 'spec'
 
 export interface TbdProblem {
   file: string
   line: number
   rule: TbdRule
   message: string
+}
+
+export interface ReportToken {
+  file: string
+  path: string
+  status: 'tbd' | 'derived-pending'
+  tbd: string[] // $extensions.cn.tbd; check-tokens rejects a missing or empty list
+}
+
+// Every token that names TBD IDs, whatever its status, so check-tbd can validate them (check-tokens owns the rest).
+interface TokenIds {
+  file: string
+  line: number
+  path: string
+  ids: string[]
 }
 
 interface RegisterRow {
@@ -36,9 +59,10 @@ export interface TbdReport {
     draftCallouts: number
     problems: number
   }
-  items: { id: string; item: string; resolved: boolean; adrs: string[]; callouts: number }[]
+  // `tokens` counts the tbd and derived-pending tokens that name the item in `$extensions.cn.tbd` (§4.4).
+  items: { id: string; item: string; resolved: boolean; adrs: string[]; callouts: number; tokens: number }[]
   callouts: { file: string; line: number; id: string; text: string }[]
-  tokens: { file: string; path: string; status: 'tbd' | 'derived-pending' }[]
+  tokens: ReportToken[]
   contentPending: { file: string; line: number; task: string }[]
   drafts: { docs: { file: string }[]; callouts: { file: string; line: number; text: string }[] }
   problems: TbdProblem[]
@@ -135,16 +159,33 @@ function listFiles(root: string, dir: string, extension: string): string[] {
 }
 
 // DTCG: a node with `$value` is a token, and its path is the chain of group keys. Keys starting with `$` are metadata.
-function collectTokens(file: string, node: unknown, path: string[], out: TbdReport['tokens']) {
+function collectTokens(file: string, node: unknown, path: string[], out: ReportToken[], named: TokenIds[]) {
   if (!node || typeof node !== 'object' || Array.isArray(node)) return
   const record = node as Record<string, unknown>
   if ('$value' in record) {
-    const status = (record.$extensions as { cn?: { status?: unknown } } | undefined)?.cn?.status
-    if (status === 'tbd' || status === 'derived-pending') out.push({ file, path: path.join('.'), status })
+    const cn = (record.$extensions as { cn?: { status?: unknown; tbd?: unknown } } | undefined)?.cn
+    const ids = Array.isArray(cn?.tbd) ? cn.tbd.map(String) : []
+    if (ids.length) named.push({ file, line: 1, path: path.join('.'), ids })
+    if (cn?.status === 'tbd' || cn?.status === 'derived-pending')
+      out.push({ file, path: path.join('.'), status: cn.status, tbd: ids })
     return
   }
   for (const [key, child] of Object.entries(record))
-    if (!key.startsWith('$')) collectTokens(file, child, [...path, key], out)
+    if (!key.startsWith('$')) collectTokens(file, child, [...path, key], out, named)
+}
+
+// The line of each token's first TBD ID: the n-th token naming an ID sits at the n-th `"TBD-NN"` in the file.
+function locate(text: string, named: TokenIds[]) {
+  const lines = text.split(/\r?\n/)
+  const cursor = new Map<string, number>()
+  for (const token of named) {
+    const id = token.ids[0]!
+    const from = cursor.get(id) ?? 0
+    const at = lines.findIndex((line, i) => i >= from && line.includes(`"${id}"`))
+    if (at < 0) continue
+    token.line = at + 1
+    cursor.set(id, at + 1)
+  }
 }
 
 export function checkTbd(root: string = repoRoot): TbdReport {
@@ -224,13 +265,29 @@ export function checkTbd(root: string = repoRoot): TbdReport {
     }
   }
 
-  // REQ-005 AC2: token statuses. The token files arrive in P3; until then this finds nothing.
+  // REQ-005 AC2: token statuses, and (§4.4) the §2.4 items each token stands in for.
   for (const tier of TOKEN_TIERS) {
     for (const file of listFiles(root, `tokens/${tier}`, '.json')) {
+      const text = readFileSync(join(root, file), 'utf8')
+      const named: TokenIds[] = []
       try {
-        collectTokens(file, JSON.parse(readFileSync(join(root, file), 'utf8')), [], report.tokens)
+        collectTokens(file, JSON.parse(text), [], report.tokens, named)
       } catch (error) {
         problems.push({ file, line: 1, rule: 'token-file', message: `not valid JSON: ${(error as Error).message}` })
+        continue
+      }
+      locate(text, named)
+      for (const { line, path, ids } of named) {
+        for (const id of ids) {
+          checkId(id, file, line, `token \`${path}\` names TBD ID`)
+          if (known.get(id)?.resolved)
+            problems.push({
+              file,
+              line,
+              rule: 'resolved-token',
+              message: `token \`${path}\` names ${id}, which is resolved in SPEC.md §2.4, so the token is no longer tbd (§4.4)`,
+            })
+        }
       }
     }
   }
@@ -241,6 +298,7 @@ export function checkTbd(root: string = repoRoot): TbdReport {
     resolved: row.resolved,
     adrs: row.adrs,
     callouts: report.callouts.filter((c) => c.id === row.id).length,
+    tokens: report.tokens.filter((t) => t.tbd.includes(row.id)).length,
   }))
   problems.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)
   report.summary = {
@@ -280,6 +338,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
       `${s.contentPending} content-pending callouts, ${s.draftDocs} draft docs, ${s.draftCallouts} draft callouts. ` +
       `Report: ${relative(process.cwd(), out).replaceAll('\\', '/')}`,
   )
+  const perItem = report.items.filter((i) => i.tokens).map((i) => `${i.id} ${i.tokens}`)
+  if (perItem.length) console.log(`check-tbd: tokens per item: ${perItem.join(', ')}`)
   if (report.problems.length) {
     console.error(`\ncheck-tbd: ${report.problems.length} problem(s)`)
     process.exitCode = 1

@@ -5,7 +5,7 @@
         "$value": "{placeholder.border.width}",
         "$type": "dimension",
         "$description": "Fixture token",
-        "$extensions": { "cn": { "status": "tbd" } }
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-02", "TBD-03"] } }
       }
     }
   }

@@ -34,11 +34,12 @@ test('the passing fixture passes, and the report lists callouts, tokens, content
     { file: 'DESIGN.md', line: 3, task: 'T1.1' },
     { file: 'docs/01-foundations/color.md', line: 30, task: 'T2.1' },
   ])
-  // REQ-005 AC2 and AC3: every token with status `tbd` (and `derived-pending`) is listed with its file and path.
+  // REQ-005 AC2 and AC3: every token with status `tbd` (and `derived-pending`) is listed with its file, path, and
+  // the TBD IDs in its `$extensions.cn.tbd` (§4.4, T3.2).
   assert.deepEqual(report.tokens, [
-    { file: 'tokens/primitive/color.json', path: 'color.brand.pink-400', status: 'derived-pending' },
-    { file: 'tokens/primitive/color.json', path: 'color.neutral.500', status: 'tbd' },
-    { file: 'tokens/semantic/border.json', path: 'border.width.default', status: 'tbd' },
+    { file: 'tokens/primitive/color.json', path: 'color.brand.pink-400', status: 'derived-pending', tbd: ['TBD-08'] },
+    { file: 'tokens/primitive/color.json', path: 'color.neutral.500', status: 'tbd', tbd: ['TBD-02'] },
+    { file: 'tokens/semantic/border.json', path: 'border.width.default', status: 'tbd', tbd: ['TBD-02', 'TBD-03'] },
   ])
   // REQ-009 AC1: draft docs and `> **Draft:**` callouts are listed.
   assert.deepEqual(report.drafts, {
@@ -47,16 +48,18 @@ test('the passing fixture passes, and the report lists callouts, tokens, content
       { file: 'docs/01-foundations/color.md', line: 13, text: 'Use pink for the single main action per view.' },
     ],
   })
+  // T3.2: the report counts tokens per TBD item; a token naming two items counts for both.
   assert.deepEqual(
-    report.items.map((i) => [i.id, i.resolved, i.adrs, i.callouts]),
+    report.items.map((i) => [i.id, i.resolved, i.adrs, i.callouts, i.tokens]),
     [
-      ['TBD-01', true, ['ADR-0001'], 0],
-      ['TBD-02', false, [], 1],
-      ['TBD-03', false, [], 1],
+      ['TBD-01', true, ['ADR-0001'], 0, 0],
+      ['TBD-02', false, [], 1, 2],
+      ['TBD-03', false, [], 1, 1],
+      ['TBD-08', false, [], 0, 1],
     ],
   )
   assert.deepEqual(report.summary, {
-    openItems: 2,
+    openItems: 3,
     resolvedItems: 1,
     callouts: 2,
     tokens: 2,
@@ -83,6 +86,8 @@ test('the failing fixture fails, exactly where expected', () => {
       'SPEC.md:8 missing-adr', // resolved row naming an ADR file that does not exist
       'SPEC.md:19 missing-adr', // REQ-073 AC2: decided OD with no ADR
       'tokens/component/broken.json:1 token-file',
+      'tokens/primitive/ids.json:6 unknown-id', // T3.2: `$extensions.cn.tbd` names TBD-99, not in §2.4
+      'tokens/primitive/ids.json:11 resolved-token', // T3.2: `$extensions.cn.tbd` names the resolved TBD-01
     ],
   )
 })
@@ -100,13 +105,15 @@ test('the CLI writes the report, prints the open count, and exits 1 on problems'
     }
     const pass = cli('pass')
     assert.equal(pass.status, 0, pass.stderr)
-    assert.match(pass.stdout, /^check-tbd: 2 open TBD items \(2 callouts, 2 tbd tokens\)/)
+    assert.match(pass.stdout, /^check-tbd: 3 open TBD items \(2 callouts, 2 tbd tokens\)/)
+    assert.match(pass.stdout, /^check-tbd: tokens per item: TBD-02 2, TBD-03 1, TBD-08 1$/m)
     assert.equal(pass.report.summary.problems, 0)
 
     const fail = cli('fail')
     assert.equal(fail.status, 1)
     assert.match(fail.stderr, /^docs\/01-foundations\/effects\.md:11 {2}unknown-id {2}.*TBD-99/m)
-    assert.equal(fail.report.problems.length, 11, 'the report is written even when the check fails')
+    assert.match(fail.stderr, /^tokens\/primitive\/ids\.json:6 {2}unknown-id {2}token `space\.base`.*TBD-99/m)
+    assert.equal(fail.report.problems.length, 13, 'the report is written even when the check fails')
   } finally {
     rmSync(dir, { recursive: true, force: true })
   }

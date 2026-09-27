@@ -1,0 +1,18 @@
+{
+  "effect": {
+    "glow": {
+      "default": {
+        "$value": "{placeholder.effect.glow}",
+        "$description": "Neon glow. TBD-12: blur, spread, opacity, and color per state are not defined (\"subtle\" in BR-10); this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-12"] } }
+      }
+    },
+    "shadow": {
+      "overlay": {
+        "$value": "{placeholder.elevation.overlay}",
+        "$description": "Overlay shadow. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+      }
+    }
+  }
+}

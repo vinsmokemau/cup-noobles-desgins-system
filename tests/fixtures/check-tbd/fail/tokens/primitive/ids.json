@@ -1,0 +1,19 @@
+{
+  "space": {
+    "base": {
+      "$value": "{placeholder.space.base}",
+      "$description": "Fixture token: TBD-99 is not in §2.4",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-99"] } }
+    },
+    "gap": {
+      "$value": "{placeholder.space.base}",
+      "$description": "Fixture token: TBD-01 is resolved in §2.4",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03", "TBD-01"] } }
+    },
+    "open": {
+      "$value": "{placeholder.space.base}",
+      "$description": "Fixture token: TBD-03 is open, so this one passes",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+    }
+  }
+}

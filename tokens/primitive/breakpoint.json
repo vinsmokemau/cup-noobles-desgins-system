@@ -1,0 +1,30 @@
+{
+  "breakpoint": {
+    "$type": "dimension",
+    "sm": {
+      "$value": "{placeholder.breakpoint.sm}",
+      "$description": "Small breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+    },
+    "md": {
+      "$value": "{placeholder.breakpoint.md}",
+      "$description": "Medium breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+    },
+    "lg": {
+      "$value": "{placeholder.breakpoint.lg}",
+      "$description": "Large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+    },
+    "xl": {
+      "$value": "{placeholder.breakpoint.xl}",
+      "$description": "Extra-large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+    },
+    "xxl": {
+      "$value": "{placeholder.breakpoint.xxl}",
+      "$description": "Double-extra-large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+    }
+  }
+}

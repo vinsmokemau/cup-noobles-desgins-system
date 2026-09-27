@@ -1,0 +1,15 @@
+{
+  "z": {
+    "overlay": {
+      "$value": "{placeholder.z.overlay}",
+      "$description": "Z-index of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+    },
+    "toast": {
+      "$type": "number",
+      "$value": "{placeholder.z.toast}",
+      "$description": "Z-index of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+    }
+  }
+}

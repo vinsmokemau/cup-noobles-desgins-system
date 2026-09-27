@@ -1,0 +1,10 @@
+{
+  "space": {
+    "base": {
+      "$type": "dimension",
+      "$value": "{placeholder.space.base}",
+      "$description": "Spacing base unit. TBD-09: the base unit and scale are not defined; this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-09"] } }
+    }
+  }
+}

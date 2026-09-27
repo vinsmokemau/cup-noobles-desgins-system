@@ -10,14 +10,14 @@
       "pink-400": {
         "$value": "{color.brand.pink}",
         "$description": "Fixture token",
-        "$extensions": { "cn": { "status": "derived-pending" } }
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
       }
     },
     "neutral": {
       "500": {
         "$value": "{placeholder.color.neutral}",
         "$description": "Fixture token",
-        "$extensions": { "cn": { "status": "tbd" } }
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-02"] } }
       }
     }
   }

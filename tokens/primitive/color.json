@@ -1,0 +1,22 @@
+{
+  "color": {
+    "brand": {
+      "$type": "color",
+      "pink": {
+        "$value": "#ef80ae",
+        "$description": "Brand pink, the primary, protagonist color (BR-01).",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      },
+      "yellow": {
+        "$value": "#fff488",
+        "$description": "Brand yellow, the secondary, luminous premium accent (BR-02).",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-02" } }
+      },
+      "black": {
+        "$value": "#000000",
+        "$description": "Brand black, the tertiary color for the base and background. It stays pure black, never dark gray (BR-03).",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-03" } }
+      }
+    }
+  }
+}

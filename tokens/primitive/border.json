@@ -1,0 +1,12 @@
+{
+  "border": {
+    "width": {
+      "default": {
+        "$type": "dimension",
+        "$value": "{placeholder.border.width}",
+        "$description": "Stroke width. TBD-11: \"thick\" (BR-10, BR-13) has no values; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
+      }
+    }
+  }
+}

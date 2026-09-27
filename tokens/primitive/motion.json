@@ -1,0 +1,20 @@
+{
+  "motion": {
+    "duration": {
+      "default": {
+        "$type": "duration",
+        "$value": "{placeholder.motion.duration}",
+        "$description": "Transition duration. TBD-14: motion durations are not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
+      }
+    },
+    "easing": {
+      "default": {
+        "$type": "cubicBezier",
+        "$value": "{placeholder.motion.easing}",
+        "$description": "Transition easing. TBD-14: easing curves are not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
+      }
+    }
+  }
+}
