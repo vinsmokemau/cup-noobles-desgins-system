@@ -1,0 +1,22 @@
+[
+  {
+    "foreground": "#ffffff",
+    "background": "color.brand.pink",
+    "reason": "White text on a pink fill is 2.51:1 and fails. Never allowed as text (SPEC.md §2.1)."
+  },
+  {
+    "foreground": "color.brand.yellow",
+    "background": "color.brand.pink",
+    "reason": "Yellow on pink is 2.22:1 and fails in either direction (SPEC.md §2.1)."
+  },
+  {
+    "foreground": "color.brand.pink",
+    "background": "color.brand.yellow",
+    "reason": "Pink on yellow is 2.22:1 and fails in either direction (SPEC.md §2.1)."
+  },
+  {
+    "foreground": "#ffffff",
+    "background": "color.brand.yellow",
+    "reason": "White on yellow is 1.13:1 and fails (SPEC.md §2.1)."
+  }
+]

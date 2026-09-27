@@ -1,0 +1,22 @@
+[
+  { "foreground": "color.text.default", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "color.text.muted", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "color.brand.primary", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "color.brand.primary", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "color.brand.secondary", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "color.brand.secondary", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "color.text.inverted", "background": "color.brand.primary", "usage": "text" },
+  { "foreground": "color.text.inverted", "background": "color.brand.secondary", "usage": "text" },
+  { "foreground": "color.border.default", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "color.text.default", "background": "color.surface.card", "usage": "text" },
+  { "foreground": "color.text.muted", "background": "color.surface.card", "usage": "text" },
+  { "foreground": "color.brand.primary", "background": "color.surface.card", "usage": "ui" },
+  { "foreground": "color.text.default", "background": "color.surface.elevated", "usage": "text" },
+  { "foreground": "color.text.muted", "background": "color.surface.elevated", "usage": "text" },
+  { "foreground": "color.feedback.success", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "color.feedback.warning", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "color.feedback.error", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "color.feedback.info", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "focus.ring.color", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "focus.ring.color", "background": "color.brand.primary", "usage": "ui" }
+]

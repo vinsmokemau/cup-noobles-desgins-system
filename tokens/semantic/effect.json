@@ -1,0 +1,30 @@
+{
+  "effect": {
+    "glow": {
+      "interactive": {
+        "$value": "{effect.glow.default}",
+        "$description": "Neon glow on interactive elements such as buttons (BR-10). TBD-12: blur, spread, opacity, and color per state are not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-12"] } }
+      }
+    },
+    "elevation": {
+      "overlay": {
+        "$value": "{effect.shadow.overlay}",
+        "$description": "Shadow of overlays (modal, slideover). TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+      }
+    },
+    "zIndex": {
+      "overlay": {
+        "$value": "{z.overlay}",
+        "$description": "Stacking order of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+      },
+      "toast": {
+        "$value": "{z.toast}",
+        "$description": "Stacking order of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "focus": {
+    "ring": {
+      "color": {
+        "$type": "color",
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Focus indicator color. It must differ from the glow (REQ-024). TBD-16: the focus style is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{placeholder.focus.width}",
+        "$description": "Focus indicator width. TBD-16: the focus style is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
+      },
+      "offset": {
+        "$value": "{placeholder.focus.offset}",
+        "$description": "Focus indicator offset. TBD-16: the focus style is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{placeholder.focus.style}",
+        "$description": "Focus indicator line style. TBD-16: the focus style is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
+      }
+    }
+  }
+}

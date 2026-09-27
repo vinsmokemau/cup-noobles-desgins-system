@@ -1,0 +1,82 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "primary": {
+        "$value": "{color.brand.pink}",
+        "$description": "Primary brand role: the protagonist color that dominates the identity (BR-01).",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "secondary": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Secondary brand role: the luminous, premium accent (BR-02).",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    },
+    "bg": {
+      "base": {
+        "$value": "{color.brand.black}",
+        "$description": "Page background. It stays pure black, never dark gray (BR-03, REQ-012).",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Body text color. TBD-04: pure white or an off-white is not decided; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04"] } }
+      },
+      "muted": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Secondary text color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+      },
+      "inverted": {
+        "$value": "{color.brand.black}",
+        "$description": "Text on a primary or secondary fill. Labels on primary-filled buttons must be black (SPEC.md §2.1 derived facts, BR-03).",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Border and divider color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+      }
+    },
+    "surface": {
+      "card": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Card surface. TBD-06: no surface color is defined (C-05, OD-05); until then cards render on color.bg.base. This references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-06"] } }
+      },
+      "elevated": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Elevated surface (overlays). TBD-06: no surface color is defined (C-05, OD-05); this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-06"] } }
+      }
+    },
+    "feedback": {
+      "success": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Success feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-07"] } }
+      },
+      "warning": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Warning feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-07"] } }
+      },
+      "error": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Error feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-07"] } }
+      },
+      "info": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Info feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-07"] } }
+      }
+    }
+  }
+}

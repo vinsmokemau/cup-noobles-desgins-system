@@ -1,0 +1,284 @@
+{
+  "font": {
+    "h1": {
+      "family": {
+        "$type": "fontFamily",
+        "$value": "{font.family.display}",
+        "$description": "H1 typeface: the display family (BR-07, BR-08). TBD-01: the display family is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-01"]
+          }
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.h1}",
+        "$description": "H1 font size (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "lineHeight": {
+        "$type": "dimension",
+        "$value": "{font.lineHeight.h1}",
+        "$description": "H1 line height (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.h1}",
+        "$description": "H1 font weight (BR-08, BR-09). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "letterSpacing": {
+        "$value": "{font.letterSpacing.h1}",
+        "$description": "H1 letter spacing (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      }
+    },
+    "h2": {
+      "family": {
+        "$type": "fontFamily",
+        "$value": "{font.family.display}",
+        "$description": "H2 typeface: the display family (BR-07, BR-08). TBD-01: the display family is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-01"]
+          }
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.h2}",
+        "$description": "H2 font size (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "lineHeight": {
+        "$type": "dimension",
+        "$value": "{font.lineHeight.h2}",
+        "$description": "H2 line height (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.h2}",
+        "$description": "H2 font weight (BR-08, BR-09). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "letterSpacing": {
+        "$value": "{font.letterSpacing.h2}",
+        "$description": "H2 letter spacing (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      }
+    },
+    "h3": {
+      "family": {
+        "$type": "fontFamily",
+        "$value": "{font.family.display}",
+        "$description": "H3 typeface: the display family (BR-07, BR-08). TBD-01: the display family is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-01"]
+          }
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.h3}",
+        "$description": "H3 font size (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "lineHeight": {
+        "$type": "dimension",
+        "$value": "{font.lineHeight.h3}",
+        "$description": "H3 line height (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.h3}",
+        "$description": "H3 font weight (BR-08, BR-09). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "letterSpacing": {
+        "$value": "{font.letterSpacing.h3}",
+        "$description": "H3 letter spacing (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      }
+    },
+    "body": {
+      "family": {
+        "$type": "fontFamily",
+        "$value": "{font.family.body}",
+        "$description": "Body typeface: the body family (BR-08). TBD-02: the body family is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-02"]
+          }
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.body}",
+        "$description": "Body font size (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "lineHeight": {
+        "$type": "dimension",
+        "$value": "{font.lineHeight.body}",
+        "$description": "Body line height (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.body}",
+        "$description": "Body font weight (BR-08, BR-09). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "letterSpacing": {
+        "$value": "{font.letterSpacing.body}",
+        "$description": "Body letter spacing (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      }
+    },
+    "caption": {
+      "family": {
+        "$type": "fontFamily",
+        "$value": "{font.family.body}",
+        "$description": "Caption typeface: the body family (BR-08). TBD-02: the body family is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-02"]
+          }
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{font.size.caption}",
+        "$description": "Caption font size (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "lineHeight": {
+        "$type": "dimension",
+        "$value": "{font.lineHeight.caption}",
+        "$description": "Caption line height (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.caption}",
+        "$description": "Caption font weight (BR-08, BR-09). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      },
+      "letterSpacing": {
+        "$value": "{font.letterSpacing.caption}",
+        "$description": "Caption letter spacing (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-03"]
+          }
+        }
+      }
+    }
+  }
+}

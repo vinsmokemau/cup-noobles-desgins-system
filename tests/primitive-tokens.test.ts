@@ -78,7 +78,8 @@ test('REQ-005 AC2 and §4.4: every other primitive is tbd, references a placehol
   const placeholders = new Set(tokens.filter((t) => t.file === PLACEHOLDER_FILE).map((t) => t.path))
   const others: Token[] = TBD_FILES.flatMap(inFile)
   for (const file of TBD_FILES) assert.ok(inFile(file).length, `${file} holds tokens`)
-  assert.equal(others.length + inFile('color.json').length + placeholders.size, tokens.length)
+  const primitives = tokens.filter((t) => t.tier === 'primitive')
+  assert.equal(others.length + inFile('color.json').length + placeholders.size, primitives.length)
 
   for (const token of others) {
     assert.equal(token.cn?.status, 'tbd', token.path)
