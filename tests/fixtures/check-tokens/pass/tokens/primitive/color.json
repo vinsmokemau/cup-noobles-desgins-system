@@ -1,0 +1,29 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "pink": {
+        "$value": "#ef80ae",
+        "$description": "Brand pink.",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      },
+      "black": {
+        "$value": "#000000",
+        "$description": "Brand black.",
+        "$extensions": { "cn": { "status": "stable", "source": ["BR-03"] } }
+      },
+      "pink-400": {
+        "$value": "{color.brand.pink}",
+        "$description": "Nuxt UI alias shade, filled with the single brand hex (C-06).",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      }
+    },
+    "neutral": {
+      "default": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Neutral, pending TBD-05.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+      }
+    }
+  }
+}

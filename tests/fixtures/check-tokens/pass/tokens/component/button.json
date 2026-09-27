@@ -1,0 +1,26 @@
+{
+  "button": {
+    "primary": {
+      "bg": {
+        "$value": "{color.brand.primary}",
+        "$description": "Primary button fill.",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "label": {
+        "$value": "{color.bg.base}",
+        "$description": "Primary button label: black on pink (SPEC.md §2.1 derived facts).",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "border": {
+        "$value": "{border.default}",
+        "$description": "Primary button outline.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
+      },
+      "lineHeight": {
+        "$value": "{font.body}",
+        "$description": "camelCase segment (REQ-017 AC2).",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+      }
+    }
+  }
+}

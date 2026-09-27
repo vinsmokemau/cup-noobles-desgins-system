@@ -1,0 +1,33 @@
+{
+  "ref": {
+    "$type": "color",
+    "missing": {
+      "$value": "{color.nothing}",
+      "$description": "reference: no such token.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "loop-a": {
+      "$value": "{ref.loop-b}",
+      "$description": "reference: circular.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "loop-b": {
+      "$value": "{ref.loop-a}",
+      "$description": "reference: circular.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "mismatch": {
+      "$type": "dimension",
+      "$value": "{color.brand.pink}",
+      "$description": "type: a dimension that references a color.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  },
+  "loose-ref": {
+    "embedded": {
+      "$value": "calc({color.brand.pink} * 2)",
+      "$description": "reference: DTCG references are whole values.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  }
+}

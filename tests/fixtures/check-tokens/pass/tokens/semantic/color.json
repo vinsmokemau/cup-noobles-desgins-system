@@ -1,0 +1,64 @@
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "$value": "{color.brand.pink}",
+        "$description": "Primary brand role.",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    },
+    "bg": {
+      "base": {
+        "$value": "{color.brand.black}",
+        "$description": "Page background.",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-03" } }
+      }
+    },
+    "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.default}",
+        "$description": "Body text, pending TBD-04.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04"] } }
+      }
+    }
+  },
+  "border": {
+    "default": {
+      "$type": "border",
+      "$value": {
+        "color": "{color.brand.pink}",
+        "width": "{border.width.default}",
+        "style": "{border.style.default}"
+      },
+      "$description": "Outline: brand pink with a pending width (TBD-11).",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
+    }
+  },
+  "font": {
+    "body": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{placeholder.font.family.sans}",
+        "fontSize": "{placeholder.font.lineHeight.body}",
+        "fontWeight": "{placeholder.font.weight.h1}",
+        "letterSpacing": "{placeholder.border.width}",
+        "lineHeight": "{placeholder.z.toast}"
+      },
+      "$description": "Composite typography over placeholders (TBD-03).",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+    }
+  },
+  "motion": {
+    "default": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{placeholder.motion.duration}",
+        "delay": "{placeholder.motion.duration}",
+        "timingFunction": "{placeholder.motion.easing}"
+      },
+      "$description": "Default transition, pending TBD-14.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
+    }
+  }
+}

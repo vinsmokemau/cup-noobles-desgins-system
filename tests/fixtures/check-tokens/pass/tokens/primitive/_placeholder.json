@@ -1,0 +1,82 @@
+{
+  "placeholder": {
+    "$description": "Fixture placeholders; values from ADR-0006.",
+    "color": {
+      "neutral": {
+        "$type": "color",
+        "$value": "#90a1b9",
+        "$description": "Placeholder, not a brand value. Stands in for TBD-04 and TBD-05.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04", "TBD-05"], "source": "ADR-0006" } }
+      }
+    },
+    "font": {
+      "family": {
+        "sans": {
+          "$type": "fontFamily",
+          "$value": ["-apple-system", "BlinkMacSystemFont", "sans-serif"],
+          "$description": "Placeholder, not a brand value. Stands in for TBD-01.",
+          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-01"] } }
+        }
+      },
+      "lineHeight": {
+        "body": {
+          "$type": "dimension",
+          "$value": "1.75rem",
+          "$description": "Placeholder, not a brand value. Stands in for TBD-03.",
+          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        }
+      },
+      "weight": {
+        "h1": {
+          "$type": "fontWeight",
+          "$value": 700,
+          "$description": "Placeholder, not a brand value. Stands in for TBD-03.",
+          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        }
+      }
+    },
+    "border": {
+      "width": {
+        "$type": "dimension",
+        "$value": "1px",
+        "$description": "Placeholder, not a brand value. Stands in for TBD-11.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
+      }
+    },
+    "motion": {
+      "duration": {
+        "$type": "duration",
+        "$value": "150ms",
+        "$description": "Placeholder, not a brand value. Stands in for TBD-14.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
+      },
+      "easing": {
+        "$type": "cubicBezier",
+        "$value": [0.4, 0, 0.2, 1],
+        "$description": "Placeholder, not a brand value. Stands in for TBD-14.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
+      }
+    },
+    "focus": {
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "solid",
+        "$description": "Placeholder, not a brand value. Stands in for TBD-16.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
+      }
+    },
+    "z": {
+      "overlay": {
+        "$value": "auto",
+        "$description": "Placeholder, not a brand value. Untyped, so the JSON type applies. Stands in for TBD-15.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+      },
+      "toast": {
+        "$type": "number",
+        "$value": 100,
+        "$description": "Placeholder, not a brand value. Stands in for TBD-15.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+      }
+    }
+  }
+}

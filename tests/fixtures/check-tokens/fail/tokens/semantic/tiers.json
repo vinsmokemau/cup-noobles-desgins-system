@@ -1,0 +1,25 @@
+{
+  "sem": {
+    "ok": {
+      "$value": "{color.brand.pink}",
+      "$description": "Valid: semantic references primitive.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "raw": {
+      "$type": "color",
+      "$value": "#ef80ae",
+      "$description": "tier: raw value outside primitives (REQ-010 AC3).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "to-sem": {
+      "$value": "{sem.ok}",
+      "$description": "tier: semantic references semantic (REQ-010 AC2).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "to-comp": {
+      "$value": "{comp.ok}",
+      "$description": "tier: semantic references component (REQ-010 AC2).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  }
+}

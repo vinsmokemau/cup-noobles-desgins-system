@@ -1,0 +1,20 @@
+{
+  "comp": {
+    "ok": {
+      "$value": "{sem.ok}",
+      "$description": "Valid: component references semantic.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "to-prim": {
+      "$value": "{color.brand.pink}",
+      "$description": "tier: component references primitive (REQ-010 AC2).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "raw": {
+      "$type": "number",
+      "$value": 1,
+      "$description": "tier: raw value outside primitives (REQ-010 AC3).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  }
+}

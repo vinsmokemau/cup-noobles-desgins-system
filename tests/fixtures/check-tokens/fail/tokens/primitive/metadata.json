@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "$type": "color",
+    "no-description": {
+      "$value": "#ef80ae",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "blank-description": {
+      "$value": "#ef80ae",
+      "$description": "  ",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "no-extensions": {
+      "$value": "#ef80ae",
+      "$description": "metadata: no status (REQ-014 AC2)."
+    },
+    "bad-status": {
+      "$value": "#ef80ae",
+      "$description": "metadata: unknown status (REQ-014 AC2).",
+      "$extensions": { "cn": { "status": "final" } }
+    },
+    "no-source": {
+      "$value": "#ef80ae",
+      "$description": "source: stable raw value with no source (REQ-014 AC3).",
+      "$extensions": { "cn": { "status": "stable" } }
+    },
+    "unknown-br": {
+      "$value": "#ef80ae",
+      "$description": "source: BR-99 is not in SPEC.md 2.1.",
+      "$extensions": { "cn": { "status": "stable", "source": "BR-99" } }
+    },
+    "missing-adr": {
+      "$value": "#ef80ae",
+      "$description": "source: ADR-0042 does not exist.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0042" } }
+    },
+    "adr-source": {
+      "$value": "#ef80ae",
+      "$description": "Valid: a stable raw value recorded by an existing ADR.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0001" } }
+    },
+    "tbd-missing": {
+      "$value": "{placeholder.color.neutral}",
+      "$description": "tbd: no $extensions.cn.tbd.",
+      "$extensions": { "cn": { "status": "tbd" } }
+    },
+    "tbd-bad-id": {
+      "$value": "{placeholder.color.neutral}",
+      "$description": "tbd: TBD-5 is not a TBD-NN ID.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-5"] } }
+    },
+    "derived-wrong": {
+      "$value": "{color.brand.pink}",
+      "$description": "tbd: derived-pending is always TBD-08.",
+      "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-05"] } }
+    },
+    "stable-with-tbd": {
+      "$value": "{color.brand.pink}",
+      "$description": "tbd: a stable token has no tbd field.",
+      "$extensions": { "cn": { "status": "stable", "tbd": ["TBD-05"] } }
+    }
+  }
+}

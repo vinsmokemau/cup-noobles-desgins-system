@@ -1,0 +1,59 @@
+{
+  "bogus": {
+    "$type": "colour",
+    "x": {
+      "$value": "#ef80ae",
+      "$description": "The group's $type is unknown, so this token is untyped.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  },
+  "value": {
+    "banana": {
+      "$type": "color",
+      "$value": "banana",
+      "$description": "value: not a color (ADR-0003 control build).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "short": {
+      "$type": "color",
+      "$value": "#fff",
+      "$description": "value: DTCG colors have 6 or 8 hex digits.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "unitless": {
+      "$type": "dimension",
+      "$value": "12",
+      "$description": "value: a dimension needs px or rem.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "bezier": {
+      "$type": "cubicBezier",
+      "$value": [1.5, 0, 0.2, 1],
+      "$description": "value: x1 is outside 0 to 1.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "$value": "heavyish",
+      "$description": "value: not a DTCG weight keyword.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "border": {
+      "$type": "border",
+      "$value": { "color": "#ef80ae", "width": "1px" },
+      "$description": "value: a border needs style.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "object": {
+      "$value": { "a": 1 },
+      "$description": "type: an untyped token holds a string, number, or boolean.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "unknown": {
+      "$type": "size",
+      "$value": "1px",
+      "$description": "type: not a DTCG type.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  }
+}

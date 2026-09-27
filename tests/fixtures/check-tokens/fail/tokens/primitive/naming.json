@@ -1,0 +1,45 @@
+{
+  "Naming": {
+    "ok": {
+      "$value": "{color.brand.pink}",
+      "$description": "The group name is not lowercase.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  },
+  "names": {
+    "2xl": {
+      "$value": "{color.brand.pink}",
+      "$description": "naming: starts with a digit (ADR-0006).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "snake_case": {
+      "$value": "{color.brand.pink}",
+      "$description": "naming: underscore.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "brand-alias": {
+      "$value": "{color.brand.pink}",
+      "$description": "Valid on its own.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "brandAlias": {
+      "$value": "{color.brand.pink}",
+      "$description": "naming: collides with brand-alias under name/kebab (ADR-0003).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  },
+  "dash-a": {
+    "b": {
+      "$value": "{color.brand.pink}",
+      "$description": "Valid on its own.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  },
+  "dash": {
+    "a-b": {
+      "$value": "{color.brand.pink}",
+      "$description": "naming: --cn-dash-a-b is also dash-a.b (REQ-017 AC1).",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  }
+}

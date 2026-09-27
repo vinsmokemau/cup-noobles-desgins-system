@@ -1,0 +1,35 @@
+{
+  "placeholder": {
+    "color": {
+      "neutral": {
+        "$type": "color",
+        "$value": "#90a1b9",
+        "$description": "Placeholder, not a brand value. Valid.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+      }
+    },
+    "stable": {
+      "$type": "color",
+      "$value": "#90a1b9",
+      "$description": "Placeholder, not a brand value. placeholder: status must be tbd.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0001" } }
+    },
+    "alias": {
+      "$value": "{placeholder.color.neutral}",
+      "$description": "Placeholder, not a brand value. placeholder: holds a reference.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+    },
+    "unlabeled": {
+      "$type": "color",
+      "$value": "#90a1b9",
+      "$description": "placeholder: the description lacks the ADR-0006 label.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+    }
+  },
+  "outside": {
+    "$type": "color",
+    "$value": "#90a1b9",
+    "$description": "Placeholder, not a brand value. placeholder: not under the placeholder group.",
+    "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+  }
+}

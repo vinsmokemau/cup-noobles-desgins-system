@@ -1,0 +1,12 @@
+{
+  "color": {
+    "brand": {
+      "pink": {
+        "$type": "color",
+        "$value": "#ef80ae",
+        "$description": "structure: color.brand.pink is already defined in color.json.",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$foo": "structure: unknown group property",
+  "shape": {
+    "loose": "4px",
+    "a.b": {
+      "$type": "color",
+      "$value": "#ef80ae",
+      "$description": "structure: a DTCG name cannot contain a dot.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "nested": {
+      "$type": "color",
+      "$value": "#ef80ae",
+      "$unit": "hex",
+      "$description": "structure: unknown token property.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    },
+    "parent": {
+      "$type": "color",
+      "$value": "#ef80ae",
+      "$description": "structure: a token cannot contain tokens.",
+      "$extensions": { "cn": { "status": "deprecated" } },
+      "child": {
+        "$value": "#ef80ae",
+        "$description": "Never read.",
+        "$extensions": { "cn": { "status": "deprecated" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "color": {
+    "brand": {
+      "$value": "{color.brand.pink}",
+      "$description": "structure: color.brand is a group in color.json.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  }
+}

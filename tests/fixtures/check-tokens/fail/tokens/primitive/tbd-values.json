@@ -1,0 +1,30 @@
+{
+  "placeholder": {
+    "stray": {
+      "$type": "color",
+      "$value": "#90a1b9",
+      "$description": "placeholder: placeholder.* outside _placeholder.json.",
+      "$extensions": { "cn": { "status": "deprecated" } }
+    }
+  },
+  "pending": {
+    "$type": "color",
+    "raw": {
+      "$value": "#90a1b9",
+      "$description": "placeholder: a tbd token never holds a raw value (4.4).",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+    },
+    "brand-only": {
+      "$value": "{color.brand.pink}",
+      "$description": "placeholder: a tbd token that references no placeholder.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+    }
+  },
+  "final": {
+    "on-placeholder": {
+      "$value": "{placeholder.color.neutral}",
+      "$description": "placeholder: a stable token that depends on a placeholder.",
+      "$extensions": { "cn": { "status": "stable" } }
+    }
+  }
+}

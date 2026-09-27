@@ -1,0 +1,19 @@
+{
+  "border": {
+    "width": {
+      "default": {
+        "$type": "dimension",
+        "$value": "{placeholder.border.width}",
+        "$description": "Stroke width, pending TBD-11.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
+      }
+    },
+    "style": {
+      "default": {
+        "$value": "{placeholder.focus.style}",
+        "$description": "Stroke style, pending TBD-16.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
+      }
+    }
+  }
+}
