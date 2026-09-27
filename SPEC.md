@@ -860,7 +860,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: `ci.yml` runs `pnpm test:all` on push and pull request in a pinned container image (A-12). Add `pull_request_template.md` with the docs-sync checklist. Document the required branch protection in `README.md`.
   - Done when: CI is green on `main`, a deliberately failing branch shows a red check, and the owner confirms branch protection (manual).
 
-- [ ] **T1.5 — Brand source integrity test**
+- [x] **T1.5 — Brand source integrity test** (2026-09-27, 1b7c7dd)
   - REQs: REQ-006 (AC1)
   - Depends on: T1.2
   - Scope: A test comparing the SHA-256 of `brand-context-source.md` with the committed `.sha256`.
