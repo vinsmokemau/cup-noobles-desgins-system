@@ -8,7 +8,7 @@ The design system for Cup Noobles: design tokens, a Nuxt UI theme layer with a f
 
 ## Status
 
-Phase 1 (repository and tooling). The pnpm workspace and the directory tree from SPEC.md §4.1 exist, but the packages and apps are still empty. `pnpm test` and `pnpm test:all` exist; the other commands in SPEC.md §0.3 arrive with their tasks.
+Phase 2 (docs skeleton and doc tooling). The pnpm workspace and the directory tree from SPEC.md §4.1 exist, but the packages and apps are still empty. `pnpm test`, `pnpm test:all`, and `pnpm check:docs` exist; the other commands in SPEC.md §0.3 arrive with their tasks.
 
 ## Layout
 
@@ -34,7 +34,8 @@ pnpm test
 
 | Command | Runs |
 |---|---|
-| `pnpm test` | `pnpm lint`, then `pnpm typecheck`, then `pnpm test:unit` |
+| `pnpm test` | `pnpm lint`, then `pnpm typecheck`, then `pnpm test:unit`, then `pnpm check:docs` |
+| `pnpm check:docs` | `scripts/check-docs.ts`: frontmatter, template headings, hex literals, MDC syntax, `copy` locales, and callouts in `stable` docs, across `docs/` and `DESIGN.md` |
 | `pnpm lint` | ESLint (`eslint.config.js`), `prettier --check`, and markdownlint (`.markdownlint-cli2.jsonc`) |
 | `pnpm typecheck` | `vue-tsc --noEmit` over `tsconfig.json` |
 | `pnpm test:unit` | The Vitest workspace in `vitest.config.ts` |

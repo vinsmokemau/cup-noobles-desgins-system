@@ -108,7 +108,8 @@ test('§4.3: every required field is required, and each field is type-checked', 
 
 test('the existing ADRs validate against the schema', () => {
   const dir = 'docs/06-governance/decisions'
-  const adrs = readdirSync(join(root, dir)).filter((name) => /^\d{4}-.+\.md$/.test(name) && !name.startsWith('0000-'))
+  // The ADR template is not exempt under REQ-002 AC4, so it validates too.
+  const adrs = readdirSync(join(root, dir)).filter((name) => /^\d{4}-.+\.md$/.test(name))
   assert.ok(adrs.length > 0)
   for (const name of adrs) {
     assert.ok(isValid(frontmatter(`${dir}/${name}`)), `${name}: ${JSON.stringify(validate.errors)}`)

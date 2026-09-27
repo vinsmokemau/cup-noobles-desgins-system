@@ -11,7 +11,8 @@
     "format": "prettier --write . && markdownlint-cli2 --fix",
     "typecheck": "vue-tsc --noEmit",
     "test:unit": "vitest run",
-    "test": "pnpm lint && pnpm typecheck && pnpm test:unit",
+    "check:docs": "node scripts/check-docs.ts",
+    "test": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm check:docs",
     "test:all": "pnpm test"
   },
   "devDependencies": {

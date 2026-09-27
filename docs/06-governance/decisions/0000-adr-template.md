@@ -8,7 +8,7 @@ brandRules: []
 tbd: []
 related: []
 since: 0.1.0
-updated: YYYY-MM-DD
+updated: 2026-09-24
 ---
 
 # ADR-NNNN: Short decision title

@@ -4,6 +4,8 @@
     "**/node_modules/**",
     "**/dist/**",
     "reports/**",
+    // Deliberate check-docs violations (T2.2); tests/check-docs.test.ts asserts their exact line numbers.
+    "tests/fixtures/**",
     // Hash-locked and owner-supplied verbatim (REQ-006); it must never be edited, so it is not linted.
     "docs/00-overview/brand-context-source.md",
     // Owner-controlled files that tasks may not reformat (CLAUDE.md, SPEC.md §8).
