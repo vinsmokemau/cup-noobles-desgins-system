@@ -123,10 +123,9 @@ const isObject = (value: unknown): value is Record<string, unknown> =>
 
 const aliasOf = (value: unknown) => (typeof value === 'string' ? value.match(ALIAS)?.[1] : undefined)
 
-// REQ-017 AC1: the DTCG path `color.bg.base` maps to `--cn-color-bg-base`.
-export const cssVariable = (path: string) => `--cn-${path.split('.').join('-')}`
-// Style Dictionary's `name/kebab` also splits camelCase segments (ADR-0003); names must stay unique under it too.
-const kebabVariable = (path: string) =>
+// REQ-017 AC1 and ADR-0008: `color.bg.base` maps to `--cn-color-bg-base`, and camelCase segments are split the way
+// Style Dictionary's `name/kebab` splits them, so `font.lineHeight.h1` maps to `--cn-font-line-height-h1`.
+export const cssVariable = (path: string) =>
   `--cn-${path
     .split('.')
     .map((segment) => segment.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase())
@@ -369,7 +368,6 @@ export function checkTokens(root: string = repoRoot): TokenReport {
   const isPlaceholder = (path: string) => byPath.get(path)?.file === PLACEHOLDER_FILE
 
   const cssNames = new Map<string, string>()
-  const kebabNames = new Map<string, string>()
 
   for (const token of tokens) {
     const { file, path, tier } = token
@@ -488,19 +486,12 @@ export function checkTokens(root: string = repoRoot): TokenReport {
         )
     }
 
-    // REQ-017 AC1: every token gets its own CSS custom property, whichever way camelCase segments are written.
+    // REQ-017 AC1 and ADR-0008: the kebab mapping is lossy, so every token must still get its own CSS name.
     if (byPath.get(path) === token) {
-      for (const [names, name] of [
-        [cssNames, cssVariable(path)],
-        [kebabNames, kebabVariable(path)],
-      ] as const) {
-        const other = names.get(name)
-        if (other && other !== path) {
-          add(file, path, 'naming', `\`${name}\` is also the CSS name of ${other} (REQ-017 AC1)`)
-          break
-        }
-        names.set(name, path)
-      }
+      const name = cssVariable(path)
+      const other = cssNames.get(name)
+      if (other) add(file, path, 'naming', `\`${name}\` is also the CSS name of ${other} (REQ-017 AC1, ADR-0008)`)
+      else cssNames.set(name, path)
     }
   }
 

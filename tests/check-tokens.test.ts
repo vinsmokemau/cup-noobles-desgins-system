@@ -89,14 +89,16 @@ test('the failing fixture fails, once per violation, exactly where expected', ()
     'tokens/primitive/naming.json Naming naming',
     'tokens/primitive/naming.json names.2xl naming',
     'tokens/primitive/naming.json names.snake_case naming',
-    'tokens/primitive/naming.json names.brandAlias naming', // same CSS name as brand-alias under name/kebab
+    'tokens/primitive/naming.json names.brandAlias naming', // same CSS name as brand-alias (ADR-0008)
     'tokens/primitive/naming.json dash.a-b naming', // same CSS name as dash-a.b
   ]
   assert.deepEqual([...problems].sort(), [...expected].sort())
 })
 
-test('REQ-017 AC1: the DTCG path maps to --cn-{path-with-dashes}', () => {
+test('REQ-017 AC1 and ADR-0008: the DTCG path maps to --cn-{path-with-dashes}, with camelCase split', () => {
   assert.equal(cssVariable('color.bg.base'), '--cn-color-bg-base')
+  assert.equal(cssVariable('font.lineHeight.h1'), '--cn-font-line-height-h1')
+  assert.equal(cssVariable('color.brand.pink-400'), '--cn-color-brand-pink-400')
 })
 
 test('REQ-017 AC2: path segments are lowercase kebab-case or camelCase', () => {
