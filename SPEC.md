@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.8 |
+| Spec version | 1.9 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -245,7 +245,7 @@ Format: each requirement is one verifiable statement followed by its acceptance 
 
 **REQ-004. Token values in docs are generated, never hand-written.**
 - AC1. Token tables appear only between `<!-- cn:generated ... -->` and `<!-- /cn:generated -->` markers (§4.5).
-- AC2. Outside generated blocks, no hex color literal (`#[0-9a-fA-F]{3,8}\b`) appears in `docs/` or `DESIGN.md`. Two exceptions apply: `docs/00-overview/brand-context-source.md`, and fenced blocks tagged `bad-example`. Check: `check-docs`.
+- AC2. Outside generated blocks, no hex color literal (`#[0-9a-fA-F]{3,8}\b`) appears in `docs/` or `DESIGN.md`. Three exceptions apply: `docs/00-overview/brand-context-source.md`; ADRs in `docs/06-governance/decisions/`, because they record values with their source (§4.4); and fenced blocks tagged `bad-example`. Check: `check-docs`.
 - AC3. `pnpm sync:docs --check` exits 0 on a clean tree and exits non-zero after any token value changes until `pnpm sync:docs` is run.
 
 **REQ-005. Undefined values follow a single TBD convention.**
@@ -263,7 +263,7 @@ Format: each requirement is one verifiable statement followed by its acceptance 
 - AC2. Every UI copy example sits in a fenced block tagged `copy es-MX` or `copy-bad es-MX`. Check: `check-docs` fails on the `copy` tag without a locale.
 
 **REQ-008. Docs are fully readable without the showcase.**
-- AC1. No MDC component syntax appears in `docs/`: no line starts with `::`, and there is no `:component{…}` inline syntax. Check: `check-docs`.
+- AC1. No MDC component syntax appears in `docs/` outside fenced code blocks: no line starts with `::`, and there is no `:component{…}` inline syntax. Fenced code is never parsed as MDC, so it may show MDC as literal code. Check: `check-docs`.
 - AC2. Live demos are attached through frontmatter (`demos:`), never embedded in prose.
 - AC3. Manual (depends on rendering in a third-party viewer): a sample of three docs renders correctly in the repository host's Markdown preview.
 
@@ -1262,6 +1262,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.6 | 2026-09-23 | OD-14 decided: the repository is public and was created empty. No open decision blocks any task in P0–P12 anymore; only the brand inputs (OD-04 through OD-09) remain, and they gate stable status and 1.0, not the tasks. | OA-11 |
 | 1.7 | 2026-09-25 | `site-header` and `site-footer` are `source: nuxt-ui` (themed `UHeader` and `UFooter`), following the ADR-0001 finding. Updated the C-01 custom-component list and the §4.10 row. | Owner decision in chat; ADR-0001 |
 | 1.8 | 2026-09-27 | §4.2: row 14 (Context · Decision · Consequences) is three H2 headings, as in the ADR template and ADRs 0001–0006. | Owner decision in chat (T2.1 open question) |
+| 1.9 | 2026-09-27 | REQ-004 AC2: ADRs are exempt from the hex-literal rule, because §4.4 has ADRs record values. REQ-008 AC1: the MDC check applies outside fenced code blocks only. | Owner decision in chat (T2.2 open questions) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
