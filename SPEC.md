@@ -882,7 +882,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: `scripts/check-docs.ts`: frontmatter validation; the heading set and order per layer; exempt files; hex literals outside generated blocks; MDC syntax; `copy` blocks without a locale; draft or TBD callouts inside `stable` docs. Include unit tests with one fixture per rule.
   - Done when: `pnpm check:docs` exists, and every rule has a passing fixture and a failing fixture.
 
-- [ ] **T2.3 — `DESIGN.md`, doc stubs, and `check-links`**
+- [x] **T2.3 — `DESIGN.md`, doc stubs, and `check-links`** (2026-09-27, 6fcc5f5)
   - REQs: REQ-001
   - Depends on: T2.2
   - Scope: Create every doc listed in §4.1 as a stub with `status: tbd`, valid frontmatter, and the headings its layer requires, each section containing only `> **TBD:** Content pending (Tn.n).` Create `DESIGN.md`, grouped per REQ-001 AC4, with a one-line description per link. Create `scripts/check-links.ts`.
