@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.10 |
+| Spec version | 1.11 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -663,7 +663,7 @@ updated: 2026-09-23            # required, ISO date
 - **In tokens:** a TBD token gets `$extensions.cn.status: "tbd"`, and its value is a reference into `tokens/primitive/_placeholder.json`.
 - **Placeholder values:** `_placeholder.json` holds one set of deliberately non-brand placeholder values, and every one of them has status `tbd`. Colors use a single neutral placeholder. Dimensions use the Nuxt UI default the component would have anyway. These placeholder values are recorded in ADR-0006 (T0.5) and are never described as brand values.
 - **In the showcase:** TBD previews carry a hatched overlay and a "TBD-NN" badge (REQ-054 AC4).
-- **Resolution:** the owner supplies the value, an ADR records it, the token changes to `stable`, the callout is removed, and §2.4 marks the row resolved with the ADR number (REQ-073).
+- **Resolution:** the owner supplies the value, an ADR records it, the token changes to `stable`, the callout is removed, and §2.4 marks the row resolved by writing `Resolved (ADR-NNNN)` in it (REQ-073). `check-tbd` fails if a row that says `Resolved` names no existing ADR, or if a callout still cites a resolved ID.
 
 ### 4.5 Keeping docs and the app in sync: the single source of truth
 
@@ -1233,9 +1233,9 @@ The owner must decide these. Each decision becomes an ADR.
 
 | ID | Decision | Options | Recommendation | Needed by |
 |---|---|---|---|---|
-| OD-01 | Where do commerce components live? (C-02) | (a) In the storefront repo, built from design system parts; (b) in the design system under a separate "commerce" namespace | **Decided: (a)** (OA-10). | T1.3 |
-| OD-02 | Showcase hosting and visibility | Public or private; hosted on a static host or the owner's own infrastructure | **Decided: public, on GitHub Pages** (OA-10), as a project site at `https://vinsmokemau.github.io/cup-noobles-desgins-system/`. On GitHub Free, this requires a public repository (OD-14). | T5.6 |
-| OD-03 | Package distribution | Private registry (GitHub Packages), public npm, or git-referenced layer | **Decided: GitHub Packages, private** (OA-9). Consumers install with a GitHub token that has `read:packages`, documented in T12.2. | T12.1 |
+| OD-01 | Where do commerce components live? (C-02) | (a) In the storefront repo, built from design system parts; (b) in the design system under a separate "commerce" namespace | **Decided: (a)** (OA-10, ADR-0007). | T1.3 |
+| OD-02 | Showcase hosting and visibility | Public or private; hosted on a static host or the owner's own infrastructure | **Decided: public, on GitHub Pages** (OA-10, ADR-0007), as a project site at `https://vinsmokemau.github.io/cup-noobles-desgins-system/`. On GitHub Free, this requires a public repository (OD-14). | T5.6 |
+| OD-03 | Package distribution | Private registry (GitHub Packages), public npm, or git-referenced layer | **Decided: GitHub Packages, private** (OA-9, ADR-0007). Consumers install with a GitHub token that has `read:packages`, documented in T12.2. | T12.1 |
 | OD-04 | Brand color shades (C-06, TBD-08) | (a) The brand supplies full scales; (b) approve an algorithmic derivation such as OKLCH lightness steps, recorded in an ADR; (c) use the single hex for every shade | (a) or (b). Both need owner sign-off. (c) is the temporary default. | Before 1.0 (T5.1 uses the default) |
 | OD-05 | Card surface (C-05, TBD-06) | (a) Pure black, separated by an outline only; (b) a distinct near-black surface token | Undecided: (a) best respects BR-03, and (b) better matches "dark surface" in BR-12. | T8.1 (placeholder allowed) |
 | OD-06 | Typefaces (TBD-01, TBD-02) | Any font meeting the criteria set in T4.3 | Owner supplies | T4.3 (placeholder allowed), before 1.0 |
@@ -1243,10 +1243,10 @@ The owner must decide these. Each decision becomes an ADR.
 | OD-08 | Logo and motif SVG delivery (TBD-17, TBD-18) | Owner supplies SVGs plus clear-space and minimum-size rules | — | Before T7.7 or T8.6 can be `stable` |
 | OD-09 | Icon set (TBD-19) | Any Iconify collection with a stroke style consistent with BR-13, or custom icons | Owner decides | Before T7.3 can be `stable` |
 | OD-10 | Stream overlays (C-04) | Keep as a non-goal, or add an overlay phase later | Keep as a non-goal for this spec | None |
-| OD-11 | Confirm C-03: visual styling lives only in the layer, and consuming apps keep "Tailwind for layout only" | Confirm or amend | **Decided: confirmed** (OA-10). | T5.1 |
+| OD-11 | Confirm C-03: visual styling lives only in the layer, and consuming apps keep "Tailwind for layout only" | Confirm or amend | **Decided: confirmed** (OA-10, ADR-0007). | T5.1 |
 | OD-12 | Email authoring | MJML (A-14), or hand-written table HTML | **Decided: MJML** (OA-6). ADR-0004 records it. | T0.4 |
-| OD-13 | Repository host, owner, name, and package scope | **Decided** (OA-7, OA-8, OA-9): GitHub, personal account `vinsmokemau`, repository `cup-noobles-desgins-system`, scope `@vinsmokemau` with package names `cup-noobles-tokens`, `cup-noobles-nuxt`, and `cup-noobles-email`. | — | T1.1 |
-| OD-14 | Repository visibility | (a) Public; (b) private, with a GitHub Pro subscription | **Decided: (a) public** (OA-11). The repository `https://github.com/vinsmokemau/cup-noobles-desgins-system` exists, is public, and is empty. This enables GitHub Pages (OD-02) and branch protection (REQ-074 AC2) on the free plan. | T1.4 |
+| OD-13 | Repository host, owner, name, and package scope | **Decided** (OA-7, OA-8, OA-9, ADR-0007): GitHub, personal account `vinsmokemau`, repository `cup-noobles-desgins-system`, scope `@vinsmokemau` with package names `cup-noobles-tokens`, `cup-noobles-nuxt`, and `cup-noobles-email`. | — | T1.1 |
+| OD-14 | Repository visibility | (a) Public; (b) private, with a GitHub Pro subscription | **Decided: (a) public** (OA-11, ADR-0007). The repository `https://github.com/vinsmokemau/cup-noobles-desgins-system` exists, is public, and is empty. This enables GitHub Pages (OD-02) and branch protection (REQ-074 AC2) on the free plan. | T1.4 |
 
 ---
 
@@ -1265,6 +1265,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.8 | 2026-09-27 | §4.2: row 14 (Context · Decision · Consequences) is three H2 headings, as in the ADR template and ADRs 0001–0006. | Owner decision in chat (T2.1 open question) |
 | 1.9 | 2026-09-27 | REQ-004 AC2: ADRs are exempt from the hex-literal rule, because §4.4 has ADRs record values. REQ-008 AC1: the MDC check applies outside fenced code blocks only. | Owner decision in chat (T2.2 open questions) |
 | 1.10 | 2026-09-27 | §4.4: added the content-pending callout (`> **TBD:** Content pending (Tn.n).`) that T2.3's stubs use. It has no TBD ID, `check-tbd` validates its task ID against §6 and reports it separately, and any other `> **TBD…` form fails. | Owner decision in chat (T2.3 open question) |
+| 1.11 | 2026-09-27 | §7.2: the six decided ODs that cited only owner answers (OD-01, OD-02, OD-03, OD-11, OD-13, OD-14) now also cite ADR-0007, which records them, so REQ-073 AC2 holds. §4.4: a resolved §2.4 row is marked `Resolved (ADR-NNNN)`. | Owner decision in chat (T2.4 open questions); ADR-0007 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
