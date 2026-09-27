@@ -876,7 +876,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: `docs/_template.md` with all 16 headings from §4.2 and guidance comments; `docs/_schema/frontmatter.schema.json` implementing §4.3, including the conditional fields for components.
   - Done when: the schema accepts the §4.3 example, and rejects a component doc that has no `level`.
 
-- [ ] **T2.2 — `check-docs`**
+- [x] **T2.2 — `check-docs`** (2026-09-27, f27c25e)
   - REQs: REQ-002, REQ-003, REQ-004 (AC2), REQ-007, REQ-008 (AC1), REQ-037
   - Depends on: T2.1
   - Scope: `scripts/check-docs.ts`: frontmatter validation; the heading set and order per layer; exempt files; hex literals outside generated blocks; MDC syntax; `copy` blocks without a locale; draft or TBD callouts inside `stable` docs. Include unit tests with one fixture per rule.
