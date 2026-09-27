@@ -124,7 +124,7 @@ test('REQ-003 AC1: the required headings per layer match the SPEC.md §4.2 table
 
 test('Done when: `pnpm check:docs` exists and runs this script', () => {
   const scripts = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).scripts
-  assert.equal(scripts['check:docs'], 'node scripts/check-docs.ts')
+  assert.match(scripts['check:docs'], /^node scripts\/check-docs\.ts(?: &&|$)/)
   assert.match(scripts.test, /pnpm check:docs/, 'pnpm test runs the docs checks (§0.3)')
 })
 

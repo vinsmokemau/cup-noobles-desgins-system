@@ -22,5 +22,9 @@
     "MD060": false,
     // Docs repeat the frontmatter `title` as the H1 (SPEC.md §4.2), so the frontmatter title is not a heading.
     "MD025": { "front_matter_title": "" },
+    // A doc's H1 can match one of its required H2s (accessibility.md has "Accessibility"), so only siblings are compared.
+    "MD024": { "siblings_only": true },
+    // DESIGN.md links each doc by its title, and one component doc is titled "Link", so "link" is not a prohibited text.
+    "MD059": { "prohibited_texts": ["click here", "here", "more"] },
   },
 }

@@ -65,7 +65,7 @@ const NOT_APPLICABLE = 'Not applicable.'
 const USAGE_H3S = ['When to use', 'When not to use']
 const HEX = /#[0-9a-fA-F]{3,8}\b/g
 
-interface Line {
+export interface Line {
   n: number // 1-based line number in the file
   text: string
   frontmatter: boolean
@@ -79,7 +79,7 @@ const OPEN_FENCE = /^ {0,3}(`{3,}|~{3,})(.*)$/
 const GENERATED_OPEN = /^<!-- cn:generated\b.*-->\s*$/
 const GENERATED_CLOSE = /^<!-- \/cn:generated -->\s*$/
 
-function scan(file: string, text: string, frontmatterEnd: number, problems: Problem[]): Line[] {
+export function scan(file: string, text: string, frontmatterEnd: number, problems: Problem[]): Line[] {
   const lines: Line[] = []
   let fence: { marker: string; info: string[] } | null = null
   let comment = false
@@ -152,7 +152,7 @@ function scan(file: string, text: string, frontmatterEnd: number, problems: Prob
 }
 
 // Lines that Markdown renders as prose (not frontmatter, fenced code, or comments).
-const prose = (line: Line) => !line.frontmatter && !line.fence && !line.comment
+export const prose = (line: Line) => !line.frontmatter && !line.fence && !line.comment
 
 function checkHex(file: string, lines: Line[], problems: Problem[]) {
   if (HEX_EXEMPT(file)) return
@@ -211,7 +211,7 @@ interface Frontmatter {
   end: number // last line of the frontmatter block, 0 if none
 }
 
-function readFrontmatter(text: string): Frontmatter {
+export function readFrontmatter(text: string): Frontmatter {
   const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/)
   if (!match) return { data: null, end: 0 }
   const end = match[0].replace(/\r?\n$/, '').split(/\r?\n/).length
