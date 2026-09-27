@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.7 |
+| Spec version | 1.8 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -612,6 +612,8 @@ Every doc starts with frontmatter (§4.3), then an H1 equal to `title`, then the
 | 14 | Context · Decision · Consequences | | | | | | | | ● |
 | 15 | Open items | ● | ● | ● | ● | ● | ● | ● | |
 | 16 | Changelog | ● | ● | ● | ● | ● | ● | ● | |
+
+Row 14 is three H2 headings, in this order: `Context`, `Decision`, `Consequences`.
 
 Section content rules:
 
@@ -1259,6 +1261,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.5 | 2026-09-23 | OD-01 (a), OD-02 (public, GitHub Pages), and OD-11 (confirmed) decided; C-02 and C-03 resolved. Added OD-14 (repository visibility). T5.6 targets the GitHub Pages project subpath. | OA-10 |
 | 1.6 | 2026-09-23 | OD-14 decided: the repository is public and was created empty. No open decision blocks any task in P0–P12 anymore; only the brand inputs (OD-04 through OD-09) remain, and they gate stable status and 1.0, not the tasks. | OA-11 |
 | 1.7 | 2026-09-25 | `site-header` and `site-footer` are `source: nuxt-ui` (themed `UHeader` and `UFooter`), following the ADR-0001 finding. Updated the C-01 custom-component list and the §4.10 row. | Owner decision in chat; ADR-0001 |
+| 1.8 | 2026-09-27 | §4.2: row 14 (Context · Decision · Consequences) is three H2 headings, as in the ADR template and ADRs 0001–0006. | Owner decision in chat (T2.1 open question) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
