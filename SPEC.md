@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.12 |
+| Spec version | 1.13 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -906,7 +906,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
 - [ ] **T3.2 — Primitive tokens**
   - REQs: REQ-011 (AC1), REQ-005 (AC2)
   - Depends on: T3.1
-  - Scope: `color.json` holds the three brand colors (status `stable`, sources BR-01 through BR-03). `_placeholder.json` holds the values from ADR-0006. Every other primitive group from §4.7 references a placeholder and has status `tbd`, with the TBD ID in its description.
+  - Scope: `color.json` holds the three brand colors (status `stable`, sources BR-01 through BR-03). `_placeholder.json` holds the values from ADR-0006. Every other primitive group from §4.7 references a placeholder and has status `tbd`, with the TBD ID in its description. Extend `check-tbd` to read `$extensions.cn.tbd`: fail on an ID not in §2.4 or on a resolved ID, and count tokens per TBD item in `reports/tbd-report.json`.
   - Done when: `check:tokens` passes, and `check:tbd` lists every TBD-03 through TBD-16 token.
 
 - [ ] **T3.3 — Semantic tokens and contrast files**
@@ -1267,6 +1267,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.10 | 2026-09-27 | §4.4: added the content-pending callout (`> **TBD:** Content pending (Tn.n).`) that T2.3's stubs use. It has no TBD ID, `check-tbd` validates its task ID against §6 and reports it separately, and any other `> **TBD…` form fails. | Owner decision in chat (T2.3 open question) |
 | 1.11 | 2026-09-27 | §7.2: the six decided ODs that cited only owner answers (OD-01, OD-02, OD-03, OD-11, OD-13, OD-14) now also cite ADR-0007, which records them, so REQ-073 AC2 holds. §4.4: a resolved §2.4 row is marked `Resolved (ADR-NNNN)`. | Owner decision in chat (T2.4 open questions); ADR-0007 |
 | 1.12 | 2026-09-27 | §4.4: TBD and `derived-pending` tokens name their §2.4 items in `$extensions.cn.tbd` (`derived-pending` is always `["TBD-08"]`); `stable` and `deprecated` tokens have no such field. `check-tokens` enforces it, and `check-tbd` validates the IDs and counts tokens per item. | Owner decision in chat (T2.4 open question) |
+| 1.13 | 2026-09-27 | T3.2 scope: extend `check-tbd` to read `$extensions.cn.tbd`, the part of 1.12 that no task covered. | Owner decision in chat (T3.1 open question); related token decisions in ADR-0008 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

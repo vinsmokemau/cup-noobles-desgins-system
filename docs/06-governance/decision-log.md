@@ -26,6 +26,7 @@ updated: 2026-09-27
 - [ADR-0005: Baseline assumptions and conflict resolutions](decisions/0005-baseline-assumptions-and-conflicts.md)
 - [ADR-0006: Placeholder values for TBD tokens](decisions/0006-placeholder-values.md)
 - [ADR-0007: Owner decisions on record](decisions/0007-owner-decisions-on-record.md)
+- [ADR-0008: Token value format, untyped tokens, CSS names, and token sources](decisions/0008-token-format-and-naming.md)
 
 ## Open items
 
