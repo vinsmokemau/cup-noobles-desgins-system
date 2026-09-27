@@ -909,7 +909,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: `color.json` holds the three brand colors (status `stable`, sources BR-01 through BR-03). `_placeholder.json` holds the values from ADR-0006. Every other primitive group from §4.7 references a placeholder and has status `tbd`, with the TBD ID in its description. Extend `check-tbd` to read `$extensions.cn.tbd`: fail on an ID not in §2.4 or on a resolved ID, and count tokens per TBD item in `reports/tbd-report.json`.
   - Done when: `check:tokens` passes, and `check:tbd` lists every TBD-03 through TBD-16 token.
 
-- [ ] **T3.3 — Semantic tokens and contrast files**
+- [x] **T3.3 — Semantic tokens and contrast files** (2026-09-27, 5a65077)
   - REQs: REQ-011 (AC2), REQ-012 (AC1), REQ-015 (AC1, AC3)
   - Depends on: T3.2
   - Scope: Semantic color, font, effect, focus, and layout tokens; `contrast-pairs.json` with every intended pair; `contrast-forbidden.json` with the three failing combinations from §2.1.
