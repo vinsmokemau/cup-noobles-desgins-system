@@ -4,3 +4,6 @@ docs/00-overview/brand-context-source.md.sha256 -text
 
 # Snapshots of build outputs (T3.4) are compared byte for byte, and the build writes LF only (REQ-013 AC2).
 tests/__snapshots__/** text eol=lf
+
+# sync-docs fixtures (T3.6): tests compare rewritten blocks line by line and test CRLF handling themselves.
+tests/fixtures/sync-docs/** text eol=lf

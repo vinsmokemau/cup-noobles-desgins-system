@@ -1,0 +1,12 @@
+{
+  "placeholder": {
+    "color": {
+      "neutral": {
+        "$type": "color",
+        "$value": "#90a1b9",
+        "$description": "Placeholder, not a brand value. Stands in for TBD-04 (ADR-0006).",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04"] } }
+      }
+    }
+  }
+}

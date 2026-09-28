@@ -11,7 +11,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const here = dirname(fileURLToPath(import.meta.url))
-const tokensDir = resolve(here, '../../tokens')
+const defaultTokensDir = resolve(here, '../../tokens')
 // ADR-0003: sources are listed tier by tier. REQ-015's contrast files sit beside the tiers and are not sources.
 const TIERS = ['primitive', 'semantic', 'component'] as const
 const posix = (path: string) => path.replaceAll('\\', '/')
@@ -82,7 +82,8 @@ StyleDictionary.registerFormat({ name: 'cn/json-flat', format: jsonFlat })
 StyleDictionary.registerFormat({ name: 'cn/ts-constants', format: tsConstants })
 StyleDictionary.registerFormat({ name: 'cn/json-email', format: jsonEmail })
 
-export function config(outDir: string, { reverseSources = false } = {}): Config {
+// `tokensDir` defaults to this repository's tokens/; sync-docs tests pass a fixture's.
+export function config(outDir: string, { reverseSources = false, tokensDir = defaultTokensDir } = {}): Config {
   const sources = TIERS.map((tier) => `${posix(tokensDir)}/${tier}/**/*.json`)
   const platform = (dir: string, destination: string, format: string, options = {}) => ({
     transformGroup: 'css',
@@ -103,7 +104,7 @@ export function config(outDir: string, { reverseSources = false } = {}): Config 
   }
 }
 
-export async function build(outDir: string, options: { reverseSources?: boolean } = {}) {
+export async function build(outDir: string, options: { reverseSources?: boolean; tokensDir?: string } = {}) {
   const sd = new StyleDictionary(config(outDir, options))
   await sd.buildAllPlatforms()
 }

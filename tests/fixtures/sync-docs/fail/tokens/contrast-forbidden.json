@@ -1,0 +1,4 @@
+[
+  { "foreground": "#ffffff", "background": "color.brand.pink", "reason": "White on pink fails (SPEC.md §2.1)." },
+  { "foreground": "color.brand.yellow", "background": "color.brand.pink", "reason": "Yellow on pink fails (SPEC.md §2.1)." }
+]

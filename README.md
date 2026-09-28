@@ -8,7 +8,7 @@ The design system for Cup Noobles: design tokens, a Nuxt UI theme layer with a f
 
 ## Status
 
-Phase 3 (token pipeline). The pnpm workspace, the directory tree from SPEC.md §4.1, and the doc stubs exist, and the primitive and semantic token sources build into the `tokens` package; the other packages and the apps are still empty. `pnpm test`, `pnpm test:all`, `pnpm check:docs`, `pnpm check:tbd`, `pnpm check:tokens`, and `pnpm build:tokens` exist; the other commands in SPEC.md §0.3 arrive with their tasks.
+Phase 3 (token pipeline). The pnpm workspace, the directory tree from SPEC.md §4.1, and the doc stubs exist, and the primitive and semantic token sources build into the `tokens` package; the other packages and the apps are still empty. `pnpm test`, `pnpm test:all`, `pnpm check:docs`, `pnpm check:tbd`, `pnpm check:tokens`, `pnpm sync:docs`, and `pnpm build:tokens` exist; the other commands in SPEC.md §0.3 arrive with their tasks.
 
 ## Layout
 
@@ -34,7 +34,8 @@ pnpm test
 
 | Command | Runs |
 |---|---|
-| `pnpm test` | `pnpm lint`, then `pnpm typecheck`, then `pnpm test:unit`, then `pnpm check:docs`, then `pnpm check:tokens`, then `pnpm check:tbd` |
+| `pnpm test` | `pnpm lint`, then `pnpm typecheck`, then `pnpm test:unit`, then `pnpm check:docs`, then `pnpm check:tokens`, then `pnpm check:tbd`, then `pnpm sync:docs --check` |
+| `pnpm sync:docs [--check]` | `scripts/sync-docs.ts`: rewrites the `cn:generated` blocks in `DESIGN.md` and `docs/`. A `table` block lists the matching tokens with their CSS variable, resolved value (from the token build), and status. A `contrast` block lists the matching pairs and forbidden combinations as `check-contrast` reports them. `inventory` blocks arrive with T8.7. With `--check`, it writes nothing and fails if any block is out of date |
 | `pnpm check:tokens` | `scripts/check-tokens.ts`: DTCG structure, types, values, and references; tier rules; `$description`, `$extensions.cn` status, source, and TBD IDs; placeholders; and path naming, across `tokens/`. Then `scripts/check-contrast.ts`: the WCAG contrast ratio of every pair in `tokens/contrast-pairs.json` against its usage minimum, the combinations in `tokens/contrast-forbidden.json`, and "unverified" for pairs with `tbd` tokens |
 | `pnpm check:docs` | `scripts/check-docs.ts`: frontmatter, template headings, hex literals, MDC syntax, `copy` locales, and callouts in `stable` docs, across `docs/` and `DESIGN.md` |
 | `pnpm lint` | ESLint (`eslint.config.js`), `prettier --check`, and markdownlint (`.markdownlint-cli2.jsonc`) |
