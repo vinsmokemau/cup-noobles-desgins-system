@@ -39,19 +39,26 @@ const docs = readdirSync(join(root, 'docs'), { recursive: true, encoding: 'utf8'
   .filter((path) => path.endsWith('.md') && !path.startsWith('docs/06-governance/decisions/'))
   .sort()
 const NOT_STUBS = ['docs/_template.md', 'docs/00-overview/brand-context-source.md']
-const stubs = docs.filter((path) => !NOT_STUBS.includes(path))
+const templated = docs.filter((path) => !NOT_STUBS.includes(path))
+// A doc stays a stub until the task that writes it moves it out of `status: tbd` (P4 onward).
+const stubs = templated.filter((path) => readFrontmatter(read(path)).data?.status === 'tbd')
+const written = templated.filter((path) => !stubs.includes(path))
 
 test('Done when: the number of stubs equals the number of files listed in §4.1', () => {
   const listed = treeDocs()
   assert.ok(listed.includes('docs/02-components/atoms/sticker-frame.md'), 'continuation lines are parsed')
   assert.ok(listed.includes('docs/06-governance/decision-log.md'))
   assert.deepEqual(docs, listed, 'docs/ holds exactly the files in the §4.1 tree')
-  assert.equal(stubs.length, listed.length - NOT_STUBS.length)
-  assert.equal(stubs.length, 62)
+  assert.equal(templated.length, listed.length - NOT_STUBS.length)
+  assert.equal(templated.length, 62)
 })
 
 const CALLOUT = /^> \*\*TBD:\*\* Content pending \((T\d+\.\d+)\)\.$/
 const tasks = new Set([...spec.matchAll(/^- \[[ x]\] \*\*(T\d+\.\d+) — /gm)].map((m) => m[1]))
+
+test.each(written)('%s is written: no content-pending callout is left', (path) => {
+  assert.doesNotMatch(read(path), /^> \*\*TBD:\*\* Content pending/m)
+})
 
 test.each(stubs)('%s is a stub: status tbd, and each section holds only the TBD callout', (path) => {
   const text = read(path)

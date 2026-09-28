@@ -1,4 +1,5 @@
 // T2.2 checks: scripts/check-docs.ts enforces REQ-002, REQ-003, REQ-004 AC2, REQ-007, REQ-008 AC1, and REQ-037.
+// T4.1 adds REQ-006 AC2 (the brand-rule fixtures and the overview-doc test).
 // Every rule has a passing and a failing fixture root in tests/fixtures/check-docs/<rule>/{pass,fail}/.
 import { describe, test } from 'vitest'
 import assert from 'node:assert/strict'
@@ -6,7 +7,7 @@ import { spawnSync } from 'node:child_process'
 import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { checkDocs, checkFile, compileSchema, requiredHeadings, TEMPLATE } from '../scripts/check-docs'
+import { brandRules, checkDocs, checkFile, compileSchema, requiredHeadings, TEMPLATE } from '../scripts/check-docs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const fixtures = join(root, 'tests/fixtures/check-docs')
@@ -56,6 +57,14 @@ const failures: Record<string, string[]> = {
     'docs/06-governance/ownership.md:23 stable-callout', // > **TBD (TBD-01):**
   ],
   slug: ['docs/06-governance/ownership.md:1 slug'],
+  'brand-rule': [
+    'DESIGN.md:3 brand-rule', // BR-42
+    'docs/00-overview/principles.md:7 brand-rule', // frontmatter BR-18
+    'docs/00-overview/principles.md:16 brand-rule', // BR-00
+    'docs/00-overview/principles.md:18 brand-rule', // BR-06 quote, wrong text
+    'docs/00-overview/principles.md:24 brand-rule', // BR-05 quote holding BR-06's text
+    'docs/00-overview/principles.md:28 brand-rule', // BR-06 text without its ID
+  ],
 }
 
 test('every fixture directory has an expectation, and every expectation has a fixture', () => {
@@ -136,6 +145,31 @@ test('the CLI exits 0 on a passing root and 1 on a failing root', () => {
   const fail = cli('hex/fail')
   assert.equal(fail.status, 1)
   assert.match(fail.stderr, /^DESIGN\.md:3 {2}hex {2}/m)
+})
+
+test('REQ-006 AC2: the brand-rule check reads BR-01 to BR-17 from SPEC.md §2.1', () => {
+  const rules = brandRules()
+  assert.deepEqual(
+    [...rules.keys()],
+    Array.from({ length: 17 }, (_, i) => `BR-${String(i + 1).padStart(2, '0')}`),
+  )
+  assert.equal(rules.get('BR-06'), 'The UI is high-contrast, vibrant, and legible.')
+})
+
+// T4.1 Done when: every BR ID quoted in the overview docs matches §2.1 (the brand-rule check), and check:docs passes.
+test('T4.1: the overview docs quote BR rules, and every quote matches SPEC.md §2.1', () => {
+  const quotes = readdirSync(join(root, 'docs/00-overview'))
+    .filter((file) => file.endsWith('.md') && file !== 'brand-context-source.md')
+    .flatMap((file) =>
+      readFileSync(join(root, 'docs/00-overview', file), 'utf8')
+        .split(/\r?\n/)
+        .flatMap((line) => line.match(/^> \*\*(BR-\d{2}):\*\*/)?.[1] ?? []),
+    )
+  for (const id of ['BR-04', 'BR-05', 'BR-06', 'BR-09', 'BR-14', 'BR-16', 'BR-17']) assert.ok(quotes.includes(id), id)
+  assert.deepEqual(
+    checkDocs(root).filter((p) => p.file.startsWith('docs/00-overview/')),
+    [],
+  )
 })
 
 test('the repository docs pass check-docs', () => {

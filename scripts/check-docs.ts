@@ -1,6 +1,7 @@
 // T2.2: `pnpm check:docs` validates every doc in docs/ and DESIGN.md (SPEC.md §0.3).
 // Rules: frontmatter (REQ-002, REQ-007 AC1), slug (§4.3), headings (REQ-003 AC1), not-applicable (REQ-003 AC2),
 // generated-block and hex (REQ-004 AC2), mdc (REQ-008 AC1), copy-locale (REQ-007 AC2), stable-callout (REQ-037).
+// T4.1 adds brand-rule (REQ-006 AC2): BR IDs exist in SPEC.md §2.1, and quoted BR rules carry their own ID.
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
@@ -18,6 +19,7 @@ export type Rule =
   | 'mdc'
   | 'copy-locale'
   | 'stable-callout'
+  | 'brand-rule'
 
 export interface Problem {
   file: string
@@ -369,6 +371,69 @@ function checkStableCallouts(file: string, fm: Record<string, unknown>, lines: L
   }
 }
 
+// SPEC.md §2.1 "Brand identity (BC)": BR ID → rule text. Always this repository's SPEC.md, like the schema.
+let brandRuleCache: Map<string, string> | null = null
+export function brandRules(): Map<string, string> {
+  if (brandRuleCache) return brandRuleCache
+  const section = readFileSync(join(repoRoot, 'SPEC.md'), 'utf8')
+    .split(/^#### Brand identity \(BC\)\s*$/m)[1]
+    ?.split(/^#{1,4} /m)[0]
+  brandRuleCache = new Map(
+    [...(section ?? '').matchAll(/^\| (BR-\d{2}) \| (.+?) \| [^|]+ \|\s*$/gm)].map((m) => [m[1]!, m[2]!]),
+  )
+  if (!brandRuleCache.size) throw new Error('SPEC.md §2.1 has no BR rules')
+  return brandRuleCache
+}
+
+const BR_ID = /\bBR-\d{2}\b/g
+const BR_QUOTE = /^ {0,3}> \*\*(BR-\d{2}):\*\* (.*)$/
+// Quotes compare as plain text: emphasis and whitespace don't change a rule.
+const plain = (text: string) => text.replace(/\*\*/g, '').replace(/\s+/g, ' ').trim()
+
+// REQ-006 AC2: every BR ID is in §2.1, a `> **BR-NN:** …` quote repeats that rule's §2.1 text, and a §2.1 rule's text
+// never appears in prose except in the quote that names its ID.
+function checkBrandRules(file: string, fm: Frontmatter, lines: Line[], problems: Problem[]) {
+  const rules = brandRules()
+  const unknown = (line: number, id: string, where: string) =>
+    problems.push({
+      file,
+      line,
+      rule: 'brand-rule',
+      message: `${where} \`${id}\` is not in SPEC.md §2.1 (REQ-006 AC2)`,
+    })
+
+  const listed = fm.data?.brandRules
+  if (Array.isArray(listed)) {
+    const index = lines.findIndex((line) => line.frontmatter && line.text.startsWith('brandRules:'))
+    for (const id of listed.map(String)) if (!rules.has(id)) unknown(index + 1 || 1, id, 'frontmatter `brandRules` ID')
+  }
+
+  for (const line of lines.filter((line) => prose(line) && !line.generated)) {
+    for (const [id] of line.text.matchAll(BR_ID)) if (!rules.has(id)) unknown(line.n, id, 'BR ID')
+    const quote = line.text.match(BR_QUOTE)
+    if (quote) {
+      const expected = rules.get(quote[1]!)
+      if (expected !== undefined && plain(quote[2]!) !== plain(expected))
+        problems.push({
+          file,
+          line: line.n,
+          rule: 'brand-rule',
+          message: `the quote of ${quote[1]} must repeat its SPEC.md §2.1 text: "${expected}" (REQ-006 AC2)`,
+        })
+      continue
+    }
+    for (const [id, text] of rules) {
+      if (plain(line.text).toLowerCase().includes(plain(text).toLowerCase()))
+        problems.push({
+          file,
+          line: line.n,
+          rule: 'brand-rule',
+          message: `${id} is quoted without its ID: write it as \`> **${id}:** …\` (REQ-006 AC2)`,
+        })
+    }
+  }
+}
+
 export function checkFile(
   file: string,
   text: string,
@@ -383,6 +448,7 @@ export function checkFile(
   checkHex(file, lines, problems)
   checkMdc(file, lines, problems)
   checkCopyLocale(file, lines, problems)
+  if (!EXEMPT.includes(file)) checkBrandRules(file, fm, lines, problems)
   if (exempt) return { problems }
 
   checkFrontmatter(file, text, fm, validate, problems)
