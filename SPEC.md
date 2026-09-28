@@ -937,7 +937,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
 
 Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is either a TBD callout or a `draft` proposal. The docs leave `tbd` status, becoming `draft` or `stable`. Each doc includes the generated blocks for its token groups.
 
-- [ ] **T4.1 — Overview docs**
+- [x] **T4.1 — Overview docs** (2026-09-27, 325e28d)
   - REQs: REQ-006 (AC2), REQ-009, REQ-030 (documentation part)
   - Depends on: T3.6
   - Scope: `principles.md` (draft principles derived only from BR-04 through BR-06, BR-09, and BR-17, awaiting approval); `brand-identity.md` (the three assets from BR-16, with clear space and minimum size as TBD-17, and motifs from BR-14); `using-the-system.md` (packages, install steps for GitHub Packages, including the access-token setup, how to read docs, how to report a TBD); `glossary.md`.
