@@ -915,7 +915,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: Semantic color, font, effect, focus, and layout tokens; `contrast-pairs.json` with every intended pair; `contrast-forbidden.json` with the three failing combinations from §2.1.
   - Done when: `color.bg.base` resolves to `#000000` in a unit test, and every semantic color token appears in at least one pair.
 
-- [ ] **T3.4 — Token build**
+- [x] **T3.4 — Token build** (2026-09-27, bbd7959)
   - REQs: REQ-013, REQ-011 (AC3), REQ-017 (AC1)
   - Depends on: T3.3
   - Scope: The Style Dictionary configuration and custom formats for the 4 outputs in REQ-013, a snapshot test, and a determinism test.
