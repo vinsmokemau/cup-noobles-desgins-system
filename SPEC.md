@@ -927,7 +927,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: Compute WCAG contrast from the resolved values; apply the thresholds per usage; enforce the forbidden list; report pairs with TBD tokens as "unverified".
   - Done when: the three pairs from §2.1 are reported with the exact ratios 8.37, 18.55, and 2.51 (rounded to 2 decimals), and a fixture using white on pink fails.
 
-- [ ] **T3.6 — `sync-docs`**
+- [x] **T3.6 — `sync-docs`** (2026-09-27, 6f2a6d3)
   - REQs: REQ-004 (AC1, AC3), REQ-075 (AC2)
   - Depends on: T3.5
   - Scope: Rewrite generated blocks in the `table` and `contrast` formats (the `inventory` format comes in T8.7), add `--check` mode, and add `sync:docs --check` to `pnpm test`.
