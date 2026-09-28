@@ -8,7 +8,7 @@ The design system for Cup Noobles: design tokens, a Nuxt UI theme layer with a f
 
 ## Status
 
-Phase 3 (token pipeline). The pnpm workspace, the directory tree from SPEC.md §4.1, and the doc stubs exist, but the token sources, packages, and apps are still empty. `pnpm test`, `pnpm test:all`, `pnpm check:docs`, `pnpm check:tbd`, and `pnpm check:tokens` exist; the other commands in SPEC.md §0.3 arrive with their tasks.
+Phase 3 (token pipeline). The pnpm workspace, the directory tree from SPEC.md §4.1, and the doc stubs exist, and the primitive and semantic token sources build into the `tokens` package; the other packages and the apps are still empty. `pnpm test`, `pnpm test:all`, `pnpm check:docs`, `pnpm check:tbd`, `pnpm check:tokens`, and `pnpm build:tokens` exist; the other commands in SPEC.md §0.3 arrive with their tasks.
 
 ## Layout
 
@@ -40,7 +40,8 @@ pnpm test
 | `pnpm lint` | ESLint (`eslint.config.js`), `prettier --check`, and markdownlint (`.markdownlint-cli2.jsonc`) |
 | `pnpm typecheck` | `vue-tsc --noEmit` over `tsconfig.json` |
 | `pnpm test:unit` | The Vitest workspace in `vitest.config.ts` |
-| `pnpm test:all` | `pnpm test`. The build, email, static generation, and end-to-end stages are added by later tasks (SPEC.md §0.3). |
+| `pnpm build:tokens` | `packages/tokens/build.ts` (Style Dictionary): writes `dist/css/tokens.css`, `dist/json/tokens.flat.json`, `dist/ts/tokens.ts`, and `dist/email/email-tokens.json` in `packages/tokens` |
+| `pnpm test:all` | `pnpm test`, then `pnpm build:tokens`. The email, static generation, and end-to-end stages are added by later tasks (SPEC.md §0.3). |
 | `pnpm format` | Rewrites code with Prettier and fixes what markdownlint can fix |
 
 ## CI and branch protection

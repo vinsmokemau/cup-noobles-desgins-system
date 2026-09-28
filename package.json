@@ -16,7 +16,8 @@
     "check:tbd": "node scripts/check-tbd.ts",
     "check:tokens": "node scripts/check-tokens.ts",
     "test": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm check:docs && pnpm check:tokens && pnpm check:tbd",
-    "test:all": "pnpm test"
+    "build:tokens": "pnpm --filter @vinsmokemau/cup-noobles-tokens build",
+    "test:all": "pnpm test && pnpm build:tokens"
   },
   "devDependencies": {
     "@eslint/css": "2.0.0",
