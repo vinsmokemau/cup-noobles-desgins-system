@@ -921,7 +921,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: The Style Dictionary configuration and custom formats for the 4 outputs in REQ-013, a snapshot test, and a determinism test.
   - Done when: all 4 outputs exist, the snapshot contains the three brand variables exactly, and two builds are byte-identical.
 
-- [ ] **T3.5 — `check-contrast`**
+- [x] **T3.5 — `check-contrast`** (2026-09-27, 8df83bc)
   - REQs: REQ-015
   - Depends on: T3.4
   - Scope: Compute WCAG contrast from the resolved values; apply the thresholds per usage; enforce the forbidden list; report pairs with TBD tokens as "unverified".
