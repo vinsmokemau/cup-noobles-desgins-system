@@ -955,7 +955,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: BR-07 through BR-09 quoted; the hierarchy H1, H2, H3, body, caption; the selection criteria the font must meet (a bold retro display sans, Spanish diacritics, a license covering web embedding, and email fallback behavior); TBD-01 through TBD-03.
   - Done when: `check:docs` passes, and no font family name appears outside a TBD callout.
 
-- [ ] **T4.4 — `shape.md` and `effects.md`**
+- [x] **T4.4 — `shape.md` and `effects.md`** (2026-09-27, bc44f1d)
   - REQs: REQ-023 (documentation part), REQ-024 (documentation part)
   - Depends on: T4.1
   - Scope: BR-10 and BR-13 quoted; radius, stroke-width, glow, elevation, z-index, and focus token groups (TBD-10, 11, 12, 15, 16); the rule that focus is never the glow alone (REQ-024); a draft rule proposing that glow applies to component edges, not body text (see R-04).
