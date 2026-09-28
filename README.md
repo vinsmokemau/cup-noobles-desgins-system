@@ -35,7 +35,7 @@ pnpm test
 | Command | Runs |
 |---|---|
 | `pnpm test` | `pnpm lint`, then `pnpm typecheck`, then `pnpm test:unit`, then `pnpm check:docs`, then `pnpm check:tokens`, then `pnpm check:tbd` |
-| `pnpm check:tokens` | `scripts/check-tokens.ts`: DTCG structure, types, values, and references; tier rules; `$description`, `$extensions.cn` status, source, and TBD IDs; placeholders; and path naming, across `tokens/` |
+| `pnpm check:tokens` | `scripts/check-tokens.ts`: DTCG structure, types, values, and references; tier rules; `$description`, `$extensions.cn` status, source, and TBD IDs; placeholders; and path naming, across `tokens/`. Then `scripts/check-contrast.ts`: the WCAG contrast ratio of every pair in `tokens/contrast-pairs.json` against its usage minimum, the combinations in `tokens/contrast-forbidden.json`, and "unverified" for pairs with `tbd` tokens |
 | `pnpm check:docs` | `scripts/check-docs.ts`: frontmatter, template headings, hex literals, MDC syntax, `copy` locales, and callouts in `stable` docs, across `docs/` and `DESIGN.md` |
 | `pnpm lint` | ESLint (`eslint.config.js`), `prettier --check`, and markdownlint (`.markdownlint-cli2.jsonc`) |
 | `pnpm typecheck` | `vue-tsc --noEmit` over `tsconfig.json` |

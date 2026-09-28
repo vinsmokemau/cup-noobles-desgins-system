@@ -133,8 +133,9 @@ test('the CLI prints the counts and exits 1 on problems', () => {
   assert.match(fail.stderr, /check-tokens: 53 problem\(s\)/)
 })
 
-test('§0.3: `pnpm check:tokens` runs check-tokens, and `pnpm test` runs it', () => {
+test('§0.3: `pnpm check:tokens` runs check-tokens first, and `pnpm test` runs it', () => {
   const scripts = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).scripts
-  assert.equal(scripts['check:tokens'], 'node scripts/check-tokens.ts')
+  // T3.5 appends check-contrast (tests/check-contrast.test.ts).
+  assert.match(scripts['check:tokens'], /^node scripts\/check-tokens\.ts(?: &&|$)/)
   assert.match(scripts.test, /&& pnpm check:tokens(?: |$)/)
 })

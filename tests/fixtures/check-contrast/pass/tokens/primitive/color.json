@@ -1,0 +1,22 @@
+{
+  "color": {
+    "brand": {
+      "$type": "color",
+      "pink": {
+        "$value": "#ef80ae",
+        "$description": "Brand pink (BR-01).",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      },
+      "yellow": {
+        "$value": "#fff488",
+        "$description": "Brand yellow (BR-02).",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-02" } }
+      },
+      "black": {
+        "$value": "#000000",
+        "$description": "Brand black (BR-03).",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-03" } }
+      }
+    }
+  }
+}

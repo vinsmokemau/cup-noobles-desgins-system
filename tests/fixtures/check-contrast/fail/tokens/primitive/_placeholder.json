@@ -1,0 +1,12 @@
+{
+  "placeholder": {
+    "color": {
+      "light": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Placeholder, not a brand value. Fixture only: a placeholder that happens to be white.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04"] } }
+      }
+    }
+  }
+}

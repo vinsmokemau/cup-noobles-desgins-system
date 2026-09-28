@@ -1,0 +1,36 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "primary": {
+        "$value": "{color.brand.pink}",
+        "$description": "Primary brand role (BR-01).",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "secondary": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Secondary brand role (BR-02).",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    },
+    "bg": {
+      "base": {
+        "$value": "{color.brand.black}",
+        "$description": "Page background (BR-03).",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{placeholder.color.neutral}",
+        "$description": "Body text color. TBD-04.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04"] } }
+      },
+      "inverted": {
+        "$value": "{color.brand.black}",
+        "$description": "Text on a brand fill.",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    }
+  }
+}

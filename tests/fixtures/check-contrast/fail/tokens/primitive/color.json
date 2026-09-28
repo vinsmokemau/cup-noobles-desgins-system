@@ -1,0 +1,30 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "pink": {
+        "$value": "#ef80ae",
+        "$description": "Brand pink (BR-01).",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      },
+      "yellow": {
+        "$value": "#fff488",
+        "$description": "Brand yellow (BR-02).",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-02" } }
+      }
+    },
+    "fixture": {
+      "white": {
+        "$value": "#ffffff",
+        "$description": "Fixture only: the white of SPEC.md §2.1, which no brand token holds.",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "1rem",
+        "$description": "Fixture only: not a color.",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    }
+  }
+}

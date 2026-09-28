@@ -1,0 +1,7 @@
+[
+  { "foreground": "color.brand.primary", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "color.brand.primary", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "color.brand.secondary", "background": "color.bg.base", "usage": "large-text" },
+  { "foreground": "color.text.inverted", "background": "color.brand.primary", "usage": "text" },
+  { "foreground": "color.text.default", "background": "color.bg.base", "usage": "text" }
+]

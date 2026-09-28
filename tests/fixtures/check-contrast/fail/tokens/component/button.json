@@ -1,0 +1,17 @@
+{
+  "button": {
+    "$type": "color",
+    "primary": {
+      "bg": {
+        "$value": "{color.brand.primary}",
+        "$description": "Fixture only: the primary button fill.",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "label": {
+        "$value": "{color.text.light}",
+        "$description": "Fixture only: a white label on the pink fill, which SPEC.md §2.1 forbids.",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    }
+  }
+}

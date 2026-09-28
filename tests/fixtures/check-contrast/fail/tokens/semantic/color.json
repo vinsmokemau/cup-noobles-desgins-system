@@ -1,0 +1,31 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "primary": {
+        "$value": "{color.brand.pink}",
+        "$description": "Primary brand role (BR-01).",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    },
+    "text": {
+      "light": {
+        "$value": "{color.fixture.white}",
+        "$description": "Fixture only: white text.",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "pending": {
+        "$value": "{placeholder.color.light}",
+        "$description": "Fixture only: a tbd text color. TBD-04.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04"] } }
+      }
+    },
+    "surface": {
+      "light": {
+        "$value": "{color.fixture.white}",
+        "$description": "Fixture only: a white surface.",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    }
+  }
+}

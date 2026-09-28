@@ -1,0 +1,9 @@
+[
+  { "foreground": "button.primary.label", "background": "button.primary.bg", "usage": "text" },
+  { "foreground": "color.text.pending", "background": "color.brand.primary", "usage": "text" },
+  { "foreground": "color.brand.primary", "background": "color.surface.light", "usage": "ui" },
+  { "foreground": "color.brand.primary", "background": "color.nothing", "usage": "text" },
+  { "foreground": "color.brand.primary", "background": "color.surface.light", "usage": "huge" },
+  { "foreground": "color.brand.primary", "background": "color.fixture.size", "usage": "ui" },
+  { "foreground": "color.brand.primary" }
+]
