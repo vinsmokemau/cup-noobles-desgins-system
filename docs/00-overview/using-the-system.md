@@ -2,7 +2,7 @@
 title: Using the system
 slug: using-the-system
 layer: overview
-status: draft
+status: stable
 lang: en
 brandRules: []
 tbd: []
@@ -105,8 +105,9 @@ The packages are published privately on GitHub Packages under the `@vinsmokemau`
 
 ## Open items
 
-> **Draft:** The install steps have not been verified against the registry yet, because no package is published until T12.1. T12.2 verifies them.
+The install steps have not been verified against the registry yet, because no package is published until T12.1. T12.2 verifies them.
 
 ## Changelog
 
 - 0.1.0 — First draft: packages, install from GitHub Packages, consumption rules, how to read the docs, and how to report a TBD item (T4.1) — awaiting owner approval
+- 0.1.0 — Approved without changes; status `stable` — owner approval in chat, 2026-09-27

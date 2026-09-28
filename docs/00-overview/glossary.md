@@ -2,7 +2,7 @@
 title: Glossary
 slug: glossary
 layer: overview
-status: draft
+status: stable
 lang: en
 brandRules: []
 tbd: []
@@ -73,8 +73,9 @@ This glossary defines the terms used across the Cup Noobles docs, tokens, and pa
 
 ## Open items
 
-> **Draft:** The definitions restate SPEC.md and the other docs. They await the owner's approval before this doc becomes `stable` (REQ-009 AC2).
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft of the glossary (T4.1) — awaiting owner approval
+- 0.1.0 — Approved without changes; status `stable` — owner approval in chat, 2026-09-27
