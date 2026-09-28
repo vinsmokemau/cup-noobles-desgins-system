@@ -943,7 +943,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: `principles.md` (draft principles derived only from BR-04 through BR-06, BR-09, and BR-17, awaiting approval); `brand-identity.md` (the three assets from BR-16, with clear space and minimum size as TBD-17, and motifs from BR-14); `using-the-system.md` (packages, install steps for GitHub Packages, including the access-token setup, how to read docs, how to report a TBD); `glossary.md`.
   - Done when: `check:docs` passes, and every BR ID quoted matches §2.1.
 
-- [ ] **T4.2 — `color.md`**
+- [x] **T4.2 — `color.md`** (2026-09-27, 5a900b8)
   - REQs: REQ-011, REQ-012, REQ-015
   - Depends on: T4.1
   - Scope: The three brand colors with their roles; the pure-black rule (BR-03); the derived contrast facts and forbidden pairs; TBD callouts for TBD-04 through TBD-08; C-05 and C-06 explained.
