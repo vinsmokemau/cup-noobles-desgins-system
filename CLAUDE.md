@@ -14,6 +14,12 @@ This repository is built with Spec-Driven Development. `SPEC.md` is the contract
 - Only change SPEC.md to tick the finished task's checkbox. Any other amendment needs the owner (SPEC.md §8).
 - Never push, publish packages, deploy, or change GitHub settings unless the task says so and the owner confirms in chat.
 
+## Owner decisions
+The owner is not a designer (owner decision, 2026-09-27).
+- Whenever the owner must make a design decision (a TBD item, an open decision, or a draft rule), show the options on a visual comparison page they can open. In Claude Code, publish it as a private Artifact; other agents write a standalone HTML file outside the repository. Show each option on real brand context, explain it in plain language, mark pass or fail wherever it can be measured, give a recommendation, and ask for a one-letter reply. Label every value that is not a brand value as an example.
+- After the owner decides, if it is necessary or helpful, audit the choice with the `frontend-design` plugin, where available, and report the findings before the decision is recorded.
+- The page and the audit only help the owner decide. The value's source is still the owner's choice in chat, recorded in an ADR.
+
 ## Instruction mirrors
 - `AGENTS.md` is an exact copy of `CLAUDE.md`, and `.agents/skills/` is an exact copy of `.claude/skills/`, for other coding agents (owner decision, 2026-09-25).
 - Whenever `CLAUDE.md` or a file in `.claude/skills/` changes, apply the same change to its mirror in the same commit.
