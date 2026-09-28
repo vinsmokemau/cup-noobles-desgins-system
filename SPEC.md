@@ -949,7 +949,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: The three brand colors with their roles; the pure-black rule (BR-03); the derived contrast facts and forbidden pairs; TBD callouts for TBD-04 through TBD-08; C-05 and C-06 explained.
   - Done when: `check:docs` and `sync:docs --check` pass, and the generated contrast block matches `check-contrast` output.
 
-- [ ] **T4.3 — `typography.md`**
+- [x] **T4.3 — `typography.md`** (2026-09-27, 7984f3f)
   - REQs: REQ-005, REQ-009, REQ-054 (documentation part)
   - Depends on: T4.1
   - Scope: BR-07 through BR-09 quoted; the hierarchy H1, H2, H3, body, caption; the selection criteria the font must meet (a bold retro display sans, Spanish diacritics, a license covering web embedding, and email fallback behavior); TBD-01 through TBD-03.
