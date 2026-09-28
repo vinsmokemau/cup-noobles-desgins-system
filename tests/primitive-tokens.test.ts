@@ -15,12 +15,23 @@ const tbdIds = (text: string) => [...text.matchAll(/\bTBD-\d{2}\b/g)].map((m) =>
 
 // §4.1: the primitive files, and §4.7: every primitive group other than color is TBD in T3.2.
 const TBD_FILES = ['font', 'space', 'radius', 'border', 'effect', 'motion', 'breakpoint', 'z'].map((f) => `${f}.json`)
+// Groups resolved by the owner since T3.2, each holding stable raw values from its ADR (§4.4 resolution, ADR-0008 §4).
+const RESOLVED_FILES = { 'focus.json': 'ADR-0009' }
 
 test('§4.1: tokens/primitive/ holds exactly the listed files', () => {
   assert.deepEqual(
     readdirSync(join(root, 'tokens/primitive')).sort(),
-    ['_placeholder.json', 'color.json', ...TBD_FILES].sort(),
+    ['_placeholder.json', 'color.json', ...TBD_FILES, ...Object.keys(RESOLVED_FILES)].sort(),
   )
+})
+
+test('ADR-0009: the focus primitives hold the owner values, stable, with the ADR as source', () => {
+  const focus = inFile('focus.json').map((t) => [t.path, t.value, t.cn?.status, t.cn?.source])
+  assert.deepEqual(focus, [
+    ['focus.width.default', '3px', 'stable', 'ADR-0009'],
+    ['focus.offset.default', '3px', 'stable', 'ADR-0009'],
+    ['focus.style.default', 'solid', 'stable', 'ADR-0009'],
+  ])
 })
 
 test('REQ-011 AC1: the three brand colors are exact, stable primitives with their BR sources', () => {
@@ -58,7 +69,8 @@ function css(value: unknown): string {
 
 test('ADR-0006: _placeholder.json holds exactly the recorded values, each labeled and tbd', () => {
   const rows = adrRows()
-  assert.equal(rows.length, 38, 'every placeholder row in ADR-0006')
+  // 38 rows in T3.2; ADR-0009 deleted the three focus placeholders (ADR-0006 policy 5, struck through in its table).
+  assert.equal(rows.length, 35, 'every placeholder row in ADR-0006')
   const placeholders = tokens.filter((t) => t.file === PLACEHOLDER_FILE)
   assert.deepEqual(placeholders.map((t) => t.path).sort(), rows.map((r) => r.path).sort())
 
@@ -79,7 +91,8 @@ test('REQ-005 AC2 and §4.4: every other primitive is tbd, references a placehol
   const others: Token[] = TBD_FILES.flatMap(inFile)
   for (const file of TBD_FILES) assert.ok(inFile(file).length, `${file} holds tokens`)
   const primitives = tokens.filter((t) => t.tier === 'primitive')
-  assert.equal(others.length + inFile('color.json').length + placeholders.size, primitives.length)
+  const resolved = Object.keys(RESOLVED_FILES).flatMap(inFile)
+  assert.equal(others.length + inFile('color.json').length + resolved.length + placeholders.size, primitives.length)
 
   for (const token of others) {
     assert.equal(token.cn?.status, 'tbd', token.path)
@@ -107,10 +120,13 @@ test('Done when: check-tokens passes, and check-tbd lists every tbd token with c
     tbd.map((t) => `${t.file} ${t.path} ${(t.cn?.tbd as string[]).join(',')}`).sort(),
   )
   const counts = Object.fromEntries(report.items.map((i) => [i.id, i.tokens]))
+  const resolved = new Set(report.items.filter((i) => i.resolved).map((i) => i.id))
+  assert.ok(resolved.has('TBD-16'), 'TBD-16 is resolved (ADR-0009)')
   for (let n = 3; n <= 16; n++) {
     const id = `TBD-${String(n).padStart(2, '0')}`
     // TBD-08 has no placeholder (ADR-0006): its derived-pending alias shades arrive with the Nuxt UI theme (C-06).
-    if (id === 'TBD-08') assert.equal(counts[id], 0)
+    // A resolved item has no tbd tokens left (§4.4).
+    if (id === 'TBD-08' || resolved.has(id)) assert.equal(counts[id], 0)
     else assert.ok(counts[id]! > 0, `${id} has tokens`)
   }
   assert.equal(report.summary.tokens, tbd.length)

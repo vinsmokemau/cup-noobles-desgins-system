@@ -18,5 +18,5 @@
   { "foreground": "color.feedback.error", "background": "color.bg.base", "usage": "text" },
   { "foreground": "color.feedback.info", "background": "color.bg.base", "usage": "text" },
   { "foreground": "focus.ring.color", "background": "color.bg.base", "usage": "ui" },
-  { "foreground": "focus.ring.color", "background": "color.brand.primary", "usage": "ui" }
+  { "foreground": "focus.ring.color", "background": "color.surface.card", "usage": "ui" }
 ]

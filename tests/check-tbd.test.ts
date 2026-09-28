@@ -147,7 +147,13 @@ test('Done when: the repository passes, and the report lists every callout in ev
   const listed = [...report.callouts, ...report.contentPending].map((c) => `${c.file}:${c.line}`)
   assert.deepEqual(listed.sort(), expected.sort())
   assert.ok(report.contentPending.length > 0)
-  assert.equal(report.summary.openItems, 21, 'every §2.4 item is open: TBD-01 to TBD-21')
+  // TBD-01 to TBD-21, minus the items the owner has resolved since T2.4, each through an existing ADR (§4.4).
+  const resolved = report.items.filter((i) => i.resolved)
+  assert.deepEqual(
+    resolved.map((i) => `${i.id} ${i.adrs.join(',')}`),
+    ['TBD-16 ADR-0009'],
+  )
+  assert.equal(report.summary.openItems, 21 - resolved.length, 'every other §2.4 item is open')
 })
 
 test('REQ-073 AC2: every decided OD in SPEC.md names an existing ADR', () => {

@@ -1,0 +1,28 @@
+{
+  "focus": {
+    "width": {
+      "default": {
+        "$type": "dimension",
+        "$value": "3px",
+        "$description": "Focus ring width, chosen by the owner (ADR-0009).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0009" } }
+      }
+    },
+    "offset": {
+      "default": {
+        "$type": "dimension",
+        "$value": "3px",
+        "$description": "Focus ring offset: the gap between the component and the ring, chosen by the owner (ADR-0009).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0009" } }
+      }
+    },
+    "style": {
+      "default": {
+        "$type": "strokeStyle",
+        "$value": "solid",
+        "$description": "Focus ring line style, chosen by the owner (ADR-0009).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0009" } }
+      }
+    }
+  }
+}

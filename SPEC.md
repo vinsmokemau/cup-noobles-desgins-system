@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.13 |
+| Spec version | 1.14 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -197,7 +197,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-13 | Breakpoints and container widths. The 360 px minimum is fixed by ER-05. | `breakpoint.*` | Values |
 | TBD-14 | Motion durations and easing curves | `motion.*` | Values |
 | TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
-| TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Decision |
+| TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
 | TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | SVG files and rules |
 | TBD-18 | Motif artwork (BR-14) as SVG | `CnSparkle`, imagery-and-motifs.md | SVG files |
 | TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Decision OD-09 |
@@ -1268,6 +1268,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.11 | 2026-09-27 | §7.2: the six decided ODs that cited only owner answers (OD-01, OD-02, OD-03, OD-11, OD-13, OD-14) now also cite ADR-0007, which records them, so REQ-073 AC2 holds. §4.4: a resolved §2.4 row is marked `Resolved (ADR-NNNN)`. | Owner decision in chat (T2.4 open questions); ADR-0007 |
 | 1.12 | 2026-09-27 | §4.4: TBD and `derived-pending` tokens name their §2.4 items in `$extensions.cn.tbd` (`derived-pending` is always `["TBD-08"]`); `stable` and `deprecated` tokens have no such field. `check-tokens` enforces it, and `check-tbd` validates the IDs and counts tokens per item. | Owner decision in chat (T2.4 open question) |
 | 1.13 | 2026-09-27 | T3.2 scope: extend `check-tbd` to read `$extensions.cn.tbd`, the part of 1.12 that no task covered. | Owner decision in chat (T3.1 open question); related token decisions in ADR-0008 |
+| 1.14 | 2026-09-27 | §2.4: TBD-16 resolved. The focus indicator is a solid brand-yellow ring, 3 px wide, with a 3 px gap. | Owner decision in chat (T4.4, option A, size 2); ADR-0009 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

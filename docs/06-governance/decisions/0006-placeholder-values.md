@@ -6,9 +6,9 @@ status: draft
 lang: en
 brandRules: []
 tbd: [TBD-01, TBD-02, TBD-03, TBD-04, TBD-05, TBD-06, TBD-07, TBD-09, TBD-10, TBD-11, TBD-12, TBD-13, TBD-14, TBD-15, TBD-16]
-related: [adr-0001-nuxt-ui-spike, adr-0003-style-dictionary-dtcg-spike, adr-0004-mjml-email-spike, adr-0005-baseline-assumptions-and-conflicts]
+related: [adr-0001-nuxt-ui-spike, adr-0003-style-dictionary-dtcg-spike, adr-0004-mjml-email-spike, adr-0005-baseline-assumptions-and-conflicts, adr-0009-focus-indicator]
 since: 0.1.0
-updated: 2026-09-25
+updated: 2026-09-27
 ---
 
 # ADR-0006: Placeholder values for TBD tokens
@@ -47,7 +47,7 @@ Every row below is labeled **not a brand value**.
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.color.neutral` | `#90a1b9` | Tailwind 4.3.3 `--color-slate-400: oklch(70.4% 0.04 256.788)`, converted to 8-bit sRGB hex. `slate` is Nuxt UI's default `neutral` alias (ADR-0001 §2). Chosen by the owner in chat, 2026-09-25. | TBD-04 (`color.text.default`), TBD-05 (`color.neutral.*`), TBD-06 (`color.surface.*`), TBD-07 (`color.feedback.*`), TBD-16 (focus indicator color) | not a brand value |
+| `placeholder.color.neutral` | `#90a1b9` | Tailwind 4.3.3 `--color-slate-400: oklch(70.4% 0.04 256.788)`, converted to 8-bit sRGB hex. `slate` is Nuxt UI's default `neutral` alias (ADR-0001 §2). Chosen by the owner in chat, 2026-09-25. | TBD-04 (`color.text.default`), TBD-05 (`color.neutral.*`), TBD-06 (`color.surface.*`), TBD-07 (`color.feedback.*`); formerly also the focus indicator color, until ADR-0009 | not a brand value |
 
 The value is stored as hex, not OKLCH, because the email output resolves to literals for email clients (REQ-013 AC1, §4.9).
 
@@ -100,9 +100,11 @@ C-05 still applies: until OD-05 is decided, cards render on `color.bg.base` (`#0
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.focus.width` | `3px` | Nuxt UI `UButton`: `focus-visible:outline-3` | TBD-16 (`focus.*`) | not a brand value |
-| `placeholder.focus.offset` | `0` | Nuxt UI base CSS: `a:focus-visible { outline-offset: 0 }`; `UButton` sets no offset | TBD-16 | not a brand value |
-| `placeholder.focus.style` | `solid` | Tailwind `outline-3` sets `outline-style: solid` by default | TBD-16 | not a brand value |
+| ~~`placeholder.focus.width`~~ | ~~`3px`~~ | Nuxt UI `UButton`: `focus-visible:outline-3` | TBD-16 (`focus.*`) | deleted (ADR-0009) |
+| ~~`placeholder.focus.offset`~~ | ~~`0`~~ | Nuxt UI base CSS: `a:focus-visible { outline-offset: 0 }`; `UButton` sets no offset | TBD-16 | deleted (ADR-0009) |
+| ~~`placeholder.focus.style`~~ | ~~`solid`~~ | Tailwind `outline-3` sets `outline-style: solid` by default | TBD-16 | deleted (ADR-0009) |
+
+TBD-16 is resolved by ADR-0009. Under policy 5, these three placeholders were deleted, and `placeholder.color.neutral` no longer stands in for the focus color.
 
 The focus color is `placeholder.color.neutral`. Nuxt UI's own default is `outline-primary/25`, a translucent tint of the brand pink. Using it would derive a new color from BR-01, which C-06 does not allow without approval, and §4.4 says colors use the single neutral placeholder.
 

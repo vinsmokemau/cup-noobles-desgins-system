@@ -57,12 +57,23 @@ test('SPEC.md §2.1: labels on primary and secondary fills resolve to black', ()
   assert.equal(resolveValue('color.text.inverted'), '#000000')
 })
 
-test('§4.4: every semantic token is stable with a brand reference, or tbd over a placeholder with its TBD IDs', () => {
+// Follows whole-value references to the primitive that holds the raw value.
+function rawToken(path: string): string {
+  const alias = String(byPath.get(path)!.value).match(/^\{([^{}]+)\}$/)?.[1]
+  return alias === undefined ? path : rawToken(alias)
+}
+
+test('§4.4: every semantic token is stable with a brand or ADR reference, or tbd over a placeholder with its TBD IDs', () => {
   assert.deepEqual(problems, [])
   for (const token of semantic) {
     const value = resolveValue(token.path)
-    if (token.cn?.status === 'stable') {
+    if (token.cn?.status === 'stable' && typeOf(token.path) === 'color') {
       assert.ok(['#ef80ae', '#fff488', '#000000'].includes(value as string), `${token.path} resolves to a brand hex`)
+    } else if (token.cn?.status === 'stable') {
+      // A resolved TBD item: the raw value is a stable primitive whose source is the ADR that recorded it.
+      const raw = byPath.get(rawToken(token.path))!
+      assert.equal(raw.cn?.status, 'stable', `${token.path} resolves to a stable primitive`)
+      assert.match(String(raw.cn?.source), /^ADR-\d{4}$/, `${token.path} resolves to an ADR-sourced value`)
     } else {
       assert.equal(token.cn?.status, 'tbd', token.path)
       for (const id of token.cn?.tbd as string[])

@@ -101,7 +101,7 @@ test('REQ-015: the repository pairs pass or are unverified, and every tbd pair i
     assert.notEqual(pair.result, 'fail', `${pair.foreground} on ${pair.background}`)
     assert.equal(pair.result === 'unverified', pair.tbd.length > 0, `${pair.foreground} on ${pair.background}`)
   }
-  for (const path of ['color.text.default', 'color.surface.card', 'focus.ring.color'])
+  for (const path of ['color.text.default', 'color.surface.card'])
     assert.ok(
       report.pairs
         .filter((p) => p.foreground === path || p.background === path)

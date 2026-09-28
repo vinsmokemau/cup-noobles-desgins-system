@@ -27,6 +27,7 @@ updated: 2026-09-27
 - [ADR-0006: Placeholder values for TBD tokens](decisions/0006-placeholder-values.md)
 - [ADR-0007: Owner decisions on record](decisions/0007-owner-decisions-on-record.md)
 - [ADR-0008: Token value format, untyped tokens, CSS names, and token sources](decisions/0008-token-format-and-naming.md)
+- [ADR-0009: Focus indicator style](decisions/0009-focus-indicator.md)
 
 ## Open items
 

@@ -31,10 +31,13 @@
   --cn-effect-shadow-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Overlay shadow. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-z-index-overlay: auto; /** Stacking order of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-z-index-toast: 100; /** Stacking order of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
-  --cn-focus-ring-color: #90a1b9; /** Focus indicator color. It must differ from the glow (REQ-024). TBD-16: the focus style is not defined; this references a placeholder, not a brand value. */
-  --cn-focus-ring-offset: 0; /** Focus indicator offset. TBD-16: the focus style is not defined; this references a placeholder, not a brand value. */
-  --cn-focus-ring-style: solid; /** Focus indicator line style. TBD-16: the focus style is not defined; this references a placeholder, not a brand value. */
-  --cn-focus-ring-width: 3px; /** Focus indicator width. TBD-16: the focus style is not defined; this references a placeholder, not a brand value. */
+  --cn-focus-offset-default: 3px; /** Focus ring offset: the gap between the component and the ring, chosen by the owner (ADR-0009). */
+  --cn-focus-ring-color: #fff488; /** Focus indicator color: brand yellow (BR-02), separated from the component by the offset gap so it only touches the container background. It must differ from the glow (REQ-024, ADR-0009). */
+  --cn-focus-ring-offset: 3px; /** Focus indicator offset: the gap between the component and the ring (ADR-0009). */
+  --cn-focus-ring-style: solid; /** Focus indicator line style (ADR-0009). */
+  --cn-focus-ring-width: 3px; /** Focus indicator width (ADR-0009). */
+  --cn-focus-style-default: solid; /** Focus ring line style, chosen by the owner (ADR-0009). */
+  --cn-focus-width-default: 3px; /** Focus ring width, chosen by the owner (ADR-0009). */
   --cn-font-body-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; /** Body typeface: the body family (BR-08). TBD-02: the body family is not defined; this references a placeholder, not a brand value. */
   --cn-font-body-letter-spacing: 0em; /** Body letter spacing (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
   --cn-font-body-line-height: 1.75rem; /** Body line height (BR-08). TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
@@ -91,13 +94,10 @@
   --cn-placeholder-breakpoint-sm: 40rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-sm (ADR-0006). */
   --cn-placeholder-breakpoint-xl: 80rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-xl (ADR-0006). */
   --cn-placeholder-breakpoint-xxl: 96rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-2xl (ADR-0006); renamed from 2xl, which fails the REQ-017 AC2 naming pattern (ADR-0006 policy 6). */
-  --cn-placeholder-color-neutral: #90a1b9; /** Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-04, TBD-05, TBD-06, TBD-07, and TBD-16. Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006). */
+  --cn-placeholder-color-neutral: #90a1b9; /** Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-04, TBD-05, TBD-06, and TBD-07. Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006). */
   --cn-placeholder-container-max: 80rem; /** Placeholder, not a brand value. Stands in for TBD-13 (container widths). Source: Nuxt UI --ui-container (ADR-0006). */
   --cn-placeholder-effect-glow: none; /** Placeholder, not a brand value. Stands in for TBD-12. Source: Nuxt UI UButton has no glow (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-elevation-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Placeholder, not a brand value. Stands in for TBD-15. Source: Tailwind --shadow-lg, used by UModal and USlideover (ADR-0006). Untyped (ADR-0008). */
-  --cn-placeholder-focus-offset: 0; /** Placeholder, not a brand value. Stands in for TBD-16. Source: Nuxt UI base CSS, outline-offset: 0 (ADR-0006). Untyped, because a DTCG dimension needs a unit (ADR-0008). */
-  --cn-placeholder-focus-style: solid; /** Placeholder, not a brand value. Stands in for TBD-16. Source: Tailwind outline-3, outline-style: solid (ADR-0006). */
-  --cn-placeholder-focus-width: 3px; /** Placeholder, not a brand value. Stands in for TBD-16. Source: Nuxt UI UButton, focus-visible:outline-3 (ADR-0006). */
   --cn-placeholder-font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; /** Placeholder, not a brand value. Stands in for TBD-01 and TBD-02. Source: Tailwind 4.3.3 --font-sans, split into DTCG font names (ADR-0006). */
   --cn-placeholder-font-letter-spacing: 0em; /** Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --tracking-normal (ADR-0006). Untyped, because DTCG dimensions allow only px and rem (ADR-0008). */
   --cn-placeholder-font-line-height-body: 1.75rem; /** Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose p, leading-7 (ADR-0006). */

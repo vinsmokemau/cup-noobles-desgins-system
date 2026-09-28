@@ -6,7 +6,7 @@ status: draft
 lang: en
 brandRules: [BR-06, BR-10, BR-13]
 tokens: [effect, z, focus]
-tbd: [TBD-12, TBD-15, TBD-16]
+tbd: [TBD-12, TBD-15]
 related: [shape, color, accessibility, motion, button]
 since: 0.1.0
 updated: 2026-09-27
@@ -16,7 +16,7 @@ updated: 2026-09-27
 
 ## Purpose
 
-This doc defines the Cup Noobles effects: the neon glow, elevation, stacking order (z-index), and the focus indicator. It implements the glow in BR-10 and keeps it compatible with BR-06 ("high-contrast, vibrant, and legible") and BR-13. It also states REQ-024: the focus indicator is never the glow alone. The glow parameters (TBD-12), the elevation and z-index scales (TBD-15), and the focus style (TBD-16) are not defined yet, so every effect token holds an ADR-0006 placeholder that is not a brand value.
+This doc defines the Cup Noobles effects: the neon glow, elevation, stacking order (z-index), and the focus indicator. It implements the glow in BR-10 and keeps it compatible with BR-06 ("high-contrast, vibrant, and legible") and BR-13. It also states REQ-024: the focus indicator is never the glow alone. The focus indicator is defined by the owner (ADR-0009). The glow parameters (TBD-12) and the elevation and z-index scales (TBD-15) are not defined yet, so those tokens hold ADR-0006 placeholders that are not brand values.
 
 ## Tokens and specs
 
@@ -30,18 +30,21 @@ This doc defines the Cup Noobles effects: the neon glow, elevation, stacking ord
 | `effect.shadow.overlay` | `--cn-effect-shadow-overlay` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | tbd (TBD-15) |
 | `effect.zIndex.overlay` | `--cn-effect-z-index-overlay` | `auto` | tbd (TBD-15) |
 | `effect.zIndex.toast` | `--cn-effect-z-index-toast` | `100` | tbd (TBD-15) |
-| `focus.ring.color` | `--cn-focus-ring-color` | `#90a1b9` | tbd (TBD-16) |
-| `focus.ring.offset` | `--cn-focus-ring-offset` | `0` | tbd (TBD-16) |
-| `focus.ring.style` | `--cn-focus-ring-style` | `solid` | tbd (TBD-16) |
-| `focus.ring.width` | `--cn-focus-ring-width` | `3px` | tbd (TBD-16) |
+| `focus.offset.default` | `--cn-focus-offset-default` | `3px` | stable |
+| `focus.ring.color` | `--cn-focus-ring-color` | `#fff488` | stable |
+| `focus.ring.offset` | `--cn-focus-ring-offset` | `3px` | stable |
+| `focus.ring.style` | `--cn-focus-ring-style` | `solid` | stable |
+| `focus.ring.width` | `--cn-focus-ring-width` | `3px` | stable |
+| `focus.style.default` | `--cn-focus-style-default` | `solid` | stable |
+| `focus.width.default` | `--cn-focus-width-default` | `3px` | stable |
 | `z.overlay` | `--cn-z-overlay` | `auto` | tbd (TBD-15) |
 | `z.toast` | `--cn-z-toast` | `100` | tbd (TBD-15) |
 
 <!-- /cn:generated -->
 
-Every row above is `tbd`. The glow placeholder is `none`, because Nuxt UI's button has no glow; the elevation, z-index, and focus placeholders come from Nuxt UI and Tailwind defaults (ADR-0006). **None of them is a brand value**, and none may be copied into another project. They exist only so the tokens build and the showcase renders.
+The `focus.ring.*` rows are `stable` (ADR-0009). Every other row is `tbd`. The glow placeholder is `none`, because Nuxt UI's button has no glow; the elevation and z-index placeholders come from Nuxt UI and Tailwind defaults (ADR-0006). **None of the placeholders is a brand value**, and none may be copied into another project. They exist only so the tokens build and the showcase renders.
 
-The primitive tokens (`effect.glow.default`, `effect.shadow.overlay`, `z.*`) hold the raw values. The semantic tokens (`effect.glow.interactive`, `effect.elevation.*`, `effect.zIndex.*`, `focus.ring.*`) give them roles. Components and apps use the semantic tokens only. The component tokens, such as `effect.glow.button` (REQ-023 AC2), are added by that component's task.
+The primitive tokens (`effect.glow.default`, `effect.shadow.overlay`, `z.*`, `focus.width.default`, `focus.offset.default`, `focus.style.default`) hold the raw values. The semantic tokens (`effect.glow.interactive`, `effect.elevation.*`, `effect.zIndex.*`, `focus.ring.*`) give them roles. Components and apps use the semantic tokens only. The component tokens, such as `effect.glow.button` (REQ-023 AC2), are added by that component's task.
 
 ### Brand rules
 
@@ -73,16 +76,16 @@ The elevation and z-index scales are TBD-15. On a pure-black base (BR-03) a dark
 
 REQ-024 AC1: every interactive component shows a focus-visible indicator that is **not the glow alone**. It uses the `focus.ring.*` tokens (color, width, offset, and style) and has at least 3:1 contrast against adjacent colors. REQ-024 AC2: focus appears for keyboard focus (`:focus-visible`), never on a mouse click alone.
 
-The focus style is TBD-16. The focus color is the neutral placeholder, not Nuxt UI's default translucent pink outline, because that would derive a new color from BR-01 without approval (ADR-0006, C-06).
+The focus indicator is a solid brand-yellow ring (BR-02), 3 px wide, drawn 3 px outside the component (ADR-0009). The gap shows the container behind the component, so on the pure-black page the ring only ever touches black, at 18.55:1. It never touches a pink or yellow fill: yellow on pink is a forbidden pair (SPEC.md §2.1), and yellow on yellow has no contrast. The ring is yellow, not Nuxt UI's default translucent pink outline, so it stays distinct from a pink glow (REQ-024) and derives no new color from BR-01 (C-06).
 
-The contrast pairs declared for the focus color are generated below. They are `unverified` until TBD-16 is resolved (REQ-015 AC4).
+A focusable component on a container that is not black needs its own check, because the gap then shows that container's color. The contrast pairs declared for the focus color are generated below. The pair on `color.surface.card` is `unverified` until TBD-06 is resolved (REQ-015 AC4).
 
 <!-- cn:generated tokens="focus" format="contrast" -->
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `focus.ring.color` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `focus.ring.color`, `placeholder.color.neutral`) |
-| `focus.ring.color` (`#90a1b9`) | `color.brand.primary` (`#ef80ae`) | ui | 1.05:1 | 3.00:1 | unverified (tbd: `focus.ring.color`, `placeholder.color.neutral`) |
+| `focus.ring.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
+| `focus.ring.color` (`#fff488`) | `color.surface.card` (`#90a1b9`) | ui | 2.32:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
 
 <!-- /cn:generated -->
 
@@ -99,7 +102,8 @@ The contrast pairs declared for the focus color are generated below. They are `u
 
 - Never use the glow as the only focus indicator, and never show focus on a mouse click alone (REQ-024).
 - Never give a disabled button a glow (REQ-023 AC5).
-- Never make up glow, elevation, z-index, or focus values. They are TBD-12, TBD-15, and TBD-16, and only the owner can supply them.
+- Never make up glow, elevation, or z-index values. They are TBD-12 and TBD-15, and only the owner can supply them. Never change the focus values without a new ADR (ADR-0009).
+- Never set the focus offset to `0` or draw the ring inside a component: the gap is what keeps yellow off the pink and yellow fills.
 - Never treat the ADR-0006 placeholders as brand values, and never copy them into another project.
 - Never derive a focus or glow color from a brand color, for example a translucent pink, without an approved ADR (C-06).
 
@@ -136,7 +140,8 @@ Effects do not change between viewports. The same tokens apply at 360, 768, and 
 | `tokens/primitive/effect.json` | The glow and the overlay shadow, both `tbd` (TBD-12, TBD-15). |
 | `tokens/primitive/z.json` | The z-index values, `tbd` (TBD-15). |
 | `tokens/semantic/effect.json` | The roles: `effect.glow.interactive`, `effect.elevation.overlay`, and `effect.zIndex.*`. |
-| `tokens/semantic/focus.json` | The focus indicator: `focus.ring.color`, `width`, `offset`, and `style`, all `tbd` (TBD-16). |
+| `tokens/primitive/focus.json` | The focus ring width, offset, and line style, `stable` (ADR-0009). |
+| `tokens/semantic/focus.json` | The focus indicator: `focus.ring.color`, `width`, `offset`, and `style`, all `stable` (ADR-0009). |
 | `@vinsmokemau/cup-noobles-tokens`, `dist/css/tokens.css` | The CSS custom properties, such as `--cn-focus-ring-color` (REQ-017). |
 
 ```css
@@ -157,9 +162,8 @@ Effects do not change between viewports. The same tokens apply at 360, 768, and 
 > **TBD (TBD-12):** Neon glow parameters are not defined: blur, spread, opacity, and which color is used per state ("subtle" in BR-10). `effect.glow.default` and `effect.glow.interactive` hold the ADR-0006 placeholder `none`. Owner input needed: values.
 >
 > **TBD (TBD-15):** The elevation and z-index scales are not defined. `effect.shadow.overlay`, `effect.elevation.overlay`, `z.*`, and `effect.zIndex.*` hold ADR-0006 placeholders. Owner input needed: values.
->
-> **TBD (TBD-16):** The focus indicator style is not defined: color, width, offset, and line style. It must differ from the glow (REQ-024). `focus.ring.*` holds ADR-0006 placeholders. Owner input needed: a decision.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-10 glow, BR-06 and BR-13, the glow, elevation, z-index, and focus groups, the REQ-024 focus rule, a draft rule for R-04, and TBD-12, TBD-15, and TBD-16 (T4.4) — awaiting owner approval
+- 0.1.0 — Focus indicator defined by the owner: a solid yellow ring, 3 px wide, with a 3 px gap (ADR-0009, TBD-16 resolved)

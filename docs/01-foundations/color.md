@@ -83,8 +83,8 @@ The block below is generated from `tokens/contrast-pairs.json` and `tokens/contr
 | `color.feedback.warning` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.warning`, `placeholder.color.neutral`) |
 | `color.feedback.error` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.error`, `placeholder.color.neutral`) |
 | `color.feedback.info` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.info`, `placeholder.color.neutral`) |
-| `focus.ring.color` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `focus.ring.color`, `placeholder.color.neutral`) |
-| `focus.ring.color` (`#90a1b9`) | `color.brand.primary` (`#ef80ae`) | ui | 1.05:1 | 3.00:1 | unverified (tbd: `focus.ring.color`, `placeholder.color.neutral`) |
+| `focus.ring.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
+| `focus.ring.color` (`#fff488`) | `color.surface.card` (`#90a1b9`) | ui | 2.32:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
 | `#ffffff` | `color.brand.pink` (`#ef80ae`) | — | 2.51:1 | — | forbidden |
 | `color.brand.yellow` (`#fff488`) | `color.brand.pink` (`#ef80ae`) | — | 2.22:1 | — | forbidden |
 | `color.brand.pink` (`#ef80ae`) | `color.brand.yellow` (`#fff488`) | — | 2.22:1 | — | forbidden |
@@ -150,9 +150,9 @@ BR-01 and BR-02 give one value per color. Nuxt UI's color aliases read a full sc
 - The target is WCAG 2.2 level AA (A-10). The minimum ratios are 4.5:1 for `text`, 3:1 for `large-text`, and 3:1 for `ui` (REQ-015 AC2).
 - Every intended pair is declared in `tokens/contrast-pairs.json`, and `check-contrast` runs in `pnpm test`. A pair below its minimum, or one that uses a forbidden combination, fails the build (REQ-015).
 - Both brand colors pass on black for text and for UI components: pink at 8.37:1 and yellow at 18.55:1.
-- Pairs that use a `tbd` token (text, neutral, surface, feedback, and focus colors) are reported as `unverified`. They must be checked again when the owner supplies each value.
+- Pairs that use a `tbd` token (text, neutral, surface, and feedback colors) are reported as `unverified`. They must be checked again when the owner supplies each value.
 - Color is never the only signal. States such as error or selected also change text, an icon, or a shape.
-- The focus indicator must be distinguishable from the glow (REQ-024). Its color is TBD-16; see [Effects](effects.md).
+- The focus indicator must be distinguishable from the glow (REQ-024). It is brand yellow, separated from the component by a gap, so it never touches a pink or yellow fill (ADR-0009); see [Effects](effects.md).
 
 ## Responsive behavior
 
@@ -194,3 +194,4 @@ Email clients do not support `var()`, so email templates use the resolved litera
 ## Changelog
 
 - 0.1.0 — First draft: brand colors and roles from BR-01 to BR-03, the pure-black rule, contrast facts and forbidden pairs from SPEC.md §2.1, C-05, and C-06 (T4.2) — awaiting owner approval
+- 0.1.0 — The focus color is brand yellow with a gap, and its contrast pairs are regenerated (ADR-0009, TBD-16 resolved)

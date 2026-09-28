@@ -5,8 +5,8 @@
       "neutral": {
         "$type": "color",
         "$value": "#90a1b9",
-        "$description": "Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-04, TBD-05, TBD-06, TBD-07, and TBD-16. Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04", "TBD-05", "TBD-06", "TBD-07", "TBD-16"] } }
+        "$description": "Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-04, TBD-05, TBD-06, and TBD-07. Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006).",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04", "TBD-05", "TBD-06", "TBD-07"] } }
       }
     },
     "font": {
@@ -180,25 +180,6 @@
         "$value": 100,
         "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006).",
         "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
-      }
-    },
-    "focus": {
-      "width": {
-        "$type": "dimension",
-        "$value": "3px",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-16. Source: Nuxt UI UButton, focus-visible:outline-3 (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
-      },
-      "offset": {
-        "$value": 0,
-        "$description": "Placeholder, not a brand value. Stands in for TBD-16. Source: Nuxt UI base CSS, outline-offset: 0 (ADR-0006). Untyped, because a DTCG dimension needs a unit (ADR-0008).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
-      },
-      "style": {
-        "$type": "strokeStyle",
-        "$value": "solid",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-16. Source: Tailwind outline-3, outline-style: solid (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-16"] } }
       }
     },
     "motion": {
