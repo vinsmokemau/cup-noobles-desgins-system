@@ -967,7 +967,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: TBD-09, TBD-13, and TBD-14; the 360 px minimum (ER-05); the reference viewports (A-09); reduced-motion rules and the flash limit.
   - Done when: `check:docs` passes.
 
-- [ ] **T4.6 — `iconography.md`, `imagery-and-motifs.md`, and `accessibility.md`**
+- [x] **T4.6 — `iconography.md`, `imagery-and-motifs.md`, and `accessibility.md`** (2026-09-28, 7a0679d)
   - REQs: REQ-027 (documentation part), REQ-029 (documentation part)
   - Depends on: T4.1
   - Scope: The icon set is TBD-19 and must be consistent with BR-13. The motifs are BR-14 (art TBD-18) and are decorative only. Photography follows TBD-20. `accessibility.md` states the WCAG 2.2 AA target (A-10), the contrast rules, focus, target size, reduced motion, and the axe gate.
