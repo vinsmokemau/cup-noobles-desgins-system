@@ -1,0 +1,125 @@
+/*
+ * T5.1: the layer's only stylesheet (C-03). It loads Tailwind, Nuxt UI, and the token CSS, then maps Nuxt UI's
+ * theme variables (ADR-0001 §2) to --cn-* variables. Every value here is a var(--cn-*) reference (REQ-016).
+ */
+@import 'tailwindcss';
+@import '@nuxt/ui';
+@import '@vinsmokemau/cup-noobles-tokens/tokens.css';
+
+/*
+ * The scales that app.config.ts names. Each Nuxt UI color alias reads all 11 shades (ADR-0001 §3).
+ * primary and secondary read the derived-pending shade tokens, which all repeat the single brand value (C-06, TBD-08).
+ * The feedback scales repeat their TBD-07 token, and neutral repeats the single neutral placeholder, because no
+ * color.neutral.* token exists yet (TBD-05, ADR-0006). No tint or shade is generated.
+ */
+@theme static {
+  --color-cn-primary-50: var(--cn-color-brand-pink-50);
+  --color-cn-primary-100: var(--cn-color-brand-pink-100);
+  --color-cn-primary-200: var(--cn-color-brand-pink-200);
+  --color-cn-primary-300: var(--cn-color-brand-pink-300);
+  --color-cn-primary-400: var(--cn-color-brand-pink-400);
+  --color-cn-primary-500: var(--cn-color-brand-pink-500);
+  --color-cn-primary-600: var(--cn-color-brand-pink-600);
+  --color-cn-primary-700: var(--cn-color-brand-pink-700);
+  --color-cn-primary-800: var(--cn-color-brand-pink-800);
+  --color-cn-primary-900: var(--cn-color-brand-pink-900);
+  --color-cn-primary-950: var(--cn-color-brand-pink-950);
+
+  --color-cn-secondary-50: var(--cn-color-brand-yellow-50);
+  --color-cn-secondary-100: var(--cn-color-brand-yellow-100);
+  --color-cn-secondary-200: var(--cn-color-brand-yellow-200);
+  --color-cn-secondary-300: var(--cn-color-brand-yellow-300);
+  --color-cn-secondary-400: var(--cn-color-brand-yellow-400);
+  --color-cn-secondary-500: var(--cn-color-brand-yellow-500);
+  --color-cn-secondary-600: var(--cn-color-brand-yellow-600);
+  --color-cn-secondary-700: var(--cn-color-brand-yellow-700);
+  --color-cn-secondary-800: var(--cn-color-brand-yellow-800);
+  --color-cn-secondary-900: var(--cn-color-brand-yellow-900);
+  --color-cn-secondary-950: var(--cn-color-brand-yellow-950);
+
+  --color-cn-success-50: var(--cn-color-feedback-success);
+  --color-cn-success-100: var(--cn-color-feedback-success);
+  --color-cn-success-200: var(--cn-color-feedback-success);
+  --color-cn-success-300: var(--cn-color-feedback-success);
+  --color-cn-success-400: var(--cn-color-feedback-success);
+  --color-cn-success-500: var(--cn-color-feedback-success);
+  --color-cn-success-600: var(--cn-color-feedback-success);
+  --color-cn-success-700: var(--cn-color-feedback-success);
+  --color-cn-success-800: var(--cn-color-feedback-success);
+  --color-cn-success-900: var(--cn-color-feedback-success);
+  --color-cn-success-950: var(--cn-color-feedback-success);
+
+  --color-cn-info-50: var(--cn-color-feedback-info);
+  --color-cn-info-100: var(--cn-color-feedback-info);
+  --color-cn-info-200: var(--cn-color-feedback-info);
+  --color-cn-info-300: var(--cn-color-feedback-info);
+  --color-cn-info-400: var(--cn-color-feedback-info);
+  --color-cn-info-500: var(--cn-color-feedback-info);
+  --color-cn-info-600: var(--cn-color-feedback-info);
+  --color-cn-info-700: var(--cn-color-feedback-info);
+  --color-cn-info-800: var(--cn-color-feedback-info);
+  --color-cn-info-900: var(--cn-color-feedback-info);
+  --color-cn-info-950: var(--cn-color-feedback-info);
+
+  --color-cn-warning-50: var(--cn-color-feedback-warning);
+  --color-cn-warning-100: var(--cn-color-feedback-warning);
+  --color-cn-warning-200: var(--cn-color-feedback-warning);
+  --color-cn-warning-300: var(--cn-color-feedback-warning);
+  --color-cn-warning-400: var(--cn-color-feedback-warning);
+  --color-cn-warning-500: var(--cn-color-feedback-warning);
+  --color-cn-warning-600: var(--cn-color-feedback-warning);
+  --color-cn-warning-700: var(--cn-color-feedback-warning);
+  --color-cn-warning-800: var(--cn-color-feedback-warning);
+  --color-cn-warning-900: var(--cn-color-feedback-warning);
+  --color-cn-warning-950: var(--cn-color-feedback-warning);
+
+  --color-cn-error-50: var(--cn-color-feedback-error);
+  --color-cn-error-100: var(--cn-color-feedback-error);
+  --color-cn-error-200: var(--cn-color-feedback-error);
+  --color-cn-error-300: var(--cn-color-feedback-error);
+  --color-cn-error-400: var(--cn-color-feedback-error);
+  --color-cn-error-500: var(--cn-color-feedback-error);
+  --color-cn-error-600: var(--cn-color-feedback-error);
+  --color-cn-error-700: var(--cn-color-feedback-error);
+  --color-cn-error-800: var(--cn-color-feedback-error);
+  --color-cn-error-900: var(--cn-color-feedback-error);
+  --color-cn-error-950: var(--cn-color-feedback-error);
+
+  --color-cn-neutral-50: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-100: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-200: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-300: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-400: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-500: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-600: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-700: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-800: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-900: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-950: var(--cn-placeholder-color-neutral);
+}
+
+/*
+ * Nuxt UI's role variables that have a matching token. The layer sits after Nuxt UI's own `.dark` rules in the same
+ * cascade layer, so these win. The page background stays pure black (BR-03, REQ-012), and labels on brand fills are
+ * black (SPEC.md §2.1 derived facts, ADR-0001 Consequences). Roles without a token keep reading the neutral scale.
+ */
+@layer theme {
+  :root,
+  .dark {
+    --ui-bg: var(--cn-color-bg-base);
+    --ui-text: var(--cn-color-text-default);
+    --ui-text-muted: var(--cn-color-text-muted);
+    --ui-text-inverted: var(--cn-color-text-inverted);
+    --ui-border: var(--cn-color-border-default);
+    --ui-radius: var(--cn-radius-sm);
+    --ui-container: var(--cn-layout-container-max);
+  }
+}
+
+/* Nuxt UI leaves the page itself unstyled; the layer paints it with the role variables above. */
+@layer base {
+  body {
+    background-color: var(--ui-bg);
+    color: var(--ui-text);
+  }
+}

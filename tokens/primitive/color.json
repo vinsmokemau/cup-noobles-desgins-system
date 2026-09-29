@@ -16,6 +16,116 @@
         "$value": "#000000",
         "$description": "Brand black, the tertiary color for the base and background. It stays pure black, never dark gray (BR-03).",
         "$extensions": { "cn": { "status": "stable", "source": "BR-03" } }
+      },
+      "pink-50": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 50 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-100": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 100 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-200": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 200 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-300": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 300 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-400": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 400 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-500": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 500 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-600": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 600 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-700": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 700 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-800": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 800 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-900": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 900 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "pink-950": {
+        "$value": "{color.brand.pink}",
+        "$description": "Brand pink, shade 950 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-50": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 50 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-100": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 100 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-200": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 200 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-300": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 300 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-400": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 400 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-500": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 500 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-600": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 600 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-700": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 700 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-800": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 800 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-900": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 900 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "yellow-950": {
+        "$value": "{color.brand.yellow}",
+        "$description": "Brand yellow, shade 950 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
       }
     }
   }

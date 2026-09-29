@@ -1,3 +1,8 @@
 packages:
   - packages/*
   - apps/*
+# T5.1: no install scripts run. esbuild ships its binary as an optional platform package, and vue-demi's
+# default files already target Vue 3, so neither postinstall is needed.
+allowBuilds:
+  esbuild: false
+  vue-demi: false

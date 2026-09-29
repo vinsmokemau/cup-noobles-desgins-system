@@ -2,6 +2,9 @@
   "name": "@vinsmokemau/cup-noobles-tokens",
   "version": "0.1.0",
   "type": "module",
+  "exports": {
+    "./tokens.css": "./dist/css/tokens.css"
+  },
   "scripts": {
     "build": "node build.ts"
   },

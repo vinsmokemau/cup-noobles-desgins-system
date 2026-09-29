@@ -1,5 +1,17 @@
 {
   "name": "@vinsmokemau/cup-noobles-nuxt",
   "version": "0.1.0",
-  "type": "module"
+  "type": "module",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "build": "nuxt build"
+  },
+  "dependencies": {
+    "@nuxt/ui": "4.11.2",
+    "@vinsmokemau/cup-noobles-tokens": "workspace:*",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "nuxt": "4.5.2"
+  }
 }

@@ -9,7 +9,7 @@ tokens: [color]
 tbd: [TBD-04, TBD-05, TBD-06, TBD-07, TBD-08]
 related: [accessibility, effects, typography, card, button]
 since: 0.1.0
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Color
@@ -28,9 +28,31 @@ This doc defines the Cup Noobles color palette: the three brand colors and their
 | `color.border.default` | `--cn-color-border-default` | `#90a1b9` | tbd (TBD-05) |
 | `color.brand.black` | `--cn-color-brand-black` | `#000000` | stable |
 | `color.brand.pink` | `--cn-color-brand-pink` | `#ef80ae` | stable |
+| `color.brand.pink-100` | `--cn-color-brand-pink-100` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-200` | `--cn-color-brand-pink-200` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-300` | `--cn-color-brand-pink-300` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-400` | `--cn-color-brand-pink-400` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-50` | `--cn-color-brand-pink-50` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-500` | `--cn-color-brand-pink-500` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-600` | `--cn-color-brand-pink-600` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-700` | `--cn-color-brand-pink-700` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-800` | `--cn-color-brand-pink-800` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-900` | `--cn-color-brand-pink-900` | `#ef80ae` | derived-pending (TBD-08) |
+| `color.brand.pink-950` | `--cn-color-brand-pink-950` | `#ef80ae` | derived-pending (TBD-08) |
 | `color.brand.primary` | `--cn-color-brand-primary` | `#ef80ae` | stable |
 | `color.brand.secondary` | `--cn-color-brand-secondary` | `#fff488` | stable |
 | `color.brand.yellow` | `--cn-color-brand-yellow` | `#fff488` | stable |
+| `color.brand.yellow-100` | `--cn-color-brand-yellow-100` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-200` | `--cn-color-brand-yellow-200` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-300` | `--cn-color-brand-yellow-300` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-400` | `--cn-color-brand-yellow-400` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-50` | `--cn-color-brand-yellow-50` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-500` | `--cn-color-brand-yellow-500` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-600` | `--cn-color-brand-yellow-600` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-700` | `--cn-color-brand-yellow-700` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-800` | `--cn-color-brand-yellow-800` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-900` | `--cn-color-brand-yellow-900` | `#fff488` | derived-pending (TBD-08) |
+| `color.brand.yellow-950` | `--cn-color-brand-yellow-950` | `#fff488` | derived-pending (TBD-08) |
 | `color.feedback.error` | `--cn-color-feedback-error` | `#90a1b9` | tbd (TBD-07) |
 | `color.feedback.info` | `--cn-color-feedback-info` | `#90a1b9` | tbd (TBD-07) |
 | `color.feedback.success` | `--cn-color-feedback-success` | `#90a1b9` | tbd (TBD-07) |
@@ -112,7 +134,7 @@ BR-12 gives cards a "dark surface", but BR-03 keeps the base pure black, "not da
 
 ### Shades and tints (C-06)
 
-BR-01 and BR-02 give one value per color. Nuxt UI's color aliases read a full scale of 11 shades, `50` to `950` (ADR-0001 §3). Generating those shades would mean inventing colors, so no tint or shade is generated without approval. Until OD-04 is decided, every shade that Nuxt UI requires is filled with the single brand value and marked `derived-pending` (TBD-08).
+BR-01 and BR-02 give one value per color. Nuxt UI's color aliases read a full scale of 11 shades, `50` to `950` (ADR-0001 §3). Generating those shades would mean inventing colors, so no tint or shade is generated without approval. Until OD-04 is decided, every shade that Nuxt UI requires is filled with the single brand value and marked `derived-pending` (TBD-08). These shades are the tokens `color.brand.pink-50` to `color.brand.pink-950` and `color.brand.yellow-50` to `color.brand.yellow-950`, which the Nuxt UI `primary` and `secondary` aliases read.
 
 ## Usage rules
 
@@ -195,3 +217,4 @@ Email clients do not support `var()`, so email templates use the resolved litera
 
 - 0.1.0 — First draft: brand colors and roles from BR-01 to BR-03, the pure-black rule, contrast facts and forbidden pairs from SPEC.md §2.1, C-05, and C-06 (T4.2) — awaiting owner approval
 - 0.1.0 — The focus color is brand yellow with a gap, and its contrast pairs are regenerated (ADR-0009, TBD-16 resolved)
+- 0.1.0 — The 22 `derived-pending` shade tokens exist, and the Nuxt layer's `primary` and `secondary` aliases read them (T5.1, C-06)

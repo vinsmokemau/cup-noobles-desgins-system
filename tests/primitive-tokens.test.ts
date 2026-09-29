@@ -35,7 +35,15 @@ test('ADR-0009: the focus primitives hold the owner values, stable, with the ADR
 })
 
 test('REQ-011 AC1: the three brand colors are exact, stable primitives with their BR sources', () => {
-  const brand = inFile('color.json').map((t) => [t.path, t.type, t.value, t.cn?.status, t.cn?.source])
+  // T5.1 added the derived-pending shade tokens beside them (C-06); tests/nuxt-layer.test.ts checks those.
+  const stable = inFile('color.json').filter((t) => t.cn?.status === 'stable')
+  assert.deepEqual(
+    inFile('color.json')
+      .filter((t) => t.cn?.status !== 'stable')
+      .map((t) => t.cn?.status),
+    Array(22).fill('derived-pending'),
+  )
+  const brand = stable.map((t) => [t.path, t.type, t.value, t.cn?.status, t.cn?.source])
   assert.deepEqual(brand, [
     ['color.brand.pink', 'color', '#ef80ae', 'stable', 'BR-01'],
     ['color.brand.yellow', 'color', '#fff488', 'stable', 'BR-02'],
@@ -115,19 +123,22 @@ test('Done when: check-tokens passes, and check-tbd lists every tbd token with c
   assert.deepEqual(report.problems, [])
 
   const tbd = tokens.filter((t) => t.cn?.status === 'tbd')
+  const listed = tokens.filter((t) => t.cn?.status === 'tbd' || t.cn?.status === 'derived-pending')
   assert.deepEqual(
     report.tokens.map((t) => `${t.file} ${t.path} ${t.tbd.join(',')}`).sort(),
-    tbd.map((t) => `${t.file} ${t.path} ${(t.cn?.tbd as string[]).join(',')}`).sort(),
+    listed.map((t) => `${t.file} ${t.path} ${(t.cn?.tbd as string[]).join(',')}`).sort(),
   )
   const counts = Object.fromEntries(report.items.map((i) => [i.id, i.tokens]))
   const resolved = new Set(report.items.filter((i) => i.resolved).map((i) => i.id))
   assert.ok(resolved.has('TBD-16'), 'TBD-16 is resolved (ADR-0009)')
   for (let n = 3; n <= 16; n++) {
     const id = `TBD-${String(n).padStart(2, '0')}`
-    // TBD-08 has no placeholder (ADR-0006): its derived-pending alias shades arrive with the Nuxt UI theme (C-06).
+    // TBD-08 has no placeholder (ADR-0006): its tokens are the 22 derived-pending alias shades from T5.1 (C-06).
     // A resolved item has no tbd tokens left (§4.4).
-    if (id === 'TBD-08' || resolved.has(id)) assert.equal(counts[id], 0)
+    if (id === 'TBD-08') assert.equal(counts[id], 22)
+    else if (resolved.has(id)) assert.equal(counts[id], 0)
     else assert.ok(counts[id]! > 0, `${id} has tokens`)
   }
   assert.equal(report.summary.tokens, tbd.length)
+  assert.equal(report.summary.derivedPendingTokens, 22)
 })

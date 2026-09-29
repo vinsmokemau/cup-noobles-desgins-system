@@ -18,7 +18,8 @@
     "sync:docs": "node scripts/sync-docs.ts",
     "test": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm check:docs && pnpm check:tokens && pnpm check:tbd && pnpm sync:docs --check",
     "build:tokens": "pnpm --filter @vinsmokemau/cup-noobles-tokens build",
-    "test:all": "pnpm test && pnpm build:tokens"
+    "build:nuxt": "pnpm --filter @vinsmokemau/cup-noobles-nuxt build",
+    "test:all": "pnpm test && pnpm build:tokens && pnpm build:nuxt"
   },
   "devDependencies": {
     "@eslint/css": "2.0.0",
