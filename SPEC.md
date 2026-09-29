@@ -975,7 +975,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
 
 ### P5 — Nuxt layer, fixture, showcase shell
 
-- [ ] **T5.1 — `@vinsmokemau/cup-noobles-nuxt` layer**
+- [x] **T5.1 — `@vinsmokemau/cup-noobles-nuxt` layer** (2026-09-28, 8d8edca)
   - REQs: REQ-020, REQ-031, REQ-016
   - Depends on: T3.4, T0.1
   - Scope: A layer `nuxt.config.ts` that extends Nuxt UI (version pinned per ADR-0001) and forces dark mode; `main.css` importing `tokens.css` and mapping Nuxt UI variables to `--cn-*` variables; `app.config.ts` with the color aliases, filling shade scales per C-06.
