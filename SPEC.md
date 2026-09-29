@@ -961,7 +961,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: BR-10 and BR-13 quoted; radius, stroke-width, glow, elevation, z-index, and focus token groups (TBD-10, 11, 12, 15, 16); the rule that focus is never the glow alone (REQ-024); a draft rule proposing that glow applies to component edges, not body text (see R-04).
   - Done when: `check:docs` passes, and the TBD callouts reference TBD-10, 11, 12, 15, and 16.
 
-- [ ] **T4.5 — `spacing.md`, `layout.md`, and `motion.md`**
+- [x] **T4.5 — `spacing.md`, `layout.md`, and `motion.md`** (2026-09-28, 8128938)
   - REQs: REQ-028 (documentation part), REQ-029 (documentation part)
   - Depends on: T4.1
   - Scope: TBD-09, TBD-13, and TBD-14; the 360 px minimum (ER-05); the reference viewports (A-09); reduced-motion rules and the flash limit.
