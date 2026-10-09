@@ -1074,7 +1074,7 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Depends on: T7.2
   - Done when: each component demonstrates its checked, unchecked, disabled, and focus-visible states (plus indeterminate for the checkbox); arrow keys move within the radio group; and Space toggles the switch.
 
-- [ ] **T7.6 — Progress, Skeleton, and Separator**
+- [x] **T7.6 — Progress, Skeleton, and Separator** (2026-10-09, 714f87c)
   - REQs: REQ-020, REQ-026, REQ-027, REQ-029 (AC2)
   - Depends on: T7.2
   - Done when: the skeleton animation stops under reduced motion, and the progress bar exposes its value to assistive technology.
