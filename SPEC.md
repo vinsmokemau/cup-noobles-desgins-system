@@ -987,7 +987,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: A generic Nuxt SSR app that extends the layer in 10 lines or fewer and renders one `UButton`. Add Playwright smoke tests: the body background is `rgb(0, 0, 0)`, and the primary button background is `#ef80ae`.
   - Done when: both smoke tests pass in `pnpm test:all`.
 
-- [ ] **T5.3 — Showcase scaffold**
+- [x] **T5.3 — Showcase scaffold** (2026-10-08, a38bd7b)
   - REQs: REQ-050 (AC1), REQ-051 (AC1), REQ-052 (AC2), REQ-059, REQ-031
   - Depends on: T5.1, T0.2, T2.3
   - Scope: A Nuxt app that extends the layer, with Nuxt Content reading `../../docs` per ADR-0002; the app layout with header, version, sidebar in `DESIGN.md` order, a mobile slideover, and a skip link.
