@@ -999,7 +999,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: Every route in §4.6 except `/tokens`, `/status`, and the email previews (those pages exist, with content pending); generated blocks rendered as plain tables for now; a status banner; an on-page table of contents; a verbatim brand-source page; a 404 page.
   - Done when: the route count equals the doc count, the route crawl has zero 404s, and the fixture-doc edit test passes.
 
-- [ ] **T5.5 — End-to-end, accessibility, and visual harness**
+- [x] **T5.5 — End-to-end, accessibility, and visual harness** (2026-10-08, 4bdc927)
   - REQs: REQ-060, REQ-061 (AC1), REQ-028 (infrastructure)
   - Depends on: T5.4
   - Scope: Playwright projects at 360, 768, and 1280 px; an `expectNoA11yViolations` helper; a crawl over every route with axe and overflow checks; skip-link and landmark tests; a reduced-motion project; the `toHaveScreenshot` setup with baselines stored in git and updated only by `pnpm test:visual:update`.
