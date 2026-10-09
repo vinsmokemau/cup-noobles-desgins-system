@@ -1028,7 +1028,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Depends on: T6.1
   - Done when: each foundation page renders its preview type from its generated blocks; the type specimens include `áéíóú ñ ¿¡`; and the motion demo does not move under reduced motion.
 
-- [ ] **T6.4 — `/status` dashboard**
+- [x] **T6.4 — `/status` dashboard** (2026-10-09, c9b9251)
   - REQs: REQ-057 (AC2)
   - Depends on: T6.1, T2.4
   - Done when: the counts on `/status` equal `tbd-report.json` in an end-to-end test, and each item links to its doc or token.
