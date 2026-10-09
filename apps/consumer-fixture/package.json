@@ -1,5 +1,16 @@
 {
   "name": "consumer-fixture",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@vinsmokemau/cup-noobles-nuxt": "workspace:*",
+    "nuxt": "4.5.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
 }

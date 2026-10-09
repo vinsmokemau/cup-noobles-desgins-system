@@ -19,7 +19,9 @@
     "test": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm check:docs && pnpm check:tokens && pnpm check:tbd && pnpm sync:docs --check",
     "build:tokens": "pnpm --filter @vinsmokemau/cup-noobles-tokens build",
     "build:nuxt": "pnpm --filter @vinsmokemau/cup-noobles-nuxt build",
-    "test:all": "pnpm test && pnpm build:tokens && pnpm build:nuxt"
+    "build:fixture": "pnpm --filter consumer-fixture build",
+    "test:e2e": "pnpm --filter consumer-fixture test:e2e",
+    "test:all": "pnpm test && pnpm build:tokens && pnpm build:nuxt && pnpm build:fixture && pnpm test:e2e"
   },
   "devDependencies": {
     "@eslint/css": "2.0.0",

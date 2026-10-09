@@ -9,3 +9,7 @@ dist/
 # Generated reports (SPEC.md §4.1). The directory itself is kept.
 reports/*
 !reports/.gitkeep
+
+# Playwright output (T5.2)
+test-results/
+playwright-report/
