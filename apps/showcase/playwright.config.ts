@@ -7,6 +7,7 @@
 //   *.reduced.ts  every route with `prefers-reduced-motion: reduce` emulated (REQ-029 AC2)
 //   *.visual.ts   screenshot assertions at the 3 widths, in the pinned CI container only (A-12, R-08)
 import { defineConfig, devices } from '@playwright/test'
+import { siteBase } from './lib/site'
 
 const port = 3200
 const widths = [360, 768, 1280] as const
@@ -17,7 +18,7 @@ export default defineConfig({
   testDir: './tests/e2e',
   webServer: {
     command: 'node tests/serve-static.mjs',
-    url: `http://localhost:${port}`,
+    url: `http://localhost:${port}${siteBase}`,
     env: { PORT: String(port) },
     reuseExistingServer: false,
   },

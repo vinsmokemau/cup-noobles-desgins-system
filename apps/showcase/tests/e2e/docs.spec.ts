@@ -7,9 +7,10 @@ import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, 
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { expect, test } from '@playwright/test'
 import { parse as parseYaml } from 'yaml'
-import { crawl, type Crawl } from './helpers/crawl'
+import { siteBase } from '../../lib/site'
+import { crawl, routeOf, type Crawl } from './helpers/crawl'
+import { expect, test } from './helpers/test'
 
 const repoRoot = fileURLToPath(new URL('../../../../', import.meta.url))
 const appDir = fileURLToPath(new URL('../../', import.meta.url))
@@ -151,7 +152,7 @@ test('doc links go to routes, not to .md files, and every anchor exists on its p
       if (/\.md(#|$)/.test(href)) problems.push(`${path}: ${href} still points at a file`)
       if (!href.startsWith('/') || href.startsWith('//')) continue
       const [target, hash] = href.split('#')
-      const destination = crawled.pages.get(target!)
+      const destination = crawled.pages.get(routeOf(target!) ?? target!)
       if (!destination) problems.push(`${path}: ${href} was not crawled`)
       else if (hash && !destination.html.includes(`id="${hash}"`)) problems.push(`${path}: ${href} has no anchor`)
     }
@@ -179,7 +180,7 @@ test('the brand source page renders the source verbatim under a fixed title', as
 test('the section indexes show a card per doc with its status', async ({ page }) => {
   await page.goto('/foundations')
   const foundations = readdirSync(join(docsDir, '01-foundations')).length
-  await expect(page.locator('main a[href^="/foundations/"]')).toHaveCount(foundations)
+  await expect(page.locator(`main a[href^="${siteBase}foundations/"]`)).toHaveCount(foundations)
   await expect(page.getByTestId('status-badge').first()).toBeVisible()
   await page.goto('/components')
   await expect(page.getByRole('heading', { name: 'Atoms' })).toBeVisible()

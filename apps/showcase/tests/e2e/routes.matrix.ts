@@ -1,8 +1,8 @@
 // T5.5: every route of the showcase, at 360, 768, and 1280 px (the three `w*` projects). One test per route, so a failure
 // names the page. Covers REQ-060 AC1 (axe), REQ-060 AC2 (skip link, landmarks, keyboard), REQ-061 AC1 (overflow at
 // 360 px, checked at all three widths), and REQ-028 AC2 (target size).
-import { expect, test } from '@playwright/test'
 import { builtRoutes } from './helpers/crawl'
+import { expect, test } from './helpers/test'
 import { expectNoA11yViolations, expectNoHorizontalOverflow, expectTargetSize } from './helpers/a11y'
 
 const routes = builtRoutes()

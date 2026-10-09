@@ -12,6 +12,7 @@ import type { ModuleOptions } from '@nuxt/content'
 import { parseDesignNav } from './lib/design-nav'
 import { prerenderRoutes } from './lib/doc-routes'
 import { scanDocs } from './lib/doc-scan'
+import { siteBase } from './lib/site'
 
 // `nuxt prepare` writes this augmentation into .nuxt/; the root typecheck runs without it, so it is declared here.
 declare module 'nuxt/schema' {
@@ -48,7 +49,9 @@ export default defineNuxtConfig({
     },
   },
   // The docs are in English (ER-10), and a page needs a language for screen readers (WCAG 3.1.1, axe `html-has-lang`).
-  app: { head: { htmlAttrs: { lang: 'en' } } },
+  // T5.6 (REQ-050 AC3): GitHub Pages serves a project site under the repository name, so every link and asset is
+  // prefixed with it. `lib/site.ts` holds the same value for the tests and the deploy workflow.
+  app: { baseURL: siteBase, head: { htmlAttrs: { lang: 'en' } } },
   runtimeConfig: {
     public: {
       version: (JSON.parse(read(repoRoot, 'packages/nuxt/package.json')) as { version: string }).version,

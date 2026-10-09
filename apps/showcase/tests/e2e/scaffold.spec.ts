@@ -3,8 +3,8 @@
 // toggle (REQ-031 AC1, REQ-060 AC2 groundwork; the full audit is T5.5).
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { expect, test } from '@playwright/test'
 import { parseDesignNav } from '../../lib/design-nav'
+import { expect, test, withBase } from './helpers/test'
 
 const repoFile = (path: string) => readFileSync(fileURLToPath(new URL(`../../../../${path}`, import.meta.url)), 'utf8')
 const expected = parseDesignNav(repoFile('DESIGN.md')).flatMap((section) =>
@@ -17,7 +17,9 @@ test('REQ-052 AC2: the sidebar lists every DESIGN.md link, in DESIGN.md order', 
   await page.goto('/')
   const links = page.locator('aside nav a')
   await expect(links).toHaveCount(expected.length)
-  expect(await links.evaluateAll((els) => els.map((a) => a.getAttribute('href')))).toEqual(expected.map((l) => l.to))
+  expect(await links.evaluateAll((els) => els.map((a) => a.getAttribute('href')))).toEqual(
+    expected.map((l) => withBase(l.to)),
+  )
   expect(await links.allInnerTexts()).toEqual(expected.map((l) => l.label))
 })
 
@@ -30,7 +32,9 @@ test('REQ-061 AC2: below md the sidebar is hidden and the same menu opens in a s
   await expect(dialog).toBeVisible()
   const links = dialog.locator('nav a')
   await expect(links).toHaveCount(expected.length)
-  expect(await links.evaluateAll((els) => els.map((a) => a.getAttribute('href')))).toEqual(expected.map((l) => l.to))
+  expect(await links.evaluateAll((els) => els.map((a) => a.getAttribute('href')))).toEqual(
+    expected.map((l) => withBase(l.to)),
+  )
 })
 
 test('from md up the slideover toggle is hidden', async ({ page }) => {

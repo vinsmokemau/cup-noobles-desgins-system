@@ -1,8 +1,8 @@
 // T5.5: the `reduced-motion` project runs with `prefers-reduced-motion: reduce` emulated (REQ-029 AC2). On every route,
 // no animation keeps running, and a transition or animation that is declared has no visible duration. Component tasks
 // add their own checks to this project for their animated parts (skeleton, sparkle, glow).
-import { expect, test } from '@playwright/test'
 import { builtRoutes } from './helpers/crawl'
+import { expect, test } from './helpers/test'
 
 test('the project emulates reduced motion', async ({ page }) => {
   await page.goto('/')
