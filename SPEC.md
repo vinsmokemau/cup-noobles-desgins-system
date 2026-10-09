@@ -1011,7 +1011,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: `deploy-showcase.yml`, publishing the static build to GitHub Pages through GitHub Actions. Set Nuxt's `app.baseURL` to `/cup-noobles-desgins-system/`, because a project site is served under a subpath.
   - Done when: a push to `main` deploys to `https://vinsmokemau.github.io/cup-noobles-desgins-system/`; the deployed home page returns 200; and a route crawl against the deployed site finds no broken internal links or assets under the project subpath (Nuxt `app.baseURL`).
 
-- [ ] **T5.7 — Faster end-to-end suite**
+- [x] **T5.7 — Faster end-to-end suite** (2026-10-09, 64d6ba2)
   - REQs: REQ-074 (AC1), REQ-060 (AC1, AC2), REQ-061 (AC1), REQ-028 (AC2)
   - Depends on: T5.5
   - Scope: Make `pnpm test:all` faster with no loss of coverage. (1) In `apps/showcase/playwright.config.ts`, run tests fully parallel with an explicit worker count, and keep any spec that shares state (the fixture-doc build in `docs.spec.ts`) serial. (2) In `routes.matrix.ts`, load each route once per width and run the five route checks as named steps, one per acceptance criterion, instead of five tests that each reload the page. (3) Replace `networkidle` waits with a wait on what the page needs, and keep a change only if repeated runs stay stable. Every route, every width, every helper assertion, and axe stay; no route, width, or rule is skipped or sampled. §0.2 is not changed: `pnpm test:all` is still required on every task.
