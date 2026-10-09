@@ -184,8 +184,8 @@ Not applicable. Email has no form controls.
 >
 > **TBD (TBD-11):** "Thick" has no values. The switch keeps Nuxt UI's own track border, so its thickness is not set by a token until the owner supplies the stroke width. Owner input needed: values.
 >
-> **Draft:** The look of the choice controls (an outlined track that turns pink on hover and fills pink with a black thumb when on, with the yellow focus ring) was built from existing tokens and has not been shown to the owner. It needs an ADR with the owner's choice, and the doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the choice controls (an outlined track that turns pink on hover and fills pink with a black thumb when on, with the yellow focus ring) is approved (ADR-0014). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
-- 0.1.0 — First draft: `USwitch` themed with the shared choice look, the five states, the component tokens, and the demos (T7.5) — awaiting owner approval of the look and the placeholders
+- 0.1.0 — First draft: `USwitch` themed with the shared choice look, the five states, the component tokens, and the demos (T7.5) — look approved (ADR-0014), awaiting the placeholders

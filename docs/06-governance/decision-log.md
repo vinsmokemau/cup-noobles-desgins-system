@@ -32,6 +32,7 @@ updated: 2026-09-27
 - [ADR-0011: Link and badge looks](decisions/0011-link-and-badge-looks.md)
 - [ADR-0012: Icon set](decisions/0012-icon-set.md)
 - [ADR-0013: Text field look](decisions/0013-text-field-look.md)
+- [ADR-0014: Choice controls look](decisions/0014-choice-controls-look.md)
 
 ## Open items
 
