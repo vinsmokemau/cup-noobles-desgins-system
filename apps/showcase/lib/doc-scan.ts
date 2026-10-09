@@ -1,6 +1,7 @@
 // T5.4 (REQ-051 AC2): reads docs/ from disk and gives every doc its route. This is build-time code (Node's fs), so the
 // pages never import it; the pure route logic they share with it is in doc-routes.ts.
 import { readdirSync, readFileSync } from 'node:fs'
+import { tableBlockPrefixes } from './doc-blocks'
 import { docRoute, type DocEntry } from './doc-routes'
 
 function* markdownFiles(dir: string, prefix = ''): Generator<string> {
@@ -14,6 +15,20 @@ function* markdownFiles(dir: string, prefix = ''): Generator<string> {
 const slugOf = (markdown: string): string | undefined => {
   const frontmatter = /^---\r?\n([\s\S]*?)\r?\n---/.exec(markdown)?.[1]
   return frontmatter ? /^slug:\s*(\S+)\s*$/m.exec(frontmatter)?.[1] : undefined
+}
+
+/**
+ * T6.3: the token prefixes of the `table` blocks of every foundation doc, by file (`01-foundations/motion.md` ->
+ * `['motion']`). Docs with no such block are left out. The pages read this to pick the previews for a doc.
+ */
+export function scanPreviewBlocks(docsDir: string): Record<string, string[]> {
+  const blocks: Record<string, string[]> = {}
+  for (const file of markdownFiles(docsDir)) {
+    if (!file.startsWith('01-foundations/')) continue
+    const prefixes = tableBlockPrefixes(readFileSync(`${docsDir}/${file}`, 'utf8'))
+    if (prefixes.length > 0) blocks[file] = prefixes
+  }
+  return blocks
 }
 
 /** Every doc under `docsDir` except `_template.md`, in path order. Throws if two docs share a route. */
