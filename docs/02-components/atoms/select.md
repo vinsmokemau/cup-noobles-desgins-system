@@ -20,7 +20,7 @@ updated: 2026-10-09
 
 ## Purpose
 
-The select lets a person choose one option from a short, fixed list. It is a themed Nuxt UI `USelect`, so the trigger, the list, and the keyboard behavior come from Nuxt UI and are not rebuilt here (ER-01, REQ-020 AC3). Its trigger has the same look and the same `input.*` tokens as the [input](input.md) and the [textarea](textarea.md). The look is a draft that awaits the owner's approval (see the input doc).
+The select lets a person choose one option from a short, fixed list. It is a themed Nuxt UI `USelect`, so the trigger, the list, and the keyboard behavior come from Nuxt UI and are not rebuilt here (ER-01, REQ-020 AC3). Its trigger has the same look and the same `input.*` tokens as the [input](input.md) and the [textarea](textarea.md). The look comes from the owner (ADR-0013).
 
 ## Anatomy
 
@@ -198,8 +198,8 @@ Not applicable.
 >
 > **Draft:** While the list is open, Reka UI (under Nuxt UI) hides the rest of the page with `aria-hidden` and leaves the trigger focusable, so axe reports `aria-hidden-focus` on that open state. axe is clean in every state of the matrix, where the list is closed. This is the library's behavior, and the select does not change it.
 >
-> **Draft:** The look is the shared text-field draft and awaits owner approval.
+> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
-- 0.1.0 — First draft: `USelect` themed with the shared text-field look, the five states, a visible keyboard highlight in the list, and the demos (T7.4) — awaiting owner approval
+- 0.1.0 — First draft: `USelect` themed with the shared text-field look, the five states, a visible keyboard highlight in the list, and the demos (T7.4) — awaiting owner approval of the placeholders

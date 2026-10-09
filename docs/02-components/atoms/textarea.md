@@ -20,7 +20,7 @@ updated: 2026-10-09
 
 ## Purpose
 
-The textarea is a multi-line text field: the place where a person writes a longer answer such as a comment or a message. It is a themed Nuxt UI `UTextarea`. It has the same look and the same `input.*` tokens as the [input](input.md) and the [select](select.md), so the three always match. The look is a draft that awaits the owner's approval (see the input doc).
+The textarea is a multi-line text field: the place where a person writes a longer answer such as a comment or a message. It is a themed Nuxt UI `UTextarea`. It has the same look and the same `input.*` tokens as the [input](input.md) and the [select](select.md), so the three always match. The look comes from the owner (ADR-0013).
 
 ## Anatomy
 
@@ -190,8 +190,8 @@ Not applicable.
 >
 > **TBD (TBD-11):** The stroke width follows the ADR-0006 placeholder. See the [input doc](input.md#open-items).
 >
-> **Draft:** The look is the shared text-field draft and awaits owner approval.
+> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
-- 0.1.0 — First draft: `UTextarea` themed with the shared text-field look, the five states, and the demos (T7.4) — awaiting owner approval
+- 0.1.0 — First draft: `UTextarea` themed with the shared text-field look, the five states, and the demos (T7.4) — awaiting owner approval of the placeholders

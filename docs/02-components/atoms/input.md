@@ -20,7 +20,7 @@ updated: 2026-10-09
 
 ## Purpose
 
-The input is a single-line text field: the place where a person types a short answer such as a name, an e-mail address, or a search. It is a themed Nuxt UI `UInput`, styled only through tokens (C-03). It sits on the pure-black page (BR-03) and is separated from it by an outline (BR-13, C-05). The brand context does not describe a form field, so the look in this doc is a draft that awaits the owner's approval. The [textarea](textarea.md) and the [select](select.md) share this look and these tokens.
+The input is a single-line text field: the place where a person types a short answer such as a name, an e-mail address, or a search. It is a themed Nuxt UI `UInput`, styled only through tokens (C-03). It sits on the pure-black page (BR-03) and is separated from it by an outline (BR-13, C-05). The brand context does not describe a form field, so the look in this doc comes from the owner (ADR-0013). The [textarea](textarea.md) and the [select](select.md) share this look and these tokens.
 
 ## Anatomy
 
@@ -197,8 +197,8 @@ Not applicable.
 >
 > **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
 >
-> **Draft:** The look of the field (a neutral outline that turns pink on hover, on the black page, with the yellow focus ring) is a draft built only from existing tokens. The brand context does not describe a field. This awaits owner approval.
+> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
-- 0.1.0 — First draft: `UInput` themed with the shared text-field look, the five states, the component tokens, and the demos (T7.4) — awaiting owner approval
+- 0.1.0 — First draft: `UInput` themed with the shared text-field look, the five states, the component tokens, and the demos (T7.4) — awaiting owner approval of the placeholders
