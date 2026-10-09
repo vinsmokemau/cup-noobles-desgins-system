@@ -52,9 +52,14 @@ test('REQ-013 AC1: tokens.flat.json holds resolved values with their CSS variabl
     assert.equal(entry.description, token.description, token.path)
     assert.deepEqual(entry.tbd, token.cn?.tbd, token.path)
     assert.doesNotMatch(String(entry.value), /\{|var\(/, token.path)
+    // T6.1 (REQ-053 AC1): the raw value is what the source file wrote: a reference for an alias, an array for a font
+    // stack or a cubic Bezier.
+    assert.ok(entry.raw !== undefined && entry.raw !== null, `${token.path} has a raw value`)
+    assert.ok(['string', 'number', 'object'].includes(typeof entry.raw), `${token.path} raw value type`)
   }
   assert.deepEqual(flat['color.bg.base'], {
     cssVar: '--cn-color-bg-base',
+    raw: '{color.brand.black}',
     value: '#000000',
     type: 'color',
     tier: 'semantic',

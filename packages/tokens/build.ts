@@ -40,14 +40,15 @@ const tierOf = (token: TransformedToken) => {
   return tier
 }
 
-// Flat JSON for the /tokens explorer (REQ-053): keyed by DTCG path, with the CSS variable, the resolved value, the
-// DTCG type, the tier, and the metadata from REQ-014.
+// Flat JSON for the /tokens explorer (REQ-053): keyed by DTCG path, with the CSS variable, the raw value as written in
+// the source (a `{reference}` for an alias), the resolved value, the DTCG type, the tier, and the metadata from REQ-014.
 const jsonFlat: FormatFn = ({ dictionary }) => {
   const flat: Record<string, unknown> = {}
   for (const token of byPath(dictionary.allTokens)) {
     const cn = (token.$extensions as { cn?: Record<string, unknown> } | undefined)?.cn ?? {}
     flat[dotted(token)] = {
       cssVar: `--${token.name}`,
+      raw: (token.original as { $value: unknown }).$value,
       value: resolved(token),
       type: token.$type ?? null,
       tier: tierOf(token),
