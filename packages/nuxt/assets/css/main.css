@@ -130,3 +130,90 @@
     color: var(--ui-text);
   }
 }
+
+/*
+ * T7.2 (REQ-023, REQ-024): the button. app.config.ts puts these hook classes on UButton for the three brand variants
+ * (BR-11): primary, secondary, and ghost. Every value is a --cn-* token: the rounded corners, the thick outline, and the
+ * neon glow (BR-10), the colors of each variant and state, and the focus ring. The rules are not in a cascade layer, so
+ * they win over Nuxt UI's own utility classes (`hover:bg-primary/75`, `focus-visible:outline-3`) without `!important`.
+ *
+ * The glow is a box-shadow and the focus indicator is an outline, so a focused button always shows a ring that is more
+ * than the glow (REQ-024 AC1). A disabled button, native or `aria-disabled`, has no glow (REQ-023 AC5). A loading
+ * button is natively disabled, but it keeps its look and its glow: it is busy, not unavailable.
+ *
+ * `[data-cn-state]` forces a state for the documentation. The state matrix on a component page cannot hover or press a
+ * button, so it marks each cell with the state it shows. Application code never sets it.
+ */
+.cn-button {
+  border-style: solid;
+  border-width: var(--cn-border-width-button);
+  border-radius: var(--cn-radius-button);
+  box-shadow: var(--cn-effect-glow-button);
+}
+
+.cn-button--primary {
+  color: var(--cn-button-primary-fg);
+  background-color: var(--cn-button-primary-bg);
+  border-color: var(--cn-button-primary-border);
+}
+
+.cn-button--primary:not(:disabled, [aria-disabled='true']):is(:hover, [data-cn-state='hover']) {
+  background-color: var(--cn-button-primary-bg-hover);
+  border-color: var(--cn-button-primary-bg-hover);
+}
+
+.cn-button--primary:not(:disabled, [aria-disabled='true']):is(:active, [data-cn-state='active']) {
+  background-color: var(--cn-button-primary-bg-active);
+  border-color: var(--cn-button-primary-bg-active);
+}
+
+.cn-button--secondary {
+  color: var(--cn-button-secondary-fg);
+  background-color: var(--cn-button-secondary-bg);
+  border-color: var(--cn-button-secondary-border);
+}
+
+.cn-button--secondary:not(:disabled, [aria-disabled='true']):is(:hover, [data-cn-state='hover']) {
+  background-color: var(--cn-button-secondary-bg-hover);
+  border-color: var(--cn-button-secondary-bg-hover);
+}
+
+.cn-button--secondary:not(:disabled, [aria-disabled='true']):is(:active, [data-cn-state='active']) {
+  background-color: var(--cn-button-secondary-bg-active);
+  border-color: var(--cn-button-secondary-bg-active);
+}
+
+.cn-button--ghost {
+  color: var(--cn-button-ghost-fg);
+  background-color: transparent;
+  border-color: var(--cn-button-ghost-border);
+}
+
+.cn-button--ghost:not(:disabled, [aria-disabled='true']):is(:hover, [data-cn-state='hover']) {
+  color: var(--cn-button-ghost-fg-hover);
+  background-color: var(--cn-button-ghost-bg-hover);
+  border-color: var(--cn-button-ghost-bg-hover);
+}
+
+.cn-button--ghost:not(:disabled, [aria-disabled='true']):is(:active, [data-cn-state='active']) {
+  color: var(--cn-button-ghost-fg-hover);
+  background-color: var(--cn-button-ghost-bg-active);
+  border-color: var(--cn-button-ghost-bg-active);
+}
+
+.cn-button:is(:focus-visible, [data-cn-state='focus-visible']) {
+  outline: var(--cn-button-focus-width) var(--cn-button-focus-style) var(--cn-button-focus-color);
+  outline-offset: var(--cn-button-focus-offset);
+}
+
+.cn-button:is(:disabled, [aria-disabled='true']):not(.cn-button--loading) {
+  box-shadow: none;
+}
+
+/* The loading icon spins; under reduced motion it stays still (REQ-029 AC2). */
+@media (prefers-reduced-motion: reduce) {
+  .cn-button--loading [data-slot='leadingIcon'],
+  .cn-button--loading [data-slot='trailingIcon'] {
+    animation: none;
+  }
+}

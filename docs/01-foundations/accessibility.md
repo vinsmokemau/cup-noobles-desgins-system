@@ -48,6 +48,10 @@ The focus tokens are `stable` (ADR-0009). The contrast pairs declared for every 
 | `color.brand.secondary` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `color.text.inverted` (`#000000`) | `color.brand.primary` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
 | `color.text.inverted` (`#000000`) | `color.brand.secondary` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
+| `color.text.inverted` (`#000000`) | `color.brand.primaryHover` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
+| `color.text.inverted` (`#000000`) | `color.brand.primaryActive` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
+| `color.text.inverted` (`#000000`) | `color.brand.secondaryHover` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
+| `color.text.inverted` (`#000000`) | `color.brand.secondaryActive` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
 | `color.border.default` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `placeholder.color.neutral`) |
 | `color.text.default` (`#90a1b9`) | `color.surface.card` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `color.text.default`, `placeholder.color.neutral`) |
 | `color.text.muted` (`#90a1b9`) | `color.surface.card` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `color.text.muted`, `placeholder.color.neutral`) |
@@ -60,6 +64,11 @@ The focus tokens are `stable` (ADR-0009). The contrast pairs declared for every 
 | `color.feedback.info` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.info`, `placeholder.color.neutral`) |
 | `focus.ring.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `focus.ring.color` (`#fff488`) | `color.surface.card` (`#90a1b9`) | ui | 2.32:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
+| `button.primary.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
+| `button.secondary.border` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
+| `button.ghost.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
+| `button.ghost.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
+| `button.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `#ffffff` | `color.brand.pink` (`#ef80ae`) | — | 2.51:1 | — | forbidden |
 | `color.brand.yellow` (`#fff488`) | `color.brand.pink` (`#ef80ae`) | — | 2.22:1 | — | forbidden |
 | `color.brand.pink` (`#ef80ae`) | `color.brand.yellow` (`#fff488`) | — | 2.22:1 | — | forbidden |

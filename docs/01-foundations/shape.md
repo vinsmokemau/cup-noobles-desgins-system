@@ -24,7 +24,11 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
+| `border.width.button` | `--cn-border-width-button` | `1px` | tbd (TBD-11) |
 | `border.width.default` | `--cn-border-width-default` | `1px` | tbd (TBD-11) |
+| `border.width.interactive` | `--cn-border-width-interactive` | `1px` | tbd (TBD-11) |
+| `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
+| `radius.interactive` | `--cn-radius-interactive` | `0.375rem` | tbd (TBD-10) |
 | `radius.lg` | `--cn-radius-lg` | `0.5rem` | tbd (TBD-10) |
 | `radius.md` | `--cn-radius-md` | `0.375rem` | tbd (TBD-10) |
 | `radius.sm` | `--cn-radius-sm` | `0.25rem` | tbd (TBD-10) |
@@ -33,7 +37,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 
 Every row above is `tbd`. The radius rows hold the ADR-0006 placeholders taken from Nuxt UI's default radii, and the stroke-width row holds the ADR-0006 placeholder taken from Nuxt UI's default outline. **None of them is a brand value.** BR-10 asks for "rounded" corners and BR-13 for "thick" lines, and a placeholder that is neither is still only a placeholder. They exist only so the tokens build and the showcase renders.
 
-The component tokens that apply shape to a component, such as `radius.button` and `border.width.button` (REQ-023 AC2), are added by that component's task.
+The component tokens that apply shape to a component are added by that component's task. The button's are `radius.button` and `border.width.button` (REQ-023 AC2, see [Button](../02-components/atoms/button.md)).
 
 ### Brand rules
 

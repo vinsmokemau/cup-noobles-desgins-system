@@ -11,6 +11,26 @@
         "$value": "{color.brand.yellow}",
         "$description": "Secondary brand role: the luminous, premium accent (BR-02).",
         "$extensions": { "cn": { "status": "stable" } }
+      },
+      "primaryHover": {
+        "$value": "{color.brand.pink-600}",
+        "$description": "Primary brand fill while hovered. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the pink shade token, which repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "primaryActive": {
+        "$value": "{color.brand.pink-700}",
+        "$description": "Primary brand fill while pressed. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the pink shade token, which repeats the single brand value (BR-01); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "secondaryHover": {
+        "$value": "{color.brand.yellow-600}",
+        "$description": "Secondary brand fill while hovered. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the yellow shade token, which repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      },
+      "secondaryActive": {
+        "$value": "{color.brand.yellow-700}",
+        "$description": "Secondary brand fill while pressed. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the yellow shade token, which repeats the single brand value (BR-02); no tint or shade is generated.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
       }
     },
     "bg": {

@@ -1,0 +1,20 @@
+{
+  "radius": {
+    "interactive": {
+      "$type": "dimension",
+      "$value": "{radius.md}",
+      "$description": "Corner radius of interactive elements such as buttons (BR-10). TBD-10: \"rounded\" has no values; this references a placeholder, not a brand value.",
+      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+    }
+  },
+  "border": {
+    "width": {
+      "interactive": {
+        "$type": "dimension",
+        "$value": "{border.width.default}",
+        "$description": "Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: \"thick\" has no values; this references a placeholder, not a brand value.",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
+      }
+    }
+  }
+}

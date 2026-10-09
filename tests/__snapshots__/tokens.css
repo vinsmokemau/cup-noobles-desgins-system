@@ -3,12 +3,33 @@
  */
 
 :root {
+  --cn-border-width-button: 1px; /** Outline stroke width of the button (BR-10, REQ-023 AC2). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-default: 1px; /** Stroke width. TBD-11: "thick" (BR-10, BR-13) has no values; this references a placeholder, not a brand value. */
+  --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
   --cn-breakpoint-lg: 64rem; /** Large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-md: 48rem; /** Medium breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-sm: 40rem; /** Small breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-xl: 80rem; /** Extra-large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-xxl: 96rem; /** Double-extra-large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
+  --cn-button-focus-color: #fff488; /** Focus ring color of the button (REQ-024 AC1, ADR-0009). */
+  --cn-button-focus-offset: 3px; /** Gap between the button and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-button-focus-style: solid; /** Focus ring line style of the button (REQ-024 AC1, ADR-0009). */
+  --cn-button-focus-width: 3px; /** Focus ring width of the button (REQ-024 AC1, ADR-0009). */
+  --cn-button-ghost-bg-active: #ef80ae; /** Fill of the ghost button while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-button-ghost-bg-hover: #ef80ae; /** Fill of the ghost button while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-button-ghost-border: #ef80ae; /** Outline color of the ghost button: brand pink (BR-01, BR-10). */
+  --cn-button-ghost-fg: #ef80ae; /** Label of the ghost button: brand pink on the page (BR-01, BR-11). */
+  --cn-button-ghost-fg-hover: #000000; /** Label of the ghost button while hovered or pressed: black on the pink fill (SPEC.md section 2.1). */
+  --cn-button-primary-bg: #ef80ae; /** Fill of the primary button: brand pink (BR-01, BR-11). */
+  --cn-button-primary-bg-active: #ef80ae; /** Fill of the primary button while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-button-primary-bg-hover: #ef80ae; /** Fill of the primary button while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-button-primary-border: #ef80ae; /** Outline color of the primary button: brand pink (BR-01, BR-10). */
+  --cn-button-primary-fg: #000000; /** Label of the primary button: black on the pink fill (SPEC.md section 2.1, REQ-023 AC3). */
+  --cn-button-secondary-bg: #fff488; /** Fill of the secondary button: brand yellow (BR-02, BR-11). */
+  --cn-button-secondary-bg-active: #fff488; /** Fill of the secondary button while pressed. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02). */
+  --cn-button-secondary-bg-hover: #fff488; /** Fill of the secondary button while hovered. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02). */
+  --cn-button-secondary-border: #fff488; /** Outline color of the secondary button: brand yellow (BR-02, BR-10). */
+  --cn-button-secondary-fg: #000000; /** Label of the secondary button: black on the yellow fill (SPEC.md section 2.1). */
   --cn-color-bg-base: #000000; /** Page background. It stays pure black, never dark gray (BR-03, REQ-012). */
   --cn-color-border-default: #90a1b9; /** Border and divider color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value. */
   --cn-color-brand-black: #000000; /** Brand black, the tertiary color for the base and background. It stays pure black, never dark gray (BR-03). */
@@ -25,7 +46,11 @@
   --cn-color-brand-pink-900: #ef80ae; /** Brand pink, shade 900 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
   --cn-color-brand-pink-950: #ef80ae; /** Brand pink, shade 950 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
   --cn-color-brand-primary: #ef80ae; /** Primary brand role: the protagonist color that dominates the identity (BR-01). */
+  --cn-color-brand-primary-active: #ef80ae; /** Primary brand fill while pressed. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the pink shade token, which repeats the single brand value (BR-01); no tint or shade is generated. */
+  --cn-color-brand-primary-hover: #ef80ae; /** Primary brand fill while hovered. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the pink shade token, which repeats the single brand value (BR-01); no tint or shade is generated. */
   --cn-color-brand-secondary: #fff488; /** Secondary brand role: the luminous, premium accent (BR-02). */
+  --cn-color-brand-secondary-active: #fff488; /** Secondary brand fill while pressed. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the yellow shade token, which repeats the single brand value (BR-02); no tint or shade is generated. */
+  --cn-color-brand-secondary-hover: #fff488; /** Secondary brand fill while hovered. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the yellow shade token, which repeats the single brand value (BR-02); no tint or shade is generated. */
   --cn-color-brand-yellow: #fff488; /** Brand yellow, the secondary, luminous premium accent (BR-02). */
   --cn-color-brand-yellow-100: #fff488; /** Brand yellow, shade 100 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
   --cn-color-brand-yellow-200: #fff488; /** Brand yellow, shade 200 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
@@ -48,6 +73,7 @@
   --cn-color-text-inverted: #000000; /** Text on a primary or secondary fill. Labels on primary-filled buttons must be black (SPEC.md §2.1 derived facts, BR-03). */
   --cn-color-text-muted: #90a1b9; /** Secondary text color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-elevation-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Shadow of overlays (modal, slideover). TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
+  --cn-effect-glow-button: none; /** Neon glow of the button (BR-10, REQ-023 AC2). TBD-12: the glow has no values; this follows a placeholder, not a brand value. A disabled button shows no glow (REQ-023 AC5). */
   --cn-effect-glow-default: none; /** Neon glow. TBD-12: blur, spread, opacity, and color per state are not defined ("subtle" in BR-10); this references a placeholder, not a brand value. */
   --cn-effect-glow-interactive: none; /** Neon glow on interactive elements such as buttons (BR-10). TBD-12: blur, spread, opacity, and color per state are not defined; this references a placeholder, not a brand value. */
   --cn-effect-shadow-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Overlay shadow. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
@@ -145,6 +171,8 @@
   --cn-placeholder-space-base: 0.25rem; /** Placeholder, not a brand value. Stands in for TBD-09. Source: Tailwind --spacing (ADR-0006). */
   --cn-placeholder-z-overlay: auto; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI sets no z-index on UModal or USlideover (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-z-toast: 100; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006). */
+  --cn-radius-button: 0.375rem; /** Corner radius of the button (BR-10, REQ-023 AC2). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
+  --cn-radius-interactive: 0.375rem; /** Corner radius of interactive elements such as buttons (BR-10). TBD-10: "rounded" has no values; this references a placeholder, not a brand value. */
   --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-radius-md: 0.375rem; /** Medium corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-radius-sm: 0.25rem; /** Small corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */

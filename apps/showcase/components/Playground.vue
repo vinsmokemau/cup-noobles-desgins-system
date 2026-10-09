@@ -17,6 +17,7 @@ const values = reactive<Record<string, ControlValue>>(defaultValues(props.contro
         <UFormField v-for="control in controls" :key="control.name" :label="control.name">
           <USwitch
             v-if="control.type === 'boolean'"
+            size="xl"
             :model-value="values[control.name] as boolean"
             @update:model-value="values[control.name] = $event"
           />

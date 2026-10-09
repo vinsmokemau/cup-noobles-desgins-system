@@ -36,8 +36,13 @@ test('Done when: the generated contrast block matches check-contrast output', ()
   const report = checkContrast(root)
   assert.deepEqual(report.problems, [])
   assert.deepEqual(body, renderContrast(report, prefixes(tokens)))
-  // Every declared pair and forbidden combination touches a color token, so the block holds the whole report.
-  assert.equal(body.length - 2, report.pairs.length + report.forbidden.length)
+  // The block holds every pair and forbidden combination that touches a color token. Component pairs, such as the
+  // button's, appear in a component's doc, and in this block only when their other side is a color token.
+  const touchesColor = (path: string) => path.startsWith('color.')
+  const shown =
+    report.pairs.filter((pair) => touchesColor(pair.foreground) || touchesColor(pair.background)).length +
+    report.forbidden.filter((pair) => touchesColor(pair.foreground) || touchesColor(pair.background)).length
+  assert.equal(body.length - 2, shown)
 })
 
 test('REQ-015: the contrast block shows the SPEC.md §2.1 ratios and the three forbidden combinations', () => {

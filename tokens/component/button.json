@@ -1,0 +1,250 @@
+{
+  "radius": {
+    "button": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the button (BR-10, REQ-023 AC2). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "button": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the button (BR-10, REQ-023 AC2). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "effect": {
+    "glow": {
+      "button": {
+        "$value": "{effect.glow.interactive}",
+        "$description": "Neon glow of the button (BR-10, REQ-023 AC2). TBD-12: the glow has no values; this follows a placeholder, not a brand value. A disabled button shows no glow (REQ-023 AC5).",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-12"]
+          }
+        }
+      }
+    }
+  },
+  "button": {
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of the button (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of the button (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between the button and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of the button (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "primary": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Fill of the primary button: brand pink (BR-01, BR-11).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "bgHover": {
+        "$type": "color",
+        "$value": "{color.brand.primaryHover}",
+        "$description": "Fill of the primary button while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "derived-pending",
+            "tbd": ["TBD-08"]
+          }
+        }
+      },
+      "bgActive": {
+        "$type": "color",
+        "$value": "{color.brand.primaryActive}",
+        "$description": "Fill of the primary button while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "derived-pending",
+            "tbd": ["TBD-08"]
+          }
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.inverted}",
+        "$description": "Label of the primary button: black on the pink fill (SPEC.md section 2.1, REQ-023 AC3).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline color of the primary button: brand pink (BR-01, BR-10).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "secondary": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.brand.secondary}",
+        "$description": "Fill of the secondary button: brand yellow (BR-02, BR-11).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "bgHover": {
+        "$type": "color",
+        "$value": "{color.brand.secondaryHover}",
+        "$description": "Fill of the secondary button while hovered. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02).",
+        "$extensions": {
+          "cn": {
+            "status": "derived-pending",
+            "tbd": ["TBD-08"]
+          }
+        }
+      },
+      "bgActive": {
+        "$type": "color",
+        "$value": "{color.brand.secondaryActive}",
+        "$description": "Fill of the secondary button while pressed. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02).",
+        "$extensions": {
+          "cn": {
+            "status": "derived-pending",
+            "tbd": ["TBD-08"]
+          }
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.inverted}",
+        "$description": "Label of the secondary button: black on the yellow fill (SPEC.md section 2.1).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.secondary}",
+        "$description": "Outline color of the secondary button: brand yellow (BR-02, BR-10).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "ghost": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Label of the ghost button: brand pink on the page (BR-01, BR-11).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "fgHover": {
+        "$type": "color",
+        "$value": "{color.text.inverted}",
+        "$description": "Label of the ghost button while hovered or pressed: black on the pink fill (SPEC.md section 2.1).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "bgHover": {
+        "$type": "color",
+        "$value": "{color.brand.primaryHover}",
+        "$description": "Fill of the ghost button while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "derived-pending",
+            "tbd": ["TBD-08"]
+          }
+        }
+      },
+      "bgActive": {
+        "$type": "color",
+        "$value": "{color.brand.primaryActive}",
+        "$description": "Fill of the ghost button while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "derived-pending",
+            "tbd": ["TBD-08"]
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline color of the ghost button: brand pink (BR-01, BR-10).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

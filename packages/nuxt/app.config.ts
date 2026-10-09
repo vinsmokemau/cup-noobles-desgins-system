@@ -14,5 +14,25 @@ export default {
       error: 'cn-error', // TBD-07
       neutral: 'cn-neutral', // TBD-05
     },
+    // T7.2 (REQ-023): the button. The look itself is the `.cn-button*` rules in assets/css/main.css, which read only the
+    // --cn-button-* tokens. This theme entry puts the hook classes on the right Nuxt UI props, so the three brand variants
+    // (BR-11) map to props like this: primary = color primary + variant solid, secondary = color secondary + variant solid,
+    // ghost = color primary + variant ghost. The disabled and loading states are the `disabled` and `loading` props.
+    button: {
+      slots: {
+        base: 'cn-button',
+      },
+      variants: {
+        // A string value applies to the base slot. Nuxt UI's own loading.true is a string, so an object would not merge.
+        loading: {
+          true: 'cn-button--loading',
+        },
+      },
+      compoundVariants: [
+        { color: 'primary', variant: 'solid', class: 'cn-button--primary' },
+        { color: 'secondary', variant: 'solid', class: 'cn-button--secondary' },
+        { color: 'primary', variant: 'ghost', class: 'cn-button--ghost' },
+      ],
+    },
   },
 } satisfies AppConfigInput

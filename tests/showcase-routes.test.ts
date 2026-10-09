@@ -14,7 +14,8 @@ import {
   rewriteDocLinks,
   type DocEntry,
 } from '../apps/showcase/lib/doc-routes'
-import { scanDocs } from '../apps/showcase/lib/doc-scan'
+import { demoRoutes } from '../apps/showcase/lib/demos'
+import { scanDemos, scanDocs } from '../apps/showcase/lib/doc-scan'
 import nuxtConfig from '../apps/showcase/nuxt.config'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -76,8 +77,10 @@ test('scanDocs fails when two docs share a route', () => {
 })
 
 test('REQ-052 AC1: the static build prerenders the pages, every section index, and every doc route', () => {
-  const routes = prerenderRoutes(docs)
+  const demos = scanDemos(docsDir, join(root, 'apps/showcase/demos'))
+  const routes = prerenderRoutes(docs, demos)
   const expected = [
+    ...demoRoutes(demos),
     '/',
     '/tokens',
     '/status',

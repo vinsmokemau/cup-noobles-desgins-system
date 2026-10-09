@@ -71,7 +71,8 @@ test('REQ-054 AC3: radius boxes carry their radius and stroke lines their thickn
 
 test('REQ-054 AC3: glow and elevation are sample boxes carrying their token as a shadow', async ({ page }) => {
   await page.goto('/foundations/effects')
-  await expect(page.getByTestId('previews-glow').getByTestId('shadow-box')).toHaveCount(2)
+  // effect.glow.default, effect.glow.interactive, and the button's effect.glow.button (T7.2).
+  await expect(page.getByTestId('previews-glow').getByTestId('shadow-box')).toHaveCount(3)
   await expect(page.getByTestId('previews-elevation').getByTestId('shadow-box')).toHaveCount(2)
   const none = await card(page, 'effect.glow.default')
     .getByTestId('shadow-box')

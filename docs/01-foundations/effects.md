@@ -25,6 +25,7 @@ This doc defines the Cup Noobles effects: the neon glow, elevation, stacking ord
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `effect.elevation.overlay` | `--cn-effect-elevation-overlay` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | tbd (TBD-15) |
+| `effect.glow.button` | `--cn-effect-glow-button` | `none` | tbd (TBD-12) |
 | `effect.glow.default` | `--cn-effect-glow-default` | `none` | tbd (TBD-12) |
 | `effect.glow.interactive` | `--cn-effect-glow-interactive` | `none` | tbd (TBD-12) |
 | `effect.shadow.overlay` | `--cn-effect-shadow-overlay` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | tbd (TBD-15) |
@@ -44,7 +45,7 @@ This doc defines the Cup Noobles effects: the neon glow, elevation, stacking ord
 
 The `focus.ring.*` rows are `stable` (ADR-0009). Every other row is `tbd`. The glow placeholder is `none`, because Nuxt UI's button has no glow; the elevation and z-index placeholders come from Nuxt UI and Tailwind defaults (ADR-0006). **None of the placeholders is a brand value**, and none may be copied into another project. They exist only so the tokens build and the showcase renders.
 
-The primitive tokens (`effect.glow.default`, `effect.shadow.overlay`, `z.*`, `focus.width.default`, `focus.offset.default`, `focus.style.default`) hold the raw values. The semantic tokens (`effect.glow.interactive`, `effect.elevation.*`, `effect.zIndex.*`, `focus.ring.*`) give them roles. Components and apps use the semantic tokens only. The component tokens, such as `effect.glow.button` (REQ-023 AC2), are added by that component's task.
+The primitive tokens (`effect.glow.default`, `effect.shadow.overlay`, `z.*`, `focus.width.default`, `focus.offset.default`, `focus.style.default`) hold the raw values. The semantic tokens (`effect.glow.interactive`, `effect.elevation.*`, `effect.zIndex.*`, `focus.ring.*`) give them roles. Components and apps use the semantic tokens only. The component tokens are added by each component's task. The button's glow is `effect.glow.button` (REQ-023 AC2, see [Button](../02-components/atoms/button.md)).
 
 ### Brand rules
 

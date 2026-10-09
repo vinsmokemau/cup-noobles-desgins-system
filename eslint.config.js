@@ -52,6 +52,11 @@ export default defineConfig(
     rules: { 'vue/multi-word-component-names': 'off' },
   },
   {
+    // A component's demos are named for what they show, `states.vue` and `playground.vue` (T7.1).
+    files: ['apps/showcase/demos/**/*.vue'],
+    rules: { 'vue/multi-word-component-names': 'off' },
+  },
+  {
     // CSS is parsed so cn/no-raw-values can read it. Tailwind at-rules are tolerated, not validated.
     files: ['**/*.css'],
     plugins: { css },

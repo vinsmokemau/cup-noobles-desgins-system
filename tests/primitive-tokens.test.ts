@@ -128,17 +128,19 @@ test('Done when: check-tokens passes, and check-tbd lists every tbd token with c
     report.tokens.map((t) => `${t.file} ${t.path} ${t.tbd.join(',')}`).sort(),
     listed.map((t) => `${t.file} ${t.path} ${(t.cn?.tbd as string[]).join(',')}`).sort(),
   )
+  const derivedPending = tokens.filter((t) => t.cn?.status === 'derived-pending')
   const counts = Object.fromEntries(report.items.map((i) => [i.id, i.tokens]))
   const resolved = new Set(report.items.filter((i) => i.resolved).map((i) => i.id))
   assert.ok(resolved.has('TBD-16'), 'TBD-16 is resolved (ADR-0009)')
   for (let n = 3; n <= 16; n++) {
     const id = `TBD-${String(n).padStart(2, '0')}`
-    // TBD-08 has no placeholder (ADR-0006): its tokens are the 22 derived-pending alias shades from T5.1 (C-06).
-    // A resolved item has no tbd tokens left (§4.4).
-    if (id === 'TBD-08') assert.equal(counts[id], 22)
+    // TBD-08 has no placeholder (ADR-0006): its tokens are the 22 derived-pending alias shades from T5.1 (C-06), and the
+    // hover and pressed fills that read them (T7.2). A resolved item has no tbd tokens left (§4.4).
+    if (id === 'TBD-08') assert.equal(counts[id], derivedPending.length)
     else if (resolved.has(id)) assert.equal(counts[id], 0)
     else assert.ok(counts[id]! > 0, `${id} has tokens`)
   }
   assert.equal(report.summary.tokens, tbd.length)
-  assert.equal(report.summary.derivedPendingTokens, 22)
+  assert.ok(derivedPending.length >= 22, 'the 22 alias shades are derived-pending')
+  assert.equal(report.summary.derivedPendingTokens, derivedPending.length)
 })

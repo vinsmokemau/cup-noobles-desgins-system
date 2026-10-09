@@ -22,7 +22,10 @@ test('REQ-054 AC1: there is one swatch for every color token, in order', () => {
 })
 
 test('REQ-054 AC1: the ratios equal the ones check-contrast reports against color.bg.base', () => {
-  const pairs = checkContrast().pairs.filter((pair) => pair.background === BASE && pair.usage === 'text')
+  // The swatches are the color tokens, so the component pairs (the button's, for example) are not compared here.
+  const pairs = checkContrast().pairs.filter(
+    (pair) => pair.background === BASE && pair.usage === 'text' && pair.foreground.startsWith('color.'),
+  )
   assert.ok(pairs.length > 0)
   for (const pair of pairs) {
     const swatch = byPath.get(pair.foreground)!

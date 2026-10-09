@@ -33,7 +33,7 @@ function typeOf(path: string): string | undefined {
 test('§4.1: tokens/semantic/ holds exactly the listed files', () => {
   assert.deepEqual(
     readdirSync(join(root, 'tokens/semantic')).sort(),
-    ['color.json', 'effect.json', 'focus.json', 'font.json', 'layout.json'].sort(),
+    ['color.json', 'effect.json', 'focus.json', 'font.json', 'layout.json', 'shape.json'].sort(),
   )
 })
 
@@ -67,7 +67,7 @@ test('§4.4: every semantic token is stable with a brand or ADR reference, or tb
   assert.deepEqual(problems, [])
   for (const token of semantic) {
     const value = resolveValue(token.path)
-    if (token.cn?.status === 'stable' && typeOf(token.path) === 'color') {
+    if (['stable', 'derived-pending'].includes(token.cn?.status as string) && typeOf(token.path) === 'color') {
       assert.ok(['#ef80ae', '#fff488', '#000000'].includes(value as string), `${token.path} resolves to a brand hex`)
     } else if (token.cn?.status === 'stable') {
       // A resolved TBD item: the raw value is a stable primitive whose source is the ADR that recorded it.
@@ -96,7 +96,11 @@ test('REQ-015 AC1: contrast-pairs.json lists valid pairs, and every semantic col
     assert.deepEqual(Object.keys(pair).sort(), ['background', 'foreground', 'usage'])
     assert.ok(['text', 'large-text', 'ui'].includes(pair.usage), `${JSON.stringify(pair)} usage`)
     for (const path of [pair.foreground, pair.background]) {
-      assert.equal(byPath.get(path)?.tier, 'semantic', `${path} is a semantic token`)
+      // A component's own pairs (T7.2 onward) name its component tokens, which resolve to semantic colors.
+      assert.ok(
+        ['semantic', 'component'].includes(byPath.get(path)?.tier ?? ''),
+        `${path} is a semantic or component token`,
+      )
       assert.equal(typeOf(path), 'color', `${path} is a color`)
     }
     const key = `${pair.foreground} ${pair.background} ${pair.usage}`
@@ -144,7 +148,7 @@ test('REQ-015 AC3: contrast-forbidden.json lists exactly the failing combination
 // one pair. Both are proven above; this names the tokens the semantic tier adds, so a missing file fails loudly.
 test('Done when: the semantic color, font, effect, focus, and layout groups exist', () => {
   const groups = new Set(semantic.map((t) => t.path.split('.')[0]))
-  assert.deepEqual([...groups].sort(), ['color', 'effect', 'focus', 'font', 'layout'])
+  assert.deepEqual([...groups].sort(), ['border', 'color', 'effect', 'focus', 'font', 'layout', 'radius'])
   for (const role of ['h1', 'h2', 'h3', 'body', 'caption'])
     for (const part of ['family', 'size', 'lineHeight', 'weight', 'letterSpacing'])
       assert.ok(byPath.has(`font.${role}.${part}`), `font.${role}.${part}`)
