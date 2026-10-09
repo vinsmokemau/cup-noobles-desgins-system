@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // T5.4: renders the doc behind the current route (REQ-051, REQ-052 AC1): a status banner (REQ-057 AC1), the Markdown
-// body, and an on-page table of contents (SPEC.md §4.6). Generated blocks stay plain tables until P6.
+// body, and an on-page table of contents (SPEC.md §4.6). Generated blocks stay plain tables; the token previews of
+// P6 follow the body (T6.2: color).
 import { computed } from 'vue'
 import { createError, useAsyncData, useRoute, useRuntimeConfig, useSeoMeta } from 'nuxt/app'
 import { FIXED_TITLES, rewriteDocLinks, type DocEntry } from '../lib/doc-routes'
@@ -28,7 +29,12 @@ if (!page.value) throw createError({ statusCode: 404, statusMessage: 'Page not f
 useSeoMeta({ title: FIXED_TITLES[entry.file] ?? page.value.title })
 
 const banner = computed(() => (page.value?.status ? BANNERS[page.value.status] : undefined))
-const toc = computed(() => page.value?.body.toc?.links ?? [])
+const hasColorPreviews = entry.file === '01-foundations/color.md'
+// The previews follow the body, so their heading joins the contents (the id is ColorPreviews' heading id).
+const toc = computed(() => [
+  ...(page.value?.body.toc?.links ?? []),
+  ...(hasColorPreviews ? [{ id: 'color-previews', depth: 2, text: 'Color previews' }] : []),
+])
 const isEmail = entry.route.startsWith('/email/')
 </script>
 
@@ -46,6 +52,7 @@ const isEmail = entry.route.startsWith('/email/')
         data-testid="status-banner"
       />
       <ContentRenderer :value="page" />
+      <ColorPreviews v-if="hasColorPreviews" />
       <PendingNotice v-if="isEmail" class="mt-8" task="T10.5" />
     </article>
     <aside v-if="toc.length > 0" aria-label="On this page" class="lg:w-64 lg:shrink-0">
