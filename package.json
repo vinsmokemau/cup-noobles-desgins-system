@@ -20,8 +20,9 @@
     "build:tokens": "pnpm --filter @vinsmokemau/cup-noobles-tokens build",
     "build:nuxt": "pnpm --filter @vinsmokemau/cup-noobles-nuxt build",
     "build:fixture": "pnpm --filter consumer-fixture build",
-    "test:e2e": "pnpm --filter consumer-fixture test:e2e",
-    "test:all": "pnpm test && pnpm build:tokens && pnpm build:nuxt && pnpm build:fixture && pnpm test:e2e"
+    "build:showcase": "pnpm --filter showcase generate",
+    "test:e2e": "pnpm --filter consumer-fixture test:e2e && pnpm --filter showcase test:e2e",
+    "test:all": "pnpm test && pnpm build:tokens && pnpm build:nuxt && pnpm build:fixture && pnpm build:showcase && pnpm test:e2e"
   },
   "devDependencies": {
     "@eslint/css": "2.0.0",

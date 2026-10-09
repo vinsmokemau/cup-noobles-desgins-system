@@ -35,6 +35,11 @@ export default defineConfig(
     },
   },
   {
+    // Nuxt names pages and layouts by file (`index.vue`, `default.vue`), so they can't be multi-word (T5.3).
+    files: ['**/pages/**/*.vue', '**/layouts/**/*.vue'],
+    rules: { 'vue/multi-word-component-names': 'off' },
+  },
+  {
     // CSS is parsed so cn/no-raw-values can read it. Tailwind at-rules are tolerated, not validated.
     files: ['**/*.css'],
     plugins: { css },
