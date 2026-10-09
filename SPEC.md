@@ -981,7 +981,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: A layer `nuxt.config.ts` that extends Nuxt UI (version pinned per ADR-0001) and forces dark mode; `main.css` importing `tokens.css` and mapping Nuxt UI variables to `--cn-*` variables; `app.config.ts` with the color aliases, filling shade scales per C-06.
   - Done when: the package builds, and `pnpm test` (including the raw-value rule) passes.
 
-- [ ] **T5.2 — Consumer fixture**
+- [x] **T5.2 — Consumer fixture** (2026-10-08, 2a469ae)
   - REQs: REQ-071 (AC1, partial), REQ-012 (AC2)
   - Depends on: T5.1
   - Scope: A generic Nuxt SSR app that extends the layer in 10 lines or fewer and renders one `UButton`. Add Playwright smoke tests: the body background is `rgb(0, 0, 0)`, and the primary button background is `#ef80ae`.
