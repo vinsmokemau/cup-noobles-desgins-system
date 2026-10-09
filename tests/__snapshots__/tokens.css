@@ -3,6 +3,15 @@
  */
 
 :root {
+  --cn-badge-outline-border: #ef80ae; /** Outline color of the outline badge: brand pink (BR-01). */
+  --cn-badge-outline-fg: #ef80ae; /** Label of the outline badge: brand pink on the black page (BR-01). */
+  --cn-badge-primary-bg: #ef80ae; /** Fill of the primary badge: brand pink (BR-01). */
+  --cn-badge-primary-border: #ef80ae; /** Outline color of the primary badge: brand pink (BR-01). */
+  --cn-badge-primary-fg: #000000; /** Label of the primary badge: black on the pink fill (SPEC.md section 2.1). */
+  --cn-badge-tag-bg: #fff488; /** Fill of the tag badge of the featured media card: brand yellow (BR-02, BR-12). */
+  --cn-badge-tag-border: #fff488; /** Outline color of the tag badge: brand yellow (BR-02). */
+  --cn-badge-tag-fg: #000000; /** Label of the tag badge: black on the yellow fill (SPEC.md section 2.1). */
+  --cn-border-width-badge: 1px; /** Outline stroke width of the badge (BR-12, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-button: 1px; /** Outline stroke width of the button (BR-10, REQ-023 AC2). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-default: 1px; /** Stroke width. TBD-11: "thick" (BR-10, BR-13) has no values; this references a placeholder, not a brand value. */
   --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
@@ -134,6 +143,13 @@
   --cn-font-weight-h2: 700; /** H2 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
   --cn-font-weight-h3: 700; /** H3 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
   --cn-layout-container-max: 80rem; /** Maximum content container width. TBD-13: container widths are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
+  --cn-link-fg: #ef80ae; /** Text color of a link: brand pink on the black page (BR-01), 8.37:1. */
+  --cn-link-fg-active: #ef80ae; /** Text color of a link while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-link-fg-hover: #ef80ae; /** Text color of a link while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-link-focus-color: #fff488; /** Focus ring color of the link (REQ-024 AC1, ADR-0009). */
+  --cn-link-focus-offset: 3px; /** Gap between the link and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-link-focus-style: solid; /** Focus ring line style of the link (REQ-024 AC1, ADR-0009). */
+  --cn-link-focus-width: 3px; /** Focus ring width of the link (REQ-024 AC1, ADR-0009). */
   --cn-motion-duration-default: 150ms; /** Transition duration. TBD-14: motion durations are not defined; this references a placeholder, not a brand value. */
   --cn-motion-easing-default: cubic-bezier(0.4, 0, 0.2, 1); /** Transition easing. TBD-14: easing curves are not defined; this references a placeholder, not a brand value. */
   --cn-placeholder-border-width: 1px; /** Placeholder, not a brand value. Stands in for TBD-11. Source: Nuxt UI outlines, Tailwind ring width (ADR-0006). */
@@ -171,6 +187,7 @@
   --cn-placeholder-space-base: 0.25rem; /** Placeholder, not a brand value. Stands in for TBD-09. Source: Tailwind --spacing (ADR-0006). */
   --cn-placeholder-z-overlay: auto; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI sets no z-index on UModal or USlideover (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-z-toast: 100; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006). */
+  --cn-radius-badge: 0.375rem; /** Corner radius of the badge (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-button: 0.375rem; /** Corner radius of the button (BR-10, REQ-023 AC2). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-interactive: 0.375rem; /** Corner radius of interactive elements such as buttons (BR-10). TBD-10: "rounded" has no values; this references a placeholder, not a brand value. */
   --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */

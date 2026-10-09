@@ -1,0 +1,118 @@
+{
+  "radius": {
+    "badge": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the badge (BR-12). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-10"],
+          "status": "tbd"
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "badge": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the badge (BR-12, BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-11"],
+            "status": "tbd"
+          }
+        }
+      }
+    }
+  },
+  "badge": {
+    "primary": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Fill of the primary badge: brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.inverted}",
+        "$description": "Label of the primary badge: black on the pink fill (SPEC.md section 2.1).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline color of the primary badge: brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "outline": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Label of the outline badge: brand pink on the black page (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline color of the outline badge: brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "tag": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.brand.secondary}",
+        "$description": "Fill of the tag badge of the featured media card: brand yellow (BR-02, BR-12).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.inverted}",
+        "$description": "Label of the tag badge: black on the yellow fill (SPEC.md section 2.1).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.secondary}",
+        "$description": "Outline color of the tag badge: brand yellow (BR-02).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

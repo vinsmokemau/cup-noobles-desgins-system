@@ -35,5 +35,15 @@
   { "foreground": "button.ghost.fgHover", "background": "button.ghost.bgHover", "usage": "text" },
   { "foreground": "button.ghost.fgHover", "background": "button.ghost.bgActive", "usage": "text" },
   { "foreground": "button.ghost.border", "background": "color.bg.base", "usage": "ui" },
-  { "foreground": "button.focus.color", "background": "color.bg.base", "usage": "ui" }
+  { "foreground": "button.focus.color", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "link.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "link.fgHover", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "link.fgActive", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "link.focus.color", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "badge.primary.fg", "background": "badge.primary.bg", "usage": "text" },
+  { "foreground": "badge.primary.border", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "badge.outline.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "badge.outline.border", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "badge.tag.fg", "background": "badge.tag.bg", "usage": "text" },
+  { "foreground": "badge.tag.border", "background": "color.bg.base", "usage": "ui" }
 ]

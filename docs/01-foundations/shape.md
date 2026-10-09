@@ -24,9 +24,11 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
+| `border.width.badge` | `--cn-border-width-badge` | `1px` | tbd (TBD-11) |
 | `border.width.button` | `--cn-border-width-button` | `1px` | tbd (TBD-11) |
 | `border.width.default` | `--cn-border-width-default` | `1px` | tbd (TBD-11) |
 | `border.width.interactive` | `--cn-border-width-interactive` | `1px` | tbd (TBD-11) |
+| `radius.badge` | `--cn-radius-badge` | `0.375rem` | tbd (TBD-10) |
 | `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
 | `radius.interactive` | `--cn-radius-interactive` | `0.375rem` | tbd (TBD-10) |
 | `radius.lg` | `--cn-radius-lg` | `0.5rem` | tbd (TBD-10) |

@@ -34,5 +34,23 @@ export default {
         { color: 'primary', variant: 'ghost', class: 'cn-button--ghost' },
       ],
     },
+    // T7.3 (REQ-020): the link. ULink is a thin wrapper, so the whole look is the `.cn-link` rules in assets/css/main.css.
+    // It has one brand look: pink, underlined, with a yellow focus ring. The disabled state is the `disabled` prop.
+    link: {
+      base: 'cn-link',
+    },
+    // T7.3 (REQ-020, BR-12): the badge. The three brand variants map to props like this: primary = color primary +
+    // variant solid, outline = color primary + variant outline, tag = color secondary + variant solid (the tag badge of
+    // the featured media card).
+    badge: {
+      slots: {
+        base: 'cn-badge',
+      },
+      compoundVariants: [
+        { color: 'primary', variant: 'solid', class: 'cn-badge--primary' },
+        { color: 'primary', variant: 'outline', class: 'cn-badge--outline' },
+        { color: 'secondary', variant: 'solid', class: 'cn-badge--tag' },
+      ],
+    },
   },
 } satisfies AppConfigInput

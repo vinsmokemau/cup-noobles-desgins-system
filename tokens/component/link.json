@@ -1,0 +1,78 @@
+{
+  "link": {
+    "fg": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Text color of a link: brand pink on the black page (BR-01), 8.37:1.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "fgHover": {
+      "$type": "color",
+      "$value": "{color.brand.primaryHover}",
+      "$description": "Text color of a link while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-08"],
+          "status": "derived-pending"
+        }
+      }
+    },
+    "fgActive": {
+      "$type": "color",
+      "$value": "{color.brand.primaryActive}",
+      "$description": "Text color of a link while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-08"],
+          "status": "derived-pending"
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of the link (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of the link (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between the link and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of the link (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

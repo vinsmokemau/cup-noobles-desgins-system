@@ -217,3 +217,57 @@
     animation: none;
   }
 }
+
+/*
+ * T7.3 (REQ-020, REQ-024): the link and the badge. app.config.ts puts these hook classes on ULink and UBadge. Every value is
+ * a --cn-* token. The rules are not in a cascade layer, so they win over Nuxt UI's own utility classes without `!important`.
+ *
+ * A link is brand pink and always underlined, so it is never told apart by color alone (WCAG 1.4.1). Its focus ring is an
+ * outline from the focus tokens (REQ-024 AC1). A disabled link is `aria-disabled` and has no `href` (Nuxt UI); Nuxt UI
+ * dims it. The badge is not interactive: it has no hover, press, or focus state.
+ *
+ * `[data-cn-state]` forces a state for the documentation, as it does for the button. Application code never sets it.
+ */
+.cn-link {
+  color: var(--cn-link-fg);
+  text-decoration-line: underline;
+}
+
+.cn-link:not([aria-disabled='true']):is(:hover, [data-cn-state='hover']) {
+  color: var(--cn-link-fg-hover);
+}
+
+.cn-link:not([aria-disabled='true']):is(:active, [data-cn-state='active']) {
+  color: var(--cn-link-fg-active);
+}
+
+.cn-link:is(:focus-visible, [data-cn-state='focus-visible']) {
+  outline: var(--cn-link-focus-width) var(--cn-link-focus-style) var(--cn-link-focus-color);
+  outline-offset: var(--cn-link-focus-offset);
+}
+
+.cn-badge {
+  border-style: solid;
+  border-width: var(--cn-border-width-badge);
+  border-radius: var(--cn-radius-badge);
+  /* Nuxt UI draws the outline variant with a ring, which is a box-shadow; the outline here is the border. */
+  box-shadow: none;
+}
+
+.cn-badge--primary {
+  color: var(--cn-badge-primary-fg);
+  background-color: var(--cn-badge-primary-bg);
+  border-color: var(--cn-badge-primary-border);
+}
+
+.cn-badge--outline {
+  color: var(--cn-badge-outline-fg);
+  background-color: transparent;
+  border-color: var(--cn-badge-outline-border);
+}
+
+.cn-badge--tag {
+  color: var(--cn-badge-tag-fg);
+  background-color: var(--cn-badge-tag-bg);
+  border-color: var(--cn-badge-tag-border);
+}
