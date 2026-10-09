@@ -45,5 +45,12 @@
   { "foreground": "badge.outline.fg", "background": "color.bg.base", "usage": "text" },
   { "foreground": "badge.outline.border", "background": "color.bg.base", "usage": "ui" },
   { "foreground": "badge.tag.fg", "background": "badge.tag.bg", "usage": "text" },
-  { "foreground": "badge.tag.border", "background": "color.bg.base", "usage": "ui" }
+  { "foreground": "badge.tag.border", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "input.fg", "background": "input.bg", "usage": "text" },
+  { "foreground": "input.placeholder", "background": "input.bg", "usage": "text" },
+  { "foreground": "input.border", "background": "input.bg", "usage": "ui" },
+  { "foreground": "input.borderHover", "background": "input.bg", "usage": "ui" },
+  { "foreground": "input.error.border", "background": "input.bg", "usage": "ui" },
+  { "foreground": "input.error.fg", "background": "input.bg", "usage": "text" },
+  { "foreground": "input.focus.color", "background": "input.bg", "usage": "ui" }
 ]

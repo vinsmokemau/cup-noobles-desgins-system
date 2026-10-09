@@ -99,5 +99,25 @@ export default {
         { color: 'secondary', variant: 'solid', class: 'cn-badge--tag' },
       ],
     },
+    // T7.4 (REQ-020, REQ-024): the text fields. UInput, UTextarea, and USelect share one look, the `.cn-field` rules in
+    // assets/css/main.css, which read the --cn-input-* tokens. The error state is not a prop of the field: it is
+    // `aria-invalid="true"` on the control, which the rules read. The select list highlights its keyboard-active item with
+    // the focus ring (`.cn-select-item`), because Nuxt UI's own highlight is a fill that reads the page black.
+    input: {
+      slots: {
+        base: 'cn-field',
+      },
+    },
+    textarea: {
+      slots: {
+        base: 'cn-field',
+      },
+    },
+    select: {
+      slots: {
+        base: 'cn-field',
+        item: 'cn-select-item',
+      },
+    },
   },
 } satisfies AppConfigInput

@@ -15,9 +15,14 @@ export async function openDemo(page: Page, slug: string, demo: string) {
   await expect(page.getByTestId('demo-root')).toBeVisible()
 }
 
-/** The states a component's matrix shows, in page order. */
+/**
+ * The states a component's matrix shows, in page order. A matrix cell is a plain element; Nuxt UI parts carry
+ * `data-slot` and Reka UI parts use `data-state` for their own open/closed state (the select), so those are skipped.
+ */
 export async function matrixStates(page: Page): Promise<string[]> {
-  return page.locator('[data-state]').evaluateAll((cells) => cells.map((cell) => cell.getAttribute('data-state')!))
+  return page
+    .locator('[data-state]:not([data-slot])')
+    .evaluateAll((cells) => cells.map((cell) => cell.getAttribute('data-state')!))
 }
 
 /**

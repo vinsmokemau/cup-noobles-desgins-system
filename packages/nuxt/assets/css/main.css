@@ -271,3 +271,48 @@
   background-color: var(--cn-badge-tag-bg);
   border-color: var(--cn-badge-tag-border);
 }
+
+/*
+ * T7.4 (REQ-020, REQ-024): the text fields. app.config.ts puts `.cn-field` on the control of UInput, UTextarea, and
+ * USelect (the select's trigger). Every value is a --cn-input-* token. The rules are not in a cascade layer, so they win
+ * over Nuxt UI's own utility classes (`ring-accented`, `focus-visible:ring-primary`) without `!important`.
+ *
+ * Nuxt UI draws the outline variant with a ring, which is a box-shadow; the outline here is a border, and the focus
+ * indicator is an outline, so a focused field shows a ring that is more than a border change (REQ-024 AC1). The error
+ * state is `aria-invalid="true"`, set by the page or by FormField, so the rule and assistive technology read one source.
+ * A disabled field is natively disabled (an input, a textarea) or `disabled` on the trigger (a select) and ignores hover.
+ *
+ * `[data-cn-state]` forces a state for the documentation, as it does for the button. Application code never sets it.
+ */
+.cn-field {
+  color: var(--cn-input-fg);
+  background-color: var(--cn-input-bg);
+  border-style: solid;
+  border-width: var(--cn-border-width-input);
+  border-color: var(--cn-input-border);
+  border-radius: var(--cn-radius-input);
+  box-shadow: none;
+}
+
+.cn-field::placeholder,
+.cn-field [data-slot='placeholder'] {
+  color: var(--cn-input-placeholder);
+}
+
+.cn-field:not(:disabled, [aria-invalid='true']):is(:hover, [data-cn-state='hover']) {
+  border-color: var(--cn-input-border-hover);
+}
+
+.cn-field:is(:focus-visible, [data-cn-state='focus-visible']) {
+  outline: var(--cn-input-focus-width) var(--cn-input-focus-style) var(--cn-input-focus-color);
+  outline-offset: var(--cn-input-focus-offset);
+}
+
+.cn-field[aria-invalid='true'] {
+  border-color: var(--cn-input-error-border);
+}
+
+.cn-select-item[data-highlighted] {
+  outline: var(--cn-input-focus-width) var(--cn-input-focus-style) var(--cn-input-focus-color);
+  outline-offset: calc(var(--cn-input-focus-width) * -1);
+}

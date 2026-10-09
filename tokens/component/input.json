@@ -1,0 +1,151 @@
+{
+  "radius": {
+    "input": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the text fields: input, textarea, and select (BR-10). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "input": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the text fields (BR-10, BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "input": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of the text fields: the pure black page (BR-03). A field is separated from the page by its outline (C-05).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Text typed into a field. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-04"],
+          "status": "tbd"
+        }
+      }
+    },
+    "placeholder": {
+      "$type": "color",
+      "$value": "{color.text.muted}",
+      "$description": "Placeholder text of a field. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{color.border.default}",
+      "$description": "Outline color of a field at rest. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    },
+    "borderHover": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Outline color of a field while hovered: brand pink (BR-01).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "error": {
+      "border": {
+        "$type": "color",
+        "$value": "{color.feedback.error}",
+        "$description": "Outline color of a field in the error state. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-07"],
+            "status": "tbd"
+          }
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.feedback.error}",
+        "$description": "Color of the error text under a field. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-07"],
+            "status": "tbd"
+          }
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of the text fields (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of the text fields (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between a field and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of the text fields (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

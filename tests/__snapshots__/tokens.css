@@ -14,6 +14,7 @@
   --cn-border-width-badge: 1px; /** Outline stroke width of the badge (BR-12, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-button: 1px; /** Outline stroke width of the button (BR-10, REQ-023 AC2). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-default: 1px; /** Stroke width. TBD-11: "thick" (BR-10, BR-13) has no values; this references a placeholder, not a brand value. */
+  --cn-border-width-input: 1px; /** Outline stroke width of the text fields (BR-10, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
   --cn-breakpoint-lg: 64rem; /** Large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-md: 48rem; /** Medium breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
@@ -142,6 +143,17 @@
   --cn-font-weight-h1: 700; /** H1 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
   --cn-font-weight-h2: 700; /** H2 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
   --cn-font-weight-h3: 700; /** H3 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
+  --cn-input-bg: #000000; /** Fill of the text fields: the pure black page (BR-03). A field is separated from the page by its outline (C-05). */
+  --cn-input-border: #90a1b9; /** Outline color of a field at rest. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-input-border-hover: #ef80ae; /** Outline color of a field while hovered: brand pink (BR-01). */
+  --cn-input-error-border: #90a1b9; /** Outline color of a field in the error state. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-input-error-fg: #90a1b9; /** Color of the error text under a field. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-input-fg: #90a1b9; /** Text typed into a field. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-input-focus-color: #fff488; /** Focus ring color of the text fields (REQ-024 AC1, ADR-0009). */
+  --cn-input-focus-offset: 3px; /** Gap between a field and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-input-focus-style: solid; /** Focus ring line style of the text fields (REQ-024 AC1, ADR-0009). */
+  --cn-input-focus-width: 3px; /** Focus ring width of the text fields (REQ-024 AC1, ADR-0009). */
+  --cn-input-placeholder: #90a1b9; /** Placeholder text of a field. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
   --cn-layout-container-max: 80rem; /** Maximum content container width. TBD-13: container widths are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-link-fg: #ef80ae; /** Text color of a link: brand pink on the black page (BR-01), 8.37:1. */
   --cn-link-fg-active: #ef80ae; /** Text color of a link while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
@@ -189,6 +201,7 @@
   --cn-placeholder-z-toast: 100; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006). */
   --cn-radius-badge: 0.375rem; /** Corner radius of the badge (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-button: 0.375rem; /** Corner radius of the button (BR-10, REQ-023 AC2). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
+  --cn-radius-input: 0.375rem; /** Corner radius of the text fields: input, textarea, and select (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-interactive: 0.375rem; /** Corner radius of interactive elements such as buttons (BR-10). TBD-10: "rounded" has no values; this references a placeholder, not a brand value. */
   --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-radius-md: 0.375rem; /** Medium corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
