@@ -993,7 +993,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: A Nuxt app that extends the layer, with Nuxt Content reading `../../docs` per ADR-0002; the app layout with header, version, sidebar in `DESIGN.md` order, a mobile slideover, and a skip link.
   - Done when: `generate` produces a static build, the sidebar order matches `DESIGN.md` in a test, and no `.md` file exists under `apps/showcase`.
 
-- [ ] **T5.4 — Doc routes and rendering**
+- [x] **T5.4 — Doc routes and rendering** (2026-10-08, 95ec70b)
   - REQs: REQ-051 (AC2, AC3), REQ-052 (AC1), REQ-057 (AC1)
   - Depends on: T5.3
   - Scope: Every route in §4.6 except `/tokens`, `/status`, and the email previews (those pages exist, with content pending); generated blocks rendered as plain tables for now; a status banner; an on-page table of contents; a verbatim brand-source page; a 404 page.
