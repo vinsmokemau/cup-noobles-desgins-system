@@ -1023,7 +1023,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Depends on: T6.1
   - Done when: `/foundations/color` shows a swatch per color token with its ratio against `color.bg.base`; the ratios match `check-contrast`; and TBD tokens show the hatched overlay and badge.
 
-- [ ] **T6.3 — Typography, spacing, shape, effects, and motion previews**
+- [x] **T6.3 — Typography, spacing, shape, effects, and motion previews** (2026-10-09, fc86b91)
   - REQs: REQ-054 (AC2, AC3, AC4)
   - Depends on: T6.1
   - Done when: each foundation page renders its preview type from its generated blocks; the type specimens include `áéíóú ñ ¿¡`; and the motion demo does not move under reduced motion.
