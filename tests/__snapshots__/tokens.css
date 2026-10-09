@@ -13,6 +13,7 @@
   --cn-badge-tag-fg: #000000; /** Label of the tag badge: black on the yellow fill (SPEC.md section 2.1). */
   --cn-border-width-badge: 1px; /** Outline stroke width of the badge (BR-12, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-button: 1px; /** Outline stroke width of the button (BR-10, REQ-023 AC2). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
+  --cn-border-width-choice: 1px; /** Outline stroke width of the checkbox and the radio (BR-10, BR-13). The switch track keeps Nuxt UI's own border, because its thumb travel is tuned to it. TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-default: 1px; /** Stroke width. TBD-11: "thick" (BR-10, BR-13) has no values; this references a placeholder, not a brand value. */
   --cn-border-width-input: 1px; /** Outline stroke width of the text fields (BR-10, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
@@ -40,6 +41,16 @@
   --cn-button-secondary-bg-hover: #fff488; /** Fill of the secondary button while hovered. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02). */
   --cn-button-secondary-border: #fff488; /** Outline color of the secondary button: brand yellow (BR-02, BR-10). */
   --cn-button-secondary-fg: #000000; /** Label of the secondary button: black on the yellow fill (SPEC.md section 2.1). */
+  --cn-choice-bg: #000000; /** Fill of an unchecked checkbox, radio, or switch track: the pure black page (BR-03). The control is separated from the page by its outline (C-05). */
+  --cn-choice-border: #90a1b9; /** Outline color of an unchecked control, and the color of an unchecked switch thumb. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-choice-border-hover: #ef80ae; /** Outline color of an unchecked control while hovered: brand pink (BR-01). */
+  --cn-choice-checked-bg: #ef80ae; /** Fill of a checked or indeterminate control: brand pink (BR-01). */
+  --cn-choice-checked-border: #ef80ae; /** Outline color of a checked or indeterminate control: brand pink (BR-01). */
+  --cn-choice-checked-fg: #000000; /** The check mark, the minus, the radio dot, and the thumb of a checked switch: black on the pink fill (SPEC.md §2.1 derived facts, BR-03). */
+  --cn-choice-focus-color: #fff488; /** Focus ring color of the checkbox, radio, and switch (REQ-024 AC1, ADR-0009). */
+  --cn-choice-focus-offset: 3px; /** Gap between a control and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-choice-focus-style: solid; /** Focus ring line style of the checkbox, radio, and switch (REQ-024 AC1, ADR-0009). */
+  --cn-choice-focus-width: 3px; /** Focus ring width of the checkbox, radio, and switch (REQ-024 AC1, ADR-0009). */
   --cn-color-bg-base: #000000; /** Page background. It stays pure black, never dark gray (BR-03, REQ-012). */
   --cn-color-border-default: #90a1b9; /** Border and divider color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value. */
   --cn-color-brand-black: #000000; /** Brand black, the tertiary color for the base and background. It stays pure black, never dark gray (BR-03). */
@@ -201,6 +212,7 @@
   --cn-placeholder-z-toast: 100; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006). */
   --cn-radius-badge: 0.375rem; /** Corner radius of the badge (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-button: 0.375rem; /** Corner radius of the button (BR-10, REQ-023 AC2). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
+  --cn-radius-choice: 0.375rem; /** Corner radius of the checkbox box (BR-10). The radio and the switch are round by shape. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-input: 0.375rem; /** Corner radius of the text fields: input, textarea, and select (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-interactive: 0.375rem; /** Corner radius of interactive elements such as buttons (BR-10). TBD-10: "rounded" has no values; this references a placeholder, not a brand value. */
   --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */

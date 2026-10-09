@@ -1,0 +1,137 @@
+{
+  "radius": {
+    "choice": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the checkbox box (BR-10). The radio and the switch are round by shape. TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "choice": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the checkbox and the radio (BR-10, BR-13). The switch track keeps Nuxt UI's own border, because its thumb travel is tuned to it. TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "choice": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of an unchecked checkbox, radio, or switch track: the pure black page (BR-03). The control is separated from the page by its outline (C-05).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{color.border.default}",
+      "$description": "Outline color of an unchecked control, and the color of an unchecked switch thumb. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    },
+    "borderHover": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Outline color of an unchecked control while hovered: brand pink (BR-01).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "checked": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Fill of a checked or indeterminate control: brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline color of a checked or indeterminate control: brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.inverted}",
+        "$description": "The check mark, the minus, the radio dot, and the thumb of a checked switch: black on the pink fill (SPEC.md §2.1 derived facts, BR-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of the checkbox, radio, and switch (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of the checkbox, radio, and switch (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between a control and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of the checkbox, radio, and switch (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

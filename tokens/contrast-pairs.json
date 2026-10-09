@@ -52,5 +52,10 @@
   { "foreground": "input.borderHover", "background": "input.bg", "usage": "ui" },
   { "foreground": "input.error.border", "background": "input.bg", "usage": "ui" },
   { "foreground": "input.error.fg", "background": "input.bg", "usage": "text" },
-  { "foreground": "input.focus.color", "background": "input.bg", "usage": "ui" }
+  { "foreground": "input.focus.color", "background": "input.bg", "usage": "ui" },
+  { "foreground": "choice.border", "background": "choice.bg", "usage": "ui" },
+  { "foreground": "choice.borderHover", "background": "choice.bg", "usage": "ui" },
+  { "foreground": "choice.checked.bg", "background": "choice.bg", "usage": "ui" },
+  { "foreground": "choice.checked.fg", "background": "choice.checked.bg", "usage": "ui" },
+  { "foreground": "choice.focus.color", "background": "choice.bg", "usage": "ui" }
 ]

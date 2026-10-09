@@ -45,6 +45,7 @@ export async function expectStateMatrix(page: Page, slug: string, states?: strin
  */
 export async function expectStateBaselines(page: Page, slug: string, states?: string[]) {
   for (const state of await expectStateMatrix(page, slug, states)) {
-    await expectVisual(page.locator(`[data-state="${state}"]`), `${slug}-${state}`)
+    // Reka UI parts carry `data-state` too (`checked`, `unchecked`), so a matrix cell is the one without `data-slot`.
+    await expectVisual(page.locator(`[data-state="${state}"]:not([data-slot])`), `${slug}-${state}`)
   }
 }

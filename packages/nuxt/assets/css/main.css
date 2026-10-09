@@ -316,3 +316,72 @@
   outline: var(--cn-input-focus-width) var(--cn-input-focus-style) var(--cn-input-focus-color);
   outline-offset: calc(var(--cn-input-focus-width) * -1);
 }
+
+/*
+ * T7.5 (REQ-020, REQ-024, REQ-028): the choice controls. app.config.ts puts `.cn-choice` on the control of UCheckbox,
+ * URadioGroup (each radio), and USwitch (the track). Every value is a --cn-choice-* token. The rules are not in a cascade
+ * layer, so they win over Nuxt UI's own utility classes (`ring-accented`, `bg-primary`) without `!important`.
+ *
+ * Unchecked, a control is the black page with a neutral outline that turns pink on hover. Checked (or indeterminate), it is
+ * filled brand pink with a black mark (the check, the minus, the dot, or the thumb), black on pink being the button's label
+ * rule too. The focus indicator is a yellow outline, never the glow (REQ-024 AC1). A disabled control is natively
+ * disabled and ignores hover; Nuxt UI dims it.
+ *
+ * A control is at least 24 px square (REQ-028 AC2): six space units. The switch keeps Nuxt UI's 2 px track border because
+ * its thumb travel is tuned to it; only its color is a token.
+ *
+ * `[data-cn-state]` forces a state for the documentation, as it does for the button. A radio group cannot take the
+ * attribute on one radio, so the group's wrapper carries it and the first radio shows the state. Application code never
+ * sets it.
+ */
+.cn-choice {
+  min-width: calc(var(--cn-space-base) * 6);
+  min-height: calc(var(--cn-space-base) * 6);
+  background-color: var(--cn-choice-bg);
+  border-color: var(--cn-choice-border);
+  box-shadow: none;
+}
+
+.cn-choice--box {
+  border-style: solid;
+  border-width: var(--cn-border-width-choice);
+}
+
+.cn-choice--checkbox {
+  border-radius: var(--cn-radius-choice);
+}
+
+.cn-choice:not(:disabled):is(:hover, [data-cn-state='hover']),
+[data-cn-state='hover'] [data-slot='item']:nth-of-type(1) .cn-choice:not(:disabled) {
+  border-color: var(--cn-choice-border-hover);
+}
+
+.cn-choice:is([data-state='checked'], [data-state='indeterminate']) {
+  background-color: var(--cn-choice-checked-bg);
+  border-color: var(--cn-choice-checked-border);
+}
+
+/* Nuxt UI paints the indicator with the color alias; the base carries the fill, so the indicator only draws the mark. */
+.cn-choice [data-slot='indicator'] {
+  background-color: transparent;
+  color: var(--cn-choice-checked-fg);
+}
+
+.cn-choice--radio [data-slot='indicator']::after {
+  background-color: var(--cn-choice-checked-fg);
+}
+
+.cn-choice--switch [data-slot='thumb'] {
+  background-color: var(--cn-choice-border);
+  box-shadow: none;
+}
+
+.cn-choice--switch[data-state='checked'] [data-slot='thumb'] {
+  background-color: var(--cn-choice-checked-fg);
+}
+
+.cn-choice:is(:focus-visible, [data-cn-state='focus-visible']),
+[data-cn-state='focus-visible'] [data-slot='item']:nth-of-type(1) .cn-choice {
+  outline: var(--cn-choice-focus-width) var(--cn-choice-focus-style) var(--cn-choice-focus-color);
+  outline-offset: var(--cn-choice-focus-offset);
+}

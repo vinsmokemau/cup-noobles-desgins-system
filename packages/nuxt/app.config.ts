@@ -119,5 +119,23 @@ export default {
         item: 'cn-select-item',
       },
     },
+    // T7.5 (REQ-020, REQ-024): the choice controls. UCheckbox, URadioGroup, and USwitch share one look, the `.cn-choice*`
+    // rules in assets/css/main.css, which read the --cn-choice-* tokens. The state is read from Reka UI's `data-state`
+    // (checked, unchecked, indeterminate) on the control, so no prop changes the look.
+    checkbox: {
+      slots: {
+        base: 'cn-choice cn-choice--box cn-choice--checkbox',
+      },
+    },
+    radioGroup: {
+      slots: {
+        base: 'cn-choice cn-choice--box cn-choice--radio',
+      },
+    },
+    switch: {
+      slots: {
+        base: 'cn-choice cn-choice--switch',
+      },
+    },
   },
 } satisfies AppConfigInput
