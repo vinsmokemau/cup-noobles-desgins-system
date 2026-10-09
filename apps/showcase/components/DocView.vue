@@ -8,6 +8,8 @@ import flat from '../../../packages/tokens/dist/json/tokens.flat.json'
 import { FIXED_TITLES, rewriteDocLinks, type DocEntry } from '../lib/doc-routes'
 import type { FlatToken } from '../lib/token-filter'
 import { toPreviews } from '../lib/token-preview'
+import { demoControls, demoSource } from '../lib/demo-registry'
+import { PLAYGROUND_DEMO, PLAYGROUND_HEADING, splitAfterSections, STATES_DEMO, STATES_HEADING } from '../lib/demos'
 
 const BANNERS: Record<string, string> = {
   tbd: 'This doc has no content yet. Its sections are placeholders.',
@@ -43,6 +45,28 @@ const toc = computed(() => [
   ...(hasTokenPreviews ? [{ id: 'token-previews', depth: 2, text: 'Token previews' }] : []),
 ])
 const isEmail = entry.route.startsWith('/email/')
+
+// T7.1 (REQ-055): a component doc that lists demos in its frontmatter gets the state matrix after "States" and the
+// playground after "Code reference" (SPEC.md §4.5, mechanic 3). The body is cut at the end of those sections.
+const demoNames = page.value.demos ?? []
+const hasStates = demoNames.includes(STATES_DEMO)
+const hasPlayground = demoNames.includes(PLAYGROUND_DEMO)
+const { data: demoData } = await useAsyncData(`demos:${entry.route}`, async () => {
+  const slug = page.value!.slug!
+  return {
+    states: hasStates ? await demoSource(slug, STATES_DEMO) : '',
+    playground: hasPlayground ? await demoSource(slug, PLAYGROUND_DEMO) : '',
+    controls: hasPlayground ? await demoControls(slug) : [],
+  }
+})
+const segments = computed(() => {
+  const current = page.value!
+  if (!hasStates && !hasPlayground) return [{ page: current, panels: [] as string[] }]
+  return splitAfterSections(current.body.value, [STATES_HEADING, PLAYGROUND_HEADING]).map((segment) => ({
+    page: { ...current, body: { ...current.body, value: segment.nodes } },
+    panels: segment.panels,
+  }))
+})
 </script>
 
 <template>
@@ -58,7 +82,20 @@ const isEmail = entry.route.startsWith('/email/')
         :description="banner"
         data-testid="status-banner"
       />
-      <ContentRenderer :value="page" />
+      <template v-for="(segment, index) in segments" :key="index">
+        <ContentRenderer :value="segment.page" />
+        <StateMatrix
+          v-if="hasStates && segment.panels.includes(STATES_HEADING)"
+          :slug="page.slug!"
+          :source="demoData!.states"
+        />
+        <Playground
+          v-if="hasPlayground && segment.panels.includes(PLAYGROUND_HEADING)"
+          :slug="page.slug!"
+          :controls="demoData!.controls"
+          :source="demoData!.playground"
+        />
+      </template>
       <ColorPreviews v-if="hasColorPreviews" />
       <TokenPreviews v-if="hasTokenPreviews" :prefixes="previewPrefixes" />
       <PendingNotice v-if="isEmail" class="mt-8" task="T10.5" />

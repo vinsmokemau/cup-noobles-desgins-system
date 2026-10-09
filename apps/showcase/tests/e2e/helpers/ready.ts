@@ -5,8 +5,13 @@ import { expect, type Page } from '@playwright/test'
 
 type NuxtWindow = Window & { useNuxtApp?: () => { isHydrating: boolean } }
 
+/** Resolves once Nuxt has hydrated the page. */
+export async function waitForHydration(page: Page) {
+  await page.waitForFunction(() => (window as NuxtWindow).useNuxtApp?.().isHydrating === false)
+}
+
 /** Resolves once Nuxt has hydrated the page and its h1 is attached. */
 export async function waitForPage(page: Page) {
-  await page.waitForFunction(() => (window as NuxtWindow).useNuxtApp?.().isHydrating === false)
+  await waitForHydration(page)
   await expect(page.getByRole('heading', { level: 1 }).first()).toBeAttached()
 }

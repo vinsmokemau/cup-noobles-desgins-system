@@ -1,6 +1,7 @@
 // T5.4 (REQ-051 AC2, REQ-052 AC1): the route of every doc, read from disk. A doc's route is its section (from its
 // folder) and its frontmatter slug (SPEC.md §4.3, §4.6). It is plain TypeScript with no Nuxt imports, so nuxt.config.ts,
 // the pages (which run in the browser too), and the unit tests all use the same code. Reading docs/ is in doc-scan.ts.
+import { demoRoutes } from './demos'
 import { LAYERS } from './design-nav'
 
 export interface DocEntry {
@@ -37,8 +38,9 @@ export function docRoute(file: string, slug: string | undefined): string {
 }
 
 /** Every route the static build writes: the pages, the section indexes, and one route per doc. */
-export function prerenderRoutes(docs: DocEntry[]): string[] {
-  const routes = new Set(STATIC_ROUTES)
+export function prerenderRoutes(docs: DocEntry[], demos: Record<string, string[]> = {}): string[] {
+  // T7.1: the isolated route of every demo a doc lists (SPEC.md §4.6).
+  const routes = new Set([...STATIC_ROUTES, ...demoRoutes(demos)])
   for (const doc of docs) {
     routes.add(doc.route)
     const section = doc.route.split('/')[1]

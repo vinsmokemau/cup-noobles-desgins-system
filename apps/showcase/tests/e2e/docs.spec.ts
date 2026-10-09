@@ -1,15 +1,16 @@
-﻿// T5.4 end-to-end checks on the static build: the route crawl and the route count (REQ-051 AC2, REQ-052 AC1), the status
+// T5.4 end-to-end checks on the static build: the route crawl and the route count (REQ-051 AC2, REQ-052 AC1), the status
 // banner (REQ-057 AC1), the on-page table of contents, the verbatim brand source, the 404 page, and the fixture-doc
 // edit (REQ-051 AC3). The pages are fetched as HTML where the check is about content, and opened in the browser where
 // it is about behavior.
 import { spawnSync } from 'node:child_process'
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse as parseYaml } from 'yaml'
 import { siteBase } from '../../lib/site'
 import { crawl, routeOf, type Crawl } from './helpers/crawl'
+import { withBuildLock } from './helpers/build'
 import { expect, test } from './helpers/test'
 
 const repoRoot = fileURLToPath(new URL('../../../../', import.meta.url))
@@ -58,30 +59,6 @@ const sitemap = [
 
 // The tests share the crawl and the fixture-doc build, so this file runs in order in one worker (T5.7).
 test.describe.configure({ mode: 'serial' })
-
-// `nuxt generate` writes into the app folder (.nuxt, the content database) and refuses to run twice at once. `--repeat-each`
-// gives each repeat its own worker, so the builds take turns through a lock folder: `mkdir` fails when it exists.
-const buildLock = join(tmpdir(), 'cn-showcase-generate.lock')
-const staleAfter = 15 * 60_000
-async function withBuildLock<T>(run: () => T): Promise<T> {
-  for (;;) {
-    try {
-      mkdirSync(buildLock)
-      break
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error
-      // A lock left by a crashed run would block every later run, so an old one is taken over.
-      const age = Date.now() - (statSync(buildLock, { throwIfNoEntry: false })?.mtimeMs ?? Date.now())
-      if (age > staleAfter) rmSync(buildLock, { recursive: true, force: true })
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-    }
-  }
-  try {
-    return run()
-  } finally {
-    rmSync(buildLock, { recursive: true, force: true })
-  }
-}
 
 let crawled: Crawl
 test.beforeAll(async ({ playwright, baseURL }) => {

@@ -7,7 +7,8 @@ import { readFile } from 'node:fs/promises'
 import { extname, join, normalize } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const root = fileURLToPath(new URL('../.output/public', import.meta.url))
+// T7.1: CN_SERVE_DIR serves another static build, such as the throwaway one of the demo-infrastructure test.
+const root = process.env.CN_SERVE_DIR ?? fileURLToPath(new URL('../.output/public', import.meta.url))
 const port = Number(process.env.PORT ?? 3200)
 const base = '/cup-noobles-desgins-system/'
 const types = {

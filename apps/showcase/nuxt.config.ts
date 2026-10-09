@@ -11,7 +11,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 import type { ModuleOptions } from '@nuxt/content'
 import { parseDesignNav } from './lib/design-nav'
 import { prerenderRoutes } from './lib/doc-routes'
-import { scanDocMeta, scanDocs, scanPreviewBlocks } from './lib/doc-scan'
+import { scanDemos, scanDocMeta, scanDocs, scanPreviewBlocks } from './lib/doc-scan'
 import { siteBase } from './lib/site'
 
 // `nuxt prepare` writes this augmentation into .nuxt/; the root typecheck runs without it, so it is declared here.
@@ -27,6 +27,9 @@ const docsRoot = process.env.CN_DOCS_ROOT ?? repoRoot
 const read = (root: string, path: string) => readFileSync(join(root, path), 'utf8')
 const docs = scanDocs(join(docsRoot, 'docs'))
 const outDir = process.env.CN_OUT_DIR
+// T7.1: the demos folder. CN_DEMOS_ROOT points the demo-infrastructure test at a throwaway one, as CN_DOCS_ROOT does for docs.
+const demosDir = process.env.CN_DEMOS_ROOT ?? fileURLToPath(new URL('./demos', import.meta.url))
+const demos = scanDemos(join(docsRoot, 'docs'), demosDir)
 
 export default defineNuxtConfig({
   extends: ['@vinsmokemau/cup-noobles-nuxt'],
@@ -61,12 +64,16 @@ export default defineNuxtConfig({
       docMeta: scanDocMeta(join(docsRoot, 'docs')),
       // T6.3: the token prefixes of each foundation doc's generated tables, which pick its previews.
       previewBlocks: scanPreviewBlocks(join(docsRoot, 'docs')),
+      // T7.1: the demos each component doc lists, by doc slug.
+      demos,
     },
   },
   nitro: {
     // Every route is listed, so a broken link in a doc cannot add or hide a page. The route crawl test finds broken links.
-    prerender: { crawlLinks: false, routes: prerenderRoutes(docs) },
+    prerender: { crawlLinks: false, routes: prerenderRoutes(docs, demos) },
     ...(outDir ? { output: { dir: outDir, publicDir: join(outDir, 'public') } } : {}),
   },
+  // T7.1: the demo registry reads the demo files through this alias (lib/demo-registry.ts).
+  alias: { '#demos': demosDir },
   compatibilityDate: '2026-09-28',
 })

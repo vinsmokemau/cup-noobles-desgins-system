@@ -43,7 +43,13 @@ export default defineConfig(
   {
     // Nuxt auto-imports Nuxt Content's `queryCollection` (T5.4); apps/showcase/shims.d.ts declares it for the typecheck.
     files: ['apps/showcase/**/*.{ts,vue}'],
-    languageOptions: { globals: { queryCollection: 'readonly' } },
+    // T7.1: `definePageMeta` is a Nuxt compiler macro, and the demo frame talks to its iframe through the browser's window.
+    languageOptions: { globals: { ...globals.browser, queryCollection: 'readonly', definePageMeta: 'readonly' } },
+  },
+  {
+    // SPEC.md §4.1 names the showcase component `Playground`.
+    files: ['apps/showcase/components/Playground.vue'],
+    rules: { 'vue/multi-word-component-names': 'off' },
   },
   {
     // CSS is parsed so cn/no-raw-values can read it. Tailwind at-rules are tolerated, not validated.
