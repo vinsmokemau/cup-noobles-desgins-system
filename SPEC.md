@@ -1048,7 +1048,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
 
 Rule for every component task (T7.2 onward): produce the component doc (the full §4.2 component template), its component tokens, its Nuxt UI theme entries or `Cn*` source, the `states` and `playground` demos, visual baselines for every state, axe tests, keyboard tests for every documented interaction, contrast pairs added to `contrast-pairs.json`, and at least one changeset. The doc status is `draft` while any token it uses is `tbd`.
 
-- [ ] **T7.1 — Component page infrastructure**
+- [x] **T7.1 — Component page infrastructure** (2026-10-09, 118a5f4)
   - REQs: REQ-055, REQ-026 (AC2, AC3)
   - Depends on: T5.5
   - Scope: A demo registry driven by frontmatter `demos`; the `StateMatrix`, `Playground` (reading the `controls.ts` schema: prop name, type, and options), and `CodeBlock` components (source imported with `?raw`, plus copy); `ViewportFrame`, which renders the isolated demo route `/_demo/[slug]/[demo]` in an iframe at 360, 768, or 1280 px so that media queries respond; and a helper that creates a visual baseline for every state matrix. Validate everything with one dummy demo that is deleted at the end of the task.
