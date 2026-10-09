@@ -20,7 +20,7 @@ updated: 2026-10-09
 
 ## Purpose
 
-The link takes a person to another page, another part of the page, or another site. It is brand pink on the pure-black page (BR-01), which keeps it legible (BR-06), and it is always underlined, so it is never told apart from the text around it by color alone. It is a themed Nuxt UI `ULink`, styled only through tokens (C-03). The brand context does not describe a link, so the look in this doc is a proposal that awaits the owner (REQ-009).
+The link takes a person to another page, another part of the page, or another site. It is brand pink on the pure-black page (BR-01), which keeps it legible (BR-06), and it is always underlined, so it is never told apart from the text around it by color alone. It is a themed Nuxt UI `ULink`, styled only through tokens (C-03). The brand context does not describe a link, so the look in this doc comes from the owner (ADR-0011).
 
 ## Anatomy
 
@@ -179,8 +179,9 @@ The email link is plain `<a>` markup inside the MJML components, described in [E
 
 > **TBD (TBD-08):** Tints and shades of pink and yellow are not defined. The hover and pressed colors read shade tokens that repeat the brand pink, so they look the same as the default color. Owner input needed: decision OD-04.
 >
-> **Draft:** The brand context does not describe a link. The pink text, the always-on underline, and the unchanged hover color are a proposal, and the dimming of a disabled link is Nuxt UI's default. This awaits owner approval.
+> **Draft:** The hover and pressed colors of the link use the shade tokens (TBD-08), and the dimming of a disabled link is Nuxt UI's default. The pink, underlined look is approved (ADR-0011). This awaits owner approval.
 
 ## Changelog
 
 - 0.1.0 — First draft: `ULink` themed with a pink, underlined look, the five states, the component tokens, and the demos (T7.3) — awaiting owner approval
+- 0.1.0 — The pink, always-underlined look is approved by the owner (option A); the draft callout now covers only hover, pressed, and disabled — ADR-0011

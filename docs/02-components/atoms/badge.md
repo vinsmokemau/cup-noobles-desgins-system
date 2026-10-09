@@ -20,7 +20,7 @@ updated: 2026-10-09
 
 ## Purpose
 
-The badge is a small label that names a category, a status, or a count. It includes the **tag badge** that sits on the featured media card (BR-12), which is the variant the media card uses. It is a themed Nuxt UI `UBadge`, styled only through tokens (C-03). The corner radius (TBD-10) and the stroke width (TBD-11) are not defined yet, so those tokens hold ADR-0006 placeholders that are not brand values. The brand context does not say how a badge looks, so the three variants in this doc are a proposal that awaits the owner (REQ-009).
+The badge is a small label that names a category, a status, or a count. It includes the **tag badge** that sits on the featured media card (BR-12), which is the variant the media card uses. It is a themed Nuxt UI `UBadge`, styled only through tokens (C-03). The corner radius (TBD-10) and the stroke width (TBD-11) are not defined yet, so those tokens hold ADR-0006 placeholders that are not brand values. The brand context does not say how a badge looks, so the three variants in this doc come from the owner (ADR-0011).
 
 ## Anatomy
 
@@ -172,9 +172,8 @@ The email equivalent is a small inline label inside the MJML components, describ
 > **TBD (TBD-10):** The corner radius is not defined ("rounded" in BR-10). `radius.badge` follows an ADR-0006 placeholder. Owner input needed.
 >
 > **TBD (TBD-11):** The stroke width is not defined ("thick" in BR-13). `border.width.badge` follows an ADR-0006 placeholder. Owner input needed.
->
-> **Draft:** The brand context names the tag badge (BR-12) but not how it looks. The three variants, and the choice of a yellow fill for `tag`, are a proposal. This awaits owner approval.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UBadge` themed with the `primary`, `outline`, and `tag` variants, the component tokens, and the demos (T7.3) — awaiting owner approval
+- 0.1.0 — The three variants, with a yellow fill for `tag`, are approved by the owner (option A); the draft callout is removed — ADR-0011
