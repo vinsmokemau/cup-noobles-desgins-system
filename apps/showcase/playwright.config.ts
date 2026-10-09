@@ -22,6 +22,10 @@ export default defineConfig({
     env: { PORT: String(port) },
     reuseExistingServer: false,
   },
+  // T5.7: every test runs in parallel, on a fixed number of workers so the timing does not depend on the machine. A file
+  // whose tests share state opts out with `test.describe.configure({ mode: 'serial' })` (docs.spec.ts).
+  fullyParallel: true,
+  workers: 8,
   use: { baseURL: `http://localhost:${port}` },
   // Baselines live in git, one folder per file kind and one image per width. The path has no platform suffix, because
   // baselines are made in the pinned container only (A-12).

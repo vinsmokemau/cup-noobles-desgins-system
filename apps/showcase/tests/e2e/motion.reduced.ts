@@ -3,6 +3,7 @@
 // add their own checks to this project for their animated parts (skeleton, sparkle, glow).
 import { builtRoutes } from './helpers/crawl'
 import { expect, test } from './helpers/test'
+import { waitForPage } from './helpers/ready'
 
 test('the project emulates reduced motion', async ({ page }) => {
   await page.goto('/')
@@ -12,7 +13,7 @@ test('the project emulates reduced motion', async ({ page }) => {
 for (const route of builtRoutes()) {
   test(`REQ-029 AC2: ${route} has no running animation`, async ({ page }) => {
     await page.goto(route)
-    await page.waitForLoadState('networkidle')
+    await waitForPage(page)
     const running = await page.evaluate(() =>
       document
         .getAnimations()
