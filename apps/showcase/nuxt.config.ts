@@ -11,7 +11,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 import type { ModuleOptions } from '@nuxt/content'
 import { parseDesignNav } from './lib/design-nav'
 import { prerenderRoutes } from './lib/doc-routes'
-import { scanDocs, scanPreviewBlocks } from './lib/doc-scan'
+import { scanDocMeta, scanDocs, scanPreviewBlocks } from './lib/doc-scan'
 import { siteBase } from './lib/site'
 
 // `nuxt prepare` writes this augmentation into .nuxt/; the root typecheck runs without it, so it is declared here.
@@ -57,6 +57,8 @@ export default defineNuxtConfig({
       version: (JSON.parse(read(repoRoot, 'packages/nuxt/package.json')) as { version: string }).version,
       nav: parseDesignNav(read(docsRoot, 'DESIGN.md')),
       docs,
+      // T6.5: the layer and status of every doc, which the home page counts.
+      docMeta: scanDocMeta(join(docsRoot, 'docs')),
       // T6.3: the token prefixes of each foundation doc's generated tables, which pick its previews.
       previewBlocks: scanPreviewBlocks(join(docsRoot, 'docs')),
     },

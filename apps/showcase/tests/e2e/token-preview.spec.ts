@@ -112,7 +112,8 @@ test('REQ-054 AC3: the motion demo does not move under reduced motion, and says 
   const start = await box()
   await expect(page.getByTestId('motion-note')).toHaveText('Reduced motion is on, so this demo does not move.')
   await page.getByTestId('motion-play').click()
-  const running = await page.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').length)
+  // Only the dot's own animations: the Play button may run a color transition of its own on press, which is not the demo moving.
+  const running = await dot.evaluate((el) => el.getAnimations().filter((a) => a.playState === 'running').length)
   expect(running).toBe(0)
   await page.waitForTimeout(400)
   expect(await box()).toBe(start)

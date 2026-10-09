@@ -3,6 +3,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { tableBlockPrefixes } from './doc-blocks'
 import { docRoute, type DocEntry } from './doc-routes'
+import { frontmatterValue, type DocMeta } from './home'
 
 function* markdownFiles(dir: string, prefix = ''): Generator<string> {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -15,6 +16,16 @@ function* markdownFiles(dir: string, prefix = ''): Generator<string> {
 const slugOf = (markdown: string): string | undefined => {
   const frontmatter = /^---\r?\n([\s\S]*?)\r?\n---/.exec(markdown)?.[1]
   return frontmatter ? /^slug:\s*(\S+)\s*$/m.exec(frontmatter)?.[1] : undefined
+}
+
+/** T6.5: the layer and status of every doc, from its frontmatter, for the home page's component count and layer cards. */
+export function scanDocMeta(docsDir: string): DocMeta[] {
+  return [...markdownFiles(docsDir)].sort().map((file) => {
+    const markdown = readFileSync(`${docsDir}/${file}`, 'utf8')
+    const layer = frontmatterValue(markdown, 'layer')
+    const status = frontmatterValue(markdown, 'status')
+    return { file, ...(layer ? { layer } : {}), ...(status ? { status } : {}) }
+  })
 }
 
 /**
