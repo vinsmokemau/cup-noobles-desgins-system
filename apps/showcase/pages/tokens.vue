@@ -5,6 +5,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useSeoMeta } from 'nuxt/app'
 import flat from '../../../packages/tokens/dist/json/tokens.flat.json'
+import { tokenAnchor } from '../lib/status'
 import {
   ALL,
   NO_STATUS,
@@ -120,7 +121,13 @@ const reset = () => {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in shown" :key="row.path" data-testid="token-row" :data-path="row.path">
+          <tr
+            v-for="row in shown"
+            :id="tokenAnchor(row.path)"
+            :key="row.path"
+            data-testid="token-row"
+            :data-path="row.path"
+          >
             <th scope="row" class="border-b border-default px-3 py-2 align-top font-normal break-all">
               <code>{{ row.path }}</code>
             </th>

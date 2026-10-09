@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate": "node scripts/clean-content-cache.mjs && nuxt generate",
+    "generate": "node ../../scripts/check-tbd.ts && node scripts/clean-content-cache.mjs && nuxt generate",
     "test:e2e": "playwright test",
     "test:deployed": "playwright test --config playwright.deployed.config.ts",
     "test:visual:update": "playwright test --project=visual-360 --project=visual-768 --project=visual-1280 --update-snapshots"

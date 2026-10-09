@@ -190,7 +190,6 @@ test('the section indexes show a card per doc with its status', async ({ page })
 
 test('the pending pages say which task writes them', async ({ page }) => {
   for (const [route, task] of [
-    ['/status', 'T6.4'],
     ['/changelog', 'T11.3'],
     ['/email/email-components', 'T10.5'],
   ] as const) {
