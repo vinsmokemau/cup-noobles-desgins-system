@@ -1013,7 +1013,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
 
 ### P6 — Token showcase
 
-- [ ] **T6.1 — `/tokens` explorer**
+- [x] **T6.1 — `/tokens` explorer** (2026-10-08, c30f361)
   - REQs: REQ-053
   - Depends on: T5.5
   - Done when: the row count equals the token count in `tokens.flat.json`; filtering by tier, group, and status and searching by text work in end-to-end tests; and both copy buttons put the exact text on the clipboard.
