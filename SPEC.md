@@ -1005,7 +1005,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: Playwright projects at 360, 768, and 1280 px; an `expectNoA11yViolations` helper; a crawl over every route with axe and overflow checks; skip-link and landmark tests; a reduced-motion project; the `toHaveScreenshot` setup with baselines stored in git and updated only by `pnpm test:visual:update`.
   - Done when: every route passes axe and the overflow check at all 3 widths in CI.
 
-- [ ] **T5.6 — Static deploy**
+- [x] **T5.6 — Static deploy** (2026-10-08, 670cd33)
   - REQs: REQ-050 (AC3)
   - Depends on: T5.5
   - Scope: `deploy-showcase.yml`, publishing the static build to GitHub Pages through GitHub Actions. Set Nuxt's `app.baseURL` to `/cup-noobles-desgins-system/`, because a project site is served under a subpath.
