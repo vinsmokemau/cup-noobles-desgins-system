@@ -1054,7 +1054,7 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Scope: A demo registry driven by frontmatter `demos`; the `StateMatrix`, `Playground` (reading the `controls.ts` schema: prop name, type, and options), and `CodeBlock` components (source imported with `?raw`, plus copy); `ViewportFrame`, which renders the isolated demo route `/_demo/[slug]/[demo]` in an iframe at 360, 768, or 1280 px so that media queries respond; and a helper that creates a visual baseline for every state matrix. Validate everything with one dummy demo that is deleted at the end of the task.
   - Done when: the dummy demo shows all three panels, the copied code equals the demo file's content, and the iframe width changes the media query result.
 
-- [ ] **T7.2 — Button**
+- [x] **T7.2 — Button** (2026-10-09, be45d04)
   - REQs: REQ-023, REQ-024, REQ-026, REQ-027, REQ-028, REQ-022 (AC2)
   - Depends on: T7.1, T4.4
   - Done when: every REQ-023 acceptance criterion passes; the primary label is black; the disabled button has no glow; keyboard activation works with Enter and Space; focus-visible is distinct from the glow in its baseline; and axe is clean in every state.
