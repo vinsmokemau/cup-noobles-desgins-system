@@ -1064,7 +1064,7 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Depends on: T7.2 (OD-09 needed before the icon doc can be `stable`)
   - Done when: all three components have docs, demos, and baselines; the badge includes the "tag" variant used by BR-12; and an icon-only link requires an accessible label (the test fails without one).
 
-- [ ] **T7.4 — Input, Textarea, and Select**
+- [x] **T7.4 — Input, Textarea, and Select** (2026-10-09, 768e33b)
   - REQs: REQ-020, REQ-024, REQ-026, REQ-027, REQ-028
   - Depends on: T7.2
   - Done when: each component demonstrates the default, hover, focus-visible, disabled, and error states; error text is linked with `aria-describedby`; and axe is clean.
