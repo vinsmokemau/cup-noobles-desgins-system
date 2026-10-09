@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The playground of the badge. The controls in controls.ts set these props. The brand variant (BR-12) maps to the Nuxt UI
-// props the way the doc's Variants table says. The icon is an example, not a chosen set (TBD-19).
+// props the way the doc's Variants table says. The icon is a Phosphor Bold glyph (ADR-0012).
 import { computed } from 'vue'
 
 const props = withDefaults(
@@ -27,7 +27,7 @@ const nuxtUi = computed(() => {
       :size="size"
       :color="nuxtUi.color"
       :variant="nuxtUi.variant"
-      :leading-icon="withIcon ? 'i-lucide-star' : undefined"
+      :leading-icon="withIcon ? 'i-ph-star-bold' : undefined"
     />
   </div>
 </template>

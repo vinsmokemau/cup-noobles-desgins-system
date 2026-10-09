@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.15 |
+| Spec version | 1.16 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -200,7 +200,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
 | TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | SVG files and rules |
 | TBD-18 | Motif artwork (BR-14) as SVG | `CnSparkle`, imagery-and-motifs.md | SVG files |
-| TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Decision OD-09 |
+| TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Resolved (ADR-0012) |
 | TBD-20 | Photography and thumbnail standards. This is the same open item as EC decision D11. | imagery-and-motifs.md | Guidelines |
 | TBD-21 | Voice attributes beyond the adjectives in BC (the "this, not that" pairs) | voice-and-tone.md | Approval of a draft |
 
@@ -1247,7 +1247,7 @@ The owner must decide these. Each decision becomes an ADR.
 | OD-06 | Typefaces (TBD-01, TBD-02) | Any font meeting the criteria set in T4.3 | Owner supplies | T4.3 (placeholder allowed), before 1.0 |
 | OD-07 | Text, neutral, and feedback colors (TBD-04, 05, 07) | Owner supplies, or approves a proposal | Owner supplies | Before 1.0 |
 | OD-08 | Logo and motif SVG delivery (TBD-17, TBD-18) | Owner supplies SVGs plus clear-space and minimum-size rules | — | Before T7.7 or T8.6 can be `stable` |
-| OD-09 | Icon set (TBD-19) | Any Iconify collection with a stroke style consistent with BR-13, or custom icons | Owner decides | Before T7.3 can be `stable` |
+| OD-09 | Icon set (TBD-19) | Any Iconify collection with a stroke style consistent with BR-13, or custom icons | **Decided: Phosphor Bold** (owner, ADR-0012). | Before T7.3 can be `stable` |
 | OD-10 | Stream overlays (C-04) | Keep as a non-goal, or add an overlay phase later | Keep as a non-goal for this spec | None |
 | OD-11 | Confirm C-03: visual styling lives only in the layer, and consuming apps keep "Tailwind for layout only" | Confirm or amend | **Decided: confirmed** (OA-10, ADR-0007). | T5.1 |
 | OD-12 | Email authoring | MJML (A-14), or hand-written table HTML | **Decided: MJML** (OA-6). ADR-0004 records it. | T0.4 |
@@ -1276,6 +1276,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.13 | 2026-09-27 | T3.2 scope: extend `check-tbd` to read `$extensions.cn.tbd`, the part of 1.12 that no task covered. | Owner decision in chat (T3.1 open question); related token decisions in ADR-0008 |
 | 1.14 | 2026-09-27 | §2.4: TBD-16 resolved. The focus indicator is a solid brand-yellow ring, 3 px wide, with a 3 px gap. | Owner decision in chat (T4.4, option A, size 2); ADR-0009 |
 | 1.15 | 2026-10-09 | Added T5.7 (faster end-to-end suite) to P5, after the T6.5 run showed `pnpm test:all` taking about 15 minutes. §0.2 is unchanged. | Owner decision in chat (option 1, new task) |
+| 1.16 | 2026-10-09 | §2.4: TBD-19 resolved. §7.2: OD-09 decided. The icon set is Phosphor Bold (`@iconify-json/ph`, MIT), and Nuxt UI's `ui.icons` points to it. | Owner decision in chat (T7.3, option C); ADR-0012 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

@@ -3,7 +3,7 @@
 // apps/showcase/tests/e2e/link-icon-badge.spec.ts.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import appConfig from '../packages/nuxt/app.config'
@@ -36,7 +36,25 @@ test('REQ-020 AC1: the three docs are nuxt-ui components named for their Nuxt UI
     assert.equal(data.status, 'draft', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
   }
-  assert.ok((frontmatter('icon').tbd as string[]).includes('TBD-19'), 'the icon doc names TBD-19')
+  // TBD-19 is resolved (ADR-0012): no doc cites it as open.
+  assert.deepEqual(frontmatter('icon').tbd, [])
+})
+
+test('ADR-0012: every Nuxt UI icon name is set to a Phosphor Bold glyph, and no demo or showcase file uses another set', () => {
+  const icons = (appConfig.ui as unknown as { icons: Record<string, string> }).icons
+  assert.ok(Object.keys(icons).length >= 40, 'every default Nuxt UI icon name is mapped')
+  for (const [name, value] of Object.entries(icons)) assert.match(value, /^i-ph-[a-z-]+-bold$/, name)
+  for (const required of ['close', 'check', 'loading', 'chevronDown', 'search', 'star'])
+    assert.ok(required in icons, `${required} is mapped`)
+  for (const dir of ['apps/showcase/demos', 'apps/showcase/components', 'apps/showcase/layouts']) {
+    const files = readdirSync(join(root, dir), { recursive: true, withFileTypes: true }).filter((e) => e.isFile())
+    for (const file of files) {
+      const text = readFileSync(join(file.parentPath, file.name), 'utf8')
+      assert.doesNotMatch(text, /i-lucide-|i-tabler-|i-heroicons-/, `${file.name} uses another icon set`)
+    }
+  }
+  const layer = JSON.parse(read('packages/nuxt/package.json')) as { dependencies: Record<string, string> }
+  assert.equal(layer.dependencies['@iconify-json/ph'], '1.2.2')
 })
 
 test('the link and badge component tokens reference semantic tokens, and the shape tokens are tbd placeholders', () => {

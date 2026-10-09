@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // The state matrix of the badge (REQ-026 AC2). A badge shows information and cannot be hovered, pressed, focused, or
 // disabled, so it has one state. The cell shows the three brand variants (BR-12) in two sizes. The icon is an example,
-// not a chosen set (TBD-19). Copy is es-MX.
+// a Phosphor Bold glyph (ADR-0012). Copy is es-MX.
 const states = ['default'] as const
 const brands = [
   { label: 'Nuevo', color: 'primary', variant: 'solid' },
@@ -30,7 +30,7 @@ const brands = [
           :variant="brand.variant"
           size="lg"
         />
-        <UBadge label="Con ícono" color="primary" variant="solid" leading-icon="i-lucide-star" />
+        <UBadge label="Con ícono" color="primary" variant="solid" leading-icon="i-ph-star-bold" />
       </div>
     </div>
   </div>

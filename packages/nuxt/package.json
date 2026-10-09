@@ -7,6 +7,7 @@
     "build": "nuxt build"
   },
   "dependencies": {
+    "@iconify-json/ph": "1.2.2",
     "@nuxt/ui": "4.11.2",
     "@vinsmokemau/cup-noobles-tokens": "workspace:*",
     "tailwindcss": "4.3.3"

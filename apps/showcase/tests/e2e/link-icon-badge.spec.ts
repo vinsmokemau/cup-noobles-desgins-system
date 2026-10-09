@@ -312,6 +312,22 @@ test('REQ-055: the icon playground names a meaningful icon, and hides a decorati
   await expect(page.getByRole('img')).toHaveCount(0)
 })
 
+test('ADR-0012: every icon on the demo pages is a Phosphor Bold glyph, including the ones Nuxt UI draws itself', async ({
+  page,
+}) => {
+  for (const [slug, demo] of [
+    ['icon', 'states'],
+    ['link', 'states'],
+    ['badge', 'states'],
+    ['button', 'states'],
+  ] as const) {
+    await openDemo(page, slug, demo)
+    const classes = await page.locator('.iconify').evaluateAll((els) => els.map((el) => el.className))
+    expect(classes.length, `${slug}: icons on the page`).toBeGreaterThan(0)
+    for (const name of classes) expect(name, `${slug}`).toMatch(/i-ph:[a-z-]+-bold/)
+  }
+})
+
 test('REQ-027 AC1: axe is clean for the icon', async ({ page }) => {
   await openDemo(page, 'icon', 'states')
   await expectNoA11yViolations(page, { label: '/_demo/icon/states' })

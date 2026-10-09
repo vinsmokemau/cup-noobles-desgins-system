@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // The state matrix of the link (REQ-026 AC2). Each cell shows a text link, a link with a trailing icon, and an icon-only
 // link in one state. `data-cn-state` forces hover, active, and focus-visible, which a static page cannot reach by itself;
-// the real pseudo-classes are covered by the keyboard and pointer tests. The icons are examples, not a chosen set
-// (TBD-19). Copy is es-MX.
+// the real pseudo-classes are covered by the keyboard and pointer tests. The icons are Phosphor Bold glyphs
+// (ADR-0012). Copy is es-MX.
 const states = ['default', 'hover', 'focus-visible', 'active', 'disabled'] as const
 const forced: string[] = ['hover', 'active', 'focus-visible']
 </script>
@@ -28,7 +28,7 @@ const forced: string[] = ['hover', 'active', 'focus-visible']
           data-link="icon"
         >
           Ir al catálogo
-          <UIcon name="i-lucide-arrow-right" />
+          <UIcon name="i-ph-arrow-right-bold" />
         </ULink>
         <ULink
           to="/"
@@ -38,7 +38,7 @@ const forced: string[] = ['hover', 'active', 'focus-visible']
           class="inline-flex size-8 items-center justify-center"
           data-link="icon-only"
         >
-          <UIcon name="i-lucide-search" class="size-5" />
+          <UIcon name="i-ph-magnifying-glass-bold" class="size-5" />
         </ULink>
       </div>
     </div>

@@ -22,7 +22,7 @@ const menuOpen = ref(false)
         <UBadge :label="`v${version}`" color="neutral" variant="outline" data-testid="version" />
         <UButton
           class="md:hidden"
-          icon="i-lucide-menu"
+          icon="i-ph-list-bold"
           color="neutral"
           variant="ghost"
           aria-label="Open navigation"

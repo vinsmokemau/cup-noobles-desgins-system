@@ -5,7 +5,7 @@ layer: foundation
 status: draft
 lang: en
 brandRules: [BR-06, BR-13]
-tbd: [TBD-19]
+tbd: []
 related: [icon, button, color, shape, accessibility, imagery-and-motifs]
 since: 0.1.0
 updated: 2026-09-28
@@ -15,7 +15,7 @@ updated: 2026-09-28
 
 ## Purpose
 
-This doc defines how Cup Noobles UI uses icons: the small functional glyphs inside buttons, inputs, alerts, and navigation. Icons follow the thick, clean, high-contrast line work of BR-13 and stay legible on black (BR-06). The icon set itself is not chosen yet (TBD-19, decision OD-09), so this doc sets the criteria the set must meet and the rules every icon follows, whichever set is chosen.
+This doc defines how Cup Noobles UI uses icons: the small functional glyphs inside buttons, inputs, alerts, and navigation. Icons follow the thick, clean, high-contrast line work of BR-13 and stay legible on black (BR-06). The icon set is Phosphor Bold, chosen by the owner (ADR-0012). This doc records the criteria the set had to meet and the rules every icon follows.
 
 ## Tokens and specs
 
@@ -33,9 +33,9 @@ BR-13 covers "all UI", so it covers icons. The brand context names no icon set a
 
 ### The icon set
 
-The owner chooses the icon set (OD-09): "any Iconify collection with a stroke style consistent with BR-13, or custom icons". Until then, Nuxt UI components show the default icons that Nuxt UI ships with. Those defaults are **not a brand choice**, and they are replaced once TBD-19 is resolved.
+The owner chose Phosphor Bold (OD-09, TBD-19, ADR-0012), an Iconify collection under the MIT license. Its icon names look like `i-ph-star-bold`. Every icon name that Nuxt UI components use is set to its Phosphor Bold glyph in `ui.icons`, so Nuxt UI's own Lucide defaults are never shown.
 
-A candidate set must meet every criterion below. The ADR that resolves TBD-19 records how the chosen set meets each one.
+A candidate set had to meet every criterion below. ADR-0012 records how Phosphor Bold meets each one, and a change of set needs a new ADR.
 
 | # | Criterion | How to check it |
 |---|---|---|
@@ -58,7 +58,7 @@ The circular "CN" icon (BR-16) is a logo asset, and the pink ramen cup (BR-14) i
 
 ### When not to use
 
-- Never pick or mix in an icon set before OD-09 is decided. Only the owner chooses it (TBD-19).
+- Never mix in an icon from another set, or from another Phosphor weight. Only the owner changes the set (ADR-0012).
 - Never make an icon the only way to convey meaning when a text label fits. An icon-only control is allowed only with an accessible name.
 - Never use a white or yellow icon on a pink fill, or a white icon on a yellow fill. These are the forbidden pairs from SPEC.md §2.1.
 - Never use the logo or a motif as a UI icon.
@@ -71,7 +71,7 @@ The circular "CN" icon (BR-16) is a logo asset, and the pink ramen cup (BR-14) i
 | Pair a delete icon with a visible label. | Show a bare delete icon with no accessible name. |
 | Use a black icon on a pink primary button. | Use a white icon on a pink primary button. |
 | Keep every icon from the one approved set. | Mix icons from two sets because one has a glyph the other lacks. |
-| Wait for OD-09 and keep Nuxt UI's defaults until then. | Choose a "close enough" icon set without the owner. |
+| Use the Phosphor Bold glyph (i-ph-…-bold). | Choose a "close enough" icon from another set or weight. |
 
 ## Accessibility
 
@@ -96,10 +96,10 @@ The email components (REQ-041 AC3) include no icons. If an email needs one, it i
 | Where | What |
 |---|---|
 | `UIcon` (Nuxt UI) | Renders an icon by name. Documented in [Icon](../02-components/atoms/icon.md) (T7.3). |
-| `packages/nuxt/app.config.ts`, `ui.icons` | The icon names that Nuxt UI components use (ADR-0001). They are set once TBD-19 is resolved. |
+| `packages/nuxt/app.config.ts`, `ui.icons` | The icon names that Nuxt UI components use (ADR-0001). They are set to Phosphor Bold (ADR-0012). |
 
 ```vue
-<!-- Decorative: the button's label names the action. The icon name depends on TBD-19. -->
+<!-- Decorative: the button's label names the action. The icon name is a Phosphor Bold name such as `i-ph-arrow-right-bold`. -->
 <UButton :label="label" :leading-icon="icon" />
 
 <!-- Icon-only: the accessible name arrives through a prop (A-11). -->
@@ -108,8 +108,9 @@ The email components (REQ-041 AC3) include no icons. If an email needs one, it i
 
 ## Open items
 
-> **TBD (TBD-19):** The icon set is not chosen: the library, its stroke style consistent with BR-13, and its license. Nuxt UI's default icons are used until then and are not a brand choice. Owner input needed: decision OD-09.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-13 and BR-06, the icon set selection criteria, the icon usage and accessibility rules, and TBD-19 (T4.6) — awaiting owner approval
+- 0.1.0 — The icon set is Phosphor Bold, approved by the owner (option C); TBD-19 is resolved — ADR-0012

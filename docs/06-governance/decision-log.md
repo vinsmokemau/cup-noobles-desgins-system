@@ -30,6 +30,7 @@ updated: 2026-09-27
 - [ADR-0009: Focus indicator style](decisions/0009-focus-indicator.md)
 - [ADR-0010: Button variants](decisions/0010-button-variants.md)
 - [ADR-0011: Link and badge looks](decisions/0011-link-and-badge-looks.md)
+- [ADR-0012: Icon set](decisions/0012-icon-set.md)
 
 ## Open items
 
