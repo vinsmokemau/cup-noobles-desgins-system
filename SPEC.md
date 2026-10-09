@@ -1018,7 +1018,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Depends on: T5.5
   - Done when: the row count equals the token count in `tokens.flat.json`; filtering by tier, group, and status and searching by text work in end-to-end tests; and both copy buttons put the exact text on the clipboard.
 
-- [ ] **T6.2 — Color previews**
+- [x] **T6.2 — Color previews** (2026-10-09, 17fd1a5)
   - REQs: REQ-054 (AC1, AC4)
   - Depends on: T6.1
   - Done when: `/foundations/color` shows a swatch per color token with its ratio against `color.bg.base`; the ratios match `check-contrast`; and TBD tokens show the hatched overlay and badge.
