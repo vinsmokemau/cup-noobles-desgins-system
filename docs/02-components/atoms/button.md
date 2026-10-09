@@ -211,7 +211,7 @@ The email button is a separate MJML component, described in [Email components](.
 ```
 
 ## Open items
->
+
 > **TBD (TBD-10):** The corner radius is not defined ("rounded" in BR-10). `radius.button` follows an ADR-0006 placeholder. Owner input needed.
 >
 > **TBD (TBD-11):** The stroke width is not defined ("thick" in BR-10 and BR-13). `border.width.button` follows an ADR-0006 placeholder. Owner input needed.
@@ -220,10 +220,9 @@ The email button is a separate MJML component, described in [Email components](.
 >
 > **TBD (TBD-08):** Tints and shades of pink and yellow are not defined. The hover and pressed fills read shade tokens that repeat the brand color, so they look the same as the default fill. Owner input needed: decision OD-04.
 >
-> **Draft:** The mapping of the brand variants to fills is a proposal, not a brand rule. BC names the variants but not their look. `primary` is the pink fill (BR-01), `secondary` is the yellow fill (BR-02), and `ghost` is a transparent fill with a pink label and outline that fills pink on hover. This awaits owner approval.
->
 > **Draft:** The hover and pressed behavior, and the dimming of a disabled or loading button, are not defined by BC. The hover and pressed fills use the shade tokens (TBD-08), and the dimming is Nuxt UI's default. This awaits owner approval.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-10 and BR-11 on `UButton`, the three brand variants, the six states, the component tokens, and the demos (T7.2) — awaiting owner approval
+- 0.1.0 — The mapping of the primary, secondary, and ghost variants to fills is approved by the owner (option A); the draft callout is removed — ADR-0010
