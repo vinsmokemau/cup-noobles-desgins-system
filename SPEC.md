@@ -1069,7 +1069,7 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Depends on: T7.2
   - Done when: each component demonstrates the default, hover, focus-visible, disabled, and error states; error text is linked with `aria-describedby`; and axe is clean.
 
-- [ ] **T7.5 — Checkbox, RadioGroup, and Switch**
+- [x] **T7.5 — Checkbox, RadioGroup, and Switch** (2026-10-09, 5e025b3)
   - REQs: REQ-020, REQ-024, REQ-026, REQ-027, REQ-028
   - Depends on: T7.2
   - Done when: each component demonstrates its checked, unchecked, disabled, and focus-visible states (plus indeterminate for the checkbox); arrow keys move within the radio group; and Space toggles the switch.
