@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.14 |
+| Spec version | 1.15 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1011,6 +1011,12 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Scope: `deploy-showcase.yml`, publishing the static build to GitHub Pages through GitHub Actions. Set Nuxt's `app.baseURL` to `/cup-noobles-desgins-system/`, because a project site is served under a subpath.
   - Done when: a push to `main` deploys to `https://vinsmokemau.github.io/cup-noobles-desgins-system/`; the deployed home page returns 200; and a route crawl against the deployed site finds no broken internal links or assets under the project subpath (Nuxt `app.baseURL`).
 
+- [ ] **T5.7 — Faster end-to-end suite**
+  - REQs: REQ-074 (AC1), REQ-060 (AC1, AC2), REQ-061 (AC1), REQ-028 (AC2)
+  - Depends on: T5.5
+  - Scope: Make `pnpm test:all` faster with no loss of coverage. (1) In `apps/showcase/playwright.config.ts`, run tests fully parallel with an explicit worker count, and keep any spec that shares state (the fixture-doc build in `docs.spec.ts`) serial. (2) In `routes.matrix.ts`, load each route once per width and run the five route checks as named steps, one per acceptance criterion, instead of five tests that each reload the page. (3) Replace `networkidle` waits with a wait on what the page needs, and keep a change only if repeated runs stay stable. Every route, every width, every helper assertion, and axe stay; no route, width, or rule is skipped or sampled. §0.2 is not changed: `pnpm test:all` is still required on every task.
+  - Done when: the three `w*` projects run in at most half of the 7.6 minutes measured on 2026-10-09 (1281 tests, owner's 12-thread machine); the report names the acceptance criterion of each step; a deliberately broken page (no skip link, or a 10 px button) fails with its route and acceptance criterion in the message, and the break is reverted; `playwright test --repeat-each=3` passes; and `pnpm test:all` is green.
+
 ### P6 — Token showcase
 
 - [x] **T6.1 — `/tokens` explorer** (2026-10-08, c30f361)
@@ -1269,6 +1275,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.12 | 2026-09-27 | §4.4: TBD and `derived-pending` tokens name their §2.4 items in `$extensions.cn.tbd` (`derived-pending` is always `["TBD-08"]`); `stable` and `deprecated` tokens have no such field. `check-tokens` enforces it, and `check-tbd` validates the IDs and counts tokens per item. | Owner decision in chat (T2.4 open question) |
 | 1.13 | 2026-09-27 | T3.2 scope: extend `check-tbd` to read `$extensions.cn.tbd`, the part of 1.12 that no task covered. | Owner decision in chat (T3.1 open question); related token decisions in ADR-0008 |
 | 1.14 | 2026-09-27 | §2.4: TBD-16 resolved. The focus indicator is a solid brand-yellow ring, 3 px wide, with a 3 px gap. | Owner decision in chat (T4.4, option A, size 2); ADR-0009 |
+| 1.15 | 2026-10-09 | Added T5.7 (faster end-to-end suite) to P5, after the T6.5 run showed `pnpm test:all` taking about 15 minutes. §0.2 is unchanged. | Owner decision in chat (option 1, new task) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1306,7 +1313,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-025 | T8.1, T8.2 |
 | REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T8.1, T8.2, T8.3, T8.4, T8.5 |
 | REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T8.1, T8.2, T8.3, T8.4, T8.5 |
-| REQ-028 | T4.5, T5.5, T7.2, T7.3, T7.4, T7.5, T8.1, T8.2, T8.4, T8.6 |
+| REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T8.1, T8.2, T8.4, T8.6 |
 | REQ-029 | T4.5, T4.6, T7.6, T7.8 |
 | REQ-030 | T4.1, T7.7 |
 | REQ-031 | T0.1, T5.1, T5.3 |
@@ -1328,12 +1335,12 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-057 | T5.4, T6.4 |
 | REQ-058 | T10.5 |
 | REQ-059 | T5.3 |
-| REQ-060 | T5.5 |
-| REQ-061 | T5.5, T8.6 |
+| REQ-060 | T5.5, T5.7 |
+| REQ-061 | T5.5, T5.7, T8.6 |
 | REQ-062 | T6.5, T11.3 |
 | REQ-070 | T11.3, T12.1 |
 | REQ-071 | T5.2, T8.7, T12.1 |
 | REQ-072 | T11.2, T11.3 |
 | REQ-073 | T0.5, T2.4, T11.2 |
-| REQ-074 | T1.2, T1.4, T12.2 |
+| REQ-074 | T1.2, T1.4, T5.7, T12.2 |
 | REQ-075 | T1.4, T3.6 |
