@@ -442,3 +442,23 @@
     width: 33%;
   }
 }
+
+/*
+ * T7.7 (REQ-030): CnLogo. While the logo files are missing (TBD-17), every variant is this neutral placeholder: an outlined
+ * box that carries the note "Logo asset pending (TBD-17)". It has no artwork and no fixed size, so it cannot be mistaken for
+ * a logo. It only reads --cn-logo-placeholder-* tokens and the shape token border.width.logo. The three variants (`icon`,
+ * `vertical`, `horizontal`) look the same on purpose: their shapes are part of the missing assets.
+ */
+.cn-logo {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--cn-space-base) * 2);
+  background-color: var(--cn-logo-placeholder-bg);
+  border: var(--cn-border-width-logo) solid var(--cn-logo-placeholder-border);
+  color: var(--cn-logo-placeholder-fg);
+  font-size: var(--cn-font-size-caption);
+  text-align: center;
+  overflow-wrap: anywhere;
+}

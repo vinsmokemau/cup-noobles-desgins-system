@@ -76,6 +76,7 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'stroke:border.width.default',
     'stroke:border.width.input',
     'stroke:border.width.interactive',
+    'stroke:border.width.logo',
     'stroke:border.width.progress',
     'stroke:border.width.separator',
     'stroke:border.width.skeleton',
