@@ -32,7 +32,9 @@ test('REQ-051 AC1: no .md file exists under apps/showcase', () => {
 
 test('REQ-051 AC1: content.config.ts reads the repository docs/ in place and skips the template', () => {
   const config = read('apps/showcase/content.config.ts')
-  assert.match(config, /cwd: fileURLToPath\(new URL\('\.\.\/\.\.\/docs', import\.meta\.url\)\)/)
+  // T5.4: CN_DOCS_ROOT only moves the docs for the fixture-doc test (REQ-051 AC3); the default is the repository's docs/.
+  assert.match(config, /fileURLToPath\(new URL\('\.\.\/\.\.\/docs', import\.meta\.url\)\)/)
+  assert.match(config, /cwd: docsDir/)
   assert.match(config, /exclude: \['\*\*\/_template\.md'\]/)
   assert.equal(existsSync(join(showcase, 'content')), false, 'ADR-0002: no content directory is needed')
 })

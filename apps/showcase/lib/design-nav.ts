@@ -15,7 +15,8 @@ export interface NavSection {
   groups: { title: string | null; links: NavLink[] }[]
 }
 
-const LAYERS: Record<string, string> = {
+/** The `docs/` folder of each layer, and the first segment of that layer's showcase routes. */
+export const LAYERS: Record<string, string> = {
   '00-overview': 'overview',
   '01-foundations': 'foundations',
   '02-components': 'components',

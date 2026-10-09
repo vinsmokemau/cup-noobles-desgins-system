@@ -1,17 +1,22 @@
 // T5.3 (REQ-051 AC1, ADR-0002 §2): Nuxt Content reads the repository's docs/ in place. The app holds no copy of any doc.
 // The schema mirrors SPEC.md §4.3 for typed queries only; Content does not validate it (ADR-0002 §3), and
 // `pnpm check:docs` is the gate.
+// T5.4: CN_DOCS_ROOT points the fixture-doc test (REQ-051 AC3) at a throwaway tree that has its own docs/.
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
 const slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/)
+const docsDir = process.env.CN_DOCS_ROOT
+  ? join(process.env.CN_DOCS_ROOT, 'docs')
+  : fileURLToPath(new URL('../../docs', import.meta.url))
 
 export default defineContentConfig({
   collections: {
     docs: defineCollection({
       type: 'page',
       source: {
-        cwd: fileURLToPath(new URL('../../docs', import.meta.url)),
+        cwd: docsDir,
         include: '**/*.md',
         exclude: ['**/_template.md'],
       },
