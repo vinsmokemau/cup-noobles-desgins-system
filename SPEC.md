@@ -1033,7 +1033,7 @@ Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is eit
   - Depends on: T6.1, T2.4
   - Done when: the counts on `/status` equal `tbd-report.json` in an end-to-end test, and each item links to its doc or token.
 
-- [ ] **T6.5 — Home page**
+- [x] **T6.5 — Home page** (2026-10-09, aaac532)
   - REQs: REQ-062 (AC1), REQ-052
   - Depends on: T6.4
   - Done when: `/` shows the package version and the token, component, and open-TBD counts, each matching its source.
