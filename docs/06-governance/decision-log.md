@@ -33,6 +33,7 @@ updated: 2026-09-27
 - [ADR-0012: Icon set](decisions/0012-icon-set.md)
 - [ADR-0013: Text field look](decisions/0013-text-field-look.md)
 - [ADR-0014: Choice controls look](decisions/0014-choice-controls-look.md)
+- [ADR-0015: Progress, skeleton, and separator look](decisions/0015-progress-skeleton-separator-look.md)
 
 ## Open items
 

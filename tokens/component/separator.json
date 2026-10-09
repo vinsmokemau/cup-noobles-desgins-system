@@ -1,0 +1,40 @@
+{
+  "border": {
+    "width": {
+      "separator": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Stroke width of the separator line (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "separator": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "The surface a separator line sits on: the pure black page (BR-03).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "color": {
+      "$type": "color",
+      "$value": "{color.border.default}",
+      "$description": "Color of the separator line. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    }
+  }
+}

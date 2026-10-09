@@ -1,0 +1,50 @@
+{
+  "border": {
+    "width": {
+      "progress": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the progress track (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "progress": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of the empty part of the progress track: the pure black page (BR-03). The track is separated from the page by its outline (C-05).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{color.border.default}",
+      "$description": "Outline color of the progress track. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    },
+    "fill": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Fill of the finished part of the progress bar: brand pink (BR-01).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    }
+  }
+}

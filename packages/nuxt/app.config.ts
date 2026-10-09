@@ -1,4 +1,4 @@
-// T5.1: Nuxt UI's color aliases (ADR-0001 §2). Each alias names an 11-shade scale declared in assets/css/main.css,
+// T5.1: Nuxt UI's color aliases (ADR-0001 Â§2). Each alias names an 11-shade scale declared in assets/css/main.css,
 // and every shade there reads a --cn-* token (C-03, REQ-016).
 // A plain object typed with `satisfies`, not defineAppConfig(), so the file imports nothing at runtime.
 import type { AppConfigInput } from 'nuxt/schema'
@@ -136,6 +136,30 @@ export default {
       slots: {
         base: 'cn-choice cn-choice--switch',
       },
+    },
+    // T7.6 (REQ-020, REQ-029): progress, skeleton, and separator. Their looks are the `.cn-progress*`, `.cn-skeleton`, and
+    // `.cn-separator*` rules in assets/css/main.css (ADR-0015). The progress track is the `base` slot and its fill is the
+    // `indicator` slot. The separator line is the `border` slot; the horizontal and vertical hooks only pick which side of the
+    // line carries the stroke width.
+    progress: {
+      slots: {
+        base: 'cn-progress',
+        indicator: 'cn-progress__fill',
+      },
+    },
+    skeleton: {
+      // The radius is a utility class that reads the token, not a rule in main.css, so the page can still give a circle
+      // `rounded-full`: Nuxt UI merges the classes and the later one wins, as it does with its own `rounded-md`.
+      base: 'cn-skeleton rounded-(--cn-radius-skeleton)',
+    },
+    separator: {
+      slots: {
+        border: 'cn-separator',
+      },
+      compoundVariants: [
+        { orientation: 'horizontal', class: { border: 'cn-separator--horizontal' } },
+        { orientation: 'vertical', class: { border: 'cn-separator--vertical' } },
+      ],
     },
   },
 } satisfies AppConfigInput

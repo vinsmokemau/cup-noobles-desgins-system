@@ -1,0 +1,43 @@
+{
+  "radius": {
+    "skeleton": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of a skeleton shape (BR-10). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "skeleton": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of a skeleton shape (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "skeleton": {
+    "border": {
+      "$type": "color",
+      "$value": "{color.border.default}",
+      "$description": "Outline color of a skeleton shape. The shape has no fill, because there is no surface color yet (C-05). TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    }
+  }
+}

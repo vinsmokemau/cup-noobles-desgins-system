@@ -17,6 +17,9 @@
   --cn-border-width-default: 1px; /** Stroke width. TBD-11: "thick" (BR-10, BR-13) has no values; this references a placeholder, not a brand value. */
   --cn-border-width-input: 1px; /** Outline stroke width of the text fields (BR-10, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
+  --cn-border-width-progress: 1px; /** Outline stroke width of the progress track (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
+  --cn-border-width-separator: 1px; /** Stroke width of the separator line (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
+  --cn-border-width-skeleton: 1px; /** Outline stroke width of a skeleton shape (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-breakpoint-lg: 64rem; /** Large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-md: 48rem; /** Medium breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-sm: 40rem; /** Small breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
@@ -210,6 +213,9 @@
   --cn-placeholder-space-base: 0.25rem; /** Placeholder, not a brand value. Stands in for TBD-09. Source: Tailwind --spacing (ADR-0006). */
   --cn-placeholder-z-overlay: auto; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI sets no z-index on UModal or USlideover (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-z-toast: 100; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006). */
+  --cn-progress-bg: #000000; /** Fill of the empty part of the progress track: the pure black page (BR-03). The track is separated from the page by its outline (C-05). */
+  --cn-progress-border: #90a1b9; /** Outline color of the progress track. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-progress-fill: #ef80ae; /** Fill of the finished part of the progress bar: brand pink (BR-01). */
   --cn-radius-badge: 0.375rem; /** Corner radius of the badge (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-button: 0.375rem; /** Corner radius of the button (BR-10, REQ-023 AC2). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-choice: 0.375rem; /** Corner radius of the checkbox box (BR-10). The radio and the switch are round by shape. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
@@ -217,7 +223,11 @@
   --cn-radius-interactive: 0.375rem; /** Corner radius of interactive elements such as buttons (BR-10). TBD-10: "rounded" has no values; this references a placeholder, not a brand value. */
   --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-radius-md: 0.375rem; /** Medium corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
+  --cn-radius-skeleton: 0.375rem; /** Corner radius of a skeleton shape (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-sm: 0.25rem; /** Small corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
+  --cn-separator-bg: #000000; /** The surface a separator line sits on: the pure black page (BR-03). */
+  --cn-separator-color: #90a1b9; /** Color of the separator line. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-skeleton-border: #90a1b9; /** Outline color of a skeleton shape. The shape has no fill, because there is no surface color yet (C-05). TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
   --cn-space-base: 0.25rem; /** Spacing base unit. TBD-09: the base unit and scale are not defined; this references a placeholder, not a brand value. */
   --cn-z-overlay: auto; /** Z-index of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
   --cn-z-toast: 100; /** Z-index of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */

@@ -57,5 +57,8 @@
   { "foreground": "choice.borderHover", "background": "choice.bg", "usage": "ui" },
   { "foreground": "choice.checked.bg", "background": "choice.bg", "usage": "ui" },
   { "foreground": "choice.checked.fg", "background": "choice.checked.bg", "usage": "ui" },
-  { "foreground": "choice.focus.color", "background": "choice.bg", "usage": "ui" }
+  { "foreground": "choice.focus.color", "background": "choice.bg", "usage": "ui" },
+  { "foreground": "progress.border", "background": "progress.bg", "usage": "ui" },
+  { "foreground": "progress.fill", "background": "progress.bg", "usage": "ui" },
+  { "foreground": "separator.color", "background": "separator.bg", "usage": "ui" }
 ]

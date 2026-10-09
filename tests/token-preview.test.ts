@@ -76,6 +76,9 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'stroke:border.width.default',
     'stroke:border.width.input',
     'stroke:border.width.interactive',
+    'stroke:border.width.progress',
+    'stroke:border.width.separator',
+    'stroke:border.width.skeleton',
     'radius:radius.badge',
     'radius:radius.button',
     'radius:radius.choice',
@@ -83,6 +86,7 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'radius:radius.interactive',
     'radius:radius.lg',
     'radius:radius.md',
+    'radius:radius.skeleton',
     'radius:radius.sm',
   ])
   assert.deepEqual(kinds('effects'), [

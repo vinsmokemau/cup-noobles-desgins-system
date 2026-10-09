@@ -385,3 +385,60 @@
   outline: var(--cn-choice-focus-width) var(--cn-choice-focus-style) var(--cn-choice-focus-color);
   outline-offset: var(--cn-choice-focus-offset);
 }
+
+/*
+ * T7.6 (REQ-020, REQ-029): progress, skeleton, and separator. app.config.ts puts `.cn-progress` on the track of UProgress,
+ * `.cn-progress__fill` on its indicator, `.cn-skeleton` on USkeleton, and `.cn-separator` on the line of USeparator. Every
+ * value is a --cn-progress-*, --cn-skeleton-*, or --cn-separator-* token (ADR-0015). The rules are not in a cascade layer, so
+ * they win over Nuxt UI's own utility classes without `!important`.
+ *
+ * Progress is a black track with a neutral outline; the finished part is brand pink. Skeleton shapes are outlines with no
+ * fill (C-05) that fade between full and half opacity, half being Nuxt UI's own `animate-pulse` depth. The separator is a
+ * neutral line. The fade lasts ten base durations, the placeholder motion duration (TBD-14).
+ *
+ * Under reduced motion nothing moves (REQ-029 AC2): the skeleton stays at full opacity, and the indeterminate progress bar
+ * shows a still, partly filled bar instead of the moving one. Nuxt UI would pulse it, so its pulse is switched off too.
+ */
+.cn-progress {
+  background-color: var(--cn-progress-bg);
+  border: var(--cn-border-width-progress) solid var(--cn-progress-border);
+}
+
+.cn-progress__fill {
+  background-color: var(--cn-progress-fill);
+}
+
+.cn-skeleton {
+  background-color: transparent;
+  border: var(--cn-border-width-skeleton) solid var(--cn-skeleton-border);
+  animation: cn-skeleton-fade calc(var(--cn-motion-duration-default) * 10) ease-in-out infinite;
+}
+
+@keyframes cn-skeleton-fade {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.cn-separator--horizontal {
+  border-top-width: var(--cn-border-width-separator);
+}
+
+.cn-separator--vertical {
+  border-inline-start-width: var(--cn-border-width-separator);
+}
+
+.cn-separator {
+  border-color: var(--cn-separator-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cn-skeleton,
+  .cn-progress__fill[data-state='indeterminate'] {
+    animation: none;
+  }
+
+  .cn-progress__fill[data-state='indeterminate'] {
+    width: 33%;
+  }
+}

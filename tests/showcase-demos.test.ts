@@ -159,7 +159,7 @@ test('REQ-055: the registry is driven by the frontmatter, and a listed demo with
 })
 
 test('the real docs list the demos that exist, so the real build has a demo route for each', () => {
-  // T7.2 adds the button's, T7.3 the badge's, the icon's, and the link's, T7.4 the input's, the select's, and the textarea's, and T7.5 the checkbox's, the radio group's, and the switch's. Each component task adds its own entry here, and no doc lists a demo that has no file.
+  // T7.2 adds the button's, T7.3 the badge's, the icon's, and the link's, T7.4 the input's, the select's, and the textarea's, T7.5 the checkbox's, the radio group's, and the switch's, and T7.6 the progress bar's, the separator's, and the skeleton's. Each component task adds its own entry here, and no doc lists a demo that has no file.
   assert.deepEqual(
     scanDemos(join(import.meta.dirname, '../docs'), join(import.meta.dirname, '../apps/showcase/demos')),
     {
@@ -169,8 +169,11 @@ test('the real docs list the demos that exist, so the real build has a demo rout
       icon: ['states', 'playground'],
       input: ['states', 'playground'],
       link: ['states', 'playground'],
+      progress: ['states', 'playground'],
       'radio-group': ['states', 'playground'],
       select: ['states', 'playground'],
+      separator: ['states', 'playground'],
+      skeleton: ['states', 'playground'],
       switch: ['states', 'playground'],
       textarea: ['states', 'playground'],
     },
