@@ -22,6 +22,7 @@
     "build:fixture": "pnpm --filter consumer-fixture build",
     "build:showcase": "pnpm --filter showcase generate",
     "test:e2e": "pnpm --filter consumer-fixture test:e2e && pnpm --filter showcase test:e2e",
+    "test:visual:update": "pnpm --filter showcase test:visual:update",
     "test:all": "pnpm test && pnpm build:tokens && pnpm build:nuxt && pnpm build:fixture && pnpm build:showcase && pnpm test:e2e"
   },
   "devDependencies": {

@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useSeoMeta } from 'nuxt/app'
+
+useSeoMeta({ title: 'Home' })
+</script>
+
 <template>
   <div>
     <h1 class="text-2xl font-bold text-highlighted">Cup Noobles Design System</h1>

@@ -9,7 +9,7 @@ tokens: [focus, color]
 tbd: [TBD-04, TBD-05, TBD-06, TBD-07]
 related: [color, effects, layout, motion, iconography, imagery-and-motifs]
 since: 0.1.0
-updated: 2026-09-28
+updated: 2026-10-08
 ---
 
 # Accessibility
@@ -106,7 +106,7 @@ axe (`@axe-core/playwright`) runs in the Playwright suite (ER-06), and it must r
 - on every component demo page, in every state of its state matrix (REQ-027 AC1);
 - on every showcase route, at 360, 768, and 1280 px (REQ-060 AC1, A-09).
 
-The suite runs in `pnpm test:all`, which CI runs on every push and pull request (REQ-074). A task is not done until it passes. The helper `expectNoA11yViolations` and the route crawl are built in T5.5. axe finds only part of the WCAG failures, so the keyboard, focus, and target-size tests above run alongside it, and each component doc lists what it covers by hand.
+The suite runs in `pnpm test:all`, which CI runs on every push and pull request (REQ-074). A task is not done until it passes. The helper `expectNoA11yViolations` (in `apps/showcase/tests/e2e/helpers/a11y.ts`) runs axe with the WCAG 2.2 A and AA tags and fails with every violation it finds. The showcase's route matrix applies it, with the overflow, target-size, landmark, skip-link, and keyboard checks, to every route at the three widths. axe finds only part of the WCAG failures, so the keyboard, focus, and target-size tests above run alongside it, and each component doc lists what it covers by hand.
 
 ### When to use
 
@@ -154,6 +154,7 @@ Email templates follow the same contrast rules, using the resolved values from `
 | `scripts/check-contrast.ts` | The contrast check, run by `pnpm check:tokens` and `pnpm test`. |
 | `tokens/semantic/focus.json` | The focus indicator, `stable` (ADR-0009). |
 | `apps/showcase/tests/e2e/` | The Playwright suite with axe, keyboard, target-size, overflow, and reduced-motion tests (T5.5). |
+| `apps/showcase/tests/e2e/helpers/a11y.ts` | `expectNoA11yViolations`, `expectNoHorizontalOverflow`, and `expectTargetSize`, which component demos reuse (T7.x). |
 
 ```css
 .example:focus-visible {
@@ -185,4 +186,4 @@ The contrast pairs below are `unverified` until their colors are defined. Each o
 
 ## Changelog
 
-- 0.1.0 — First draft: the WCAG 2.2 AA target (A-10), the contrast, focus, keyboard, target-size, reflow, reduced-motion, flashing, and decorative-content rules, the axe gate (REQ-027, REQ-060), and the unverified pairs for TBD-04 to TBD-07 (T4.6) — awaiting owner approval
+- 0.1.0 — First draft: the WCAG 2.2 AA target (A-10), the contrast, focus, keyboard, target-size, reflow, reduced-motion, flashing, and decorative-content rules, the axe gate (REQ-027, REQ-060), and the unverified pairs for TBD-04 to TBD-07 (T4.6); the axe helper and the route matrix are built (T5.5) — awaiting owner approval

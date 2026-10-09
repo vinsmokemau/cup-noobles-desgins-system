@@ -3,6 +3,8 @@
   "ignores": [
     "**/node_modules/**",
     "**/dist/**",
+    // Playwright writes an error-context.md for each failed test (T5.5); it is output, not a doc.
+    "**/test-results/**",
     "reports/**",
     // Deliberate check-docs violations (T2.2); tests/check-docs.test.ts asserts their exact line numbers.
     "tests/fixtures/**",

@@ -33,7 +33,22 @@ export default defineNuxtConfig({
   content: {
     // ADR-0002 §1: Node's built-in SQLite, so no native module is compiled.
     experimental: { sqliteConnector: 'native' },
+    // The default code theme paints comments #676e95 on black, 4.24:1 (WCAG 1.4.3 needs 4.5:1). This one is built for
+    // contrast. It is a syntax theme for code samples, not a brand color; the site is dark-only (A-02).
+    build: {
+      markdown: {
+        highlight: {
+          theme: {
+            default: 'github-dark-high-contrast',
+            dark: 'github-dark-high-contrast',
+            light: 'github-dark-high-contrast',
+          },
+        },
+      },
+    },
   },
+  // The docs are in English (ER-10), and a page needs a language for screen readers (WCAG 3.1.1, axe `html-has-lang`).
+  app: { head: { htmlAttrs: { lang: 'en' } } },
   runtimeConfig: {
     public: {
       version: (JSON.parse(read(repoRoot, 'packages/nuxt/package.json')) as { version: string }).version,

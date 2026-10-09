@@ -42,8 +42,19 @@ test('REQ-051 AC1: content.config.ts reads the repository docs/ in place and ski
 test('ADR-0002 §1: @nuxt/content is pinned to 3.16.1 and uses the native SQLite connector', () => {
   const pkg = JSON.parse(read('apps/showcase/package.json'))
   assert.equal(pkg.dependencies['@nuxt/content'], '3.16.1')
-  assert.deepEqual(nuxtConfig.content, { experimental: { sqliteConnector: 'native' } })
+  assert.deepEqual(nuxtConfig.content?.experimental, { sqliteConnector: 'native' })
   assert.deepEqual(nuxtConfig.modules, ['@nuxt/content'])
+})
+
+test('REQ-060 AC1 (T5.5): code samples use a high-contrast syntax theme in every mode, and the page language is set', () => {
+  const highlight = nuxtConfig.content?.build?.markdown?.highlight
+  const themes = highlight ? highlight.theme : undefined
+  assert.deepEqual(themes, {
+    default: 'github-dark-high-contrast',
+    dark: 'github-dark-high-contrast',
+    light: 'github-dark-high-contrast',
+  })
+  assert.equal(nuxtConfig.app?.head?.htmlAttrs?.lang, 'en')
 })
 
 test('REQ-059 AC1: the showcase extends the design system layer and is linted for raw values (REQ-016)', async () => {

@@ -102,11 +102,18 @@
  * Nuxt UI's role variables that have a matching token. The layer sits after Nuxt UI's own `.dark` rules in the same
  * cascade layer, so these win. The page background stays pure black (BR-03, REQ-012), and labels on brand fills are
  * black (SPEC.md §2.1 derived facts, ADR-0001 Consequences). Roles without a token keep reading the neutral scale.
+ *
+ * The raised surfaces (muted, elevated, accented) read the same black. The neutral scale is one placeholder color
+ * (TBD-05), so left alone they would paint a light slate under white text (2.63:1, an axe failure). Until OD-05 is
+ * decided, surfaces sit on color.bg.base and the outline carries the boundary (C-05).
  */
 @layer theme {
   :root,
   .dark {
     --ui-bg: var(--cn-color-bg-base);
+    --ui-bg-muted: var(--cn-color-bg-base);
+    --ui-bg-elevated: var(--cn-color-bg-base);
+    --ui-bg-accented: var(--cn-color-bg-base);
     --ui-text: var(--cn-color-text-default);
     --ui-text-muted: var(--cn-color-text-muted);
     --ui-text-inverted: var(--cn-color-text-inverted);

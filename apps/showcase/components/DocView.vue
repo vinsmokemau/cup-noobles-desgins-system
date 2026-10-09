@@ -34,7 +34,8 @@ const isEmail = entry.route.startsWith('/email/')
 
 <template>
   <div v-if="page" class="lg:flex lg:gap-8" :data-doc-source="`docs/${entry.file}`">
-    <article class="min-w-0 flex-1">
+    <!-- An unbroken string in inline code (a path, a URL) wraps instead of pushing the page wider (REQ-061 AC1). -->
+    <article class="min-w-0 flex-1 [&_:not(pre)>code]:wrap-anywhere">
       <UAlert
         v-if="banner"
         class="mb-4"
@@ -48,7 +49,8 @@ const isEmail = entry.route.startsWith('/email/')
       <PendingNotice v-if="isEmail" class="mt-8" task="T10.5" />
     </article>
     <aside v-if="toc.length > 0" aria-label="On this page" class="lg:w-64 lg:shrink-0">
-      <UContentToc title="On this page" :links="toc" />
+      <!-- The toc's default negative margins pull it past the page padding, which overflows from sm up (REQ-061 AC1). -->
+      <UContentToc class="mx-0 sm:mx-0" title="On this page" :links="toc" />
     </aside>
   </div>
 </template>

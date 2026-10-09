@@ -1,4 +1,4 @@
-// T5.4 end-to-end checks on the static build: the route crawl and the route count (REQ-051 AC2, REQ-052 AC1), the status
+﻿// T5.4 end-to-end checks on the static build: the route crawl and the route count (REQ-051 AC2, REQ-052 AC1), the status
 // banner (REQ-057 AC1), the on-page table of contents, the verbatim brand source, the 404 page, and the fixture-doc
 // edit (REQ-051 AC3). The pages are fetched as HTML where the check is about content, and opened in the browser where
 // it is about behavior.
@@ -7,8 +7,9 @@ import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, 
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { expect, test, type APIRequestContext } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { parse as parseYaml } from 'yaml'
+import { crawl, type Crawl } from './helpers/crawl'
 
 const repoRoot = fileURLToPath(new URL('../../../../', import.meta.url))
 const appDir = fileURLToPath(new URL('../../', import.meta.url))
@@ -29,7 +30,7 @@ const frontmatter = (file: string) =>
     status?: string
   }
 
-// SPEC.md §4.6, one example route per row, plus the routes that have no doc behind them.
+// SPEC.md Â§4.6, one example route per row, plus the routes that have no doc behind them.
 const sitemap = [
   '/',
   '/overview/glossary',
@@ -54,36 +55,6 @@ const sitemap = [
   '/status',
 ]
 
-interface Crawl {
-  pages: Map<string, { status: number; html: string }>
-  broken: string[]
-}
-
-/** Follows every internal link from `/`, the way a visitor would, and records the status of each page. */
-async function crawl(request: APIRequestContext): Promise<Crawl> {
-  const pages = new Map<string, { status: number; html: string }>()
-  const broken: string[] = []
-  const queue = ['/']
-  while (queue.length > 0) {
-    const path = queue.shift()!
-    if (pages.has(path)) continue
-    const response = await request.get(path)
-    const html = await response.text()
-    pages.set(path, { status: response.status(), html })
-    if (response.status() !== 200) {
-      broken.push(`${path} -> ${response.status()}`)
-      continue
-    }
-    for (const match of html.matchAll(/<a\b[^>]*?\shref="([^"]*)"/g)) {
-      const href = match[1]!.replaceAll('&amp;', '&')
-      if (!href.startsWith('/') || href.startsWith('//')) continue
-      const target = href.split(/[?#]/)[0]!
-      if (target && !pages.has(target)) queue.push(target)
-    }
-  }
-  return { pages, broken }
-}
-
 let crawled: Crawl
 test.beforeAll(async ({ playwright, baseURL }) => {
   const request = await playwright.request.newContext({ baseURL })
@@ -96,7 +67,7 @@ test('REQ-052 AC1: the route crawl finds no 404', () => {
   expect(crawled.pages.size).toBeGreaterThan(docFiles.length)
 })
 
-test('REQ-052 AC1: every route in SPEC.md §4.6 returns a rendered page', async ({ page }) => {
+test('REQ-052 AC1: every route in SPEC.md Â§4.6 returns a rendered page', async ({ page }) => {
   for (const route of sitemap) {
     const response = await page.goto(route)
     expect(response?.status(), route).toBe(200)
