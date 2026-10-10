@@ -1108,7 +1108,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 6. Claude reviews the SVG (valid, `viewBox`, transparent background, no raster `<image>`, no script or external reference, no text that needs a font, colors match the chosen proposal and the brand palette) and reports problems to the owner without editing the artwork.
 7. The suite passes, the checkbox is ticked, and the task is committed.
 
-- [ ] **T7.11 — Motif artwork: pink ramen cup with gamer details**
+- [x] **T7.11 — Motif artwork: pink ramen cup with gamer details** (2026-10-10, 1a11b97)
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
   - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Ramen-Cup-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
