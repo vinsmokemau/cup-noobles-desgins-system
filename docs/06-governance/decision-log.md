@@ -38,6 +38,7 @@ updated: 2026-09-27
 - [ADR-0017: Sparkle motif artwork and size](decisions/0017-sparkle-motif-artwork.md)
 - [ADR-0018: Card look](decisions/0018-card-look.md)
 - [ADR-0019: Ramen cup motif artwork](decisions/0019-ramen-cup-motif-artwork.md)
+- [ADR-0020: Chopsticks motif artwork](decisions/0020-chopsticks-motif-artwork.md)
 - [ADR-0021: Golden d20 motif artwork](decisions/0021-golden-d20-motif-artwork.md)
 
 ## Open items
