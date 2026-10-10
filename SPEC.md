@@ -1089,7 +1089,7 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Depends on: T7.2
   - Done when: both are `aria-hidden` with no focusable children, any animation respects reduced motion, and the sticker frame wraps arbitrary slot content without overflow at 360 px. Motif artwork is a TBD-18 placeholder.
 
-- [ ] **T7.9 — `CnLogo` brand assets**
+- [x] **T7.9 — `CnLogo` brand assets** (2026-10-09, 8aa9daa)
   - REQs: REQ-030 (AC3), REQ-026 (AC3), REQ-027 (AC1), REQ-028 (AC1)
   - Depends on: T7.7 (OD-08 decided for the logos, ADR-0016)
   - Done when: each variant renders its supplied SVG unmodified, as an image file; the clear space is 25% of the logo height and the minimum heights are 64 px (icon), 80 px (vertical), and 36 px (horizontal), as tokens; no placeholder is left; TBD-17 callouts and tokens are gone; the logo doc is `stable`, and `brand-identity.md` states the rules and stays `draft` for the motifs (TBD-18); and the baselines show the real logos.
