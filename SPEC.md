@@ -1094,7 +1094,7 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Depends on: T7.7 (OD-08 decided for the logos, ADR-0016)
   - Done when: each variant renders its supplied SVG unmodified, as an image file; the clear space is 25% of the logo height and the minimum heights are 64 px (icon), 80 px (vertical), and 36 px (horizontal), as tokens; no placeholder is left; TBD-17 callouts and tokens are gone; the logo doc is `stable`, and `brand-identity.md` states the rules and stays `draft` for the motifs (TBD-18); and the baselines show the real logos.
 
-- [ ] **T7.10 — `CnSparkle` motif artwork**
+- [x] **T7.10 — `CnSparkle` motif artwork** (2026-10-09, d86ce4d)
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.8 (OD-08 decided for the sparkle, ADR-0017)
   - Done when: `CnSparkle` renders the supplied `Sparkle-CN.svg` unmodified, as an image file, sized to the text beside it; the TBD-18 placeholder text, rule, and `motif.placeholder.fg` token are gone; the motif stays `aria-hidden` with no focusable child and the `animated` fade still stops under reduced motion; the sparkle baselines show the real artwork; and `sparkle.md` states the artwork and stays `draft` for TBD-14.
