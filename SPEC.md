@@ -1113,7 +1113,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
   - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Ramen-Cup-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
 
-- [ ] **T7.12 — Motif artwork: golden d20**
+- [x] **T7.12 — Motif artwork: golden d20** (2026-10-10, 873e39f)
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
   - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/D20-CN.svg`; the review in step 6 finds no problem; and `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T7.16 runs it for all the motifs.
