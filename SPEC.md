@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.21 |
+| Spec version | 1.22 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -199,7 +199,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
 | TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | Resolved (ADR-0016) |
-| TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017) and the ramen cup (ADR-0019) are supplied; the other five motifs of BR-14 are still open. | `CnStickerFrame`, imagery-and-motifs.md | SVG files for the remaining five motifs |
+| TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017), the ramen cup (ADR-0019), and the golden d20 (ADR-0021) are supplied; the other four motifs of BR-14 are still open. | `CnStickerFrame`, imagery-and-motifs.md | SVG files for the remaining four motifs |
 | TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Resolved (ADR-0012) |
 | TBD-20 | Photography and thumbnail standards. This is the same open item as EC decision D11. | imagery-and-motifs.md | Guidelines |
 | TBD-21 | Voice attributes beyond the adjectives in BC (the "this, not that" pairs) | voice-and-tone.md | Approval of a draft |
@@ -1331,6 +1331,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.19 | 2026-10-10 | Added T7.11 through T7.16 to P7, one per missing BR-14 motif (ramen cup, golden d20, chopsticks, noodle waves, arcade lines, sticker borders). Each task prepares a ChatGPT prompt, compares 4 proposals on a selection page, records the choice in an ADR, and reviews the owner's SVG. No existing task changes. | Owner request in chat |
 | 1.20 | 2026-10-10 | T7.12 through T7.15: the definition of done requires `pnpm test` instead of `pnpm test:all`; the full suite runs in T7.16. §0.2, T7.11 and T7.16 are unchanged. | Owner request in chat |
 | 1.21 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the ramen cup artwork is in (T7.11), so the sparkle and the ramen cup are supplied and the other five BR-14 motifs stay open. The ramen cup is the owner's chosen proposal A, drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background, with the glints in `#fff488`. | Owner decision in chat (option A); ADR-0019 |
+| 1.22 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the golden d20 artwork is in (T7.12), so the sparkle, the ramen cup, and the golden d20 are supplied and the other four BR-14 motifs stay open. The d20 is the owner's chosen proposal A, drawn flat in `#fff488` with black outlines on a transparent background, with no shine marks. | Owner decision in chat (options A and N); ADR-0021 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
