@@ -1101,7 +1101,7 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
 
 ### P8 — Molecules and organisms
 
-- [ ] **T8.1 — FormField and Card**
+- [x] **T8.1 — FormField and Card** (2026-10-09, 9a8e480)
   - REQs: REQ-025 (AC1, AC3), REQ-026, REQ-027, REQ-028
   - Depends on: T7.4
   - Done when: FormField wires its label, help text, and error to the control, and axe is clean in the error state; Card renders on `color.bg.base` with its outline and highlight tokens, and marks `color.surface.card` TBD-06 per C-05.
