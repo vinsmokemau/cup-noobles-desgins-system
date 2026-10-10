@@ -1084,7 +1084,7 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Depends on: T7.2 (OD-08 needed before the doc can be `stable`)
   - Done when: all 3 variants render the placeholder text "Logo asset pending (TBD-17)"; the accessible label is required unless the logo is `decorative`; and the component contains no invented artwork.
 
-- [ ] **T7.8 — `CnSparkle` and `CnStickerFrame`**
+- [x] **T7.8 — `CnSparkle` and `CnStickerFrame`** (2026-10-09, dee80af)
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.2
   - Done when: both are `aria-hidden` with no focusable children, any animation respects reduced motion, and the sticker frame wraps arbitrary slot content without overflow at 360 px. Motif artwork is a TBD-18 placeholder.
