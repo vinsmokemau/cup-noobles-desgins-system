@@ -37,11 +37,10 @@ updated: 2026-10-09
 |---|---|---|---|
 | `motif.placeholder.bg` | `--cn-motif-placeholder-bg` | `#000000` | stable |
 | `motif.placeholder.border` | `--cn-motif-placeholder-border` | `#90a1b9` | tbd (TBD-05, TBD-18) |
-| `motif.placeholder.fg` | `--cn-motif-placeholder-fg` | `#90a1b9` | tbd (TBD-05, TBD-18) |
 
 <!-- /cn:generated -->
 
-The frame reads the placeholder outline (TBD-05), so it is `tbd` until the owner supplies the neutral scale and the artwork (TBD-18). It does not read `motif.placeholder.fg`: that token is the sparkle's note color. Its stroke width and corner radius are the tokens `border.width.motif` and `radius.motif` on the [Shape](../../01-foundations/shape.md) page, and they follow placeholders too (TBD-11, TBD-10). The padding is two base spacing units.
+The frame reads the placeholder outline (TBD-05), so it is `tbd` until the owner supplies the neutral scale and the sticker border artwork (TBD-18). These tokens are the frame's alone: the sparkle has its artwork now (ADR-0017) and reads none of them. Its stroke width and corner radius are the tokens `border.width.motif` and `radius.motif` on the [Shape](../../01-foundations/shape.md) page, and they follow placeholders too (TBD-11, TBD-10). The padding is two base spacing units.
 
 ### Brand rules
 

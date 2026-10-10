@@ -31,7 +31,7 @@ for (const slug of ['sparkle', 'sticker-frame'] as const) {
   })
 }
 
-test('REQ-029 AC1: every sparkle is aria-hidden, has no accessible name, and shows the TBD-18 placeholder', async ({
+test('REQ-029 AC1, ADR-0017: every sparkle is aria-hidden, unnamed, and shows the supplied artwork', async ({
   page,
 }) => {
   await openDemo(page, 'sparkle', 'states')
@@ -39,12 +39,33 @@ test('REQ-029 AC1: every sparkle is aria-hidden, has no accessible name, and sho
   await expect(sparkles).toHaveCount(2)
   for (const sparkle of await sparkles.all()) {
     await expect(sparkle).toHaveAttribute('aria-hidden', 'true')
-    await expect(sparkle).toHaveText('Motif pending (TBD-18)')
+    await expect(sparkle).toHaveAttribute('alt', '')
     await expect(sparkle).not.toHaveAttribute('role', /.+/)
     await expect(sparkle).not.toHaveAttribute('aria-label', /.+/)
+    // The artwork is served either as its own file or, because it is small, as a data URI the bundler inlined.
+    // Either way it is an image, so its shapes stay out of the accessibility tree (ADR-0017).
+    const src = (await sparkle.getAttribute('src')) ?? ''
+    expect(src).toMatch(/Sparkle-CN[^/]*\.svg$|^data:image\/svg\+xml[,;]/)
+    if (src.startsWith('data:')) {
+      const svg = decodeURIComponent(src.slice(src.indexOf(',') + 1))
+      expect(svg).toContain('viewBox')
+      expect(svg).toContain('#fff488') // the brand yellow survives the bundler untouched
+    }
+    // The artwork is actually decoded, not a broken image.
+    expect(await sparkle.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true)
   }
-  // The placeholder draws no artwork: no image and no SVG.
-  await expect(page.locator('.cn-sparkle img, .cn-sparkle svg')).toHaveCount(0)
+  // The placeholder is gone, and the file is never inlined.
+  await expect(page.getByText('Motif pending')).toHaveCount(0)
+  await expect(page.locator('.cn-sparkle svg')).toHaveCount(0)
+})
+
+test('ADR-0017: a sparkle is as tall as the text beside it, and --sparkle-size overrides it', async ({ page }) => {
+  await openDemo(page, 'sparkle', 'states')
+  const sparkle = page.locator('[data-state="default"] .cn-sparkle')
+  const fontSize = await sparkle.evaluate((el) => Number.parseFloat(getComputedStyle(el.parentElement!).fontSize))
+  expect(await sparkle.evaluate((el) => Number.parseFloat(getComputedStyle(el).height))).toBeCloseTo(fontSize, 1)
+  await sparkle.evaluate((el) => (el as HTMLElement).style.setProperty('--sparkle-size', '48px'))
+  expect(await sparkle.evaluate((el) => Number.parseFloat(getComputedStyle(el).height))).toBeCloseTo(48, 1)
 })
 
 test('REQ-029 AC1: every sticker frame is aria-hidden and its content cannot take focus', async ({ page }) => {

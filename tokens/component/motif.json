@@ -17,7 +17,7 @@
       "motif": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the motif placeholders (BR-13, BR-14). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value. TBD-18: the placeholders stand in for the missing motif artwork.",
+        "$description": "Outline stroke width of the sticker frame placeholder (BR-13, BR-14). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value. TBD-18: the placeholder stands in for the missing sticker border artwork.",
         "$extensions": {
           "cn": {
             "status": "tbd",
@@ -32,7 +32,7 @@
       "bg": {
         "$type": "color",
         "$value": "{color.bg.base}",
-        "$description": "The surface the motif placeholders sit on: the pure black page (BR-03).",
+        "$description": "The surface the sticker frame placeholder sits on: the pure black page (BR-03).",
         "$extensions": {
           "cn": {
             "status": "stable"
@@ -42,18 +42,7 @@
       "border": {
         "$type": "color",
         "$value": "{color.border.default}",
-        "$description": "Outline color of the motif placeholders. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-18: the placeholders stand in for the missing motif artwork.",
-        "$extensions": {
-          "cn": {
-            "tbd": ["TBD-05", "TBD-18"],
-            "status": "tbd"
-          }
-        }
-      },
-      "fg": {
-        "$type": "color",
-        "$value": "{color.text.muted}",
-        "$description": "Text color of the sparkle placeholder note. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-18: the placeholder stands in for the missing motif artwork.",
+        "$description": "Outline color of the sticker frame placeholder. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-18: the placeholder stands in for the missing sticker border artwork.",
         "$extensions": {
           "cn": {
             "tbd": ["TBD-05", "TBD-18"],

@@ -64,12 +64,10 @@ test('REQ-030 AC3: the three supplied files are byte-identical to the owner file
       new RegExp(`${variant}: new URL\\('\\.\\./assets/brand/${file}', import\\.meta\\.url\\)\\.href`),
     )
   }
-  // Only the three supplied files are in the brand folder.
+  // The brand folder holds the three logos and, since T7.10, the sparkle motif (ADR-0017) — nothing else.
   assert.deepEqual(
     listFiles(root, 'packages/nuxt/assets/brand', /\.(svg|png|jpe?g|webp|gif|avif)$/i).map((f) => f.split('/').pop()),
-    Object.values(FILES)
-      .map(([file]) => file)
-      .sort(),
+    [...Object.values(FILES).map(([file]) => file), 'Sparkle-CN.svg'].sort(),
   )
 })
 

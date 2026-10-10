@@ -444,26 +444,24 @@
 }
 
 /*
- * T7.8 (REQ-029): CnSparkle and CnStickerFrame. The motif artwork is not supplied (TBD-18), so each is a plain outline drawn
- * from --cn-motif-* tokens and the shape tokens border.width.motif and radius.motif, with no artwork that could be mistaken
- * for a brand motif. The sparkle is a small outlined box that carries the note "Motif pending (TBD-18)"; the sticker frame is
- * an outlined box around its slot. The frame fits its content, never grows wider than its container, and clips what is
- * wider than itself, so it cannot cause horizontal overflow (REQ-028 AC1). The sparkle's outline fades to half strength when it is `animated`, over ten
- * base durations (the placeholder duration, TBD-14); the note stays at full contrast. The fade is off under reduced motion (REQ-029 AC2).
+ * T7.8 (REQ-029): CnSparkle and CnStickerFrame, the two motif components of BR-14.
+ *
+ * T7.10 (ADR-0017): the sparkle is the supplied Sparkle-CN.svg, shown as an image and never edited or inlined. It is as
+ * tall as the text beside it, so it follows the type scale and introduces no size of its own; a page makes it larger
+ * through --sparkle-size. It fades when it is `animated`, over ten base durations (the placeholder duration, TBD-14), and
+ * the fade is off under reduced motion (REQ-029 AC2).
+ *
+ * The sticker border artwork is still missing (TBD-18), so the frame stays a plain outline drawn from the --cn-motif-*
+ * tokens and the shape tokens border.width.motif and radius.motif, with no artwork that could be mistaken for a brand
+ * motif. The frame fits its content, never grows wider than its container, and clips what is wider than itself, so it
+ * cannot cause horizontal overflow (REQ-028 AC1).
  */
 .cn-sparkle {
-  display: inline-flex;
+  display: inline-block;
+  width: auto;
+  height: var(--sparkle-size, 1em);
   max-width: 100%;
-  align-items: center;
-  justify-content: center;
-  padding: calc(var(--cn-space-base) * 2);
-  background-color: var(--cn-motif-placeholder-bg);
-  border: var(--cn-border-width-motif) solid var(--cn-motif-placeholder-border);
-  border-radius: var(--cn-radius-motif);
-  color: var(--cn-motif-placeholder-fg);
-  font-size: var(--cn-font-size-caption);
-  text-align: center;
-  overflow-wrap: anywhere;
+  vertical-align: middle;
 }
 
 .cn-sparkle[data-animated='true'] {
@@ -472,7 +470,7 @@
 
 @keyframes cn-sparkle-fade {
   50% {
-    border-color: color-mix(in srgb, var(--cn-motif-placeholder-border) 50%, transparent);
+    opacity: 0.5;
   }
 }
 

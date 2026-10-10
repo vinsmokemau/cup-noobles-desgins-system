@@ -35,6 +35,7 @@ updated: 2026-09-27
 - [ADR-0014: Choice controls look](decisions/0014-choice-controls-look.md)
 - [ADR-0015: Progress, skeleton, and separator look](decisions/0015-progress-skeleton-separator-look.md)
 - [ADR-0016: Logo assets, clear space, and minimum size](decisions/0016-logo-assets-and-rules.md)
+- [ADR-0017: Sparkle motif artwork and size](decisions/0017-sparkle-motif-artwork.md)
 
 ## Open items
 

@@ -15,7 +15,7 @@ updated: 2026-10-09
 
 ## Purpose
 
-This doc lists the Cup Noobles brand assets (BR-16) and the decorative motifs (BR-14), and it sets the rules for showing them. Its clear-space and minimum-size rules are what `CnLogo` applies to the supplied logo files (REQ-030 AC3, ADR-0016). The motif artwork has not been supplied yet (TBD-18).
+This doc lists the Cup Noobles brand assets (BR-16) and the decorative motifs (BR-14), and it sets the rules for showing them. Its clear-space and minimum-size rules are what `CnLogo` applies to the supplied logo files (REQ-030 AC3, ADR-0016). Of the motifs, only the sparkle is supplied (ADR-0017); the other six are still open (TBD-18).
 
 ## Usage rules
 
@@ -61,8 +61,8 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 
 | Motif (BR-14) | Rendered by |
 |---|---|
-| Sparkles and stars | `CnSparkle` (see [Sparkle](../02-components/atoms/sparkle.md)) |
-| Sticker-style borders | `CnStickerFrame` (see [Sticker frame](../02-components/atoms/sticker-frame.md)) |
+| Sparkles and stars | `CnSparkle` (see [Sparkle](../02-components/atoms/sparkle.md)), rendering `Sparkle-CN.svg` (ADR-0017) |
+| Sticker-style borders | `CnStickerFrame` (see [Sticker frame](../02-components/atoms/sticker-frame.md)), awaiting its artwork (TBD-18) |
 | A pink ramen cup with gamer details (the core brand icon) | Motif artwork (TBD-18) |
 | Noodle-inspired curves and waves | Motif artwork (TBD-18) |
 | A golden d20 | Motif artwork (TBD-18) |
@@ -73,7 +73,7 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 - A motif that animates stops, or reduces to a non-moving state, under `prefers-reduced-motion: reduce`, and never flashes more than 3 times per second (REQ-029 AC2, AC3).
 - [Imagery and motifs](../01-foundations/imagery-and-motifs.md) holds the full motif rules.
 
-> **TBD (TBD-18):** The motif artwork is not defined. Owner input needed: the SVG files for the motifs in BR-14.
+> **TBD (TBD-18):** The artwork for six of the seven BR-14 motifs is not defined. The sparkle is supplied (ADR-0017). Owner input needed: the remaining SVG files.
 
 ### When to use
 
@@ -88,9 +88,10 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 
 ## Open items
 
-> **TBD (TBD-18):** Motif artwork as SVG. Owner input needed.
+> **TBD (TBD-18):** Artwork as SVG for the six motifs other than the sparkle. Owner input needed.
 
 ## Changelog
 
 - 0.1.0 — First draft: brand assets from BR-16, motifs from BR-14, and the `CnLogo` rules from REQ-030 (T4.1) — awaiting owner approval
 - 0.1.0 — The logo files, the clear space, and the minimum sizes are supplied by the owner; TBD-17 is resolved (T7.9) — ADR-0016
+- 0.1.0 — The sparkle artwork is supplied as `Sparkle-CN.svg`; the other six motifs stay open (T7.10) — ADR-0017
