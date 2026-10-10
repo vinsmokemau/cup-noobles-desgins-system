@@ -13,3 +13,6 @@ reports/*
 # Playwright output (T5.2)
 test-results/
 playwright-report/
+
+# Motif proposal PNGs (working area, see SPEC.md T7.11-T7.16)
+motif-proposals/

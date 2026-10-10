@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.18 |
+| Spec version | 1.19 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1099,6 +1099,45 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Depends on: T7.8 (OD-08 decided for the sparkle, ADR-0017)
   - Done when: `CnSparkle` renders the supplied `Sparkle-CN.svg` unmodified, as an image file, sized to the text beside it; the TBD-18 placeholder text, rule, and `motif.placeholder.fg` token are gone; the motif stays `aria-hidden` with no focusable child and the `animated` fade still stops under reduced motion; the sparkle baselines show the real artwork; and `sparkle.md` states the artwork and stays `draft` for TBD-14.
 
+Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task selects the artwork for one motif and does not wire it into a component. Every task follows the same flow:
+1. Claude writes one ChatGPT prompt that asks for 4 proposals of the motif, built only from the brand source and §2.1, and tells the owner to attach the three logo files (`Icon-CN.svg`, `LogoHorizontal-CN.svg`, `LogoVertical-CN.svg`) as style reference. Anything not from the brand source is labelled as an example.
+2. The owner puts the 4 PNGs, named `A` to `D`, in `motif-proposals/<motif>/` at the repository root. The folder is git-ignored.
+3. Claude publishes a private Artifact that shows the 4 proposals in use on brand context, with a recommendation and a one-letter reply.
+4. The owner picks one in chat, and an ADR records the choice.
+5. Claude states the path and file name for the SVG and waits for the owner to confirm the file exists. The owner converts the PNG to SVG.
+6. Claude reviews the SVG (valid, `viewBox`, transparent background, no raster `<image>`, no script or external reference, no text that needs a font, colors match the chosen proposal and the brand palette) and reports problems to the owner without editing the artwork.
+7. The suite passes, the checkbox is ticked, and the task is committed.
+
+- [ ] **T7.11 — Motif artwork: pink ramen cup with gamer details**
+  - REQs: REQ-029, REQ-021, REQ-022
+  - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Ramen-Cup-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+
+- [ ] **T7.12 — Motif artwork: golden d20**
+  - REQs: REQ-029, REQ-021, REQ-022
+  - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/D20-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+
+- [ ] **T7.13 — Motif artwork: chopsticks**
+  - REQs: REQ-029, REQ-021, REQ-022
+  - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Chopsticks-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+
+- [ ] **T7.14 — Motif artwork: noodle curves and waves**
+  - REQs: REQ-029, REQ-021, REQ-022
+  - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Noodle-Wave-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+
+- [ ] **T7.15 — Motif artwork: arcade shapes and dynamic lines**
+  - REQs: REQ-029, REQ-021, REQ-022
+  - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Arcade-Lines-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+
+- [ ] **T7.16 — Motif artwork: sticker-style borders**
+  - REQs: REQ-029, REQ-021, REQ-022
+  - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Sticker-Border-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+
 ### P8 — Molecules and organisms
 
 - [x] **T8.1 — FormField and Card** (2026-10-09, 9a8e480)
@@ -1289,6 +1328,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.16 | 2026-10-09 | §2.4: TBD-19 resolved. §7.2: OD-09 decided. The icon set is Phosphor Bold (`@iconify-json/ph`, MIT), and Nuxt UI's `ui.icons` points to it. | Owner decision in chat (T7.3, option C); ADR-0012 |
 | 1.17 | 2026-10-09 | §2.4: TBD-17 resolved. §7.2: OD-08 decided for the logos, still open for the motifs (TBD-18). Added T7.9 (`CnLogo` brand assets) to P7. The logos are the three supplied SVGs, with a clear space of 25% of the logo height and minimum heights of 64 px (icon), 80 px (vertical), and 36 px (horizontal). | Owner decision in chat (option B for both rules); ADR-0016 |
 | 1.18 | 2026-10-09 | §2.4: TBD-18 partly supplied — the sparkle artwork is in, the other six BR-14 motifs stay open. §7.2: OD-08 decided for the sparkle. Added T7.10 (`CnSparkle` motif artwork) to P7. The sparkle is the owner's chosen artwork, recoloured to `color.brand.yellow`, and sized to the text beside it. | Owner decision in chat (option A); ADR-0017 |
+| 1.19 | 2026-10-10 | Added T7.11 through T7.16 to P7, one per missing BR-14 motif (ramen cup, golden d20, chopsticks, noodle waves, arcade lines, sticker borders). Each task prepares a ChatGPT prompt, compares 4 proposals on a selection page, records the choice in an ADR, and reviews the owner's SVG. No existing task changes. | Owner request in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1319,15 +1359,15 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-017 | T3.1, T3.4 |
 | REQ-018 | T11.4, T12.3 |
 | REQ-020 | T0.1, T1.3, T5.1, T7.3, T7.4, T7.5, T7.6, T8.3, T8.4, T8.5, T8.6, T8.7 |
-| REQ-021 | T1.3, T7.7, T7.8, T7.10, T8.2 |
-| REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T8.2, T8.6, T8.7 |
+| REQ-021 | T1.3, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T8.2 |
+| REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T8.2, T8.6, T8.7 |
 | REQ-023 | T4.4, T7.2 |
 | REQ-024 | T4.4, T7.2, T7.4, T7.5 |
 | REQ-025 | T8.1, T8.2 |
 | REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
 | REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
 | REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T7.9, T8.1, T8.2, T8.4, T8.6 |
-| REQ-029 | T4.5, T4.6, T7.6, T7.8, T7.10 |
+| REQ-029 | T4.5, T4.6, T7.6, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16 |
 | REQ-030 | T4.1, T7.7, T7.9 |
 | REQ-031 | T0.1, T5.1, T5.3 |
 | REQ-035 | T9.1, T9.2 |
