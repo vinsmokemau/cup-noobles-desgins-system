@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.16 |
+| Spec version | 1.17 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -198,7 +198,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-14 | Motion durations and easing curves | `motion.*` | Values |
 | TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
-| TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | SVG files and rules |
+| TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | Resolved (ADR-0016) |
 | TBD-18 | Motif artwork (BR-14) as SVG | `CnSparkle`, imagery-and-motifs.md | SVG files |
 | TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Resolved (ADR-0012) |
 | TBD-20 | Photography and thumbnail standards. This is the same open item as EC decision D11. | imagery-and-motifs.md | Guidelines |
@@ -1089,6 +1089,11 @@ Rule for every component task (T7.2 onward): produce the component doc (the full
   - Depends on: T7.2
   - Done when: both are `aria-hidden` with no focusable children, any animation respects reduced motion, and the sticker frame wraps arbitrary slot content without overflow at 360 px. Motif artwork is a TBD-18 placeholder.
 
+- [ ] **T7.9 — `CnLogo` brand assets**
+  - REQs: REQ-030 (AC3), REQ-026 (AC3), REQ-027 (AC1), REQ-028 (AC1)
+  - Depends on: T7.7 (OD-08 decided for the logos, ADR-0016)
+  - Done when: each variant renders its supplied SVG unmodified, as an image file; the clear space is 25% of the logo height and the minimum heights are 64 px (icon), 80 px (vertical), and 36 px (horizontal), as tokens; no placeholder is left; TBD-17 callouts and tokens are gone; the logo doc is `stable`, and `brand-identity.md` states the rules and stays `draft` for the motifs (TBD-18); and the baselines show the real logos.
+
 ### P8 — Molecules and organisms
 
 - [ ] **T8.1 — FormField and Card**
@@ -1246,7 +1251,7 @@ The owner must decide these. Each decision becomes an ADR.
 | OD-05 | Card surface (C-05, TBD-06) | (a) Pure black, separated by an outline only; (b) a distinct near-black surface token | Undecided: (a) best respects BR-03, and (b) better matches "dark surface" in BR-12. | T8.1 (placeholder allowed) |
 | OD-06 | Typefaces (TBD-01, TBD-02) | Any font meeting the criteria set in T4.3 | Owner supplies | T4.3 (placeholder allowed), before 1.0 |
 | OD-07 | Text, neutral, and feedback colors (TBD-04, 05, 07) | Owner supplies, or approves a proposal | Owner supplies | Before 1.0 |
-| OD-08 | Logo and motif SVG delivery (TBD-17, TBD-18) | Owner supplies SVGs plus clear-space and minimum-size rules | — | Before T7.7 or T8.6 can be `stable` |
+| OD-08 | Logo and motif SVG delivery (TBD-17, TBD-18) | Owner supplies SVGs plus clear-space and minimum-size rules | **Decided for the logos (TBD-17):** the owner supplied the three SVGs, and chose a clear space of 25% of the logo height and minimum heights of 64 px (icon), 80 px (vertical), and 36 px (horizontal) (ADR-0016). **Still open for the motifs (TBD-18).** | Logos: T7.9. Motifs: before T8.6 can be `stable` |
 | OD-09 | Icon set (TBD-19) | Any Iconify collection with a stroke style consistent with BR-13, or custom icons | **Decided: Phosphor Bold** (owner, ADR-0012). | Before T7.3 can be `stable` |
 | OD-10 | Stream overlays (C-04) | Keep as a non-goal, or add an overlay phase later | Keep as a non-goal for this spec | None |
 | OD-11 | Confirm C-03: visual styling lives only in the layer, and consuming apps keep "Tailwind for layout only" | Confirm or amend | **Decided: confirmed** (OA-10, ADR-0007). | T5.1 |
@@ -1277,6 +1282,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.14 | 2026-09-27 | §2.4: TBD-16 resolved. The focus indicator is a solid brand-yellow ring, 3 px wide, with a 3 px gap. | Owner decision in chat (T4.4, option A, size 2); ADR-0009 |
 | 1.15 | 2026-10-09 | Added T5.7 (faster end-to-end suite) to P5, after the T6.5 run showed `pnpm test:all` taking about 15 minutes. §0.2 is unchanged. | Owner decision in chat (option 1, new task) |
 | 1.16 | 2026-10-09 | §2.4: TBD-19 resolved. §7.2: OD-09 decided. The icon set is Phosphor Bold (`@iconify-json/ph`, MIT), and Nuxt UI's `ui.icons` points to it. | Owner decision in chat (T7.3, option C); ADR-0012 |
+| 1.17 | 2026-10-09 | §2.4: TBD-17 resolved. §7.2: OD-08 decided for the logos, still open for the motifs (TBD-18). Added T7.9 (`CnLogo` brand assets) to P7. The logos are the three supplied SVGs, with a clear space of 25% of the logo height and minimum heights of 64 px (icon), 80 px (vertical), and 36 px (horizontal). | Owner decision in chat (option B for both rules); ADR-0016 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1312,11 +1318,11 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-023 | T4.4, T7.2 |
 | REQ-024 | T4.4, T7.2, T7.4, T7.5 |
 | REQ-025 | T8.1, T8.2 |
-| REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T8.1, T8.2, T8.3, T8.4, T8.5 |
-| REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T8.1, T8.2, T8.3, T8.4, T8.5 |
-| REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T8.1, T8.2, T8.4, T8.6 |
+| REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
+| REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
+| REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T7.9, T8.1, T8.2, T8.4, T8.6 |
 | REQ-029 | T4.5, T4.6, T7.6, T7.8 |
-| REQ-030 | T4.1, T7.7 |
+| REQ-030 | T4.1, T7.7, T7.9 |
 | REQ-031 | T0.1, T5.1, T5.3 |
 | REQ-035 | T9.1, T9.2 |
 | REQ-036 | T9.3 |

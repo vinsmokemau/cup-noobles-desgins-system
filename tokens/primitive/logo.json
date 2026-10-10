@@ -1,0 +1,32 @@
+{
+  "logo": {
+    "rule": {
+      "clearSpace": {
+        "$type": "number",
+        "$value": 0.25,
+        "$description": "Clear space around a logo, as a share of the logo's height, on every side (ADR-0016, REQ-030 AC3).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0016" } }
+      },
+      "minHeight": {
+        "icon": {
+          "$type": "dimension",
+          "$value": "64px",
+          "$description": "Minimum height of the icon logo, chosen by the owner (ADR-0016).",
+          "$extensions": { "cn": { "status": "stable", "source": "ADR-0016" } }
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "80px",
+          "$description": "Minimum height of the vertical lockup, chosen by the owner (ADR-0016).",
+          "$extensions": { "cn": { "status": "stable", "source": "ADR-0016" } }
+        },
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "36px",
+          "$description": "Minimum height of the horizontal wordmark, chosen by the owner (ADR-0016).",
+          "$extensions": { "cn": { "status": "stable", "source": "ADR-0016" } }
+        }
+      }
+    }
+  }
+}

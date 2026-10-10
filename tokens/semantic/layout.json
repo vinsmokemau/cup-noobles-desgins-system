@@ -7,6 +7,34 @@
         "$description": "Maximum content container width. TBD-13: container widths are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
         "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
       }
+    },
+    "logo": {
+      "clearSpace": {
+        "$type": "number",
+        "$value": "{logo.rule.clearSpace}",
+        "$description": "Clear space around a logo, as a share of its height (ADR-0016).",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "minHeight": {
+        "icon": {
+          "$type": "dimension",
+          "$value": "{logo.rule.minHeight.icon}",
+          "$description": "Minimum height of the icon logo (ADR-0016).",
+          "$extensions": { "cn": { "status": "stable" } }
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{logo.rule.minHeight.vertical}",
+          "$description": "Minimum height of the vertical lockup (ADR-0016).",
+          "$extensions": { "cn": { "status": "stable" } }
+        },
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{logo.rule.minHeight.horizontal}",
+          "$description": "Minimum height of the horizontal wordmark (ADR-0016).",
+          "$extensions": { "cn": { "status": "stable" } }
+        }
+      }
     }
   }
 }

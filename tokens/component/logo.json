@@ -1,52 +1,29 @@
 {
-  "border": {
-    "width": {
-      "logo": {
-        "$type": "dimension",
-        "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the logo placeholder (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value. The placeholder is dropped once the logo SVGs arrive (TBD-17).",
-        "$extensions": {
-          "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-11"]
-          }
-        }
-      }
-    }
-  },
   "logo": {
-    "placeholder": {
-      "bg": {
-        "$type": "color",
-        "$value": "{color.bg.base}",
-        "$description": "The surface the logo placeholder sits on: the pure black page (BR-03).",
-        "$extensions": {
-          "cn": {
-            "status": "stable"
-          }
-        }
+    "clearSpace": {
+      "$type": "number",
+      "$value": "{layout.logo.clearSpace}",
+      "$description": "Clear space around a logo, as a share of its height, on every side (ADR-0016, REQ-030 AC3).",
+      "$extensions": { "cn": { "status": "stable" } }
+    },
+    "minHeight": {
+      "icon": {
+        "$type": "dimension",
+        "$value": "{layout.logo.minHeight.icon}",
+        "$description": "Minimum height of the icon logo (ADR-0016).",
+        "$extensions": { "cn": { "status": "stable" } }
       },
-      "border": {
-        "$type": "color",
-        "$value": "{color.border.default}",
-        "$description": "Outline color of the logo placeholder. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-17: the placeholder stands in for the missing logo files.",
-        "$extensions": {
-          "cn": {
-            "tbd": ["TBD-05", "TBD-17"],
-            "status": "tbd"
-          }
-        }
+      "vertical": {
+        "$type": "dimension",
+        "$value": "{layout.logo.minHeight.vertical}",
+        "$description": "Minimum height of the vertical lockup (ADR-0016).",
+        "$extensions": { "cn": { "status": "stable" } }
       },
-      "fg": {
-        "$type": "color",
-        "$value": "{color.text.muted}",
-        "$description": "Text color of the logo placeholder note. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-17: the placeholder stands in for the missing logo files.",
-        "$extensions": {
-          "cn": {
-            "tbd": ["TBD-05", "TBD-17"],
-            "status": "tbd"
-          }
-        }
+      "horizontal": {
+        "$type": "dimension",
+        "$value": "{layout.logo.minHeight.horizontal}",
+        "$description": "Minimum height of the horizontal wordmark (ADR-0016).",
+        "$extensions": { "cn": { "status": "stable" } }
       }
     }
   }

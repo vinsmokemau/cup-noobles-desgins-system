@@ -60,7 +60,5 @@
   { "foreground": "choice.focus.color", "background": "choice.bg", "usage": "ui" },
   { "foreground": "progress.border", "background": "progress.bg", "usage": "ui" },
   { "foreground": "progress.fill", "background": "progress.bg", "usage": "ui" },
-  { "foreground": "separator.color", "background": "separator.bg", "usage": "ui" },
-  { "foreground": "logo.placeholder.fg", "background": "logo.placeholder.bg", "usage": "text" },
-  { "foreground": "logo.placeholder.border", "background": "logo.placeholder.bg", "usage": "ui" }
+  { "foreground": "separator.color", "background": "separator.bg", "usage": "ui" }
 ]

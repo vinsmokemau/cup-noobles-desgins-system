@@ -16,7 +16,7 @@ const tbdIds = (text: string) => [...text.matchAll(/\bTBD-\d{2}\b/g)].map((m) =>
 // §4.1: the primitive files, and §4.7: every primitive group other than color is TBD in T3.2.
 const TBD_FILES = ['font', 'space', 'radius', 'border', 'effect', 'motion', 'breakpoint', 'z'].map((f) => `${f}.json`)
 // Groups resolved by the owner since T3.2, each holding stable raw values from its ADR (§4.4 resolution, ADR-0008 §4).
-const RESOLVED_FILES = { 'focus.json': 'ADR-0009' }
+const RESOLVED_FILES = { 'focus.json': 'ADR-0009', 'logo.json': 'ADR-0016' }
 
 test('§4.1: tokens/primitive/ holds exactly the listed files', () => {
   assert.deepEqual(
@@ -31,6 +31,16 @@ test('ADR-0009: the focus primitives hold the owner values, stable, with the ADR
     ['focus.width.default', '3px', 'stable', 'ADR-0009'],
     ['focus.offset.default', '3px', 'stable', 'ADR-0009'],
     ['focus.style.default', 'solid', 'stable', 'ADR-0009'],
+  ])
+})
+
+test('ADR-0016: the logo primitives hold the owner values, stable, with the ADR as source', () => {
+  const logo = inFile('logo.json').map((t) => [t.path, t.value, t.cn?.status, t.cn?.source])
+  assert.deepEqual(logo, [
+    ['logo.rule.clearSpace', 0.25, 'stable', 'ADR-0016'],
+    ['logo.rule.minHeight.icon', '64px', 'stable', 'ADR-0016'],
+    ['logo.rule.minHeight.vertical', '80px', 'stable', 'ADR-0016'],
+    ['logo.rule.minHeight.horizontal', '36px', 'stable', 'ADR-0016'],
   ])
 })
 

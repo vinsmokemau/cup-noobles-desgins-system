@@ -30,6 +30,10 @@ This doc defines how Cup Noobles pages are laid out: the breakpoints where a lay
 | `breakpoint.xl` | `--cn-breakpoint-xl` | `80rem` | tbd (TBD-13) |
 | `breakpoint.xxl` | `--cn-breakpoint-xxl` | `96rem` | tbd (TBD-13) |
 | `layout.container.max` | `--cn-layout-container-max` | `80rem` | tbd (TBD-13) |
+| `layout.logo.clearSpace` | `--cn-layout-logo-clear-space` | `0.25` | stable |
+| `layout.logo.minHeight.horizontal` | `--cn-layout-logo-min-height-horizontal` | `36px` | stable |
+| `layout.logo.minHeight.icon` | `--cn-layout-logo-min-height-icon` | `64px` | stable |
+| `layout.logo.minHeight.vertical` | `--cn-layout-logo-min-height-vertical` | `80px` | stable |
 
 <!-- /cn:generated -->
 

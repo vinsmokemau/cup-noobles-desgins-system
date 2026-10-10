@@ -5,12 +5,12 @@ layer: component
 level: atom
 source: custom
 component: CnLogo
-status: draft
+status: stable
 lang: en
-brandRules: [BR-13, BR-16]
-tokens: [logo, border.width.logo]
+brandRules: [BR-16]
+tokens: [logo]
 demos: [states, playground]
-tbd: [TBD-05, TBD-11, TBD-17]
+tbd: []
 related: [brand-identity, sparkle, sticker-frame, imagery-and-motifs, accessibility]
 since: 0.1.0
 updated: 2026-10-09
@@ -20,62 +20,55 @@ updated: 2026-10-09
 
 ## Purpose
 
-`CnLogo` shows one of the three brand assets: the circular "CN" icon, the vertical "Cup Noobles" lockup, or the horizontal "Cup Noobles" wordmark (BR-16, REQ-030). The asset files have not been supplied (TBD-17), so every variant renders a neutral placeholder that shows the text "Logo asset pending (TBD-17)". The component draws no logo, and it contains no artwork of any kind. Once the owner supplies the SVG files, `CnLogo` renders them unmodified and applies the clear-space and minimum-size rules from [Brand identity](../../00-overview/brand-identity.md) (REQ-030 AC3).
+`CnLogo` shows one of the three brand assets: the circular "CN" icon, the vertical "Cup Noobles" lockup, or the horizontal "Cup Noobles" wordmark (BR-16, REQ-030). It renders the SVG files the owner supplied, unmodified, and applies the clear-space and minimum-size rules of [Brand identity](../../00-overview/brand-identity.md) (REQ-030 AC3). The files and the rules are recorded in ADR-0016.
 
-**Why custom:** Nuxt UI has no equivalent. It ships no brand-asset component, and the logo files are the owner's artwork (BR-16), not something a Nuxt UI component can supply. `CnLogo` composes no Nuxt UI component, and it holds no behavior: it is one element that names or hides one asset.
+**Why custom:** Nuxt UI has no equivalent. It ships no brand-asset component, and the logo files are the owner's artwork (BR-16), not something a Nuxt UI component can supply. `CnLogo` composes no Nuxt UI component, and it holds no behavior: it is one image that names or hides one asset.
 
 ## Anatomy
 
-1. **container**: the outlined box that stands in for the asset. Later, the SVG takes its place.
-2. **placeholder note**: the text "Logo asset pending (TBD-17)". It is hidden from assistive technology, because the accessible name comes from `label`.
+1. **container**: the box that holds the clear space around the image.
+2. **image**: the supplied SVG, shown as an image file. It is cropped tight to the artwork, so the edge of the image is the edge of the logo.
 
 ## Tokens and specs
 
-<!-- cn:generated tokens="logo border.width.logo" format="table" -->
+<!-- cn:generated tokens="logo" format="table" -->
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.logo` | `--cn-border-width-logo` | `1px` | tbd (TBD-11) |
-| `logo.placeholder.bg` | `--cn-logo-placeholder-bg` | `#000000` | stable |
-| `logo.placeholder.border` | `--cn-logo-placeholder-border` | `#90a1b9` | tbd (TBD-05, TBD-17) |
-| `logo.placeholder.fg` | `--cn-logo-placeholder-fg` | `#90a1b9` | tbd (TBD-05, TBD-17) |
+| `logo.clearSpace` | `--cn-logo-clear-space` | `0.25` | stable |
+| `logo.minHeight.horizontal` | `--cn-logo-min-height-horizontal` | `36px` | stable |
+| `logo.minHeight.icon` | `--cn-logo-min-height-icon` | `64px` | stable |
+| `logo.minHeight.vertical` | `--cn-logo-min-height-vertical` | `80px` | stable |
+| `logo.rule.clearSpace` | `--cn-logo-rule-clear-space` | `0.25` | stable |
+| `logo.rule.minHeight.horizontal` | `--cn-logo-rule-min-height-horizontal` | `36px` | stable |
+| `logo.rule.minHeight.icon` | `--cn-logo-rule-min-height-icon` | `64px` | stable |
+| `logo.rule.minHeight.vertical` | `--cn-logo-rule-min-height-vertical` | `80px` | stable |
 
 <!-- /cn:generated -->
 
-The placeholder reads existing semantic tokens only: the black page (BR-03), the neutral outline and note color (TBD-05, a placeholder, not a brand value), and the placeholder stroke width (TBD-11). It has no fixed size and no corner radius, because the size and the shape of each asset belong to the missing files (TBD-17). It is not a design decision: it is a stand-in that keeps every page layout testable until the files arrive.
-
-Contrast pairs declared for the placeholder (REQ-015):
-
-<!-- cn:generated tokens="logo" format="contrast" -->
-
-| Foreground | Background | Usage | Ratio | Minimum | Result |
-|---|---|---|---|---|---|
-| `logo.placeholder.fg` (`#90a1b9`) | `logo.placeholder.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `logo.placeholder.fg`, `placeholder.color.neutral`) |
-| `logo.placeholder.border` (`#90a1b9`) | `logo.placeholder.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `logo.placeholder.border`, `placeholder.color.neutral`) |
-
-<!-- /cn:generated -->
+The clear space is a share of the logo's own height, so it scales with the logo. The three minimum heights are the smallest size at which each logo's lettering stays legible: about 10 px tall in each file. The values were chosen by the owner (ADR-0016). The logos are brand artwork, so no contrast pair is declared for them (REQ-015 does not apply to a logo, WCAG 1.4.3).
 
 ### Brand rules
 
 > **BR-16:** The brand assets are a circular "CN" icon, a vertical "Cup Noobles" lockup, and a horizontal "Cup Noobles" wordmark. The asset files have not been supplied yet (TBD-17).
->
-> **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
+
+The files are now supplied and recorded in ADR-0016, which resolved TBD-17. The sentence above is quoted from the brand source and is not edited (REQ-006).
 
 ## Variants
 
-| Variant (REQ-030 AC1) | Brand asset (BR-16) | Rendered today |
-|---|---|---|
-| `icon` | The circular "CN" icon | The placeholder |
-| `vertical` | The vertical "Cup Noobles" lockup | The placeholder |
-| `horizontal` | The horizontal "Cup Noobles" wordmark | The placeholder |
+| Variant (REQ-030 AC1) | Brand asset (BR-16) | File | Minimum height |
+|---|---|---|---|
+| `icon` | The circular "CN" icon | `Icon-CN.svg` | `logo.minHeight.icon` |
+| `vertical` | The vertical "Cup Noobles" lockup | `LogoVertical-CN.svg` | `logo.minHeight.vertical` |
+| `horizontal` | The horizontal "Cup Noobles" wordmark | `LogoHorizontal-CN.svg` | `logo.minHeight.horizontal` |
 
-The three placeholders look the same. Their shapes and proportions are part of the missing files, so the component does not guess them. The variant is exposed as `data-variant`, which the SVG rules use later.
+The files live in `packages/nuxt/assets/brand/`. Each shows at its minimum height by default. A page makes a logo larger by setting the `--logo-height` custom property on it, and the component never lets it go below the minimum.
 
 ## States
 
 | State | What changes | Tokens |
 |---|---|---|
-| `default` | The only state. A logo is not interactive: it has no hover, focus, active, or disabled state. | `logo.placeholder.bg`, `logo.placeholder.border`, `logo.placeholder.fg`, `border.width.logo` |
+| `default` | The only state. A logo is not interactive: it has no hover, focus, active, or disabled state. | `logo.clearSpace`, `logo.minHeight.icon`, `logo.minHeight.vertical`, `logo.minHeight.horizontal` |
 
 A logo that links to the home page is a [Link](link.md) that contains a `CnLogo`. The link carries the focus ring and the name, and the logo is `decorative`.
 
@@ -87,12 +80,13 @@ A logo that links to the home page is a [Link](link.md) that contains a `CnLogo`
 - Pass `label` with the brand name when the logo is the only thing that names the brand. The label is required (REQ-030 AC1).
 - Set `decorative` when the brand name is written next to the logo, or when a link already names it. A decorative logo has no label.
 - Use `icon` where space is short, `horizontal` in wide bars, and `vertical` where height is free.
+- Keep the clear space around every logo: 25% of its height on every side. Nothing else, such as text, a button, or the edge of a photo, enters it.
 
 ### When not to use
 
-- Never draw, recreate, recolor, or approximate a logo. Until the files arrive, the placeholder is the only allowed rendering (REQ-030 AC2).
-- Never put the text "Logo asset pending (TBD-17)" in a page by hand. It belongs to the component.
-- Never edit a supplied asset file. `CnLogo` renders the SVGs unmodified (REQ-030 AC3).
+- Never draw, recreate, recolor, crop, stretch, or approximate a logo. `CnLogo` renders the supplied files unmodified (REQ-030 AC3).
+- Never show a logo below its minimum height: 64 px for the icon, 80 px for the vertical lockup, 36 px for the horizontal wordmark.
+- Never put a logo on a light or colored background. The files are made for the pure-black page (BR-03).
 - Never use a logo to carry an action or a status.
 
 ## Do and don't
@@ -102,24 +96,23 @@ A logo that links to the home page is a [Link](link.md) that contains a `CnLogo`
 | Give a standalone logo a label: "Cup Noobles". | Leave a standalone logo without a label or `decorative`. |
 | Mark the logo `decorative` when the name is written next to it. | Label a logo that repeats its neighbor, so a screen reader says the name twice. |
 | Wrap the logo in a link and name the link. | Add a click handler to the logo itself. |
-| Keep the placeholder until the files arrive. | Replace it with a hand-made logo. |
+| Make the logo larger with `--logo-height`. | Squeeze the logo under its minimum height with a utility class. |
 
 ## Accessibility
 
-- A named logo is `role="img"` with `aria-label` set from `label`. The label is required unless the logo is `decorative` (REQ-030 AC1). In development, the component warns when neither is set.
-- A `decorative` logo is `aria-hidden="true"` and has no role or label, so assistive technology skips it (REQ-029 applies the same rule to motifs).
-- The placeholder note is `aria-hidden="true"`, so it is never read in place of the brand name.
+- A named logo is an `<img>` whose `alt` is `label`. The label is required unless the logo is `decorative` (REQ-030 AC1). In development, the component warns when neither is set.
+- A `decorative` logo has an empty `alt` and `aria-hidden="true"`, so assistive technology skips it (REQ-029 applies the same rule to motifs).
 - The logo has no focusable element and no keyboard interaction. It is not interactive, and it adds no tab stop.
-- The note is 7.98:1 against the black page with the placeholder grey, unverified while TBD-05 is open (REQ-015 AC4). A real logo is exempt from contrast rules (WCAG 1.4.3).
+- The SVG files are shown as images, so their inner shapes are not exposed to assistive technology.
 
 Keyboard map: none. A logo takes no key.
 
-ARIA: `role="img"` and `aria-label` on a named logo; `aria-hidden="true"` on a decorative one.
+ARIA: `alt` on a named logo; `alt=""` and `aria-hidden="true"` on a decorative one.
 
 ## Content
 
 - Write the label as the brand name, plus the variant only when it helps: "Cup Noobles".
-- Do not write "logo", "image", or "icon" in the label. The `img` role already says it.
+- Do not write "logo", "image", or "icon" in the label. The image role already says it.
 - Keep the label short. It is read once, wherever the logo appears.
 
 ```copy es-MX
@@ -134,19 +127,20 @@ Imagen
 
 ## Responsive behavior
 
-The placeholder has no fixed size, so it never overflows: it is at most as wide as its container, and its note wraps. At 360, 768, and 1280 px it behaves the same (A-09, ER-05). The sizes of the real assets, and their minimum sizes, wait for the owner's rules (TBD-17).
+At 360, 768, and 1280 px the logo keeps its proportions (A-09, ER-05). It is never wider than its container, and it keeps its minimum height. The smallest case is the horizontal wordmark at 36 px tall, which is narrow enough for a 360 px header. Make a logo larger for wide screens with `--logo-height`.
 
 ## Email notes
 
-The email header uses its own logo image, set by the [email components](../../05-email/email-components.md). `CnLogo` is not used in email, and the same asset files apply there once supplied (TBD-17).
+The email header uses its own logo image, set by the [email components](../../05-email/email-components.md). `CnLogo` is not used in email, and the same asset files apply there.
 
 ## Code reference
 
 | Item | Value |
 |---|---|
 | Import | Auto-imported from the `@vinsmokemau/cup-noobles-nuxt` layer as `CnLogo` (`packages/nuxt/components/CnLogo.vue`) |
+| Assets | `packages/nuxt/assets/brand/` |
 | Theme | The `.cn-logo*` rules in `packages/nuxt/assets/css/main.css` |
-| Tokens | `logo.placeholder.*`, `border.width.logo` |
+| Tokens | `logo.clearSpace`, `logo.minHeight.*` |
 | Demos | `apps/showcase/demos/logo/` |
 
 | Prop | Type | Notes |
@@ -164,14 +158,9 @@ The component has no slots and no events.
 
 ## Open items
 
-> **TBD (TBD-17):** The logo files (the CN icon, the vertical lockup, and the horizontal wordmark) as SVG, and their clear-space and minimum-size rules, are not supplied. The component shows the placeholder "Logo asset pending (TBD-17)". Owner input needed: decision OD-08. The doc cannot become `stable` before it.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The placeholder outline and note follow a placeholder grey. Owner input needed.
->
-> **TBD (TBD-11):** The stroke width is not defined ("thick" in BR-13). `border.width.logo` follows a placeholder. Owner input needed.
->
-> **Draft:** The look of the placeholder (an outlined box with a neutral note, no size) is not defined by BC. It reuses the neutral outline of the other atoms and is dropped when the SVGs arrive. This awaits owner approval.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `CnLogo` with the three variants as placeholders, the required label or `decorative`, the component tokens, and the demos (T7.7) — awaiting owner approval and the logo files (OD-08)
+- 0.1.0 — The supplied SVG files replace the placeholder, with a clear space of 25% of the logo height and minimum heights of 64, 80, and 36 px; the doc is `stable` (T7.9) — ADR-0016

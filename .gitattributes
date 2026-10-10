@@ -7,3 +7,6 @@ tests/__snapshots__/** text eol=lf
 
 # sync-docs fixtures (T3.6): tests compare rewritten blocks line by line and test CRLF handling themselves.
 tests/fixtures/sync-docs/** text eol=lf
+
+# The supplied logo files are rendered unmodified and hash-checked (REQ-030 AC3, ADR-0016). Never convert their line endings.
+packages/nuxt/assets/brand/*.svg -text

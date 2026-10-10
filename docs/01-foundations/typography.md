@@ -106,7 +106,7 @@ The owner chooses the typefaces (OD-06). A candidate for the display typeface, a
 
 | # | Criterion | How to check it |
 |---|---|---|
-| 1 | **A bold, retro display sans-serif** that feels similar to the logo (BR-07) and reads as bold, geek, and premium, with strong presence (BR-09). It must never read as childish or generic (BR-05). | Set the H1 to H3 specimens next to the logo assets (TBD-17) and review them with the owner. |
+| 1 | **A bold, retro display sans-serif** that feels similar to the logo (BR-07) and reads as bold, geek, and premium, with strong presence (BR-09). It must never read as childish or generic (BR-05). | Set the H1 to H3 specimens next to the logo assets (ADR-0016) and review them with the owner. |
 | 2 | **Spanish diacritics.** The family covers every character es-MX copy uses (ER-04), at least `áéíóú ÁÉÍÓÚ ñ Ñ ü Ü ¿ ¡`, in every weight the scale uses, with no fallback glyphs. | Render the showcase specimens, which include `áéíóú ñ ¿¡` (REQ-054 AC2), in every weight. |
 | 3 | **A license that covers web embedding**: self-hosting or serving the font files to every consuming app, and the static showcase on GitHub Pages (OD-02). | Read the license text and record it in the ADR. |
 | 4 | **Defined email fallback behavior.** Most email clients ignore web fonts (R-05), so the family needs a fallback stack that keeps the hierarchy and legibility when the font does not load, and a license that allows email use if the font is referenced from email. | Record the fallback stack in the ADR and in [Email foundations](../05-email/email-foundations.md) (REQ-040 AC1). |
