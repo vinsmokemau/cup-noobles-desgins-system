@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.19 |
+| Spec version | 1.21 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -199,7 +199,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
 | TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | Resolved (ADR-0016) |
-| TBD-18 | Motif artwork (BR-14) as SVG. The sparkle artwork is supplied (ADR-0017); the other six motifs of BR-14 are still open. | `CnStickerFrame`, imagery-and-motifs.md | SVG files for the remaining six motifs |
+| TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017) and the ramen cup (ADR-0019) are supplied; the other five motifs of BR-14 are still open. | `CnStickerFrame`, imagery-and-motifs.md | SVG files for the remaining five motifs |
 | TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Resolved (ADR-0012) |
 | TBD-20 | Photography and thumbnail standards. This is the same open item as EC decision D11. | imagery-and-motifs.md | Guidelines |
 | TBD-21 | Voice attributes beyond the adjectives in BC (the "this, not that" pairs) | voice-and-tone.md | Approval of a draft |
@@ -1116,22 +1116,22 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 - [ ] **T7.12 — Motif artwork: golden d20**
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
-  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/D20-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/D20-CN.svg`; the review in step 6 finds no problem; and `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T7.16 runs it for all the motifs.
 
 - [ ] **T7.13 — Motif artwork: chopsticks**
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
-  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Chopsticks-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Chopsticks-CN.svg`; the review in step 6 finds no problem; and `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T7.16 runs it for all the motifs.
 
 - [ ] **T7.14 — Motif artwork: noodle curves and waves**
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
-  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Noodle-Wave-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Noodle-Wave-CN.svg`; the review in step 6 finds no problem; and `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T7.16 runs it for all the motifs.
 
 - [ ] **T7.15 — Motif artwork: arcade shapes and dynamic lines**
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
-  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Arcade-Lines-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
+  - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Arcade-Lines-CN.svg`; the review in step 6 finds no problem; and `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T7.16 runs it for all the motifs.
 
 - [ ] **T7.16 — Motif artwork: sticker-style borders**
   - REQs: REQ-029, REQ-021, REQ-022
@@ -1329,6 +1329,8 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.17 | 2026-10-09 | §2.4: TBD-17 resolved. §7.2: OD-08 decided for the logos, still open for the motifs (TBD-18). Added T7.9 (`CnLogo` brand assets) to P7. The logos are the three supplied SVGs, with a clear space of 25% of the logo height and minimum heights of 64 px (icon), 80 px (vertical), and 36 px (horizontal). | Owner decision in chat (option B for both rules); ADR-0016 |
 | 1.18 | 2026-10-09 | §2.4: TBD-18 partly supplied — the sparkle artwork is in, the other six BR-14 motifs stay open. §7.2: OD-08 decided for the sparkle. Added T7.10 (`CnSparkle` motif artwork) to P7. The sparkle is the owner's chosen artwork, recoloured to `color.brand.yellow`, and sized to the text beside it. | Owner decision in chat (option A); ADR-0017 |
 | 1.19 | 2026-10-10 | Added T7.11 through T7.16 to P7, one per missing BR-14 motif (ramen cup, golden d20, chopsticks, noodle waves, arcade lines, sticker borders). Each task prepares a ChatGPT prompt, compares 4 proposals on a selection page, records the choice in an ADR, and reviews the owner's SVG. No existing task changes. | Owner request in chat |
+| 1.20 | 2026-10-10 | T7.12 through T7.15: the definition of done requires `pnpm test` instead of `pnpm test:all`; the full suite runs in T7.16. §0.2, T7.11 and T7.16 are unchanged. | Owner request in chat |
+| 1.21 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the ramen cup artwork is in (T7.11), so the sparkle and the ramen cup are supplied and the other five BR-14 motifs stay open. The ramen cup is the owner's chosen proposal A, drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background, with the glints in `#fff488`. | Owner decision in chat (option A); ADR-0019 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
