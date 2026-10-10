@@ -43,11 +43,11 @@ Not applicable.
 | Sticker-style borders | `CnStickerFrame` (see [Sticker frame](../02-components/atoms/sticker-frame.md)) | TBD-18 |
 | A pink ramen cup with gamer details (the core brand icon) | Motif SVG, not yet in a component | `Ramen-Cup-CN.svg` (ADR-0019) |
 | Noodle-inspired curves and waves | Motif SVG | TBD-18 |
-| A golden d20 | Motif SVG | TBD-18 |
+| A golden d20 | Motif SVG, not yet in a component | `D20-CN.svg` (ADR-0021) |
 | Chopsticks | Motif SVG | TBD-18 |
 | Arcade-inspired shapes and dynamic lines | Motif SVG | TBD-18 |
 
-The artwork is supplied by the owner as SVG files and lives in `packages/nuxt/assets/brand/` (§4.1). BR-13 applies to it: "thick, clean, and high-contrast" line work. Until the files arrive, no motif is drawn, traced, or approximated. The sparkle is supplied: `CnSparkle` renders `Sparkle-CN.svg`, filled with `color.brand.yellow` and sized to the text beside it (ADR-0017). The ramen cup is supplied as `Ramen-Cup-CN.svg` (ADR-0019): brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, on a transparent background, with no component yet. The other five motifs are still missing, so `CnStickerFrame` stays a plain outline around its content until the sticker border arrives (T7.10).
+The artwork is supplied by the owner as SVG files and lives in `packages/nuxt/assets/brand/` (§4.1). BR-13 applies to it: "thick, clean, and high-contrast" line work. Until the files arrive, no motif is drawn, traced, or approximated. The sparkle is supplied: `CnSparkle` renders `Sparkle-CN.svg`, filled with `color.brand.yellow` and sized to the text beside it (ADR-0017). The ramen cup is supplied as `Ramen-Cup-CN.svg` (ADR-0019): brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, on a transparent background, with no component yet. The golden d20 is supplied as `D20-CN.svg` (ADR-0021): brand yellow (`color.brand.yellow`) with black outlines, flat, with no shine marks, on a transparent background, with no component yet. The other four motifs are still missing, so `CnStickerFrame` stays a plain outline around its content until the sticker border arrives (T7.10).
 
 ### Motifs are decorative only
 
@@ -123,7 +123,7 @@ In email, a motif is a static image, never animated, and marked as decorative wi
 
 ## Open items
 
-> **TBD (TBD-18):** The artwork for five of the seven BR-14 motifs is not defined: the sticker border, the noodle curves, the golden d20, the chopsticks, and the arcade shapes. The sparkle (ADR-0017) and the ramen cup (ADR-0019) are supplied. Owner input needed: the remaining SVG files.
+> **TBD (TBD-18):** The artwork for four of the seven BR-14 motifs is not defined: the sticker border, the noodle curves, the chopsticks, and the arcade shapes. The sparkle (ADR-0017), the ramen cup (ADR-0019), and the golden d20 (ADR-0021) are supplied. Owner input needed: the remaining SVG files.
 >
 > **TBD (TBD-20):** Photography and thumbnail standards are not defined: subject, style, aspect ratios, and crops. This is the same open item as decision D11 in the e-commerce plan. Owner input needed: guidelines.
 
@@ -133,3 +133,4 @@ In email, a motif is a static image, never animated, and marked as decorative wi
 - 0.1.0 — `CnSparkle` and `CnStickerFrame` render a plain outlined placeholder while the artwork is missing (T7.8) — awaiting the artwork (TBD-18)
 - 0.1.0 — The sparkle artwork is supplied as `Sparkle-CN.svg`; the other six motifs stay open (T7.10) — ADR-0017
 - 0.1.0 — The ramen cup artwork is supplied as `Ramen-Cup-CN.svg`; the other five motifs stay open (T7.11) — ADR-0019
+- 0.1.0 — The golden d20 artwork is supplied as `D20-CN.svg`; the other four motifs stay open (T7.12) — ADR-0021

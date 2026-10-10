@@ -65,10 +65,10 @@ test('REQ-030 AC3: the three supplied files are byte-identical to the owner file
     )
   }
   // The brand folder holds the three logos and the motifs supplied so far — the sparkle (T7.10, ADR-0017) and the
-  // ramen cup (T7.11, ADR-0019) — nothing else.
+  // ramen cup (T7.11, ADR-0019), and the golden d20 (T7.12, ADR-0021) — nothing else.
   assert.deepEqual(
     listFiles(root, 'packages/nuxt/assets/brand', /\.(svg|png|jpe?g|webp|gif|avif)$/i).map((f) => f.split('/').pop()),
-    [...Object.values(FILES).map(([file]) => file), 'Ramen-Cup-CN.svg', 'Sparkle-CN.svg'].sort(),
+    [...Object.values(FILES).map(([file]) => file), 'D20-CN.svg', 'Ramen-Cup-CN.svg', 'Sparkle-CN.svg'].sort(),
   )
 })
 
