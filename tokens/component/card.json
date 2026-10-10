@@ -1,0 +1,84 @@
+{
+  "radius": {
+    "card": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the standard card (BR-12). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "card": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the standard card, and of the dividers between its parts (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "card": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of the standard card: the pure black page (BR-03). The card is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card until TBD-06 is resolved.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "The neon highlight of the standard card: its outline is brand pink (BR-01, BR-12). Chosen by the owner in ADR-0018.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "divider": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Color of the lines between the header, body, and footer of the standard card: brand pink, like the outline (ADR-0018).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Title and body text of the standard card. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-04"],
+          "status": "tbd"
+        }
+      }
+    },
+    "fgMuted": {
+      "$type": "color",
+      "$value": "{color.text.muted}",
+      "$description": "Description text of the standard card. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    }
+  }
+}

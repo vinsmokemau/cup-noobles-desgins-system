@@ -522,3 +522,56 @@
   height: var(--logo-h);
   object-fit: contain;
 }
+
+/*
+ * T8.1 (REQ-020, REQ-025): the card and the form field. app.config.ts puts `.cn-card` on the root of UCard and a hook class
+ * on each text slot of UFormField. Every value is a --cn-card-* or --cn-form-field-* token (ADR-0018). The rules are not in
+ * a cascade layer, so they win over Nuxt UI's own utility classes without `!important`.
+ *
+ * The card sits on the pure black page, color.bg.base, and its brand pink outline is the neon highlight (BR-12, BR-13). It
+ * never reads color.surface.card: no surface color is defined until TBD-06 is resolved (C-05). Nuxt UI draws its outline
+ * variant with a ring, which is a box-shadow, and divides the parts with `divide-y`; the outline and the dividers here are
+ * real borders from the tokens, and there is no glow. The card is not interactive, so it has no hover or focus state. A
+ * focusable control inside it draws its own focus ring.
+ *
+ * The form field only colors text. Its label, description, help, and error are tied to the control by Nuxt UI, with ids and
+ * `aria-describedby`.
+ */
+.cn-card {
+  color: var(--cn-card-fg);
+  background-color: var(--cn-card-bg);
+  border: var(--cn-border-width-card) solid var(--cn-card-highlight);
+  border-radius: var(--cn-radius-card);
+  box-shadow: none;
+}
+
+.cn-card > :not(:last-child) {
+  border-bottom: var(--cn-border-width-card) solid var(--cn-card-divider);
+}
+
+.cn-card > [data-slot='header'] [data-slot='title'] {
+  color: var(--cn-card-fg);
+  overflow-wrap: anywhere;
+}
+
+.cn-card > [data-slot='header'] [data-slot='description'] {
+  color: var(--cn-card-fg-muted);
+  overflow-wrap: anywhere;
+}
+
+.cn-form-field__label {
+  color: var(--cn-form-field-label-fg);
+}
+
+.cn-form-field__description,
+.cn-form-field__hint {
+  color: var(--cn-form-field-description-fg);
+}
+
+.cn-form-field__help {
+  color: var(--cn-form-field-help-fg);
+}
+
+.cn-form-field__error {
+  color: var(--cn-form-field-error-fg);
+}

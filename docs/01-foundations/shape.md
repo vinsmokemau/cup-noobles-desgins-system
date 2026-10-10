@@ -26,6 +26,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 |---|---|---|---|
 | `border.width.badge` | `--cn-border-width-badge` | `1px` | tbd (TBD-11) |
 | `border.width.button` | `--cn-border-width-button` | `1px` | tbd (TBD-11) |
+| `border.width.card` | `--cn-border-width-card` | `1px` | tbd (TBD-11) |
 | `border.width.choice` | `--cn-border-width-choice` | `1px` | tbd (TBD-11) |
 | `border.width.default` | `--cn-border-width-default` | `1px` | tbd (TBD-11) |
 | `border.width.input` | `--cn-border-width-input` | `1px` | tbd (TBD-11) |
@@ -36,6 +37,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `border.width.skeleton` | `--cn-border-width-skeleton` | `1px` | tbd (TBD-11) |
 | `radius.badge` | `--cn-radius-badge` | `0.375rem` | tbd (TBD-10) |
 | `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
+| `radius.card` | `--cn-radius-card` | `0.375rem` | tbd (TBD-10) |
 | `radius.choice` | `--cn-radius-choice` | `0.375rem` | tbd (TBD-10) |
 | `radius.input` | `--cn-radius-input` | `0.375rem` | tbd (TBD-10) |
 | `radius.interactive` | `--cn-radius-interactive` | `0.375rem` | tbd (TBD-10) |

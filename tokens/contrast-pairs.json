@@ -61,5 +61,13 @@
   { "foreground": "progress.border", "background": "progress.bg", "usage": "ui" },
   { "foreground": "progress.fill", "background": "progress.bg", "usage": "ui" },
   { "foreground": "separator.color", "background": "separator.bg", "usage": "ui" },
+  { "foreground": "card.fg", "background": "card.bg", "usage": "text" },
+  { "foreground": "card.fgMuted", "background": "card.bg", "usage": "text" },
+  { "foreground": "card.highlight", "background": "card.bg", "usage": "ui" },
+  { "foreground": "card.divider", "background": "card.bg", "usage": "ui" },
+  { "foreground": "formField.label.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "formField.description.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "formField.help.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "formField.error.fg", "background": "color.bg.base", "usage": "text" },
   { "foreground": "motif.placeholder.border", "background": "motif.placeholder.bg", "usage": "ui" }
 ]

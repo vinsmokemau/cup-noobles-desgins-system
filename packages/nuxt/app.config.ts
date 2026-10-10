@@ -161,5 +161,22 @@ export default {
         { orientation: 'vertical', class: { border: 'cn-separator--vertical' } },
       ],
     },
+    // T8.1 (REQ-020, REQ-025): the standard card and the form field. UCard has one brand look, the `.cn-card` rules in
+    // assets/css/main.css (ADR-0018): black fill, a pink outline, and pink dividers. UFormField only colors its text slots;
+    // the label, help, and error are tied to the control by Nuxt UI itself.
+    card: {
+      slots: {
+        root: 'cn-card',
+      },
+    },
+    formField: {
+      slots: {
+        label: 'cn-form-field__label',
+        description: 'cn-form-field__description',
+        hint: 'cn-form-field__hint',
+        help: 'cn-form-field__help',
+        error: 'cn-form-field__error',
+      },
+    },
   },
 } satisfies AppConfigInput
