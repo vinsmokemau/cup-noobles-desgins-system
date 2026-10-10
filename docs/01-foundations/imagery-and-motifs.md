@@ -8,7 +8,7 @@ brandRules: [BR-04, BR-05, BR-12, BR-13, BR-14]
 tbd: [TBD-18, TBD-20]
 related: [brand-identity, sparkle, sticker-frame, media-card, motion, iconography]
 since: 0.1.0
-updated: 2026-09-28
+updated: 2026-10-09
 ---
 
 # Imagery and motifs
@@ -47,7 +47,7 @@ Not applicable.
 | Chopsticks | Motif SVG | TBD-18 |
 | Arcade-inspired shapes and dynamic lines | Motif SVG | TBD-18 |
 
-The artwork is supplied by the owner as SVG files and lives in `packages/nuxt/assets/brand/` (§4.1). BR-13 applies to it: "thick, clean, and high-contrast" line work. Until the files arrive, no motif is drawn, traced, or approximated. How `CnSparkle` and `CnStickerFrame` render in the meantime is decided in their task (T7.8).
+The artwork is supplied by the owner as SVG files and lives in `packages/nuxt/assets/brand/` (Â§4.1). BR-13 applies to it: "thick, clean, and high-contrast" line work. Until the files arrive, no motif is drawn, traced, or approximated. In the meantime `CnSparkle` and `CnStickerFrame` render a plain outlined placeholder with no artwork: the sparkle carries the note "Motif pending (TBD-18)", and the sticker frame is an outline around its content (T7.8).
 
 ### Motifs are decorative only
 
@@ -129,4 +129,5 @@ In email, a motif is a static image, never animated, and marked as decorative wi
 
 ## Changelog
 
-- 0.1.0 — First draft: BR-04, BR-05, BR-12, BR-13, and BR-14, the motif list, the REQ-029 decorative-only, reduced-motion, and flash-limit rules, thumbnail alt text (REQ-025 AC2), and TBD-18 and TBD-20 (T4.6) — awaiting owner approval
+- 0.1.0 â€” First draft: BR-04, BR-05, BR-12, BR-13, and BR-14, the motif list, the REQ-029 decorative-only, reduced-motion, and flash-limit rules, thumbnail alt text (REQ-025 AC2), and TBD-18 and TBD-20 (T4.6) â€” awaiting owner approval
+- 0.1.0 â€” `CnSparkle` and `CnStickerFrame` render a plain outlined placeholder while the artwork is missing (T7.8) â€” awaiting the artwork (TBD-18)

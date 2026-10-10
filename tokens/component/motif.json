@@ -1,0 +1,66 @@
+{
+  "radius": {
+    "motif": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the sticker frame placeholder (BR-14). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value. TBD-18: the placeholder stands in for the missing motif artwork.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10", "TBD-18"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "motif": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the motif placeholders (BR-13, BR-14). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value. TBD-18: the placeholders stand in for the missing motif artwork.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11", "TBD-18"]
+          }
+        }
+      }
+    }
+  },
+  "motif": {
+    "placeholder": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.bg.base}",
+        "$description": "The surface the motif placeholders sit on: the pure black page (BR-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border.default}",
+        "$description": "Outline color of the motif placeholders. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-18: the placeholders stand in for the missing motif artwork.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-05", "TBD-18"],
+            "status": "tbd"
+          }
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.muted}",
+        "$description": "Text color of the sparkle placeholder note. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-18: the placeholder stands in for the missing motif artwork.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-05", "TBD-18"],
+            "status": "tbd"
+          }
+        }
+      }
+    }
+  }
+}

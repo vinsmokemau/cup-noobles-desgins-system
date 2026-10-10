@@ -444,6 +444,58 @@
 }
 
 /*
+ * T7.8 (REQ-029): CnSparkle and CnStickerFrame. The motif artwork is not supplied (TBD-18), so each is a plain outline drawn
+ * from --cn-motif-* tokens and the shape tokens border.width.motif and radius.motif, with no artwork that could be mistaken
+ * for a brand motif. The sparkle is a small outlined box that carries the note "Motif pending (TBD-18)"; the sticker frame is
+ * an outlined box around its slot. The frame fits its content, never grows wider than its container, and clips what is
+ * wider than itself, so it cannot cause horizontal overflow (REQ-028 AC1). The sparkle's outline fades to half strength when it is `animated`, over ten
+ * base durations (the placeholder duration, TBD-14); the note stays at full contrast. The fade is off under reduced motion (REQ-029 AC2).
+ */
+.cn-sparkle {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--cn-space-base) * 2);
+  background-color: var(--cn-motif-placeholder-bg);
+  border: var(--cn-border-width-motif) solid var(--cn-motif-placeholder-border);
+  border-radius: var(--cn-radius-motif);
+  color: var(--cn-motif-placeholder-fg);
+  font-size: var(--cn-font-size-caption);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.cn-sparkle[data-animated='true'] {
+  animation: cn-sparkle-fade calc(var(--cn-motion-duration-default) * 10) ease-in-out infinite;
+}
+
+@keyframes cn-sparkle-fade {
+  50% {
+    border-color: color-mix(in srgb, var(--cn-motif-placeholder-border) 50%, transparent);
+  }
+}
+
+.cn-sticker-frame {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: calc(var(--cn-space-base) * 2);
+  background-color: var(--cn-motif-placeholder-bg);
+  border: var(--cn-border-width-motif) solid var(--cn-motif-placeholder-border);
+  border-radius: var(--cn-radius-motif);
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cn-sparkle[data-animated='true'] {
+    animation: none;
+  }
+}
+
+/*
  * T7.9 (REQ-030 AC3, ADR-0016): CnLogo. The logo is an <img> of one of the three supplied SVGs, which are never edited or
  * inlined. The root holds the clear space: 25% of the logo height on every side. The height is the variant's minimum, and a
  * page makes the logo larger through `--logo-height`; it cannot make it smaller than the minimum. Every value is a

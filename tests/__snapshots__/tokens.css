@@ -17,6 +17,7 @@
   --cn-border-width-default: 1px; /** Stroke width. TBD-11: "thick" (BR-10, BR-13) has no values; this references a placeholder, not a brand value. */
   --cn-border-width-input: 1px; /** Outline stroke width of the text fields (BR-10, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
+  --cn-border-width-motif: 1px; /** Outline stroke width of the motif placeholders (BR-13, BR-14). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. TBD-18: the placeholders stand in for the missing motif artwork. */
   --cn-border-width-progress: 1px; /** Outline stroke width of the progress track (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-separator: 1px; /** Stroke width of the separator line (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-skeleton: 1px; /** Outline stroke width of a skeleton shape (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
@@ -188,6 +189,9 @@
   --cn-logo-rule-min-height-horizontal: 36px; /** Minimum height of the horizontal wordmark, chosen by the owner (ADR-0016). */
   --cn-logo-rule-min-height-icon: 64px; /** Minimum height of the icon logo, chosen by the owner (ADR-0016). */
   --cn-logo-rule-min-height-vertical: 80px; /** Minimum height of the vertical lockup, chosen by the owner (ADR-0016). */
+  --cn-motif-placeholder-bg: #000000; /** The surface the motif placeholders sit on: the pure black page (BR-03). */
+  --cn-motif-placeholder-border: #90a1b9; /** Outline color of the motif placeholders. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-18: the placeholders stand in for the missing motif artwork. */
+  --cn-motif-placeholder-fg: #90a1b9; /** Text color of the sparkle placeholder note. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. TBD-18: the placeholder stands in for the missing motif artwork. */
   --cn-motion-duration-default: 150ms; /** Transition duration. TBD-14: motion durations are not defined; this references a placeholder, not a brand value. */
   --cn-motion-easing-default: cubic-bezier(0.4, 0, 0.2, 1); /** Transition easing. TBD-14: easing curves are not defined; this references a placeholder, not a brand value. */
   --cn-placeholder-border-width: 1px; /** Placeholder, not a brand value. Stands in for TBD-11. Source: Nuxt UI outlines, Tailwind ring width (ADR-0006). */
@@ -235,6 +239,7 @@
   --cn-radius-interactive: 0.375rem; /** Corner radius of interactive elements such as buttons (BR-10). TBD-10: "rounded" has no values; this references a placeholder, not a brand value. */
   --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-radius-md: 0.375rem; /** Medium corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
+  --cn-radius-motif: 0.375rem; /** Corner radius of the sticker frame placeholder (BR-14). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. TBD-18: the placeholder stands in for the missing motif artwork. */
   --cn-radius-skeleton: 0.375rem; /** Corner radius of a skeleton shape (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-sm: 0.25rem; /** Small corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-separator-bg: #000000; /** The surface a separator line sits on: the pure black page (BR-03). */
