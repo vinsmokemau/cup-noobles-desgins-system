@@ -37,6 +37,7 @@ updated: 2026-09-27
 - [ADR-0016: Logo assets, clear space, and minimum size](decisions/0016-logo-assets-and-rules.md)
 - [ADR-0017: Sparkle motif artwork and size](decisions/0017-sparkle-motif-artwork.md)
 - [ADR-0018: Card look](decisions/0018-card-look.md)
+- [ADR-0019: Ramen cup motif artwork](decisions/0019-ramen-cup-motif-artwork.md)
 
 ## Open items
 

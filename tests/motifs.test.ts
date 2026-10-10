@@ -78,6 +78,37 @@ test('ADR-0017: the sparkle renders the supplied file unmodified, and the file i
   assert.match(svg, /fill="#fff488"/)
 })
 
+// The ramen cup the owner chose (ADR-0019). No component renders it yet, so only the file itself is locked here.
+const RAMEN_CUP = ['Ramen-Cup-CN.svg', '35c7bab3786c67a0e8867c0bb497c4d033329065a4f221bc09a1a608bc605bb2'] as const
+
+test('ADR-0019: the ramen cup file is the owner file, transparent, safe to serve, and drawn in brand colours only', () => {
+  const [file, hash] = RAMEN_CUP
+  const path = `packages/nuxt/assets/brand/${file}`
+  assert.ok(existsSync(join(root, path)), path)
+  assert.equal(
+    createHash('sha256')
+      .update(readFileSync(join(root, path)))
+      .digest('hex'),
+    hash,
+    `${file} was modified`,
+  )
+
+  const svg = read(path)
+  assert.match(svg, /<svg [^>]*viewBox="[^"]+"/, 'the ramen cup has a viewBox')
+  assert.doesNotMatch(svg, /<svg [^>]*\s(width|height)=/, 'the size comes from the page, not the file')
+  assert.doesNotMatch(
+    svg,
+    /<script|href=|<image|<text|<filter|foreignObject|onload|data:image/,
+    `${file} is safe to serve`,
+  )
+  // No editor metadata, and no background shape: every drawn element is a path, polygon, or circle.
+  assert.doesNotMatch(svg, /<metadata|xpacket|\sid="Capa_/, `${file} carries no editor data`)
+  assert.doesNotMatch(svg, /<(rect|use|g)\b/, `${file} has no background rectangle`)
+  // Pink, yellow, and black only, exactly the brand values and not the colours it was generated with (ADR-0019).
+  const colours = [...new Set([...svg.matchAll(/#[0-9a-fA-F]{3,8}\b/g)].map((m) => m[0].toLowerCase()))].sort()
+  assert.deepEqual(colours, ['#000000', '#ef80ae', '#fff488'])
+})
+
 test('the sparkle placeholder is gone: no text, token, or rule remains from T7.8', () => {
   const sparkle = read('packages/nuxt/components/CnSparkle.vue')
   assert.doesNotMatch(sparkle, /Motif pending|PLACEHOLDER/)
@@ -193,14 +224,16 @@ test('REQ-055: the playground controls are a valid schema that each playground d
   }
 })
 
-test('the docs point to each other, and the foundation docs name the supplied sparkle file', () => {
+test('the docs point to each other, and the foundation docs name the supplied sparkle and ramen cup files', () => {
   assert.match(docOf('sparkle'), /sticker-frame/)
   assert.match(docOf('sticker-frame'), /sparkle/)
   for (const path of ['docs/01-foundations/imagery-and-motifs.md', 'docs/00-overview/brand-identity.md']) {
     const doc = read(path)
     assert.match(doc, /Sparkle-CN\.svg/, path)
     assert.match(doc, /ADR-0017/, path)
-    // TBD-18 stays open for the other six motifs, so both docs keep their callout and stay drafts.
+    assert.match(doc, /Ramen-Cup-CN\.svg/, path)
+    assert.match(doc, /ADR-0019/, path)
+    // TBD-18 stays open for the other five motifs, so both docs keep their callout and stay drafts.
     assert.match(doc, /> \*\*TBD \(TBD-18\):\*\*/, path)
     assert.ok((readFrontmatter(doc).data as Record<string, unknown>).tbd, path)
   }
