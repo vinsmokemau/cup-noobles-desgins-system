@@ -1212,7 +1212,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T3.4
   - Done when: every section listed in REQ-040 AC1 exists, and every fallback names a token that exists in `email-tokens.json`. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
 
-- [ ] **T10.2 — Email build pipeline**
+- [x] **T10.2 — Email build pipeline** (2026-10-11, 8a1f7ec)
   - REQs: REQ-041 (AC1, AC2), REQ-042, REQ-044
   - Depends on: T10.1, T0.4
   - Done when: `pnpm --filter @vinsmokemau/cup-noobles-email build` works, and the output checks pass: no `var(`, no stylesheet link, no scripts, no backend tags, only token hex values, and no hex literals in the sources. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
