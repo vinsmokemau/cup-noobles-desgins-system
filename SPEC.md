@@ -1160,7 +1160,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T7.3
   - Done when: each feedback variant uses feedback tokens (TBD-07 placeholders); the toast is announced by a live region; and the tooltip opens on focus as well as hover. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T8.6 runs it for all four.
 
-- [x] **T8.4 — Tabs, Breadcrumb, and Pagination** (2026-10-10, acc06ed)
+- [ ] **T8.4 — Tabs, Breadcrumb, and Pagination**
   - REQs: REQ-020, REQ-026, REQ-027, REQ-028
   - Depends on: T7.3
   - Done when: arrow-key navigation works in tabs, the current page is marked `aria-current` in the breadcrumb and pagination, and nothing overflows at 360 px. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T8.6 runs it for all four.
