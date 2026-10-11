@@ -1194,7 +1194,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T9.1
   - Done when: 4 pattern docs have demos, and the showcase 404 page is built from the error-page pattern. `pnpm test:all` is green, covering the T9.1 pattern docs and demos as well.
 
-- [ ] **T9.3 — Content docs**
+- [x] **T9.3 — Content docs** (2026-10-11, 8447035)
   - REQs: REQ-036, REQ-007, REQ-009
   - Depends on: T8.7
   - Done when: the three content docs pass `check-docs`; every example is in a `copy es-MX` block; and the voice attribute pairs are marked draft (TBD-21). `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11).
