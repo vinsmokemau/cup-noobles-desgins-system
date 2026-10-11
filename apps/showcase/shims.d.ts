@@ -40,7 +40,7 @@ interface DocQuery {
   all(): Promise<DocPage[]>
 }
 
-declare function queryCollection(collection: 'docs'): DocQuery
+declare function queryCollection(collection: 'docs' | 'changelog'): DocQuery
 
 // T11.1: the server route of the search data (server/routes/search-sections.json.ts) uses Nitro's auto-imports, whose
 // types `nuxt prepare` writes to .nuxt/. They take the request event first, where the client's `queryCollection` does not.

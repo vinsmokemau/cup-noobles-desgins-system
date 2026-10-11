@@ -193,12 +193,24 @@ test('the section indexes show a card per doc with its status', async ({ page })
   await expect(page.getByRole('heading', { name: 'Organisms' })).toBeVisible()
 })
 
-test('the pending pages say which task writes them', async ({ page }) => {
-  // T10.5 wrote the email previews, so the changelog (T11.3) is the one page that has no content yet.
+test('REQ-062 AC2: /changelog renders CHANGELOG.md, heading for heading', async ({ page }) => {
+  const source = readFileSync(join(repoRoot, 'CHANGELOG.md'), 'utf8')
+  const headings = [...source.matchAll(/^(#{1,6}) (.+)$/gm)].map((m) => ({ level: m[1]!.length, text: m[2]!.trim() }))
   await page.goto('/changelog')
-  await expect(page.getByTestId('pending-notice')).toContainText('T11.3')
-  await page.goto('/email/email-components')
-  await expect(page.getByTestId('pending-notice')).toHaveCount(0)
+  await expect(page).toHaveTitle(/Changelog/)
+  const article = page.getByTestId('changelog')
+  const rendered = await article
+    .locator('h1, h2, h3, h4, h5, h6')
+    .evaluateAll((els) =>
+      els.map((el) => ({ level: Number(el.tagName.slice(1)), text: (el.textContent ?? '').trim() })),
+    )
+  expect(rendered).toEqual(headings)
+  // The first paragraph of the file is on the page, so it is the file's text and not a copy that can drift.
+  const intro = source
+    .split(/\r?\n\r?\n/)[1]!
+    .replaceAll('`', '')
+    .split('. ')[0]!
+  await expect(article).toContainText(intro.slice(0, 60))
 })
 
 test('a path with no page shows the 404 page, built from the design system', async ({ page }) => {

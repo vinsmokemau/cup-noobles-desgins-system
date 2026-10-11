@@ -6,6 +6,7 @@ import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
+const repoRoot = fileURLToPath(new URL('../../', import.meta.url))
 const slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/)
 const docsDir = process.env.CN_DOCS_ROOT
   ? join(process.env.CN_DOCS_ROOT, 'docs')
@@ -13,6 +14,12 @@ const docsDir = process.env.CN_DOCS_ROOT
 
 export default defineContentConfig({
   collections: {
+    // T11.3 (REQ-062 AC2): /changelog renders CHANGELOG.md at the repository root, in place. It is written by
+    // `pnpm version-packages` (scripts/version-packages.ts), so the app holds no copy of it.
+    changelog: defineCollection({
+      type: 'page',
+      source: { cwd: repoRoot, include: 'CHANGELOG.md' },
+    }),
     docs: defineCollection({
       type: 'page',
       source: {

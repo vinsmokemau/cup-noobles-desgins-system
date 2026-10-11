@@ -96,11 +96,8 @@ test('REQ-058 AC2: "Copy HTML" copies the exact content of the compiled file', a
   expect(await clipboard()).toBe(compiled('reference'))
 })
 
-test('the copied file keeps its slot placeholders and holds no script', async ({ page }) => {
+test('the copied file keeps its slot placeholders and holds no script', () => {
   const html = compiled('reference')
   expect(html).toMatch(/\{\{ [a-z_]+ \}\}/)
   expect(html).not.toMatch(/<script\b/i)
-  await page.goto('/email/email-layouts')
-  await waitForPage(page)
-  await expect(page.getByTestId('pending-notice')).toHaveCount(0)
 })

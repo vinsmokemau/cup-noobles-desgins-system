@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": false,
+  "commit": false,
+  "fixed": [["@vinsmokemau/cup-noobles-tokens", "@vinsmokemau/cup-noobles-nuxt", "@vinsmokemau/cup-noobles-email"]],
+  "linked": [],
+  "access": "restricted",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["showcase", "consumer-fixture"]
+}
