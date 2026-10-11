@@ -2,7 +2,7 @@
 title: Versioning and releases
 slug: versioning-and-releases
 layer: governance
-status: draft
+status: stable
 lang: en
 tbd: []
 related: [ownership, contribution, deprecation, decision-log]
@@ -59,8 +59,9 @@ A changeset is required when the public API, the tokens, or the docs change (SPE
 
 ## Open items
 
-> **Draft:** The release flow above is the target flow from SPEC.md §4.8. The Changesets configuration, the release workflow, and `CHANGELOG.md` arrive with T11.3, and `pnpm release:check` arrives with T11.4. Until then, changeset files are written by hand in `.changeset/`, and the steps after "Version packages" are not automated.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: lockstep versioning, the 1.0 gate, the release flow, and the changelog format (T11.2, REQ-070) — awaiting owner approval
+- 0.1.0 — Approved as stable by the owner — ADR-0044

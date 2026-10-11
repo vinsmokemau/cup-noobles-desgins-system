@@ -2,7 +2,7 @@
 title: Deprecation
 slug: deprecation
 layer: governance
-status: draft
+status: stable
 lang: en
 tbd: []
 related: [versioning-and-releases, contribution, ownership, decision-log]
@@ -48,12 +48,13 @@ Every breaking change, including a removal, has a migration note in `CHANGELOG.m
 
 ### The warning
 
-A deprecation warning names three things: what is deprecated, what replaces it, and the version that will remove it. A helper that emits it, and a test that it stays silent outside development, arrive with T11.3 (REQ-072 AC1).
+A deprecation warning names three things: what is deprecated, what replaces it, and the version that will remove it. Components emit it through one shared helper, and a test proves the helper stays silent outside development (REQ-072 AC1).
 
 ## Open items
 
-> **Draft:** The marks and the steps above follow REQ-072 and the token statuses in SPEC.md §4.4. The exact wording of the warning and the helper are not built yet (T11.3). The doc stays `draft` until the owner approves it in an ADR.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the deprecation policy, how each kind is marked, and the steps from decision to removal (T11.2, REQ-072) — awaiting owner approval
+- 0.1.0 — Approved as stable by the owner — ADR-0044

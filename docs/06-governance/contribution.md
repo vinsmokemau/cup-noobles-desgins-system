@@ -2,7 +2,7 @@
 title: Contribution
 slug: contribution
 layer: governance
-status: draft
+status: stable
 lang: en
 tbd: []
 related: [ownership, versioning-and-releases, deprecation, decision-log]
@@ -57,8 +57,9 @@ CI runs `pnpm test:all` on every push and pull request (REQ-074). Pull requests 
 
 ## Open items
 
-> **Draft:** The flow comes from the task scope in SPEC.md §6 and the standing rules of the repository, not from the brand context. It stays `draft` until the owner approves it in an ADR.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the spec-first flow, how to write an ADR, and the rules every change follows (T11.2, REQ-073) — awaiting owner approval
+- 0.1.0 — Approved as stable by the owner — ADR-0044

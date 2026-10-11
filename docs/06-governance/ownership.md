@@ -2,7 +2,7 @@
 title: Ownership
 slug: ownership
 layer: governance
-status: draft
+status: stable
 lang: en
 tbd: []
 related: [contribution, versioning-and-releases, deprecation, decision-log]
@@ -52,8 +52,9 @@ A-01 assumes a single maintainer. If another person joins or takes over, record 
 
 ## Open items
 
-> **Draft:** This doc holds rules that come from the spec's assumptions (A-01) and from the owner's standing instructions, but the owner has not approved the doc as a whole. It stays `draft` until the owner approves it in an ADR.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: owners, the decisions that need the owner, and how design decisions are presented (T11.2, REQ-073) — awaiting owner approval
+- 0.1.0 — Approved as stable by the owner — ADR-0044

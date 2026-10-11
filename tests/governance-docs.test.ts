@@ -14,14 +14,15 @@ const docOf = (slug: string) => readFileSync(join(root, `docs/06-governance/${sl
 const section = (text: string, heading: string) =>
   text.split(new RegExp(`^## ${heading}\\s*$`, 'm'))[1]?.split(/^## /m)[0] ?? ''
 
-test('T11.2: the five governance docs exist, are written, and are governance-layer drafts', () => {
+test('T11.2: the five governance docs exist, are written, and are governance-layer stable docs', () => {
   for (const slug of SLUGS) {
     const { data } = readFrontmatter(docOf(slug))
     assert.equal(data?.layer, 'governance', slug)
     assert.equal(data?.slug, slug)
-    assert.equal(data?.status, 'draft', `${slug} awaits owner approval (REQ-009 AC2)`)
+    assert.equal(data?.status, 'stable', `${slug} is approved by ADR-0044 (REQ-009 AC2)`)
     assert.doesNotMatch(docOf(slug), /Content pending/, `${slug} has no pending section`)
-    assert.doesNotMatch(docOf(slug), /Approved as stable/, `${slug} claims no approval it lacks`)
+    assert.match(docOf(slug), /Approved as stable by the owner — ADR-0044/, `${slug} cites the approval`)
+    assert.doesNotMatch(docOf(slug), /^> \*\*(?:Draft|TBD)/m, `${slug} has no draft or TBD callout`)
   }
 })
 

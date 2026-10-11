@@ -2,7 +2,7 @@
 title: Decision log
 slug: decision-log
 layer: governance
-status: draft
+status: stable
 lang: en
 tbd: []
 related: [contribution, ownership, versioning-and-releases, deprecation]
@@ -69,11 +69,13 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0041: Email components approved, and logo clear space deferred to T10.4](decisions/0041-email-components-approved.md)
 - [ADR-0042: The email build expands includes and multiplies tokens](decisions/0042-email-layout-includes-and-clear-space.md)
 - [ADR-0043: The global search is UContentSearch with its own palette and a prerendered data file](decisions/0043-global-search-composition.md)
+- [ADR-0044: Governance docs move to stable](decisions/0044-governance-docs-stable.md)
 
 ## Open items
 
-> **Draft:** The policy above follows REQ-073. The doc stays `draft` until the owner approves it in an ADR.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the ADR policy and the index of ADR-0001 through ADR-0043 (T11.2, REQ-073) — awaiting owner approval
+- 0.1.0 — Approved as stable by the owner — ADR-0044
