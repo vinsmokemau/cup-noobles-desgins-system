@@ -1239,7 +1239,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T6.1, T8.7
   - Done when: Ctrl+K or Cmd+K opens the search; queries for a doc title, a heading, a token path, and a component name each return the right result and anchor; and the search is keyboard-operable with axe clean.
 
-- [ ] **T11.2 — Governance docs**
+- [x] **T11.2 — Governance docs** (2026-10-11, 7dd9a23)
   - REQs: REQ-072, REQ-073 (AC1)
   - Depends on: T5.4
   - Scope: `ownership.md` (A-01), `versioning-and-releases.md` (§4.8), `contribution.md` (a spec-first flow: ADR or spec change, then task, then code), `deprecation.md` (REQ-072), and `decision-log.md` (an index of every ADR).
