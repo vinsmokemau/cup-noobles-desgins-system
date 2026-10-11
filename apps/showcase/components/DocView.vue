@@ -8,7 +8,8 @@ import flat from '../../../packages/tokens/dist/json/tokens.flat.json'
 import { FIXED_TITLES, rewriteDocLinks, type DocEntry } from '../lib/doc-routes'
 import type { FlatToken } from '../lib/token-filter'
 import { toPreviews } from '../lib/token-preview'
-import { demoControls, demoSource } from '../lib/demo-registry'
+import { demoControls, demoSource, emailHtml } from '../lib/demo-registry'
+import { emailPreviewsFor } from '../lib/email-previews'
 import {
   COMPOSED_DEMO,
   PLAYGROUND_DEMO,
@@ -45,13 +46,18 @@ const hasColorPreviews = entry.file === '01-foundations/color.md'
 // T6.3: the other foundation docs get the previews their generated blocks name (SPEC.md §4.5, mechanic 2).
 const previewPrefixes = (useRuntimeConfig().public.previewBlocks as Record<string, string[]>)[entry.file] ?? []
 const hasTokenPreviews = toPreviews(flat as unknown as Record<string, FlatToken>, previewPrefixes).length > 0
+// T10.5 (REQ-058): an email doc shows the compiled emails it names, as the exact text of each file in packages/email/dist.
+const emailNames = emailPreviewsFor(page.value.slug)
+const { data: emails } = await useAsyncData(`emails:${entry.route}`, async () =>
+  Promise.all(emailNames.map(async (name) => ({ name, html: await emailHtml(name) }))),
+)
 // The previews follow the body, so their heading joins the contents (the id is ColorPreviews' heading id).
 const toc = computed(() => [
   ...(page.value?.body.toc?.links ?? []),
   ...(hasColorPreviews ? [{ id: 'color-previews', depth: 2, text: 'Color previews' }] : []),
   ...(hasTokenPreviews ? [{ id: 'token-previews', depth: 2, text: 'Token previews' }] : []),
+  ...(emailNames.length > 0 ? [{ id: 'email-previews', depth: 2, text: 'Email previews' }] : []),
 ])
-const isEmail = entry.route.startsWith('/email/')
 
 // T7.1 (REQ-055): a component doc that lists demos in its frontmatter gets the state matrix after "States" and the
 // playground after "Code reference" (SPEC.md §4.5, mechanic 3). The body is cut at the end of those sections.
@@ -113,7 +119,14 @@ const segments = computed(() => {
       </template>
       <ColorPreviews v-if="hasColorPreviews" />
       <TokenPreviews v-if="hasTokenPreviews" :prefixes="previewPrefixes" />
-      <PendingNotice v-if="isEmail" class="mt-8" task="T10.5" />
+      <section v-if="emails && emails.length > 0" class="mt-8" aria-labelledby="email-previews">
+        <h2 id="email-previews" class="text-xl font-semibold">Email previews</h2>
+        <p class="mt-2 text-sm text-muted">
+          Each preview is the compiled file with its <code v-pre>{{ slot_name }}</code> placeholders, in a sandboxed
+          frame.
+        </p>
+        <EmailPreview v-for="email in emails" :key="email.name" :name="email.name" :html="email.html" />
+      </section>
     </article>
     <aside v-if="toc.length > 0" aria-label="On this page" class="lg:w-64 lg:shrink-0">
       <!-- The toc's default negative margins pull it past the page padding, which overflows from sm up (REQ-061 AC1). -->

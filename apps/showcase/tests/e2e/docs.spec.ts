@@ -194,13 +194,11 @@ test('the section indexes show a card per doc with its status', async ({ page })
 })
 
 test('the pending pages say which task writes them', async ({ page }) => {
-  for (const [route, task] of [
-    ['/changelog', 'T11.3'],
-    ['/email/email-components', 'T10.5'],
-  ] as const) {
-    await page.goto(route)
-    await expect(page.getByTestId('pending-notice'), route).toContainText(task)
-  }
+  // T10.5 wrote the email previews, so the changelog (T11.3) is the one page that has no content yet.
+  await page.goto('/changelog')
+  await expect(page.getByTestId('pending-notice')).toContainText('T11.3')
+  await page.goto('/email/email-components')
+  await expect(page.getByTestId('pending-notice')).toHaveCount(0)
 })
 
 test('a path with no page shows the 404 page, built from the design system', async ({ page }) => {

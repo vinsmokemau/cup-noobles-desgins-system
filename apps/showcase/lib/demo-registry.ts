@@ -31,6 +31,20 @@ export async function demoSource(slug: string, name: string): Promise<string> {
   return load()
 }
 
+// T10.5 (REQ-058 AC2): the compiled emails, as the exact text of each file. `pnpm build:email` writes them, and the
+// showcase build runs after it (`pnpm test:all`). The glob is empty when the email package has not been built.
+const emails = import.meta.glob('../../../packages/email/dist/*.html', { query: '?raw', import: 'default' }) as Record<
+  string,
+  () => Promise<string>
+>
+
+/** The exact text of `packages/email/dist/<name>.html`. */
+export async function emailHtml(name: string): Promise<string> {
+  const load = find(emails, `${name}.html`)
+  if (!load) throw new Error(`packages/email/dist/${name}.html does not exist: run pnpm build:email first`)
+  return load()
+}
+
 /** The controls schema of a component's playground, validated. A component without one has no controls. */
 export async function demoControls(slug: string): Promise<Control[]> {
   const load = find(controls, `${slug}/controls.ts`)

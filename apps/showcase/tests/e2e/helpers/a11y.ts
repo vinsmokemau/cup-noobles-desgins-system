@@ -16,6 +16,10 @@ export interface A11yOptions {
 /** Fails with every axe violation, its rule, and the elements it hit. Never disable a rule here; fix the cause. */
 export async function expectNoA11yViolations(page: Page, { include, label = page.url() }: A11yOptions = {}) {
   const builder = new AxeBuilder({ page }).withTags(wcagTags)
+  // T10.5 (REQ-058): the email preview frame runs without scripts, so axe cannot enter it, and Playwright waits for a
+  // script context that never exists. The frame is left out whole; the email preview spec asserts its sandbox and title,
+  // and the compiled emails are held to REQ-043 and the foundations doc, not to the page's audit.
+  builder.exclude('iframe[data-testid="email-frame"]')
   if (include) builder.include(include)
   const { violations } = await builder.analyze()
   const report = violations.map(
