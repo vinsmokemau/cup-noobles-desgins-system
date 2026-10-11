@@ -1189,7 +1189,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T8.7
   - Done when: 3 pattern docs (at `draft` status at minimum) exist, each with at least one composed demo using neutral content only (the domain-term test passes on demos), and axe is clean. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T9.2 runs it for T9.1 and T9.2.
 
-- [ ] **T9.2 — Navigation, empty states, error pages, and responsive behavior**
+- [x] **T9.2 — Navigation, empty states, error pages, and responsive behavior** (2026-10-11, 65a8090)
   - REQs: REQ-035, REQ-009
   - Depends on: T9.1
   - Done when: 4 pattern docs have demos, and the showcase 404 page is built from the error-page pattern. `pnpm test:all` is green, covering the T9.1 pattern docs and demos as well.
@@ -1343,7 +1343,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.26 | 2026-10-10 | §2.4: TBD-18 — the sticker border artwork is in (T7.16), so all seven BR-14 motifs have their artwork. The row stays open, not resolved: `CnStickerFrame` still draws a placeholder outline and its `motif.*` tokens follow placeholders, so closing it takes the component wiring, a later task. §7.2: OD-08 decided for all motifs. The sticker border is the owner's chosen proposal A, a frame of about 8:5 with a yellow outer edge, a pink inner band, and notched corners, drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background and with an empty centre, with white (`#ffffff`) only for the shine marks. | Owner decision in chat (option A, white shine marks, and the SPEC row); ADR-0024 |
 | 1.27 | 2026-10-10 | Added T7.17 (`CnStickerFrame` sticker border artwork) to P7: the component wiring that closes TBD-18, left open by row 1.26. No existing task changes. | Owner request in chat (T7.16 open question 1) |
 | 1.28 | 2026-10-10 | T8.2 through T8.5: the definition of done requires `pnpm test` instead of `pnpm test:all`; T8.6 runs the full suite. §0.2, T8.1, T8.6 and T8.7 are unchanged. | Owner request in chat |
-| 1.29 | 2026-10-11 | T9.1 and T9.3: the definition of done requires `pnpm test` instead of `pnpm test:all`; T9.2 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
+| 1.29 | 2026-10-11 | T9.1 and T9.3: the definition of done requires `pnpm test` instead of `pnpm test:all`; T9.2 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 | 1.30 | 2026-10-11 | §2.4: TBD-04, TBD-05, TBD-07, TBD-11, and TBD-14 are resolved by ADR-0032 (body text, neutral scale, feedback colors, stroke width, and motion). No requirement or task changes. | Owner decision in chat; ADR-0032 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
