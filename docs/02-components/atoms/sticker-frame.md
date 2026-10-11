@@ -20,7 +20,7 @@ updated: 2026-10-09
 
 ## Purpose
 
-`CnStickerFrame` is the sticker-style border motif of the brand (BR-14): a frame that wraps a piece of content, such as a decorative image, so it looks like a sticker. It is decorative only. It is hidden from assistive technology, and nothing inside it can take focus (REQ-029). The border artwork has not been supplied (TBD-18), so today the frame is a plain outline with no artwork.
+`CnStickerFrame` is the sticker-style border motif of the brand (BR-14): a frame that wraps a piece of content, such as a decorative image, so it looks like a sticker. It is decorative only. It is hidden from assistive technology, and nothing inside it can take focus (REQ-029). The border artwork is supplied as `Sticker-Border-CN.svg` (ADR-0024), but the component does not render it yet (TBD-18), so today the frame is a plain outline with no artwork.
 
 **Why custom:** Nuxt UI has no equivalent. It ships no decorative-border component, and the sticker border artwork is the owner's (BR-14), not something a Nuxt UI component can supply. `CnStickerFrame` composes no Nuxt UI component and holds no behavior.
 
@@ -138,7 +138,7 @@ The component has no props and no events.
 
 ## Open items
 
-> **TBD (TBD-18):** The sticker border artwork is not defined. The component shows a plain outline. Owner input needed: the SVG file.
+> **TBD (TBD-18):** The sticker border artwork is supplied (`Sticker-Border-CN.svg`, ADR-0024), but the component shows a plain outline until a later task renders the file. Owner input needed: none for the artwork.
 >
 > **TBD (TBD-05):** The neutral scale is not defined. The placeholder outline reads a placeholder, not a brand value. Owner input needed: a hex set.
 >

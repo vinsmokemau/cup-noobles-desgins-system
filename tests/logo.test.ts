@@ -65,7 +65,7 @@ test('REQ-030 AC3: the three supplied files are byte-identical to the owner file
     )
   }
   // The brand folder holds the three logos and the motifs supplied so far — the sparkle (T7.10, ADR-0017) and the
-  // ramen cup (T7.11, ADR-0019), the golden d20 (T7.12, ADR-0021), and the chopsticks (T7.13, ADR-0020), the noodle waves (T7.14, ADR-0022), and the arcade lines (T7.15, ADR-0023) — nothing else.
+  // ramen cup (T7.11, ADR-0019), the golden d20 (T7.12, ADR-0021), and the chopsticks (T7.13, ADR-0020), the noodle waves (T7.14, ADR-0022), the arcade lines (T7.15, ADR-0023), and the sticker border (T7.16, ADR-0024) — nothing else.
   assert.deepEqual(
     listFiles(root, 'packages/nuxt/assets/brand', /\.(svg|png|jpe?g|webp|gif|avif)$/i).map((f) => f.split('/').pop()),
     [
@@ -76,6 +76,7 @@ test('REQ-030 AC3: the three supplied files are byte-identical to the owner file
       'Noodle-Wave-CN.svg',
       'Ramen-Cup-CN.svg',
       'Sparkle-CN.svg',
+      'Sticker-Border-CN.svg',
     ].sort(),
   )
 })

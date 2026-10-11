@@ -15,7 +15,7 @@ updated: 2026-10-10
 
 ## Purpose
 
-This doc lists the Cup Noobles brand assets (BR-16) and the decorative motifs (BR-14), and it sets the rules for showing them. Its clear-space and minimum-size rules are what `CnLogo` applies to the supplied logo files (REQ-030 AC3, ADR-0016). Of the motifs, the sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle curves and waves (ADR-0022), and the arcade shapes and dynamic lines (ADR-0023) are supplied; the other one is still open (TBD-18).
+This doc lists the Cup Noobles brand assets (BR-16) and the decorative motifs (BR-14), and it sets the rules for showing them. Its clear-space and minimum-size rules are what `CnLogo` applies to the supplied logo files (REQ-030 AC3, ADR-0016). Of the motifs, the sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle curves and waves (ADR-0022), the arcade shapes and dynamic lines (ADR-0023), and the sticker border (ADR-0024) are supplied, so all seven have their artwork. TBD-18 stays open until `CnStickerFrame` renders the border file.
 
 ## Usage rules
 
@@ -62,7 +62,7 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 | Motif (BR-14) | Rendered by |
 |---|---|
 | Sparkles and stars | `CnSparkle` (see [Sparkle](../02-components/atoms/sparkle.md)), rendering `Sparkle-CN.svg` (ADR-0017) |
-| Sticker-style borders | `CnStickerFrame` (see [Sticker frame](../02-components/atoms/sticker-frame.md)), awaiting its artwork (TBD-18) |
+| Sticker-style borders | `CnStickerFrame` (see [Sticker frame](../02-components/atoms/sticker-frame.md)), with `Sticker-Border-CN.svg` (ADR-0024) not yet rendered by it |
 | A pink ramen cup with gamer details (the core brand icon) | `Ramen-Cup-CN.svg` (ADR-0019), not yet in a component |
 | Noodle-inspired curves and waves | `Noodle-Wave-CN.svg` (ADR-0022), not yet in a component |
 | A golden d20 | `D20-CN.svg` (ADR-0021), not yet in a component |
@@ -73,7 +73,7 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 - A motif that animates stops, or reduces to a non-moving state, under `prefers-reduced-motion: reduce`, and never flashes more than 3 times per second (REQ-029 AC2, AC3).
 - [Imagery and motifs](../01-foundations/imagery-and-motifs.md) holds the full motif rules.
 
-> **TBD (TBD-18):** The artwork for one of the seven BR-14 motifs is not defined. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle waves (ADR-0022), and the arcade lines (ADR-0023) are supplied. Owner input needed: the remaining SVG files.
+> **TBD (TBD-18):** The artwork for all seven BR-14 motifs is supplied: the sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle waves (ADR-0022), the arcade lines (ADR-0023), and the sticker border (ADR-0024). `CnStickerFrame` still draws a plain placeholder outline. Owner input needed: none for the artwork. The component wiring is a later task.
 
 ### When to use
 
@@ -88,7 +88,7 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 
 ## Open items
 
-> **TBD (TBD-18):** Artwork as SVG for the motif other than the sparkle, the ramen cup, the golden d20, the chopsticks, the noodle waves, and the arcade lines. Owner input needed.
+> **TBD (TBD-18):** The motif files are not rendered by components yet, except the sparkle. `CnStickerFrame` shows a placeholder outline until it renders `Sticker-Border-CN.svg`. Owner input needed: none. The component wiring is a later task.
 
 ## Changelog
 
@@ -99,3 +99,4 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 - 0.1.0 — The golden d20 artwork is supplied as `D20-CN.svg`; the other four motifs stay open (T7.12) — ADR-0021
 - 0.1.0 — The chopsticks artwork is supplied as `Chopsticks-CN.svg`; the other three motifs stay open (T7.13) — ADR-0020
 - 0.1.0 — The noodle curves and waves artwork is supplied as `Noodle-Wave-CN.svg`; the other two motifs stay open (T7.14) — ADR-0022
+- 0.1.0 — The sticker border artwork is supplied as `Sticker-Border-CN.svg`; all seven motifs have their artwork, and `CnStickerFrame` is not wired to it yet (T7.16) — ADR-0024

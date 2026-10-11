@@ -231,6 +231,41 @@ test('ADR-0023: the arcade lines file is the owner file, transparent, safe to se
   const colours = [...new Set([...svg.matchAll(/#[0-9a-fA-F]{3,8}\b/g)].map((m) => m[0].toLowerCase()))].sort()
   assert.deepEqual(colours, ['#000000', '#ef80ae', '#fff488', '#ffffff'])
 })
+
+// The sticker border the owner chose (ADR-0024). `CnStickerFrame` does not render it yet, so only the file itself is locked here.
+const STICKER_BORDER = [
+  'Sticker-Border-CN.svg',
+  '1425523e51729b84a7b9bcff8a91c4bacf018fd7fe215e50df2f113861ef2c54',
+] as const
+
+test('ADR-0024: the sticker border file is the cleaned owner file, transparent with an empty centre, safe to serve, and drawn in brand colours only', () => {
+  const [file, hash] = STICKER_BORDER
+  const path = `packages/nuxt/assets/brand/${file}`
+  assert.ok(existsSync(join(root, path)), path)
+  assert.equal(
+    createHash('sha256')
+      .update(readFileSync(join(root, path)))
+      .digest('hex'),
+    hash,
+    `${file} was modified`,
+  )
+
+  const svg = read(path)
+  assert.match(svg, /<svg [^>]*viewBox="[^"]+"/, 'the sticker border has a viewBox')
+  assert.doesNotMatch(svg, /<svg [^>]*\s(width|height)=/, 'the size comes from the page, not the file')
+  assert.doesNotMatch(
+    svg,
+    /<script|href=|<image|<text|<filter|foreignObject|onload|data:image/,
+    `${file} is safe to serve`,
+  )
+  // No editor metadata, no style block, and no background shape: every drawn element is a path.
+  assert.doesNotMatch(svg, /<metadata|xpacket|<style|<defs|<\?xml|\sid="|class="cls-/, `${file} carries no editor data`)
+  assert.doesNotMatch(svg, /<(rect|circle|polygon|use|g)\b/, `${file} has no background rectangle or stray shape`)
+  // Pink, yellow, and black are the brand values. White is allowed only for the shine marks (ADR-0024).
+  const colours = [...new Set([...svg.matchAll(/#[0-9a-fA-F]{3,8}\b/g)].map((m) => m[0].toLowerCase()))].sort()
+  assert.deepEqual(colours, ['#000000', '#ef80ae', '#fff488', '#ffffff'])
+})
+
 test('the sparkle placeholder is gone: no text, token, or rule remains from T7.8', () => {
   const sparkle = read('packages/nuxt/components/CnSparkle.vue')
   assert.doesNotMatch(sparkle, /Motif pending|PLACEHOLDER/)
@@ -346,7 +381,7 @@ test('REQ-055: the playground controls are a valid schema that each playground d
   }
 })
 
-test('the docs point to each other, and the foundation docs name the supplied sparkle, ramen cup, d20, chopsticks, noodle wave, and arcade lines files', () => {
+test('the docs point to each other, and the foundation docs name the supplied sparkle, ramen cup, d20, chopsticks, noodle wave, arcade lines, and sticker border files', () => {
   assert.match(docOf('sparkle'), /sticker-frame/)
   assert.match(docOf('sticker-frame'), /sparkle/)
   for (const path of ['docs/01-foundations/imagery-and-motifs.md', 'docs/00-overview/brand-identity.md']) {
@@ -363,7 +398,9 @@ test('the docs point to each other, and the foundation docs name the supplied sp
     assert.match(doc, /ADR-0022/, path)
     assert.match(doc, /Arcade-Lines-CN\.svg/, path)
     assert.match(doc, /ADR-0023/, path)
-    // TBD-18 stays open for the other motif, so both docs keep their callout and stay drafts.
+    assert.match(doc, /Sticker-Border-CN\.svg/, path)
+    assert.match(doc, /ADR-0024/, path)
+    // TBD-18 stays open until `CnStickerFrame` renders the border file, so both docs keep their callout and stay drafts.
     assert.match(doc, /> \*\*TBD \(TBD-18\):\*\*/, path)
     assert.ok((readFrontmatter(doc).data as Record<string, unknown>).tbd, path)
   }
