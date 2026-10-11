@@ -1,5 +1,5 @@
 <template>
   <UApp>
-    <UButton label="Jugar" />
+    <NuxtPage />
   </UApp>
 </template>

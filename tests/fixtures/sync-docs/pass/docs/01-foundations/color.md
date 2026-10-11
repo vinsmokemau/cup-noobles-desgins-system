@@ -10,7 +10,7 @@ updated: 2026-09-27
 
 # Color
 
-Fixture: a stale table block, an empty contrast block, a marker in fenced code, and an inventory block.
+Fixture: a stale table block, an empty contrast block, and a marker in fenced code.
 
 <!-- cn:generated tokens="color.brand, color.bg" format="table" -->
 | Token | CSS variable | Value | Status |
@@ -27,7 +27,3 @@ Hand-written notes after the block stay.
 <!-- cn:generated tokens="nothing.here" format="table" -->
 <!-- /cn:generated -->
 ```
-
-<!-- cn:generated tokens="component" format="inventory" -->
-Left as it is until T8.7.
-<!-- /cn:generated -->

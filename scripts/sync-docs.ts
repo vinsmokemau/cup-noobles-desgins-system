@@ -7,17 +7,18 @@
 //   token build's tokens.flat.json (REQ-013), so a doc shows exactly what the packages ship.
 // - `contrast`: every declared pair from tokens/contrast-pairs.json with a matching token on either side, and every
 //   combination from tokens/contrast-forbidden.json that names a matching token, as check-contrast reports them.
-// - `inventory` blocks are left untouched until T8.7 adds that format.
+// - `inventory`: one row per component doc (REQ-020 AC1, §4.10), read from the frontmatter of the docs whose layer is
+//   `component`, grouped atoms, then molecules, then organisms. It has no `tokens` attribute, because it lists docs.
 // Markers inside fenced code or HTML comments are not blocks, the same as in check-docs.
 //
 // With --check nothing is written: the command lists the files whose blocks have drifted and fails (REQ-004 AC3).
 import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { dirname, join, resolve } from 'node:path'
+import { dirname, join, posix, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { build } from '../packages/tokens/build.ts'
 import { checkContrast, type ContrastReport } from './check-contrast.ts'
-import { readFrontmatter, scan, type Problem } from './check-docs.ts'
+import { EXEMPT, readFrontmatter, scan, type Problem } from './check-docs.ts'
 
 export type Format = 'table' | 'contrast' | 'inventory'
 export const FORMATS: Format[] = ['table', 'contrast', 'inventory']
@@ -103,6 +104,64 @@ export function renderContrast(report: ContrastReport, list: string[]): string[]
   ]
 }
 
+// One component doc, as the inventory lists it.
+export interface ComponentDoc {
+  file: string // repository-relative, with forward slashes
+  title: string
+  slug: string
+  level: string
+  source: string
+  implementation: string // the Nuxt UI component (`nuxtUi`) or the `Cn*` component (`component`)
+  status: string
+  tbd: string[]
+}
+
+const LEVELS = ['atom', 'molecule', 'organism']
+const str = (value: unknown) => (typeof value === 'string' ? value : '')
+
+/** The component docs among `texts`, in inventory order: atoms, molecules, organisms, then by slug. */
+export function componentDocs(texts: Map<string, string>): ComponentDoc[] {
+  const docs: ComponentDoc[] = []
+  for (const [file, text] of texts) {
+    // The template is a component-layer file that no component owns (§4.3, exempt files).
+    if (!file.startsWith('docs/') || EXEMPT.includes(file)) continue
+    const data = readFrontmatter(text).data
+    if (data?.layer !== 'component') continue
+    docs.push({
+      file,
+      title: str(data.title),
+      slug: str(data.slug),
+      level: str(data.level),
+      source: str(data.source),
+      implementation: str(data.source === 'custom' ? data.component : data.nuxtUi),
+      status: str(data.status),
+      tbd: Array.isArray(data.tbd) ? data.tbd.map(String) : [],
+    })
+  }
+  const rank = (level: string) => (LEVELS.includes(level) ? LEVELS.indexOf(level) : LEVELS.length)
+  return docs.sort((a, b) => rank(a.level) - rank(b.level) || a.slug.localeCompare(b.slug))
+}
+
+export function renderInventory(docs: ComponentDoc[], from: string): string[] {
+  if (!docs.length) return []
+  const link = (doc: ComponentDoc) =>
+    `[${doc.title.replaceAll('|', '\\|')}](${posix.relative(posix.dirname(from), doc.file)})`
+  return [
+    row(['Component', 'Level', 'Source', 'Implementation', 'Status', 'Open TBD items']),
+    '|---|---|---|---|---|---|',
+    ...docs.map((doc) =>
+      row([
+        link(doc),
+        doc.level,
+        doc.source,
+        code(doc.implementation),
+        doc.status,
+        doc.tbd.length ? doc.tbd.join(', ') : '—',
+      ]),
+    ),
+  ]
+}
+
 // Resolved values, from a token build into a temporary directory.
 async function flatTokens(root: string): Promise<Record<string, FlatToken>> {
   const out = mkdtempSync(join(tmpdir(), 'cn-sync-docs-'))
@@ -171,6 +230,7 @@ export async function syncDocs(root: string = repoRoot, { check = false } = {}):
     }
   }
   const contrast = formats.has('contrast') ? checkContrast(root) : { pairs: [], forbidden: [], problems: [] }
+  const components = formats.has('inventory') ? componentDocs(texts) : []
 
   for (const file of files) {
     const text = texts.get(file)!
@@ -181,7 +241,7 @@ export async function syncDocs(root: string = repoRoot, { check = false } = {}):
       const add = (message: string) => problems.push({ file, line: block.open + 1, message })
       const { tokens, format } = block.attributes
       const list = prefixes(tokens ?? '')
-      if (!list.length) {
+      if (format !== 'inventory' && !list.length) {
         add('the cn:generated block needs a `tokens` attribute with at least one token path prefix (§4.5)')
         continue
       }
@@ -189,11 +249,17 @@ export async function syncDocs(root: string = repoRoot, { check = false } = {}):
         add(`the cn:generated block's \`format\` must be one of ${FORMATS.join(', ')}, not ${JSON.stringify(format)}`)
         continue
       }
-      if (format === 'inventory') continue // T8.7
-      const table = format === 'table' ? renderTable(flat, list) : renderContrast(contrast, list)
+      const table =
+        format === 'inventory'
+          ? renderInventory(components, file)
+          : format === 'table'
+            ? renderTable(flat, list)
+            : renderContrast(contrast, list)
       if (!table.length) {
         add(
-          `tokens="${tokens}" matches no ${format === 'table' ? 'tokens' : 'contrast pairs or forbidden combinations'}`,
+          format === 'inventory'
+            ? 'the inventory block finds no component docs (layer: component)'
+            : `tokens="${tokens}" matches no ${format === 'table' ? 'tokens' : 'contrast pairs or forbidden combinations'}`,
         )
         continue
       }

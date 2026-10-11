@@ -126,7 +126,8 @@ test('REQ-057 AC1: a status banner shows on exactly the docs whose status is dra
 test('REQ-057 AC1: the banner names the status, and a stable doc has none', async ({ page }) => {
   await page.goto('/foundations/color')
   await expect(page.getByTestId('status-banner')).toContainText('Status: draft')
-  await page.goto('/components')
+  // T8.7 wrote the inventory, so a pattern doc that no task has written yet stands for `tbd`.
+  await page.goto('/patterns/forms')
   await expect(page.getByTestId('status-banner')).toContainText('Status: tbd')
   await page.goto('/governance/decisions/adr-0009-focus-indicator')
   await expect(page.getByTestId('status-banner')).toHaveCount(0)

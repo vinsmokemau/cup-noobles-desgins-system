@@ -1,7 +1,7 @@
 // T3.6 checks: scripts/sync-docs.ts rewrites the generated blocks in the `table` and `contrast` formats (REQ-004 AC1),
 // `--check` reports drift (REQ-004 AC3), and `pnpm test`, which CI runs through `pnpm test:all`, includes
-// `pnpm sync:docs --check` (REQ-075 AC2). Fixture roots live in tests/fixtures/sync-docs/{pass,fail}/; tests that
-// write work on a copy in a temporary directory.
+// `pnpm sync:docs --check` (REQ-075 AC2). T8.7 adds the `inventory` format. Fixture roots live in
+// tests/fixtures/sync-docs/{pass,fail,inventory}/; tests that write work on a copy in a temporary directory.
 import { afterEach, test } from 'vitest'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
@@ -86,7 +86,7 @@ test('REQ-004 AC1: `contrast` blocks list the pairs and forbidden combinations w
   ])
 })
 
-test('blocks in fenced code, `inventory` blocks (T8.7), and the hash-locked brand source are left untouched', async () => {
+test('blocks in fenced code and the hash-locked brand source are left untouched', async () => {
   const dir = copy('pass')
   const result = await syncDocs(dir)
   assert.ok(!result.files.includes('docs/00-overview/brand-context-source.md'))
@@ -99,8 +99,60 @@ test('blocks in fenced code, `inventory` blocks (T8.7), and the hash-locked bran
     color,
     /```md\n<!-- cn:generated tokens="nothing\.here" format="table" -->\n<!-- \/cn:generated -->\n```/,
   )
-  assert.match(color, /format="inventory" -->\nLeft as it is until T8\.7\.\n<!-- \/cn:generated -->/)
 })
+
+// T8.7 (REQ-020 AC1, §4.10): the `inventory` format lists the component docs from their frontmatter.
+const INVENTORY = 'docs/02-components/inventory.md'
+test('T8.7: `inventory` blocks get one row per component doc, atoms then molecules then organisms', async () => {
+  const dir = copy('inventory')
+  const result = await syncDocs(dir)
+  assert.deepEqual(result.problems, [])
+  assert.deepEqual(result.drifted, [INVENTORY])
+  const inventory = read(dir, INVENTORY)
+  assert.ok(
+    inventory.includes(
+      [
+        '<!-- cn:generated format="inventory" -->',
+        '',
+        '| Component | Level | Source | Implementation | Status | Open TBD items |',
+        '|---|---|---|---|---|---|',
+        '| [Button](atoms/button.md) | atom | nuxt-ui | `UButton` | stable | TBD-12, TBD-16 |',
+        '| [Logo](atoms/logo.md) | atom | custom | `CnLogo` | stable | — |',
+        '| [Card](molecules/card.md) | molecule | nuxt-ui | `UCard` | stable | — |',
+        '| [Modal](organisms/modal.md) | organism | nuxt-ui | `UModal` | draft | TBD-15 |',
+        '',
+        '<!-- /cn:generated -->',
+      ].join('\n'),
+    ),
+    inventory,
+  )
+  assert.doesNotMatch(inventory, /stale row/)
+  assert.doesNotMatch(inventory, /Color/, 'a doc that is not a component is not listed')
+  assert.doesNotMatch(inventory, /Doc title|_template/, 'the template is not a component')
+  assert.match(inventory, /Hand-written notes after the block stay\./)
+  assert.match(inventory, /```md\n<!-- cn:generated format="inventory" -->\n<!-- \/cn:generated -->\n```/)
+})
+
+test('T8.7: a second sync leaves the inventory unchanged, and --check fails when a component doc changes', () => {
+  const dir = copy('inventory')
+  assert.equal(run(dir).status, 0)
+  assert.equal(run('--check', dir).status, 0)
+  const synced = read(dir, INVENTORY)
+  assert.equal(run(dir).status, 0)
+  assert.equal(read(dir, INVENTORY), synced)
+
+  const file = join(dir, 'docs/02-components/atoms/logo.md')
+  writeFileSync(file, readFileSync(file, 'utf8').replace('status: stable', 'status: deprecated'))
+  const drift = run('--check', dir)
+  assert.equal(drift.status, 1)
+  assert.match(drift.stderr, /^docs\/02-components\/inventory\.md {2}generated blocks are out of date/m)
+  assert.equal(read(dir, INVENTORY), synced, '--check writes nothing')
+  assert.equal(run(dir).status, 0)
+  assert.match(
+    read(dir, INVENTORY),
+    /\| \[Logo\]\(atoms\/logo\.md\) \| atom \| custom \| `CnLogo` \| deprecated \| — \|/,
+  )
+}, 60_000)
 
 test('a file keeps its line endings', async () => {
   const dir = copy('pass')
@@ -115,17 +167,25 @@ test('malformed blocks are problems, and the command fails', async () => {
   const result = await syncDocs(join(fixtures, 'fail'), { check: true })
   assert.deepEqual(
     result.problems.map((p) => `${p.file}:${p.line}`),
-    ['docs/blocks.md:3', 'docs/blocks.md:6', 'docs/blocks.md:9', 'docs/blocks.md:12', 'docs/unclosed.md:3'],
+    [
+      'docs/blocks.md:3',
+      'docs/blocks.md:6',
+      'docs/blocks.md:9',
+      'docs/blocks.md:12',
+      'docs/no-components.md:3',
+      'docs/unclosed.md:3',
+    ],
   )
   const messages = result.problems.map((p) => p.message)
   assert.match(messages[0]!, /needs a `tokens` attribute/)
   assert.match(messages[1]!, /`format` must be one of table, contrast, inventory, not "swatches"/)
   assert.match(messages[2]!, /tokens="color\.nothing" matches no tokens/)
   assert.match(messages[3]!, /matches no contrast pairs or forbidden combinations/)
-  assert.match(messages[4]!, /never closed/)
+  assert.match(messages[4]!, /inventory block finds no component docs/)
+  assert.match(messages[5]!, /never closed/)
   const cli = run(join(fixtures, 'fail'))
   assert.equal(cli.status, 1)
-  assert.match(cli.stderr, /sync-docs: 5 problem\(s\)/)
+  assert.match(cli.stderr, /sync-docs: 6 problem\(s\)/)
 })
 
 // Done when: after a token value changes, `--check` fails; after running `pnpm sync:docs`, it passes; and running it
