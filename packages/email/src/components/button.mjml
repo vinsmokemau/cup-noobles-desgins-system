@@ -1,0 +1,37 @@
+<mjml lang="es-MX">
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="$cn(font.family.body)" />
+      <mj-text
+        font-size="$cn(font.size.body)"
+        line-height="$cn(font.lineHeight.body)"
+        font-weight="$cn(font.weight.body)"
+        color="$cn(color.text.default)"
+        padding="$cn(space.base)"
+        container-background-color="$cn(color.bg.base)"
+      />
+    </mj-attributes>
+  </mj-head>
+  <mj-body width="$cn(layout.email.width.max)" background-color="$cn(color.bg.base)">
+    <mj-section background-color="$cn(color.bg.base)" padding="$cn(space.base)">
+      <mj-column background-color="$cn(color.bg.base)">
+        <mj-button
+          href="{{ button_url }}"
+          align="center"
+          background-color="$cn(button.primary.bg)"
+          color="$cn(button.primary.fg)"
+          font-family="$cn(font.family.body)"
+          font-size="$cn(font.size.body)"
+          font-weight="$cn(font.weight.body)"
+          line-height="$cn(font.lineHeight.body)"
+          border-radius="$cn(radius.button)"
+          border="$cn(border.width.button) solid $cn(button.primary.border)"
+          container-background-color="$cn(color.bg.base)"
+          padding="$cn(space.base)"
+          inner-padding="$cn(space.base)"
+          >{{ button_label }}</mj-button
+        >
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

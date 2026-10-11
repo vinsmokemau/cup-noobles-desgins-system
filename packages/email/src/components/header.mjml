@@ -1,0 +1,49 @@
+<mjml lang="es-MX">
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="$cn(font.family.body)" />
+      <mj-text
+        font-size="$cn(font.size.body)"
+        line-height="$cn(font.lineHeight.body)"
+        font-weight="$cn(font.weight.body)"
+        color="$cn(color.text.default)"
+        padding="$cn(space.base)"
+        container-background-color="$cn(color.bg.base)"
+      />
+    </mj-attributes>
+  </mj-head>
+  <mj-body width="$cn(layout.email.width.max)" background-color="$cn(color.bg.base)">
+    <mj-section
+      background-color="$cn(siteHeader.bg)"
+      border-bottom="$cn(border.width.siteHeader) solid $cn(siteHeader.line)"
+      padding="$cn(space.base)"
+    >
+      <mj-column background-color="$cn(siteHeader.bg)">
+        <mj-text
+          align="center"
+          color="$cn(siteHeader.fg)"
+          container-background-color="$cn(siteHeader.bg)"
+          font-family="$cn(font.family.display)"
+          font-size="$cn(font.h3.size)"
+          line-height="$cn(font.h3.lineHeight)"
+          font-weight="$cn(font.h3.weight)"
+          ><a href="{{ home_url }}" style="color: $cn(siteHeader.fg); text-decoration: none"
+            ><img
+              src="{{ logo_url }}"
+              alt="{{ logo_alt }}"
+              style="
+                display: inline-block;
+                border: 0;
+                height: $cn(logo.rule.minHeight.horizontal);
+                background-color: $cn(siteHeader.bg);
+                color: $cn(siteHeader.fg);
+                font-family: $cn(font.family.display);
+                font-size: $cn(font.h3.size);
+                font-weight: $cn(font.h3.weight);
+                line-height: $cn(font.h3.lineHeight);
+              " /></a
+        ></mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

@@ -1,0 +1,55 @@
+<mjml lang="es-MX">
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="$cn(font.family.body)" />
+      <mj-text
+        font-size="$cn(font.size.body)"
+        line-height="$cn(font.lineHeight.body)"
+        font-weight="$cn(font.weight.body)"
+        color="$cn(color.text.default)"
+        padding="$cn(space.base)"
+        container-background-color="$cn(color.bg.base)"
+      />
+    </mj-attributes>
+  </mj-head>
+  <mj-body width="$cn(layout.email.width.max)" background-color="$cn(color.bg.base)">
+    <mj-section
+      background-color="$cn(card.bg)"
+      border="$cn(border.width.card) solid $cn(card.highlight)"
+      border-radius="$cn(radius.card)"
+      padding="$cn(space.base)"
+    >
+      <mj-column background-color="$cn(card.bg)">
+        <mj-text color="$cn(card.fg)" container-background-color="$cn(card.bg)"
+          ><h3
+            style="
+              margin: 0;
+              font-family: $cn(font.h3.family);
+              font-size: $cn(font.h3.size);
+              font-weight: $cn(font.h3.weight);
+              line-height: $cn(font.h3.lineHeight);
+              color: $cn(card.fg);
+            "
+          >
+            {{ card_title }}
+          </h3></mj-text
+        >
+        <mj-text color="$cn(card.fg)" container-background-color="$cn(card.bg)">{{ card_body }}</mj-text>
+        <mj-divider
+          border-width="$cn(border.width.card)"
+          border-style="solid"
+          border-color="$cn(card.divider)"
+          container-background-color="$cn(card.bg)"
+          padding="$cn(space.base)"
+        />
+        <mj-text
+          color="$cn(card.fgMuted)"
+          font-size="$cn(font.size.caption)"
+          line-height="$cn(font.lineHeight.caption)"
+          container-background-color="$cn(card.bg)"
+          >{{ card_footer }}</mj-text
+        >
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
