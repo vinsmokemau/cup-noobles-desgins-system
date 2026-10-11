@@ -3,12 +3,12 @@
 // apps/showcase/tests/e2e/color-preview.spec.ts.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
 import { BASE, MINIMUM, ratioText, toSwatches } from '../apps/showcase/lib/color-preview'
 import type { FlatToken } from '../apps/showcase/lib/token-filter'
 import { checkContrast } from '../scripts/check-contrast'
+import { flatTokens } from './lib/flat-tokens'
 
-const flat = JSON.parse(readFileSync('packages/tokens/dist/json/tokens.flat.json', 'utf8')) as Record<string, FlatToken>
+const flat = await flatTokens<FlatToken>()
 const swatches = toSwatches(flat)
 const byPath = new Map(swatches.map((swatch) => [swatch.path, swatch]))
 

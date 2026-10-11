@@ -3,7 +3,6 @@
 // read the real docs and the real token build, and nothing is retyped.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { tableBlockPrefixes } from '../apps/showcase/lib/doc-blocks'
@@ -18,12 +17,10 @@ import {
   toPreviews,
   toSections,
 } from '../apps/showcase/lib/token-preview'
+import { flatTokens } from './lib/flat-tokens'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const flat = JSON.parse(readFileSync(join(root, 'packages/tokens/dist/json/tokens.flat.json'), 'utf8')) as Record<
-  string,
-  FlatToken
->
+const flat = await flatTokens<FlatToken>()
 const blocks = scanPreviewBlocks(join(root, 'docs'))
 const previewsOf = (doc: string) => toPreviews(flat, blocks[`01-foundations/${doc}.md`] ?? [])
 
