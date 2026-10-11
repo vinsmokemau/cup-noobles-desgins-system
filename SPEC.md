@@ -933,7 +933,7 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: Rewrite generated blocks in the `table` and `contrast` formats (the `inventory` format comes in T8.7), add `--check` mode, and add `sync:docs --check` to `pnpm test`.
   - Done when: after a token value changes, `--check` fails; after running `pnpm sync:docs`, it passes; and running it on an in-sync tree leaves no git diff.
 
-- [ ] **T3.7 — Email width token**
+- [x] **T3.7 — Email width token** (2026-10-11, 076e4ce)
   - REQs: REQ-011 (AC2), REQ-040 (AC2)
   - Depends on: T3.4, T10.1
   - Scope: The primitive `email.width.max` (`600px`) and the semantic `layout.email.width.max`, both `stable` with source ADR-0038, so the email build reads the maximum width from a token (A-08).
