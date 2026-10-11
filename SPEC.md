@@ -1217,7 +1217,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T10.1, T0.4
   - Done when: `pnpm --filter @vinsmokemau/cup-noobles-email build` works, and the output checks pass: no `var(`, no stylesheet link, no scripts, no backend tags, only token hex values, and no hex literals in the sources. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
 
-- [ ] **T10.3 — Email components**
+- [x] **T10.3 — Email components** (2026-10-11, 3c911d0)
   - REQs: REQ-041 (AC3, AC4), REQ-042
   - Depends on: T10.2
   - Done when: the 6 components compile, every slot is documented in `email-components.md`, and the button uses a solid border in place of the glow, per REQ-040. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
