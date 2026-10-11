@@ -1138,7 +1138,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
   - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Sticker-Border-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
 
-- [ ] **T7.17 — `CnStickerFrame` sticker border artwork**
+- [x] **T7.17 — `CnStickerFrame` sticker border artwork** (2026-10-10, 7cd0856)
   - REQs: REQ-029, REQ-028 (AC1), REQ-021, REQ-022
   - Depends on: T7.16 (sticker border supplied, ADR-0024)
   - Done when: `CnStickerFrame` renders the supplied `Sticker-Border-CN.svg` unmodified, as an image file, around its slot content; it stays `aria-hidden` and `inert` with no focusable child, and wraps arbitrary slot content without overflow at 360 px; the placeholder outline, the `motif.placeholder.*`, `border.width.motif`, and `radius.motif` tokens, and their contrast pair are gone, with no brand value invented for the replacement; the TBD-18 callouts and `tbd` entries are gone and §2.4 marks TBD-18 `Resolved (ADR-NNNN)`; the sticker frame baselines show the real artwork; and `sticker-frame.md` states the artwork and drops every TBD that only the placeholders caused. The file is a fixed frame of about 8:5, so how it fits content of another shape is a design decision: show the owner the options on a comparison page before building (CLAUDE.md, Owner decisions).
