@@ -2,13 +2,13 @@
 title: Component inventory
 slug: inventory
 layer: overview
-status: draft
+status: stable
 lang: en
 brandRules: []
 tbd: []
 related: [button, logo, media-card, modal, site-header]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Component inventory
@@ -76,3 +76,4 @@ The `Open TBD items` column lists the TBD items each component still depends on.
 ## Changelog
 
 - 0.1.0 — First version: the generated table of every component doc, in the `inventory` format of `sync:docs` (T8.7) — awaiting owner approval
+- 0.1.0 — Approved without changes; status `stable` — owner approval in chat, 2026-10-11
