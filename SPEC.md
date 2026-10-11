@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.26 |
+| Spec version | 1.27 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -199,7 +199,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
 | TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | Resolved (ADR-0016) |
-| TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle curves and waves (ADR-0022), the arcade shapes and dynamic lines (ADR-0023), and the sticker border (ADR-0024) are supplied, so all seven BR-14 motifs have their artwork. The row stays open until `CnStickerFrame` renders `Sticker-Border-CN.svg` and its placeholder tokens are replaced. | `CnStickerFrame`, imagery-and-motifs.md | Wiring the file into the component (a later task) |
+| TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle curves and waves (ADR-0022), the arcade shapes and dynamic lines (ADR-0023), and the sticker border (ADR-0024) are supplied, so all seven BR-14 motifs have their artwork. The row stays open until `CnStickerFrame` renders `Sticker-Border-CN.svg` and its placeholder tokens are replaced. | `CnStickerFrame`, imagery-and-motifs.md | Wiring the file into the component (T7.17) |
 | TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Resolved (ADR-0012) |
 | TBD-20 | Photography and thumbnail standards. This is the same open item as EC decision D11. | imagery-and-motifs.md | Guidelines |
 | TBD-21 | Voice attributes beyond the adjectives in BC (the "this, not that" pairs) | voice-and-tone.md | Approval of a draft |
@@ -1138,6 +1138,11 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
   - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Sticker-Border-CN.svg`; the review in step 6 finds no problem; and `pnpm test:all` and `pnpm check:docs` pass.
 
+- [ ] **T7.17 — `CnStickerFrame` sticker border artwork**
+  - REQs: REQ-029, REQ-028 (AC1), REQ-021, REQ-022
+  - Depends on: T7.16 (sticker border supplied, ADR-0024)
+  - Done when: `CnStickerFrame` renders the supplied `Sticker-Border-CN.svg` unmodified, as an image file, around its slot content; it stays `aria-hidden` and `inert` with no focusable child, and wraps arbitrary slot content without overflow at 360 px; the placeholder outline, the `motif.placeholder.*`, `border.width.motif`, and `radius.motif` tokens, and their contrast pair are gone, with no brand value invented for the replacement; the TBD-18 callouts and `tbd` entries are gone and §2.4 marks TBD-18 `Resolved (ADR-NNNN)`; the sticker frame baselines show the real artwork; and `sticker-frame.md` states the artwork and drops every TBD that only the placeholders caused. The file is a fixed frame of about 8:5, so how it fits content of another shape is a design decision: show the owner the options on a comparison page before building (CLAUDE.md, Owner decisions).
+
 ### P8 — Molecules and organisms
 
 - [x] **T8.1 — FormField and Card** (2026-10-09, 9a8e480)
@@ -1336,6 +1341,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.24 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the noodle curves and waves artwork is in (T7.14), so the sparkle, the ramen cup, the golden d20, the chopsticks, and the noodle waves are supplied and the other two BR-14 motifs stay open. The noodle waves are the owner's chosen proposal D, four stacked waves with curled ends drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background, with white (`#ffffff`) only for the shine marks. | Owner decision in chat (option D, and white shine marks); ADR-0022 |
 | 1.25 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the arcade shapes and dynamic lines artwork is in (T7.15), so the sparkle, the ramen cup, the golden d20, the chopsticks, the noodle waves, and the arcade lines are supplied and the other BR-14 motif, the sticker border, stays open. The arcade lines are the owner's chosen proposal A, a pink cross, a yellow round button, and a pink square button with yellow speed lines and a yellow sticker edge, drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background, with white (`#ffffff`) only for the shine marks. | Owner decision in chat (option A, and white shine marks); ADR-0023 |
 | 1.26 | 2026-10-10 | §2.4: TBD-18 — the sticker border artwork is in (T7.16), so all seven BR-14 motifs have their artwork. The row stays open, not resolved: `CnStickerFrame` still draws a placeholder outline and its `motif.*` tokens follow placeholders, so closing it takes the component wiring, a later task. §7.2: OD-08 decided for all motifs. The sticker border is the owner's chosen proposal A, a frame of about 8:5 with a yellow outer edge, a pink inner band, and notched corners, drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background and with an empty centre, with white (`#ffffff`) only for the shine marks. | Owner decision in chat (option A, white shine marks, and the SPEC row); ADR-0024 |
+| 1.27 | 2026-10-10 | Added T7.17 (`CnStickerFrame` sticker border artwork) to P7: the component wiring that closes TBD-18, left open by row 1.26. No existing task changes. | Owner request in chat (T7.16 open question 1) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1366,15 +1372,15 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-017 | T3.1, T3.4 |
 | REQ-018 | T11.4, T12.3 |
 | REQ-020 | T0.1, T1.3, T5.1, T7.3, T7.4, T7.5, T7.6, T8.3, T8.4, T8.5, T8.6, T8.7 |
-| REQ-021 | T1.3, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T8.2 |
-| REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T8.2, T8.6, T8.7 |
+| REQ-021 | T1.3, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2 |
+| REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T8.6, T8.7 |
 | REQ-023 | T4.4, T7.2 |
 | REQ-024 | T4.4, T7.2, T7.4, T7.5 |
 | REQ-025 | T8.1, T8.2 |
 | REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
 | REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
-| REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T7.9, T8.1, T8.2, T8.4, T8.6 |
-| REQ-029 | T4.5, T4.6, T7.6, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16 |
+| REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T7.9, T7.17, T8.1, T8.2, T8.4, T8.6 |
+| REQ-029 | T4.5, T4.6, T7.6, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17 |
 | REQ-030 | T4.1, T7.7, T7.9 |
 | REQ-031 | T0.1, T5.1, T5.3 |
 | REQ-035 | T9.1, T9.2 |
