@@ -35,6 +35,8 @@
   --cn-border-width-pagination: 1px; /** Outline stroke width of a page number and of the previous and next controls (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-progress: 1px; /** Outline stroke width of the progress track (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-separator: 1px; /** Stroke width of the separator line (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
+  --cn-border-width-site-footer: 1px; /** Stroke width of the line above the site footer (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
+  --cn-border-width-site-header: 1px; /** Stroke width of the line under the site header (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-skeleton: 1px; /** Outline stroke width of a skeleton shape (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-tabs: 1px; /** Stroke width of the rule under the tab list and of the underline under the active tab (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-toast: 1px; /** Outline stroke width of the toast (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
@@ -312,6 +314,12 @@
   --cn-radius-tooltip: 0.375rem; /** Corner radius of the tooltip. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-separator-bg: #000000; /** The surface a separator line sits on: the pure black page (BR-03). */
   --cn-separator-color: #90a1b9; /** Color of the separator line. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-site-footer-bg: #000000; /** Fill of the site footer: the pure black page (BR-03). The footer is separated from the page by its line, not by a surface color (C-05). */
+  --cn-site-footer-fg: #90a1b9; /** Text in the site footer. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-site-footer-line: #ef80ae; /** Color of the line above the site footer: brand pink, like the header line (BR-01, ADR-0030). Chosen by the owner in ADR-0030. */
+  --cn-site-header-bg: #000000; /** Fill of the site header: the pure black page, fully opaque (BR-03). The header is separated from the page by its line, not by a surface color (C-05). */
+  --cn-site-header-fg: #90a1b9; /** Text in the site header, such as the title. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-site-header-line: #ef80ae; /** Color of the line under the site header: brand pink, like the card outline (BR-01, ADR-0018). Chosen by the owner in ADR-0030. */
   --cn-skeleton-border: #90a1b9; /** Outline color of a skeleton shape. The shape has no fill, because there is no surface color yet (C-05). TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
   --cn-space-base: 0.25rem; /** Spacing base unit. TBD-09: the base unit and scale are not defined; this references a placeholder, not a brand value. */
   --cn-tabs-active-fg: #ef80ae; /** Label color of the selected tab: brand pink on the black page, 8.37:1 (BR-01, ADR-0028). */

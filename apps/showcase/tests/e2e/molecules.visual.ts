@@ -14,6 +14,8 @@ const STATES = {
   alert: ['default', 'success', 'warning', 'error', 'focus-visible'],
   toast: ['default', 'success', 'warning', 'error', 'focus-visible'],
   tooltip: ['default', 'hover', 'focus-visible'],
+  'site-header': ['default'],
+  'site-footer': ['default'],
 }
 
 for (const [slug, states] of Object.entries(STATES)) {

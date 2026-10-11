@@ -40,7 +40,7 @@ for (const route of [...routes, missing]) {
       if (viewport!.width >= 768) {
         await expect(page.getByRole('navigation', { name: 'Documentation' })).toBeVisible()
       } else {
-        await expect(page.getByRole('button', { name: 'Open navigation' })).toBeVisible()
+        await expect(page.getByRole('button', { name: 'Open menu' })).toBeVisible()
       }
     })
     // Last, because it presses keys and moves the page to its main region.

@@ -1,0 +1,50 @@
+{
+  "border": {
+    "width": {
+      "siteFooter": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Stroke width of the line above the site footer (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "siteFooter": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of the site footer: the pure black page (BR-03). The footer is separated from the page by its line, not by a surface color (C-05).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "line": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Color of the line above the site footer: brand pink, like the header line (BR-01, ADR-0030). Chosen by the owner in ADR-0030.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Text in the site footer. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-04"],
+          "status": "tbd"
+        }
+      }
+    }
+  }
+}

@@ -6,6 +6,14 @@
 // Escape, inert page) is covered by the keyboard tests on the playground, where the modal opens in the page portal. The close
 // button takes the brand ghost look through `close`. Copy is es-MX and has no domain content (REQ-022).
 const states = ['default'] as const
+// T8.6: on a component page this demo sits in an iframe, and an open dialog would take focus from the page on load, so the
+// first Tab would not reach the skip link. Embedded, the dialog does not take focus. On its own page, where the baseline is
+// made, it still does, so the close button shows the focus ring there (ADR-0009).
+const content = {
+  onOpenAutoFocus: (event: Event) => {
+    if (window.parent !== window) event.preventDefault()
+  },
+}
 </script>
 
 <template>
@@ -22,6 +30,7 @@ const states = ['default'] as const
           :portal="false"
           :transition="false"
           :dismissible="false"
+          :content="content"
           title="Confirmar lugar"
           description="Te guardamos una mesa para cuatro personas."
           :close="{ color: 'primary', variant: 'ghost' }"

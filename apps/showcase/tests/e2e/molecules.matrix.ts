@@ -5,7 +5,18 @@ import { expectNoA11yViolations, expectNoHorizontalOverflow, expectTargetSize } 
 import { openDemo } from './helpers/states'
 import { test } from './helpers/test'
 
-for (const slug of ['form-field', 'card', 'media-card', 'modal', 'slideover', 'alert', 'toast', 'tooltip']) {
+for (const slug of [
+  'form-field',
+  'card',
+  'media-card',
+  'modal',
+  'slideover',
+  'alert',
+  'toast',
+  'tooltip',
+  'site-header',
+  'site-footer',
+]) {
   for (const demo of ['states', 'playground']) {
     test(`/_demo/${slug}/${demo}: axe, overflow, and target size`, async ({ page, viewport }) => {
       await openDemo(page, slug, demo)

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-// T5.3: the app layout. A skip link, a header with the package version, a sidebar from md up, and below md the same
-// menu inside a Nuxt UI slideover (REQ-052 AC2, REQ-061 AC2). There is no color-mode toggle (REQ-031 AC1).
-import { ref } from 'vue'
+// T5.3, T8.6: the app layout. A skip link, the design system's own site header and footer (themed `UHeader` and `UFooter`,
+// ADR-0030), and a sidebar from md up. Below md the same menu is the header's own slideover (REQ-061 AC2): `mode="slideover"`
+// moves the navigation into a Nuxt UI slideover, opened from the toggle, so focus is trapped, Escape closes it, and the page
+// behind is inert. Nuxt UI hides the toggle below `lg`, and the sidebar appears at `md`, so the `ui` classes hide the toggle
+// and the menu from md, where the sidebar takes over. There is no color-mode toggle (REQ-031 AC1).
 import { useRuntimeConfig } from 'nuxt/app'
 
 const version = useRuntimeConfig().public.version as string
-const menuOpen = ref(false)
 </script>
 
 <template>
@@ -17,25 +18,22 @@ const menuOpen = ref(false)
       Skip to content
     </a>
 
-    <UHeader title="Cup Noobles Design System" to="/" :toggle="false">
+    <UHeader
+      title="Cup Noobles Design System"
+      to="/"
+      mode="slideover"
+      toggle-side="right"
+      :toggle="{ color: 'primary', variant: 'ghost' }"
+      :menu="{ side: 'left', title: 'Navigation', description: 'Documentation sections' }"
+      :ui="{ toggle: 'md:hidden', content: 'md:hidden', overlay: 'md:hidden' }"
+    >
       <template #right>
         <UBadge :label="`v${version}`" color="neutral" variant="outline" data-testid="version" />
-        <UButton
-          class="md:hidden"
-          icon="i-ph-list-bold"
-          color="neutral"
-          variant="ghost"
-          aria-label="Open navigation"
-          @click="menuOpen = true"
-        />
       </template>
-    </UHeader>
-
-    <USlideover v-model:open="menuOpen" title="Navigation" description="Documentation sections" side="left">
       <template #body>
         <DocsNav />
       </template>
-    </USlideover>
+    </UHeader>
 
     <div class="mx-auto flex w-full max-w-(--ui-container)">
       <aside
@@ -47,5 +45,18 @@ const menuOpen = ref(false)
         <slot />
       </main>
     </div>
+
+    <UFooter>
+      <template #left>
+        <p class="text-sm">Cup Noobles Design System</p>
+      </template>
+      <nav aria-label="Footer">
+        <ul class="flex flex-wrap items-center justify-center gap-4">
+          <li><ULink to="/changelog">Changelog</ULink></li>
+          <li><ULink to="/status">Status</ULink></li>
+          <li><ULink to="/tokens">Tokens</ULink></li>
+        </ul>
+      </nav>
+    </UFooter>
   </div>
 </template>

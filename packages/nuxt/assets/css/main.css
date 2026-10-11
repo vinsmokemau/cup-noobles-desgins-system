@@ -1050,3 +1050,30 @@
   outline: var(--cn-pagination-focus-width) var(--cn-pagination-focus-style) var(--cn-pagination-focus-color);
   outline-offset: var(--cn-pagination-focus-offset);
 }
+
+/*
+ * T8.6 (REQ-020, REQ-022, REQ-028): the site header and the site footer. app.config.ts puts `.cn-site-header` on the root of
+ * UHeader and `.cn-site-footer` on the root of UFooter. Every value is a --cn-site-header-* or --cn-site-footer-* token
+ * (ADR-0030). The look is an opaque black bar with a thick brand pink line: under the header and above the footer. There is no
+ * glow, and the bar never reads a card color, because none is defined until TBD-06 is resolved (C-05). Nuxt UI draws the
+ * header at 75% over a blur and with its own neutral border; the rules below replace them, so page content that scrolls under
+ * the sticky header never shows through. The links and buttons inside keep their own looks (ADR-0010, ADR-0011), and the
+ * mobile menu is UHeader's own slideover, which takes the overlay look (ADR-0029).
+ */
+.cn-site-header {
+  color: var(--cn-site-header-fg);
+  background-color: var(--cn-site-header-bg);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom: var(--cn-border-width-site-header) solid var(--cn-site-header-line);
+}
+
+.cn-site-header [data-slot='title'] {
+  color: var(--cn-site-header-fg);
+}
+
+.cn-site-footer {
+  color: var(--cn-site-footer-fg);
+  background-color: var(--cn-site-footer-bg);
+  border-top: var(--cn-border-width-site-footer) solid var(--cn-site-footer-line);
+}

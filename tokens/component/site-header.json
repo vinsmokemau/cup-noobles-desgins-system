@@ -1,0 +1,50 @@
+{
+  "border": {
+    "width": {
+      "siteHeader": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Stroke width of the line under the site header (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "siteHeader": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of the site header: the pure black page, fully opaque (BR-03). The header is separated from the page by its line, not by a surface color (C-05).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "line": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Color of the line under the site header: brand pink, like the card outline (BR-01, ADR-0018). Chosen by the owner in ADR-0030.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Text in the site header, such as the title. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-04"],
+          "status": "tbd"
+        }
+      }
+    }
+  }
+}

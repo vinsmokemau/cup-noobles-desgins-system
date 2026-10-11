@@ -202,6 +202,20 @@ export default {
         { side: 'left', inset: false, class: { content: 'cn-overlay-panel--edge-left' } },
       ],
     },
+    // T8.6 (REQ-020, REQ-022, REQ-028, ADR-0030): the site header and the site footer, `UHeader` and `UFooter`. They are
+    // slot-based and hold no domain content. The look is the `.cn-site-header` and `.cn-site-footer` rules in
+    // assets/css/main.css, which read the --cn-site-header-* and --cn-site-footer-* tokens: an opaque black bar with a thick
+    // pink line. The mobile menu is Nuxt UI's own slideover (`mode="slideover"`), which takes the overlay look above.
+    header: {
+      slots: {
+        root: 'cn-site-header',
+      },
+    },
+    footer: {
+      slots: {
+        root: 'cn-site-footer',
+      },
+    },
     // T8.4 (REQ-020, REQ-024, REQ-028): tabs, breadcrumb, and pagination, with the look the owner chose in ADR-0028. UTabs has
     // one brand look, the `link` variant: a pink underline under the selected tab on a rule. Nuxt UI's `pill` variant fills
     // the selected tab, which is not the chosen look, so the theme makes `link` the default. UBreadcrumb shows the links in

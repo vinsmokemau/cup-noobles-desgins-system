@@ -37,6 +37,8 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `border.width.pagination` | `--cn-border-width-pagination` | `1px` | tbd (TBD-11) |
 | `border.width.progress` | `--cn-border-width-progress` | `1px` | tbd (TBD-11) |
 | `border.width.separator` | `--cn-border-width-separator` | `1px` | tbd (TBD-11) |
+| `border.width.siteFooter` | `--cn-border-width-site-footer` | `1px` | tbd (TBD-11) |
+| `border.width.siteHeader` | `--cn-border-width-site-header` | `1px` | tbd (TBD-11) |
 | `border.width.skeleton` | `--cn-border-width-skeleton` | `1px` | tbd (TBD-11) |
 | `border.width.tabs` | `--cn-border-width-tabs` | `1px` | tbd (TBD-11) |
 | `border.width.toast` | `--cn-border-width-toast` | `1px` | tbd (TBD-11) |

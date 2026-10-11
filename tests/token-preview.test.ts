@@ -83,6 +83,8 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'stroke:border.width.pagination',
     'stroke:border.width.progress',
     'stroke:border.width.separator',
+    'stroke:border.width.siteFooter',
+    'stroke:border.width.siteHeader',
     'stroke:border.width.skeleton',
     'stroke:border.width.tabs',
     'stroke:border.width.toast',

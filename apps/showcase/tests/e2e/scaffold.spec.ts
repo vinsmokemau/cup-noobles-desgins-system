@@ -27,7 +27,7 @@ test('REQ-061 AC2: below md the sidebar is hidden and the same menu opens in a s
   await page.setViewportSize({ width: 360, height: 800 })
   await page.goto('/')
   await expect(page.locator('aside')).toBeHidden()
-  await page.getByRole('button', { name: 'Open navigation' }).click()
+  await page.getByRole('button', { name: 'Open menu' }).click()
   const dialog = page.getByRole('dialog')
   await expect(dialog).toBeVisible()
   const links = dialog.locator('nav a')
@@ -40,7 +40,7 @@ test('REQ-061 AC2: below md the sidebar is hidden and the same menu opens in a s
 test('from md up the slideover toggle is hidden', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 })
   await page.goto('/')
-  await expect(page.getByRole('button', { name: 'Open navigation' })).toBeHidden()
+  await expect(page.getByRole('button', { name: 'Open menu' })).toBeHidden()
 })
 
 test('the header shows the layer package version', async ({ page }) => {
@@ -57,6 +57,30 @@ test('the first Tab stop is a skip link that moves focus to the main region', as
   await page.keyboard.press('Enter')
   await expect(page).toHaveURL(/#main-content$/)
   await expect(page.getByRole('main')).toBeVisible()
+})
+
+test('T8.6: the showcase adopts the site header and footer, each with its thick pink line', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto('/')
+  const pink = 'rgb(239, 128, 174)'
+  const header = page.getByRole('banner')
+  await expect(header).toHaveCSS('border-bottom-color', pink)
+  await expect(header).toHaveCSS('background-color', 'rgb(0, 0, 0)')
+  const footer = page.getByRole('contentinfo')
+  await expect(footer).toHaveCSS('border-top-color', pink)
+  await expect(footer.getByRole('navigation', { name: 'Footer' }).getByRole('link')).toHaveCount(3)
+})
+
+test('T8.6: the menu opens and closes by keyboard, and Escape returns focus to the toggle', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 800 })
+  await page.goto('/')
+  const toggle = page.getByRole('button', { name: 'Open menu' })
+  await toggle.focus()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('dialog', { name: 'Navigation' })).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await expect(toggle).toBeFocused()
 })
 
 test('REQ-031 AC1: the page is dark and has no color-mode toggle', async ({ page }) => {

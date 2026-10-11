@@ -48,6 +48,7 @@ updated: 2026-09-27
 - [ADR-0027: Feedback look](decisions/0027-feedback-look.md)
 - [ADR-0028: Tabs, breadcrumb, and pagination looks](decisions/0028-navigation-looks.md)
 - [ADR-0029: Modal and slideover look](decisions/0029-overlay-look.md)
+- [ADR-0030: Site header and footer look](decisions/0030-site-chrome-look.md)
 
 ## Open items
 
