@@ -69,6 +69,7 @@ The type, color, and layout tokens are the ones of [Email foundations](email-fou
 | Header | Fill, line under it, text | `siteHeader.bg`, `siteHeader.line`, `siteHeader.fg` |
 | Header | Line width | `border.width.siteHeader` |
 | Header | Logo height | `logo.rule.minHeight.horizontal` |
+| Header | Logo clear space | `logo.rule.clearSpace` × `logo.rule.minHeight.horizontal` |
 | Content section | Heading | `font.h2.size`, `font.h2.weight`, `font.h2.lineHeight`, `color.text.default` |
 | Content section | Body | `font.size.body`, `font.lineHeight.body`, `color.text.default` |
 | Card | Fill, outline, corner | `card.bg`, `card.highlight`, `radius.card`, `border.width.card` |
@@ -190,9 +191,10 @@ File: `footer.mjml`. A closing line and one link, centered, on the footer fill w
 >
 > **TBD (TBD-12):** The glow parameters are not defined. The email button uses a solid outline in place of the glow in any case. Owner input needed: only if the owner wants a different email treatment.
 
-The header does not apply the logo clear space. `logo.rule.clearSpace` is a share of the logo height (ADR-0016), and the build injects a token as it is, so it cannot turn that share into a length. The header pads the logo with `space.base`. T10.4 settles this (ADR-0041). Real-client rendering is not verified here (R-05).
+The header keeps the logo clear space of ADR-0016: `logo.rule.clearSpace` is a share of the logo height, and the build turns it into a length with `$cn(logo.rule.clearSpace*logo.rule.minHeight.horizontal)`, 25% of `logo.rule.minHeight.horizontal` (ADR-0042, which settles the question ADR-0041 left to T10.4). Real-client rendering is not verified here (R-05).
 
 ## Changelog
 
 - 0.1.0 — First draft: the button, header with logo, content section, card, divider, and footer as MJML components, with their `{{ slot_name }}` slots listed (T10.3, REQ-041 AC3 and AC4, REQ-042)
 - 0.1.0 — Component-to-token mapping approved by the owner. The doc stays a draft while TBD-01, TBD-03, TBD-09, TBD-10, and TBD-12 are open — ADR-0041
+- 0.1.0 — The header takes its logo clear space from the tokens, in place of `space.base` (T10.4, REQ-043) — ADR-0042

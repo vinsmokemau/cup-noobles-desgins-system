@@ -1,7 +1,8 @@
 // T10.2: the email build (REQ-041 AC1, AC2, REQ-042, REQ-044). It compiles the MJML sources in src/ to one static HTML
 // file each in dist/, following ADR-0004 and SPEC.md §4.9:
 //   1. lint the source: no hex literal or color function (REQ-042 AC2), and a `lang` on the root <mjml>;
-//   2. replace `$cn(path)` with the literal from email-tokens.json, throwing on an unknown path;
+//   2. expand `<mj-include>` (T10.4, ADR-0042), then replace `$cn(path)` with the literal from email-tokens.json,
+//      throwing on an unknown path; `$cn(a*b)` is the product of two tokens;
 //   3. compile with MJML (`fonts: {}` so no web font is linked, `validationLevel: 'strict'` so invalid markup throws);
 //   4. check the output (REQ-041 AC2, REQ-042 AC1, REQ-044 AC1) and fail the build on any finding.
 // `{{ slot_name }}` is never touched. Usage: node packages/email/build.ts [--src dir] [--out dir] [--tokens file].
@@ -54,15 +55,70 @@ export function remToPx(value: string): string {
   return match ? `${Number((Number(match[1]) * PX_PER_REM).toFixed(4))}px` : value
 }
 
+// A number, or a px dimension, which is what a product may multiply (ADR-0042).
+const FACTOR = /^(-?(?:\d+\.?\d*|\.\d+))(px)?$/
+
+// `$cn(a*b)` is the product of two or more tokens, for a length that a brand rule gives as a share of another length,
+// such as the logo clear space (ADR-0016): `$cn(logo.rule.clearSpace*logo.rule.minHeight.horizontal)` is 9px. At most
+// one factor is a dimension, and the result is px. No value is added: it is the rule applied to the tokens (ADR-0042).
+function resolveProduct(path: string, tokens: EmailTokens, where: string): string {
+  let product = 1
+  let unit = ''
+  for (const factor of path.split('*')) {
+    if (!Object.hasOwn(tokens, factor)) throw new Error(`${where}: unknown token in $cn(${path})`)
+    const match = remToPx(String(tokens[factor])).match(FACTOR)
+    if (!match) throw new Error(`${where}: $cn(${path}) multiplies ${factor}, which is not a number or a px dimension`)
+    if (match[2]) {
+      if (unit) throw new Error(`${where}: $cn(${path}) multiplies two dimensions`)
+      unit = 'px'
+    }
+    product *= Number(match[1])
+  }
+  return `${Number(product.toFixed(4))}${unit}`
+}
+
 // Plain string replacement before MJML parses the source (ADR-0004 §2). An unknown path throws.
 export function injectTokens(source: string, tokens: EmailTokens, name = 'source'): string {
   return source.replace(TOKEN_REFERENCE, (_match, path: string, offset: number) => {
-    if (!Object.hasOwn(tokens, path)) {
-      throw new Error(`${name}:${lineOf(source, offset)}: unknown token in $cn(${path})`)
-    }
+    const where = `${name}:${lineOf(source, offset)}`
+    if (path.includes('*')) return resolveProduct(path, tokens, where)
+    if (!Object.hasOwn(tokens, path)) throw new Error(`${where}: unknown token in $cn(${path})`)
     const value = remToPx(String(tokens[path]))
     if (/["<>]/.test(value)) throw new Error(`${name}: token ${path} holds a character that cannot go in an attribute`)
     return value
+  })
+}
+
+const INCLUDE = /<mj-include\s+path="([^"]+)"\s*\/>/g
+
+// What an included file must share with the file that includes it: its <mj-head> and the opening <mj-body> tag. Only the
+// content of the included <mj-body> is used, so a component must render the same alone and in a layout (ADR-0042).
+const frameOf = (source: string) =>
+  [/<mj-head>[\s\S]*?<\/mj-head>/.exec(source)?.[0], /<mj-body\b[^>]*>/.exec(source)?.[0]]
+    .map((part) => (part ?? '').replace(/\s+/g, ' ').trim())
+    .join('\n')
+
+// Replaces each `<mj-include path="…" />` with the content of the included file's <mj-body>, before the tokens are
+// injected, so an included component takes the same token values as its own build. MJML's own mj-include is not used,
+// because it would read the file after `$cn()` has been replaced. The path is relative to the including file, it must
+// end in .mjml, and an included file includes nothing (ADR-0042).
+export function expandIncludes(source: string, dir: string, name = 'source'): string {
+  return source.replace(INCLUDE, (_match, path: string, offset: number) => {
+    const where = `${name}:${lineOf(source, offset)}`
+    if (!path.endsWith('.mjml')) throw new Error(`${where}: mj-include "${path}" is not an .mjml file`)
+    let included: string
+    try {
+      included = readFileSync(resolve(dir, path), 'utf8')
+    } catch {
+      throw new Error(`${where}: mj-include "${path}" cannot be read`)
+    }
+    const body = /<mj-body\b[^>]*>([\s\S]*)<\/mj-body>/.exec(included)
+    if (!body) throw new Error(`${where}: mj-include "${path}" has no <mj-body>`)
+    if (/<mj-include\b/.test(body[1]!)) throw new Error(`${where}: mj-include "${path}" includes another file`)
+    if (frameOf(included) !== frameOf(source)) {
+      throw new Error(`${where}: mj-include "${path}" has an <mj-head> or <mj-body> tag that differs from this file`)
+    }
+    return body[1]!.trim()
   })
 }
 
@@ -156,11 +212,14 @@ export async function build({ src = DEFAULT_SRC, out = DEFAULT_OUT, tokensFile =
       findings.push(...lint)
       continue
     }
-    const { html, errors } = await mjml2html(injectTokens(source, tokens, label), {
-      fonts: {},
-      keepComments: false,
-      validationLevel: 'strict',
-    })
+    const { html, errors } = await mjml2html(
+      injectTokens(expandIncludes(source, dirname(file), label), tokens, label),
+      {
+        fonts: {},
+        keepComments: false,
+        validationLevel: 'strict',
+      },
+    )
     if (errors.length > 0) {
       findings.push(...errors.map((error) => `${label}: MJML: ${error.message}`))
       continue

@@ -16,11 +16,12 @@
     <mj-section
       background-color="$cn(siteHeader.bg)"
       border-bottom="$cn(border.width.siteHeader) solid $cn(siteHeader.line)"
-      padding="$cn(space.base)"
+      padding="0px"
     >
       <mj-column background-color="$cn(siteHeader.bg)">
         <mj-text
           align="center"
+          padding="$cn(logo.rule.clearSpace*logo.rule.minHeight.horizontal)"
           color="$cn(siteHeader.fg)"
           container-background-color="$cn(siteHeader.bg)"
           font-family="$cn(font.family.display)"

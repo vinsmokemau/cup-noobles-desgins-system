@@ -60,6 +60,7 @@ updated: 2026-09-27
 - [ADR-0039: Email foundations rules approved, and the width token](decisions/0039-email-foundations-rules-and-width-token.md)
 - [ADR-0040: The email build writes rem dimensions as px](decisions/0040-email-build-rem-to-px.md)
 - [ADR-0041: Email components approved, and logo clear space deferred to T10.4](decisions/0041-email-components-approved.md)
+- [ADR-0042: The email build expands includes and multiplies tokens](decisions/0042-email-layout-includes-and-clear-space.md)
 
 ## Open items
 
