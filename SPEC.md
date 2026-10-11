@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.23 |
+| Spec version | 1.24 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -199,7 +199,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
 | TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | Resolved (ADR-0016) |
-| TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), and the chopsticks (ADR-0020) are supplied; the other three motifs of BR-14 are still open. | `CnStickerFrame`, imagery-and-motifs.md | SVG files for the remaining three motifs |
+| TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), and the noodle curves and waves (ADR-0022) are supplied; the other two motifs of BR-14 are still open. | `CnStickerFrame`, imagery-and-motifs.md | SVG files for the remaining two motifs |
 | TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Resolved (ADR-0012) |
 | TBD-20 | Photography and thumbnail standards. This is the same open item as EC decision D11. | imagery-and-motifs.md | Guidelines |
 | TBD-21 | Voice attributes beyond the adjectives in BC (the "this, not that" pairs) | voice-and-tone.md | Approval of a draft |
@@ -1333,6 +1333,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.21 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the ramen cup artwork is in (T7.11), so the sparkle and the ramen cup are supplied and the other five BR-14 motifs stay open. The ramen cup is the owner's chosen proposal A, drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background, with the glints in `#fff488`. | Owner decision in chat (option A); ADR-0019 |
 | 1.22 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the golden d20 artwork is in (T7.12), so the sparkle, the ramen cup, and the golden d20 are supplied and the other four BR-14 motifs stay open. The d20 is the owner's chosen proposal A, drawn flat in `#fff488` with black outlines on a transparent background, with no shine marks. | Owner decision in chat (options A and N); ADR-0021 |
 | 1.23 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the chopsticks artwork is in (T7.13), so the sparkle, the ramen cup, the golden d20, and the chopsticks are supplied and the other three BR-14 motifs stay open. The chopsticks are the owner's chosen proposal C, drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background, with white (`#ffffff`) only for the shine marks. | Owner decision in chat (option C, and white shine marks); ADR-0020 |
+| 1.24 | 2026-10-10 | §2.4: TBD-18 partly supplied again — the noodle curves and waves artwork is in (T7.14), so the sparkle, the ramen cup, the golden d20, the chopsticks, and the noodle waves are supplied and the other two BR-14 motifs stay open. The noodle waves are the owner's chosen proposal D, four stacked waves with curled ends drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background, with white (`#ffffff`) only for the shine marks. | Owner decision in chat (option D, and white shine marks); ADR-0022 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
