@@ -591,3 +591,84 @@
 .cn-form-field__error {
   color: var(--cn-form-field-error-fg);
 }
+
+/*
+ * T8.2 (REQ-020, REQ-025 AC2, AC3, AC4): CnMediaCard, the featured media card. Every value is a --cn-media-card-* token
+ * (ADR-0026). The look is the standard card's (ADR-0018): the black page, a thick brand pink outline as the neon highlight,
+ * and no glow. It never reads color.surface.card: no surface color is defined until TBD-06 is resolved (C-05). The
+ * thumbnail keeps its own proportions, because the photography standards are TBD-20, so no aspect ratio is declared.
+ *
+ * A linked card has one tab stop: the title is the link, and its ::after covers the whole card, so a click anywhere follows
+ * it. Hover and active underline the title, which is a change that does not rely on color (WCAG 1.4.1); no shade is defined
+ * for hover (TBD-08). The focus ring is drawn around the whole card from the focus tokens, never the glow (REQ-024 AC1), so
+ * the link itself draws none. `[data-cn-state]` forces a state for the documentation; application code never sets it.
+ */
+.cn-media-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--cn-media-card-fg);
+  background-color: var(--cn-media-card-bg);
+  border: var(--cn-border-width-media-card) solid var(--cn-media-card-highlight);
+  border-radius: var(--cn-radius-media-card);
+  box-shadow: none;
+}
+
+.cn-media-card__thumbnail {
+  border-bottom: var(--cn-border-width-media-card) solid var(--cn-media-card-divider);
+}
+
+.cn-media-card__image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.cn-media-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--cn-space-base) * 3);
+  padding: calc(var(--cn-space-base) * 4);
+}
+
+.cn-media-card__title {
+  margin: 0;
+  color: var(--cn-media-card-fg);
+  font: inherit;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.cn-media-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--cn-space-base) * 2);
+}
+
+.cn-media-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cn-media-card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.cn-media-card__link:focus-visible {
+  outline: none;
+}
+
+.cn-media-card[data-linked='true']:is(:hover, :active, [data-cn-state='hover'], [data-cn-state='active'])
+  .cn-media-card__link {
+  text-decoration-line: underline;
+}
+
+.cn-media-card:is([data-cn-state='focus-visible'], :has(.cn-media-card__link:focus-visible)) {
+  outline: var(--cn-media-card-focus-width) var(--cn-media-card-focus-style) var(--cn-media-card-focus-color);
+  outline-offset: var(--cn-media-card-focus-offset);
+}

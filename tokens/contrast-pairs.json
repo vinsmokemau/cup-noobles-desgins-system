@@ -68,5 +68,9 @@
   { "foreground": "formField.label.fg", "background": "color.bg.base", "usage": "text" },
   { "foreground": "formField.description.fg", "background": "color.bg.base", "usage": "text" },
   { "foreground": "formField.help.fg", "background": "color.bg.base", "usage": "text" },
-  { "foreground": "formField.error.fg", "background": "color.bg.base", "usage": "text" }
+  { "foreground": "formField.error.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "mediaCard.fg", "background": "mediaCard.bg", "usage": "text" },
+  { "foreground": "mediaCard.highlight", "background": "mediaCard.bg", "usage": "ui" },
+  { "foreground": "mediaCard.divider", "background": "mediaCard.bg", "usage": "ui" },
+  { "foreground": "mediaCard.focus.color", "background": "mediaCard.bg", "usage": "ui" }
 ]

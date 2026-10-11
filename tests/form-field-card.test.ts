@@ -18,7 +18,9 @@ const { tokens, problems } = checkTokens(root)
 const byPath = new Map(tokens.map((t) => [t.path, t]))
 const css = read('packages/nuxt/assets/css/main.css')
 // The rules of T8.1 without the comment above them, which names the surface token on purpose.
-const moleculeCss = css.slice(css.indexOf('T8.1 (REQ-020, REQ-025)')).replace(/^[\s\S]*?\*\//, '')
+const moleculeCss = css
+  .slice(css.indexOf('T8.1 (REQ-020, REQ-025)'), css.indexOf('T8.2 (REQ-020') - 3)
+  .replace(/^[\s\S]*?\*\//, '')
 const SLUGS = ['form-field', 'card'] as const
 const NUXT_UI = { 'form-field': 'UFormField', card: 'UCard' } as const
 const docOf = (slug: string) => read(`docs/02-components/molecules/${slug}.md`)

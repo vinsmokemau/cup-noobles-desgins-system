@@ -18,6 +18,7 @@
   --cn-border-width-default: 1px; /** Stroke width. TBD-11: "thick" (BR-10, BR-13) has no values; this references a placeholder, not a brand value. */
   --cn-border-width-input: 1px; /** Outline stroke width of the text fields (BR-10, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
+  --cn-border-width-media-card: 1px; /** Outline stroke width of the featured media card, and of the line between its thumbnail and its text (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-progress: 1px; /** Outline stroke width of the progress track (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-separator: 1px; /** Stroke width of the separator line (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-skeleton: 1px; /** Outline stroke width of a skeleton shape (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
@@ -198,6 +199,14 @@
   --cn-logo-rule-min-height-horizontal: 36px; /** Minimum height of the horizontal wordmark, chosen by the owner (ADR-0016). */
   --cn-logo-rule-min-height-icon: 64px; /** Minimum height of the icon logo, chosen by the owner (ADR-0016). */
   --cn-logo-rule-min-height-vertical: 80px; /** Minimum height of the vertical lockup, chosen by the owner (ADR-0016). */
+  --cn-media-card-bg: #000000; /** Fill of the featured media card: the pure black page (BR-03). The card is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card until TBD-06 is resolved. */
+  --cn-media-card-divider: #ef80ae; /** Color of the line between the thumbnail and the text of the featured media card: brand pink, like the outline (ADR-0018, ADR-0026). */
+  --cn-media-card-fg: #90a1b9; /** Title text of the featured media card. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-media-card-focus-color: #fff488; /** Focus ring color of the linked featured media card (REQ-024 AC1, ADR-0009). The ring surrounds the whole card. */
+  --cn-media-card-focus-offset: 3px; /** Gap between the linked featured media card and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-media-card-focus-style: solid; /** Focus ring line style of the linked featured media card (REQ-024 AC1, ADR-0009). */
+  --cn-media-card-focus-width: 3px; /** Focus ring width of the linked featured media card (REQ-024 AC1, ADR-0009). */
+  --cn-media-card-highlight: #ef80ae; /** The neon highlight of the featured media card: its outline is brand pink, like the standard card (BR-01, BR-12, ADR-0018, ADR-0026). */
   --cn-motion-duration-default: 150ms; /** Transition duration. TBD-14: motion durations are not defined; this references a placeholder, not a brand value. */
   --cn-motion-easing-default: cubic-bezier(0.4, 0, 0.2, 1); /** Transition easing. TBD-14: easing curves are not defined; this references a placeholder, not a brand value. */
   --cn-placeholder-border-width: 1px; /** Placeholder, not a brand value. Stands in for TBD-11. Source: Nuxt UI outlines, Tailwind ring width (ADR-0006). */
@@ -246,6 +255,7 @@
   --cn-radius-interactive: 0.375rem; /** Corner radius of interactive elements such as buttons (BR-10). TBD-10: "rounded" has no values; this references a placeholder, not a brand value. */
   --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-radius-md: 0.375rem; /** Medium corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
+  --cn-radius-media-card: 0.375rem; /** Corner radius of the featured media card (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-skeleton: 0.375rem; /** Corner radius of a skeleton shape (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-sm: 0.25rem; /** Small corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-separator-bg: #000000; /** The surface a separator line sits on: the pure black page (BR-03). */

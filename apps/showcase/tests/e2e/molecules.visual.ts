@@ -8,6 +8,7 @@ import { test } from './helpers/test'
 const STATES = {
   'form-field': ['default', 'hover', 'focus-visible', 'disabled', 'error'],
   card: ['default'],
+  'media-card': ['default', 'hover', 'focus-visible', 'active'],
 }
 
 for (const [slug, states] of Object.entries(STATES)) {

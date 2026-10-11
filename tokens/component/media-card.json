@@ -1,0 +1,115 @@
+{
+  "radius": {
+    "mediaCard": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the featured media card (BR-12). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "mediaCard": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the featured media card, and of the line between its thumbnail and its text (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "mediaCard": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of the featured media card: the pure black page (BR-03). The card is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card until TBD-06 is resolved.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "The neon highlight of the featured media card: its outline is brand pink, like the standard card (BR-01, BR-12, ADR-0018, ADR-0026).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "divider": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Color of the line between the thumbnail and the text of the featured media card: brand pink, like the outline (ADR-0018, ADR-0026).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Title text of the featured media card. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-04"],
+          "status": "tbd"
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of the linked featured media card (REQ-024 AC1, ADR-0009). The ring surrounds the whole card.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of the linked featured media card (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between the linked featured media card and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of the linked featured media card (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}
