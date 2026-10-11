@@ -1245,7 +1245,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Scope: `ownership.md` (A-01), `versioning-and-releases.md` (§4.8), `contribution.md` (a spec-first flow: ADR or spec change, then task, then code), `deprecation.md` (REQ-072), and `decision-log.md` (an index of every ADR).
   - Done when: `check-docs` and `check-links` pass, and every ADR appears in the index. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T11.4 runs it for T11.2 through T11.4.
 
-- [ ] **T11.3 — Changesets, changelog page, and deprecation helper**
+- [x] **T11.3 — Changesets, changelog page, and deprecation helper** (2026-10-11, f99a089)
   - REQs: REQ-070, REQ-062 (AC2), REQ-072 (AC1)
   - Depends on: T11.2
   - Done when: a test changeset produces a lockstep version pull request in a dry run; `/changelog` renders `CHANGELOG.md`; and the deprecation helper warns in development only (tested). `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T11.4 runs it for T11.2 through T11.4.
