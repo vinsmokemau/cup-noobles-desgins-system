@@ -99,4 +99,5 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 - 0.1.0 — The golden d20 artwork is supplied as `D20-CN.svg`; the other four motifs stay open (T7.12) — ADR-0021
 - 0.1.0 — The chopsticks artwork is supplied as `Chopsticks-CN.svg`; the other three motifs stay open (T7.13) — ADR-0020
 - 0.1.0 — The noodle curves and waves artwork is supplied as `Noodle-Wave-CN.svg`; the other two motifs stay open (T7.14) — ADR-0022
+- 0.1.0 — The arcade shapes and dynamic lines artwork is supplied as `Arcade-Lines-CN.svg`; the other motif stays open (T7.15) — ADR-0023
 - 0.1.0 — The sticker border artwork is supplied as `Sticker-Border-CN.svg`; all seven motifs have their artwork, and `CnStickerFrame` is not wired to it yet (T7.16) — ADR-0024
