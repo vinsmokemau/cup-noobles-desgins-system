@@ -1201,7 +1201,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 
 ### P10 — Email
 
-- [ ] **T10.1 — `email-foundations.md`**
+- [x] **T10.1 — `email-foundations.md`** (2026-10-11, c7837ff)
   - REQs: REQ-040
   - Depends on: T3.4
   - Done when: every section listed in REQ-040 AC1 exists, and every fallback names a token that exists in `email-tokens.json`. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
