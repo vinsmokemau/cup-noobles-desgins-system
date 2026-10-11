@@ -672,3 +672,61 @@
   outline: var(--cn-media-card-focus-width) var(--cn-media-card-focus-style) var(--cn-media-card-focus-color);
   outline-offset: var(--cn-media-card-focus-offset);
 }
+
+/*
+ * T8.5 (REQ-020, REQ-026, REQ-027): the modal and the slideover. app.config.ts puts `.cn-overlay-scrim` on the backdrop and
+ * `.cn-overlay-panel` on the panel of both UModal and USlideover. Every value is an --cn-overlay-* token (ADR-0029). The look
+ * is the cards' (ADR-0018): the black page color, a thick brand pink outline as the neon highlight, and no glow. The backdrop
+ * is black at a placeholder amount (TBD-15). The panel never reads a card color: no such color is defined until TBD-06 is
+ * resolved (C-05). Nuxt UI paints the panel with a fill, a ring, and divider lines in its own neutral colors; the rules
+ * below replace them with real borders from the tokens. The behavior (focus trap, Escape, the inert page) is Reka UI's.
+ */
+.cn-overlay-scrim {
+  z-index: var(--cn-overlay-z);
+  background-color: color-mix(
+    in srgb,
+    var(--cn-overlay-scrim) calc(var(--cn-overlay-scrim-opacity) * 100%),
+    transparent
+  );
+}
+
+.cn-overlay-panel {
+  z-index: var(--cn-overlay-z);
+  color: var(--cn-overlay-fg);
+  background-color: var(--cn-overlay-bg);
+  border: var(--cn-border-width-overlay) solid var(--cn-overlay-highlight);
+  border-radius: var(--cn-radius-overlay);
+  box-shadow: var(--cn-overlay-shadow);
+}
+
+.cn-overlay-panel > :not(:last-child) {
+  border-bottom: var(--cn-border-width-overlay) solid var(--cn-overlay-divider);
+}
+
+.cn-overlay-panel [data-slot='title'] {
+  color: var(--cn-overlay-fg);
+}
+
+.cn-overlay-panel [data-slot='description'] {
+  color: var(--cn-overlay-fg-muted);
+}
+
+.cn-overlay-panel--edge-top {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.cn-overlay-panel--edge-right {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.cn-overlay-panel--edge-bottom {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.cn-overlay-panel--edge-left {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

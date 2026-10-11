@@ -160,6 +160,12 @@
         "$value": "none",
         "$description": "Placeholder, not a brand value. Stands in for TBD-12. Source: Nuxt UI UButton has no glow (ADR-0006). Untyped (ADR-0008).",
         "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-12"] } }
+      },
+      "scrimOpacity": {
+        "$type": "number",
+        "$value": 0.75,
+        "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI UModal and USlideover overlay, bg-elevated/75 (ADR-0029).",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
       }
     },
     "elevation": {

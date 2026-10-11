@@ -92,6 +92,7 @@ C-05 still applies: until OD-05 is decided, cards render on `color.bg.base` (`#0
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
 | `placeholder.effect.glow` | `none` | Nuxt UI's `UButton` theme has no shadow or glow class | TBD-12 (`effect.glow.*`) | not a brand value |
+| `placeholder.effect.scrimOpacity` | `0.75` | Nuxt UI `UModal` and `USlideover` overlay: `bg-elevated/75`. Added by ADR-0029 | TBD-15 (`effect.scrim.*`) | not a brand value |
 | `placeholder.elevation.overlay` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | Tailwind `--shadow-lg`, used by `UModal` and `USlideover` (`shadow-lg`) | TBD-15 (`elevation.*`) | not a brand value |
 | `placeholder.z.overlay` | `auto` | Nuxt UI sets no z-index on `UModal` or `USlideover`; they stack by portal order | TBD-15 (`z.*`) | not a brand value |
 | `placeholder.z.toast` | `100` | Nuxt UI toaster viewport: `z-[100]` | TBD-15 (`z.*`) | not a brand value |

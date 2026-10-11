@@ -178,5 +178,29 @@ export default {
         error: 'cn-form-field__error',
       },
     },
+    // T8.5 (REQ-020, REQ-026, REQ-027): the modal and the slideover share one look (ADR-0029), the `.cn-overlay-*` rules in
+    // assets/css/main.css, which read the --cn-overlay-* tokens: a dimmed backdrop and a black panel with a thick pink
+    // outline. Nuxt UI's own dialog gives the behavior (focus trap and restore, Escape, an inert page behind), so nothing
+    // here re-implements it. Under reduced motion the opening movement is switched off with Tailwind's `motion-reduce:`.
+    modal: {
+      slots: {
+        overlay: 'cn-overlay-scrim motion-reduce:animate-none!',
+        content: 'cn-overlay-panel motion-reduce:animate-none!',
+      },
+    },
+    // The edge hooks round only the corners that do not touch the viewport, so a panel that sits against the edge of the
+    // screen has no gap at its corners. An `inset` slideover floats, so it keeps all four corners.
+    slideover: {
+      slots: {
+        overlay: 'cn-overlay-scrim motion-reduce:animate-none!',
+        content: 'cn-overlay-panel motion-reduce:animate-none!',
+      },
+      compoundVariants: [
+        { side: 'top', inset: false, class: { content: 'cn-overlay-panel--edge-top' } },
+        { side: 'right', inset: false, class: { content: 'cn-overlay-panel--edge-right' } },
+        { side: 'bottom', inset: false, class: { content: 'cn-overlay-panel--edge-bottom' } },
+        { side: 'left', inset: false, class: { content: 'cn-overlay-panel--edge-left' } },
+      ],
+    },
   },
 } satisfies AppConfigInput

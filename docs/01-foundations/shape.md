@@ -32,6 +32,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `border.width.input` | `--cn-border-width-input` | `1px` | tbd (TBD-11) |
 | `border.width.interactive` | `--cn-border-width-interactive` | `1px` | tbd (TBD-11) |
 | `border.width.mediaCard` | `--cn-border-width-media-card` | `1px` | tbd (TBD-11) |
+| `border.width.overlay` | `--cn-border-width-overlay` | `1px` | tbd (TBD-11) |
 | `border.width.progress` | `--cn-border-width-progress` | `1px` | tbd (TBD-11) |
 | `border.width.separator` | `--cn-border-width-separator` | `1px` | tbd (TBD-11) |
 | `border.width.skeleton` | `--cn-border-width-skeleton` | `1px` | tbd (TBD-11) |
@@ -44,6 +45,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `radius.lg` | `--cn-radius-lg` | `0.5rem` | tbd (TBD-10) |
 | `radius.md` | `--cn-radius-md` | `0.375rem` | tbd (TBD-10) |
 | `radius.mediaCard` | `--cn-radius-media-card` | `0.375rem` | tbd (TBD-10) |
+| `radius.overlay` | `--cn-radius-overlay` | `0.375rem` | tbd (TBD-10) |
 | `radius.skeleton` | `--cn-radius-skeleton` | `0.375rem` | tbd (TBD-10) |
 | `radius.sm` | `--cn-radius-sm` | `0.25rem` | tbd (TBD-10) |
 

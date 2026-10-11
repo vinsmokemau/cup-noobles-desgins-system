@@ -1,0 +1,125 @@
+{
+  "radius": {
+    "overlay": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the modal and slideover panel (BR-12 look, ADR-0029). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "overlay": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the modal and slideover panel, and of the lines between its header, body, and footer (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "overlay": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of the modal and slideover panel: the pure black page (BR-03). The panel is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card or color.surface.elevated until TBD-06 is resolved.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "The neon highlight of the modal and slideover panel: its outline is brand pink, like the cards (BR-01, BR-12, ADR-0018). Chosen by the owner in ADR-0029.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "divider": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Color of the lines between the header, body, and footer of the modal and slideover: brand pink, like the outline (ADR-0018, ADR-0029).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "scrim": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Color of the backdrop that dims the page behind a modal or slideover: pure black (BR-03). How much of it shows is overlay.scrimOpacity. Chosen by the owner in ADR-0029.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "scrimOpacity": {
+      "$type": "number",
+      "$value": "{effect.scrim.opacity}",
+      "$description": "How much of the backdrop color covers the page, from 0 to 1. TBD-15: the dimming amount is not decided; this follows a placeholder, not a brand value (ADR-0029).",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-15"],
+          "status": "tbd"
+        }
+      }
+    },
+    "shadow": {
+      "$value": "{effect.elevation.overlay}",
+      "$description": "Elevation shadow of the modal and slideover panel. It is not a glow (ADR-0029). TBD-15: the elevation scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-15"],
+          "status": "tbd"
+        }
+      }
+    },
+    "z": {
+      "$value": "{effect.zIndex.overlay}",
+      "$description": "Stacking order of the modal and slideover backdrop and panel. TBD-15: the z-index scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-15"],
+          "status": "tbd"
+        }
+      }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Title and body text of the modal and slideover. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-04"],
+          "status": "tbd"
+        }
+      }
+    },
+    "fgMuted": {
+      "$type": "color",
+      "$value": "{color.text.muted}",
+      "$description": "Description text of the modal and slideover. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    }
+  }
+}

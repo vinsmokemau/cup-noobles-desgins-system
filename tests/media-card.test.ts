@@ -20,7 +20,8 @@ const { tokens, problems } = checkTokens(root)
 const byPath = new Map(tokens.map((t) => [t.path, t]))
 const css = read('packages/nuxt/assets/css/main.css')
 // The rules of T8.2 without the comment above them, which names the surface token on purpose.
-const ownCss = css.slice(css.indexOf('T8.2 (REQ-020')).replace(/^[\s\S]*?\*\//, '')
+// From the T8.2 comment to the T8.5 comment, which is the next block in the file.
+const ownCss = css.slice(css.indexOf('T8.2 (REQ-020'), css.indexOf('T8.5 (REQ-020')).replace(/^[\s\S]*?\*\//, '')
 const component = read('packages/nuxt/components/CnMediaCard.vue')
 const template = component.slice(component.indexOf('<template>'))
 const doc = read('docs/02-components/molecules/media-card.md')

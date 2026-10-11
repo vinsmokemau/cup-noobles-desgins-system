@@ -28,6 +28,8 @@ This doc defines the Cup Noobles effects: the neon glow, elevation, stacking ord
 | `effect.glow.button` | `--cn-effect-glow-button` | `none` | tbd (TBD-12) |
 | `effect.glow.default` | `--cn-effect-glow-default` | `none` | tbd (TBD-12) |
 | `effect.glow.interactive` | `--cn-effect-glow-interactive` | `none` | tbd (TBD-12) |
+| `effect.opacity.scrim` | `--cn-effect-opacity-scrim` | `0.75` | tbd (TBD-15) |
+| `effect.scrim.opacity` | `--cn-effect-scrim-opacity` | `0.75` | tbd (TBD-15) |
 | `effect.shadow.overlay` | `--cn-effect-shadow-overlay` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | tbd (TBD-15) |
 | `effect.zIndex.overlay` | `--cn-effect-z-index-overlay` | `auto` | tbd (TBD-15) |
 | `effect.zIndex.toast` | `--cn-effect-z-index-toast` | `100` | tbd (TBD-15) |

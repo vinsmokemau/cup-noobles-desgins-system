@@ -7,6 +7,14 @@
         "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-12"] } }
       }
     },
+    "opacity": {
+      "scrim": {
+        "$type": "number",
+        "$value": "{placeholder.effect.scrimOpacity}",
+        "$description": "How much of the page the overlay backdrop covers, from 0 to 1. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value (ADR-0029).",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+      }
+    },
     "shadow": {
       "overlay": {
         "$value": "{placeholder.elevation.overlay}",

@@ -9,6 +9,8 @@ const STATES = {
   'form-field': ['default', 'hover', 'focus-visible', 'disabled', 'error'],
   card: ['default'],
   'media-card': ['default', 'hover', 'focus-visible', 'active'],
+  modal: ['default'],
+  slideover: ['default'],
 }
 
 for (const [slug, states] of Object.entries(STATES)) {

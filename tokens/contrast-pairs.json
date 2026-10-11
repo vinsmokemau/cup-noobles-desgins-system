@@ -72,5 +72,9 @@
   { "foreground": "mediaCard.fg", "background": "mediaCard.bg", "usage": "text" },
   { "foreground": "mediaCard.highlight", "background": "mediaCard.bg", "usage": "ui" },
   { "foreground": "mediaCard.divider", "background": "mediaCard.bg", "usage": "ui" },
-  { "foreground": "mediaCard.focus.color", "background": "mediaCard.bg", "usage": "ui" }
+  { "foreground": "mediaCard.focus.color", "background": "mediaCard.bg", "usage": "ui" },
+  { "foreground": "overlay.fg", "background": "overlay.bg", "usage": "text" },
+  { "foreground": "overlay.fgMuted", "background": "overlay.bg", "usage": "text" },
+  { "foreground": "overlay.highlight", "background": "overlay.bg", "usage": "ui" },
+  { "foreground": "overlay.divider", "background": "overlay.bg", "usage": "ui" }
 ]

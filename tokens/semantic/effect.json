@@ -14,6 +14,14 @@
         "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
       }
     },
+    "scrim": {
+      "opacity": {
+        "$type": "number",
+        "$value": "{effect.opacity.scrim}",
+        "$description": "How much of the page the backdrop of an overlay (modal, slideover) covers. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value (ADR-0029).",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+      }
+    },
     "zIndex": {
       "overlay": {
         "$value": "{z.overlay}",

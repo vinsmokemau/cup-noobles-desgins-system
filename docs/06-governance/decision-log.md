@@ -45,6 +45,7 @@ updated: 2026-09-27
 - [ADR-0024: Sticker border motif artwork](decisions/0024-sticker-border-motif-artwork.md)
 - [ADR-0025: Sticker frame fit](decisions/0025-sticker-frame-fit.md)
 - [ADR-0026: Media card look](decisions/0026-media-card-look.md)
+- [ADR-0029: Modal and slideover look](decisions/0029-overlay-look.md)
 
 ## Open items
 

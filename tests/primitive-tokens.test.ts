@@ -87,8 +87,9 @@ function css(value: unknown): string {
 
 test('ADR-0006: _placeholder.json holds exactly the recorded values, each labeled and tbd', () => {
   const rows = adrRows()
-  // 38 rows in T3.2; ADR-0009 deleted the three focus placeholders (ADR-0006 policy 5, struck through in its table).
-  assert.equal(rows.length, 35, 'every placeholder row in ADR-0006')
+  // 38 rows in T3.2; ADR-0009 deleted the three focus placeholders (ADR-0006 policy 5, struck through in its table), and
+  // ADR-0029 added the overlay backdrop amount.
+  assert.equal(rows.length, 36, 'every placeholder row in ADR-0006')
   const placeholders = tokens.filter((t) => t.file === PLACEHOLDER_FILE)
   assert.deepEqual(placeholders.map((t) => t.path).sort(), rows.map((r) => r.path).sort())
 

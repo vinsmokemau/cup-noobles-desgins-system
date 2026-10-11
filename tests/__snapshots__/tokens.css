@@ -19,6 +19,7 @@
   --cn-border-width-input: 1px; /** Outline stroke width of the text fields (BR-10, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
   --cn-border-width-media-card: 1px; /** Outline stroke width of the featured media card, and of the line between its thumbnail and its text (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
+  --cn-border-width-overlay: 1px; /** Outline stroke width of the modal and slideover panel, and of the lines between its header, body, and footer (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-progress: 1px; /** Outline stroke width of the progress track (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-separator: 1px; /** Stroke width of the separator line (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-skeleton: 1px; /** Outline stroke width of a skeleton shape (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
@@ -107,6 +108,8 @@
   --cn-effect-glow-button: none; /** Neon glow of the button (BR-10, REQ-023 AC2). TBD-12: the glow has no values; this follows a placeholder, not a brand value. A disabled button shows no glow (REQ-023 AC5). */
   --cn-effect-glow-default: none; /** Neon glow. TBD-12: blur, spread, opacity, and color per state are not defined ("subtle" in BR-10); this references a placeholder, not a brand value. */
   --cn-effect-glow-interactive: none; /** Neon glow on interactive elements such as buttons (BR-10). TBD-12: blur, spread, opacity, and color per state are not defined; this references a placeholder, not a brand value. */
+  --cn-effect-opacity-scrim: 0.75; /** How much of the page the overlay backdrop covers, from 0 to 1. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value (ADR-0029). */
+  --cn-effect-scrim-opacity: 0.75; /** How much of the page the backdrop of an overlay (modal, slideover) covers. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value (ADR-0029). */
   --cn-effect-shadow-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Overlay shadow. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-z-index-overlay: auto; /** Stacking order of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-z-index-toast: 100; /** Stacking order of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
@@ -209,6 +212,15 @@
   --cn-media-card-highlight: #ef80ae; /** The neon highlight of the featured media card: its outline is brand pink, like the standard card (BR-01, BR-12, ADR-0018, ADR-0026). */
   --cn-motion-duration-default: 150ms; /** Transition duration. TBD-14: motion durations are not defined; this references a placeholder, not a brand value. */
   --cn-motion-easing-default: cubic-bezier(0.4, 0, 0.2, 1); /** Transition easing. TBD-14: easing curves are not defined; this references a placeholder, not a brand value. */
+  --cn-overlay-bg: #000000; /** Fill of the modal and slideover panel: the pure black page (BR-03). The panel is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card or color.surface.elevated until TBD-06 is resolved. */
+  --cn-overlay-divider: #ef80ae; /** Color of the lines between the header, body, and footer of the modal and slideover: brand pink, like the outline (ADR-0018, ADR-0029). */
+  --cn-overlay-fg: #90a1b9; /** Title and body text of the modal and slideover. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-overlay-fg-muted: #90a1b9; /** Description text of the modal and slideover. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-overlay-highlight: #ef80ae; /** The neon highlight of the modal and slideover panel: its outline is brand pink, like the cards (BR-01, BR-12, ADR-0018). Chosen by the owner in ADR-0029. */
+  --cn-overlay-scrim: #000000; /** Color of the backdrop that dims the page behind a modal or slideover: pure black (BR-03). How much of it shows is overlay.scrimOpacity. Chosen by the owner in ADR-0029. */
+  --cn-overlay-scrim-opacity: 0.75; /** How much of the backdrop color covers the page, from 0 to 1. TBD-15: the dimming amount is not decided; this follows a placeholder, not a brand value (ADR-0029). */
+  --cn-overlay-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Elevation shadow of the modal and slideover panel. It is not a glow (ADR-0029). TBD-15: the elevation scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-overlay-z: auto; /** Stacking order of the modal and slideover backdrop and panel. TBD-15: the z-index scale is not defined; this follows a placeholder, not a brand value. */
   --cn-placeholder-border-width: 1px; /** Placeholder, not a brand value. Stands in for TBD-11. Source: Nuxt UI outlines, Tailwind ring width (ADR-0006). */
   --cn-placeholder-breakpoint-lg: 64rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-lg (ADR-0006). */
   --cn-placeholder-breakpoint-md: 48rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-md (ADR-0006). */
@@ -218,6 +230,7 @@
   --cn-placeholder-color-neutral: #90a1b9; /** Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-04, TBD-05, TBD-06, and TBD-07. Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006). */
   --cn-placeholder-container-max: 80rem; /** Placeholder, not a brand value. Stands in for TBD-13 (container widths). Source: Nuxt UI --ui-container (ADR-0006). */
   --cn-placeholder-effect-glow: none; /** Placeholder, not a brand value. Stands in for TBD-12. Source: Nuxt UI UButton has no glow (ADR-0006). Untyped (ADR-0008). */
+  --cn-placeholder-effect-scrim-opacity: 0.75; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI UModal and USlideover overlay, bg-elevated/75 (ADR-0029). */
   --cn-placeholder-elevation-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Placeholder, not a brand value. Stands in for TBD-15. Source: Tailwind --shadow-lg, used by UModal and USlideover (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; /** Placeholder, not a brand value. Stands in for TBD-01 and TBD-02. Source: Tailwind 4.3.3 --font-sans, split into DTCG font names (ADR-0006). */
   --cn-placeholder-font-letter-spacing: 0em; /** Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --tracking-normal (ADR-0006). Untyped, because DTCG dimensions allow only px and rem (ADR-0008). */
@@ -256,6 +269,7 @@
   --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-radius-md: 0.375rem; /** Medium corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-radius-media-card: 0.375rem; /** Corner radius of the featured media card (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
+  --cn-radius-overlay: 0.375rem; /** Corner radius of the modal and slideover panel (BR-12 look, ADR-0029). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-skeleton: 0.375rem; /** Corner radius of a skeleton shape (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-sm: 0.25rem; /** Small corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
   --cn-separator-bg: #000000; /** The surface a separator line sits on: the pure black page (BR-03). */
