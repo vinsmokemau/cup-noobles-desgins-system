@@ -56,6 +56,7 @@ updated: 2026-09-27
 - [ADR-0035: Breakpoints and container width](decisions/0035-breakpoints-and-container.md)
 - [ADR-0036: Layout doc moves to stable](decisions/0036-layout-doc-stable.md)
 - [ADR-0037: Content docs move to stable](decisions/0037-content-docs-stable.md)
+- [ADR-0038: Email maximum width is 600 px](decisions/0038-email-maximum-width.md)
 
 ## Open items
 

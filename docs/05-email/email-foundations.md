@@ -144,13 +144,13 @@ Many clients block images until the reader allows them. The email must be comple
 
 ### Maximum width
 
-The email body is at most 600 px wide. This is assumption A-08, a widespread email convention, and not a brand rule.
+The email body is at most 600 px wide. The owner chose this width, which confirms assumption A-08, a widespread email convention and not a brand rule (ADR-0038).
 
 - Set the body to 600 px at most, and let it shrink to the width of the client. The layouts are checked at 320 and 600 px (REQ-043).
 - The web breakpoints and container width do not apply to email, and the 360 px minimum of ER-05 is a web rule. The email test widths are 320 and 600 px.
 - Never set a fixed width wider than 600 px, and never let a block force horizontal scroll at 320 px.
 
-> **Draft:** `email-tokens.json` has no token for the 600 px maximum width, so the width is written in the email sources as a number from A-08 and not as a `$cn()` reference. Adding a token for it is a token change that needs the owner's approval. This rule awaits owner approval.
+> **Draft:** `email-tokens.json` has no token for the 600 px maximum width, so the width is written in the email sources as a number (ADR-0038) and not as a `$cn()` reference. Adding a token for it is a token change that needs its own task.
 
 ## Usage rules
 
@@ -210,10 +210,11 @@ The smallest use of a token in an MJML source:
 >
 > **TBD (TBD-12):** The glow parameters are not defined. Email uses a solid border in place of the glow in any case. Owner input needed: values.
 >
-> **Draft:** The dark-mode, images-off, radius, and maximum-width rules above are not sourced from the brand context or an ADR. They rest on R-05 and A-08, and they await owner approval (REQ-037).
+> **Draft:** The dark-mode, images-off, and radius rules above are not sourced from the brand context or an ADR. They rest on R-05, and they await owner approval (REQ-037). The maximum width of 600 px is the owner's choice (ADR-0038); the token for it does not exist yet.
 
 Real-client rendering is not verified here. R-05 puts it with the consuming project, and an optional rendering service is a future ADR. Until then, the generated contrast pairs describe the colors as defined, and not as an inverting client shows them.
 
 ## Changelog
 
 - 0.1.0 — First draft: the font fallback stack, glow fallback, radius tolerance, dark-mode inversion, images-off behavior, and maximum width, with every fallback mapped to a token (T10.1, REQ-040) — awaiting owner approval
+- 0.1.0 — Maximum width of 600 px chosen by the owner, confirming A-08 — ADR-0038

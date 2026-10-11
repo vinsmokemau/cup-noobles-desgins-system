@@ -50,9 +50,13 @@ test('REQ-040 AC1: images-off behavior covers alt text and a text fallback for t
   assert.match(images, /logo/i)
 })
 
-test('REQ-040 AC1, A-08: the maximum width is 600 px', () => {
+test('REQ-040 AC1, A-08: the maximum width is 600 px, chosen by the owner in ADR-0038', () => {
   assert.match(section('Maximum width', 3), /600 px/)
   assert.match(section('Maximum width', 3), /A-08/)
+  assert.match(section('Maximum width', 3), /ADR-0038/)
+  assert.match(text, /^- 0\.1\.0 — Maximum width of 600 px chosen by the owner[^\n]* — ADR-0038$/m)
+  const adr = readFileSync(join(root, 'docs/06-governance/decisions/0038-email-maximum-width.md'), 'utf8')
+  assert.match(adr, /The owner chose A, 600 px/)
 })
 
 test('REQ-040 AC2: every token in the fallback map exists in email-tokens.json', async () => {
