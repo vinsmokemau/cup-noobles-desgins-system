@@ -2,7 +2,7 @@
 title: Layout
 slug: layout
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-15]
 tokens: [breakpoint, layout]
@@ -126,9 +126,10 @@ CSS custom properties cannot be used inside a media query condition, so a media 
 
 ## Open items
 
-> **Draft:** The values are the owner's (ADR-0035), but the rules of this doc, such as the overflow and target-size rules, have not been approved as a whole. The doc stays a draft until the owner approves it (REQ-009 AC2). Owner input needed: approve or amend the rules.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-15, the 360 px minimum (ER-05), the reference viewports (A-09), the REQ-028 overflow and target-size rules, the breakpoint and container groups, and TBD-13 (T4.5) — awaiting owner approval
 - 0.1.0 — The breakpoints and the container width are set by the owner, and the placeholders for them are gone — ADR-0035
+- 0.1.0 — Approved as stable by the owner — ADR-0036
