@@ -2,7 +2,7 @@
 title: "ADR-0040: The email build writes rem dimensions as px"
 slug: adr-0040-email-build-rem-to-px
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: []
 tbd: []
@@ -31,4 +31,4 @@ This changes the unit and not the size, so no brand value is introduced or alter
 - A token whose value mixes units, such as a composite string, is injected as written. A source that needs a px value from such a token needs a separate token.
 - The compiled HTML does not follow a reader's browser font size, which email clients rarely apply anyway.
 - If the token build later emits px for email directly (a change to `cn/json-email`), this conversion becomes a no-op, and the ADR can be superseded.
-- Status is `draft`: the decision is an implementation choice made under ADR-0006's delegation, and the owner has not reviewed it.
+- The owner approved this decision in chat on 2026-10-11, so the ADR is `stable`.
