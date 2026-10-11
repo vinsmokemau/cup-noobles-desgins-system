@@ -1,0 +1,9 @@
+<mjml lang="es-MX">
+  <mj-body background-color="$cn(color.bg.base)">
+    <mj-section background-color="$cn(color.bg.base)">
+      <mj-column>
+        <mj-button href="{{ url }}" background-color="$cn(button.primary.bg)" color="$cn(button.primary.fg)" font-family="$cn(font.family.body)" font-size="$cn(font.size.body)" font-weight="$cn(font.weight.body)" line-height="$cn(font.lineHeight.body)" border-radius="$cn(radius.button)" border="$cn(border.width.button) solid $cn(button.primary.border)">{{ label }}</mj-button>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

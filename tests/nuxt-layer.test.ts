@@ -162,5 +162,8 @@ test('REQ-016 AC1: the layer sources pass cn/no-raw-values', async () => {
 test('Done when: `pnpm test:all` builds the tokens, then the layer', () => {
   const scripts = json('package.json').scripts as Record<string, string>
   assert.equal(scripts['build:nuxt'], 'pnpm --filter @vinsmokemau/cup-noobles-nuxt build')
-  assert.match(scripts['test:all']!, /^pnpm test && pnpm build:tokens && pnpm build:nuxt(?: &&|$)/)
+  assert.match(
+    scripts['test:all']!,
+    /^pnpm test && pnpm build:tokens && (?:pnpm build:email && )?pnpm build:nuxt(?: &&|$)/,
+  )
 })
