@@ -1,0 +1,158 @@
+{
+  "radius": {
+    "toast": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the toast. TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "toast": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of the toast (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "toast": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "Fill of the toast: the pure black page (BR-03). The look is an outline, not a fill (ADR-0027).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Title text of the toast. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-04"]
+        }
+      }
+    },
+    "fgMuted": {
+      "$type": "color",
+      "$value": "{color.text.muted}",
+      "$description": "Description text of the toast. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-05"]
+        }
+      }
+    },
+    "success": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.feedback.success}",
+        "$description": "Outline and icon color of a success toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-07"]
+          }
+        }
+      }
+    },
+    "info": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.feedback.info}",
+        "$description": "Outline and icon color of a info toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-07"]
+          }
+        }
+      }
+    },
+    "warning": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.feedback.warning}",
+        "$description": "Outline and icon color of a warning toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-07"]
+          }
+        }
+      }
+    },
+    "error": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.feedback.error}",
+        "$description": "Outline and icon color of a error toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-07"]
+          }
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of the toast and its close button (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of the toast and its close button (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between the toast and its close button and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of the toast and its close button (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

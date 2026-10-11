@@ -70,6 +70,7 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
   const kinds = (doc: string) => previewsOf(doc).map((p) => `${p.kind}:${p.label}`)
   assert.deepEqual(kinds('spacing'), ['space:space.base'])
   assert.deepEqual(kinds('shape'), [
+    'stroke:border.width.alert',
     'stroke:border.width.badge',
     'stroke:border.width.button',
     'stroke:border.width.card',
@@ -84,6 +85,9 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'stroke:border.width.separator',
     'stroke:border.width.skeleton',
     'stroke:border.width.tabs',
+    'stroke:border.width.toast',
+    'stroke:border.width.tooltip',
+    'radius:radius.alert',
     'radius:radius.badge',
     'radius:radius.button',
     'radius:radius.card',
@@ -97,6 +101,8 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'radius:radius.pagination',
     'radius:radius.skeleton',
     'radius:radius.sm',
+    'radius:radius.toast',
+    'radius:radius.tooltip',
   ])
   assert.deepEqual(kinds('effects'), [
     'glow:effect.glow.button',

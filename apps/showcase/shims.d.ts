@@ -41,3 +41,16 @@ declare function queryCollection(collection: 'docs'): DocQuery
 
 // T7.1: a compiler macro of Nuxt's pages module, which `nuxt prepare` types.
 declare function definePageMeta(meta: { layout?: string | false }): void
+
+// T8.3: Nuxt UI's toast composable is auto-imported. The toast demo calls dd, so that part is declared here.
+interface ToastInput {
+  title?: string
+  description?: string
+  color?: 'success' | 'info' | 'warning' | 'error'
+  icon?: string
+  close?: boolean | Record<string, unknown>
+  duration?: number
+  actions?: { label: string; color?: string; variant?: string }[]
+}
+
+declare function useToast(): { add(toast: ToastInput): unknown }

@@ -11,6 +11,9 @@ const STATES = {
   'media-card': ['default', 'hover', 'focus-visible', 'active'],
   modal: ['default'],
   slideover: ['default'],
+  alert: ['default', 'success', 'warning', 'error', 'focus-visible'],
+  toast: ['default', 'success', 'warning', 'error', 'focus-visible'],
+  tooltip: ['default', 'hover', 'focus-visible'],
 }
 
 for (const [slug, states] of Object.entries(STATES)) {

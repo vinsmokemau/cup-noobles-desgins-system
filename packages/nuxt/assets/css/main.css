@@ -444,6 +444,189 @@
 }
 
 /*
+ * T8.3 (REQ-020, REQ-026, ADR-0027): the alert, the toast, and the tooltip. app.config.ts puts a hook class on each part of
+ * UAlert and UToast and on the content of UTooltip. Every value is a --cn-alert-*, --cn-toast-*, or --cn-tooltip-* token.
+ * The rules are not in a cascade layer, so they win over Nuxt UI's own utility classes (`bg-success`, `ring`, `shadow-lg`)
+ * without `!important`.
+ *
+ * The look is the owner's option A (ADR-0027): the black page, a thick outline and an icon in the feedback color, and
+ * normal text. The feedback color of each type is a TBD-07 placeholder today, so the four types are told apart by their
+ * icon and their title, never by color alone (WCAG 1.4.1). The tooltip is a small black bubble with a brand pink outline.
+ * None of the three has a glow or a shadow. Nuxt UI draws its outlines with a ring, which is a box-shadow; the outline
+ * here is a real border.
+ *
+ * The alert is a static region. The toast is announced by Reka UI's live region, and it takes focus only from the keyboard
+ * through the viewport. The toast and the close buttons draw the yellow focus ring from the focus tokens (REQ-024 AC1).
+ * The tooltip is not focusable: the control that triggers it is, and the tooltip opens on that control's focus as well as
+ * on hover (Reka UI).
+ */
+.cn-alert {
+  color: var(--cn-alert-fg);
+  background-color: var(--cn-alert-bg);
+  border: var(--cn-border-width-alert) solid;
+  border-radius: var(--cn-radius-alert);
+  /* Nuxt UI draws its outlines with a ring, which is a box-shadow; the outline here is the border. */
+  box-shadow: none;
+}
+
+.cn-alert--success {
+  border-color: var(--cn-alert-success-color);
+}
+
+.cn-alert--success .cn-alert__icon {
+  color: var(--cn-alert-success-color);
+}
+
+.cn-alert--info {
+  border-color: var(--cn-alert-info-color);
+}
+
+.cn-alert--info .cn-alert__icon {
+  color: var(--cn-alert-info-color);
+}
+
+.cn-alert--warning {
+  border-color: var(--cn-alert-warning-color);
+}
+
+.cn-alert--warning .cn-alert__icon {
+  color: var(--cn-alert-warning-color);
+}
+
+.cn-alert--error {
+  border-color: var(--cn-alert-error-color);
+}
+
+.cn-alert--error .cn-alert__icon {
+  color: var(--cn-alert-error-color);
+}
+
+.cn-alert__title {
+  color: var(--cn-alert-fg);
+  overflow-wrap: anywhere;
+}
+
+.cn-alert__description {
+  color: var(--cn-alert-fg-muted);
+  opacity: 1;
+  overflow-wrap: anywhere;
+}
+
+.cn-toast {
+  color: var(--cn-toast-fg);
+  background-color: var(--cn-toast-bg);
+  border: var(--cn-border-width-toast) solid;
+  border-radius: var(--cn-radius-toast);
+  box-shadow: none;
+  outline: none;
+}
+
+.cn-toast--success {
+  border-color: var(--cn-toast-success-color);
+}
+
+.cn-toast--success .cn-toast__icon {
+  color: var(--cn-toast-success-color);
+}
+
+.cn-toast--info {
+  border-color: var(--cn-toast-info-color);
+}
+
+.cn-toast--info .cn-toast__icon {
+  color: var(--cn-toast-info-color);
+}
+
+.cn-toast--warning {
+  border-color: var(--cn-toast-warning-color);
+}
+
+.cn-toast--warning .cn-toast__icon {
+  color: var(--cn-toast-warning-color);
+}
+
+.cn-toast--error {
+  border-color: var(--cn-toast-error-color);
+}
+
+.cn-toast--error .cn-toast__icon {
+  color: var(--cn-toast-error-color);
+}
+
+.cn-toast:is(:focus-visible, [data-cn-state='focus-visible']) {
+  outline: var(--cn-toast-focus-width) var(--cn-toast-focus-style) var(--cn-toast-focus-color);
+  outline-offset: var(--cn-toast-focus-offset);
+}
+
+.cn-toast__title {
+  color: var(--cn-toast-fg);
+  overflow-wrap: anywhere;
+}
+
+.cn-toast__description {
+  color: var(--cn-toast-fg-muted);
+  overflow-wrap: anywhere;
+}
+
+/*
+ * Reka UI puts two focus proxies, ria-hidden spans with 	abindex="0", around the toasts in the viewport. They fail the
+ * axe rule aria-hidden-focus (WCAG 4.1.2), and they are not needed here: the viewport sits at the end of the page and each
+ * toast is itself focusable, so Tab reaches the toasts in order, and F8 still moves focus to the viewport.
+ */
+:has(> [data-slot='viewport']) > span[aria-hidden='true'] {
+  display: none;
+}
+/* The close buttons keep the text color and show the same focus ring as every other control. */
+.cn-alert__close,
+.cn-toast__close {
+  min-width: calc(var(--cn-space-base) * 6);
+  min-height: calc(var(--cn-space-base) * 6);
+  justify-content: center;
+  box-shadow: none;
+}
+
+.cn-alert__close,
+.cn-alert__close:hover {
+  color: var(--cn-alert-fg);
+}
+
+.cn-toast__close,
+.cn-toast__close:hover {
+  color: var(--cn-toast-fg);
+}
+
+.cn-alert__close:is(:focus-visible, [data-cn-state='focus-visible']) {
+  outline: var(--cn-alert-focus-width) var(--cn-alert-focus-style) var(--cn-alert-focus-color);
+  outline-offset: var(--cn-alert-focus-offset);
+}
+
+.cn-toast__close:is(:focus-visible, [data-cn-state='focus-visible']) {
+  outline: var(--cn-toast-focus-width) var(--cn-toast-focus-style) var(--cn-toast-focus-color);
+  outline-offset: var(--cn-toast-focus-offset);
+}
+
+.cn-tooltip {
+  color: var(--cn-tooltip-fg);
+  background-color: var(--cn-tooltip-bg);
+  border: var(--cn-border-width-tooltip) solid var(--cn-tooltip-border);
+  border-radius: var(--cn-radius-tooltip);
+  box-shadow: none;
+  /* Nuxt UI fixes the height; a thick border and wrapped text need it to follow the content. */
+  height: auto;
+  min-height: calc(var(--cn-space-base) * 6);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* Nuxt UI's open and close animations are not behind `motion-safe`, so they stop here (REQ-029 AC2). */
+@media (prefers-reduced-motion: reduce) {
+  .cn-tooltip,
+  .cn-toaster__item {
+    animation: none;
+  }
+}
+
+/*
  * T7.8 (REQ-029): CnSparkle and CnStickerFrame, the two motif components of BR-14.
  *
  * T7.10 (ADR-0017): the sparkle is the supplied Sparkle-CN.svg, shown as an image and never edited or inlined. It is as

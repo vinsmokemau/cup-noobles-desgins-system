@@ -3,6 +3,17 @@
  */
 
 :root {
+  --cn-alert-bg: #000000; /** Fill of the alert: the pure black page (BR-03). The look is an outline, not a fill (ADR-0027). */
+  --cn-alert-error-color: #90a1b9; /** Outline and icon color of a error alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-alert-fg: #90a1b9; /** Title text of the alert. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-alert-fg-muted: #90a1b9; /** Description text of the alert. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-alert-focus-color: #fff488; /** Focus ring color of the alert close button (REQ-024 AC1, ADR-0009). */
+  --cn-alert-focus-offset: 3px; /** Gap between the alert close button and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-alert-focus-style: solid; /** Focus ring line style of the alert close button (REQ-024 AC1, ADR-0009). */
+  --cn-alert-focus-width: 3px; /** Focus ring width of the alert close button (REQ-024 AC1, ADR-0009). */
+  --cn-alert-info-color: #90a1b9; /** Outline and icon color of a info alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-alert-success-color: #90a1b9; /** Outline and icon color of a success alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-alert-warning-color: #90a1b9; /** Outline and icon color of a warning alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
   --cn-badge-outline-border: #ef80ae; /** Outline color of the outline badge: brand pink (BR-01). */
   --cn-badge-outline-fg: #ef80ae; /** Label of the outline badge: brand pink on the black page (BR-01). */
   --cn-badge-primary-bg: #ef80ae; /** Fill of the primary badge: brand pink (BR-01). */
@@ -11,6 +22,7 @@
   --cn-badge-tag-bg: #fff488; /** Fill of the tag badge of the featured media card: brand yellow (BR-02, BR-12). */
   --cn-badge-tag-border: #fff488; /** Outline color of the tag badge: brand yellow (BR-02). */
   --cn-badge-tag-fg: #000000; /** Label of the tag badge: black on the yellow fill (SPEC.md section 2.1). */
+  --cn-border-width-alert: 1px; /** Outline stroke width of the alert (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-badge: 1px; /** Outline stroke width of the badge (BR-12, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-button: 1px; /** Outline stroke width of the button (BR-10, REQ-023 AC2). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-card: 1px; /** Outline stroke width of the standard card, and of the dividers between its parts (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
@@ -25,6 +37,8 @@
   --cn-border-width-separator: 1px; /** Stroke width of the separator line (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-skeleton: 1px; /** Outline stroke width of a skeleton shape (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-border-width-tabs: 1px; /** Stroke width of the rule under the tab list and of the underline under the active tab (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
+  --cn-border-width-toast: 1px; /** Outline stroke width of the toast (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
+  --cn-border-width-tooltip: 1px; /** Outline stroke width of the tooltip (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
   --cn-breadcrumb-current-fg: #90a1b9; /** Text color of the current page, the last item: plain bold text, not underlined (ADR-0028). TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
   --cn-breadcrumb-focus-color: #fff488; /** Focus ring color of a breadcrumb link (REQ-024 AC1, ADR-0009). */
   --cn-breadcrumb-focus-offset: 3px; /** Gap between a breadcrumb link and its focus ring (REQ-024 AC1, ADR-0009). */
@@ -280,6 +294,7 @@
   --cn-progress-bg: #000000; /** Fill of the empty part of the progress track: the pure black page (BR-03). The track is separated from the page by its outline (C-05). */
   --cn-progress-border: #90a1b9; /** Outline color of the progress track. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
   --cn-progress-fill: #ef80ae; /** Fill of the finished part of the progress bar: brand pink (BR-01). */
+  --cn-radius-alert: 0.375rem; /** Corner radius of the alert. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-badge: 0.375rem; /** Corner radius of the badge (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-button: 0.375rem; /** Corner radius of the button (BR-10, REQ-023 AC2). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-card: 0.375rem; /** Corner radius of the standard card (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
@@ -293,6 +308,8 @@
   --cn-radius-pagination: 0.375rem; /** Corner radius of a page number and of the previous and next controls (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-skeleton: 0.375rem; /** Corner radius of a skeleton shape (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-sm: 0.25rem; /** Small corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
+  --cn-radius-toast: 0.375rem; /** Corner radius of the toast. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
+  --cn-radius-tooltip: 0.375rem; /** Corner radius of the tooltip. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-separator-bg: #000000; /** The surface a separator line sits on: the pure black page (BR-03). */
   --cn-separator-color: #90a1b9; /** Color of the separator line. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
   --cn-skeleton-border: #90a1b9; /** Outline color of a skeleton shape. The shape has no fill, because there is no surface color yet (C-05). TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
@@ -306,6 +323,20 @@
   --cn-tabs-focus-style: solid; /** Focus ring line style of a tab (REQ-024 AC1, ADR-0009). */
   --cn-tabs-focus-width: 3px; /** Focus ring width of a tab (REQ-024 AC1, ADR-0009). */
   --cn-tabs-rule: #90a1b9; /** Color of the rule under the whole tab list. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-toast-bg: #000000; /** Fill of the toast: the pure black page (BR-03). The look is an outline, not a fill (ADR-0027). */
+  --cn-toast-error-color: #90a1b9; /** Outline and icon color of a error toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-toast-fg: #90a1b9; /** Title text of the toast. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-toast-fg-muted: #90a1b9; /** Description text of the toast. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-toast-focus-color: #fff488; /** Focus ring color of the toast and its close button (REQ-024 AC1, ADR-0009). */
+  --cn-toast-focus-offset: 3px; /** Gap between the toast and its close button and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-toast-focus-style: solid; /** Focus ring line style of the toast and its close button (REQ-024 AC1, ADR-0009). */
+  --cn-toast-focus-width: 3px; /** Focus ring width of the toast and its close button (REQ-024 AC1, ADR-0009). */
+  --cn-toast-info-color: #90a1b9; /** Outline and icon color of a info toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-toast-success-color: #90a1b9; /** Outline and icon color of a success toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-toast-warning-color: #90a1b9; /** Outline and icon color of a warning toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-tooltip-bg: #000000; /** Fill of the tooltip: the pure black page (BR-03). */
+  --cn-tooltip-border: #ef80ae; /** Outline of the tooltip: brand pink on the black page (BR-01), 8.37:1 (ADR-0027). */
+  --cn-tooltip-fg: #90a1b9; /** Text of the tooltip. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
   --cn-z-overlay: auto; /** Z-index of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
   --cn-z-toast: 100; /** Z-index of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
 }

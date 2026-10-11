@@ -232,5 +232,58 @@ export default {
         list: 'cn-pagination__list',
       },
     },
+    // T8.3 (REQ-020, REQ-026, ADR-0027): the alert, the toast, and the tooltip. They share one look, the owner's option A:
+    // the black page, a thick outline and an icon in the feedback color, and normal text. The look is the `.cn-alert*`,
+    // `.cn-toast*`, and `.cn-tooltip*` rules in assets/css/main.css, which read the --cn-alert-*, --cn-toast-*, and
+    // --cn-tooltip-* tokens. The four feedback types map to Nuxt UI's `color` prop (`success`, `info`, `warning`, `error`)
+    // and each puts one modifier class on the root. The alert's `variant` has no effect on the look: the rules replace the
+    // fill and the ring that each Nuxt UI variant draws.
+    alert: {
+      slots: {
+        root: 'cn-alert',
+        title: 'cn-alert__title',
+        description: 'cn-alert__description',
+        icon: 'cn-alert__icon',
+        close: 'cn-alert__close',
+      },
+      // Nuxt UI's alert theme gives color plain strings, not slots, so the modifier is a compound variant.
+      compoundVariants: [
+        { color: 'success', class: { root: 'cn-alert--success' } },
+        { color: 'info', class: { root: 'cn-alert--info' } },
+        { color: 'warning', class: { root: 'cn-alert--warning' } },
+        { color: 'error', class: { root: 'cn-alert--error' } },
+      ],
+    },
+    toast: {
+      slots: {
+        root: 'cn-toast',
+        title: 'cn-toast__title',
+        description: 'cn-toast__description',
+        icon: 'cn-toast__icon',
+        close: 'cn-toast__close',
+        // The countdown bar is hidden: it moves on its own and says nothing a screen reader could use.
+        progress: 'hidden',
+      },
+      variants: {
+        color: {
+          success: { root: 'cn-toast--success' },
+          info: { root: 'cn-toast--info' },
+          warning: { root: 'cn-toast--warning' },
+          error: { root: 'cn-toast--error' },
+        },
+      },
+    },
+    // The toaster only gets a hook for reduced motion: where the toast sits and how it moves are Nuxt UI defaults
+    // (TBD-14, TBD-15).
+    toaster: {
+      slots: {
+        base: 'cn-toaster__item',
+      },
+    },
+    tooltip: {
+      slots: {
+        content: 'cn-tooltip',
+      },
+    },
   },
 } satisfies AppConfigInput

@@ -92,5 +92,21 @@
   { "foreground": "pagination.item.borderHover", "background": "color.bg.base", "usage": "ui" },
   { "foreground": "pagination.current.fg", "background": "pagination.current.bg", "usage": "text" },
   { "foreground": "pagination.current.border", "background": "color.bg.base", "usage": "ui" },
-  { "foreground": "pagination.focus.color", "background": "color.bg.base", "usage": "ui" }
+  { "foreground": "pagination.focus.color", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "alert.fg", "background": "alert.bg", "usage": "text" },
+  { "foreground": "alert.fgMuted", "background": "alert.bg", "usage": "text" },
+  { "foreground": "alert.success.color", "background": "alert.bg", "usage": "ui" },
+  { "foreground": "alert.info.color", "background": "alert.bg", "usage": "ui" },
+  { "foreground": "alert.warning.color", "background": "alert.bg", "usage": "ui" },
+  { "foreground": "alert.error.color", "background": "alert.bg", "usage": "ui" },
+  { "foreground": "alert.focus.color", "background": "alert.bg", "usage": "ui" },
+  { "foreground": "toast.fg", "background": "toast.bg", "usage": "text" },
+  { "foreground": "toast.fgMuted", "background": "toast.bg", "usage": "text" },
+  { "foreground": "toast.success.color", "background": "toast.bg", "usage": "ui" },
+  { "foreground": "toast.info.color", "background": "toast.bg", "usage": "ui" },
+  { "foreground": "toast.warning.color", "background": "toast.bg", "usage": "ui" },
+  { "foreground": "toast.error.color", "background": "toast.bg", "usage": "ui" },
+  { "foreground": "toast.focus.color", "background": "toast.bg", "usage": "ui" },
+  { "foreground": "tooltip.fg", "background": "tooltip.bg", "usage": "text" },
+  { "foreground": "tooltip.border", "background": "tooltip.bg", "usage": "ui" }
 ]
