@@ -137,8 +137,8 @@ The system has no separate banner component. A banner is an alert placed at the 
 >
 > **TBD (TBD-07):** The feedback colors are not defined. The outline and icon of all four types read one placeholder, so today the types are told apart by their icon and title, not by color. Owner input needed: a hex set.
 >
-> **Draft:** The choice among the four kinds, and the banner as an alert at the top of the page, are composed from the component docs and WCAG 2.2. The brand context does not describe them, and the owner has not approved them. The doc stays a draft until the owner does and the placeholders in the TBD callouts above are replaced.
+> **Draft:** The choice among the four kinds, and the banner as an alert at the top of the page, are approved (ADR-0031). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
-- 0.1.0 — First draft: the feedback pattern, with toast, inline, banner, and dialog, and its composed demo (T9.1) — awaiting owner approval
+- 0.1.0 — First draft: the feedback pattern, with toast, inline, banner, and dialog, and its composed demo (T9.1) — ADR-0031

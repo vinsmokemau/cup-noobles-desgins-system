@@ -119,8 +119,8 @@ The composed demo shows all three on neutral content: a profile page of a commun
 >
 > **TBD (TBD-14):** Motion durations and easing are not defined. The skeleton's fade and the indeterminate bar follow the ADR-0006 placeholder. Owner input needed: values.
 >
-> **Draft:** The choice of part by wait, and the rule that the button's spinner is the system's spinner, are composed from the component docs. The brand context does not describe them, and the owner has not approved them. The doc stays a draft until the owner does and the placeholders in the TBD callouts above are replaced.
+> **Draft:** The choice of part by wait, and the rule that the button's spinner is the system's spinner, are approved (ADR-0031). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
-- 0.1.0 — First draft: the loading pattern, with skeleton, spinner, and progress, and its composed demo (T9.1) — awaiting owner approval
+- 0.1.0 — First draft: the loading pattern, with skeleton, spinner, and progress, and its composed demo (T9.1) — ADR-0031

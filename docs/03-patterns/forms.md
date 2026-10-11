@@ -134,8 +134,8 @@ The composed demo is the whole pattern on neutral content: a message to an event
 >
 > **TBD (TBD-07):** The feedback colors are not defined. Error text and the summary alert read a placeholder, so today an error is told apart by its message and icon, not by color. Owner input needed: a hex set.
 >
-> **Draft:** The pattern's rules (one column, validate on leave and on submit, the summary alert, focus on the first error, never disable the submit) are composed from the component docs and from WCAG 2.2. The brand context does not describe them, and the owner has not approved them. The doc stays a draft until the owner does and the placeholders in the TBD callouts above are replaced.
+> **Draft:** The pattern's rules (one column, validate on leave and on submit, the summary alert, focus on the first error, never disable the submit) are approved (ADR-0031). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
-- 0.1.0 — First draft: the forms pattern and its composed demo (T9.1) — awaiting owner approval
+- 0.1.0 — First draft: the forms pattern and its composed demo (T9.1) — ADR-0031
