@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.34 |
+| Spec version | 1.35 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1243,17 +1243,17 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - REQs: REQ-072, REQ-073 (AC1)
   - Depends on: T5.4
   - Scope: `ownership.md` (A-01), `versioning-and-releases.md` (§4.8), `contribution.md` (a spec-first flow: ADR or spec change, then task, then code), `deprecation.md` (REQ-072), and `decision-log.md` (an index of every ADR).
-  - Done when: `check-docs` and `check-links` pass, and every ADR appears in the index.
+  - Done when: `check-docs` and `check-links` pass, and every ADR appears in the index. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T11.4 runs it for T11.2 through T11.4.
 
 - [ ] **T11.3 — Changesets, changelog page, and deprecation helper**
   - REQs: REQ-070, REQ-062 (AC2), REQ-072 (AC1)
   - Depends on: T11.2
-  - Done when: a test changeset produces a lockstep version pull request in a dry run; `/changelog` renders `CHANGELOG.md`; and the deprecation helper warns in development only (tested).
+  - Done when: a test changeset produces a lockstep version pull request in a dry run; `/changelog` renders `CHANGELOG.md`; and the deprecation helper warns in development only (tested). `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T11.4 runs it for T11.2 through T11.4.
 
 - [ ] **T11.4 — `release-check`**
   - REQs: REQ-018
   - Depends on: T11.3
-  - Done when: `pnpm release:check` fails today, listing every stable component that reaches a TBD token, and passes on a fixture where every token is stable.
+  - Done when: `pnpm release:check` fails today, listing every stable component that reaches a TBD token, and passes on a fixture where every token is stable. `pnpm test:all` is green, covering T11.2 and T11.3 as well.
 
 ### P12 — Release readiness
 
@@ -1355,6 +1355,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.32 | 2026-10-11 | §2.4: TBD-21 is resolved by ADR-0037 (the voice "this, not that" pairs and the three content docs move to stable). No requirement or task changes. | Owner decision in chat; ADR-0037 |
 | 1.33 | 2026-10-11 | T10.1 through T10.4: the definition of done requires `pnpm test` and `pnpm check:docs` instead of `pnpm test:all`; T10.5 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 | 1.34 | 2026-10-11 | Added T3.7 (email width token) to P3: the maximum email width of 600 px, chosen by the owner and confirming A-08, becomes the tokens `email.width.max` and `layout.email.width.max`. A-08 is unchanged. No existing task changes. | Owner request in chat (T10.1 open question 1); ADR-0038, ADR-0039 |
+| 1.35 | 2026-10-11 | T11.2 and T11.3: the definition of done requires `pnpm test` and `pnpm check:docs` instead of `pnpm test:all`; T11.4 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
