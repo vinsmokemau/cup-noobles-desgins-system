@@ -8,6 +8,16 @@
         "$extensions": { "cn": { "status": "stable", "source": "ADR-0035" } }
       }
     },
+    "email": {
+      "width": {
+        "max": {
+          "$type": "dimension",
+          "$value": "{email.width.max}",
+          "$description": "Maximum width of an email body, 600 px (ADR-0038, A-08). The email build injects it as a literal.",
+          "$extensions": { "cn": { "status": "stable", "source": "ADR-0038" } }
+        }
+      }
+    },
     "logo": {
       "clearSpace": {
         "$type": "number",

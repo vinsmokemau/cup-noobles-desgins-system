@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.33 |
+| Spec version | 1.34 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -933,6 +933,12 @@ Each task is sized for one Claude Code session. Task IDs are `T<phase>.<n>`. "De
   - Scope: Rewrite generated blocks in the `table` and `contrast` formats (the `inventory` format comes in T8.7), add `--check` mode, and add `sync:docs --check` to `pnpm test`.
   - Done when: after a token value changes, `--check` fails; after running `pnpm sync:docs`, it passes; and running it on an in-sync tree leaves no git diff.
 
+- [ ] **T3.7 — Email width token**
+  - REQs: REQ-011 (AC2), REQ-040 (AC2)
+  - Depends on: T3.4, T10.1
+  - Scope: The primitive `email.width.max` (`600px`) and the semantic `layout.email.width.max`, both `stable` with source ADR-0038, so the email build reads the maximum width from a token (A-08).
+  - Done when: `pnpm check:tokens` passes, `email-tokens.json` holds both tokens, the built CSS snapshot is updated, and `email-foundations.md` maps the maximum width to `layout.email.width.max`. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11).
+
 ### P4 — Foundation docs
 
 Rule for all P4 tasks: BC content is quoted with its BR ID. Anything else is either a TBD callout or a `draft` proposal. The docs leave `tbd` status, becoming `draft` or `stable`. Each doc includes the generated blocks for its token groups.
@@ -1348,6 +1354,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.31 | 2026-10-11 | §2.4: TBD-13 is resolved by ADR-0035 (breakpoints and container width). No requirement or task changes. | Owner decision in chat; ADR-0035 |
 | 1.32 | 2026-10-11 | §2.4: TBD-21 is resolved by ADR-0037 (the voice "this, not that" pairs and the three content docs move to stable). No requirement or task changes. | Owner decision in chat; ADR-0037 |
 | 1.33 | 2026-10-11 | T10.1 through T10.4: the definition of done requires `pnpm test` and `pnpm check:docs` instead of `pnpm test:all`; T10.5 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
+| 1.34 | 2026-10-11 | Added T3.7 (email width token) to P3: the maximum email width of 600 px, chosen by the owner and confirming A-08, becomes the tokens `email.width.max` and `layout.email.width.max`. A-08 is unchanged. No existing task changes. | Owner request in chat (T10.1 open question 1); ADR-0038, ADR-0039 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1369,7 +1376,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-008 | T0.2, T2.2, T12.2 |
 | REQ-009 | T2.4, T4.1, T4.3, T9.1, T9.2, T9.3 |
 | REQ-010 | T0.3, T3.1 |
-| REQ-011 | T3.2, T3.3, T3.4, T4.2 |
+| REQ-011 | T3.2, T3.3, T3.4, T3.7, T4.2 |
 | REQ-012 | T3.3, T4.2, T5.2 |
 | REQ-013 | T0.3, T1.1, T3.4 |
 | REQ-014 | T3.1 |
@@ -1392,7 +1399,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-035 | T9.1, T9.2 |
 | REQ-036 | T9.3 |
 | REQ-037 | T2.2 |
-| REQ-040 | T10.1 |
+| REQ-040 | T3.7, T10.1 |
 | REQ-041 | T0.4, T10.2, T10.3 |
 | REQ-042 | T10.2, T10.3 |
 | REQ-043 | T10.4 |

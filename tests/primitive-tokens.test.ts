@@ -22,6 +22,7 @@ const RESOLVED_FILES = {
   'border.json': 'ADR-0032',
   'motion.json': 'ADR-0032',
   'breakpoint.json': 'ADR-0035',
+  'email.json': 'ADR-0038',
 }
 
 test('§4.1: tokens/primitive/ holds exactly the listed files', () => {
@@ -48,6 +49,11 @@ test('ADR-0016: the logo primitives hold the owner values, stable, with the ADR 
     ['logo.rule.minHeight.vertical', '80px', 'stable', 'ADR-0016'],
     ['logo.rule.minHeight.horizontal', '36px', 'stable', 'ADR-0016'],
   ])
+})
+
+test('ADR-0038: the email maximum width holds the owner value, stable, with the ADR as source', () => {
+  const email = inFile('email.json').map((t) => [t.path, t.value, t.cn?.status, t.cn?.source])
+  assert.deepEqual(email, [['email.width.max', '600px', 'stable', 'ADR-0038']])
 })
 
 test('REQ-011 AC1: the three brand colors are exact, stable primitives with their BR sources', () => {

@@ -54,6 +54,7 @@ test('REQ-040 AC1, A-08: the maximum width is 600 px, chosen by the owner in ADR
   assert.match(section('Maximum width', 3), /600 px/)
   assert.match(section('Maximum width', 3), /A-08/)
   assert.match(section('Maximum width', 3), /ADR-0038/)
+  assert.match(section('Maximum width', 3), /`layout\.email\.width\.max`/)
   assert.match(text, /^- 0\.1\.0 — Maximum width of 600 px chosen by the owner[^\n]* — ADR-0038$/m)
   const adr = readFileSync(join(root, 'docs/06-governance/decisions/0038-email-maximum-width.md'), 'utf8')
   assert.match(adr, /The owner chose A, 600 px/)
@@ -89,6 +90,9 @@ test('REQ-040 AC2: every token the doc names in a code span is in email-tokens.j
 test('REQ-009, REQ-037: the doc is a draft with its TBD items listed, and carries no hex literal or typeface name', () => {
   const data = readFrontmatter(text).data as Record<string, unknown>
   assert.equal(data.status, 'draft')
+  // ADR-0039: the owner approved the rules, so no Draft callout remains; the open TBD items keep the doc a draft.
+  assert.doesNotMatch(text, /^> \*\*Draft:\*\*/m)
+  assert.match(text, /^- 0\.1\.0 — Rules approved by the owner[^\n]* — ADR-0039$/m)
   assert.equal(data.layer, 'email')
   for (const id of ['TBD-01', 'TBD-03', 'TBD-10', 'TBD-12']) {
     assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)

@@ -1,0 +1,12 @@
+{
+  "email": {
+    "width": {
+      "max": {
+        "$type": "dimension",
+        "$value": "600px",
+        "$description": "Maximum width of an email body, 600 px: the owner chose it, which confirms A-08 (ADR-0038). It is a technical convention of email, not a brand value.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0038" } }
+      }
+    }
+  }
+}

@@ -151,6 +151,7 @@
   --cn-effect-shadow-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Overlay shadow. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-z-index-overlay: auto; /** Stacking order of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-z-index-toast: 100; /** Stacking order of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
+  --cn-email-width-max: 600px; /** Maximum width of an email body, 600 px: the owner chose it, which confirms A-08 (ADR-0038). It is a technical convention of email, not a brand value. */
   --cn-focus-offset-default: 3px; /** Focus ring offset: the gap between the component and the ring, chosen by the owner (ADR-0009). */
   --cn-focus-ring-color: #fff488; /** Focus indicator color: brand yellow (BR-02), separated from the component by the offset gap so it only touches the container background. It must differ from the glow (REQ-024, ADR-0009). */
   --cn-focus-ring-offset: 3px; /** Focus indicator offset: the gap between the component and the ring (ADR-0009). */
@@ -221,6 +222,7 @@
   --cn-input-focus-width: 3px; /** Focus ring width of the text fields (REQ-024 AC1, ADR-0009). */
   --cn-input-placeholder: #bdbdbd; /** Placeholder text of a field. */
   --cn-layout-container-max: 80rem; /** Maximum content container width, 1280 px (ADR-0035, TBD-13). The 360 px minimum is ER-05. */
+  --cn-layout-email-width-max: 600px; /** Maximum width of an email body, 600 px (ADR-0038, A-08). The email build injects it as a literal. */
   --cn-layout-logo-clear-space: 0.25; /** Clear space around a logo, as a share of its height (ADR-0016). */
   --cn-layout-logo-min-height-horizontal: 36px; /** Minimum height of the horizontal wordmark (ADR-0016). */
   --cn-layout-logo-min-height-icon: 64px; /** Minimum height of the icon logo (ADR-0016). */

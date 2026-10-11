@@ -30,6 +30,7 @@ This doc defines how Cup Noobles pages are laid out: the breakpoints where a lay
 | `breakpoint.xl` | `--cn-breakpoint-xl` | `80rem` | stable |
 | `breakpoint.xxl` | `--cn-breakpoint-xxl` | `96rem` | stable |
 | `layout.container.max` | `--cn-layout-container-max` | `80rem` | stable |
+| `layout.email.width.max` | `--cn-layout-email-width-max` | `600px` | stable |
 | `layout.logo.clearSpace` | `--cn-layout-logo-clear-space` | `0.25` | stable |
 | `layout.logo.minHeight.horizontal` | `--cn-layout-logo-min-height-horizontal` | `36px` | stable |
 | `layout.logo.minHeight.icon` | `--cn-layout-logo-min-height-icon` | `64px` | stable |

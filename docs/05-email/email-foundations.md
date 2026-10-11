@@ -5,7 +5,7 @@ layer: email
 status: draft
 lang: en
 brandRules: [BR-01, BR-03, BR-06, BR-10, BR-13, BR-16]
-tokens: [font.family, color.bg.base, color.brand.black, color.brand.primary, color.text, border.width.button, effect.glow.button, radius.button, radius.card, logo.rule]
+tokens: [font.family, layout.email, color.bg.base, color.brand.black, color.brand.primary, color.text, border.width.button, effect.glow.button, radius.button, radius.card, logo.rule]
 tbd: [TBD-01, TBD-03, TBD-10, TBD-12]
 related: [typography, color, shape, effects, brand-identity, logo, accessibility, email-components, email-layouts]
 since: 0.1.0
@@ -22,7 +22,7 @@ This doc lists every limitation of email clients that changes how the Cup Nooble
 
 The tokens the fallbacks use are generated below. The email build reads them from `dist/email/email-tokens.json` with `$cn(token.path)` (§4.9, REQ-042). Several of them are `tbd`, and their values are ADR-0006 placeholders, not brand values.
 
-<!-- cn:generated tokens="font.family color.bg.base color.brand.black color.brand.primary color.text button.primary.border border.width.button border.width.card effect.glow.button radius.button radius.card logo.rule" format="table" -->
+<!-- cn:generated tokens="font.family color.bg.base color.brand.black color.brand.primary color.text button.primary.border border.width.button border.width.card effect.glow.button radius.button radius.card logo.rule layout.email" format="table" -->
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
@@ -39,6 +39,7 @@ The tokens the fallbacks use are generated below. The email build reads them fro
 | `effect.glow.button` | `--cn-effect-glow-button` | `none` | tbd (TBD-12) |
 | `font.family.body` | `--cn-font-family-body` | `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'` | tbd (TBD-02) |
 | `font.family.display` | `--cn-font-family-display` | `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'` | tbd (TBD-01) |
+| `layout.email.width.max` | `--cn-layout-email-width-max` | `600px` | stable |
 | `logo.rule.clearSpace` | `--cn-logo-rule-clear-space` | `0.25` | stable |
 | `logo.rule.minHeight.horizontal` | `--cn-logo-rule-min-height-horizontal` | `36px` | stable |
 | `logo.rule.minHeight.icon` | `--cn-logo-rule-min-height-icon` | `64px` | stable |
@@ -60,6 +61,7 @@ Every fallback maps to a token that exists in `email-tokens.json` (REQ-040 AC2).
 | Glow replacement color | `button.primary.border` | The color of that border on a primary button. |
 | Glow off | `effect.glow.button` | Not used in email. The value is `none`, and a `box-shadow` is never emitted. |
 | Radius | `radius.button`, `radius.card` | Applied as `border-radius`. A client that ignores it shows square corners. |
+| Maximum width | `layout.email.width.max` | The body is at most this wide, and shrinks to the client. |
 | Page background | `color.bg.base` | Set as both the `bgcolor` attribute and the inline `background`. |
 | Brand pink | `color.brand.primary` | Fills, borders, and links. Never a text color on a pink fill. |
 | Brand black | `color.brand.black` | The label color on pink and yellow fills. |
@@ -146,11 +148,9 @@ Many clients block images until the reader allows them. The email must be comple
 
 The email body is at most 600 px wide. The owner chose this width, which confirms assumption A-08, a widespread email convention and not a brand rule (ADR-0038).
 
-- Set the body to 600 px at most, and let it shrink to the width of the client. The layouts are checked at 320 and 600 px (REQ-043).
+- Set the body to `layout.email.width.max` at most, which is 600 px, and let it shrink to the width of the client. The layouts are checked at 320 and 600 px (REQ-043).
 - The web breakpoints and container width do not apply to email, and the 360 px minimum of ER-05 is a web rule. The email test widths are 320 and 600 px.
 - Never set a fixed width wider than 600 px, and never let a block force horizontal scroll at 320 px.
-
-> **Draft:** `email-tokens.json` has no token for the 600 px maximum width, so the width is written in the email sources as a number (ADR-0038) and not as a `$cn()` reference. Adding a token for it is a token change that needs its own task.
 
 ## Usage rules
 
@@ -210,7 +210,8 @@ The smallest use of a token in an MJML source:
 >
 > **TBD (TBD-12):** The glow parameters are not defined. Email uses a solid border in place of the glow in any case. Owner input needed: values.
 >
-> **Draft:** The dark-mode, images-off, and radius rules above are not sourced from the brand context or an ADR. They rest on R-05, and they await owner approval (REQ-037). The maximum width of 600 px is the owner's choice (ADR-0038); the token for it does not exist yet.
+
+The doc stays a draft only because of the four TBD items above. A stable doc holds no `TBD` callout (REQ-037), so it moves to `stable` when TBD-01, TBD-03, TBD-10, and TBD-12 are resolved. The owner approved its rules (ADR-0039).
 
 Real-client rendering is not verified here. R-05 puts it with the consuming project, and an optional rendering service is a future ADR. Until then, the generated contrast pairs describe the colors as defined, and not as an inverting client shows them.
 
@@ -218,3 +219,4 @@ Real-client rendering is not verified here. R-05 puts it with the consuming proj
 
 - 0.1.0 — First draft: the font fallback stack, glow fallback, radius tolerance, dark-mode inversion, images-off behavior, and maximum width, with every fallback mapped to a token (T10.1, REQ-040) — awaiting owner approval
 - 0.1.0 — Maximum width of 600 px chosen by the owner, confirming A-08 — ADR-0038
+- 0.1.0 — Rules approved by the owner: dark-mode inversion, images-off behavior, and radius tolerance. The width token `layout.email.width.max` is added. The doc stays a draft while TBD-01, TBD-03, TBD-10, and TBD-12 are open — ADR-0039
