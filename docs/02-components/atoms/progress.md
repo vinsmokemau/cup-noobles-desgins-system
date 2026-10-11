@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: UProgress
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-06, BR-13]
 tokens: [progress]
@@ -158,9 +158,10 @@ Not applicable. Email has no live progress.
 
 ## Open items
 
-> **Draft:** The look (a neutral outline with a pink fill) is approved (ADR-0015). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UProgress` themed with a neutral outline and a pink fill, the four states, the component tokens, and the demos (T7.6) — look approved (ADR-0015), awaiting the placeholders
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

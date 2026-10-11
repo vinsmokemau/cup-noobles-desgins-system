@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: USeparator
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 tokens: [separator]
@@ -149,9 +149,10 @@ Not applicable. A divider in email is an MJML component, described in [Email com
 
 ## Open items
 
-> **Draft:** The look (a neutral line) is approved (ADR-0015). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `USeparator` themed as a neutral line, the horizontal, vertical, and labeled variants, the component tokens, and the demos (T7.6) — look approved (ADR-0015), awaiting the placeholders
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

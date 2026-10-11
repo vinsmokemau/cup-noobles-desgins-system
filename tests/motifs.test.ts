@@ -339,8 +339,8 @@ test('REQ-020 AC1, AC2, REQ-009: both docs are custom components with a "Why cus
     assert.match(docOf(slug), /\*\*Why custom:\*\*[^\n]*Nuxt UI has no equivalent/, slug)
     assert.doesNotMatch(docOf(slug), /Content pending/, slug)
   }
-  // The sparkle stays a draft until the owner approves it (REQ-009); its fade duration is ADR-0032, so no TBD is left.
-  assert.equal(frontmatter('sparkle').status, 'draft')
+  // The sparkle has no TBD left (its fade duration is ADR-0032), and the owner approved it as stable (ADR-0033).
+  assert.equal(frontmatter('sparkle').status, 'stable')
   assert.deepEqual(frontmatter('sparkle').tbd, [])
   assert.doesNotMatch(docOf('sparkle'), /> \*\*TBD \(TBD-18\):\*\*/)
   assert.match(docOf('sparkle'), /ADR-0017/)

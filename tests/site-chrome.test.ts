@@ -33,7 +33,7 @@ test('REQ-020 AC1: both docs are nuxt-ui organisms named for their Nuxt UI compo
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
     // The text color and the stroke width are placeholders (REQ-009).
-    assert.equal(data.status, 'draft', slug)
+    assert.equal(data.status, 'stable', slug) // ADR-0033
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
     assert.deepEqual(data.tbd, [], slug)
     assert.match(docOf(slug), new RegExp(`\`${NUXT_UI[slug]}\``), `${slug} doc names its Nuxt UI component`)

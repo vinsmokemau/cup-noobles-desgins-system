@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: nuxt-ui
 nuxtUi: UTabs
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-06, BR-13]
 tokens: [tabs, border.width.tabs]
@@ -193,9 +193,10 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look (a pink bold label with a thick pink underline on a neutral rule) is approved (ADR-0028). The hover look of a tab that is not selected is a draft. No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UTabs` themed with the underline look, the component tokens, and the demos (T8.4) — ADR-0028
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

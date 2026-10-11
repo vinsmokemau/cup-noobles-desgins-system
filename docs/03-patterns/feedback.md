@@ -2,7 +2,7 @@
 title: Feedback
 slug: feedback
 layer: pattern
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 demos: [composed]
@@ -131,9 +131,10 @@ The system has no separate banner component. A banner is an alert placed at the 
 
 ## Open items
 
-> **Draft:** The choice among the four kinds, and the banner as an alert at the top of the page, are approved (ADR-0031). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the feedback pattern, with toast, inline, banner, and dialog, and its composed demo (T9.1) — ADR-0031
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

@@ -2,7 +2,7 @@
 title: Forms
 slug: forms
 layer: pattern
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 demos: [composed]
@@ -128,9 +128,10 @@ The composed demo is the whole pattern on neutral content: a message to an event
 
 ## Open items
 
-> **Draft:** The pattern's rules (one column, validate on leave and on submit, the summary alert, focus on the first error, never disable the submit) are approved (ADR-0031). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the forms pattern and its composed demo (T9.1) — ADR-0031
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

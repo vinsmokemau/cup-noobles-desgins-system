@@ -2,13 +2,13 @@
 title: Iconography
 slug: iconography
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 tbd: []
 related: [icon, button, color, shape, accessibility, imagery-and-motifs]
 since: 0.1.0
-updated: 2026-09-28
+updated: 2026-10-11
 ---
 
 # Iconography
@@ -114,3 +114,4 @@ Not applicable.
 
 - 0.1.0 — First draft: BR-13 and BR-06, the icon set selection criteria, the icon usage and accessibility rules, and TBD-19 (T4.6) — awaiting owner approval
 - 0.1.0 — The icon set is Phosphor Bold, approved by the owner (option C); TBD-19 is resolved — ADR-0012
+- 0.1.0 — Approved as stable by the owner — ADR-0033

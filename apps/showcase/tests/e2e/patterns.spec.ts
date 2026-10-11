@@ -11,12 +11,12 @@ const SLUGS = ['forms', 'feedback', 'loading'] as const
 
 test.describe('the pattern pages', () => {
   for (const slug of SLUGS) {
-    test(`REQ-035 AC2: /patterns/${slug} shows its composed demo, as a draft, with no axe violation`, async ({
+    test(`REQ-035 AC2: /patterns/${slug} shows its composed demo, as a stable doc, with no axe violation`, async ({
       page,
     }) => {
       await page.goto(`/patterns/${slug}`)
       await waitForPage(page)
-      await expect(page.getByTestId('status-banner')).toContainText('Status: draft')
+      await expect(page.getByTestId('status-banner')).toHaveCount(0) // stable (ADR-0033)
       const panel = page.getByTestId('composed-demo')
       await expect(panel.getByRole('heading', { name: 'Composed demo' })).toBeVisible()
       await expect(panel.locator('iframe')).toBeVisible()

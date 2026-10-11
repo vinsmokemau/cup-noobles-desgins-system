@@ -5,14 +5,14 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: UIcon
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 demos: [states, playground]
 tbd: []
 related: [iconography, button, link, badge]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Icon
@@ -134,9 +134,10 @@ A meaningful icon:
 
 ## Open items
 
-> **Draft:** The brand context names no icon sizes. The size classes in the demos are examples. This awaits owner approval.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UIcon` as an inherited-color glyph, the decorative and meaningful roles, and the demos (T7.3) — awaiting the icon set (OD-09) and owner approval
 - 0.1.0 — The icon set is Phosphor Bold, approved by the owner (option C); TBD-19 is resolved and `ui.icons` points to it — ADR-0012
+- 0.1.0 — Approved as stable by the owner — ADR-0033

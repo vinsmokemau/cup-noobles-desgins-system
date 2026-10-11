@@ -34,7 +34,7 @@ test('REQ-020 AC1: both docs are nuxt-ui molecules named for their Nuxt UI compo
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
     // The text colors, the radius, and the stroke width are placeholders (REQ-009).
-    assert.equal(data.status, 'draft', slug)
+    assert.equal(data.status, slug === 'form-field' ? 'stable' : 'draft', slug) // ADR-0033 approved the form field
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
     assert.match(docOf(slug), new RegExp(`\`${NUXT_UI[slug]}\``), `${slug} doc names its Nuxt UI component`)
   }

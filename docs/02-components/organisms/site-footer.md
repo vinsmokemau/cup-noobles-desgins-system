@@ -5,7 +5,7 @@ layer: component
 level: organism
 source: nuxt-ui
 nuxtUi: UFooter
-status: draft
+status: stable
 lang: en
 brandRules: [BR-03, BR-13, BR-15]
 tokens: [siteFooter, border.width.siteFooter]
@@ -158,9 +158,10 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look of the footer (a black bar with a thick pink line above it, no glow) is approved (ADR-0030). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UFooter` themed with the pink line look, the component tokens, and the demos (T8.6) — ADR-0030
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: nuxt-ui
 nuxtUi: UFormField
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 tokens: [formField]
@@ -190,9 +190,10 @@ With an error, pass `error`, drop `help`, and render the `error` slot only for t
 
 ## Open items
 
-> **Draft:** No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UFormField` themed with token text colors, the five states, the component tokens, and the demos (T8.1) — awaiting owner approval of the placeholders
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: custom
 component: CnSparkle
-status: draft
+status: stable
 lang: en
 brandRules: [BR-02, BR-05, BR-13, BR-14]
 tokens: [motion.duration]
@@ -139,10 +139,11 @@ The component has no slots and no events.
 
 ## Open items
 
-> **Draft:** The artwork and the size rule are approved (ADR-0017). The doc stays a draft until the fade duration in the TBD callout above is replaced.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `CnSparkle` as an outlined placeholder with an optional slow fade that stops under reduced motion, the component tokens, and the demos (T7.8) — awaiting the artwork (TBD-18) and the placeholders
 - 0.1.0 — The supplied `Sparkle-CN.svg` replaces the placeholder, sized to the text beside it, and the fade now applies to the whole sparkle (T7.10) — ADR-0017
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

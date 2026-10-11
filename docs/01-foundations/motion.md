@@ -2,7 +2,7 @@
 title: Motion
 slug: motion
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-14, BR-17]
 tokens: [motion]
@@ -130,9 +130,10 @@ Email templates do not animate. Motion tokens are not used in email, and a motif
 
 ## Open items
 
-> **Draft:** The durations and the easing are the owner's choice (ADR-0032), and the safety rules come from REQ-029. No value in this doc is open any more, so it stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-14 and BR-17, the duration and easing groups, the REQ-029 reduced-motion, flash-limit, and decorative-motif rules, and TBD-14 (T4.5) — awaiting owner approval
 - 0.1.0 — The durations and the easing are set; TBD-14 is resolved — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

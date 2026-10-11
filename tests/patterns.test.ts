@@ -30,10 +30,11 @@ test('REQ-035 AC1: the forms, feedback, and loading pattern docs exist and are w
   }
 })
 
-test('REQ-009 AC1: the pattern docs are drafts, and each one says its rules are not yet approved', () => {
+test('REQ-009 AC2, REQ-037: the pattern docs are stable by owner approval, cite the ADR, and hold no draft callout', () => {
   for (const slug of SLUGS) {
-    assert.equal(readFrontmatter(docOf(slug)).data?.status, 'draft', slug)
-    assert.match(docOf(slug), /^> \*\*Draft:\*\*/m, `${slug} has a draft callout`)
+    assert.equal(readFrontmatter(docOf(slug)).data?.status, 'stable', slug)
+    assert.doesNotMatch(docOf(slug), /^> \*\*(?:Draft|TBD)/m, `${slug} has no draft or TBD callout`)
+    assert.match(docOf(slug), /Approved as stable by the owner — ADR-0033/, `${slug} cites the approval`)
   }
 })
 

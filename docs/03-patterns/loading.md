@@ -2,7 +2,7 @@
 title: Loading
 slug: loading
 layer: pattern
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 demos: [composed]
@@ -113,9 +113,10 @@ The composed demo shows all three on neutral content: a profile page of a commun
 
 ## Open items
 
-> **Draft:** The choice of part by wait, and the rule that the button's spinner is the system's spinner, are approved (ADR-0031). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the loading pattern, with skeleton, spinner, and progress, and its composed demo (T9.1) — ADR-0031
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner — ADR-0033

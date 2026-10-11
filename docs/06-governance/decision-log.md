@@ -51,6 +51,7 @@ updated: 2026-09-27
 - [ADR-0030: Site header and footer look](decisions/0030-site-chrome-look.md)
 - [ADR-0031: Forms, feedback, and loading patterns](decisions/0031-forms-feedback-loading-patterns.md)
 - [ADR-0032: Text, neutral, feedback, stroke, and motion values](decisions/0032-text-neutral-feedback-stroke-motion-values.md)
+- [ADR-0033: First docs move to stable](decisions/0033-first-docs-stable.md)
 
 ## Open items
 
