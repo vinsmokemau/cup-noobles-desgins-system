@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.32 |
+| Spec version | 1.33 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1204,27 +1204,27 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 - [ ] **T10.1 — `email-foundations.md`**
   - REQs: REQ-040
   - Depends on: T3.4
-  - Done when: every section listed in REQ-040 AC1 exists, and every fallback names a token that exists in `email-tokens.json`.
+  - Done when: every section listed in REQ-040 AC1 exists, and every fallback names a token that exists in `email-tokens.json`. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
 
 - [ ] **T10.2 — Email build pipeline**
   - REQs: REQ-041 (AC1, AC2), REQ-042, REQ-044
   - Depends on: T10.1, T0.4
-  - Done when: `pnpm --filter @vinsmokemau/cup-noobles-email build` works, and the output checks pass: no `var(`, no stylesheet link, no scripts, no backend tags, only token hex values, and no hex literals in the sources.
+  - Done when: `pnpm --filter @vinsmokemau/cup-noobles-email build` works, and the output checks pass: no `var(`, no stylesheet link, no scripts, no backend tags, only token hex values, and no hex literals in the sources. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
 
 - [ ] **T10.3 — Email components**
   - REQs: REQ-041 (AC3, AC4), REQ-042
   - Depends on: T10.2
-  - Done when: the 6 components compile, every slot is documented in `email-components.md`, and the button uses a solid border in place of the glow, per REQ-040.
+  - Done when: the 6 components compile, every slot is documented in `email-components.md`, and the button uses a solid border in place of the glow, per REQ-040. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
 
 - [ ] **T10.4 — Reference layout and `email-layouts.md`**
   - REQs: REQ-043
   - Depends on: T10.3
-  - Done when: the layout renders at 320 and 600 px with no horizontal scroll, and the plain-text structure is documented.
+  - Done when: the layout renders at 320 and 600 px with no horizontal scroll, and the plain-text structure is documented. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
 
 - [ ] **T10.5 — Email previews in the showcase**
   - REQs: REQ-058
   - Depends on: T10.4, T5.5
-  - Done when: the iframe preview is sandboxed, the width toggle works, and "Copy HTML" equals the file content in an end-to-end test.
+  - Done when: the iframe preview is sandboxed, the width toggle works, and "Copy HTML" equals the file content in an end-to-end test. `pnpm test:all` is green, covering T10.1 through T10.4 as well.
 
 ### P11 — Search, governance, and release tooling
 
@@ -1347,6 +1347,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.30 | 2026-10-11 | §2.4: TBD-04, TBD-05, TBD-07, TBD-11, and TBD-14 are resolved by ADR-0032 (body text, neutral scale, feedback colors, stroke width, and motion). No requirement or task changes. | Owner decision in chat; ADR-0032 |
 | 1.31 | 2026-10-11 | §2.4: TBD-13 is resolved by ADR-0035 (breakpoints and container width). No requirement or task changes. | Owner decision in chat; ADR-0035 |
 | 1.32 | 2026-10-11 | §2.4: TBD-21 is resolved by ADR-0037 (the voice "this, not that" pairs and the three content docs move to stable). No requirement or task changes. | Owner decision in chat; ADR-0037 |
+| 1.33 | 2026-10-11 | T10.1 through T10.4: the definition of done requires `pnpm test` and `pnpm check:docs` instead of `pnpm test:all`; T10.5 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
