@@ -1227,7 +1227,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T10.3
   - Done when: the layout renders at 320 and 600 px with no horizontal scroll, and the plain-text structure is documented. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
 
-- [ ] **T10.5 — Email previews in the showcase**
+- [x] **T10.5 — Email previews in the showcase** (2026-10-11, 478747e)
   - REQs: REQ-058
   - Depends on: T10.4, T5.5
   - Done when: the iframe preview is sandboxed, the width toggle works, and "Copy HTML" equals the file content in an end-to-end test. `pnpm test:all` is green, covering T10.1 through T10.4 as well.
