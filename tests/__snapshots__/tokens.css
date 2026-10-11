@@ -49,11 +49,11 @@
   --cn-breadcrumb-link-fg: #ef80ae; /** Text color of a breadcrumb link: brand pink on the black page, 8.37:1, always underlined like every link (BR-01, ADR-0011, ADR-0028). */
   --cn-breadcrumb-link-fg-hover: #ef80ae; /** Text color of a breadcrumb link while hovered. Draft: the hover color is not part of ADR-0028. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
   --cn-breadcrumb-separator-fg: #bdbdbd; /** Color of the caret between two items. It is decorative and hidden from assistive technology. */
-  --cn-breakpoint-lg: 64rem; /** Large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
-  --cn-breakpoint-md: 48rem; /** Medium breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
-  --cn-breakpoint-sm: 40rem; /** Small breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
-  --cn-breakpoint-xl: 80rem; /** Extra-large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
-  --cn-breakpoint-xxl: 96rem; /** Double-extra-large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
+  --cn-breakpoint-lg: 64rem; /** Large breakpoint, 1024 px: the owner kept Tailwind's step as final (ADR-0035, TBD-13). The site header shows its links in the bar from here. It is not a brand value. */
+  --cn-breakpoint-md: 48rem; /** Medium breakpoint, 768 px, the middle reference viewport (A-09): the owner kept Tailwind's step as final (ADR-0035, TBD-13). It is not a brand value. */
+  --cn-breakpoint-sm: 40rem; /** Small breakpoint, 640 px: the owner kept Tailwind's step as final (ADR-0035, TBD-13). It is not a brand value. */
+  --cn-breakpoint-xl: 80rem; /** Extra-large breakpoint, 1280 px, the widest reference viewport (A-09): the owner kept Tailwind's step as final (ADR-0035, TBD-13). It is not a brand value. */
+  --cn-breakpoint-xxl: 96rem; /** Double-extra-large breakpoint, 1536 px: the owner kept Tailwind's step as final (ADR-0035, TBD-13). Named xxl because 2xl fails the REQ-017 AC2 naming pattern (ADR-0006 policy 6). It is not a brand value. */
   --cn-button-focus-color: #fff488; /** Focus ring color of the button (REQ-024 AC1, ADR-0009). */
   --cn-button-focus-offset: 3px; /** Gap between the button and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-button-focus-style: solid; /** Focus ring line style of the button (REQ-024 AC1, ADR-0009). */
@@ -141,6 +141,7 @@
   --cn-color-text-disabled: #5c5c5c; /** Text and borders of disabled controls (ADR-0032, TBD-05). Disabled controls are exempt from contrast minimums. */
   --cn-color-text-inverted: #000000; /** Text on a primary or secondary fill. Labels on primary-filled buttons must be black (SPEC.md §2.1 derived facts, BR-03). */
   --cn-color-text-muted: #bdbdbd; /** Secondary text color: help text, hints, and descriptions (ADR-0032, TBD-05). */
+  --cn-container-max: 80rem; /** Maximum content container width, 1280 px: the owner kept Nuxt UI's width as final (ADR-0035, TBD-13). It is not a brand value. */
   --cn-effect-elevation-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Shadow of overlays (modal, slideover). TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-glow-button: none; /** Neon glow of the button (BR-10, REQ-023 AC2). TBD-12: the glow has no values; this follows a placeholder, not a brand value. A disabled button shows no glow (REQ-023 AC5). */
   --cn-effect-glow-default: none; /** Neon glow. TBD-12: blur, spread, opacity, and color per state are not defined ("subtle" in BR-10); this references a placeholder, not a brand value. */
@@ -219,7 +220,7 @@
   --cn-input-focus-style: solid; /** Focus ring line style of the text fields (REQ-024 AC1, ADR-0009). */
   --cn-input-focus-width: 3px; /** Focus ring width of the text fields (REQ-024 AC1, ADR-0009). */
   --cn-input-placeholder: #bdbdbd; /** Placeholder text of a field. */
-  --cn-layout-container-max: 80rem; /** Maximum content container width. TBD-13: container widths are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
+  --cn-layout-container-max: 80rem; /** Maximum content container width, 1280 px (ADR-0035, TBD-13). The 360 px minimum is ER-05. */
   --cn-layout-logo-clear-space: 0.25; /** Clear space around a logo, as a share of its height (ADR-0016). */
   --cn-layout-logo-min-height-horizontal: 36px; /** Minimum height of the horizontal wordmark (ADR-0016). */
   --cn-layout-logo-min-height-icon: 64px; /** Minimum height of the icon logo (ADR-0016). */
@@ -271,13 +272,7 @@
   --cn-pagination-item-border: #8c8c8c; /** Outline color of a page that is not the current one. */
   --cn-pagination-item-border-hover: #ef80ae; /** Outline color of a page that is not the current one, while hovered: brand pink (BR-01). Draft: the hover look is not part of ADR-0028. */
   --cn-pagination-item-fg: #f5f5f5; /** Number or icon color of a page that is not the current one. */
-  --cn-placeholder-breakpoint-lg: 64rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-lg (ADR-0006). */
-  --cn-placeholder-breakpoint-md: 48rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-md (ADR-0006). */
-  --cn-placeholder-breakpoint-sm: 40rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-sm (ADR-0006). */
-  --cn-placeholder-breakpoint-xl: 80rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-xl (ADR-0006). */
-  --cn-placeholder-breakpoint-xxl: 96rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-2xl (ADR-0006); renamed from 2xl, which fails the REQ-017 AC2 naming pattern (ADR-0006 policy 6). */
   --cn-placeholder-color-neutral: #90a1b9; /** Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-06 (the surface colors). Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006). */
-  --cn-placeholder-container-max: 80rem; /** Placeholder, not a brand value. Stands in for TBD-13 (container widths). Source: Nuxt UI --ui-container (ADR-0006). */
   --cn-placeholder-effect-glow: none; /** Placeholder, not a brand value. Stands in for TBD-12. Source: Nuxt UI UButton has no glow (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-effect-scrim-opacity: 0.75; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI UModal and USlideover overlay, bg-elevated/75 (ADR-0029). */
   --cn-placeholder-elevation-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Placeholder, not a brand value. Stands in for TBD-15. Source: Tailwind --shadow-lg, used by UModal and USlideover (ADR-0006). Untyped (ADR-0008). */

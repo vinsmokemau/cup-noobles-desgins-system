@@ -2,29 +2,37 @@
   "breakpoint": {
     "$type": "dimension",
     "sm": {
-      "$value": "{placeholder.breakpoint.sm}",
-      "$description": "Small breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+      "$value": "40rem",
+      "$description": "Small breakpoint, 640 px: the owner kept Tailwind's step as final (ADR-0035, TBD-13). It is not a brand value.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0035" } }
     },
     "md": {
-      "$value": "{placeholder.breakpoint.md}",
-      "$description": "Medium breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+      "$value": "48rem",
+      "$description": "Medium breakpoint, 768 px, the middle reference viewport (A-09): the owner kept Tailwind's step as final (ADR-0035, TBD-13). It is not a brand value.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0035" } }
     },
     "lg": {
-      "$value": "{placeholder.breakpoint.lg}",
-      "$description": "Large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+      "$value": "64rem",
+      "$description": "Large breakpoint, 1024 px: the owner kept Tailwind's step as final (ADR-0035, TBD-13). The site header shows its links in the bar from here. It is not a brand value.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0035" } }
     },
     "xl": {
-      "$value": "{placeholder.breakpoint.xl}",
-      "$description": "Extra-large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+      "$value": "80rem",
+      "$description": "Extra-large breakpoint, 1280 px, the widest reference viewport (A-09): the owner kept Tailwind's step as final (ADR-0035, TBD-13). It is not a brand value.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0035" } }
     },
     "xxl": {
-      "$value": "{placeholder.breakpoint.xxl}",
-      "$description": "Double-extra-large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+      "$value": "96rem",
+      "$description": "Double-extra-large breakpoint, 1536 px: the owner kept Tailwind's step as final (ADR-0035, TBD-13). Named xxl because 2xl fails the REQ-017 AC2 naming pattern (ADR-0006 policy 6). It is not a brand value.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0035" } }
+    }
+  },
+  "container": {
+    "max": {
+      "$type": "dimension",
+      "$value": "80rem",
+      "$description": "Maximum content container width, 1280 px: the owner kept Nuxt UI's width as final (ADR-0035, TBD-13). It is not a brand value.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0035" } }
     }
   }
 }

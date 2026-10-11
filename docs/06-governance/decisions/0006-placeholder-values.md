@@ -120,12 +120,12 @@ The focus color is `placeholder.color.neutral`. Nuxt UI's own default is `outlin
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.breakpoint.sm` | `40rem` | Tailwind `--breakpoint-sm` | TBD-13 (`breakpoint.*`) | not a brand value |
-| `placeholder.breakpoint.md` | `48rem` | Tailwind `--breakpoint-md` | TBD-13 | not a brand value |
-| `placeholder.breakpoint.lg` | `64rem` | Tailwind `--breakpoint-lg` | TBD-13 | not a brand value |
-| `placeholder.breakpoint.xl` | `80rem` | Tailwind `--breakpoint-xl` | TBD-13 | not a brand value |
-| `placeholder.breakpoint.2xl` | `96rem` | Tailwind `--breakpoint-2xl` | TBD-13 | not a brand value |
-| `placeholder.container.max` | `80rem` | Nuxt UI `--ui-container` | TBD-13 (container widths) | not a brand value |
+| ~~`placeholder.breakpoint.sm`~~ | ~~`40rem`~~ | Tailwind `--breakpoint-sm` | TBD-13 (`breakpoint.*`) | deleted (ADR-0035) |
+| ~~`placeholder.breakpoint.md`~~ | ~~`48rem`~~ | Tailwind `--breakpoint-md` | TBD-13 | deleted (ADR-0035) |
+| ~~`placeholder.breakpoint.lg`~~ | ~~`64rem`~~ | Tailwind `--breakpoint-lg` | TBD-13 | deleted (ADR-0035) |
+| ~~`placeholder.breakpoint.xl`~~ | ~~`80rem`~~ | Tailwind `--breakpoint-xl` | TBD-13 | deleted (ADR-0035) |
+| ~~`placeholder.breakpoint.2xl`~~ | ~~`96rem`~~ | Tailwind `--breakpoint-2xl` | TBD-13 | deleted (ADR-0035) |
+| ~~`placeholder.container.max`~~ | ~~`80rem`~~ | Nuxt UI `--ui-container` | TBD-13 (container widths) | deleted (ADR-0035) |
 
 The 360 px minimum layout width is fixed by ER-05 and is not a placeholder. The test viewports stay at 360, 768, and 1280 px (A-09).
 

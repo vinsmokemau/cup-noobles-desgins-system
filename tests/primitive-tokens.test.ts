@@ -14,13 +14,14 @@ const inFile = (file: string) => tokens.filter((t) => t.file === `tokens/primiti
 const tbdIds = (text: string) => [...text.matchAll(/\bTBD-\d{2}\b/g)].map((m) => m[0])
 
 // §4.1: the primitive files, and §4.7: every primitive group other than color is TBD in T3.2.
-const TBD_FILES = ['font', 'space', 'radius', 'effect', 'breakpoint', 'z'].map((f) => `${f}.json`)
+const TBD_FILES = ['font', 'space', 'radius', 'effect', 'z'].map((f) => `${f}.json`)
 // Groups resolved by the owner since T3.2, each holding stable raw values from its ADR (§4.4 resolution, ADR-0008 §4).
 const RESOLVED_FILES = {
   'focus.json': 'ADR-0009',
   'logo.json': 'ADR-0016',
   'border.json': 'ADR-0032',
   'motion.json': 'ADR-0032',
+  'breakpoint.json': 'ADR-0035',
 }
 
 test('§4.1: tokens/primitive/ holds exactly the listed files', () => {
@@ -111,7 +112,8 @@ test('ADR-0006: _placeholder.json holds exactly the recorded values, each labele
   // ADR-0029 added the overlay backdrop amount.
   // ADR-0032 resolved TBD-11 and TBD-14, so the stroke width and the two motion placeholders are struck through in
   // ADR-0006 and deleted from _placeholder.json (policy 5).
-  assert.equal(rows.length, 36 - 3, 'every placeholder row in ADR-0006')
+  // ADR-0035 resolved TBD-13, so the five breakpoints and the container width are struck through and deleted too.
+  assert.equal(rows.length, 36 - 3 - 6, 'every placeholder row in ADR-0006')
   const placeholders = tokens.filter((t) => t.file === PLACEHOLDER_FILE)
   assert.deepEqual(placeholders.map((t) => t.path).sort(), rows.map((r) => r.path).sort())
 

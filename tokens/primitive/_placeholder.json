@@ -179,42 +179,6 @@
         "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006).",
         "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
       }
-    },
-    "breakpoint": {
-      "$type": "dimension",
-      "sm": {
-        "$value": "40rem",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-sm (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
-      },
-      "md": {
-        "$value": "48rem",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-md (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
-      },
-      "lg": {
-        "$value": "64rem",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-lg (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
-      },
-      "xl": {
-        "$value": "80rem",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-xl (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
-      },
-      "xxl": {
-        "$value": "96rem",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-2xl (ADR-0006); renamed from 2xl, which fails the REQ-017 AC2 naming pattern (ADR-0006 policy 6).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
-      }
-    },
-    "container": {
-      "max": {
-        "$type": "dimension",
-        "$value": "80rem",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-13 (container widths). Source: Nuxt UI --ui-container (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
-      }
     }
   }
 }

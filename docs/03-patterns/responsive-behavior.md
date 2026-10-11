@@ -2,11 +2,11 @@
 title: Responsive behavior
 slug: responsive-behavior
 layer: pattern
-status: draft
+status: stable
 lang: en
 brandRules: [BR-15]
 demos: [composed]
-tbd: [TBD-13]
+tbd: []
 related: [layout, spacing, navigation, card, button, accessibility]
 since: 0.1.0
 updated: 2026-10-11
@@ -16,7 +16,7 @@ updated: 2026-10-11
 
 ## Purpose
 
-The system works on mobile and on web and dashboard layouts (BR-15). This pattern says how common layouts adapt as the screen narrows: a grid loses columns, a sidebar stacks above its content, a row of actions wraps, and a wide table scrolls inside its own region. Every layout works at 360 px wide (ER-05), and it is described and tested at 360, 768, and 1280 px (A-09). The widths where a layout changes are the breakpoints, which are not defined yet (TBD-13). See [Layout](../01-foundations/layout.md).
+The system works on mobile and on web and dashboard layouts (BR-15). This pattern says how common layouts adapt as the screen narrows: a grid loses columns, a sidebar stacks above its content, a row of actions wraps, and a wide table scrolls inside its own region. Every layout works at 360 px wide (ER-05), and it is described and tested at 360, 768, and 1280 px (A-09). The widths where a layout changes are the breakpoints: 640, 768, 1024, 1280, and 1536 px (ADR-0035). See [Layout](../01-foundations/layout.md).
 
 ## Usage rules
 
@@ -39,7 +39,7 @@ The system works on mobile and on web and dashboard layouts (BR-15). This patter
 ### When not to use
 
 - Never let a page scroll sideways at 360, 768, or 1280 px (REQ-028 AC1).
-- Never write a breakpoint or a container width as a literal number in a component. They come from tokens (REQ-016), and they are TBD-13.
+- Never write a breakpoint or a container width as a literal number in a component. They come from tokens (REQ-016).
 - Never shrink a target below 24 × 24 px to make it fit (REQ-028 AC2).
 - Never hide content on mobile that the person needs. Move it, or put it behind a control.
 - Never rely on hover for anything on a touch screen.
@@ -86,7 +86,7 @@ Haz scroll hacia el lado para ver más
 
 ## Responsive behavior
 
-This pattern is about responsive behavior, so the table above is its behavior. Two rules hold for every other pattern and component: describe the behavior at 360, 768, and 1280 px until the breakpoints are defined, and then describe it at each breakpoint token (see [Layout](../01-foundations/layout.md)).
+This pattern is about responsive behavior, so the table above is its behavior. One rule holds for every other pattern and component: describe the behavior at 360, 768, and 1280 px, and at a breakpoint token where the layout changes between them (see [Layout](../01-foundations/layout.md)).
 
 ## Code reference
 
@@ -104,13 +104,14 @@ This pattern is about responsive behavior, so the table above is its behavior. T
 </div>
 ```
 
-The prefixes `md:` and `lg:` use Tailwind's default widths today, which are the ADR-0006 placeholders and not brand values. They change when TBD-13 is resolved. The composed demo shows the four layouts on neutral content: a community events page.
+The prefixes `md:` and `lg:` use the breakpoint tokens `breakpoint.md` (768 px) and `breakpoint.lg` (1024 px), which the owner kept as final (ADR-0035). They are not brand values. The composed demo shows the four layouts on neutral content: a community events page.
 
 ## Open items
 
-> **TBD (TBD-13):** Breakpoints and container widths are not defined. The 360 px minimum is fixed by ER-05, and the three test widths by A-09. Owner input needed: values.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the responsive-behavior pattern, with the card grid, the sidebar, the action row, and the scrolling table, and its composed demo (T9.2) — ADR-0034
 - 0.1.0 — Rules approved by the owner. The doc stays a draft while TBD-13 is open — ADR-0034
+- 0.1.0 — The breakpoints and the container width are set by the owner, TBD-13 is resolved, and the doc moves to stable — ADR-0035

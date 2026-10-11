@@ -53,6 +53,7 @@ updated: 2026-09-27
 - [ADR-0032: Text, neutral, feedback, stroke, and motion values](decisions/0032-text-neutral-feedback-stroke-motion-values.md)
 - [ADR-0033: First docs move to stable](decisions/0033-first-docs-stable.md)
 - [ADR-0034: Navigation, empty-states, error-pages, and responsive-behavior patterns](decisions/0034-navigation-empty-error-responsive-patterns.md)
+- [ADR-0035: Breakpoints and container width](decisions/0035-breakpoints-and-container.md)
 
 ## Open items
 

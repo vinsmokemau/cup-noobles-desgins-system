@@ -7,9 +7,9 @@ import { waitForPage } from './helpers/ready'
 import { openDemo } from './helpers/states'
 import { expect, test } from './helpers/test'
 
-// Six are stable (ADR-0033, ADR-0034). Responsive behavior stays a draft while TBD-13 is open (REQ-009, REQ-037).
-const STABLE = ['forms', 'feedback', 'loading', 'navigation', 'empty-states', 'error-pages']
-const DRAFT = ['responsive-behavior']
+// All seven are stable (ADR-0033, ADR-0034, and ADR-0035 for responsive behavior).
+const STABLE = ['forms', 'feedback', 'loading', 'navigation', 'empty-states', 'error-pages', 'responsive-behavior']
+const DRAFT: string[] = []
 
 test.describe('the pattern pages', () => {
   for (const slug of [...STABLE, ...DRAFT]) {

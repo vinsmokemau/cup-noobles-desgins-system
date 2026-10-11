@@ -14,9 +14,17 @@ import { findDemoDomainTerms, listFiles, readDomainTerms } from './lib/architect
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const read = (path: string) => readFileSync(join(root, path), 'utf8')
 // The owner approved forms, feedback, and loading (ADR-0033) and navigation, empty-states, and error-pages (ADR-0034).
-// Responsive behavior has its rules approved (ADR-0034) but stays a draft while TBD-13 is open.
-const STABLE = ['forms', 'feedback', 'loading', 'navigation', 'empty-states', 'error-pages'] as const
-const DRAFT = ['responsive-behavior'] as const
+// Responsive behavior had its rules approved (ADR-0034) and moved to stable when TBD-13 was resolved (ADR-0035).
+const STABLE = [
+  'forms',
+  'feedback',
+  'loading',
+  'navigation',
+  'empty-states',
+  'error-pages',
+  'responsive-behavior',
+] as const
+const DRAFT = [] as const
 const SLUGS = [...STABLE, ...DRAFT] as const
 const docOf = (slug: string) => read(`docs/03-patterns/${slug}.md`)
 const demoOf = (slug: string) => read(`apps/showcase/demos/${slug}/composed.vue`)
@@ -34,27 +42,24 @@ test('REQ-035 AC1: the seven pattern docs exist and are written', () => {
   }
 })
 
-test('REQ-009 AC2, REQ-037: six pattern docs are stable by owner approval, cite the ADR, and hold no draft callout', () => {
+test('REQ-009 AC2, REQ-037: the seven pattern docs are stable by owner approval, cite the ADR, and hold no draft callout', () => {
   for (const slug of STABLE) {
     assert.equal(readFrontmatter(docOf(slug)).data?.status, 'stable', slug)
     assert.doesNotMatch(docOf(slug), /^> \*\*(?:Draft|TBD)/m, `${slug} has no draft or TBD callout`)
-    assert.match(docOf(slug), /Approved as stable by the owner — ADR-003[34]/, `${slug} cites the approval`)
-  }
-})
-
-test('REQ-009 AC1, REQ-037: responsive behavior stays a draft while TBD-13 is open, and cites the ADR that approved its rules', () => {
-  for (const slug of DRAFT) {
-    assert.equal(readFrontmatter(docOf(slug)).data?.status, 'draft', slug)
     assert.match(
       docOf(slug),
-      /Rules approved by the owner\. The doc stays a draft while TBD-13 is open — ADR-0034/,
-      slug,
+      /(?:Approved as stable by the owner|TBD-13 is resolved, and the doc moves to stable) — ADR-003[345]/,
+      `${slug} cites the approval`,
     )
   }
-  // Responsive behavior depends on the breakpoints, so it lists TBD-13 and says so in a callout.
+  assert.deepEqual(DRAFT, [])
+})
+
+test('REQ-009 AC2: responsive behavior moved to stable when TBD-13 was resolved (ADR-0035), and lists no open item', () => {
   const responsive = docOf('responsive-behavior')
-  assert.deepEqual(readFrontmatter(responsive).data?.tbd, ['TBD-13'])
-  assert.match(responsive, /^> \*\*TBD \(TBD-13\):\*\*/m)
+  assert.deepEqual(readFrontmatter(responsive).data?.tbd, [])
+  assert.match(responsive, /Rules approved by the owner\. The doc stays a draft while TBD-13 is open — ADR-0034/)
+  assert.match(responsive, /TBD-13 is resolved, and the doc moves to stable — ADR-0035/)
 })
 
 test('REQ-035 AC2: the showcase 404 is built from the error-pages pattern, through the component its composed demo uses', () => {

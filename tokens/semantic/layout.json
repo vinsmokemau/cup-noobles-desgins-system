@@ -3,9 +3,9 @@
     "container": {
       "max": {
         "$type": "dimension",
-        "$value": "{placeholder.container.max}",
-        "$description": "Maximum content container width. TBD-13: container widths are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-13"] } }
+        "$value": "{container.max}",
+        "$description": "Maximum content container width, 1280 px (ADR-0035, TBD-13). The 360 px minimum is ER-05.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0035" } }
       }
     },
     "logo": {

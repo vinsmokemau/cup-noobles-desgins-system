@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.30 |
+| Spec version | 1.31 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -194,7 +194,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-10 | Corner radius values ("rounded" in BR-10) | `radius.*` | Values |
 | TBD-11 | Stroke widths ("thick" in BR-10 and BR-13) | `border.width.*` | Resolved (ADR-0032) |
 | TBD-12 | Neon glow parameters: blur, spread, opacity, and which color is used per state ("subtle" in BR-10) | `effect.glow.*` | Values |
-| TBD-13 | Breakpoints and container widths. The 360 px minimum is fixed by ER-05. | `breakpoint.*` | Values |
+| TBD-13 | Breakpoints and container widths. The 360 px minimum is fixed by ER-05. | `breakpoint.*` | Resolved (ADR-0035) |
 | TBD-14 | Motion durations and easing curves | `motion.*` | Resolved (ADR-0032) |
 | TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
@@ -1345,6 +1345,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.28 | 2026-10-10 | T8.2 through T8.5: the definition of done requires `pnpm test` instead of `pnpm test:all`; T8.6 runs the full suite. §0.2, T8.1, T8.6 and T8.7 are unchanged. | Owner request in chat |
 | 1.29 | 2026-10-11 | T9.1 and T9.3: the definition of done requires `pnpm test` instead of `pnpm test:all`; T9.2 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 | 1.30 | 2026-10-11 | §2.4: TBD-04, TBD-05, TBD-07, TBD-11, and TBD-14 are resolved by ADR-0032 (body text, neutral scale, feedback colors, stroke width, and motion). No requirement or task changes. | Owner decision in chat; ADR-0032 |
+| 1.31 | 2026-10-11 | §2.4: TBD-13 is resolved by ADR-0035 (breakpoints and container width). No requirement or task changes. | Owner decision in chat; ADR-0035 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
