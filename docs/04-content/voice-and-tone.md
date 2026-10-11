@@ -2,10 +2,10 @@
 title: Voice and tone
 slug: voice-and-tone
 layer: content
-status: draft
+status: stable
 lang: en
 brandRules: [BR-05, BR-06, BR-17]
-tbd: [TBD-21]
+tbd: []
 related: [microcopy, formatting, principles, forms, feedback, empty-states, error-pages, accessibility]
 since: 0.1.0
 updated: 2026-10-11
@@ -47,7 +47,7 @@ Apply them to every sentence that a person reads in the interface:
 
 ## Do and don't
 
-> **Draft:** The five "this, not that" pairs below are a proposed wording of the voice attributes in BR-05 and BR-17. They are not approved, and they stay a draft until the owner approves them (TBD-21).
+The five "this, not that" pairs below state the voice attributes of BR-05 and BR-17 as a choice between two ways of writing. The owner approved them (TBD-21, ADR-0037).
 
 Each pair has the attribute from the brand rules, what to do, and what to avoid. The examples are samples of how the pair reads in es-MX. They are not final copy.
 
@@ -129,8 +129,9 @@ Prepárate para lo que nunca has visto
 
 ## Open items
 
-> **TBD (TBD-21):** The "this, not that" voice attribute pairs are a draft. Owner input needed: approve, change, or replace them.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the brand voice from BR-05 and BR-17, and five proposed "this, not that" pairs (T9.3) — awaiting owner approval (TBD-21)
+- 0.1.0 — Approved as stable by the owner, including the five "this, not that" pairs; TBD-21 is resolved — ADR-0037

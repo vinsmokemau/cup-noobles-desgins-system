@@ -55,6 +55,7 @@ updated: 2026-09-27
 - [ADR-0034: Navigation, empty-states, error-pages, and responsive-behavior patterns](decisions/0034-navigation-empty-error-responsive-patterns.md)
 - [ADR-0035: Breakpoints and container width](decisions/0035-breakpoints-and-container.md)
 - [ADR-0036: Layout doc moves to stable](decisions/0036-layout-doc-stable.md)
+- [ADR-0037: Content docs move to stable](decisions/0037-content-docs-stable.md)
 
 ## Open items
 

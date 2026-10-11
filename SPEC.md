@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.31 |
+| Spec version | 1.32 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -202,7 +202,7 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle curves and waves (ADR-0022), the arcade shapes and dynamic lines (ADR-0023), and the sticker border (ADR-0024) are supplied, so all seven BR-14 motifs have their artwork. `CnStickerFrame` renders `Sticker-Border-CN.svg`, and its placeholder tokens are gone (T7.17). | `CnStickerFrame`, imagery-and-motifs.md | Resolved (ADR-0025) |
 | TBD-19 | Icon set (library and stroke style consistent with BR-13) | iconography.md | Resolved (ADR-0012) |
 | TBD-20 | Photography and thumbnail standards. This is the same open item as EC decision D11. | imagery-and-motifs.md | Guidelines |
-| TBD-21 | Voice attributes beyond the adjectives in BC (the "this, not that" pairs) | voice-and-tone.md | Approval of a draft |
+| TBD-21 | Voice attributes beyond the adjectives in BC (the "this, not that" pairs) | voice-and-tone.md | Resolved (ADR-0037) |
 
 ### 2.5 Owner answers on record
 
@@ -1346,6 +1346,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.29 | 2026-10-11 | T9.1 and T9.3: the definition of done requires `pnpm test` instead of `pnpm test:all`; T9.2 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 | 1.30 | 2026-10-11 | §2.4: TBD-04, TBD-05, TBD-07, TBD-11, and TBD-14 are resolved by ADR-0032 (body text, neutral scale, feedback colors, stroke width, and motion). No requirement or task changes. | Owner decision in chat; ADR-0032 |
 | 1.31 | 2026-10-11 | §2.4: TBD-13 is resolved by ADR-0035 (breakpoints and container width). No requirement or task changes. | Owner decision in chat; ADR-0035 |
+| 1.32 | 2026-10-11 | §2.4: TBD-21 is resolved by ADR-0037 (the voice "this, not that" pairs and the three content docs move to stable). No requirement or task changes. | Owner decision in chat; ADR-0037 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

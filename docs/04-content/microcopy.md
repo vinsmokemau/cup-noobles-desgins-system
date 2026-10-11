@@ -2,7 +2,7 @@
 title: Microcopy
 slug: microcopy
 layer: content
-status: draft
+status: stable
 lang: en
 brandRules: [BR-05, BR-06]
 tbd: []
@@ -163,3 +163,4 @@ Not applicable.
 ## Changelog
 
 - 0.1.0 — First draft: button labels, error message structure, empty-state text, and confirmation text, with es-MX examples (T9.3) — awaiting owner approval
+- 0.1.0 — Approved as stable by the owner — ADR-0037

@@ -1,6 +1,6 @@
 // T9.3 checks: the three content docs (REQ-036, REQ-007, REQ-009). `check-docs` covers the headings, the frontmatter,
-// and the `copy` tags (REQ-007 AC2); these tests cover what it can't: what each doc says, that the voice pairs are a
-// draft until TBD-21 is approved, and that the formatting examples are what `Intl` really returns.
+// and the `copy` tags (REQ-007 AC2); these tests cover what it can't: what each doc says, that the owner approved the
+// docs and the voice pairs (TBD-21, ADR-0037), and that the formatting examples are what `Intl` really returns.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
@@ -29,10 +29,12 @@ test('REQ-036: the three content docs exist, are written, and are not stubs', ()
   }
 })
 
-test('REQ-009 AC1, AC2: the three content docs are drafts, because no ADR or owner approval covers them yet', () => {
+test('REQ-009 AC2, REQ-037: the three content docs are stable by owner approval, cite the ADR, and hold no draft callout', () => {
   for (const slug of SLUGS) {
-    assert.equal(readFrontmatter(docOf(slug)).data?.status, 'draft', slug)
-    assert.doesNotMatch(docOf(slug), /Approved as stable/, `${slug} cites no approval`)
+    assert.equal(readFrontmatter(docOf(slug)).data?.status, 'stable', slug)
+    assert.match(docOf(slug), /Approved as stable by the owner[^\n]* — ADR-0037/, `${slug} cites the approval`)
+    assert.doesNotMatch(docOf(slug), /^> \*\*(?:Draft|TBD)/m, `${slug} has no draft or TBD callout`)
+    assert.deepEqual(readFrontmatter(docOf(slug)).data?.tbd, [], slug)
   }
 })
 
@@ -43,14 +45,14 @@ test('REQ-036 AC1: voice-and-tone quotes the brand voice, BR-05 and BR-17, with 
   assert.deepEqual(readFrontmatter(text).data?.brandRules, ['BR-05', 'BR-06', 'BR-17'])
 })
 
-test('REQ-036 AC1: the "this, not that" pairs are a draft callout, and TBD-21 is open until the owner approves them', () => {
+test('REQ-036 AC1: the five "this, not that" pairs are approved, and TBD-21 is resolved by ADR-0037', () => {
   const text = docOf('voice-and-tone')
   const pairs = section(text, "Do and don't")
-  assert.match(pairs, /^> \*\*Draft:\*\* .*TBD-21/m, 'the pairs open with a draft callout naming TBD-21')
-  assert.ok(pairs.indexOf('**Draft:**') < pairs.indexOf('| Voice attribute |'), 'the callout comes before the pairs')
   assert.equal([...pairs.matchAll(/^### .+, not .+$/gm)].length, 5, 'five pairs')
-  assert.match(section(text, 'Open items'), /^> \*\*TBD \(TBD-21\):\*\* /m)
-  assert.deepEqual(readFrontmatter(text).data?.tbd, ['TBD-21'])
+  assert.match(pairs, /TBD-21, ADR-0037/)
+  assert.equal(section(text, 'Open items').trim(), 'Not applicable.')
+  const spec = readFileSync(join(root, 'SPEC.md'), 'utf8')
+  assert.match(spec, /^\| TBD-21 \|.*\| Resolved \(ADR-0037\) \|$/m)
 })
 
 test('REQ-036 AC2: microcopy covers button labels, error message structure, empty-state text, and confirmation text', () => {
