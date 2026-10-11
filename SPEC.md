@@ -1176,7 +1176,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Scope: The source is `nuxt-ui` or `custom`, per ADR-0001. The header and footer are slot-based (logo, navigation, actions) with no domain content; on mobile, navigation moves into a slideover.
   - Done when: the header works at 360 and 1280 px, the mobile navigation opens and closes by keyboard, and the showcase adopts it.
 
-- [ ] **T8.7 — Generated inventory and full fixture coverage**
+- [x] **T8.7 — Generated inventory and full fixture coverage** (2026-10-10, cd352f2)
   - REQs: REQ-020 (AC1, AC2), REQ-022 (AC3), REQ-071 (AC1)
   - Depends on: T8.1–T8.6
   - Scope: The `inventory` generated-block format in `sync-docs`; `inventory.md`; the `/components` index; and the consumer fixture rendering every component.
