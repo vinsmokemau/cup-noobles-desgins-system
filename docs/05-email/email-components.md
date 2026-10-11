@@ -18,7 +18,7 @@ updated: 2026-10-11
 
 This doc describes the six components of a Cup Noobles email: the button, the header with the logo, the content section, the card, the divider, and the footer (REQ-041 AC3). Each one is an MJML source in `packages/email/src/components/` that the email build compiles to one static HTML file, so a backend can copy its markup (§4.9). Every color, font, size, border, and radius is a token injected at build time (REQ-042), and every piece of content is a `{{ slot_name }}` placeholder (REQ-041 AC4). The components follow the fallbacks in [Email foundations](email-foundations.md): a solid thick border in place of the glow (BR-10, BR-13), a radius that may render square, and a text fallback for the logo (BR-16).
 
-> **Draft:** The mapping of each email component to the tokens of its web counterpart is new, and no ADR records it yet. The button reads the primary button tokens, the card reads the card tokens (ADR-0018), the header and footer read the site header and footer tokens (ADR-0030), and the divider reads the separator tokens (ADR-0015). It introduces no value of its own. The doc stays a draft until the owner approves it.
+Each component reads the tokens of its web counterpart: the button reads the primary button tokens, the card reads the card tokens (ADR-0018), the header and footer read the site header and footer tokens (ADR-0030), and the divider reads the separator tokens (ADR-0015). It introduces no value of its own. The owner approved this mapping (ADR-0041).
 
 ## Tokens and specs
 
@@ -180,8 +180,6 @@ File: `footer.mjml`. A closing line and one link, centered, on the footer fill w
 
 ## Open items
 
-> **Draft:** The component-to-token mapping above needs the owner's approval before this doc can become stable. Owner input needed: approve it, or name a token to change.
->
 > **TBD (TBD-09):** The spacing scale is not defined, and the email build can inject a token only as it is. Every padding is therefore `space.base`, a placeholder, and the components have no larger steps between parts. Owner input needed: the base unit and the scale.
 >
 > **TBD (TBD-01):** The display typeface is not defined, so the header text fallback and the headings use the ADR-0006 placeholder stack. Owner input needed: a font name and its license (OD-06).
@@ -192,8 +190,9 @@ File: `footer.mjml`. A closing line and one link, centered, on the footer fill w
 >
 > **TBD (TBD-12):** The glow parameters are not defined. The email button uses a solid outline in place of the glow in any case. Owner input needed: only if the owner wants a different email treatment.
 
-The header does not apply the logo clear space. `logo.rule.clearSpace` is a share of the logo height (ADR-0016), and the build injects a token as it is, so it cannot turn that share into a length. The header pads the logo with `space.base`. Real-client rendering is not verified here (R-05).
+The header does not apply the logo clear space. `logo.rule.clearSpace` is a share of the logo height (ADR-0016), and the build injects a token as it is, so it cannot turn that share into a length. The header pads the logo with `space.base`. T10.4 settles this (ADR-0041). Real-client rendering is not verified here (R-05).
 
 ## Changelog
 
-- 0.1.0 — First draft: the button, header with logo, content section, card, divider, and footer as MJML components, with their `{{ slot_name }}` slots listed (T10.3, REQ-041 AC3 and AC4, REQ-042) — awaiting owner approval
+- 0.1.0 — First draft: the button, header with logo, content section, card, divider, and footer as MJML components, with their `{{ slot_name }}` slots listed (T10.3, REQ-041 AC3 and AC4, REQ-042)
+- 0.1.0 — Component-to-token mapping approved by the owner. The doc stays a draft while TBD-01, TBD-03, TBD-09, TBD-10, and TBD-12 are open — ADR-0041

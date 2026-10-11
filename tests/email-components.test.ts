@@ -158,7 +158,9 @@ test('REQ-009, REQ-037: the doc is a draft with a Draft callout and its TBD item
   const data = readFrontmatter(doc).data as Record<string, unknown>
   assert.equal(data.status, 'draft')
   assert.equal(data.layer, 'email')
-  assert.match(doc, /^> \*\*Draft:\*\*/m)
+  // ADR-0041: the owner approved the mapping, so no Draft callout remains; the open TBD items keep the doc a draft.
+  assert.doesNotMatch(doc, /^> \*\*Draft:\*\*/m)
+  assert.match(doc, /^- 0\.1\.0 — Component-to-token mapping approved by the owner[^\n]* — ADR-0041$/m)
   assert.doesNotMatch(doc, /Content pending/)
   for (const id of ['TBD-01', 'TBD-03', 'TBD-09', 'TBD-10', 'TBD-12']) {
     assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
