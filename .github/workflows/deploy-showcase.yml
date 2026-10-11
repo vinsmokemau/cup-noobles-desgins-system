@@ -31,6 +31,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build:tokens
       - run: pnpm build:nuxt
+      # The home and status pages import reports/tbd-report.json, which is git-ignored, so it must be written first.
+      - run: pnpm check:tbd
       - run: pnpm build:showcase
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:

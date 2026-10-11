@@ -39,7 +39,7 @@ pnpm test
 | `pnpm check:tokens` | `scripts/check-tokens.ts`: DTCG structure, types, values, and references; tier rules; `$description`, `$extensions.cn` status, source, and TBD IDs; placeholders; and path naming, across `tokens/`. Then `scripts/check-contrast.ts`: the WCAG contrast ratio of every pair in `tokens/contrast-pairs.json` against its usage minimum, the combinations in `tokens/contrast-forbidden.json`, and "unverified" for pairs with `tbd` tokens |
 | `pnpm check:docs` | `scripts/check-docs.ts`: frontmatter, template headings, hex literals, MDC syntax, `copy` locales, and callouts in `stable` docs, across `docs/` and `DESIGN.md` |
 | `pnpm lint` | ESLint (`eslint.config.js`), `prettier --check`, and markdownlint (`.markdownlint-cli2.jsonc`) |
-| `pnpm typecheck` | `vue-tsc --noEmit` over `tsconfig.json` |
+| `pnpm typecheck` | `pnpm check:tbd` (the showcase pages import `reports/tbd-report.json`, which is git-ignored), then `vue-tsc --noEmit` over `tsconfig.json` |
 | `pnpm test:unit` | The Vitest workspace in `vitest.config.ts` |
 | `pnpm build:tokens` | `packages/tokens/build.ts` (Style Dictionary): writes `dist/css/tokens.css`, `dist/json/tokens.flat.json`, `dist/ts/tokens.ts`, and `dist/email/email-tokens.json` in `packages/tokens` |
 | `pnpm test:all` | `pnpm test`, then `pnpm build:tokens`. The email, static generation, and end-to-end stages are added by later tasks (SPEC.md §0.3). |
