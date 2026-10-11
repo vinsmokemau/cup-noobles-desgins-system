@@ -1170,7 +1170,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T7.2
   - Done when: focus is trapped and restored, Escape closes, the background is inert, and axe is clean while open. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T8.6 runs it for all four.
 
-- [ ] **T8.6 — Site header and footer**
+- [x] **T8.6 — Site header and footer** (2026-10-10, a8e8993)
   - REQs: REQ-020, REQ-022, REQ-028, REQ-061 (AC2)
   - Depends on: T8.5, T7.7
   - Scope: The source is `nuxt-ui` or `custom`, per ADR-0001. The header and footer are slot-based (logo, navigation, actions) with no domain content; on mobile, navigation moves into a slideover.
