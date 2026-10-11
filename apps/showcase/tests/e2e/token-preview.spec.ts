@@ -87,23 +87,23 @@ test('REQ-054 AC3: glow and elevation are sample boxes carrying their token as a
 test('REQ-054 AC3: the motion demo plays on demand and moves, when motion is allowed', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.goto('/foundations/motion')
-  const dot = page.getByTestId('motion-dot')
+  const dot = page.getByTestId('motion-dot').first()
   const left = () => dot.evaluate((el) => el.getBoundingClientRect().left)
   const start = await left()
   // It waits to be played: nothing moves by itself.
   await page.waitForTimeout(400)
   expect(await left()).toBe(start)
-  await page.getByTestId('motion-play').click()
+  await page.getByTestId('motion-play').first().click()
   await expect.poll(left).toBeGreaterThan(start + 20)
-  await expect(page.getByTestId('motion-note')).toHaveText('At the end. Play again to go back.')
-  await page.getByTestId('motion-play').click()
+  await expect(page.getByTestId('motion-note').first()).toHaveText('At the end. Play again to go back.')
+  await page.getByTestId('motion-play').first().click()
   await expect.poll(left).toBe(start)
 })
 
 test('REQ-054 AC3: the motion demo does not move under reduced motion, and says so', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/foundations/motion')
-  const dot = page.getByTestId('motion-dot')
+  const dot = page.getByTestId('motion-dot').first()
   // The position inside the track: the click scrolls the page, which moves the dot on screen without moving it.
   const box = () =>
     dot.evaluate((el) => {
@@ -111,8 +111,8 @@ test('REQ-054 AC3: the motion demo does not move under reduced motion, and says 
       return JSON.stringify([offsetLeft, offsetTop, getComputedStyle(el).translate])
     })
   const start = await box()
-  await expect(page.getByTestId('motion-note')).toHaveText('Reduced motion is on, so this demo does not move.')
-  await page.getByTestId('motion-play').click()
+  await expect(page.getByTestId('motion-note').first()).toHaveText('Reduced motion is on, so this demo does not move.')
+  await page.getByTestId('motion-play').first().click()
   // Only the dot's own animations: the Play button may run a color transition of its own on press, which is not the demo moving.
   const running = await dot.evaluate((el) => el.getAnimations().filter((a) => a.playState === 'running').length)
   expect(running).toBe(0)

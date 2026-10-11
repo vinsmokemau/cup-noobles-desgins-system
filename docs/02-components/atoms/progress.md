@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-01, BR-06, BR-13]
 tokens: [progress]
 demos: [states, playground]
-tbd: [TBD-05, TBD-11]
+tbd: []
 related: [skeleton, separator, accessibility, motion]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Progress
@@ -36,12 +36,12 @@ The progress bar shows how far a task has got, such as an upload, or that work i
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `progress.bg` | `--cn-progress-bg` | `#000000` | stable |
-| `progress.border` | `--cn-progress-border` | `#90a1b9` | tbd (TBD-05) |
+| `progress.border` | `--cn-progress-border` | `#8c8c8c` | stable |
 | `progress.fill` | `--cn-progress-fill` | `#ef80ae` | stable |
 
 <!-- /cn:generated -->
 
-The track reads the same neutral outline as the text fields and the choice controls. The outline color and its stroke width follow placeholders (TBD-05, TBD-11), so they are `tbd` until the owner supplies them; the stroke width is the token `border.width.progress` on the shape page. The black fill and the pink fill are `stable`.
+The track reads the same neutral outline as the text fields and the choice controls. The outline color and its stroke width are `stable` (ADR-0032); the stroke width is the token `border.width.progress` on the shape page. The black fill and the pink fill are `stable`.
 
 Contrast pairs declared for the progress bar (REQ-015):
 
@@ -49,7 +49,7 @@ Contrast pairs declared for the progress bar (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `progress.border` (`#90a1b9`) | `progress.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `placeholder.color.neutral`, `progress.border`) |
+| `progress.border` (`#8c8c8c`) | `progress.bg` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `progress.fill` (`#ef80ae`) | `progress.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -112,7 +112,7 @@ A progress bar is not interactive, so it has no hover, focus-visible, active, or
 - The track is a `role="progressbar"` with `aria-valuemin`, `aria-valuemax`, and, when the value is known, `aria-valuenow`. An indeterminate bar has no `aria-valuenow`, which tells assistive technology that the amount is unknown.
 - The name comes from `get-value-label`, which Reka UI writes to `aria-label`. Without it, the bar would be named with the percentage only.
 - A progress bar is not focusable and has no keyboard interaction.
-- The pink fill is 8.37:1 against the black track, and the outline is 7.98:1 with the placeholder grey, unverified (REQ-015 AC4).
+- The pink fill is 8.37:1 against the black track, and the outline is 6.25:1 with the neutral border grey (REQ-015).
 - Under `prefers-reduced-motion: reduce` the indeterminate bar stops moving and shows a still, partly filled bar. Nuxt UI would pulse it, and the theme turns that off (REQ-029 AC2).
 
 Keyboard map: not applicable, because the bar is not interactive. A Playwright test checks that Tab skips it.
@@ -158,12 +158,9 @@ Not applicable. Email has no live progress.
 
 ## Open items
 
-> **TBD (TBD-05):** The neutral scale is not defined. The track outline reads a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-11):** "Thick" has no values. The track outline follows the placeholder stroke width. Owner input needed: values.
->
-> **Draft:** The look (a neutral outline with a pink fill) is approved (ADR-0015). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look (a neutral outline with a pink fill) is approved (ADR-0015). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UProgress` themed with a neutral outline and a pink fill, the four states, the component tokens, and the demos (T7.6) — look approved (ADR-0015), awaiting the placeholders
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

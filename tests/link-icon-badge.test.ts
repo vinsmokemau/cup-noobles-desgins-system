@@ -66,7 +66,7 @@ test('the link and badge component tokens reference semantic tokens, and the sha
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, 'tbd', path)
+    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   assert.equal(byPath.get('link.fg')?.value, '{color.brand.primary}')
   for (const part of ['color', 'width', 'offset', 'style'])

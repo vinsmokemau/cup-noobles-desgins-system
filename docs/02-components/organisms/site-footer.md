@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-13, BR-15]
 tokens: [siteFooter, border.width.siteFooter]
 demos: [states, playground]
-tbd: [TBD-04, TBD-11]
+tbd: []
 related: [site-header, link, button, accessibility]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Site footer
@@ -36,16 +36,16 @@ The site footer is the bar at the bottom of every page. It holds the closing tex
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.siteFooter` | `--cn-border-width-site-footer` | `1px` | tbd (TBD-11) |
+| `border.width.siteFooter` | `--cn-border-width-site-footer` | `3px` | stable |
 | `siteFooter.bg` | `--cn-site-footer-bg` | `#000000` | stable |
-| `siteFooter.fg` | `--cn-site-footer-fg` | `#90a1b9` | tbd (TBD-04) |
+| `siteFooter.fg` | `--cn-site-footer-fg` | `#f5f5f5` | stable |
 | `siteFooter.line` | `--cn-site-footer-line` | `#ef80ae` | stable |
 
 <!-- /cn:generated -->
 
-The fill and the line are `stable`. The text color and the stroke width follow placeholders (TBD-04, TBD-11).
+The fill and the line are `stable`. The text color and the stroke width are `stable` too (ADR-0032).
 
-Contrast pairs declared for the footer (REQ-015): the pink line against the black fill is 8.37:1 and passes as a UI boundary (WCAG 1.4.11). The text color pair is unverified while TBD-04 is open.
+Contrast pairs declared for the footer (REQ-015): the pink line against the black fill is 8.37:1 and passes as a UI boundary (WCAG 1.4.11). The text color pair passes too (ADR-0032).
 
 ### Brand rules
 
@@ -158,12 +158,9 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The footer text reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width of the line follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **Draft:** The look of the footer (a black bar with a thick pink line above it, no glow) is approved (ADR-0030). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the footer (a black bar with a thick pink line above it, no glow) is approved (ADR-0030). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UFooter` themed with the pink line look, the component tokens, and the demos (T8.6) — ADR-0030
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

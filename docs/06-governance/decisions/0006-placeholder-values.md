@@ -47,7 +47,7 @@ Every row below is labeled **not a brand value**.
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.color.neutral` | `#90a1b9` | Tailwind 4.3.3 `--color-slate-400: oklch(70.4% 0.04 256.788)`, converted to 8-bit sRGB hex. `slate` is Nuxt UI's default `neutral` alias (ADR-0001 §2). Chosen by the owner in chat, 2026-09-25. | TBD-04 (`color.text.default`), TBD-05 (`color.neutral.*`), TBD-06 (`color.surface.*`), TBD-07 (`color.feedback.*`); formerly also the focus indicator color, until ADR-0009 | not a brand value |
+| `placeholder.color.neutral` | `#90a1b9` | Tailwind 4.3.3 `--color-slate-400: oklch(70.4% 0.04 256.788)`, converted to 8-bit sRGB hex. `slate` is Nuxt UI's default `neutral` alias (ADR-0001 §2). Chosen by the owner in chat, 2026-09-25. | TBD-06 (`color.surface.*`); formerly also the focus indicator color, until ADR-0009, and the text, neutral, and feedback colors, until ADR-0032 | not a brand value |
 
 The value is stored as hex, not OKLCH, because the email output resolves to literals for email clients (REQ-013 AC1, §4.9).
 
@@ -85,7 +85,7 @@ C-05 still applies: until OD-05 is decided, cards render on `color.bg.base` (`#0
 | `placeholder.radius.sm` | `0.25rem` | Nuxt UI `--ui-radius`; `--radius-sm: var(--ui-radius)`, used by `UTooltip` (`rounded-sm`) | TBD-10 (`radius.*`) | not a brand value |
 | `placeholder.radius.md` | `0.375rem` | Nuxt UI `--radius-md: calc(var(--ui-radius) * 1.5)`, used by `UButton` and `UInput` (`rounded-md`) | TBD-10 | not a brand value |
 | `placeholder.radius.lg` | `0.5rem` | Nuxt UI `--radius-lg: calc(var(--ui-radius) * 2)`, used by `UCard` and `UModal` (`rounded-lg`) | TBD-10 | not a brand value |
-| `placeholder.border.width` | `1px` | Nuxt UI outlines use Tailwind `ring`, which is `calc(1px + var(--tw-ring-offset-width))` with a zero offset | TBD-11 (`border.width.*`) | not a brand value |
+| ~~`placeholder.border.width`~~ | ~~`1px`~~ | Nuxt UI outlines use Tailwind `ring`, which is `calc(1px + var(--tw-ring-offset-width))` with a zero offset | TBD-11 (`border.width.*`) | deleted (ADR-0032) |
 
 #### Effects, elevation, and layering
 
@@ -113,8 +113,8 @@ The focus color is `placeholder.color.neutral`. Nuxt UI's own default is `outlin
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.motion.duration` | `150ms` | Tailwind `--default-transition-duration`, used by Nuxt UI `transition-colors` | TBD-14 (`motion.*`) | not a brand value |
-| `placeholder.motion.easing` | `cubic-bezier(0.4, 0, 0.2, 1)` | Tailwind `--default-transition-timing-function` | TBD-14 | not a brand value |
+| ~~`placeholder.motion.duration`~~ | ~~`150ms`~~ | Tailwind `--default-transition-duration`, used by Nuxt UI `transition-colors` | TBD-14 (`motion.*`) | deleted (ADR-0032) |
+| ~~`placeholder.motion.easing`~~ | ~~`cubic-bezier(0.4, 0, 0.2, 1)`~~ | Tailwind `--default-transition-timing-function` | TBD-14 | deleted (ADR-0032) |
 
 #### Breakpoints and containers
 

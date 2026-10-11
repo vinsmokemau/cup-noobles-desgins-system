@@ -17,11 +17,10 @@
       "alert": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the alert (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$description": "Outline stroke width of the alert (BR-13).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-11"]
+            "status": "stable"
           }
         }
       }
@@ -41,22 +40,20 @@
     "fg": {
       "$type": "color",
       "$value": "{color.text.default}",
-      "$description": "Title text of the alert. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$description": "Title text of the alert.",
       "$extensions": {
         "cn": {
-          "status": "tbd",
-          "tbd": ["TBD-04"]
+          "status": "stable"
         }
       }
     },
     "fgMuted": {
       "$type": "color",
       "$value": "{color.text.muted}",
-      "$description": "Description text of the alert. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Description text of the alert.",
       "$extensions": {
         "cn": {
-          "status": "tbd",
-          "tbd": ["TBD-05"]
+          "status": "stable"
         }
       }
     },
@@ -64,11 +61,10 @@
       "color": {
         "$type": "color",
         "$value": "{color.feedback.success}",
-        "$description": "Outline and icon color of a success alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$description": "Outline and icon color of a success alert (ADR-0027).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-07"]
+            "status": "stable"
           }
         }
       }
@@ -77,11 +73,10 @@
       "color": {
         "$type": "color",
         "$value": "{color.feedback.info}",
-        "$description": "Outline and icon color of a info alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$description": "Outline and icon color of a info alert (ADR-0027).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-07"]
+            "status": "stable"
           }
         }
       }
@@ -90,11 +85,10 @@
       "color": {
         "$type": "color",
         "$value": "{color.feedback.warning}",
-        "$description": "Outline and icon color of a warning alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$description": "Outline and icon color of a warning alert (ADR-0027).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-07"]
+            "status": "stable"
           }
         }
       }
@@ -103,11 +97,10 @@
       "color": {
         "$type": "color",
         "$value": "{color.feedback.error}",
-        "$description": "Outline and icon color of a error alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$description": "Outline and icon color of a error alert (ADR-0027).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-07"]
+            "status": "stable"
           }
         }
       }

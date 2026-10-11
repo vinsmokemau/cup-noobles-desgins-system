@@ -85,7 +85,7 @@ const role = (preview: Preview) => preview.role as keyof typeof SPECIMEN_TEXT
           <MotionDemo
             v-else-if="preview.kind === 'motion'"
             :duration-var="cssVarOf(preview, `motion.duration.${preview.role}`)"
-            :easing-var="cssVarOf(preview, `motion.easing.${preview.role}`)"
+            :easing-var="preview.tokens[1]!.cssVar"
           />
         </PreviewCard>
       </ul>

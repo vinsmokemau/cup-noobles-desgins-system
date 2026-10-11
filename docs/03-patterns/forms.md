@@ -6,7 +6,7 @@ status: draft
 lang: en
 brandRules: [BR-06, BR-13]
 demos: [composed]
-tbd: [TBD-04, TBD-05, TBD-07]
+tbd: []
 related: [form-field, input, textarea, select, checkbox, button, alert, feedback, accessibility]
 since: 0.1.0
 updated: 2026-10-11
@@ -128,14 +128,9 @@ The composed demo is the whole pattern on neutral content: a message to an event
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. Labels read a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. Help and hint text read a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-07):** The feedback colors are not defined. Error text and the summary alert read a placeholder, so today an error is told apart by its message and icon, not by color. Owner input needed: a hex set.
->
-> **Draft:** The pattern's rules (one column, validate on leave and on submit, the summary alert, focus on the first error, never disable the submit) are approved (ADR-0031). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The pattern's rules (one column, validate on leave and on submit, the summary alert, focus on the first error, never disable the submit) are approved (ADR-0031). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the forms pattern and its composed demo (T9.1) — ADR-0031
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

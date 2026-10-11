@@ -23,35 +23,35 @@ The inventory lists every component in the system, with its level, its source, i
 
 | Component | Level | Source | Implementation | Status | Open TBD items |
 |---|---|---|---|---|---|
-| [Badge](atoms/badge.md) | atom | nuxt-ui | `UBadge` | draft | TBD-10, TBD-11 |
-| [Button](atoms/button.md) | atom | nuxt-ui | `UButton` | draft | TBD-08, TBD-10, TBD-11, TBD-12 |
-| [Checkbox](atoms/checkbox.md) | atom | nuxt-ui | `UCheckbox` | draft | TBD-05, TBD-10, TBD-11 |
+| [Badge](atoms/badge.md) | atom | nuxt-ui | `UBadge` | draft | TBD-10 |
+| [Button](atoms/button.md) | atom | nuxt-ui | `UButton` | draft | TBD-08, TBD-10, TBD-12 |
+| [Checkbox](atoms/checkbox.md) | atom | nuxt-ui | `UCheckbox` | draft | TBD-10 |
 | [Icon](atoms/icon.md) | atom | nuxt-ui | `UIcon` | draft | — |
-| [Input](atoms/input.md) | atom | nuxt-ui | `UInput` | draft | TBD-04, TBD-05, TBD-07, TBD-10, TBD-11 |
+| [Input](atoms/input.md) | atom | nuxt-ui | `UInput` | draft | TBD-10 |
 | [Link](atoms/link.md) | atom | nuxt-ui | `ULink` | draft | TBD-08 |
 | [Logo](atoms/logo.md) | atom | custom | `CnLogo` | stable | — |
-| [Progress](atoms/progress.md) | atom | nuxt-ui | `UProgress` | draft | TBD-05, TBD-11 |
-| [Radio group](atoms/radio-group.md) | atom | nuxt-ui | `URadioGroup` | draft | TBD-05, TBD-10, TBD-11 |
-| [Select](atoms/select.md) | atom | nuxt-ui | `USelect` | draft | TBD-04, TBD-05, TBD-06, TBD-07, TBD-10, TBD-11 |
-| [Separator](atoms/separator.md) | atom | nuxt-ui | `USeparator` | draft | TBD-05, TBD-11 |
-| [Skeleton](atoms/skeleton.md) | atom | nuxt-ui | `USkeleton` | draft | TBD-05, TBD-10, TBD-11, TBD-14 |
-| [Sparkle](atoms/sparkle.md) | atom | custom | `CnSparkle` | draft | TBD-14 |
+| [Progress](atoms/progress.md) | atom | nuxt-ui | `UProgress` | draft | — |
+| [Radio group](atoms/radio-group.md) | atom | nuxt-ui | `URadioGroup` | draft | TBD-10 |
+| [Select](atoms/select.md) | atom | nuxt-ui | `USelect` | draft | TBD-06, TBD-10 |
+| [Separator](atoms/separator.md) | atom | nuxt-ui | `USeparator` | draft | — |
+| [Skeleton](atoms/skeleton.md) | atom | nuxt-ui | `USkeleton` | draft | TBD-10 |
+| [Sparkle](atoms/sparkle.md) | atom | custom | `CnSparkle` | draft | — |
 | [Sticker frame](atoms/sticker-frame.md) | atom | custom | `CnStickerFrame` | stable | — |
-| [Switch](atoms/switch.md) | atom | nuxt-ui | `USwitch` | draft | TBD-05, TBD-10, TBD-11 |
-| [Textarea](atoms/textarea.md) | atom | nuxt-ui | `UTextarea` | draft | TBD-04, TBD-05, TBD-07, TBD-10, TBD-11 |
-| [Alert](molecules/alert.md) | molecule | nuxt-ui | `UAlert` | draft | TBD-04, TBD-05, TBD-07, TBD-10, TBD-11 |
-| [Breadcrumb](molecules/breadcrumb.md) | molecule | nuxt-ui | `UBreadcrumb` | draft | TBD-04, TBD-05, TBD-08 |
-| [Card](molecules/card.md) | molecule | nuxt-ui | `UCard` | draft | TBD-04, TBD-05, TBD-06, TBD-10, TBD-11 |
-| [Form field](molecules/form-field.md) | molecule | nuxt-ui | `UFormField` | draft | TBD-04, TBD-05, TBD-07 |
-| [Media card](molecules/media-card.md) | molecule | custom | `CnMediaCard` | draft | TBD-04, TBD-06, TBD-10, TBD-11, TBD-20 |
-| [Pagination](molecules/pagination.md) | molecule | nuxt-ui | `UPagination` | draft | TBD-04, TBD-05, TBD-10, TBD-11 |
-| [Tabs](molecules/tabs.md) | molecule | nuxt-ui | `UTabs` | draft | TBD-04, TBD-05, TBD-11 |
-| [Toast](molecules/toast.md) | molecule | nuxt-ui | `UToast` | draft | TBD-04, TBD-05, TBD-07, TBD-10, TBD-11, TBD-14, TBD-15 |
-| [Tooltip](molecules/tooltip.md) | molecule | nuxt-ui | `UTooltip` | draft | TBD-04, TBD-10, TBD-11, TBD-14 |
-| [Modal](organisms/modal.md) | organism | nuxt-ui | `UModal` | draft | TBD-04, TBD-05, TBD-10, TBD-11, TBD-15 |
-| [Site footer](organisms/site-footer.md) | organism | nuxt-ui | `UFooter` | draft | TBD-04, TBD-11 |
-| [Site header](organisms/site-header.md) | organism | nuxt-ui | `UHeader` | draft | TBD-04, TBD-11 |
-| [Slideover](organisms/slideover.md) | organism | nuxt-ui | `USlideover` | draft | TBD-04, TBD-05, TBD-10, TBD-11, TBD-15 |
+| [Switch](atoms/switch.md) | atom | nuxt-ui | `USwitch` | draft | TBD-10 |
+| [Textarea](atoms/textarea.md) | atom | nuxt-ui | `UTextarea` | draft | TBD-10 |
+| [Alert](molecules/alert.md) | molecule | nuxt-ui | `UAlert` | draft | TBD-10 |
+| [Breadcrumb](molecules/breadcrumb.md) | molecule | nuxt-ui | `UBreadcrumb` | draft | TBD-08 |
+| [Card](molecules/card.md) | molecule | nuxt-ui | `UCard` | draft | TBD-06, TBD-10 |
+| [Form field](molecules/form-field.md) | molecule | nuxt-ui | `UFormField` | draft | — |
+| [Media card](molecules/media-card.md) | molecule | custom | `CnMediaCard` | draft | TBD-06, TBD-10, TBD-20 |
+| [Pagination](molecules/pagination.md) | molecule | nuxt-ui | `UPagination` | draft | TBD-10 |
+| [Tabs](molecules/tabs.md) | molecule | nuxt-ui | `UTabs` | draft | — |
+| [Toast](molecules/toast.md) | molecule | nuxt-ui | `UToast` | draft | TBD-10, TBD-15 |
+| [Tooltip](molecules/tooltip.md) | molecule | nuxt-ui | `UTooltip` | draft | TBD-10 |
+| [Modal](organisms/modal.md) | organism | nuxt-ui | `UModal` | draft | TBD-10, TBD-15 |
+| [Site footer](organisms/site-footer.md) | organism | nuxt-ui | `UFooter` | draft | — |
+| [Site header](organisms/site-header.md) | organism | nuxt-ui | `UHeader` | draft | — |
+| [Slideover](organisms/slideover.md) | organism | nuxt-ui | `USlideover` | draft | TBD-10, TBD-15 |
 
 <!-- /cn:generated -->
 

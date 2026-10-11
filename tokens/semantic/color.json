@@ -42,26 +42,36 @@
     },
     "text": {
       "default": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Body text color. TBD-04: pure white or an off-white is not decided; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04"] } }
+        "$value": "{color.neutral.white-soft}",
+        "$description": "Body text color: soft white on the black page (ADR-0032, TBD-04).",
+        "$extensions": { "cn": { "status": "stable" } }
       },
       "muted": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Secondary text color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+        "$value": "{color.neutral.grey-light}",
+        "$description": "Secondary text color: help text, hints, and descriptions (ADR-0032, TBD-05).",
+        "$extensions": { "cn": { "status": "stable" } }
       },
       "inverted": {
         "$value": "{color.brand.black}",
         "$description": "Text on a primary or secondary fill. Labels on primary-filled buttons must be black (SPEC.md §2.1 derived facts, BR-03).",
         "$extensions": { "cn": { "status": "stable" } }
+      },
+      "disabled": {
+        "$value": "{color.neutral.grey-dark}",
+        "$description": "Text and borders of disabled controls (ADR-0032, TBD-05). Disabled controls are exempt from contrast minimums.",
+        "$extensions": { "cn": { "status": "stable" } }
       }
     },
     "border": {
       "default": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Border and divider color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-05"] } }
+        "$value": "{color.neutral.grey-mid}",
+        "$description": "Border color of controls (ADR-0032, TBD-05).",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "divider": {
+        "$value": "{color.neutral.grey-deep}",
+        "$description": "Thin divider lines (ADR-0032, TBD-05). A divider is decorative and exempt from contrast minimums.",
+        "$extensions": { "cn": { "status": "stable" } }
       }
     },
     "surface": {
@@ -78,24 +88,24 @@
     },
     "feedback": {
       "success": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Success feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-07"] } }
+        "$value": "{color.signal.green}",
+        "$description": "Success feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1).",
+        "$extensions": { "cn": { "status": "stable" } }
       },
       "warning": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Warning feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-07"] } }
+        "$value": "{color.signal.orange}",
+        "$description": "Warning feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1).",
+        "$extensions": { "cn": { "status": "stable" } }
       },
       "error": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Error feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-07"] } }
+        "$value": "{color.signal.red}",
+        "$description": "Error feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1).",
+        "$extensions": { "cn": { "status": "stable" } }
       },
       "info": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Info feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-07"] } }
+        "$value": "{color.signal.blue}",
+        "$description": "Info feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1).",
+        "$extensions": { "cn": { "status": "stable" } }
       }
     }
   }

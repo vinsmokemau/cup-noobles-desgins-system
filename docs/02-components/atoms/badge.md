@@ -10,17 +10,17 @@ lang: en
 brandRules: [BR-01, BR-02, BR-12, BR-13]
 tokens: [badge, radius.badge, border.width.badge]
 demos: [states, playground]
-tbd: [TBD-10, TBD-11]
+tbd: [TBD-10]
 related: [button, link, icon, media-card, shape]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Badge
 
 ## Purpose
 
-The badge is a small label that names a category, a status, or a count. It includes the **tag badge** that sits on the featured media card (BR-12), which is the variant the media card uses. It is a themed Nuxt UI `UBadge`, styled only through tokens (C-03). The corner radius (TBD-10) and the stroke width (TBD-11) are not defined yet, so those tokens hold ADR-0006 placeholders that are not brand values. The brand context does not say how a badge looks, so the three variants in this doc come from the owner (ADR-0011).
+The badge is a small label that names a category, a status, or a count. It includes the **tag badge** that sits on the featured media card (BR-12), which is the variant the media card uses. It is a themed Nuxt UI `UBadge`, styled only through tokens (C-03). The corner radius (TBD-10) is not defined yet, so that token holds an ADR-0006 placeholder that is not a brand value. The stroke width is 3 px (ADR-0032). The brand context does not say how a badge looks, so the three variants in this doc come from the owner (ADR-0011).
 
 ## Anatomy
 
@@ -44,12 +44,12 @@ The badge is a small label that names a category, a status, or a count. It inclu
 | `badge.tag.bg` | `--cn-badge-tag-bg` | `#fff488` | stable |
 | `badge.tag.border` | `--cn-badge-tag-border` | `#fff488` | stable |
 | `badge.tag.fg` | `--cn-badge-tag-fg` | `#000000` | stable |
-| `border.width.badge` | `--cn-border-width-badge` | `1px` | tbd (TBD-11) |
+| `border.width.badge` | `--cn-border-width-badge` | `3px` | stable |
 | `radius.badge` | `--cn-radius-badge` | `0.375rem` | tbd (TBD-10) |
 
 <!-- /cn:generated -->
 
-The component tokens only reference semantic tokens (REQ-010 AC2). The shape tokens are `tbd`: they follow the ADR-0006 placeholders (Nuxt UI's default radius and outline width), and **none of them is a brand value**. The fill, label, and outline tokens are `stable`. A badge has no glow and no focus ring, because it is not interactive.
+The component tokens only reference semantic tokens (REQ-010 AC2). The radius token is `tbd`: it follows the ADR-0006 placeholder (Nuxt UI's default radius), and **it is not a brand value**. The fill, label, outline, and stroke width tokens are `stable`. A badge has no glow and no focus ring, because it is not interactive.
 
 Contrast pairs declared for the badge (REQ-015):
 
@@ -170,10 +170,9 @@ The email equivalent is a small inline label inside the MJML components, describ
 ## Open items
 
 > **TBD (TBD-10):** The corner radius is not defined ("rounded" in BR-10). `radius.badge` follows an ADR-0006 placeholder. Owner input needed.
->
-> **TBD (TBD-11):** The stroke width is not defined ("thick" in BR-13). `border.width.badge` follows an ADR-0006 placeholder. Owner input needed.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UBadge` themed with the `primary`, `outline`, and `tag` variants, the component tokens, and the demos (T7.3) — awaiting owner approval
 - 0.1.0 — The three variants, with a yellow fill for `tag`, are approved by the owner (option A); the draft callout is removed — ADR-0011
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

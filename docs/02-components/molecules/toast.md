@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [toast, radius.toast, border.width.toast]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-07, TBD-10, TBD-11, TBD-14, TBD-15]
+tbd: [TBD-10, TBD-15]
 related: [alert, tooltip, button, accessibility, motion, color]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Toast
@@ -38,23 +38,23 @@ The toast is a brief message that appears over the page after an action and goes
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.toast` | `--cn-border-width-toast` | `1px` | tbd (TBD-11) |
+| `border.width.toast` | `--cn-border-width-toast` | `3px` | stable |
 | `radius.toast` | `--cn-radius-toast` | `0.375rem` | tbd (TBD-10) |
 | `toast.bg` | `--cn-toast-bg` | `#000000` | stable |
-| `toast.error.color` | `--cn-toast-error-color` | `#90a1b9` | tbd (TBD-07) |
-| `toast.fg` | `--cn-toast-fg` | `#90a1b9` | tbd (TBD-04) |
-| `toast.fgMuted` | `--cn-toast-fg-muted` | `#90a1b9` | tbd (TBD-05) |
+| `toast.error.color` | `--cn-toast-error-color` | `#ff5c5c` | stable |
+| `toast.fg` | `--cn-toast-fg` | `#f5f5f5` | stable |
+| `toast.fgMuted` | `--cn-toast-fg-muted` | `#bdbdbd` | stable |
 | `toast.focus.color` | `--cn-toast-focus-color` | `#fff488` | stable |
 | `toast.focus.offset` | `--cn-toast-focus-offset` | `3px` | stable |
 | `toast.focus.style` | `--cn-toast-focus-style` | `solid` | stable |
 | `toast.focus.width` | `--cn-toast-focus-width` | `3px` | stable |
-| `toast.info.color` | `--cn-toast-info-color` | `#90a1b9` | tbd (TBD-07) |
-| `toast.success.color` | `--cn-toast-success-color` | `#90a1b9` | tbd (TBD-07) |
-| `toast.warning.color` | `--cn-toast-warning-color` | `#90a1b9` | tbd (TBD-07) |
+| `toast.info.color` | `--cn-toast-info-color` | `#5cc8ff` | stable |
+| `toast.success.color` | `--cn-toast-success-color` | `#34d399` | stable |
+| `toast.warning.color` | `--cn-toast-warning-color` | `#ff9f43` | stable |
 
 <!-- /cn:generated -->
 
-The toast tokens mirror the alert's, because the two share one look (ADR-0027). They reference semantic tokens only (REQ-010 AC2). The four feedback colors, the text colors, the radius, and the stroke width follow placeholders, so every one is `tbd` until the owner supplies the values. The fill and the focus ring are `stable`.
+The toast tokens mirror the alert's, because the two share one look (ADR-0027). They reference semantic tokens only (REQ-010 AC2). The radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The four feedback colors, the text colors, and the stroke width are `stable` (ADR-0032). The fill and the focus ring are `stable`.
 
 Contrast pairs declared for the toast (REQ-015):
 
@@ -62,12 +62,12 @@ Contrast pairs declared for the toast (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `toast.fg` (`#90a1b9`) | `toast.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `placeholder.color.neutral`, `toast.fg`) |
-| `toast.fgMuted` (`#90a1b9`) | `toast.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `placeholder.color.neutral`, `toast.fgMuted`) |
-| `toast.success.color` (`#90a1b9`) | `toast.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.feedback.success`, `placeholder.color.neutral`, `toast.success.color`) |
-| `toast.info.color` (`#90a1b9`) | `toast.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.feedback.info`, `placeholder.color.neutral`, `toast.info.color`) |
-| `toast.warning.color` (`#90a1b9`) | `toast.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.feedback.warning`, `placeholder.color.neutral`, `toast.warning.color`) |
-| `toast.error.color` (`#90a1b9`) | `toast.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.feedback.error`, `placeholder.color.neutral`, `toast.error.color`) |
+| `toast.fg` (`#f5f5f5`) | `toast.bg` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `toast.fgMuted` (`#bdbdbd`) | `toast.bg` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `toast.success.color` (`#34d399`) | `toast.bg` (`#000000`) | ui | 10.92:1 | 3.00:1 | pass |
+| `toast.info.color` (`#5cc8ff`) | `toast.bg` (`#000000`) | ui | 11.16:1 | 3.00:1 | pass |
+| `toast.warning.color` (`#ff9f43`) | `toast.bg` (`#000000`) | ui | 10.29:1 | 3.00:1 | pass |
+| `toast.error.color` (`#ff5c5c`) | `toast.bg` (`#000000`) | ui | 6.94:1 | 3.00:1 | pass |
 | `toast.focus.color` (`#fff488`) | `toast.bg` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -78,7 +78,7 @@ Contrast pairs declared for the toast (REQ-015):
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-Today the four feedback colors are one neutral placeholder (TBD-07), so the types are told apart by their icon and their title, never by color alone (WCAG 1.4.1). The toast has no glow and no shadow (ADR-0027).
+Each type has its own feedback color (ADR-0032), and the types are also told apart by their icon and their title, never by color alone (WCAG 1.4.1). The toast has no glow and no shadow (ADR-0027).
 
 ## Variants
 
@@ -139,7 +139,7 @@ A toast is not a control, so it has no hover, active, or disabled state. The sta
 - Reka UI's two focus-proxy spans, which are `aria-hidden` and focusable, fail axe's aria-hidden-focus rule, so the theme hides them. Each toast is focusable by itself and the viewport is at the end of the page, so Tab order is unchanged.
 - The countdown bar that Nuxt UI draws is hidden: it moves by itself and says nothing a screen reader can use.
 - Under `prefers-reduced-motion: reduce` the slide-in and slide-out animations are removed (REQ-029 AC2).
-- Text is 4.5:1 or more against the fill, and the outline is 3:1 or more against the page, where the colors are defined (REQ-015). Until then the pairs are reported as unverified.
+- Text is 4.5:1 or more against the fill, and the outline is 3:1 or more against the page (REQ-015).
 
 Keyboard map (each row has a Playwright test, REQ-027 AC2):
 
@@ -200,17 +200,7 @@ toast.add({
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The toast text reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The description text reads a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-07):** The feedback colors are not defined. The outline and icon of all four types read the same placeholder, so today the types are told apart by their icon and title. Owner input needed: a hex set.
->
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-14):** Motion durations and easing are not defined. The toast's slide animation and its five-second default duration are Nuxt UI defaults, not brand values. Owner input needed: values.
 >
 > **TBD (TBD-15):** The elevation and z-index scale are not defined. The toaster keeps Nuxt UI's `z-index` and its bottom-right position. Owner input needed: values.
 >
@@ -219,3 +209,4 @@ toast.add({
 ## Changelog
 
 - 0.1.0 — First draft: `UToast` themed with the outline look, the four feedback types, the component tokens, and the demos (T8.3) — ADR-0027
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

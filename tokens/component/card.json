@@ -17,11 +17,10 @@
       "card": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the standard card, and of the dividers between its parts (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$description": "Outline stroke width of the standard card, and of the dividers between its parts (BR-13).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-11"]
+            "status": "stable"
           }
         }
       }
@@ -61,22 +60,20 @@
     "fg": {
       "$type": "color",
       "$value": "{color.text.default}",
-      "$description": "Title and body text of the standard card. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$description": "Title and body text of the standard card.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-04"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },
     "fgMuted": {
       "$type": "color",
       "$value": "{color.text.muted}",
-      "$description": "Description text of the standard card. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Description text of the standard card.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-05"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     }

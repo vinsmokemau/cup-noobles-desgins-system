@@ -14,9 +14,14 @@ const inFile = (file: string) => tokens.filter((t) => t.file === `tokens/primiti
 const tbdIds = (text: string) => [...text.matchAll(/\bTBD-\d{2}\b/g)].map((m) => m[0])
 
 // §4.1: the primitive files, and §4.7: every primitive group other than color is TBD in T3.2.
-const TBD_FILES = ['font', 'space', 'radius', 'border', 'effect', 'motion', 'breakpoint', 'z'].map((f) => `${f}.json`)
+const TBD_FILES = ['font', 'space', 'radius', 'effect', 'breakpoint', 'z'].map((f) => `${f}.json`)
 // Groups resolved by the owner since T3.2, each holding stable raw values from its ADR (§4.4 resolution, ADR-0008 §4).
-const RESOLVED_FILES = { 'focus.json': 'ADR-0009', 'logo.json': 'ADR-0016' }
+const RESOLVED_FILES = {
+  'focus.json': 'ADR-0009',
+  'logo.json': 'ADR-0016',
+  'border.json': 'ADR-0032',
+  'motion.json': 'ADR-0032',
+}
 
 test('§4.1: tokens/primitive/ holds exactly the listed files', () => {
   assert.deepEqual(
@@ -53,7 +58,22 @@ test('REQ-011 AC1: the three brand colors are exact, stable primitives with thei
       .map((t) => t.cn?.status),
     Array(22).fill('derived-pending'),
   )
-  const brand = stable.map((t) => [t.path, t.type, t.value, t.cn?.status, t.cn?.source])
+  // ADR-0032 added the owner's neutral and signal colors, stable, beside the three brand ones.
+  const brand = stable
+    .filter((t) => t.cn?.source?.toString().startsWith('BR-'))
+    .map((t) => [t.path, t.type, t.value, t.cn?.status, t.cn?.source])
+  const owner = stable.filter((t) => t.cn?.source === 'ADR-0032').map((t) => [t.path, t.value])
+  assert.deepEqual(owner, [
+    ['color.neutral.white-soft', '#f5f5f5'],
+    ['color.neutral.grey-light', '#bdbdbd'],
+    ['color.neutral.grey-mid', '#8c8c8c'],
+    ['color.neutral.grey-dark', '#5c5c5c'],
+    ['color.neutral.grey-deep', '#3a3a3a'],
+    ['color.signal.green', '#34d399'],
+    ['color.signal.orange', '#ff9f43'],
+    ['color.signal.red', '#ff5c5c'],
+    ['color.signal.blue', '#5cc8ff'],
+  ])
   assert.deepEqual(brand, [
     ['color.brand.pink', 'color', '#ef80ae', 'stable', 'BR-01'],
     ['color.brand.yellow', 'color', '#fff488', 'stable', 'BR-02'],
@@ -89,7 +109,9 @@ test('ADR-0006: _placeholder.json holds exactly the recorded values, each labele
   const rows = adrRows()
   // 38 rows in T3.2; ADR-0009 deleted the three focus placeholders (ADR-0006 policy 5, struck through in its table), and
   // ADR-0029 added the overlay backdrop amount.
-  assert.equal(rows.length, 36, 'every placeholder row in ADR-0006')
+  // ADR-0032 resolved TBD-11 and TBD-14, so the stroke width and the two motion placeholders are struck through in
+  // ADR-0006 and deleted from _placeholder.json (policy 5).
+  assert.equal(rows.length, 36 - 3, 'every placeholder row in ADR-0006')
   const placeholders = tokens.filter((t) => t.file === PLACEHOLDER_FILE)
   assert.deepEqual(placeholders.map((t) => t.path).sort(), rows.map((r) => r.path).sort())
 

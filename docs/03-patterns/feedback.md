@@ -6,7 +6,7 @@ status: draft
 lang: en
 brandRules: [BR-06, BR-13]
 demos: [composed]
-tbd: [TBD-04, TBD-05, TBD-07]
+tbd: []
 related: [alert, toast, modal, form-field, forms, loading, accessibility]
 since: 0.1.0
 updated: 2026-10-11
@@ -45,7 +45,7 @@ Choose the kind by how long the message must stay and whether the person must an
 - Never use a dialog for a message that needs no answer. Use an alert or a toast.
 - Never open a dialog from another dialog.
 - Never stack several banners or several alerts of one type.
-- Never use the placeholder feedback color to say how severe something is until the owner defines the feedback colors (TBD-07). The icon and the title say it.
+- Never rely on the feedback color alone to say how severe something is. The icon and the title say it too.
 - Never write "Error", "Listo", or "Algo salió mal" as a title.
 - Never use feedback to say that content is loading. Use [Loading](loading.md).
 
@@ -66,7 +66,7 @@ Choose the kind by how long the message must stay and whether the person must an
 - The type is told by the icon and the title, not by color (WCAG 1.4.1). The icon is decoration and is hidden from assistive technology.
 - Close buttons are at least 24 × 24 px (REQ-028 AC2) and show the yellow focus ring on `:focus-visible` (REQ-024).
 - A message that needs the person's attention does not disappear on a timer (WCAG 2.2.1).
-- Text is 4.5:1 or more against its fill, and the outline is 3:1 or more against the page, where the colors are defined (REQ-015). Until then the pairs are reported as unverified.
+- Text is 4.5:1 or more against its fill, and the outline is 3:1 or more against the page (REQ-015).
 
 Keyboard map:
 
@@ -131,14 +131,9 @@ The system has no separate banner component. A banner is an alert placed at the 
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. Message text reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. Description text reads a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-07):** The feedback colors are not defined. The outline and icon of all four types read one placeholder, so today the types are told apart by their icon and title, not by color. Owner input needed: a hex set.
->
-> **Draft:** The choice among the four kinds, and the banner as an alert at the top of the page, are approved (ADR-0031). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The choice among the four kinds, and the banner as an alert at the top of the page, are approved (ADR-0031). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the feedback pattern, with toast, inline, banner, and dialog, and its composed demo (T9.1) — ADR-0031
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

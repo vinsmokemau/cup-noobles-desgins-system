@@ -6,7 +6,7 @@ status: draft
 lang: en
 brandRules: [BR-06, BR-13]
 demos: [composed]
-tbd: [TBD-05, TBD-11, TBD-14]
+tbd: []
 related: [skeleton, progress, button, feedback, accessibility, motion]
 since: 0.1.0
 updated: 2026-10-11
@@ -113,14 +113,9 @@ The composed demo shows all three on neutral content: a profile page of a commun
 
 ## Open items
 
-> **TBD (TBD-05):** The neutral scale is not defined. The skeleton and progress outlines read a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-11):** "Thick" has no values. The skeleton and progress stroke widths follow the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-14):** Motion durations and easing are not defined. The skeleton's fade and the indeterminate bar follow the ADR-0006 placeholder. Owner input needed: values.
->
-> **Draft:** The choice of part by wait, and the rule that the button's spinner is the system's spinner, are approved (ADR-0031). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The choice of part by wait, and the rule that the button's spinner is the system's spinner, are approved (ADR-0031). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: the loading pattern, with skeleton, spinner, and progress, and its composed demo (T9.1) — ADR-0031
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

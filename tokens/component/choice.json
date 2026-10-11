@@ -17,11 +17,10 @@
       "choice": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the checkbox and the radio (BR-10, BR-13). The switch track keeps Nuxt UI's own border, because its thumb travel is tuned to it. TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$description": "Outline stroke width of the checkbox and the radio (BR-10, BR-13). The switch track keeps Nuxt UI's own border, because its thumb travel is tuned to it.",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-11"]
+            "status": "stable"
           }
         }
       }
@@ -41,11 +40,10 @@
     "border": {
       "$type": "color",
       "$value": "{color.border.default}",
-      "$description": "Outline color of an unchecked control, and the color of an unchecked switch thumb. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Outline color of an unchecked control, and the color of an unchecked switch thumb.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-05"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },

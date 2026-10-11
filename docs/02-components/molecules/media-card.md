@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [mediaCard, radius.mediaCard, border.width.mediaCard, color.surface.card]
 demos: [states, playground]
-tbd: [TBD-04, TBD-06, TBD-10, TBD-11, TBD-20]
+tbd: [TBD-06, TBD-10, TBD-20]
 related: [card, badge, link, imagery-and-motifs, accessibility, shape]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Media card
@@ -38,11 +38,11 @@ updated: 2026-10-10
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.mediaCard` | `--cn-border-width-media-card` | `1px` | tbd (TBD-11) |
+| `border.width.mediaCard` | `--cn-border-width-media-card` | `3px` | stable |
 | `color.surface.card` | `--cn-color-surface-card` | `#90a1b9` | tbd (TBD-06) |
 | `mediaCard.bg` | `--cn-media-card-bg` | `#000000` | stable |
 | `mediaCard.divider` | `--cn-media-card-divider` | `#ef80ae` | stable |
-| `mediaCard.fg` | `--cn-media-card-fg` | `#90a1b9` | tbd (TBD-04) |
+| `mediaCard.fg` | `--cn-media-card-fg` | `#f5f5f5` | stable |
 | `mediaCard.focus.color` | `--cn-media-card-focus-color` | `#fff488` | stable |
 | `mediaCard.focus.offset` | `--cn-media-card-focus-offset` | `3px` | stable |
 | `mediaCard.focus.style` | `--cn-media-card-focus-style` | `solid` | stable |
@@ -52,7 +52,7 @@ updated: 2026-10-10
 
 <!-- /cn:generated -->
 
-The media card tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the divider, and the focus ring are `stable`: black and brand pink, and the brand yellow of the focus indicator (BR-01, BR-02, BR-03). The title color, the corner radius, and the stroke width follow placeholders (TBD-04, TBD-10, TBD-11), so they are `tbd` until the owner supplies them.
+The media card tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the divider, and the focus ring are `stable`: black and brand pink, and the brand yellow of the focus indicator (BR-01, BR-02, BR-03). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The title color and the stroke width are `stable` (ADR-0032).
 
 The card does not read `color.surface.card`. The table lists it so the open item is visible: no card surface color is defined (TBD-06, C-05), and the card renders on `color.bg.base` until OD-05 is decided.
 
@@ -62,7 +62,7 @@ Contrast pairs declared for the media card (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `mediaCard.fg` (`#90a1b9`) | `mediaCard.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `mediaCard.fg`, `placeholder.color.neutral`) |
+| `mediaCard.fg` (`#f5f5f5`) | `mediaCard.bg` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `mediaCard.highlight` (`#ef80ae`) | `mediaCard.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `mediaCard.divider` (`#ef80ae`) | `mediaCard.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `mediaCard.focus.color` (`#fff488`) | `mediaCard.bg` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
@@ -207,13 +207,9 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The title reads a placeholder, not a brand value. Owner input needed: a hex.
->
 > **TBD (TBD-06):** Card and elevated surface colors are not defined (C-05). The card renders on `color.bg.base`, separated by its outline, until OD-05 is decided. Owner input needed: decision OD-05.
 >
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **TBD (TBD-20):** Photography and thumbnail standards are not defined: subject, style, aspect ratios, and crops. The thumbnail keeps its own proportions until then. Owner input needed: guidelines.
 >
@@ -222,3 +218,4 @@ Not applicable.
 ## Changelog
 
 - 0.1.0 — First draft: `CnMediaCard` with a thumbnail, a title, tag badges, an optional link with one tab stop, the component tokens, and the demos (T8.2) — ADR-0026
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

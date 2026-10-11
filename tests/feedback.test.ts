@@ -39,20 +39,20 @@ test('REQ-020 AC1: the three docs are nuxt-ui molecules named for their Nuxt UI 
   }
 })
 
-test('Done when: each feedback variant of the alert and the toast uses a feedback token, which is a TBD-07 placeholder', () => {
+test("Done when: each feedback variant of the alert and the toast uses a feedback token, which is the owner's color (ADR-0032)", () => {
   assert.deepEqual(problems, [])
   for (const component of ['alert', 'toast']) {
     for (const type of TYPES) {
       const token = byPath.get(`${component}.${type}.color`)
       assert.equal(token?.tier, 'component', `${component}.${type}.color`)
       assert.equal(token?.value, `{color.feedback.${type}}`, `${component}.${type}.color`)
-      assert.equal(token?.cn?.status, 'tbd', `${component}.${type}.color`)
-      assert.deepEqual(token?.cn?.tbd, ['TBD-07'], `${component}.${type}.color`)
+      assert.equal(token?.cn?.status, 'stable', `${component}.${type}.color`)
+      assert.equal(token?.cn?.tbd, undefined, `${component}.${type}.color`)
     }
   }
 })
 
-test('the alert, toast, and tooltip tokens reference semantic tokens, and the placeholders are tbd', () => {
+test('the alert, toast, and tooltip tokens reference semantic tokens, and only the radius is a placeholder', () => {
   for (const slug of SLUGS) {
     for (const [path, semantic] of [
       [`radius.${slug}`, 'radius.interactive'],
@@ -61,12 +61,12 @@ test('the alert, toast, and tooltip tokens reference semantic tokens, and the pl
       const token = byPath.get(path)
       assert.equal(token?.tier, 'component', path)
       assert.equal(token?.value, `{${semantic}}`, path)
-      assert.equal(token?.cn?.status, 'tbd', path)
+      assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
     }
     assert.equal(byPath.get(`${slug}.bg`)?.value, '{color.bg.base}', `${slug}.bg`)
     assert.equal(byPath.get(`${slug}.bg`)?.cn?.status, 'stable', `${slug}.bg`)
     assert.equal(byPath.get(`${slug}.fg`)?.value, '{color.text.default}', `${slug}.fg`)
-    assert.equal(byPath.get(`${slug}.fg`)?.cn?.status, 'tbd', `${slug}.fg`)
+    assert.equal(byPath.get(`${slug}.fg`)?.cn?.status, 'stable', `${slug}.fg`)
   }
   for (const component of ['alert', 'toast']) {
     assert.equal(byPath.get(`${component}.fgMuted`)?.value, '{color.text.muted}', component)
@@ -105,20 +105,20 @@ test('REQ-016: the feedback rules read only tokens that exist, and draw no glow 
   assert.doesNotMatch(feedbackCss, /#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(/, 'no color literal')
 })
 
-test('REQ-015: the pairs are declared, the pink tooltip outline passes, and the placeholders are unverified', () => {
+test('REQ-015: the pairs are declared, the pink tooltip outline passes, and the text and feedback colors pass', () => {
   const report = checkContrast(root)
   assert.equal(report.problems.length, 0)
   const pair = (foreground: string, background: string) =>
     report.pairs.find((p) => p.foreground === foreground && p.background === background)
   assert.equal(pair('tooltip.border', 'tooltip.bg')?.result, 'pass')
   assert.equal(pair('tooltip.border', 'tooltip.bg')?.ratio, 8.37)
-  assert.equal(pair('tooltip.fg', 'tooltip.bg')?.result, 'unverified')
+  assert.equal(pair('tooltip.fg', 'tooltip.bg')?.result, 'pass')
   for (const component of ['alert', 'toast']) {
-    assert.equal(pair(`${component}.fg`, `${component}.bg`)?.result, 'unverified', `${component}.fg`)
-    assert.equal(pair(`${component}.fgMuted`, `${component}.bg`)?.result, 'unverified', `${component}.fgMuted`)
+    assert.equal(pair(`${component}.fg`, `${component}.bg`)?.result, 'pass', `${component}.fg`)
+    assert.equal(pair(`${component}.fgMuted`, `${component}.bg`)?.result, 'pass', `${component}.fgMuted`)
     assert.equal(pair(`${component}.focus.color`, `${component}.bg`)?.result, 'pass', `${component}.focus.color`)
     for (const type of TYPES)
-      assert.equal(pair(`${component}.${type}.color`, `${component}.bg`)?.result, 'unverified', `${component}.${type}`)
+      assert.equal(pair(`${component}.${type}.color`, `${component}.bg`)?.result, 'pass', `${component}.${type}`)
   }
 })
 

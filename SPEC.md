@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.29 |
+| Spec version | 1.30 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -185,17 +185,17 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-01 | Display typeface: family, license, and web and email availability. It must match BR-07. | typography.md, `font.family.display` | Font name and license |
 | TBD-02 | Body typeface, or confirmation that one family covers both display and body | `font.family.body` | Font name |
 | TBD-03 | Type scale: sizes, line heights, weights, and letter spacing for H1, H2, H3, body, and caption | `font.size.*`, `font.lineHeight.*` | Values or approval of a proposal |
-| TBD-04 | Body text color: pure white or an off-white | `color.text.default` | Hex |
-| TBD-05 | Neutral scale for secondary text, borders, disabled states, and dividers | `color.neutral.*` | Hex set |
+| TBD-04 | Body text color: pure white or an off-white | `color.text.default` | Resolved (ADR-0032) |
+| TBD-05 | Neutral scale for secondary text, borders, disabled states, and dividers | `color.neutral.*` | Resolved (ADR-0032) |
 | TBD-06 | Card and elevated surface colors (see C-05) | `color.surface.*` | Decision OD-05 |
-| TBD-07 | Feedback colors for success, warning, error, and info | `color.feedback.*` | Hex set |
+| TBD-07 | Feedback colors for success, warning, error, and info | `color.feedback.*` | Resolved (ADR-0032) |
 | TBD-08 | Tints and shades of pink and yellow (see C-06) | Nuxt UI alias scales | Decision OD-04 |
 | TBD-09 | Spacing base unit and scale | `space.*` | Base unit |
 | TBD-10 | Corner radius values ("rounded" in BR-10) | `radius.*` | Values |
-| TBD-11 | Stroke widths ("thick" in BR-10 and BR-13) | `border.width.*` | Values |
+| TBD-11 | Stroke widths ("thick" in BR-10 and BR-13) | `border.width.*` | Resolved (ADR-0032) |
 | TBD-12 | Neon glow parameters: blur, spread, opacity, and which color is used per state ("subtle" in BR-10) | `effect.glow.*` | Values |
 | TBD-13 | Breakpoints and container widths. The 360 px minimum is fixed by ER-05. | `breakpoint.*` | Values |
-| TBD-14 | Motion durations and easing curves | `motion.*` | Values |
+| TBD-14 | Motion durations and easing curves | `motion.*` | Resolved (ADR-0032) |
 | TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
 | TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | Resolved (ADR-0016) |
@@ -1343,7 +1343,8 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.26 | 2026-10-10 | §2.4: TBD-18 — the sticker border artwork is in (T7.16), so all seven BR-14 motifs have their artwork. The row stays open, not resolved: `CnStickerFrame` still draws a placeholder outline and its `motif.*` tokens follow placeholders, so closing it takes the component wiring, a later task. §7.2: OD-08 decided for all motifs. The sticker border is the owner's chosen proposal A, a frame of about 8:5 with a yellow outer edge, a pink inner band, and notched corners, drawn in `#ef80ae`, `#fff488`, and black outlines on a transparent background and with an empty centre, with white (`#ffffff`) only for the shine marks. | Owner decision in chat (option A, white shine marks, and the SPEC row); ADR-0024 |
 | 1.27 | 2026-10-10 | Added T7.17 (`CnStickerFrame` sticker border artwork) to P7: the component wiring that closes TBD-18, left open by row 1.26. No existing task changes. | Owner request in chat (T7.16 open question 1) |
 | 1.28 | 2026-10-10 | T8.2 through T8.5: the definition of done requires `pnpm test` instead of `pnpm test:all`; T8.6 runs the full suite. §0.2, T8.1, T8.6 and T8.7 are unchanged. | Owner request in chat |
-| 1.29 | 2026-10-11 | T9.1 and T9.3: the definition of done requires `pnpm test` instead of `pnpm test:all`; T9.2 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
+| 1.29 | 2026-10-11 | T9.1 and T9.3: the definition of done requires `pnpm test` instead of `pnpm test:all`; T9.2 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
+| 1.30 | 2026-10-11 | §2.4: TBD-04, TBD-05, TBD-07, TBD-11, and TBD-14 are resolved by ADR-0032 (body text, neutral scale, feedback colors, stroke width, and motion). No requirement or task changes. | Owner decision in chat; ADR-0032 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

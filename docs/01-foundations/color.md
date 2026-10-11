@@ -6,17 +6,17 @@ status: draft
 lang: en
 brandRules: [BR-01, BR-02, BR-03, BR-06]
 tokens: [color]
-tbd: [TBD-04, TBD-05, TBD-06, TBD-07, TBD-08]
+tbd: [TBD-06, TBD-08]
 related: [accessibility, effects, typography, card, button]
 since: 0.1.0
-updated: 2026-09-28
+updated: 2026-10-11
 ---
 
 # Color
 
 ## Purpose
 
-This doc defines the Cup Noobles color palette: the three brand colors and their roles, the pure-black page base, and the contrast rules that keep the UI legible. It implements BR-01, BR-02, and BR-03, and supports BR-06 ("high-contrast, vibrant, and legible"). Every other color (text, neutrals, surfaces, feedback, and shades) is not defined yet and is tracked as TBD-04 through TBD-08.
+This doc defines the Cup Noobles color palette: the three brand colors and their roles, the pure-black page base, and the contrast rules that keep the UI legible. It implements BR-01, BR-02, and BR-03, and supports BR-06 ("high-contrast, vibrant, and legible"). The text, neutral, and feedback colors come from the owner (ADR-0032). The surface colors and the shades are not defined yet and are tracked as TBD-06 and TBD-08.
 
 ## Tokens and specs
 
@@ -25,7 +25,8 @@ This doc defines the Cup Noobles color palette: the three brand colors and their
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `color.bg.base` | `--cn-color-bg-base` | `#000000` | stable |
-| `color.border.default` | `--cn-color-border-default` | `#90a1b9` | tbd (TBD-05) |
+| `color.border.default` | `--cn-color-border-default` | `#8c8c8c` | stable |
+| `color.border.divider` | `--cn-color-border-divider` | `#3a3a3a` | stable |
 | `color.brand.black` | `--cn-color-brand-black` | `#000000` | stable |
 | `color.brand.pink` | `--cn-color-brand-pink` | `#ef80ae` | stable |
 | `color.brand.pink-100` | `--cn-color-brand-pink-100` | `#ef80ae` | derived-pending (TBD-08) |
@@ -57,15 +58,25 @@ This doc defines the Cup Noobles color palette: the three brand colors and their
 | `color.brand.yellow-800` | `--cn-color-brand-yellow-800` | `#fff488` | derived-pending (TBD-08) |
 | `color.brand.yellow-900` | `--cn-color-brand-yellow-900` | `#fff488` | derived-pending (TBD-08) |
 | `color.brand.yellow-950` | `--cn-color-brand-yellow-950` | `#fff488` | derived-pending (TBD-08) |
-| `color.feedback.error` | `--cn-color-feedback-error` | `#90a1b9` | tbd (TBD-07) |
-| `color.feedback.info` | `--cn-color-feedback-info` | `#90a1b9` | tbd (TBD-07) |
-| `color.feedback.success` | `--cn-color-feedback-success` | `#90a1b9` | tbd (TBD-07) |
-| `color.feedback.warning` | `--cn-color-feedback-warning` | `#90a1b9` | tbd (TBD-07) |
+| `color.feedback.error` | `--cn-color-feedback-error` | `#ff5c5c` | stable |
+| `color.feedback.info` | `--cn-color-feedback-info` | `#5cc8ff` | stable |
+| `color.feedback.success` | `--cn-color-feedback-success` | `#34d399` | stable |
+| `color.feedback.warning` | `--cn-color-feedback-warning` | `#ff9f43` | stable |
+| `color.neutral.grey-dark` | `--cn-color-neutral-grey-dark` | `#5c5c5c` | stable |
+| `color.neutral.grey-deep` | `--cn-color-neutral-grey-deep` | `#3a3a3a` | stable |
+| `color.neutral.grey-light` | `--cn-color-neutral-grey-light` | `#bdbdbd` | stable |
+| `color.neutral.grey-mid` | `--cn-color-neutral-grey-mid` | `#8c8c8c` | stable |
+| `color.neutral.white-soft` | `--cn-color-neutral-white-soft` | `#f5f5f5` | stable |
+| `color.signal.blue` | `--cn-color-signal-blue` | `#5cc8ff` | stable |
+| `color.signal.green` | `--cn-color-signal-green` | `#34d399` | stable |
+| `color.signal.orange` | `--cn-color-signal-orange` | `#ff9f43` | stable |
+| `color.signal.red` | `--cn-color-signal-red` | `#ff5c5c` | stable |
 | `color.surface.card` | `--cn-color-surface-card` | `#90a1b9` | tbd (TBD-06) |
 | `color.surface.elevated` | `--cn-color-surface-elevated` | `#90a1b9` | tbd (TBD-06) |
-| `color.text.default` | `--cn-color-text-default` | `#90a1b9` | tbd (TBD-04) |
+| `color.text.default` | `--cn-color-text-default` | `#f5f5f5` | stable |
+| `color.text.disabled` | `--cn-color-text-disabled` | `#5c5c5c` | stable |
 | `color.text.inverted` | `--cn-color-text-inverted` | `#000000` | stable |
-| `color.text.muted` | `--cn-color-text-muted` | `#90a1b9` | tbd (TBD-05) |
+| `color.text.muted` | `--cn-color-text-muted` | `#bdbdbd` | stable |
 
 <!-- /cn:generated -->
 
@@ -91,8 +102,8 @@ The block below is generated from `tokens/contrast-pairs.json` and `tokens/contr
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `color.text.default` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `placeholder.color.neutral`) |
-| `color.text.muted` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `placeholder.color.neutral`) |
+| `color.text.default` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `color.text.muted` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
 | `color.brand.primary` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `color.brand.primary` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `color.brand.secondary` (`#fff488`) | `color.bg.base` (`#000000`) | text | 18.55:1 | 4.50:1 | pass |
@@ -103,16 +114,17 @@ The block below is generated from `tokens/contrast-pairs.json` and `tokens/contr
 | `color.text.inverted` (`#000000`) | `color.brand.primaryActive` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
 | `color.text.inverted` (`#000000`) | `color.brand.secondaryHover` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
 | `color.text.inverted` (`#000000`) | `color.brand.secondaryActive` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
-| `color.border.default` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `placeholder.color.neutral`) |
-| `color.text.default` (`#90a1b9`) | `color.surface.card` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `color.text.default`, `placeholder.color.neutral`) |
-| `color.text.muted` (`#90a1b9`) | `color.surface.card` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `color.text.muted`, `placeholder.color.neutral`) |
+| `color.border.default` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
+| `color.text.disabled` (`#5c5c5c`) | `color.bg.base` (`#000000`) | ui | 3.14:1 | 3.00:1 | pass |
+| `color.text.default` (`#f5f5f5`) | `color.surface.card` (`#90a1b9`) | text | 2.41:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
+| `color.text.muted` (`#bdbdbd`) | `color.surface.card` (`#90a1b9`) | text | 1.40:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
 | `color.brand.primary` (`#ef80ae`) | `color.surface.card` (`#90a1b9`) | ui | 1.05:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
-| `color.text.default` (`#90a1b9`) | `color.surface.elevated` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `color.text.default`, `placeholder.color.neutral`) |
-| `color.text.muted` (`#90a1b9`) | `color.surface.elevated` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `color.text.muted`, `placeholder.color.neutral`) |
-| `color.feedback.success` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.success`, `placeholder.color.neutral`) |
-| `color.feedback.warning` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.warning`, `placeholder.color.neutral`) |
-| `color.feedback.error` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.error`, `placeholder.color.neutral`) |
-| `color.feedback.info` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.info`, `placeholder.color.neutral`) |
+| `color.text.default` (`#f5f5f5`) | `color.surface.elevated` (`#90a1b9`) | text | 2.41:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `placeholder.color.neutral`) |
+| `color.text.muted` (`#bdbdbd`) | `color.surface.elevated` (`#90a1b9`) | text | 1.40:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `placeholder.color.neutral`) |
+| `color.feedback.success` (`#34d399`) | `color.bg.base` (`#000000`) | text | 10.92:1 | 4.50:1 | pass |
+| `color.feedback.warning` (`#ff9f43`) | `color.bg.base` (`#000000`) | text | 10.29:1 | 4.50:1 | pass |
+| `color.feedback.error` (`#ff5c5c`) | `color.bg.base` (`#000000`) | text | 6.94:1 | 4.50:1 | pass |
+| `color.feedback.info` (`#5cc8ff`) | `color.bg.base` (`#000000`) | text | 11.16:1 | 4.50:1 | pass |
 | `focus.ring.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `focus.ring.color` (`#fff488`) | `color.surface.card` (`#90a1b9`) | ui | 2.32:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
 | `button.primary.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
@@ -128,22 +140,22 @@ The block below is generated from `tokens/contrast-pairs.json` and `tokens/contr
 | `badge.outline.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `badge.outline.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `badge.tag.border` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
-| `formField.label.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `formField.label.fg`, `placeholder.color.neutral`) |
-| `formField.description.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `formField.description.fg`, `placeholder.color.neutral`) |
-| `formField.help.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `formField.help.fg`, `placeholder.color.neutral`) |
-| `formField.error.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.error`, `formField.error.fg`, `placeholder.color.neutral`) |
-| `tabs.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `placeholder.color.neutral`, `tabs.fg`) |
-| `tabs.fgHover` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `placeholder.color.neutral`, `tabs.fgHover`) |
+| `formField.label.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `formField.description.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `formField.help.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `formField.error.fg` (`#ff5c5c`) | `color.bg.base` (`#000000`) | text | 6.94:1 | 4.50:1 | pass |
+| `tabs.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `tabs.fgHover` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `tabs.active.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `tabs.active.indicator` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
-| `tabs.rule` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `placeholder.color.neutral`, `tabs.rule`) |
+| `tabs.rule` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `tabs.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `breadcrumb.link.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `breadcrumb.link.fgHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `breadcrumb.current.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `breadcrumb.current.fg`, `color.text.default`, `placeholder.color.neutral`) |
+| `breadcrumb.current.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `breadcrumb.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
-| `pagination.item.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `pagination.item.fg`, `placeholder.color.neutral`) |
-| `pagination.item.border` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `pagination.item.border`, `placeholder.color.neutral`) |
+| `pagination.item.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `pagination.item.border` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `pagination.item.borderHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `pagination.current.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `pagination.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
@@ -193,8 +205,8 @@ BR-01 and BR-02 give one value per color. Nuxt UI's color aliases read a full sc
 - Never use a dark gray, or any color other than `color.bg.base`, as the page background (BR-03).
 - Never put white text on a pink fill (2.51:1) or on a yellow fill (1.13:1).
 - Never put yellow on pink or pink on yellow as text, and never use them as the only boundary between two UI regions (2.22:1).
-- Never make up a tint, shade, neutral, surface, text, or feedback color. They are TBD-04 through TBD-08, and only the owner can supply them.
-- Never treat the neutral placeholder as a brand value, and never copy it into another project (ADR-0006).
+- Never make up a tint, shade, neutral, surface, text, or feedback color. The text, neutral, and feedback colors are in ADR-0032. Surfaces and shades are TBD-06 and TBD-08, and only the owner can supply them.
+- Never treat the surface placeholder as a brand value, and never copy it into another project (ADR-0006).
 - Never use color as the only way to convey meaning. Pair it with text or an icon.
 
 ## Do and don't
@@ -212,7 +224,7 @@ BR-01 and BR-02 give one value per color. Nuxt UI's color aliases read a full sc
 - The target is WCAG 2.2 level AA (A-10). The minimum ratios are 4.5:1 for `text`, 3:1 for `large-text`, and 3:1 for `ui` (REQ-015 AC2).
 - Every intended pair is declared in `tokens/contrast-pairs.json`, and `check-contrast` runs in `pnpm test`. A pair below its minimum, or one that uses a forbidden combination, fails the build (REQ-015).
 - Both brand colors pass on black for text and for UI components: pink at 8.37:1 and yellow at 18.55:1.
-- Pairs that use a `tbd` token (text, neutral, surface, and feedback colors) are reported as `unverified`. They must be checked again when the owner supplies each value.
+- Pairs that use a `tbd` token (the surface colors) are reported as `unverified`. They must be checked again when the owner supplies each value.
 - Color is never the only signal. States such as error or selected also change text, an icon, or a shape.
 - The focus indicator must be distinguishable from the glow (REQ-024). It is brand yellow, separated from the component by a gap, so it never touches a pink or yellow fill (ADR-0009); see [Effects](effects.md).
 
@@ -243,13 +255,7 @@ Email clients do not support `var()`, so email templates use the resolved litera
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color, pure white or an off-white, is not defined. `color.text.default` holds the neutral placeholder. Owner input needed: a hex value.
->
-> **TBD (TBD-05):** The neutral scale for secondary text, borders, disabled states, and dividers is not defined. `color.text.muted` and `color.border.default` hold the neutral placeholder. Owner input needed: a set of hex values.
->
 > **TBD (TBD-06):** Card and elevated surface colors are not defined (C-05). `color.surface.card` and `color.surface.elevated` hold the neutral placeholder, and cards render on `color.bg.base` until OD-05 is decided. Owner input needed: decision OD-05.
->
-> **TBD (TBD-07):** Feedback colors for success, warning, error, and info are not defined. `color.feedback.*` holds the neutral placeholder. Owner input needed: a set of hex values.
 >
 > **TBD (TBD-08):** Tints and shades of pink and yellow are not defined (C-06). Every shade Nuxt UI requires repeats the single brand value and is marked `derived-pending`. Owner input needed: decision OD-04.
 
@@ -258,3 +264,4 @@ Email clients do not support `var()`, so email templates use the resolved litera
 - 0.1.0 — First draft: brand colors and roles from BR-01 to BR-03, the pure-black rule, contrast facts and forbidden pairs from SPEC.md §2.1, C-05, and C-06 (T4.2) — awaiting owner approval
 - 0.1.0 — The focus color is brand yellow with a gap, and its contrast pairs are regenerated (ADR-0009, TBD-16 resolved)
 - 0.1.0 — The 22 `derived-pending` shade tokens exist, and the Nuxt layer's `primary` and `secondary` aliases read them (T5.1, C-06)
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

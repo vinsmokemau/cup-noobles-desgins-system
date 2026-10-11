@@ -41,7 +41,7 @@ test('REQ-020 AC1, AC2: the doc is a custom molecule that says why it is custom,
   assert.equal(data.component, 'CnMediaCard')
   assert.equal(data.status, 'draft')
   assert.deepEqual(data.demos, ['states', 'playground'])
-  assert.deepEqual(data.tbd, ['TBD-04', 'TBD-06', 'TBD-10', 'TBD-11', 'TBD-20'])
+  assert.deepEqual(data.tbd, ['TBD-06', 'TBD-10', 'TBD-20'])
   assert.match(doc, /\*\*Why custom:\*\* Nuxt UI has no equivalent\./)
 })
 
@@ -95,13 +95,13 @@ test('ADR-0026: the media card tokens reference semantic tokens, and the placeho
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, 'tbd', path)
+    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   for (const [path, value, status] of [
     ['mediaCard.bg', '{color.bg.base}', 'stable'],
     ['mediaCard.highlight', '{color.brand.primary}', 'stable'],
     ['mediaCard.divider', '{color.brand.primary}', 'stable'],
-    ['mediaCard.fg', '{color.text.default}', 'tbd'],
+    ['mediaCard.fg', '{color.text.default}', 'stable'],
     ['mediaCard.focus.color', '{focus.ring.color}', 'stable'],
     ['mediaCard.focus.width', '{focus.ring.width}', 'stable'],
     ['mediaCard.focus.offset', '{focus.ring.offset}', 'stable'],
@@ -142,7 +142,7 @@ test('REQ-015: the media card pairs are declared, and the outline, the divider, 
   const report = checkContrast(root)
   assert.equal(report.problems.length, 0)
   for (const [foreground, ratio, result] of [
-    ['mediaCard.fg', 7.98, 'unverified'],
+    ['mediaCard.fg', 19.26, 'pass'],
     ['mediaCard.highlight', 8.37, 'pass'],
     ['mediaCard.divider', 8.37, 'pass'],
     ['mediaCard.focus.color', 18.55, 'pass'],

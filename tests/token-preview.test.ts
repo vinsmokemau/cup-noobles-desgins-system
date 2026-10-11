@@ -110,7 +110,12 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'elevation:effect.elevation.overlay',
     'elevation:effect.shadow.overlay',
   ])
-  assert.deepEqual(kinds('motion'), ['motion:motion.*.default'])
+  assert.deepEqual(kinds('motion'), [
+    'motion:motion.*.default',
+    'motion:motion.*.fast',
+    'motion:motion.*.shimmer',
+    'motion:motion.*.slow',
+  ])
   const motion = previewsOf('motion')[0]!
   assert.deepEqual(
     motion.tokens.map((t) => t.path),

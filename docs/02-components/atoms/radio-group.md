@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [choice]
 demos: [states, playground]
-tbd: [TBD-05, TBD-10, TBD-11]
+tbd: [TBD-10]
 related: [checkbox, switch, select, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Radio group
@@ -38,7 +38,7 @@ The radio group lets a person pick exactly one option from a short list that sta
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `choice.bg` | `--cn-choice-bg` | `#000000` | stable |
-| `choice.border` | `--cn-choice-border` | `#90a1b9` | tbd (TBD-05) |
+| `choice.border` | `--cn-choice-border` | `#8c8c8c` | stable |
 | `choice.borderHover` | `--cn-choice-border-hover` | `#ef80ae` | stable |
 | `choice.checked.bg` | `--cn-choice-checked-bg` | `#ef80ae` | stable |
 | `choice.checked.border` | `--cn-choice-checked-border` | `#ef80ae` | stable |
@@ -50,7 +50,7 @@ The radio group lets a person pick exactly one option from a short list that sta
 
 <!-- /cn:generated -->
 
-The radio group reads the same choice tokens as the [checkbox](checkbox.md); it is always round, so it does not read `radius.choice`. The outline color follows a placeholder (TBD-05) and the stroke width follows another (TBD-11), so they are `tbd` until the owner supplies them. The fill, the hover outline, the checked colors, and the focus tokens are `stable`.
+The radio group reads the same choice tokens as the [checkbox](checkbox.md); it is always round, so it does not read `radius.choice`. The outline color and the stroke width are `stable` (ADR-0032). The fill, the hover outline, the checked colors, and the focus tokens are `stable`.
 
 Contrast pairs declared for the choice controls (REQ-015):
 
@@ -58,7 +58,7 @@ Contrast pairs declared for the choice controls (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `choice.border` (`#90a1b9`) | `choice.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `choice.border`, `color.border.default`, `placeholder.color.neutral`) |
+| `choice.border` (`#8c8c8c`) | `choice.bg` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `choice.borderHover` (`#ef80ae`) | `choice.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `choice.checked.bg` (`#ef80ae`) | `choice.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `choice.checked.fg` (`#000000`) | `choice.checked.bg` (`#ef80ae`) | ui | 8.37:1 | 3.00:1 | pass |
@@ -72,7 +72,7 @@ Contrast pairs declared for the choice controls (REQ-015):
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-The outline is the radio's boundary, because there is no surface color yet (C-05). The stroke width is a placeholder until TBD-11 gives the "thick" value. Black on the pink fill is 8.37:1, and the yellow focus ring is 18.55:1 (SPEC.md §2.1).
+The outline is the radio's boundary, because there is no surface color yet (C-05). The stroke width is 3 px (ADR-0032). Black on the pink fill is 8.37:1, and the yellow focus ring is 18.55:1 (SPEC.md §2.1).
 
 Each radio is at least 24 × 24 px (six space units, REQ-028 AC2), larger than Nuxt UI's 16 px default.
 
@@ -126,7 +126,7 @@ A radio has no `active` state of its own: pressing it selects it, and `checked` 
 
 - The group is a `<fieldset>` with a `<legend>`, and the radios are `role="radio"` inside a `role="radiogroup"`. Each radio is named by its `<label>`.
 - Only one radio of the group is in the tab order: the checked one, or the first when none is checked. Arrow keys move inside the group, as in a native radio group.
-- The checked state is shown by the black dot as well as by the pink fill, so it is not told by color alone (WCAG 1.4.1). The unchecked outline is 7.98:1 against the page (REQ-015).
+- The checked state is shown by the black dot as well as by the pink fill, so it is not told by color alone (WCAG 1.4.1). The unchecked outline is 6.25:1 against the page (REQ-015).
 - The focus ring shows on `:focus-visible`. The ring is an outline, not the glow, and it is 18.55:1 against the page (REQ-024 AC1, AC2).
 - A disabled radio is natively disabled: it is announced as unavailable and skipped by Tab and by the arrow keys.
 
@@ -190,10 +190,6 @@ Not applicable. Email has no form controls.
 
 ## Open items
 
-> **TBD (TBD-05):** The neutral scale is not defined. The unchecked outline reads a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **TBD (TBD-10):** "Rounded" has no values. A radio is round by shape, but the choice token group also holds the checkbox radius, which follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **Draft:** The look of the choice controls (an outlined circle that turns pink on hover and fills pink with a black dot when checked, with the yellow focus ring) is approved (ADR-0014). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
@@ -201,3 +197,4 @@ Not applicable. Email has no form controls.
 ## Changelog
 
 - 0.1.0 — First draft: `URadioGroup` themed with the shared choice look, the five states, the component tokens, and the demos (T7.5) — look approved (ADR-0014), awaiting the placeholders
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

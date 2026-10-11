@@ -4,16 +4,16 @@
 
 :root {
   --cn-alert-bg: #000000; /** Fill of the alert: the pure black page (BR-03). The look is an outline, not a fill (ADR-0027). */
-  --cn-alert-error-color: #90a1b9; /** Outline and icon color of a error alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-alert-fg: #90a1b9; /** Title text of the alert. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
-  --cn-alert-fg-muted: #90a1b9; /** Description text of the alert. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-alert-error-color: #ff5c5c; /** Outline and icon color of a error alert (ADR-0027). */
+  --cn-alert-fg: #f5f5f5; /** Title text of the alert. */
+  --cn-alert-fg-muted: #bdbdbd; /** Description text of the alert. */
   --cn-alert-focus-color: #fff488; /** Focus ring color of the alert close button (REQ-024 AC1, ADR-0009). */
   --cn-alert-focus-offset: 3px; /** Gap between the alert close button and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-alert-focus-style: solid; /** Focus ring line style of the alert close button (REQ-024 AC1, ADR-0009). */
   --cn-alert-focus-width: 3px; /** Focus ring width of the alert close button (REQ-024 AC1, ADR-0009). */
-  --cn-alert-info-color: #90a1b9; /** Outline and icon color of a info alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-alert-success-color: #90a1b9; /** Outline and icon color of a success alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-alert-warning-color: #90a1b9; /** Outline and icon color of a warning alert (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-alert-info-color: #5cc8ff; /** Outline and icon color of a info alert (ADR-0027). */
+  --cn-alert-success-color: #34d399; /** Outline and icon color of a success alert (ADR-0027). */
+  --cn-alert-warning-color: #ff9f43; /** Outline and icon color of a warning alert (ADR-0027). */
   --cn-badge-outline-border: #ef80ae; /** Outline color of the outline badge: brand pink (BR-01). */
   --cn-badge-outline-fg: #ef80ae; /** Label of the outline badge: brand pink on the black page (BR-01). */
   --cn-badge-primary-bg: #ef80ae; /** Fill of the primary badge: brand pink (BR-01). */
@@ -22,33 +22,33 @@
   --cn-badge-tag-bg: #fff488; /** Fill of the tag badge of the featured media card: brand yellow (BR-02, BR-12). */
   --cn-badge-tag-border: #fff488; /** Outline color of the tag badge: brand yellow (BR-02). */
   --cn-badge-tag-fg: #000000; /** Label of the tag badge: black on the yellow fill (SPEC.md section 2.1). */
-  --cn-border-width-alert: 1px; /** Outline stroke width of the alert (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-badge: 1px; /** Outline stroke width of the badge (BR-12, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-button: 1px; /** Outline stroke width of the button (BR-10, REQ-023 AC2). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-card: 1px; /** Outline stroke width of the standard card, and of the dividers between its parts (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-choice: 1px; /** Outline stroke width of the checkbox and the radio (BR-10, BR-13). The switch track keeps Nuxt UI's own border, because its thumb travel is tuned to it. TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-default: 1px; /** Stroke width. TBD-11: "thick" (BR-10, BR-13) has no values; this references a placeholder, not a brand value. */
-  --cn-border-width-input: 1px; /** Outline stroke width of the text fields (BR-10, BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-interactive: 1px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: "thick" has no values; this references a placeholder, not a brand value. */
-  --cn-border-width-media-card: 1px; /** Outline stroke width of the featured media card, and of the line between its thumbnail and its text (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-overlay: 1px; /** Outline stroke width of the modal and slideover panel, and of the lines between its header, body, and footer (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-pagination: 1px; /** Outline stroke width of a page number and of the previous and next controls (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-progress: 1px; /** Outline stroke width of the progress track (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-separator: 1px; /** Stroke width of the separator line (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-site-footer: 1px; /** Stroke width of the line above the site footer (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-site-header: 1px; /** Stroke width of the line under the site header (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-skeleton: 1px; /** Outline stroke width of a skeleton shape (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-tabs: 1px; /** Stroke width of the rule under the tab list and of the underline under the active tab (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-toast: 1px; /** Outline stroke width of the toast (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-border-width-tooltip: 1px; /** Outline stroke width of the tooltip (BR-13). TBD-11: "thick" has no values; this follows a placeholder, not a brand value. */
-  --cn-breadcrumb-current-fg: #90a1b9; /** Text color of the current page, the last item: plain bold text, not underlined (ADR-0028). TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-border-width-alert: 3px; /** Outline stroke width of the alert (BR-13). */
+  --cn-border-width-badge: 3px; /** Outline stroke width of the badge (BR-12, BR-13). */
+  --cn-border-width-button: 3px; /** Outline stroke width of the button (BR-10, REQ-023 AC2). */
+  --cn-border-width-card: 3px; /** Outline stroke width of the standard card, and of the dividers between its parts (BR-13). */
+  --cn-border-width-choice: 3px; /** Outline stroke width of the checkbox and the radio (BR-10, BR-13). The switch track keeps Nuxt UI's own border, because its thumb travel is tuned to it. */
+  --cn-border-width-default: 3px; /** Stroke width of outlines (BR-10, BR-13): 3 px, the same weight as the focus ring (ADR-0032, TBD-11). */
+  --cn-border-width-input: 3px; /** Outline stroke width of the text fields (BR-10, BR-13). */
+  --cn-border-width-interactive: 3px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13): 3 px (ADR-0032, TBD-11). */
+  --cn-border-width-media-card: 3px; /** Outline stroke width of the featured media card, and of the line between its thumbnail and its text (BR-13). */
+  --cn-border-width-overlay: 3px; /** Outline stroke width of the modal and slideover panel, and of the lines between its header, body, and footer (BR-13). */
+  --cn-border-width-pagination: 3px; /** Outline stroke width of a page number and of the previous and next controls (BR-13). */
+  --cn-border-width-progress: 3px; /** Outline stroke width of the progress track (BR-13). */
+  --cn-border-width-separator: 3px; /** Stroke width of the separator line (BR-13). */
+  --cn-border-width-site-footer: 3px; /** Stroke width of the line above the site footer (BR-13). */
+  --cn-border-width-site-header: 3px; /** Stroke width of the line under the site header (BR-13). */
+  --cn-border-width-skeleton: 3px; /** Outline stroke width of a skeleton shape (BR-13). */
+  --cn-border-width-tabs: 3px; /** Stroke width of the rule under the tab list and of the underline under the active tab (BR-13). */
+  --cn-border-width-toast: 3px; /** Outline stroke width of the toast (BR-13). */
+  --cn-border-width-tooltip: 3px; /** Outline stroke width of the tooltip (BR-13). */
+  --cn-breadcrumb-current-fg: #f5f5f5; /** Text color of the current page, the last item: plain bold text, not underlined (ADR-0028). */
   --cn-breadcrumb-focus-color: #fff488; /** Focus ring color of a breadcrumb link (REQ-024 AC1, ADR-0009). */
   --cn-breadcrumb-focus-offset: 3px; /** Gap between a breadcrumb link and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-breadcrumb-focus-style: solid; /** Focus ring line style of a breadcrumb link (REQ-024 AC1, ADR-0009). */
   --cn-breadcrumb-focus-width: 3px; /** Focus ring width of a breadcrumb link (REQ-024 AC1, ADR-0009). */
   --cn-breadcrumb-link-fg: #ef80ae; /** Text color of a breadcrumb link: brand pink on the black page, 8.37:1, always underlined like every link (BR-01, ADR-0011, ADR-0028). */
   --cn-breadcrumb-link-fg-hover: #ef80ae; /** Text color of a breadcrumb link while hovered. Draft: the hover color is not part of ADR-0028. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
-  --cn-breadcrumb-separator-fg: #90a1b9; /** Color of the caret between two items. It is decorative and hidden from assistive technology. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-breadcrumb-separator-fg: #bdbdbd; /** Color of the caret between two items. It is decorative and hidden from assistive technology. */
   --cn-breakpoint-lg: 64rem; /** Large breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-md: 48rem; /** Medium breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-breakpoint-sm: 40rem; /** Small breakpoint. TBD-13: breakpoints are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
@@ -75,11 +75,11 @@
   --cn-button-secondary-fg: #000000; /** Label of the secondary button: black on the yellow fill (SPEC.md section 2.1). */
   --cn-card-bg: #000000; /** Fill of the standard card: the pure black page (BR-03). The card is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card until TBD-06 is resolved. */
   --cn-card-divider: #ef80ae; /** Color of the lines between the header, body, and footer of the standard card: brand pink, like the outline (ADR-0018). */
-  --cn-card-fg: #90a1b9; /** Title and body text of the standard card. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
-  --cn-card-fg-muted: #90a1b9; /** Description text of the standard card. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-card-fg: #f5f5f5; /** Title and body text of the standard card. */
+  --cn-card-fg-muted: #bdbdbd; /** Description text of the standard card. */
   --cn-card-highlight: #ef80ae; /** The neon highlight of the standard card: its outline is brand pink (BR-01, BR-12). Chosen by the owner in ADR-0018. */
   --cn-choice-bg: #000000; /** Fill of an unchecked checkbox, radio, or switch track: the pure black page (BR-03). The control is separated from the page by its outline (C-05). */
-  --cn-choice-border: #90a1b9; /** Outline color of an unchecked control, and the color of an unchecked switch thumb. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-choice-border: #8c8c8c; /** Outline color of an unchecked control, and the color of an unchecked switch thumb. */
   --cn-choice-border-hover: #ef80ae; /** Outline color of an unchecked control while hovered: brand pink (BR-01). */
   --cn-choice-checked-bg: #ef80ae; /** Fill of a checked or indeterminate control: brand pink (BR-01). */
   --cn-choice-checked-border: #ef80ae; /** Outline color of a checked or indeterminate control: brand pink (BR-01). */
@@ -89,7 +89,8 @@
   --cn-choice-focus-style: solid; /** Focus ring line style of the checkbox, radio, and switch (REQ-024 AC1, ADR-0009). */
   --cn-choice-focus-width: 3px; /** Focus ring width of the checkbox, radio, and switch (REQ-024 AC1, ADR-0009). */
   --cn-color-bg-base: #000000; /** Page background. It stays pure black, never dark gray (BR-03, REQ-012). */
-  --cn-color-border-default: #90a1b9; /** Border and divider color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value. */
+  --cn-color-border-default: #8c8c8c; /** Border color of controls (ADR-0032, TBD-05). */
+  --cn-color-border-divider: #3a3a3a; /** Thin divider lines (ADR-0032, TBD-05). A divider is decorative and exempt from contrast minimums. */
   --cn-color-brand-black: #000000; /** Brand black, the tertiary color for the base and background. It stays pure black, never dark gray (BR-03). */
   --cn-color-brand-pink: #ef80ae; /** Brand pink, the primary, protagonist color (BR-01). */
   --cn-color-brand-pink-100: #ef80ae; /** Brand pink, shade 100 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
@@ -121,15 +122,25 @@
   --cn-color-brand-yellow-800: #fff488; /** Brand yellow, shade 800 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
   --cn-color-brand-yellow-900: #fff488; /** Brand yellow, shade 900 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
   --cn-color-brand-yellow-950: #fff488; /** Brand yellow, shade 950 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-feedback-error: #90a1b9; /** Error feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value. */
-  --cn-color-feedback-info: #90a1b9; /** Info feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value. */
-  --cn-color-feedback-success: #90a1b9; /** Success feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value. */
-  --cn-color-feedback-warning: #90a1b9; /** Warning feedback color. TBD-07: feedback colors are not defined; this references a placeholder, not a brand value. */
+  --cn-color-feedback-error: #ff5c5c; /** Error feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1). */
+  --cn-color-feedback-info: #5cc8ff; /** Info feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1). */
+  --cn-color-feedback-success: #34d399; /** Success feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1). */
+  --cn-color-feedback-warning: #ff9f43; /** Warning feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1). */
+  --cn-color-neutral-grey-dark: #5c5c5c; /** Dark grey, the color of disabled text and borders (ADR-0032, TBD-05). 3.14:1 against black; disabled controls are exempt from contrast minimums. */
+  --cn-color-neutral-grey-deep: #3a3a3a; /** Deep grey, the color of thin dividers (ADR-0032, TBD-05). 1.85:1 against black; a divider is decorative and exempt. */
+  --cn-color-neutral-grey-light: #bdbdbd; /** Light grey, the secondary text color (ADR-0032, TBD-05). 11.18:1 against black. */
+  --cn-color-neutral-grey-mid: #8c8c8c; /** Mid grey, the border color of controls (ADR-0032, TBD-05). 6.25:1 against black. */
+  --cn-color-neutral-white-soft: #f5f5f5; /** Soft white, the body text color on the black page (ADR-0032, TBD-04). It keeps 19.26:1 against black and lets pink and yellow stay the brightest colors. */
+  --cn-color-signal-blue: #5cc8ff; /** Signal blue, the info feedback color (ADR-0032, TBD-07). 11.16:1 against black. */
+  --cn-color-signal-green: #34d399; /** Signal green, the success feedback color (ADR-0032, TBD-07). 10.92:1 against black. */
+  --cn-color-signal-orange: #ff9f43; /** Signal orange, the warning feedback color (ADR-0032, TBD-07). 10.29:1 against black, and clearly not the brand yellow. */
+  --cn-color-signal-red: #ff5c5c; /** Signal red, the error feedback color (ADR-0032, TBD-07). 6.94:1 against black. */
   --cn-color-surface-card: #90a1b9; /** Card surface. TBD-06: no surface color is defined (C-05, OD-05); until then cards render on color.bg.base. This references a placeholder, not a brand value. */
   --cn-color-surface-elevated: #90a1b9; /** Elevated surface (overlays). TBD-06: no surface color is defined (C-05, OD-05); this references a placeholder, not a brand value. */
-  --cn-color-text-default: #90a1b9; /** Body text color. TBD-04: pure white or an off-white is not decided; this references a placeholder, not a brand value. */
+  --cn-color-text-default: #f5f5f5; /** Body text color: soft white on the black page (ADR-0032, TBD-04). */
+  --cn-color-text-disabled: #5c5c5c; /** Text and borders of disabled controls (ADR-0032, TBD-05). Disabled controls are exempt from contrast minimums. */
   --cn-color-text-inverted: #000000; /** Text on a primary or secondary fill. Labels on primary-filled buttons must be black (SPEC.md §2.1 derived facts, BR-03). */
-  --cn-color-text-muted: #90a1b9; /** Secondary text color. TBD-05: the neutral scale is not defined; this references a placeholder, not a brand value. */
+  --cn-color-text-muted: #bdbdbd; /** Secondary text color: help text, hints, and descriptions (ADR-0032, TBD-05). */
   --cn-effect-elevation-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Shadow of overlays (modal, slideover). TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
   --cn-effect-glow-button: none; /** Neon glow of the button (BR-10, REQ-023 AC2). TBD-12: the glow has no values; this follows a placeholder, not a brand value. A disabled button shows no glow (REQ-023 AC5). */
   --cn-effect-glow-default: none; /** Neon glow. TBD-12: blur, spread, opacity, and color per state are not defined ("subtle" in BR-10); this references a placeholder, not a brand value. */
@@ -193,21 +204,21 @@
   --cn-font-weight-h1: 700; /** H1 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
   --cn-font-weight-h2: 700; /** H2 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
   --cn-font-weight-h3: 700; /** H3 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value. */
-  --cn-form-field-description-fg: #90a1b9; /** Description and hint text of a form field. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
-  --cn-form-field-error-fg: #90a1b9; /** Error message under a form field. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-form-field-help-fg: #90a1b9; /** Help text under a form field. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
-  --cn-form-field-label-fg: #90a1b9; /** Label text of a form field. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-form-field-description-fg: #bdbdbd; /** Description and hint text of a form field. */
+  --cn-form-field-error-fg: #ff5c5c; /** Error message under a form field. */
+  --cn-form-field-help-fg: #bdbdbd; /** Help text under a form field. */
+  --cn-form-field-label-fg: #f5f5f5; /** Label text of a form field. */
   --cn-input-bg: #000000; /** Fill of the text fields: the pure black page (BR-03). A field is separated from the page by its outline (C-05). */
-  --cn-input-border: #90a1b9; /** Outline color of a field at rest. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-input-border: #8c8c8c; /** Outline color of a field at rest. */
   --cn-input-border-hover: #ef80ae; /** Outline color of a field while hovered: brand pink (BR-01). */
-  --cn-input-error-border: #90a1b9; /** Outline color of a field in the error state. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-input-error-fg: #90a1b9; /** Color of the error text under a field. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-input-fg: #90a1b9; /** Text typed into a field. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-input-error-border: #ff5c5c; /** Outline color of a field in the error state. */
+  --cn-input-error-fg: #ff5c5c; /** Color of the error text under a field. */
+  --cn-input-fg: #f5f5f5; /** Text typed into a field. */
   --cn-input-focus-color: #fff488; /** Focus ring color of the text fields (REQ-024 AC1, ADR-0009). */
   --cn-input-focus-offset: 3px; /** Gap between a field and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-input-focus-style: solid; /** Focus ring line style of the text fields (REQ-024 AC1, ADR-0009). */
   --cn-input-focus-width: 3px; /** Focus ring width of the text fields (REQ-024 AC1, ADR-0009). */
-  --cn-input-placeholder: #90a1b9; /** Placeholder text of a field. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-input-placeholder: #bdbdbd; /** Placeholder text of a field. */
   --cn-layout-container-max: 80rem; /** Maximum content container width. TBD-13: container widths are not defined (the 360 px minimum is ER-05); this references a placeholder, not a brand value. */
   --cn-layout-logo-clear-space: 0.25; /** Clear space around a logo, as a share of its height (ADR-0016). */
   --cn-layout-logo-min-height-horizontal: 36px; /** Minimum height of the horizontal wordmark (ADR-0016). */
@@ -230,18 +241,21 @@
   --cn-logo-rule-min-height-vertical: 80px; /** Minimum height of the vertical lockup, chosen by the owner (ADR-0016). */
   --cn-media-card-bg: #000000; /** Fill of the featured media card: the pure black page (BR-03). The card is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card until TBD-06 is resolved. */
   --cn-media-card-divider: #ef80ae; /** Color of the line between the thumbnail and the text of the featured media card: brand pink, like the outline (ADR-0018, ADR-0026). */
-  --cn-media-card-fg: #90a1b9; /** Title text of the featured media card. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-media-card-fg: #f5f5f5; /** Title text of the featured media card. */
   --cn-media-card-focus-color: #fff488; /** Focus ring color of the linked featured media card (REQ-024 AC1, ADR-0009). The ring surrounds the whole card. */
   --cn-media-card-focus-offset: 3px; /** Gap between the linked featured media card and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-media-card-focus-style: solid; /** Focus ring line style of the linked featured media card (REQ-024 AC1, ADR-0009). */
   --cn-media-card-focus-width: 3px; /** Focus ring width of the linked featured media card (REQ-024 AC1, ADR-0009). */
   --cn-media-card-highlight: #ef80ae; /** The neon highlight of the featured media card: its outline is brand pink, like the standard card (BR-01, BR-12, ADR-0018, ADR-0026). */
-  --cn-motion-duration-default: 150ms; /** Transition duration. TBD-14: motion durations are not defined; this references a placeholder, not a brand value. */
-  --cn-motion-easing-default: cubic-bezier(0.4, 0, 0.2, 1); /** Transition easing. TBD-14: easing curves are not defined; this references a placeholder, not a brand value. */
+  --cn-motion-duration-default: 180ms; /** Transition duration: how long a toast, dialog, or hover change takes (ADR-0032, TBD-14). */
+  --cn-motion-duration-fast: 100ms; /** Fast transition: small color or state changes (ADR-0032, TBD-14). */
+  --cn-motion-duration-shimmer: 1500ms; /** One cycle of the loading shimmer and of decorative fades (ADR-0032, TBD-14). */
+  --cn-motion-duration-slow: 300ms; /** Slow transition: large panels and overlays (ADR-0032, TBD-14). */
+  --cn-motion-easing-default: cubic-bezier(0.2, 0, 0, 1); /** Transition easing: quick start, soft landing (ADR-0032, TBD-14). */
   --cn-overlay-bg: #000000; /** Fill of the modal and slideover panel: the pure black page (BR-03). The panel is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card or color.surface.elevated until TBD-06 is resolved. */
   --cn-overlay-divider: #ef80ae; /** Color of the lines between the header, body, and footer of the modal and slideover: brand pink, like the outline (ADR-0018, ADR-0029). */
-  --cn-overlay-fg: #90a1b9; /** Title and body text of the modal and slideover. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
-  --cn-overlay-fg-muted: #90a1b9; /** Description text of the modal and slideover. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-overlay-fg: #f5f5f5; /** Title and body text of the modal and slideover. */
+  --cn-overlay-fg-muted: #bdbdbd; /** Description text of the modal and slideover. */
   --cn-overlay-highlight: #ef80ae; /** The neon highlight of the modal and slideover panel: its outline is brand pink, like the cards (BR-01, BR-12, ADR-0018). Chosen by the owner in ADR-0029. */
   --cn-overlay-scrim: #000000; /** Color of the backdrop that dims the page behind a modal or slideover: pure black (BR-03). How much of it shows is overlay.scrimOpacity. Chosen by the owner in ADR-0029. */
   --cn-overlay-scrim-opacity: 0.75; /** How much of the backdrop color covers the page, from 0 to 1. TBD-15: the dimming amount is not decided; this follows a placeholder, not a brand value (ADR-0029). */
@@ -254,16 +268,15 @@
   --cn-pagination-focus-offset: 3px; /** Gap between a page control and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-pagination-focus-style: solid; /** Focus ring line style of a page control (REQ-024 AC1, ADR-0009). */
   --cn-pagination-focus-width: 3px; /** Focus ring width of a page control (REQ-024 AC1, ADR-0009). */
-  --cn-pagination-item-border: #90a1b9; /** Outline color of a page that is not the current one. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-pagination-item-border: #8c8c8c; /** Outline color of a page that is not the current one. */
   --cn-pagination-item-border-hover: #ef80ae; /** Outline color of a page that is not the current one, while hovered: brand pink (BR-01). Draft: the hover look is not part of ADR-0028. */
-  --cn-pagination-item-fg: #90a1b9; /** Number or icon color of a page that is not the current one. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
-  --cn-placeholder-border-width: 1px; /** Placeholder, not a brand value. Stands in for TBD-11. Source: Nuxt UI outlines, Tailwind ring width (ADR-0006). */
+  --cn-pagination-item-fg: #f5f5f5; /** Number or icon color of a page that is not the current one. */
   --cn-placeholder-breakpoint-lg: 64rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-lg (ADR-0006). */
   --cn-placeholder-breakpoint-md: 48rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-md (ADR-0006). */
   --cn-placeholder-breakpoint-sm: 40rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-sm (ADR-0006). */
   --cn-placeholder-breakpoint-xl: 80rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-xl (ADR-0006). */
   --cn-placeholder-breakpoint-xxl: 96rem; /** Placeholder, not a brand value. Stands in for TBD-13. Source: Tailwind --breakpoint-2xl (ADR-0006); renamed from 2xl, which fails the REQ-017 AC2 naming pattern (ADR-0006 policy 6). */
-  --cn-placeholder-color-neutral: #90a1b9; /** Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-04, TBD-05, TBD-06, and TBD-07. Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006). */
+  --cn-placeholder-color-neutral: #90a1b9; /** Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-06 (the surface colors). Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006). */
   --cn-placeholder-container-max: 80rem; /** Placeholder, not a brand value. Stands in for TBD-13 (container widths). Source: Nuxt UI --ui-container (ADR-0006). */
   --cn-placeholder-effect-glow: none; /** Placeholder, not a brand value. Stands in for TBD-12. Source: Nuxt UI UButton has no glow (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-effect-scrim-opacity: 0.75; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI UModal and USlideover overlay, bg-elevated/75 (ADR-0029). */
@@ -285,8 +298,6 @@
   --cn-placeholder-font-weight-h1: 700; /** Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h1, font-bold (ADR-0006). */
   --cn-placeholder-font-weight-h2: 700; /** Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h2, font-bold (ADR-0006). */
   --cn-placeholder-font-weight-h3: 700; /** Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h3, font-bold (ADR-0006). */
-  --cn-placeholder-motion-duration: 150ms; /** Placeholder, not a brand value. Stands in for TBD-14. Source: Tailwind --default-transition-duration (ADR-0006). */
-  --cn-placeholder-motion-easing: cubic-bezier(0.4, 0, 0.2, 1); /** Placeholder, not a brand value. Stands in for TBD-14. Source: Tailwind --default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1), split into DTCG parts (ADR-0006). */
   --cn-placeholder-radius-lg: 0.5rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --radius-lg (ADR-0006). */
   --cn-placeholder-radius-md: 0.375rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --radius-md (ADR-0006). */
   --cn-placeholder-radius-sm: 0.25rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --ui-radius, --radius-sm (ADR-0006). */
@@ -294,7 +305,7 @@
   --cn-placeholder-z-overlay: auto; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI sets no z-index on UModal or USlideover (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-z-toast: 100; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006). */
   --cn-progress-bg: #000000; /** Fill of the empty part of the progress track: the pure black page (BR-03). The track is separated from the page by its outline (C-05). */
-  --cn-progress-border: #90a1b9; /** Outline color of the progress track. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-progress-border: #8c8c8c; /** Outline color of the progress track. */
   --cn-progress-fill: #ef80ae; /** Fill of the finished part of the progress bar: brand pink (BR-01). */
   --cn-radius-alert: 0.375rem; /** Corner radius of the alert. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-badge: 0.375rem; /** Corner radius of the badge (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
@@ -313,38 +324,38 @@
   --cn-radius-toast: 0.375rem; /** Corner radius of the toast. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-radius-tooltip: 0.375rem; /** Corner radius of the tooltip. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
   --cn-separator-bg: #000000; /** The surface a separator line sits on: the pure black page (BR-03). */
-  --cn-separator-color: #90a1b9; /** Color of the separator line. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-separator-color: #8c8c8c; /** Color of the separator line. */
   --cn-site-footer-bg: #000000; /** Fill of the site footer: the pure black page (BR-03). The footer is separated from the page by its line, not by a surface color (C-05). */
-  --cn-site-footer-fg: #90a1b9; /** Text in the site footer. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-site-footer-fg: #f5f5f5; /** Text in the site footer. */
   --cn-site-footer-line: #ef80ae; /** Color of the line above the site footer: brand pink, like the header line (BR-01, ADR-0030). Chosen by the owner in ADR-0030. */
   --cn-site-header-bg: #000000; /** Fill of the site header: the pure black page, fully opaque (BR-03). The header is separated from the page by its line, not by a surface color (C-05). */
-  --cn-site-header-fg: #90a1b9; /** Text in the site header, such as the title. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-site-header-fg: #f5f5f5; /** Text in the site header, such as the title. */
   --cn-site-header-line: #ef80ae; /** Color of the line under the site header: brand pink, like the card outline (BR-01, ADR-0018). Chosen by the owner in ADR-0030. */
-  --cn-skeleton-border: #90a1b9; /** Outline color of a skeleton shape. The shape has no fill, because there is no surface color yet (C-05). TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-skeleton-border: #8c8c8c; /** Outline color of a skeleton shape. The shape has no fill, because there is no surface color yet (C-05). */
   --cn-space-base: 0.25rem; /** Spacing base unit. TBD-09: the base unit and scale are not defined; this references a placeholder, not a brand value. */
   --cn-tabs-active-fg: #ef80ae; /** Label color of the selected tab: brand pink on the black page, 8.37:1 (BR-01, ADR-0028). */
   --cn-tabs-active-indicator: #ef80ae; /** Color of the thick underline under the selected tab: brand pink (BR-01, ADR-0028). It is what keeps the selected tab from being told apart by color alone (WCAG 1.4.1). */
-  --cn-tabs-fg: #90a1b9; /** Label color of a tab that is not selected. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
-  --cn-tabs-fg-hover: #90a1b9; /** Label color of a tab that is not selected, while hovered. Draft: the hover color is not part of ADR-0028. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-tabs-fg: #bdbdbd; /** Label color of a tab that is not selected. */
+  --cn-tabs-fg-hover: #f5f5f5; /** Label color of a tab that is not selected, while hovered. Draft: the hover color is not part of ADR-0028. */
   --cn-tabs-focus-color: #fff488; /** Focus ring color of a tab (REQ-024 AC1, ADR-0009). */
   --cn-tabs-focus-offset: 3px; /** Gap between a tab and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-tabs-focus-style: solid; /** Focus ring line style of a tab (REQ-024 AC1, ADR-0009). */
   --cn-tabs-focus-width: 3px; /** Focus ring width of a tab (REQ-024 AC1, ADR-0009). */
-  --cn-tabs-rule: #90a1b9; /** Color of the rule under the whole tab list. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-tabs-rule: #8c8c8c; /** Color of the rule under the whole tab list. */
   --cn-toast-bg: #000000; /** Fill of the toast: the pure black page (BR-03). The look is an outline, not a fill (ADR-0027). */
-  --cn-toast-error-color: #90a1b9; /** Outline and icon color of a error toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-toast-fg: #90a1b9; /** Title text of the toast. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
-  --cn-toast-fg-muted: #90a1b9; /** Description text of the toast. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-toast-error-color: #ff5c5c; /** Outline and icon color of a error toast (ADR-0027). */
+  --cn-toast-fg: #f5f5f5; /** Title text of the toast. */
+  --cn-toast-fg-muted: #bdbdbd; /** Description text of the toast. */
   --cn-toast-focus-color: #fff488; /** Focus ring color of the toast and its close button (REQ-024 AC1, ADR-0009). */
   --cn-toast-focus-offset: 3px; /** Gap between the toast and its close button and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-toast-focus-style: solid; /** Focus ring line style of the toast and its close button (REQ-024 AC1, ADR-0009). */
   --cn-toast-focus-width: 3px; /** Focus ring width of the toast and its close button (REQ-024 AC1, ADR-0009). */
-  --cn-toast-info-color: #90a1b9; /** Outline and icon color of a info toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-toast-success-color: #90a1b9; /** Outline and icon color of a success toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
-  --cn-toast-warning-color: #90a1b9; /** Outline and icon color of a warning toast (ADR-0027). TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value. */
+  --cn-toast-info-color: #5cc8ff; /** Outline and icon color of a info toast (ADR-0027). */
+  --cn-toast-success-color: #34d399; /** Outline and icon color of a success toast (ADR-0027). */
+  --cn-toast-warning-color: #ff9f43; /** Outline and icon color of a warning toast (ADR-0027). */
   --cn-tooltip-bg: #000000; /** Fill of the tooltip: the pure black page (BR-03). */
   --cn-tooltip-border: #ef80ae; /** Outline of the tooltip: brand pink on the black page (BR-01), 8.37:1 (ADR-0027). */
-  --cn-tooltip-fg: #90a1b9; /** Text of the tooltip. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value. */
+  --cn-tooltip-fg: #f5f5f5; /** Text of the tooltip. */
   --cn-z-overlay: auto; /** Z-index of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
   --cn-z-toast: 100; /** Z-index of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
 }

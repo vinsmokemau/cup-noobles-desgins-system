@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-01, BR-06, BR-13]
 tokens: [tabs, border.width.tabs]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-11]
+tbd: []
 related: [breadcrumb, pagination, badge, navigation, accessibility]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Tabs
@@ -35,20 +35,20 @@ Tabs switch between views of related content in the same place, one view at a ti
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.tabs` | `--cn-border-width-tabs` | `1px` | tbd (TBD-11) |
+| `border.width.tabs` | `--cn-border-width-tabs` | `3px` | stable |
 | `tabs.active.fg` | `--cn-tabs-active-fg` | `#ef80ae` | stable |
 | `tabs.active.indicator` | `--cn-tabs-active-indicator` | `#ef80ae` | stable |
-| `tabs.fg` | `--cn-tabs-fg` | `#90a1b9` | tbd (TBD-05) |
-| `tabs.fgHover` | `--cn-tabs-fg-hover` | `#90a1b9` | tbd (TBD-04) |
+| `tabs.fg` | `--cn-tabs-fg` | `#bdbdbd` | stable |
+| `tabs.fgHover` | `--cn-tabs-fg-hover` | `#f5f5f5` | stable |
 | `tabs.focus.color` | `--cn-tabs-focus-color` | `#fff488` | stable |
 | `tabs.focus.offset` | `--cn-tabs-focus-offset` | `3px` | stable |
 | `tabs.focus.style` | `--cn-tabs-focus-style` | `solid` | stable |
 | `tabs.focus.width` | `--cn-tabs-focus-width` | `3px` | stable |
-| `tabs.rule` | `--cn-tabs-rule` | `#90a1b9` | tbd (TBD-05) |
+| `tabs.rule` | `--cn-tabs-rule` | `#8c8c8c` | stable |
 
 <!-- /cn:generated -->
 
-The tab tokens reference semantic tokens only (REQ-010 AC2). The selected label and the underline are `stable`: brand pink (BR-01). The label of a tab that is not selected, its hover color, the rule, and the stroke width follow placeholders (TBD-04, TBD-05, TBD-11), so they are `tbd` until the owner supplies them.
+The tab tokens reference semantic tokens only (REQ-010 AC2). The selected label and the underline are `stable`: brand pink (BR-01). The label of a tab that is not selected, its hover color, the rule, and the stroke width are `stable` (ADR-0032).
 
 Contrast pairs declared for the tabs (REQ-015):
 
@@ -56,11 +56,11 @@ Contrast pairs declared for the tabs (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `tabs.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `placeholder.color.neutral`, `tabs.fg`) |
-| `tabs.fgHover` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `placeholder.color.neutral`, `tabs.fgHover`) |
+| `tabs.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `tabs.fgHover` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `tabs.active.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `tabs.active.indicator` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
-| `tabs.rule` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `placeholder.color.neutral`, `tabs.rule`) |
+| `tabs.rule` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `tabs.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -193,14 +193,9 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The hover label reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The label of a tab that is not selected and the rule read a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width of the rule and the underline follow the ADR-0006 placeholder. Owner input needed: values.
->
-> **Draft:** The look (a pink bold label with a thick pink underline on a neutral rule) is approved (ADR-0028). The hover look of a tab that is not selected is a draft. The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look (a pink bold label with a thick pink underline on a neutral rule) is approved (ADR-0028). The hover look of a tab that is not selected is a draft. No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UTabs` themed with the underline look, the component tokens, and the demos (T8.4) — ADR-0028
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

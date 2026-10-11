@@ -46,7 +46,7 @@ test('the text-field component tokens reference semantic tokens, and the shape t
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, 'tbd', path)
+    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   assert.equal(byPath.get('input.bg')?.value, '{color.bg.base}')
   assert.equal(byPath.get('input.borderHover')?.value, '{color.brand.primary}')
@@ -54,11 +54,11 @@ test('the text-field component tokens reference semantic tokens, and the shape t
     assert.equal(byPath.get(`input.focus.${part}`)?.value, `{focus.ring.${part}}`, part)
   // The colors that follow a placeholder are tbd, and the ones that follow a brand value are stable.
   for (const [path, status] of [
-    ['input.fg', 'tbd'],
-    ['input.placeholder', 'tbd'],
-    ['input.border', 'tbd'],
-    ['input.error.border', 'tbd'],
-    ['input.error.fg', 'tbd'],
+    ['input.fg', 'stable'],
+    ['input.placeholder', 'stable'],
+    ['input.border', 'stable'],
+    ['input.error.border', 'stable'],
+    ['input.error.fg', 'stable'],
     ['input.bg', 'stable'],
     ['input.borderHover', 'stable'],
     ['input.focus.color', 'stable'],
@@ -86,11 +86,11 @@ test('REQ-015: the text, outline, and focus pairs of the text fields are declare
   const report = checkContrast(root)
   assert.equal(report.problems.length, 0)
   for (const [foreground, ratio, result] of [
-    ['input.fg', 7.98, 'unverified'],
-    ['input.placeholder', 7.98, 'unverified'],
-    ['input.border', 7.98, 'unverified'],
-    ['input.error.border', 7.98, 'unverified'],
-    ['input.error.fg', 7.98, 'unverified'],
+    ['input.fg', 19.26, 'pass'],
+    ['input.placeholder', 11.18, 'pass'],
+    ['input.border', 6.25, 'pass'],
+    ['input.error.border', 6.94, 'pass'],
+    ['input.error.fg', 6.94, 'pass'],
     ['input.borderHover', 8.37, 'pass'],
     ['input.focus.color', 18.55, 'pass'],
   ] as const) {

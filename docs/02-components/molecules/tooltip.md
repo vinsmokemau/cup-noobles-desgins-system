@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [tooltip, radius.tooltip, border.width.tooltip]
 demos: [states, playground]
-tbd: [TBD-04, TBD-10, TBD-11, TBD-14]
+tbd: [TBD-10]
 related: [button, link, alert, toast, accessibility]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Tooltip
@@ -34,15 +34,15 @@ The tooltip is a short hint that appears beside a control when the person hovers
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.tooltip` | `--cn-border-width-tooltip` | `1px` | tbd (TBD-11) |
+| `border.width.tooltip` | `--cn-border-width-tooltip` | `3px` | stable |
 | `radius.tooltip` | `--cn-radius-tooltip` | `0.375rem` | tbd (TBD-10) |
 | `tooltip.bg` | `--cn-tooltip-bg` | `#000000` | stable |
 | `tooltip.border` | `--cn-tooltip-border` | `#ef80ae` | stable |
-| `tooltip.fg` | `--cn-tooltip-fg` | `#90a1b9` | tbd (TBD-04) |
+| `tooltip.fg` | `--cn-tooltip-fg` | `#f5f5f5` | stable |
 
 <!-- /cn:generated -->
 
-The outline is brand pink (BR-01) and the fill is the black page (BR-03), so both are `stable`. The text color, the radius, and the stroke width follow placeholders (TBD-04, TBD-10, TBD-11), so they are `tbd`.
+The outline is brand pink (BR-01) and the fill is the black page (BR-03), so both are `stable`. The radius follows a placeholder (TBD-10), so it is `tbd`. The text color and the stroke width are `stable` (ADR-0032).
 
 Contrast pairs declared for the tooltip (REQ-015):
 
@@ -50,7 +50,7 @@ Contrast pairs declared for the tooltip (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `tooltip.fg` (`#90a1b9`) | `tooltip.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `placeholder.color.neutral`, `tooltip.fg`) |
+| `tooltip.fg` (`#f5f5f5`) | `tooltip.bg` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `tooltip.border` (`#ef80ae`) | `tooltip.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -163,16 +163,11 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The tooltip text reads a placeholder, not a brand value. Owner input needed: a hex.
->
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-14):** Motion durations and easing are not defined. The open and close animation and the hover delay are Nuxt UI defaults, not brand values. Owner input needed: values.
 >
 > **Draft:** The look of the tooltip (a black bubble with a brand pink outline) is approved (ADR-0027). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UTooltip` themed with the pink outline look, the component tokens, and the demos (T8.3) — ADR-0027
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

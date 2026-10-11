@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [alert, radius.alert, border.width.alert]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-07, TBD-10, TBD-11]
+tbd: [TBD-10]
 related: [toast, tooltip, card, form-field, button, accessibility, color]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Alert
@@ -38,22 +38,22 @@ The alert is an inline message that stays on the page until the person closes it
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `alert.bg` | `--cn-alert-bg` | `#000000` | stable |
-| `alert.error.color` | `--cn-alert-error-color` | `#90a1b9` | tbd (TBD-07) |
-| `alert.fg` | `--cn-alert-fg` | `#90a1b9` | tbd (TBD-04) |
-| `alert.fgMuted` | `--cn-alert-fg-muted` | `#90a1b9` | tbd (TBD-05) |
+| `alert.error.color` | `--cn-alert-error-color` | `#ff5c5c` | stable |
+| `alert.fg` | `--cn-alert-fg` | `#f5f5f5` | stable |
+| `alert.fgMuted` | `--cn-alert-fg-muted` | `#bdbdbd` | stable |
 | `alert.focus.color` | `--cn-alert-focus-color` | `#fff488` | stable |
 | `alert.focus.offset` | `--cn-alert-focus-offset` | `3px` | stable |
 | `alert.focus.style` | `--cn-alert-focus-style` | `solid` | stable |
 | `alert.focus.width` | `--cn-alert-focus-width` | `3px` | stable |
-| `alert.info.color` | `--cn-alert-info-color` | `#90a1b9` | tbd (TBD-07) |
-| `alert.success.color` | `--cn-alert-success-color` | `#90a1b9` | tbd (TBD-07) |
-| `alert.warning.color` | `--cn-alert-warning-color` | `#90a1b9` | tbd (TBD-07) |
-| `border.width.alert` | `--cn-border-width-alert` | `1px` | tbd (TBD-11) |
+| `alert.info.color` | `--cn-alert-info-color` | `#5cc8ff` | stable |
+| `alert.success.color` | `--cn-alert-success-color` | `#34d399` | stable |
+| `alert.warning.color` | `--cn-alert-warning-color` | `#ff9f43` | stable |
+| `border.width.alert` | `--cn-border-width-alert` | `3px` | stable |
 | `radius.alert` | `--cn-radius-alert` | `0.375rem` | tbd (TBD-10) |
 
 <!-- /cn:generated -->
 
-The alert tokens reference semantic tokens only (REQ-010 AC2). The four feedback colors, the text colors, the radius, and the stroke width follow placeholders (TBD-04, TBD-05, TBD-07, TBD-10, TBD-11), so every one is `tbd` until the owner supplies the values. The fill and the focus ring are `stable`: black, and the yellow focus ring (ADR-0009).
+The alert tokens reference semantic tokens only (REQ-010 AC2). The radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The four feedback colors, the text colors, and the stroke width are `stable` (ADR-0032). The fill and the focus ring are `stable` too: black, and the yellow focus ring (ADR-0009).
 
 Contrast pairs declared for the alert (REQ-015):
 
@@ -61,12 +61,12 @@ Contrast pairs declared for the alert (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `alert.fg` (`#90a1b9`) | `alert.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `alert.fg`, `color.text.default`, `placeholder.color.neutral`) |
-| `alert.fgMuted` (`#90a1b9`) | `alert.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `alert.fgMuted`, `color.text.muted`, `placeholder.color.neutral`) |
-| `alert.success.color` (`#90a1b9`) | `alert.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `alert.success.color`, `color.feedback.success`, `placeholder.color.neutral`) |
-| `alert.info.color` (`#90a1b9`) | `alert.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `alert.info.color`, `color.feedback.info`, `placeholder.color.neutral`) |
-| `alert.warning.color` (`#90a1b9`) | `alert.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `alert.warning.color`, `color.feedback.warning`, `placeholder.color.neutral`) |
-| `alert.error.color` (`#90a1b9`) | `alert.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `alert.error.color`, `color.feedback.error`, `placeholder.color.neutral`) |
+| `alert.fg` (`#f5f5f5`) | `alert.bg` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `alert.fgMuted` (`#bdbdbd`) | `alert.bg` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `alert.success.color` (`#34d399`) | `alert.bg` (`#000000`) | ui | 10.92:1 | 3.00:1 | pass |
+| `alert.info.color` (`#5cc8ff`) | `alert.bg` (`#000000`) | ui | 11.16:1 | 3.00:1 | pass |
+| `alert.warning.color` (`#ff9f43`) | `alert.bg` (`#000000`) | ui | 10.29:1 | 3.00:1 | pass |
+| `alert.error.color` (`#ff5c5c`) | `alert.bg` (`#000000`) | ui | 6.94:1 | 3.00:1 | pass |
 | `alert.focus.color` (`#fff488`) | `alert.bg` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -77,7 +77,7 @@ Contrast pairs declared for the alert (REQ-015):
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-Today the four feedback colors are one neutral placeholder (TBD-07), so the types look alike. They are told apart by their icon and their title, never by color alone (WCAG 1.4.1). The look was chosen by the owner (ADR-0027).
+Each type has its own feedback color (ADR-0032), and the types are also told apart by their icon and their title, never by color alone (WCAG 1.4.1). The look was chosen by the owner (ADR-0027).
 
 ## Variants
 
@@ -137,7 +137,7 @@ An alert is not a control, so it has no hover, active, or disabled state. Its cl
 - The icon is decoration and is hidden from assistive technology. The type is carried by the title and the description.
 - The close button needs an accessible name. Nuxt UI supplies one from its locale, and the demos pass an es-MX label.
 - The close button is at least 24 × 24 px (REQ-028 AC2) and shows the yellow focus ring on `:focus-visible` (REQ-024), 18.55:1 against the black fill.
-- Text is 4.5:1 or more against the fill, and the outline is 3:1 or more against the page, where the colors are defined (REQ-015). Until then the pairs are reported as unverified.
+- Text is 4.5:1 or more against the fill, and the outline is 3:1 or more against the page (REQ-015).
 - Nothing in the alert moves, so there is no animation to stop (REQ-029 AC2).
 
 Keyboard map (each row has a Playwright test, REQ-027 AC2):
@@ -200,18 +200,11 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The alert text reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The description text reads a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-07):** The feedback colors are not defined. The outline and icon of all four types read the same placeholder, so today the types are told apart by their icon and title. Owner input needed: a hex set.
->
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **Draft:** The look of the alert (a black fill with a thick outline and an icon in the feedback color) is approved (ADR-0027). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UAlert` themed with the outline look, the four feedback types, the component tokens, and the demos (T8.3) — ADR-0027
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

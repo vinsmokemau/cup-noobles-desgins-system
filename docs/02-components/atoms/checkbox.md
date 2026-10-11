@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [choice]
 demos: [states, playground]
-tbd: [TBD-05, TBD-10, TBD-11]
+tbd: [TBD-10]
 related: [radio-group, switch, input, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Checkbox
@@ -37,7 +37,7 @@ The checkbox lets a person turn one option on or off, or pick any number of opti
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `choice.bg` | `--cn-choice-bg` | `#000000` | stable |
-| `choice.border` | `--cn-choice-border` | `#90a1b9` | tbd (TBD-05) |
+| `choice.border` | `--cn-choice-border` | `#8c8c8c` | stable |
 | `choice.borderHover` | `--cn-choice-border-hover` | `#ef80ae` | stable |
 | `choice.checked.bg` | `--cn-choice-checked-bg` | `#ef80ae` | stable |
 | `choice.checked.border` | `--cn-choice-checked-border` | `#ef80ae` | stable |
@@ -49,7 +49,7 @@ The checkbox lets a person turn one option on or off, or pick any number of opti
 
 <!-- /cn:generated -->
 
-The choice tokens are shared by the checkbox, the radio group, and the switch, so the three always match. The component tokens only reference semantic tokens (REQ-010 AC2). The unchecked outline, the corner radius, and the stroke width follow placeholders (TBD-05, TBD-10, TBD-11), so they are `tbd` until the owner supplies them. The fill, the hover outline, the checked colors, and the focus tokens are `stable`.
+The choice tokens are shared by the checkbox, the radio group, and the switch, so the three always match. The component tokens only reference semantic tokens (REQ-010 AC2). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The unchecked outline reads the neutral border color, and the stroke width is 3 px (ADR-0032). The fill, the hover outline, the checked colors, and the focus tokens are `stable`.
 
 Contrast pairs declared for the choice controls (REQ-015):
 
@@ -57,7 +57,7 @@ Contrast pairs declared for the choice controls (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `choice.border` (`#90a1b9`) | `choice.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `choice.border`, `color.border.default`, `placeholder.color.neutral`) |
+| `choice.border` (`#8c8c8c`) | `choice.bg` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `choice.borderHover` (`#ef80ae`) | `choice.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `choice.checked.bg` (`#ef80ae`) | `choice.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `choice.checked.fg` (`#000000`) | `choice.checked.bg` (`#ef80ae`) | ui | 8.37:1 | 3.00:1 | pass |
@@ -71,7 +71,7 @@ Contrast pairs declared for the choice controls (REQ-015):
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-The outline is the box's boundary, because there is no surface color yet (C-05). The stroke width is a placeholder until TBD-11 gives the "thick" value. Black on the pink fill is 8.37:1, and the yellow focus ring is 18.55:1 (SPEC.md §2.1).
+The outline is the box's boundary, because there is no surface color yet (C-05). The stroke width is 3 px (ADR-0032). Black on the pink fill is 8.37:1, and the yellow focus ring is 18.55:1 (SPEC.md §2.1).
 
 The box is at least 24 × 24 px (six space units, REQ-028 AC2), larger than Nuxt UI's 16 px default, so it is a safe target.
 
@@ -127,7 +127,7 @@ A checkbox has no `active` state of its own: pressing it toggles it, and `checke
 
 - The box is a `<button role="checkbox">` with `aria-checked` set to `true`, `false`, or `mixed` (indeterminate). It is named by its `<label>`.
 - Clicking the label toggles the box, because the label is tied to it with `for` and `id`.
-- The checked state is shown by the check mark as well as by the pink fill, so it is not told by color alone (WCAG 1.4.1). The unchecked outline is 7.98:1 against the page, and the pink outline on hover and the focus ring are above 3:1 (REQ-015).
+- The checked state is shown by the check mark as well as by the pink fill, so it is not told by color alone (WCAG 1.4.1). The unchecked outline is 6.25:1 against the page, and the pink outline on hover and the focus ring are above 3:1 (REQ-015).
 - The focus ring shows on `:focus-visible`, which keyboard focus matches and a mouse click does not (REQ-024 AC2). The ring is an outline, not the glow, and it is 18.55:1 against the page (REQ-024 AC1).
 - A disabled checkbox is natively disabled: it is announced as unavailable and skipped by Tab.
 
@@ -181,14 +181,11 @@ Not applicable. Email has no form controls.
 
 ## Open items
 
-> **TBD (TBD-05):** The neutral scale is not defined. The unchecked outline and the unchecked switch thumb read a placeholder, not a brand value. Owner input needed: a hex set.
->
 > **TBD (TBD-10):** "Rounded" has no values. The checkbox corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **Draft:** The look of the choice controls (an outlined box that turns pink on hover and fills pink with a black mark when checked, with the yellow focus ring) is approved (ADR-0014). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UCheckbox` themed with the shared choice look, the six states, the component tokens, and the demos (T7.5) — look approved (ADR-0014), awaiting the placeholders
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

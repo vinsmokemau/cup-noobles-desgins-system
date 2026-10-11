@@ -12,8 +12,8 @@
       "interactive": {
         "$type": "dimension",
         "$value": "{border.width.default}",
-        "$description": "Outline stroke width of interactive elements such as buttons (BR-10, BR-13). TBD-11: \"thick\" has no values; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
+        "$description": "Outline stroke width of interactive elements such as buttons (BR-10, BR-13): 3 px (ADR-0032, TBD-11).",
+        "$extensions": { "cn": { "status": "stable" } }
       }
     }
   }

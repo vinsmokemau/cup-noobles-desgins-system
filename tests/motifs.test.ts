@@ -339,9 +339,9 @@ test('REQ-020 AC1, AC2, REQ-009: both docs are custom components with a "Why cus
     assert.match(docOf(slug), /\*\*Why custom:\*\*[^\n]*Nuxt UI has no equivalent/, slug)
     assert.doesNotMatch(docOf(slug), /Content pending/, slug)
   }
-  // The sparkle stays a draft (REQ-009): its fade duration follows a placeholder (TBD-14).
+  // The sparkle stays a draft until the owner approves it (REQ-009); its fade duration is ADR-0032, so no TBD is left.
   assert.equal(frontmatter('sparkle').status, 'draft')
-  assert.deepEqual(frontmatter('sparkle').tbd, ['TBD-14'])
+  assert.deepEqual(frontmatter('sparkle').tbd, [])
   assert.doesNotMatch(docOf('sparkle'), /> \*\*TBD \(TBD-18\):\*\*/)
   assert.match(docOf('sparkle'), /ADR-0017/)
   // The sticker frame has its artwork (ADR-0024) and reads no placeholder token, so no TBD is left on it (ADR-0025).

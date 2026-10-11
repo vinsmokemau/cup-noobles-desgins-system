@@ -6,17 +6,17 @@ status: draft
 lang: en
 brandRules: [BR-14, BR-17]
 tokens: [motion]
-tbd: [TBD-14]
+tbd: []
 related: [effects, accessibility, imagery-and-motifs, sparkle]
 since: 0.1.0
-updated: 2026-09-28
+updated: 2026-10-11
 ---
 
 # Motion
 
 ## Purpose
 
-This doc defines how Cup Noobles UI moves: the durations and easing curves of transitions, and the safety rules every animation follows. Motion can support the feel described in BR-17, and the decorative motifs of BR-14 may animate, but motion is never required to understand the UI. This doc states the documentation part of REQ-029: animations respect reduced motion and never flash more than 3 times per second. The durations and easing curves are not defined yet (TBD-14), so the motion tokens hold ADR-0006 placeholders that are not brand values.
+This doc defines how Cup Noobles UI moves: the durations and easing curves of transitions, and the safety rules every animation follows. Motion can support the feel described in BR-17, and the decorative motifs of BR-14 may animate, but motion is never required to understand the UI. This doc states the documentation part of REQ-029: animations respect reduced motion and never flash more than 3 times per second. The durations and the easing curve come from the owner (ADR-0032).
 
 ## Tokens and specs
 
@@ -24,12 +24,15 @@ This doc defines how Cup Noobles UI moves: the durations and easing curves of tr
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `motion.duration.default` | `--cn-motion-duration-default` | `150ms` | tbd (TBD-14) |
-| `motion.easing.default` | `--cn-motion-easing-default` | `cubic-bezier(0.4, 0, 0.2, 1)` | tbd (TBD-14) |
+| `motion.duration.default` | `--cn-motion-duration-default` | `180ms` | stable |
+| `motion.duration.fast` | `--cn-motion-duration-fast` | `100ms` | stable |
+| `motion.duration.shimmer` | `--cn-motion-duration-shimmer` | `1500ms` | stable |
+| `motion.duration.slow` | `--cn-motion-duration-slow` | `300ms` | stable |
+| `motion.easing.default` | `--cn-motion-easing-default` | `cubic-bezier(0.2, 0, 0, 1)` | stable |
 
 <!-- /cn:generated -->
 
-Every row above is `tbd`. They hold the ADR-0006 placeholders taken from Tailwind's default transition duration and timing function, which Nuxt UI uses for its color transitions. **None of them is a brand value.** They exist only so the tokens build and the showcase renders.
+Every row above is `stable`. The brand context gives no motion value, so the values are the owner's choices (ADR-0032), not brand values. The default duration and the easing curve drive every transition in the layer, and the shimmer cycle drives the skeleton and sparkle fades.
 
 The component tokens that apply motion to a component are added by that component's task.
 
@@ -39,20 +42,23 @@ The component tokens that apply motion to a component are added by that componen
 >
 > **BR-14:** Decorative motifs: sparkles and stars, sticker-style borders, a pink ramen cup with gamer details (the core brand icon), noodle-inspired curves and waves, a golden d20, chopsticks, and arcade-inspired shapes and dynamic lines.
 
-The brand context defines no motion values. Whether and how motion expresses BR-17 is part of TBD-14. The motifs are covered in [Imagery and motifs](imagery-and-motifs.md).
+The brand context defines no motion values. The owner chose a snappy set to express BR-17 (ADR-0032). The motifs are covered in [Imagery and motifs](imagery-and-motifs.md).
 
 ### Durations and easing
 
 | Token group | Source | Role |
 |---|---|---|
-| `motion.duration.default` | Value TBD-14 | How long a transition takes, such as a color change on hover. |
-| `motion.easing.default` | Value TBD-14 | The acceleration curve of a transition. |
+| `motion.duration.default` | 180 ms (ADR-0032) | How long a transition takes, such as a color change on hover. |
+| `motion.duration.fast` | 100 ms (ADR-0032) | Small state changes. No component reads it yet. |
+| `motion.duration.slow` | 300 ms (ADR-0032) | Large panels and overlays. No component reads it yet. |
+| `motion.duration.shimmer` | 1500 ms (ADR-0032) | One cycle of the skeleton fade and the sparkle fade. |
+| `motion.easing.default` | ADR-0032 | The acceleration curve of a transition: a quick start and a soft landing. |
 
-How many durations and curves the system needs, and which interactions use each, is part of TBD-14.
+The default duration and the easing curve drive every transition in the layer, such as color changes on hover and focus. `motion.duration.shimmer` is one cycle of the skeleton fade and the sparkle fade. `motion.duration.fast` and `motion.duration.slow` are defined for later components, and no component reads them yet.
 
 ### Safety rules
 
-These rules come from REQ-029 and apply to every animation, whatever TBD-14 defines.
+These rules come from REQ-029 and apply to every animation, whatever the durations are.
 
 1. **Reduced motion.** Any animation stops, or reduces to a non-moving state, under `prefers-reduced-motion: reduce` (REQ-029 AC2). A state change still happens; only the movement goes.
 2. **Flash limit.** Nothing flashes more than 3 times per second (REQ-029 AC3, WCAG SC 2.3.1).
@@ -72,8 +78,8 @@ These rules come from REQ-029 and apply to every animation, whatever TBD-14 defi
 - Never let anything flash more than 3 times per second (REQ-029 AC3).
 - Never make an animation the only way to show a state or a message.
 - Never give a decorative motif meaning, a focusable element, or an accessible name (REQ-029 AC1).
-- Never make up a duration or an easing curve. They are TBD-14, and only the owner can supply them.
-- Never treat the ADR-0006 placeholders as brand values, and never copy them into another project.
+- Never make up a duration or an easing curve. Use the motion tokens (ADR-0032); a new value needs the owner.
+- Never copy these values into another project as if they came from the brand context. They are the owner's choices for this system (ADR-0032).
 
 ## Do and don't
 
@@ -105,7 +111,7 @@ Email templates do not animate. Motion tokens are not used in email, and a motif
 
 | Where | What |
 |---|---|
-| `tokens/primitive/motion.json` | The duration and easing, both `tbd` (TBD-14). |
+| `tokens/primitive/motion.json` | The durations and the easing, `stable` (ADR-0032). |
 | `@vinsmokemau/cup-noobles-tokens`, `dist/css/tokens.css` | The CSS custom properties, such as `--cn-motion-duration-default` (REQ-017). |
 
 ```css
@@ -124,8 +130,9 @@ Email templates do not animate. Motion tokens are not used in email, and a motif
 
 ## Open items
 
-> **TBD (TBD-14):** Motion durations and easing curves are not defined. `motion.duration.default` and `motion.easing.default` hold ADR-0006 placeholders. Owner input needed: values, and whether motion is used to express BR-17.
+> **Draft:** The durations and the easing are the owner's choice (ADR-0032), and the safety rules come from REQ-029. No value in this doc is open any more, so it stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-14 and BR-17, the duration and easing groups, the REQ-029 reduced-motion, flash-limit, and decorative-motif rules, and TBD-14 (T4.5) — awaiting owner approval
+- 0.1.0 — The durations and the easing are set; TBD-14 is resolved — ADR-0032

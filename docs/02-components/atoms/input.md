@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-10, BR-13]
 tokens: [input]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-07, TBD-10, TBD-11]
+tbd: [TBD-10]
 related: [textarea, select, button, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Input
@@ -37,20 +37,20 @@ The input is a single-line text field: the place where a person types a short an
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `input.bg` | `--cn-input-bg` | `#000000` | stable |
-| `input.border` | `--cn-input-border` | `#90a1b9` | tbd (TBD-05) |
+| `input.border` | `--cn-input-border` | `#8c8c8c` | stable |
 | `input.borderHover` | `--cn-input-border-hover` | `#ef80ae` | stable |
-| `input.error.border` | `--cn-input-error-border` | `#90a1b9` | tbd (TBD-07) |
-| `input.error.fg` | `--cn-input-error-fg` | `#90a1b9` | tbd (TBD-07) |
-| `input.fg` | `--cn-input-fg` | `#90a1b9` | tbd (TBD-04) |
+| `input.error.border` | `--cn-input-error-border` | `#ff5c5c` | stable |
+| `input.error.fg` | `--cn-input-error-fg` | `#ff5c5c` | stable |
+| `input.fg` | `--cn-input-fg` | `#f5f5f5` | stable |
 | `input.focus.color` | `--cn-input-focus-color` | `#fff488` | stable |
 | `input.focus.offset` | `--cn-input-focus-offset` | `3px` | stable |
 | `input.focus.style` | `--cn-input-focus-style` | `solid` | stable |
 | `input.focus.width` | `--cn-input-focus-width` | `3px` | stable |
-| `input.placeholder` | `--cn-input-placeholder` | `#90a1b9` | tbd (TBD-05) |
+| `input.placeholder` | `--cn-input-placeholder` | `#bdbdbd` | stable |
 
 <!-- /cn:generated -->
 
-The text-field tokens are shared by the input, the textarea, and the select, so the three always match. The component tokens only reference semantic tokens (REQ-010 AC2). The text, placeholder, outline, and error colors, the corner radius, and the stroke width follow placeholders (TBD-04, TBD-05, TBD-07, TBD-10, TBD-11), so they are `tbd` until the owner supplies them. The fill, the hover outline, and the focus tokens are `stable`.
+The text-field tokens are shared by the input, the textarea, and the select, so the three always match. The component tokens only reference semantic tokens (REQ-010 AC2). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The text, placeholder, outline, and error colors and the stroke width are `stable` (ADR-0032), and so are the fill, the hover outline, and the focus tokens.
 
 Contrast pairs declared for the text fields (REQ-015):
 
@@ -58,12 +58,12 @@ Contrast pairs declared for the text fields (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `input.fg` (`#90a1b9`) | `input.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `input.fg`, `placeholder.color.neutral`) |
-| `input.placeholder` (`#90a1b9`) | `input.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `input.placeholder`, `placeholder.color.neutral`) |
-| `input.border` (`#90a1b9`) | `input.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `input.border`, `placeholder.color.neutral`) |
+| `input.fg` (`#f5f5f5`) | `input.bg` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `input.placeholder` (`#bdbdbd`) | `input.bg` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `input.border` (`#8c8c8c`) | `input.bg` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `input.borderHover` (`#ef80ae`) | `input.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
-| `input.error.border` (`#90a1b9`) | `input.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.feedback.error`, `input.error.border`, `placeholder.color.neutral`) |
-| `input.error.fg` (`#90a1b9`) | `input.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.error`, `input.error.fg`, `placeholder.color.neutral`) |
+| `input.error.border` (`#ff5c5c`) | `input.bg` (`#000000`) | ui | 6.94:1 | 3.00:1 | pass |
+| `input.error.fg` (`#ff5c5c`) | `input.bg` (`#000000`) | text | 6.94:1 | 4.50:1 | pass |
 | `input.focus.color` (`#fff488`) | `input.bg` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -74,7 +74,7 @@ Contrast pairs declared for the text fields (REQ-015):
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-The outline is the field's boundary, because there is no surface color yet (C-05). The stroke width is a placeholder until TBD-11 gives the "thick" value. Pink on black is 8.37:1 and the yellow focus ring is 18.55:1 (SPEC.md §2.1).
+The outline is the field's boundary, because there is no surface color yet (C-05). The stroke width is 3 px (ADR-0032). Pink on black is 8.37:1 and the yellow focus ring is 18.55:1 (SPEC.md §2.1).
 
 ## Variants
 
@@ -187,18 +187,11 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The typed text reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The placeholder text and the outline at rest read a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-07):** The feedback colors are not defined. The error outline and the error text read the same placeholder as the neutral outline, so today the error is told apart by its message and icon, not by color. Owner input needed: a hex set.
->
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UInput` themed with the shared text-field look, the five states, the component tokens, and the demos (T7.4) — awaiting owner approval of the placeholders
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

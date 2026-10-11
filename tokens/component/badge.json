@@ -17,11 +17,10 @@
       "badge": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the badge (BR-12, BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$description": "Outline stroke width of the badge (BR-12, BR-13).",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-11"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       }

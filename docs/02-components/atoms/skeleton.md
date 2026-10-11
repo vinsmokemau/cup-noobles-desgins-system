@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [skeleton]
 demos: [states, playground]
-tbd: [TBD-05, TBD-10, TBD-11, TBD-14]
+tbd: [TBD-10]
 related: [progress, separator, accessibility, motion]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Skeleton
@@ -33,11 +33,11 @@ The skeleton is a stand-in shape shown in the place where content will appear, s
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `skeleton.border` | `--cn-skeleton-border` | `#90a1b9` | tbd (TBD-05) |
+| `skeleton.border` | `--cn-skeleton-border` | `#8c8c8c` | stable |
 
 <!-- /cn:generated -->
 
-The shape reads a neutral outline that follows a placeholder (TBD-05), so it is `tbd` until the owner supplies it. Its stroke width and radius are the tokens `border.width.skeleton` and `radius.skeleton` on the shape page, and they follow placeholders too (TBD-11, TBD-10). The fade lasts ten base motion durations, and the base duration is a placeholder (TBD-14). The depth of the fade, half opacity, is Nuxt UI's own default for the component, not a brand value.
+The shape reads a neutral outline (ADR-0032), so it is `stable`. Its stroke width is the token `border.width.skeleton` on the shape page, and it is `stable` too. Its radius is `radius.skeleton`, which follows a placeholder (TBD-10). The fade lasts one shimmer cycle, `motion.duration.shimmer` (ADR-0032). The depth of the fade, half opacity, is Nuxt UI's own default for the component, not a brand value.
 
 ### Brand rules
 
@@ -139,16 +139,11 @@ Not applicable. Email has no loading state.
 
 ## Open items
 
-> **TBD (TBD-05):** The neutral scale is not defined. The shape outline reads a placeholder, not a brand value. Owner input needed: a hex set.
->
 > **TBD (TBD-10):** "Rounded" has no values. The shape radius follows a placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The shape outline follows the placeholder stroke width. Owner input needed: values.
->
-> **TBD (TBD-14):** Motion durations are not defined. The fade length follows a placeholder. Owner input needed: values.
 >
 > **Draft:** The look (outlined shapes with a slow fade) is approved (ADR-0015). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `USkeleton` themed as outlined shapes with a slow fade that stops under reduced motion, the component tokens, and the demos (T7.6) — look approved (ADR-0015), awaiting the placeholders
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

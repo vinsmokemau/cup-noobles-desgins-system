@@ -49,18 +49,18 @@ test('the card and form field tokens reference semantic tokens, and the placehol
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, 'tbd', path)
+    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   for (const [path, value, status] of [
     ['card.bg', '{color.bg.base}', 'stable'],
     ['card.highlight', '{color.brand.primary}', 'stable'],
     ['card.divider', '{color.brand.primary}', 'stable'],
-    ['card.fg', '{color.text.default}', 'tbd'],
-    ['card.fgMuted', '{color.text.muted}', 'tbd'],
-    ['formField.label.fg', '{color.text.default}', 'tbd'],
-    ['formField.description.fg', '{color.text.muted}', 'tbd'],
-    ['formField.help.fg', '{color.text.muted}', 'tbd'],
-    ['formField.error.fg', '{color.feedback.error}', 'tbd'],
+    ['card.fg', '{color.text.default}', 'stable'],
+    ['card.fgMuted', '{color.text.muted}', 'stable'],
+    ['formField.label.fg', '{color.text.default}', 'stable'],
+    ['formField.description.fg', '{color.text.muted}', 'stable'],
+    ['formField.help.fg', '{color.text.muted}', 'stable'],
+    ['formField.error.fg', '{color.feedback.error}', 'stable'],
   ] as const) {
     assert.equal(byPath.get(path)?.value, value, path)
     assert.equal(byPath.get(path)?.cn?.status, status, path)
@@ -84,8 +84,8 @@ test('REQ-015: the card pairs are declared, and the pink outline and dividers pa
   const report = checkContrast(root)
   assert.equal(report.problems.length, 0)
   for (const [foreground, ratio, result] of [
-    ['card.fg', 7.98, 'unverified'],
-    ['card.fgMuted', 7.98, 'unverified'],
+    ['card.fg', 19.26, 'pass'],
+    ['card.fgMuted', 11.18, 'pass'],
     ['card.highlight', 8.37, 'pass'],
     ['card.divider', 8.37, 'pass'],
   ] as const) {
@@ -96,7 +96,7 @@ test('REQ-015: the card pairs are declared, and the pink outline and dividers pa
   for (const foreground of ['label', 'description', 'help', 'error']) {
     const pair = report.pairs.find((p) => p.foreground === `formField.${foreground}.fg`)
     assert.equal(pair?.background, 'color.bg.base', foreground)
-    assert.equal(pair?.result, 'unverified', foreground)
+    assert.equal(pair?.result, 'pass', foreground)
   }
 })
 
@@ -133,7 +133,7 @@ test('REQ-025 AC1, AC3: the card is documented with header, body, and footer slo
   for (const part of ['**header**', '**body**', '**footer**']) assert.ok(doc.includes(part), part)
   assert.match(doc, /> \*\*TBD \(TBD-06\):\*\*[^\n]*C-05/)
   assert.match(doc, /\| `color\.surface\.card` \| `--cn-color-surface-card` \| `#[0-9a-f]{6}` \| tbd \(TBD-06\) \|/)
-  assert.deepEqual(frontmatter('card').tbd, ['TBD-04', 'TBD-05', 'TBD-06', 'TBD-10', 'TBD-11'])
+  assert.deepEqual(frontmatter('card').tbd, ['TBD-06', 'TBD-10'])
   const demo = read('apps/showcase/demos/card/states.vue')
   for (const slot of ['#header', '#footer']) assert.ok(demo.includes(slot), `demo uses ${slot}`)
 })

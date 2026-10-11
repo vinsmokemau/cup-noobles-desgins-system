@@ -67,7 +67,12 @@ test('§4.4: every semantic token is stable with a brand or ADR reference, or tb
   assert.deepEqual(problems, [])
   for (const token of semantic) {
     const value = resolveValue(token.path)
-    if (['stable', 'derived-pending'].includes(token.cn?.status as string) && typeOf(token.path) === 'color') {
+    const rawSource = String(byPath.get(rawToken(token.path))?.cn?.source)
+    if (
+      ['stable', 'derived-pending'].includes(token.cn?.status as string) &&
+      typeOf(token.path) === 'color' &&
+      !rawSource.startsWith('ADR-')
+    ) {
       assert.ok(['#ef80ae', '#fff488', '#000000'].includes(value as string), `${token.path} resolves to a brand hex`)
     } else if (token.cn?.status === 'stable') {
       // A resolved TBD item: the raw value is a stable primitive whose source is the ADR that recorded it.
@@ -111,7 +116,9 @@ test('REQ-015 AC1: contrast-pairs.json lists valid pairs, and every semantic col
   const paired = new Set(pairs.flatMap((p) => [p.foreground, p.background]))
   const colors = semantic.filter((t) => typeOf(t.path) === 'color').map((t) => t.path)
   assert.ok(colors.includes('focus.ring.color'))
-  for (const path of colors) assert.ok(paired.has(path), `${path} appears in a contrast pair`)
+  // A divider is decorative, so it is exempt from the 3:1 rule for UI components (WCAG 1.4.11, ADR-0032), and no pair is declared.
+  for (const path of colors.filter((p) => p !== 'color.border.divider'))
+    assert.ok(paired.has(path), `${path} appears in a contrast pair`)
 })
 
 test('SPEC.md §2.1: the passing brand pairs are declared, and black labels sit on the pink and yellow fills', () => {

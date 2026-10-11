@@ -61,8 +61,8 @@ test('REQ-054 AC1: every swatch gets a pass or fail, a tbd token is unverified, 
 
 test('REQ-054 AC4: tbd and derived-pending tokens are in the model with their status and TBD ids', () => {
   assert.ok(swatches.some((swatch) => swatch.status === 'tbd'))
-  assert.equal(byPath.get('color.border.default')!.status, 'tbd')
-  assert.deepEqual(byPath.get('color.border.default')!.tbd, ['TBD-05'])
+  assert.equal(byPath.get('color.surface.card')!.status, 'tbd')
+  assert.deepEqual(byPath.get('color.surface.card')!.tbd, ['TBD-06'])
   assert.equal(byPath.get('color.brand.pink-100')!.status, 'derived-pending')
   assert.deepEqual(byPath.get('color.brand.pink-100')!.tbd, ['TBD-08'])
 })

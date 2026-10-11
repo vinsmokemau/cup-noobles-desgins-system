@@ -10,17 +10,17 @@ lang: en
 brandRules: [BR-01, BR-02, BR-10, BR-11, BR-13]
 tokens: [button, radius.button, border.width.button, effect.glow.button]
 demos: [states, playground]
-tbd: [TBD-08, TBD-10, TBD-11, TBD-12]
+tbd: [TBD-08, TBD-10, TBD-12]
 related: [link, icon, form-field, effects, shape]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Button
 
 ## Purpose
 
-The button triggers an action. It implements BR-10 (rounded corners, a subtle neon glow, and a thick outline stroke) and BR-11 (the primary, secondary, ghost, and disabled states) on top of Nuxt UI's `UButton`, themed only through tokens (C-03). The corner radius (TBD-10), the stroke width (TBD-11), and the glow (TBD-12) are not defined yet, so those tokens hold ADR-0006 placeholders that are not brand values.
+The button triggers an action. It implements BR-10 (rounded corners, a subtle neon glow, and a thick outline stroke) and BR-11 (the primary, secondary, ghost, and disabled states) on top of Nuxt UI's `UButton`, themed only through tokens (C-03). The corner radius (TBD-10) and the glow (TBD-12) are not defined yet, so those tokens hold ADR-0006 placeholders that are not brand values. The stroke width is 3 px (ADR-0032).
 
 ## Anatomy
 
@@ -38,7 +38,7 @@ The button triggers an action. It implements BR-10 (rounded corners, a subtle ne
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.button` | `--cn-border-width-button` | `1px` | tbd (TBD-11) |
+| `border.width.button` | `--cn-border-width-button` | `3px` | stable |
 | `button.focus.color` | `--cn-button-focus-color` | `#fff488` | stable |
 | `button.focus.offset` | `--cn-button-focus-offset` | `3px` | stable |
 | `button.focus.style` | `--cn-button-focus-style` | `solid` | stable |
@@ -63,7 +63,7 @@ The button triggers an action. It implements BR-10 (rounded corners, a subtle ne
 
 <!-- /cn:generated -->
 
-The component tokens only reference semantic tokens (REQ-010 AC2). The shape and glow tokens are `tbd`: they follow the ADR-0006 placeholders (Nuxt UI's default radius, outline width, and no glow), and **none of them is a brand value**. The hover and pressed fills are `derived-pending`: each reads a shade token that repeats the single brand color, so a hovered or pressed button does not change color yet (C-06, TBD-08). The label, outline, and focus tokens are `stable`.
+The component tokens only reference semantic tokens (REQ-010 AC2). The radius and glow tokens are `tbd`: they follow the ADR-0006 placeholders (Nuxt UI's default radius and no glow), and **none of them is a brand value**. The hover and pressed fills are `derived-pending`: each reads a shade token that repeats the single brand color, so a hovered or pressed button does not change color yet (C-06, TBD-08). The label, outline, and focus tokens are `stable`.
 
 Contrast pairs declared for the button (REQ-015, REQ-023 AC3):
 
@@ -214,8 +214,6 @@ The email button is a separate MJML component, described in [Email components](.
 
 > **TBD (TBD-10):** The corner radius is not defined ("rounded" in BR-10). `radius.button` follows an ADR-0006 placeholder. Owner input needed.
 >
-> **TBD (TBD-11):** The stroke width is not defined ("thick" in BR-10 and BR-13). `border.width.button` follows an ADR-0006 placeholder. Owner input needed.
->
 > **TBD (TBD-12):** The glow is not defined ("subtle" in BR-10): its blur, spread, opacity, and color per state. `effect.glow.button` follows the placeholder `none`, so no button glows yet. Owner input needed.
 >
 > **TBD (TBD-08):** Tints and shades of pink and yellow are not defined. The hover and pressed fills read shade tokens that repeat the brand color, so they look the same as the default fill. Owner input needed: decision OD-04.
@@ -226,3 +224,4 @@ The email button is a separate MJML component, described in [Email components](.
 
 - 0.1.0 — First draft: BR-10 and BR-11 on `UButton`, the three brand variants, the six states, the component tokens, and the demos (T7.2) — awaiting owner approval
 - 0.1.0 — The mapping of the primary, secondary, and ghost variants to fills is approved by the owner (option A); the draft callout is removed — ADR-0010
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

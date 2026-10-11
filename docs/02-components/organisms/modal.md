@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [overlay, radius.overlay, border.width.overlay, effect.scrim]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-10, TBD-11, TBD-15]
+tbd: [TBD-10, TBD-15]
 related: [slideover, card, button, effects, accessibility]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Modal
@@ -37,12 +37,12 @@ The modal is a dialog that opens on top of the page and asks for one decision or
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.overlay` | `--cn-border-width-overlay` | `1px` | tbd (TBD-11) |
+| `border.width.overlay` | `--cn-border-width-overlay` | `3px` | stable |
 | `effect.scrim.opacity` | `--cn-effect-scrim-opacity` | `0.75` | tbd (TBD-15) |
 | `overlay.bg` | `--cn-overlay-bg` | `#000000` | stable |
 | `overlay.divider` | `--cn-overlay-divider` | `#ef80ae` | stable |
-| `overlay.fg` | `--cn-overlay-fg` | `#90a1b9` | tbd (TBD-04) |
-| `overlay.fgMuted` | `--cn-overlay-fg-muted` | `#90a1b9` | tbd (TBD-05) |
+| `overlay.fg` | `--cn-overlay-fg` | `#f5f5f5` | stable |
+| `overlay.fgMuted` | `--cn-overlay-fg-muted` | `#bdbdbd` | stable |
 | `overlay.highlight` | `--cn-overlay-highlight` | `#ef80ae` | stable |
 | `overlay.scrim` | `--cn-overlay-scrim` | `#000000` | stable |
 | `overlay.scrimOpacity` | `--cn-overlay-scrim-opacity` | `0.75` | tbd (TBD-15) |
@@ -52,7 +52,7 @@ The modal is a dialog that opens on top of the page and asks for one decision or
 
 <!-- /cn:generated -->
 
-The overlay tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the dividers, and the backdrop color are `stable`: black and brand pink (BR-01, BR-03). The text colors, the corner radius, the stroke width, the backdrop amount, the shadow, and the stacking order follow placeholders (TBD-04, TBD-05, TBD-10, TBD-11, TBD-15), so they are `tbd` until the owner supplies them. The slideover reads the same tokens.
+The overlay tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the dividers, and the backdrop color are `stable`: black and brand pink (BR-01, BR-03). The corner radius, the backdrop amount, the shadow, and the stacking order follow placeholders (TBD-10, TBD-15), so they are `tbd` until the owner supplies them. The text colors and the stroke width are `stable` (ADR-0032). The slideover reads the same tokens.
 
 Contrast pairs declared for the modal and the slideover (REQ-015):
 
@@ -60,8 +60,8 @@ Contrast pairs declared for the modal and the slideover (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `overlay.fg` (`#90a1b9`) | `overlay.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `overlay.fg`, `placeholder.color.neutral`) |
-| `overlay.fgMuted` (`#90a1b9`) | `overlay.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `overlay.fgMuted`, `placeholder.color.neutral`) |
+| `overlay.fg` (`#f5f5f5`) | `overlay.bg` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `overlay.fgMuted` (`#bdbdbd`) | `overlay.bg` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
 | `overlay.highlight` (`#ef80ae`) | `overlay.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `overlay.divider` (`#ef80ae`) | `overlay.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 
@@ -192,13 +192,7 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The panel text reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The description text reads a placeholder, not a brand value. Owner input needed: a hex set.
->
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **TBD (TBD-15):** The elevation and z-index scales are not defined, and no item names the backdrop amount. The shadow, the stacking order, and the backdrop amount (0.75) follow placeholders (ADR-0029). Owner input needed: values, or approval of 0.75.
 >
@@ -207,3 +201,4 @@ Not applicable.
 ## Changelog
 
 - 0.1.0 — First draft: `UModal` themed with the pink outline look, the component tokens, and the demos (T8.5) — ADR-0029
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

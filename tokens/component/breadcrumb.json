@@ -27,11 +27,10 @@
       "fg": {
         "$type": "color",
         "$value": "{color.text.default}",
-        "$description": "Text color of the current page, the last item: plain bold text, not underlined (ADR-0028). TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+        "$description": "Text color of the current page, the last item: plain bold text, not underlined (ADR-0028).",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-04"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       }
@@ -40,11 +39,10 @@
       "fg": {
         "$type": "color",
         "$value": "{color.text.muted}",
-        "$description": "Color of the caret between two items. It is decorative and hidden from assistive technology. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+        "$description": "Color of the caret between two items. It is decorative and hidden from assistive technology.",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-05"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       }

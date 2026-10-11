@@ -4,11 +4,10 @@
       "fg": {
         "$type": "color",
         "$value": "{color.text.default}",
-        "$description": "Label text of a form field. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+        "$description": "Label text of a form field.",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-04"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       }
@@ -17,11 +16,10 @@
       "fg": {
         "$type": "color",
         "$value": "{color.text.muted}",
-        "$description": "Description and hint text of a form field. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+        "$description": "Description and hint text of a form field.",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-05"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       }
@@ -30,11 +28,10 @@
       "fg": {
         "$type": "color",
         "$value": "{color.text.muted}",
-        "$description": "Help text under a form field. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+        "$description": "Help text under a form field.",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-05"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       }
@@ -43,11 +40,10 @@
       "fg": {
         "$type": "color",
         "$value": "{color.feedback.error}",
-        "$description": "Error message under a form field. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$description": "Error message under a form field.",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-07"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       }

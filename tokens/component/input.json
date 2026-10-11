@@ -17,11 +17,10 @@
       "input": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the text fields (BR-10, BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$description": "Outline stroke width of the text fields (BR-10, BR-13).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-11"]
+            "status": "stable"
           }
         }
       }
@@ -41,33 +40,30 @@
     "fg": {
       "$type": "color",
       "$value": "{color.text.default}",
-      "$description": "Text typed into a field. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$description": "Text typed into a field.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-04"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },
     "placeholder": {
       "$type": "color",
       "$value": "{color.text.muted}",
-      "$description": "Placeholder text of a field. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Placeholder text of a field.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-05"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },
     "border": {
       "$type": "color",
       "$value": "{color.border.default}",
-      "$description": "Outline color of a field at rest. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Outline color of a field at rest.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-05"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },
@@ -85,22 +81,20 @@
       "border": {
         "$type": "color",
         "$value": "{color.feedback.error}",
-        "$description": "Outline color of a field in the error state. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$description": "Outline color of a field in the error state.",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-07"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       },
       "fg": {
         "$type": "color",
         "$value": "{color.feedback.error}",
-        "$description": "Color of the error text under a field. TBD-07: feedback colors are not defined; this follows a placeholder, not a brand value.",
+        "$description": "Color of the error text under a field.",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-07"],
-            "status": "tbd"
+            "status": "stable"
           }
         }
       }

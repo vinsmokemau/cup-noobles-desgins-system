@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [separator]
 demos: [states, playground]
-tbd: [TBD-05, TBD-11]
+tbd: []
 related: [progress, skeleton, accessibility]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Separator
@@ -34,11 +34,11 @@ The separator is a line that splits two groups of content. It is a themed Nuxt U
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `separator.bg` | `--cn-separator-bg` | `#000000` | stable |
-| `separator.color` | `--cn-separator-color` | `#90a1b9` | tbd (TBD-05) |
+| `separator.color` | `--cn-separator-color` | `#8c8c8c` | stable |
 
 <!-- /cn:generated -->
 
-The line color follows a placeholder (TBD-05) and the stroke width is the token `border.width.separator` on the shape page, which follows a placeholder too (TBD-11). Both are `tbd` until the owner supplies them.
+The line color is a neutral color (ADR-0032) and the stroke width is the token `border.width.separator` on the shape page, 3 px (ADR-0032). Both are `stable`.
 
 Contrast pairs declared for the separator (REQ-015):
 
@@ -46,7 +46,7 @@ Contrast pairs declared for the separator (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `separator.color` (`#90a1b9`) | `separator.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `placeholder.color.neutral`, `separator.color`) |
+| `separator.color` (`#8c8c8c`) | `separator.bg` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
 
@@ -54,7 +54,7 @@ Contrast pairs declared for the separator (REQ-015):
 
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-A separator is decoration for sighted users, so its line is held to the 3:1 rule for UI components. The neutral line is 7.98:1 against the black page with the placeholder grey, unverified (REQ-015 AC4).
+A separator is decoration for sighted users, so its line is held to the 3:1 rule for UI components. The neutral line is 6.25:1 against the black page (REQ-015).
 
 ## Variants
 
@@ -149,12 +149,9 @@ Not applicable. A divider in email is an MJML component, described in [Email com
 
 ## Open items
 
-> **TBD (TBD-05):** The neutral scale is not defined. The line color reads a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-11):** "Thick" has no values. The line follows the placeholder stroke width. Owner input needed: values.
->
-> **Draft:** The look (a neutral line) is approved (ADR-0015). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look (a neutral line) is approved (ADR-0015). No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `USeparator` themed as a neutral line, the horizontal, vertical, and labeled variants, the component tokens, and the demos (T7.6) — look approved (ADR-0015), awaiting the placeholders
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

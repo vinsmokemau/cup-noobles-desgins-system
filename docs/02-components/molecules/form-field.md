@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [formField]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-07]
+tbd: []
 related: [input, textarea, select, checkbox, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Form field
@@ -37,14 +37,14 @@ The form field puts a control, its label, its help text, and its error message t
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `formField.description.fg` | `--cn-form-field-description-fg` | `#90a1b9` | tbd (TBD-05) |
-| `formField.error.fg` | `--cn-form-field-error-fg` | `#90a1b9` | tbd (TBD-07) |
-| `formField.help.fg` | `--cn-form-field-help-fg` | `#90a1b9` | tbd (TBD-05) |
-| `formField.label.fg` | `--cn-form-field-label-fg` | `#90a1b9` | tbd (TBD-04) |
+| `formField.description.fg` | `--cn-form-field-description-fg` | `#bdbdbd` | stable |
+| `formField.error.fg` | `--cn-form-field-error-fg` | `#ff5c5c` | stable |
+| `formField.help.fg` | `--cn-form-field-help-fg` | `#bdbdbd` | stable |
+| `formField.label.fg` | `--cn-form-field-label-fg` | `#f5f5f5` | stable |
 
 <!-- /cn:generated -->
 
-The form field tokens only color text. They reference semantic tokens (REQ-010 AC2) that follow placeholders (TBD-04, TBD-05, TBD-07), so every one is `tbd` until the owner supplies the colors. The control keeps its own tokens: see [Input](../atoms/input.md).
+The form field tokens only color text. They reference semantic tokens (REQ-010 AC2) that are `stable` (ADR-0032), so every one is `stable`. The control keeps its own tokens: see [Input](../atoms/input.md).
 
 Contrast pairs declared for the form field (REQ-015):
 
@@ -52,10 +52,10 @@ Contrast pairs declared for the form field (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `formField.label.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `formField.label.fg`, `placeholder.color.neutral`) |
-| `formField.description.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `formField.description.fg`, `placeholder.color.neutral`) |
-| `formField.help.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `formField.help.fg`, `placeholder.color.neutral`) |
-| `formField.error.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.error`, `formField.error.fg`, `placeholder.color.neutral`) |
+| `formField.label.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `formField.description.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `formField.help.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `formField.error.fg` (`#ff5c5c`) | `color.bg.base` (`#000000`) | text | 6.94:1 | 4.50:1 | pass |
 
 <!-- /cn:generated -->
 
@@ -190,14 +190,9 @@ With an error, pass `error`, drop `help`, and render the `error` slot only for t
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The label reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The description, hint, and help text read a placeholder, not a brand value. Owner input needed: a hex set.
->
-> **TBD (TBD-07):** The feedback colors are not defined. The error text reads the same placeholder as the other text, so today the error is told apart by its message and icon, not by color. Owner input needed: a hex set.
->
-> **Draft:** The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** No value in it is open any more, so the doc stays a draft only until the owner approves it as stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UFormField` themed with token text colors, the five states, the component tokens, and the demos (T8.1) — awaiting owner approval of the placeholders
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

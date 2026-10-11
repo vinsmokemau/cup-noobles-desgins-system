@@ -127,6 +127,57 @@
         "$description": "Brand yellow, shade 950 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated.",
         "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
       }
+    },
+    "neutral": {
+      "$type": "color",
+      "white-soft": {
+        "$value": "#f5f5f5",
+        "$description": "Soft white, the body text color on the black page (ADR-0032, TBD-04). It keeps 19.26:1 against black and lets pink and yellow stay the brightest colors.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "grey-light": {
+        "$value": "#bdbdbd",
+        "$description": "Light grey, the secondary text color (ADR-0032, TBD-05). 11.18:1 against black.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "grey-mid": {
+        "$value": "#8c8c8c",
+        "$description": "Mid grey, the border color of controls (ADR-0032, TBD-05). 6.25:1 against black.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "grey-dark": {
+        "$value": "#5c5c5c",
+        "$description": "Dark grey, the color of disabled text and borders (ADR-0032, TBD-05). 3.14:1 against black; disabled controls are exempt from contrast minimums.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "grey-deep": {
+        "$value": "#3a3a3a",
+        "$description": "Deep grey, the color of thin dividers (ADR-0032, TBD-05). 1.85:1 against black; a divider is decorative and exempt.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      }
+    },
+    "signal": {
+      "$type": "color",
+      "green": {
+        "$value": "#34d399",
+        "$description": "Signal green, the success feedback color (ADR-0032, TBD-07). 10.92:1 against black.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "orange": {
+        "$value": "#ff9f43",
+        "$description": "Signal orange, the warning feedback color (ADR-0032, TBD-07). 10.29:1 against black, and clearly not the brand yellow.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "red": {
+        "$value": "#ff5c5c",
+        "$description": "Signal red, the error feedback color (ADR-0032, TBD-07). 6.94:1 against black.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "blue": {
+        "$value": "#5cc8ff",
+        "$description": "Signal blue, the info feedback color (ADR-0032, TBD-07). 11.16:1 against black.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      }
     }
   }
 }

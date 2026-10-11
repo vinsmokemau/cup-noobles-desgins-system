@@ -3,9 +3,9 @@
     "width": {
       "default": {
         "$type": "dimension",
-        "$value": "{placeholder.border.width}",
-        "$description": "Stroke width. TBD-11: \"thick\" (BR-10, BR-13) has no values; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
+        "$value": "3px",
+        "$description": "Stroke width of outlines (BR-10, BR-13): 3 px, the same weight as the focus ring (ADR-0032, TBD-11).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
       }
     }
   }

@@ -50,7 +50,7 @@ test('the choice component tokens reference semantic tokens, and the shape token
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, 'tbd', path)
+    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   assert.equal(byPath.get('choice.bg')?.value, '{color.bg.base}')
   assert.equal(byPath.get('choice.borderHover')?.value, '{color.brand.primary}')
@@ -60,9 +60,9 @@ test('the choice component tokens reference semantic tokens, and the shape token
   assert.equal(byPath.get('choice.checked.fg')?.value, '{color.text.inverted}')
   for (const part of ['color', 'width', 'offset', 'style'])
     assert.equal(byPath.get(`choice.focus.${part}`)?.value, `{focus.ring.${part}}`, part)
-  // The neutral outline follows a placeholder; every color that follows a brand value is stable.
+  // The neutral outline is the owner's grey (ADR-0032); every color that follows a brand value is stable.
   for (const [path, status] of [
-    ['choice.border', 'tbd'],
+    ['choice.border', 'stable'],
     ['choice.bg', 'stable'],
     ['choice.borderHover', 'stable'],
     ['choice.checked.bg', 'stable'],
@@ -101,7 +101,7 @@ test('REQ-015: the outline, checked, and focus pairs of the choice controls are 
   const report = checkContrast(root)
   assert.equal(report.problems.length, 0)
   for (const [foreground, background, ratio, result] of [
-    ['choice.border', 'choice.bg', 7.98, 'unverified'],
+    ['choice.border', 'choice.bg', 6.25, 'pass'],
     ['choice.borderHover', 'choice.bg', 8.37, 'pass'],
     ['choice.checked.bg', 'choice.bg', 8.37, 'pass'],
     ['choice.checked.fg', 'choice.checked.bg', 8.37, 'pass'],

@@ -110,7 +110,9 @@ export function toPreviews(flat: Record<string, FlatToken>, prefixes: string[]):
   for (const [path, token] of picked) {
     if (!path.startsWith('motion.duration.')) continue
     const key = path.slice('motion.duration.'.length)
-    const easing = byPath.get(`motion.easing.${key}`)
+    // A duration without an easing of its own (fast, slow, shimmer) plays with the default easing.
+    const easingPath = byPath.has(`motion.easing.${key}`) ? `motion.easing.${key}` : 'motion.easing.default'
+    const easing = byPath.get(easingPath)
     if (easing)
       out.push(
         preview(
@@ -118,7 +120,7 @@ export function toPreviews(flat: Record<string, FlatToken>, prefixes: string[]):
           `motion.*.${key}`,
           [
             [path, token],
-            [`motion.easing.${key}`, easing],
+            [easingPath, easing],
           ],
           key,
         ),

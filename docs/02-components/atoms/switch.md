@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [choice]
 demos: [states, playground]
-tbd: [TBD-05, TBD-10, TBD-11]
+tbd: [TBD-10]
 related: [checkbox, radio-group, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Switch
@@ -37,7 +37,7 @@ The switch turns one setting on or off, and the change applies at once. It is a 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `choice.bg` | `--cn-choice-bg` | `#000000` | stable |
-| `choice.border` | `--cn-choice-border` | `#90a1b9` | tbd (TBD-05) |
+| `choice.border` | `--cn-choice-border` | `#8c8c8c` | stable |
 | `choice.borderHover` | `--cn-choice-border-hover` | `#ef80ae` | stable |
 | `choice.checked.bg` | `--cn-choice-checked-bg` | `#ef80ae` | stable |
 | `choice.checked.border` | `--cn-choice-checked-border` | `#ef80ae` | stable |
@@ -49,7 +49,7 @@ The switch turns one setting on or off, and the change applies at once. It is a 
 
 <!-- /cn:generated -->
 
-The switch reads the same choice tokens as the [checkbox](checkbox.md). It is pill-shaped, so it does not read `radius.choice`, and it keeps Nuxt UI's 2 px track border because the thumb travel is tuned to it, so it does not read `border.width.choice` either. The off outline and the off thumb follow a placeholder (TBD-05), so they are `tbd` until the owner supplies them. The fill, the hover outline, the on colors, and the focus tokens are `stable`.
+The switch reads the same choice tokens as the [checkbox](checkbox.md). It is pill-shaped, so it does not read `radius.choice`, and it keeps Nuxt UI's 2 px track border because the thumb travel is tuned to it, so it does not read `border.width.choice` either. The off outline and the off thumb read the neutral colors (ADR-0032), so they are `stable`. The fill, the hover outline, the on colors, and the focus tokens are `stable`.
 
 Contrast pairs declared for the choice controls (REQ-015):
 
@@ -57,7 +57,7 @@ Contrast pairs declared for the choice controls (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `choice.border` (`#90a1b9`) | `choice.bg` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `choice.border`, `color.border.default`, `placeholder.color.neutral`) |
+| `choice.border` (`#8c8c8c`) | `choice.bg` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `choice.borderHover` (`#ef80ae`) | `choice.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `choice.checked.bg` (`#ef80ae`) | `choice.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `choice.checked.fg` (`#000000`) | `choice.checked.bg` (`#ef80ae`) | ui | 8.37:1 | 3.00:1 | pass |
@@ -71,7 +71,7 @@ Contrast pairs declared for the choice controls (REQ-015):
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-The outline is the track's boundary, because there is no surface color yet (C-05). The neutral thumb is 7.98:1 against the black track, and the black thumb is 8.37:1 against the pink track (SPEC.md §2.1). The yellow focus ring is 18.55:1.
+The outline is the track's boundary, because there is no surface color yet (C-05). The neutral thumb is 6.25:1 against the black track, and the black thumb is 8.37:1 against the pink track (SPEC.md §2.1). The yellow focus ring is 18.55:1.
 
 The track is at least 24 px tall and 36 px wide (REQ-028 AC2).
 
@@ -178,14 +178,11 @@ Not applicable. Email has no form controls.
 
 ## Open items
 
-> **TBD (TBD-05):** The neutral scale is not defined. The off outline and the off thumb read a placeholder, not a brand value. Owner input needed: a hex set.
->
 > **TBD (TBD-10):** "Rounded" has no values. The switch is pill-shaped by shape, but the choice token group also holds the checkbox radius, which follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The switch keeps Nuxt UI's own track border, so its thickness is not set by a token until the owner supplies the stroke width. Owner input needed: values.
 >
 > **Draft:** The look of the choice controls (an outlined track that turns pink on hover and fills pink with a black thumb when on, with the yellow focus ring) is approved (ADR-0014). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `USwitch` themed with the shared choice look, the five states, the component tokens, and the demos (T7.5) — look approved (ADR-0014), awaiting the placeholders
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

@@ -43,7 +43,7 @@ test('REQ-020 AC1: the three docs are nuxt-ui components named for their Nuxt UI
   }
 })
 
-test('the component tokens reference semantic tokens, and every placeholder is marked tbd', () => {
+test('the component tokens reference semantic tokens, and only the radius is a placeholder', () => {
   assert.deepEqual(problems, [])
   for (const [path, semantic, tbd] of [
     ['border.width.progress', 'border.width.interactive', 'TBD-11'],
@@ -57,8 +57,8 @@ test('the component tokens reference semantic tokens, and every placeholder is m
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, 'tbd', path)
-    assert.deepEqual(token?.cn?.tbd, [tbd], path)
+    assert.equal(token?.cn?.status, path.startsWith('radius') ? 'tbd' : 'stable', path)
+    assert.deepEqual(token?.cn?.tbd, path.startsWith('radius') ? [tbd] : undefined, path)
   }
   // The black fill and the pink fill follow brand values, so they are stable.
   for (const [path, semantic] of [
@@ -98,9 +98,9 @@ test('REQ-015: the progress and separator pairs are declared, and all but the ne
   const report = checkContrast(root)
   assert.equal(report.problems.length, 0)
   for (const [foreground, background, ratio, result] of [
-    ['progress.border', 'progress.bg', 7.98, 'unverified'],
+    ['progress.border', 'progress.bg', 6.25, 'pass'],
     ['progress.fill', 'progress.bg', 8.37, 'pass'],
-    ['separator.color', 'separator.bg', 7.98, 'unverified'],
+    ['separator.color', 'separator.bg', 6.25, 'pass'],
   ] as const) {
     const pair = report.pairs.find((p) => p.foreground === foreground && p.background === background)
     assert.equal(pair?.result, result, foreground)

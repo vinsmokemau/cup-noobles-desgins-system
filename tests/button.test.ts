@@ -32,8 +32,8 @@ test('REQ-023 AC2: the radius, the outline width, and the glow are component tok
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
     assert.equal(byPath.get(semantic)?.tier, 'semantic', semantic)
-    // Their values are TBD-10, TBD-11, and TBD-12, so they follow placeholders and are never stable.
-    assert.equal(token?.cn?.status, 'tbd', path)
+    // The radius and the glow are TBD-10 and TBD-12, so they follow placeholders; the stroke width is ADR-0032.
+    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
 })
 
@@ -123,7 +123,7 @@ test('the doc is a draft that lists its demos and names the tokens it renders', 
   assert.deepEqual(data.demos, ['states', 'playground'])
   assert.equal(data.source, 'nuxt-ui')
   assert.equal(data.nuxtUi, 'UButton')
-  for (const id of ['TBD-08', 'TBD-10', 'TBD-11', 'TBD-12']) assert.ok((data.tbd as string[]).includes(id), id)
+  for (const id of ['TBD-08', 'TBD-10', 'TBD-12']) assert.ok((data.tbd as string[]).includes(id), id)
 })
 
 test('REQ-055: the playground controls are a valid schema that the playground demo declares as props', async () => {

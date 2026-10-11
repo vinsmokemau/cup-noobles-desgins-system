@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-01, BR-06]
 tokens: [breadcrumb]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-08]
+tbd: [TBD-08]
 related: [tabs, pagination, link, navigation, accessibility]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Breadcrumb
@@ -35,18 +35,18 @@ The breadcrumb shows where the current page sits in a hierarchy and lets a perso
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `breadcrumb.current.fg` | `--cn-breadcrumb-current-fg` | `#90a1b9` | tbd (TBD-04) |
+| `breadcrumb.current.fg` | `--cn-breadcrumb-current-fg` | `#f5f5f5` | stable |
 | `breadcrumb.focus.color` | `--cn-breadcrumb-focus-color` | `#fff488` | stable |
 | `breadcrumb.focus.offset` | `--cn-breadcrumb-focus-offset` | `3px` | stable |
 | `breadcrumb.focus.style` | `--cn-breadcrumb-focus-style` | `solid` | stable |
 | `breadcrumb.focus.width` | `--cn-breadcrumb-focus-width` | `3px` | stable |
 | `breadcrumb.link.fg` | `--cn-breadcrumb-link-fg` | `#ef80ae` | stable |
 | `breadcrumb.link.fgHover` | `--cn-breadcrumb-link-fg-hover` | `#ef80ae` | derived-pending (TBD-08) |
-| `breadcrumb.separator.fg` | `--cn-breadcrumb-separator-fg` | `#90a1b9` | tbd (TBD-05) |
+| `breadcrumb.separator.fg` | `--cn-breadcrumb-separator-fg` | `#bdbdbd` | stable |
 
 <!-- /cn:generated -->
 
-The breadcrumb tokens reference semantic tokens only (REQ-010 AC2). The link color and the focus ring are `stable`: brand pink and brand yellow (BR-01, BR-02). The current page text and the separator follow placeholders (TBD-04, TBD-05), and the link hover color is `derived-pending` because no pink shade is defined (TBD-08).
+The breadcrumb tokens reference semantic tokens only (REQ-010 AC2). The link color and the focus ring are `stable`: brand pink and brand yellow (BR-01, BR-02). The current page text and the separator read the text and neutral colors (ADR-0032), so they are `stable`, and the link hover color is `derived-pending` because no pink shade is defined (TBD-08).
 
 Contrast pairs declared for the breadcrumb (REQ-015):
 
@@ -56,7 +56,7 @@ Contrast pairs declared for the breadcrumb (REQ-015):
 |---|---|---|---|---|---|
 | `breadcrumb.link.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `breadcrumb.link.fgHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `breadcrumb.current.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `breadcrumb.current.fg`, `color.text.default`, `placeholder.color.neutral`) |
+| `breadcrumb.current.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `breadcrumb.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -115,7 +115,7 @@ The current page is the last item and is not a control, so it has no hover, focu
 
 - The breadcrumb is a `nav` landmark with `aria-label="breadcrumb"` and an ordered list inside it, so a screen reader announces the trail and the number of items.
 - The current page is the last item. It has `aria-current="page"` and is not a link, so a screen reader reads where the person is.
-- Links are pink and underlined, so they are not told apart by color alone (WCAG 1.4.1). A link is 8.37:1 against the page, and the current page is 7.98:1 with the example grey (REQ-015).
+- Links are pink and underlined, so they are not told apart by color alone (WCAG 1.4.1). A link is 8.37:1 against the page, and the current page is 19.26:1 (REQ-015).
 - The separators are `role="presentation"` and `aria-hidden="true"`, so they are not read.
 - The focus ring shows on `:focus-visible`. The ring is an outline, not the glow, and it is 18.55:1 against the page (REQ-024 AC1, AC2).
 
@@ -171,10 +171,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The current page reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The separator reads a placeholder, not a brand value. Owner input needed: a hex set.
->
 > **TBD (TBD-08):** Tints and shades of pink are not defined (C-06, OD-04). The link hover color repeats the brand pink. Owner input needed: decision OD-04.
 >
 > **Draft:** The look (pink underlined links and a plain bold current page) is approved (ADR-0028). The hover look of a link is a draft. The doc stays a draft until the placeholders in the TBD callouts above are replaced.
@@ -182,3 +178,4 @@ Not applicable.
 ## Changelog
 
 - 0.1.0 — First draft: `UBreadcrumb` themed with the pink link look, the component tokens, and the demos (T8.4) — ADR-0028
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

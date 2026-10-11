@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-02, BR-05, BR-13, BR-14]
 tokens: [motion.duration]
 demos: [states, playground]
-tbd: [TBD-14]
+tbd: []
 related: [sticker-frame, imagery-and-motifs, motion, accessibility, brand-identity]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Sparkle
@@ -34,11 +34,14 @@ updated: 2026-10-09
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `motion.duration.default` | `--cn-motion-duration-default` | `150ms` | tbd (TBD-14) |
+| `motion.duration.default` | `--cn-motion-duration-default` | `180ms` | stable |
+| `motion.duration.fast` | `--cn-motion-duration-fast` | `100ms` | stable |
+| `motion.duration.shimmer` | `--cn-motion-duration-shimmer` | `1500ms` | stable |
+| `motion.duration.slow` | `--cn-motion-duration-slow` | `300ms` | stable |
 
 <!-- /cn:generated -->
 
-The sparkle has no colour or size tokens of its own. Its colour is part of the artwork: the file is filled with `color.brand.yellow` (BR-02), and the artwork is never recoloured in code. Its height is the font size of the text beside it, so it follows the type scale rather than introducing a size of its own (ADR-0017). Only the `animated` fade reads a token, the base motion duration, which still follows a placeholder (TBD-14).
+The sparkle has no colour or size tokens of its own. Its colour is part of the artwork: the file is filled with `color.brand.yellow` (BR-02), and the artwork is never recoloured in code. Its height is the font size of the text beside it, so it follows the type scale rather than introducing a size of its own (ADR-0017). Only the `animated` fade reads a token, the shimmer cycle, `motion.duration.shimmer` (ADR-0032).
 
 ### Brand rules
 
@@ -136,11 +139,10 @@ The component has no slots and no events.
 
 ## Open items
 
-> **TBD (TBD-14):** Motion durations are not defined. The fade length follows a placeholder, not a brand value. Owner input needed: values.
->
 > **Draft:** The artwork and the size rule are approved (ADR-0017). The doc stays a draft until the fade duration in the TBD callout above is replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `CnSparkle` as an outlined placeholder with an optional slow fade that stops under reduced motion, the component tokens, and the demos (T7.8) — awaiting the artwork (TBD-18) and the placeholders
 - 0.1.0 — The supplied `Sparkle-CN.svg` replaces the placeholder, sized to the text beside it, and the fade now applies to the whole sparkle (T7.10) — ADR-0017
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

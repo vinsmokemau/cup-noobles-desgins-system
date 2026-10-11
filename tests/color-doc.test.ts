@@ -27,7 +27,7 @@ function block(format: string): { tokens: string; body: string[] } {
 test('frontmatter: draft (TBD callouts keep it from stable), BR-01 to BR-03, TBD-04 to TBD-08, tokens `color`', () => {
   assert.equal(fm.status, 'draft')
   for (const id of ['BR-01', 'BR-02', 'BR-03']) assert.ok((fm.brandRules as string[]).includes(id), id)
-  assert.deepEqual(fm.tbd, ['TBD-04', 'TBD-05', 'TBD-06', 'TBD-07', 'TBD-08'])
+  assert.deepEqual(fm.tbd, ['TBD-06', 'TBD-08'])
   assert.deepEqual(fm.tokens, ['color'])
 })
 
@@ -89,7 +89,8 @@ test('scope: the pure-black rule (BR-03), C-05, and C-06 are explained', () => {
   assert.match(text, /^### Shades and tints \(C-06\)$/m)
 })
 
-test('scope: TBD callouts for TBD-04 through TBD-08', () => {
-  for (const id of ['TBD-04', 'TBD-05', 'TBD-06', 'TBD-07', 'TBD-08'])
-    assert.match(text, new RegExp(`^> \\*\\*TBD \\(${id}\\):\\*\\* `, 'm'), id)
+test('scope: TBD callouts for TBD-06 and TBD-08; TBD-04, TBD-05, and TBD-07 are resolved (ADR-0032)', () => {
+  for (const id of ['TBD-04', 'TBD-05', 'TBD-07'])
+    assert.doesNotMatch(text, new RegExp(`^> \\*\\*TBD \\(${id}\\):\\*\\* `, 'm'), id)
+  for (const id of ['TBD-06', 'TBD-08']) assert.match(text, new RegExp(`^> \\*\\*TBD \\(${id}\\):\\*\\* `, 'm'), id)
 })

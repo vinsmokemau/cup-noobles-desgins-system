@@ -3,17 +3,35 @@
     "duration": {
       "default": {
         "$type": "duration",
-        "$value": "{placeholder.motion.duration}",
-        "$description": "Transition duration. TBD-14: motion durations are not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
+        "$value": "180ms",
+        "$description": "Transition duration: how long a toast, dialog, or hover change takes (ADR-0032, TBD-14).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "fast": {
+        "$type": "duration",
+        "$value": "100ms",
+        "$description": "Fast transition: small color or state changes (ADR-0032, TBD-14).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "slow": {
+        "$type": "duration",
+        "$value": "300ms",
+        "$description": "Slow transition: large panels and overlays (ADR-0032, TBD-14).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
+      },
+      "shimmer": {
+        "$type": "duration",
+        "$value": "1500ms",
+        "$description": "One cycle of the loading shimmer and of decorative fades (ADR-0032, TBD-14).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
       }
     },
     "easing": {
       "default": {
         "$type": "cubicBezier",
-        "$value": "{placeholder.motion.easing}",
-        "$description": "Transition easing. TBD-14: easing curves are not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
+        "$value": [0.2, 0, 0, 1],
+        "$description": "Transition easing: quick start, soft landing (ADR-0032, TBD-14).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0032" } }
       }
     }
   }

@@ -74,7 +74,10 @@ test('app.config.ts points every Nuxt UI color alias at a cn-* scale', () => {
 })
 
 test('C-03 and REQ-016: every scale step is one var() of an existing --cn-* token, 11 shades per alias', () => {
-  assert.equal(theme.size, ALIASES.length * SHADES.length, 'main.css declares nothing else in @theme')
+  // Beside the scales, @theme carries the two Tailwind transition defaults, which read the motion tokens (ADR-0032).
+  assert.equal(theme.size, ALIASES.length * SHADES.length + 2, 'main.css declares nothing else in @theme')
+  assert.equal(theme.get('--default-transition-duration'), 'var(--cn-motion-duration-default)')
+  assert.equal(theme.get('--default-transition-timing-function'), 'var(--cn-motion-easing-default)')
   for (const alias of ALIASES)
     for (const shade of SHADES) {
       const value = theme.get(`--color-cn-${alias}-${shade}`)
@@ -101,17 +104,35 @@ test('C-06: primary and secondary read the derived-pending shade tokens of the s
     }
 })
 
-test('C-06 and §4.4: the other aliases repeat their TBD tokens; none reads a stable token or a brand shade', () => {
+test('ADR-0032: the feedback aliases repeat their stable feedback token, and neutral reads the neutral roles', () => {
   const expected: Record<string, string> = {
     success: 'color.feedback.success',
     info: 'color.feedback.info',
     warning: 'color.feedback.warning',
     error: 'color.feedback.error',
-    neutral: 'placeholder.color.neutral', // TBD-05: no color.neutral.* token exists yet (ADR-0006)
   }
   for (const [alias, path] of Object.entries(expected)) {
-    assert.equal(tokens.find((t) => t.path === path)?.cn?.status, 'tbd', path)
+    assert.equal(tokens.find((t) => t.path === path)?.cn?.status, 'stable', path)
     for (const shade of SHADES) assert.equal(theme.get(`--color-cn-${alias}-${shade}`), `var(${cssVariable(path)})`)
+  }
+  // The neutral shades group by role: text, secondary text, border, disabled, divider, and the page.
+  const roles: Record<number, string> = {
+    50: 'color.text.default',
+    100: 'color.text.default',
+    200: 'color.text.default',
+    300: 'color.text.muted',
+    400: 'color.text.muted',
+    500: 'color.border.default',
+    600: 'color.border.default',
+    700: 'color.text.disabled',
+    800: 'color.border.divider',
+    900: 'color.border.divider',
+    950: 'color.bg.base',
+  }
+  for (const shade of SHADES) {
+    const path = roles[shade]!
+    assert.equal(tokens.find((t) => t.path === path)?.cn?.status, 'stable', path)
+    assert.equal(theme.get(`--color-cn-neutral-${shade}`), `var(${cssVariable(path)})`, `neutral-${shade}`)
   }
 })
 

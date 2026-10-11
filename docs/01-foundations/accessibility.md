@@ -6,10 +6,10 @@ status: draft
 lang: en
 brandRules: [BR-03, BR-06]
 tokens: [focus, color]
-tbd: [TBD-04, TBD-05, TBD-06, TBD-07]
+tbd: [TBD-06]
 related: [color, effects, layout, motion, iconography, imagery-and-motifs]
 since: 0.1.0
-updated: 2026-10-08
+updated: 2026-10-11
 ---
 
 # Accessibility
@@ -40,8 +40,8 @@ The focus tokens are `stable` (ADR-0009). The contrast pairs declared for every 
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `color.text.default` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `placeholder.color.neutral`) |
-| `color.text.muted` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `placeholder.color.neutral`) |
+| `color.text.default` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `color.text.muted` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
 | `color.brand.primary` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `color.brand.primary` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `color.brand.secondary` (`#fff488`) | `color.bg.base` (`#000000`) | text | 18.55:1 | 4.50:1 | pass |
@@ -52,16 +52,17 @@ The focus tokens are `stable` (ADR-0009). The contrast pairs declared for every 
 | `color.text.inverted` (`#000000`) | `color.brand.primaryActive` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
 | `color.text.inverted` (`#000000`) | `color.brand.secondaryHover` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
 | `color.text.inverted` (`#000000`) | `color.brand.secondaryActive` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
-| `color.border.default` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `placeholder.color.neutral`) |
-| `color.text.default` (`#90a1b9`) | `color.surface.card` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `color.text.default`, `placeholder.color.neutral`) |
-| `color.text.muted` (`#90a1b9`) | `color.surface.card` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `color.text.muted`, `placeholder.color.neutral`) |
+| `color.border.default` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
+| `color.text.disabled` (`#5c5c5c`) | `color.bg.base` (`#000000`) | ui | 3.14:1 | 3.00:1 | pass |
+| `color.text.default` (`#f5f5f5`) | `color.surface.card` (`#90a1b9`) | text | 2.41:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
+| `color.text.muted` (`#bdbdbd`) | `color.surface.card` (`#90a1b9`) | text | 1.40:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
 | `color.brand.primary` (`#ef80ae`) | `color.surface.card` (`#90a1b9`) | ui | 1.05:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
-| `color.text.default` (`#90a1b9`) | `color.surface.elevated` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `color.text.default`, `placeholder.color.neutral`) |
-| `color.text.muted` (`#90a1b9`) | `color.surface.elevated` (`#90a1b9`) | text | 1.00:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `color.text.muted`, `placeholder.color.neutral`) |
-| `color.feedback.success` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.success`, `placeholder.color.neutral`) |
-| `color.feedback.warning` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.warning`, `placeholder.color.neutral`) |
-| `color.feedback.error` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.error`, `placeholder.color.neutral`) |
-| `color.feedback.info` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.info`, `placeholder.color.neutral`) |
+| `color.text.default` (`#f5f5f5`) | `color.surface.elevated` (`#90a1b9`) | text | 2.41:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `placeholder.color.neutral`) |
+| `color.text.muted` (`#bdbdbd`) | `color.surface.elevated` (`#90a1b9`) | text | 1.40:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `placeholder.color.neutral`) |
+| `color.feedback.success` (`#34d399`) | `color.bg.base` (`#000000`) | text | 10.92:1 | 4.50:1 | pass |
+| `color.feedback.warning` (`#ff9f43`) | `color.bg.base` (`#000000`) | text | 10.29:1 | 4.50:1 | pass |
+| `color.feedback.error` (`#ff5c5c`) | `color.bg.base` (`#000000`) | text | 6.94:1 | 4.50:1 | pass |
+| `color.feedback.info` (`#5cc8ff`) | `color.bg.base` (`#000000`) | text | 11.16:1 | 4.50:1 | pass |
 | `focus.ring.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `focus.ring.color` (`#fff488`) | `color.surface.card` (`#90a1b9`) | ui | 2.32:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
 | `button.primary.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
@@ -77,22 +78,22 @@ The focus tokens are `stable` (ADR-0009). The contrast pairs declared for every 
 | `badge.outline.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `badge.outline.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `badge.tag.border` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
-| `formField.label.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `formField.label.fg`, `placeholder.color.neutral`) |
-| `formField.description.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `formField.description.fg`, `placeholder.color.neutral`) |
-| `formField.help.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `formField.help.fg`, `placeholder.color.neutral`) |
-| `formField.error.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.feedback.error`, `formField.error.fg`, `placeholder.color.neutral`) |
-| `tabs.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.muted`, `placeholder.color.neutral`, `tabs.fg`) |
-| `tabs.fgHover` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `placeholder.color.neutral`, `tabs.fgHover`) |
+| `formField.label.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `formField.description.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `formField.help.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `formField.error.fg` (`#ff5c5c`) | `color.bg.base` (`#000000`) | text | 6.94:1 | 4.50:1 | pass |
+| `tabs.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `tabs.fgHover` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `tabs.active.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `tabs.active.indicator` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
-| `tabs.rule` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `placeholder.color.neutral`, `tabs.rule`) |
+| `tabs.rule` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `tabs.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `breadcrumb.link.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `breadcrumb.link.fgHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `breadcrumb.current.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `breadcrumb.current.fg`, `color.text.default`, `placeholder.color.neutral`) |
+| `breadcrumb.current.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `breadcrumb.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
-| `pagination.item.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `pagination.item.fg`, `placeholder.color.neutral`) |
-| `pagination.item.border` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `pagination.item.border`, `placeholder.color.neutral`) |
+| `pagination.item.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `pagination.item.border` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `pagination.item.borderHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `pagination.current.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `pagination.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
@@ -212,14 +213,9 @@ Email templates follow the same contrast rules, using the resolved values from `
 
 The contrast pairs below are `unverified` until their colors are defined. Each one is checked again when the owner supplies the value.
 
-> **TBD (TBD-04):** The body text color is not defined, so the `color.text.default` pairs are unverified. Owner input needed: a hex value.
->
-> **TBD (TBD-05):** The neutral scale is not defined, so the `color.text.muted` and `color.border.default` pairs are unverified. Owner input needed: a set of hex values.
->
 > **TBD (TBD-06):** Card and elevated surface colors are not defined, so every pair on `color.surface.*` is unverified, including the focus ring on a card. Owner input needed: decision OD-05.
->
-> **TBD (TBD-07):** Feedback colors are not defined, so the `color.feedback.*` pairs are unverified. Owner input needed: a set of hex values.
 
 ## Changelog
 
 - 0.1.0 — First draft: the WCAG 2.2 AA target (A-10), the contrast, focus, keyboard, target-size, reflow, reduced-motion, flashing, and decorative-content rules, the axe gate (REQ-027, REQ-060), and the unverified pairs for TBD-04 to TBD-07 (T4.6); the axe helper and the route matrix are built (T5.5) — awaiting owner approval
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

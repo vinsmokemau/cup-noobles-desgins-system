@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-01, BR-10, BR-13]
 tokens: [pagination, radius.pagination, border.width.pagination]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-10, TBD-11]
+tbd: [TBD-10]
 related: [tabs, breadcrumb, button, navigation, accessibility]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Pagination
@@ -35,7 +35,7 @@ Pagination moves between pages of results and shows which page the person is on.
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.pagination` | `--cn-border-width-pagination` | `1px` | tbd (TBD-11) |
+| `border.width.pagination` | `--cn-border-width-pagination` | `3px` | stable |
 | `pagination.current.bg` | `--cn-pagination-current-bg` | `#ef80ae` | stable |
 | `pagination.current.border` | `--cn-pagination-current-border` | `#ef80ae` | stable |
 | `pagination.current.fg` | `--cn-pagination-current-fg` | `#000000` | stable |
@@ -43,14 +43,14 @@ Pagination moves between pages of results and shows which page the person is on.
 | `pagination.focus.offset` | `--cn-pagination-focus-offset` | `3px` | stable |
 | `pagination.focus.style` | `--cn-pagination-focus-style` | `solid` | stable |
 | `pagination.focus.width` | `--cn-pagination-focus-width` | `3px` | stable |
-| `pagination.item.border` | `--cn-pagination-item-border` | `#90a1b9` | tbd (TBD-05) |
+| `pagination.item.border` | `--cn-pagination-item-border` | `#8c8c8c` | stable |
 | `pagination.item.borderHover` | `--cn-pagination-item-border-hover` | `#ef80ae` | stable |
-| `pagination.item.fg` | `--cn-pagination-item-fg` | `#90a1b9` | tbd (TBD-04) |
+| `pagination.item.fg` | `--cn-pagination-item-fg` | `#f5f5f5` | stable |
 | `radius.pagination` | `--cn-radius-pagination` | `0.375rem` | tbd (TBD-10) |
 
 <!-- /cn:generated -->
 
-The pagination tokens reference semantic tokens only (REQ-010 AC2). The current page chip and the focus ring are `stable`: brand pink, black, and brand yellow (BR-01, BR-03, BR-02). The text color, the outline color, the corner radius, and the stroke width follow placeholders (TBD-04, TBD-05, TBD-10, TBD-11), so they are `tbd` until the owner supplies them.
+The pagination tokens reference semantic tokens only (REQ-010 AC2). The current page chip and the focus ring are `stable`: brand pink, black, and brand yellow (BR-01, BR-03, BR-02). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The text color, the outline color, and the stroke width are `stable` (ADR-0032).
 
 Contrast pairs declared for the pagination (REQ-015):
 
@@ -58,8 +58,8 @@ Contrast pairs declared for the pagination (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `pagination.item.fg` (`#90a1b9`) | `color.bg.base` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `color.text.default`, `pagination.item.fg`, `placeholder.color.neutral`) |
-| `pagination.item.border` (`#90a1b9`) | `color.bg.base` (`#000000`) | ui | 7.98:1 | 3.00:1 | unverified (tbd: `color.border.default`, `pagination.item.border`, `placeholder.color.neutral`) |
+| `pagination.item.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `pagination.item.border` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `pagination.item.borderHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `pagination.current.fg` (`#000000`) | `pagination.current.bg` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
 | `pagination.current.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
@@ -187,16 +187,11 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The number on a page that is not current reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The outline of a page that is not current reads a placeholder, not a brand value. Owner input needed: a hex set.
->
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **Draft:** The look (a neutral outline and a pink chip with a black number on the current page, with no glow) is approved (ADR-0028). The hover look is a draft. The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UPagination` themed with the pink chip look, the component tokens, and the demos (T8.4) — ADR-0028
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

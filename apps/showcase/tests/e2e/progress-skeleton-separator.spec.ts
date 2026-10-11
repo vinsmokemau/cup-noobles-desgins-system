@@ -22,8 +22,9 @@ const statesOf = (slug: string) => {
 const PINK = 'rgb(239, 128, 174)'
 const BLACK = 'rgb(0, 0, 0)'
 const CLEAR = 'rgba(0, 0, 0, 0)'
-// The placeholder neutral (TBD-05), `#90a1b9`. It is not a brand value; the test reads it only to prove which token the rule uses.
-const NEUTRAL = 'rgb(144, 161, 185)'
+// The neutral border grey `#8c8c8c` (ADR-0032), and the 3 px stroke width (ADR-0032).
+const NEUTRAL = 'rgb(140, 140, 140)'
+const STROKE = '3px'
 
 const cell = (page: Page, state: string) => page.locator(`[data-state="${state}"]:not([data-slot])`)
 const bar = (page: Page, state: string) => cell(page, state).getByRole('progressbar')
@@ -97,14 +98,14 @@ test('ADR-0015: the progress track is a black pill with a neutral outline, and t
   expect(track['background-color']).toBe(BLACK)
   expect(track['border-top-color']).toBe(NEUTRAL)
   expect(track['border-top-style']).toBe('solid')
-  expect(track['border-top-width']).toBe('1px')
+  expect(track['border-top-width']).toBe(STROKE)
   expect(Number.parseFloat(track['border-top-left-radius']!)).toBeGreaterThan(100)
   const fill = cell(page, 'default').locator('[data-slot="indicator"]')
   expect((await style(fill, ['background-color']))['background-color']).toBe(PINK)
   // The empty bar shows only the track: the fill has moved fully out of it.
   const emptyFill = cell(page, 'empty').locator('[data-slot="indicator"]')
   const [fillBox, trackBox] = await Promise.all([emptyFill.boundingBox(), bar(page, 'empty').boundingBox()])
-  expect(fillBox!.x + fillBox!.width).toBeLessThanOrEqual(trackBox!.x + 2)
+  expect(fillBox!.x + fillBox!.width).toBeLessThanOrEqual(trackBox!.x + Number.parseFloat(STROKE) + 1)
 })
 
 test('the progress rules read their tokens: overriding them changes the bar', async ({ page }) => {
@@ -144,7 +145,7 @@ test('Done when: the skeleton is an outlined shape with no fill that fades while
   expect(shape['background-color']).toBe(CLEAR)
   expect(shape['border-top-color']).toBe(NEUTRAL)
   expect(shape['border-top-style']).toBe('solid')
-  expect(shape['border-top-width']).toBe('1px')
+  expect(shape['border-top-width']).toBe(STROKE)
   expect(shape['animation-name']).toBe('cn-skeleton-fade')
   expect(shape['animation-iteration-count']).toBe('infinite')
   const running = await lone.evaluate((el) => el.getAnimations().filter((a) => a.playState === 'running').length)
@@ -208,7 +209,7 @@ test('ADR-0015: the separator line is neutral, and the vertical one runs along t
   await openDemo(page, 'separator', 'states')
   const line = page.locator('[data-separator="horizontal"] [data-slot="border"]')
   const horizontal = await style(line, ['border-top-color', 'border-top-style', 'border-top-width'])
-  expect(horizontal).toEqual({ 'border-top-color': NEUTRAL, 'border-top-style': 'solid', 'border-top-width': '1px' })
+  expect(horizontal).toEqual({ 'border-top-color': NEUTRAL, 'border-top-style': 'solid', 'border-top-width': STROKE })
   const [lineBox, rootBox] = await Promise.all([
     line.boundingBox(),
     page.locator('[data-separator="horizontal"]').boundingBox(),
@@ -218,7 +219,7 @@ test('ADR-0015: the separator line is neutral, and the vertical one runs along t
   const vertical = await style(side, ['border-inline-start-color', 'border-inline-start-width', 'border-top-width'])
   expect(vertical).toEqual({
     'border-inline-start-color': NEUTRAL,
-    'border-inline-start-width': '1px',
+    'border-inline-start-width': STROKE,
     'border-top-width': '0px',
   })
   const [sideBox, rowBox] = await Promise.all([

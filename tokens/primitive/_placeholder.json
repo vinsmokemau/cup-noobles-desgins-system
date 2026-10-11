@@ -5,8 +5,8 @@
       "neutral": {
         "$type": "color",
         "$value": "#90a1b9",
-        "$description": "Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-04, TBD-05, TBD-06, and TBD-07. Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-04", "TBD-05", "TBD-06", "TBD-07"] } }
+        "$description": "Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-06 (the surface colors). Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006).",
+        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-06"] } }
       }
     },
     "font": {
@@ -147,14 +147,6 @@
         "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
       }
     },
-    "border": {
-      "width": {
-        "$type": "dimension",
-        "$value": "1px",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-11. Source: Nuxt UI outlines, Tailwind ring width (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-11"] } }
-      }
-    },
     "effect": {
       "glow": {
         "$value": "none",
@@ -186,20 +178,6 @@
         "$value": 100,
         "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006).",
         "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
-      }
-    },
-    "motion": {
-      "duration": {
-        "$type": "duration",
-        "$value": "150ms",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-14. Source: Tailwind --default-transition-duration (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
-      },
-      "easing": {
-        "$type": "cubicBezier",
-        "$value": [0.4, 0, 0.2, 1],
-        "$description": "Placeholder, not a brand value. Stands in for TBD-14. Source: Tailwind --default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1), split into DTCG parts (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-14"] } }
       }
     },
     "breakpoint": {

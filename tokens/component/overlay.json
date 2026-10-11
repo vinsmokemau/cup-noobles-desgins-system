@@ -17,11 +17,10 @@
       "overlay": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the modal and slideover panel, and of the lines between its header, body, and footer (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$description": "Outline stroke width of the modal and slideover panel, and of the lines between its header, body, and footer (BR-13).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-11"]
+            "status": "stable"
           }
         }
       }
@@ -102,22 +101,20 @@
     "fg": {
       "$type": "color",
       "$value": "{color.text.default}",
-      "$description": "Title and body text of the modal and slideover. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$description": "Title and body text of the modal and slideover.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-04"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },
     "fgMuted": {
       "$type": "color",
       "$value": "{color.text.muted}",
-      "$description": "Description text of the modal and slideover. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Description text of the modal and slideover.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-05"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     }

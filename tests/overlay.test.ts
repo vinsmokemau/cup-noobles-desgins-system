@@ -34,7 +34,7 @@ test('REQ-020 AC1: both docs are nuxt-ui organisms named for their Nuxt UI compo
     // The text colors, the radius, the stroke, the backdrop amount, and the shadow are placeholders (REQ-009).
     assert.equal(data.status, 'draft', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
-    assert.deepEqual(data.tbd, ['TBD-04', 'TBD-05', 'TBD-10', 'TBD-11', 'TBD-15'], slug)
+    assert.deepEqual(data.tbd, ['TBD-10', 'TBD-15'], slug)
     assert.match(docOf(slug), new RegExp(`\`${NUXT_UI[slug]}\``), `${slug} doc names its Nuxt UI component`)
   }
 })
@@ -48,7 +48,7 @@ test('the overlay tokens reference semantic tokens, the brand ones are stable, a
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, 'tbd', path)
+    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   for (const [path, value, status] of [
     ['overlay.bg', '{color.bg.base}', 'stable'],
@@ -58,8 +58,8 @@ test('the overlay tokens reference semantic tokens, the brand ones are stable, a
     ['overlay.scrimOpacity', '{effect.scrim.opacity}', 'tbd'],
     ['overlay.shadow', '{effect.elevation.overlay}', 'tbd'],
     ['overlay.z', '{effect.zIndex.overlay}', 'tbd'],
-    ['overlay.fg', '{color.text.default}', 'tbd'],
-    ['overlay.fgMuted', '{color.text.muted}', 'tbd'],
+    ['overlay.fg', '{color.text.default}', 'stable'],
+    ['overlay.fgMuted', '{color.text.muted}', 'stable'],
   ] as const) {
     assert.equal(byPath.get(path)?.value, value, path)
     assert.equal(byPath.get(path)?.cn?.status, status, path)
@@ -116,8 +116,8 @@ test('REQ-015: the overlay pairs are declared, and the pink outline and dividers
   const report = checkContrast(root)
   assert.equal(report.problems.length, 0)
   for (const [foreground, ratio, result] of [
-    ['overlay.fg', 7.98, 'unverified'],
-    ['overlay.fgMuted', 7.98, 'unverified'],
+    ['overlay.fg', 19.26, 'pass'],
+    ['overlay.fgMuted', 11.18, 'pass'],
     ['overlay.highlight', 8.37, 'pass'],
     ['overlay.divider', 8.37, 'pass'],
   ] as const) {

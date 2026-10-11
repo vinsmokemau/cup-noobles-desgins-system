@@ -4,11 +4,10 @@
       "progress": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Outline stroke width of the progress track (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$description": "Outline stroke width of the progress track (BR-13).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-11"]
+            "status": "stable"
           }
         }
       }
@@ -28,11 +27,10 @@
     "border": {
       "$type": "color",
       "$value": "{color.border.default}",
-      "$description": "Outline color of the progress track. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Outline color of the progress track.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-05"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },

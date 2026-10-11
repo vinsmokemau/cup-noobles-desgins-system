@@ -4,11 +4,10 @@
       "separator": {
         "$type": "dimension",
         "$value": "{border.width.interactive}",
-        "$description": "Stroke width of the separator line (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$description": "Stroke width of the separator line (BR-13).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-11"]
+            "status": "stable"
           }
         }
       }
@@ -28,11 +27,10 @@
     "color": {
       "$type": "color",
       "$value": "{color.border.default}",
-      "$description": "Color of the separator line. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Color of the separator line.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-05"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     }

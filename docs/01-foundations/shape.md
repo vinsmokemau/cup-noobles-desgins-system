@@ -6,17 +6,17 @@ status: draft
 lang: en
 brandRules: [BR-10, BR-13]
 tokens: [radius, border]
-tbd: [TBD-10, TBD-11]
+tbd: [TBD-10]
 related: [effects, color, button, card]
 since: 0.1.0
-updated: 2026-09-27
+updated: 2026-10-11
 ---
 
 # Shape
 
 ## Purpose
 
-This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-contrast line work. It implements the shape part of BR-10 (rounded corners and a thick outline stroke) and BR-13 (thick, clean line work). The radius values (TBD-10) and stroke widths (TBD-11) are not defined yet, so every shape token holds an ADR-0006 placeholder that is not a brand value.
+This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-contrast line work. It implements the shape part of BR-10 (rounded corners and a thick outline stroke) and BR-13 (thick, clean line work). The stroke width is 3 px (ADR-0032). The radius values (TBD-10) are not defined yet, so the radius tokens hold an ADR-0006 placeholder that is not a brand value.
 
 ## Tokens and specs
 
@@ -24,25 +24,25 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.alert` | `--cn-border-width-alert` | `1px` | tbd (TBD-11) |
-| `border.width.badge` | `--cn-border-width-badge` | `1px` | tbd (TBD-11) |
-| `border.width.button` | `--cn-border-width-button` | `1px` | tbd (TBD-11) |
-| `border.width.card` | `--cn-border-width-card` | `1px` | tbd (TBD-11) |
-| `border.width.choice` | `--cn-border-width-choice` | `1px` | tbd (TBD-11) |
-| `border.width.default` | `--cn-border-width-default` | `1px` | tbd (TBD-11) |
-| `border.width.input` | `--cn-border-width-input` | `1px` | tbd (TBD-11) |
-| `border.width.interactive` | `--cn-border-width-interactive` | `1px` | tbd (TBD-11) |
-| `border.width.mediaCard` | `--cn-border-width-media-card` | `1px` | tbd (TBD-11) |
-| `border.width.overlay` | `--cn-border-width-overlay` | `1px` | tbd (TBD-11) |
-| `border.width.pagination` | `--cn-border-width-pagination` | `1px` | tbd (TBD-11) |
-| `border.width.progress` | `--cn-border-width-progress` | `1px` | tbd (TBD-11) |
-| `border.width.separator` | `--cn-border-width-separator` | `1px` | tbd (TBD-11) |
-| `border.width.siteFooter` | `--cn-border-width-site-footer` | `1px` | tbd (TBD-11) |
-| `border.width.siteHeader` | `--cn-border-width-site-header` | `1px` | tbd (TBD-11) |
-| `border.width.skeleton` | `--cn-border-width-skeleton` | `1px` | tbd (TBD-11) |
-| `border.width.tabs` | `--cn-border-width-tabs` | `1px` | tbd (TBD-11) |
-| `border.width.toast` | `--cn-border-width-toast` | `1px` | tbd (TBD-11) |
-| `border.width.tooltip` | `--cn-border-width-tooltip` | `1px` | tbd (TBD-11) |
+| `border.width.alert` | `--cn-border-width-alert` | `3px` | stable |
+| `border.width.badge` | `--cn-border-width-badge` | `3px` | stable |
+| `border.width.button` | `--cn-border-width-button` | `3px` | stable |
+| `border.width.card` | `--cn-border-width-card` | `3px` | stable |
+| `border.width.choice` | `--cn-border-width-choice` | `3px` | stable |
+| `border.width.default` | `--cn-border-width-default` | `3px` | stable |
+| `border.width.input` | `--cn-border-width-input` | `3px` | stable |
+| `border.width.interactive` | `--cn-border-width-interactive` | `3px` | stable |
+| `border.width.mediaCard` | `--cn-border-width-media-card` | `3px` | stable |
+| `border.width.overlay` | `--cn-border-width-overlay` | `3px` | stable |
+| `border.width.pagination` | `--cn-border-width-pagination` | `3px` | stable |
+| `border.width.progress` | `--cn-border-width-progress` | `3px` | stable |
+| `border.width.separator` | `--cn-border-width-separator` | `3px` | stable |
+| `border.width.siteFooter` | `--cn-border-width-site-footer` | `3px` | stable |
+| `border.width.siteHeader` | `--cn-border-width-site-header` | `3px` | stable |
+| `border.width.skeleton` | `--cn-border-width-skeleton` | `3px` | stable |
+| `border.width.tabs` | `--cn-border-width-tabs` | `3px` | stable |
+| `border.width.toast` | `--cn-border-width-toast` | `3px` | stable |
+| `border.width.tooltip` | `--cn-border-width-tooltip` | `3px` | stable |
 | `radius.alert` | `--cn-radius-alert` | `0.375rem` | tbd (TBD-10) |
 | `radius.badge` | `--cn-radius-badge` | `0.375rem` | tbd (TBD-10) |
 | `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
@@ -62,7 +62,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 
 <!-- /cn:generated -->
 
-Every row above is `tbd`. The radius rows hold the ADR-0006 placeholders taken from Nuxt UI's default radii, and the stroke-width row holds the ADR-0006 placeholder taken from Nuxt UI's default outline. **None of them is a brand value.** BR-10 asks for "rounded" corners and BR-13 for "thick" lines, and a placeholder that is neither is still only a placeholder. They exist only so the tokens build and the showcase renders.
+The radius rows are `tbd`. They hold the ADR-0006 placeholders taken from Nuxt UI's default radii, and **none of them is a brand value.** BR-10 asks for "rounded" corners, and a placeholder is still only a placeholder. They exist only so the tokens build and the showcase renders. The stroke-width row is `stable`: BR-13 asks for "thick" lines, and the owner chose 3 px (ADR-0032).
 
 The component tokens that apply shape to a component are added by that component's task. The button's are `radius.button` and `border.width.button` (REQ-023 AC2, see [Button](../02-components/atoms/button.md)).
 
@@ -86,7 +86,7 @@ BR-10 names rounded corners on buttons only. Whether other components are rounde
 
 | Token group | Source | Role |
 |---|---|---|
-| `border.width.default` | BR-10 and BR-13, value TBD-11 | The outline stroke of buttons and the line work of the UI. |
+| `border.width.default` | BR-10 and BR-13, value ADR-0032 | The outline stroke of buttons and the line work of the UI. |
 
 BR-13 applies to "all UI and illustration", so every outline, divider, and illustrated line uses a stroke-width token. Until OD-05 is decided, cards are set apart from the pure-black page by this outline, not by a fill (C-05, see [Color](color.md)).
 
@@ -102,7 +102,7 @@ BR-13 applies to "all UI and illustration", so every outline, divider, and illus
 
 ### When not to use
 
-- Never make up a radius or a stroke width. They are TBD-10 and TBD-11, and only the owner can supply them.
+- Never make up a radius or a stroke width. The stroke width is in ADR-0032. The radius is TBD-10, and only the owner can supply it.
 - Never treat the ADR-0006 placeholders as brand values, and never copy them into another project.
 - Never draw hairline or low-contrast lines; they contradict BR-13.
 
@@ -133,7 +133,7 @@ Email templates use the resolved literals from `dist/email/email-tokens.json`, i
 | Where | What |
 |---|---|
 | `tokens/primitive/radius.json` | The radius steps, all `tbd` (TBD-10). |
-| `tokens/primitive/border.json` | The stroke width, `tbd` (TBD-11). |
+| `tokens/primitive/border.json` | The stroke width, `stable` (ADR-0032). |
 | `@vinsmokemau/cup-noobles-tokens`, `dist/css/tokens.css` | The CSS custom properties, such as `--cn-radius-md` (REQ-017). |
 | `packages/nuxt/assets/css/main.css` | Maps Nuxt UI's base radius (`--ui-radius`) to the `--cn-*` variables (§4.7, ADR-0001). |
 
@@ -147,9 +147,8 @@ Email templates use the resolved literals from `dist/email/email-tokens.json`, i
 ## Open items
 
 > **TBD (TBD-10):** Corner radius values are not defined ("rounded" in BR-10). `radius.sm`, `radius.md`, and `radius.lg` hold ADR-0006 placeholders. Owner input needed: values, and which components besides buttons are rounded.
->
-> **TBD (TBD-11):** Stroke widths are not defined ("thick" in BR-10 and BR-13). `border.width.default` holds the ADR-0006 placeholder. Owner input needed: values.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-10 and BR-13, the radius and stroke-width groups, and TBD-10 and TBD-11 (T4.4) — awaiting owner approval
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

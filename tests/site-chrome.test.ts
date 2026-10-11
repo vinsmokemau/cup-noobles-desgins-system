@@ -35,20 +35,20 @@ test('REQ-020 AC1: both docs are nuxt-ui organisms named for their Nuxt UI compo
     // The text color and the stroke width are placeholders (REQ-009).
     assert.equal(data.status, 'draft', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
-    assert.deepEqual(data.tbd, ['TBD-04', 'TBD-11'], slug)
+    assert.deepEqual(data.tbd, [], slug)
     assert.match(docOf(slug), new RegExp(`\`${NUXT_UI[slug]}\``), `${slug} doc names its Nuxt UI component`)
   }
 })
 
-test('the bar tokens reference semantic tokens, the brand ones are stable, and the placeholders are tbd', () => {
+test('the bar tokens reference semantic tokens, the brand ones are stable, and so are the owner values (ADR-0032)', () => {
   assert.deepEqual(problems, [])
   for (const slug of SLUGS) {
     const group = GROUP[slug]
     for (const [path, value, status] of [
       [`${group}.bg`, '{color.bg.base}', 'stable'],
       [`${group}.line`, '{color.brand.primary}', 'stable'],
-      [`${group}.fg`, '{color.text.default}', 'tbd'],
-      [`border.width.${group}`, '{border.width.interactive}', 'tbd'],
+      [`${group}.fg`, '{color.text.default}', 'stable'],
+      [`border.width.${group}`, '{border.width.interactive}', 'stable'],
     ] as const) {
       const token = byPath.get(path)
       assert.equal(token?.tier, 'component', path)
@@ -98,7 +98,7 @@ test('REQ-015: the pink lines pass against the black fill, and the text pairs ar
     assert.equal(line?.result, 'pass', `${group}.line`)
     assert.equal(line?.ratio, 8.37, `${group}.line`)
     const text = report.pairs.find((p) => p.foreground === `${group}.fg` && p.background === `${group}.bg`)
-    assert.equal(text?.result, 'unverified', `${group}.fg`)
+    assert.equal(text?.result, 'pass', `${group}.fg`)
   }
 })
 

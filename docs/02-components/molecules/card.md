@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [card, radius.card, border.width.card, color.surface.card]
 demos: [states, playground]
-tbd: [TBD-04, TBD-05, TBD-06, TBD-10, TBD-11]
+tbd: [TBD-06, TBD-10]
 related: [media-card, badge, button, form-field, color, shape]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-11
 ---
 
 # Card
@@ -36,18 +36,18 @@ The card groups related content into one framed block with an optional header, a
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `border.width.card` | `--cn-border-width-card` | `1px` | tbd (TBD-11) |
+| `border.width.card` | `--cn-border-width-card` | `3px` | stable |
 | `card.bg` | `--cn-card-bg` | `#000000` | stable |
 | `card.divider` | `--cn-card-divider` | `#ef80ae` | stable |
-| `card.fg` | `--cn-card-fg` | `#90a1b9` | tbd (TBD-04) |
-| `card.fgMuted` | `--cn-card-fg-muted` | `#90a1b9` | tbd (TBD-05) |
+| `card.fg` | `--cn-card-fg` | `#f5f5f5` | stable |
+| `card.fgMuted` | `--cn-card-fg-muted` | `#bdbdbd` | stable |
 | `card.highlight` | `--cn-card-highlight` | `#ef80ae` | stable |
 | `color.surface.card` | `--cn-color-surface-card` | `#90a1b9` | tbd (TBD-06) |
 | `radius.card` | `--cn-radius-card` | `0.375rem` | tbd (TBD-10) |
 
 <!-- /cn:generated -->
 
-The card tokens reference semantic tokens only (REQ-010 AC2). The text colors, the corner radius, and the stroke width follow placeholders (TBD-04, TBD-05, TBD-10, TBD-11), so they are `tbd` until the owner supplies them. The fill, the outline, and the dividers are `stable`: black and brand pink (BR-01, BR-03).
+The card tokens reference semantic tokens only (REQ-010 AC2). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The text colors and the stroke width are `stable` (ADR-0032), and so are the fill, the outline, and the dividers: black and brand pink (BR-01, BR-03).
 
 The card does not read `color.surface.card`. The table lists it so the open item is visible: no card surface color is defined (TBD-06, C-05), and the card renders on `color.bg.base` until OD-05 is decided.
 
@@ -57,8 +57,8 @@ Contrast pairs declared for the card (REQ-015):
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
-| `card.fg` (`#90a1b9`) | `card.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `card.fg`, `color.text.default`, `placeholder.color.neutral`) |
-| `card.fgMuted` (`#90a1b9`) | `card.bg` (`#000000`) | text | 7.98:1 | 4.50:1 | unverified (tbd: `card.fgMuted`, `color.text.muted`, `placeholder.color.neutral`) |
+| `card.fg` (`#f5f5f5`) | `card.bg` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `card.fgMuted` (`#bdbdbd`) | `card.bg` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
 | `card.highlight` (`#ef80ae`) | `card.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `card.divider` (`#ef80ae`) | `card.bg` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 
@@ -171,18 +171,13 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-04):** The body text color is not decided. The card text reads a placeholder, not a brand value. Owner input needed: a hex.
->
-> **TBD (TBD-05):** The neutral scale is not defined. The description text reads a placeholder, not a brand value. Owner input needed: a hex set.
->
 > **TBD (TBD-06):** Card and elevated surface colors are not defined (C-05). The card renders on `color.bg.base`, separated by its outline, until OD-05 is decided. Owner input needed: decision OD-05.
 >
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-11):** "Thick" has no values. The stroke width follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **Draft:** The look of the card (a pink outline and pink dividers on the black page, with no glow) is approved (ADR-0018). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UCard` themed with the pink outline look, the component tokens, and the demos (T8.1) — ADR-0018
+- 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

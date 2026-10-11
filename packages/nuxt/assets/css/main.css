@@ -9,8 +9,8 @@
 /*
  * The scales that app.config.ts names. Each Nuxt UI color alias reads all 11 shades (ADR-0001 §3).
  * primary and secondary read the derived-pending shade tokens, which all repeat the single brand value (C-06, TBD-08).
- * The feedback scales repeat their TBD-07 token, and neutral repeats the single neutral placeholder, because no
- * color.neutral.* token exists yet (TBD-05, ADR-0006). No tint or shade is generated.
+ * The feedback scales repeat their feedback token (ADR-0032). The neutral scale reads the neutral roles, so its shades
+ * group by role: text, secondary text, border, disabled, divider, and the page. No tint or shade is generated.
  */
 @theme static {
   --color-cn-primary-50: var(--cn-color-brand-pink-50);
@@ -85,17 +85,21 @@
   --color-cn-error-900: var(--cn-color-feedback-error);
   --color-cn-error-950: var(--cn-color-feedback-error);
 
-  --color-cn-neutral-50: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-100: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-200: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-300: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-400: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-500: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-600: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-700: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-800: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-900: var(--cn-placeholder-color-neutral);
-  --color-cn-neutral-950: var(--cn-placeholder-color-neutral);
+  --color-cn-neutral-50: var(--cn-color-text-default);
+  --color-cn-neutral-100: var(--cn-color-text-default);
+  --color-cn-neutral-200: var(--cn-color-text-default);
+  --color-cn-neutral-300: var(--cn-color-text-muted);
+  --color-cn-neutral-400: var(--cn-color-text-muted);
+  --color-cn-neutral-500: var(--cn-color-border-default);
+  --color-cn-neutral-600: var(--cn-color-border-default);
+  --color-cn-neutral-700: var(--cn-color-text-disabled);
+  --color-cn-neutral-800: var(--cn-color-border-divider);
+  --color-cn-neutral-900: var(--cn-color-border-divider);
+  --color-cn-neutral-950: var(--cn-color-bg-base);
+
+  /* Every Tailwind transition utility (	ransition, 	ransition-colors) reads the motion tokens (ADR-0032). */
+  --default-transition-duration: var(--cn-motion-duration-default);
+  --default-transition-timing-function: var(--cn-motion-easing-default);
 }
 
 /*
@@ -103,9 +107,9 @@
  * cascade layer, so these win. The page background stays pure black (BR-03, REQ-012), and labels on brand fills are
  * black (SPEC.md §2.1 derived facts, ADR-0001 Consequences). Roles without a token keep reading the neutral scale.
  *
- * The raised surfaces (muted, elevated, accented) read the same black. The neutral scale is one placeholder color
- * (TBD-05), so left alone they would paint a light slate under white text (2.63:1, an axe failure). Until OD-05 is
- * decided, surfaces sit on color.bg.base and the outline carries the boundary (C-05).
+ * The raised surfaces (muted, elevated, accented) read the same black. No surface color is defined (TBD-06), so left
+ * alone they would paint a grey under the text. Until OD-05 is decided, surfaces sit on color.bg.base and the outline
+ * carries the boundary (C-05).
  */
 @layer theme {
   :root,
@@ -394,7 +398,7 @@
  *
  * Progress is a black track with a neutral outline; the finished part is brand pink. Skeleton shapes are outlines with no
  * fill (C-05) that fade between full and half opacity, half being Nuxt UI's own `animate-pulse` depth. The separator is a
- * neutral line. The fade lasts ten base durations, the placeholder motion duration (TBD-14).
+ * neutral line. The fade lasts one shimmer cycle, `motion.duration.shimmer` (ADR-0032).
  *
  * Under reduced motion nothing moves (REQ-029 AC2): the skeleton stays at full opacity, and the indeterminate progress bar
  * shows a still, partly filled bar instead of the moving one. Nuxt UI would pulse it, so its pulse is switched off too.
@@ -411,7 +415,7 @@
 .cn-skeleton {
   background-color: transparent;
   border: var(--cn-border-width-skeleton) solid var(--cn-skeleton-border);
-  animation: cn-skeleton-fade calc(var(--cn-motion-duration-default) * 10) ease-in-out infinite;
+  animation: cn-skeleton-fade var(--cn-motion-duration-shimmer) ease-in-out infinite;
 }
 
 @keyframes cn-skeleton-fade {
@@ -450,7 +454,7 @@
  * without `!important`.
  *
  * The look is the owner's option A (ADR-0027): the black page, a thick outline and an icon in the feedback color, and
- * normal text. The feedback color of each type is a TBD-07 placeholder today, so the four types are told apart by their
+ * normal text. Each type has its own feedback color (ADR-0032), and the four types are also told apart by their
  * icon and their title, never by color alone (WCAG 1.4.1). The tooltip is a small black bubble with a brand pink outline.
  * None of the three has a glow or a shadow. Nuxt UI draws its outlines with a ring, which is a box-shadow; the outline
  * here is a real border.
@@ -631,7 +635,7 @@
  *
  * T7.10 (ADR-0017): the sparkle is the supplied Sparkle-CN.svg, shown as an image and never edited or inlined. It is as
  * tall as the text beside it, so it follows the type scale and introduces no size of its own; a page makes it larger
- * through --sparkle-size. It fades when it is `animated`, over ten base durations (the placeholder duration, TBD-14), and
+ * through --sparkle-size. It fades when it is `animated`, over one shimmer cycle (`motion.duration.shimmer`, ADR-0032), and
  * the fade is off under reduced motion (REQ-029 AC2).
  *
  * T7.17 (ADR-0024, ADR-0025): the sticker frame is the supplied Sticker-Border-CN.svg, shown as an image and never edited,
@@ -651,7 +655,7 @@
 }
 
 .cn-sparkle[data-animated='true'] {
-  animation: cn-sparkle-fade calc(var(--cn-motion-duration-default) * 10) ease-in-out infinite;
+  animation: cn-sparkle-fade var(--cn-motion-duration-shimmer) ease-in-out infinite;
 }
 
 @keyframes cn-sparkle-fade {

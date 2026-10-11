@@ -8,11 +8,11 @@ export default {
     colors: {
       primary: 'cn-primary', // BR-01, shades derived-pending (C-06)
       secondary: 'cn-secondary', // BR-02, shades derived-pending (C-06)
-      success: 'cn-success', // TBD-07
-      info: 'cn-info', // TBD-07
-      warning: 'cn-warning', // TBD-07
-      error: 'cn-error', // TBD-07
-      neutral: 'cn-neutral', // TBD-05
+      success: 'cn-success', // feedback color (ADR-0032)
+      info: 'cn-info', // feedback color (ADR-0032)
+      warning: 'cn-warning', // feedback color (ADR-0032)
+      error: 'cn-error', // feedback color (ADR-0032)
+      neutral: 'cn-neutral', // neutral roles (ADR-0032)
     },
     // T7.3 (ADR-0012, TBD-19): the icon set is Phosphor Bold. Every icon name that a Nuxt UI component uses points to its
     // Phosphor Bold glyph, so no component shows an icon from another set (REQ-020).
@@ -287,8 +287,8 @@ export default {
         },
       },
     },
-    // The toaster only gets a hook for reduced motion: where the toast sits and how it moves are Nuxt UI defaults
-    // (TBD-14, TBD-15).
+    // The toaster only gets a hook for reduced motion: where the toast sits is a Nuxt UI default (TBD-15), and how it
+    // moves is Nuxt UI's default animation.
     toaster: {
       slots: {
         base: 'cn-toaster__item',
