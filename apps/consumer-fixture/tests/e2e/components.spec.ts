@@ -27,7 +27,8 @@ const open: Record<string, (page: Page, width: number) => Promise<void>> = {
   },
   toast: async (page) => {
     await page.getByRole('button', { name: 'Mostrar aviso' }).click()
-    await expect(page.getByText('Cambios guardados')).toBeVisible()
+    // Exact: the toast viewport also renders a hidden live-region copy, "Notification Cambios guardados", for a moment.
+    await expect(page.getByText('Cambios guardados', { exact: true })).toBeVisible()
   },
   tooltip: async (page) => {
     // The tooltip opens on keyboard focus, so the focus arrives by Tab, as it does for a person.

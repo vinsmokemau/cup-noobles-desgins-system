@@ -10,6 +10,8 @@ import { defineConfig, devices } from '@playwright/test'
 import { siteBase } from './lib/site'
 
 const port = 3200
+// GitHub Actions sets CI=true.
+const ci = Boolean(process.env.CI)
 const widths = [360, 768, 1280] as const
 const desktop = devices['Desktop Chrome']
 const viewport = (width: number) => ({ ...desktop, viewport: { width, height: 800 } })
@@ -25,12 +27,19 @@ export default defineConfig({
   // T5.7: every test runs in parallel, on a fixed number of workers so the timing does not depend on the machine. A file
   // whose tests share state opts out with `test.describe.configure({ mode: 'serial' })` (docs.spec.ts).
   fullyParallel: true,
-  workers: 8,
+  // 8 workers is tuned for the 12-thread development machine. A GitHub-hosted runner has 4 vCPUs, so 8 Chromium
+  // instances starve each other: /tokens (344 rows, about 700 buttons to hydrate) and the all-routes loop in docs.spec.ts
+  // then pass 30 s. CI therefore runs 4 workers (one per vCPU) and gives each test and each expectation more time.
+  workers: ci ? 4 : 8,
+  timeout: ci ? 60_000 : 30_000,
   use: { baseURL: `http://localhost:${port}` },
   // Baselines live in git, one folder per file kind and one image per width. The path has no platform suffix, because
   // baselines are made in the pinned container only (A-12).
   snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}-{projectName}{ext}',
-  expect: { toHaveScreenshot: { animations: 'disabled', caret: 'hide', maxDiffPixelRatio: 0.001 } },
+  expect: {
+    timeout: ci ? 10_000 : 5_000,
+    toHaveScreenshot: { animations: 'disabled', caret: 'hide', maxDiffPixelRatio: 0.001 },
+  },
   projects: [
     { name: 'functional', testMatch: '**/*.spec.ts', use: viewport(1280) },
     ...widths.map((width) => ({ name: `w${width}`, testMatch: '**/*.matrix.ts', use: viewport(width) })),

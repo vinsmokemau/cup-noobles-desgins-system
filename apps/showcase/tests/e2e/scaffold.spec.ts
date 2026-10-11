@@ -4,6 +4,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { parseDesignNav } from '../../lib/design-nav'
+import { waitForHydration } from './helpers/ready'
 import { expect, test, withBase } from './helpers/test'
 
 const repoFile = (path: string) => readFileSync(fileURLToPath(new URL(`../../../../${path}`, import.meta.url)), 'utf8')
@@ -26,6 +27,8 @@ test('REQ-052 AC2: the sidebar lists every DESIGN.md link, in DESIGN.md order', 
 test('REQ-061 AC2: below md the sidebar is hidden and the same menu opens in a slideover', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 })
   await page.goto('/')
+  // The page is prerendered; a click before Nuxt has hydrated it lands on an inert button.
+  await waitForHydration(page)
   await expect(page.locator('aside')).toBeHidden()
   await page.getByRole('button', { name: 'Open menu' }).click()
   const dialog = page.getByRole('dialog')
@@ -74,6 +77,7 @@ test('T8.6: the showcase adopts the site header and footer, each with its thick 
 test('T8.6: the menu opens and closes by keyboard, and Escape returns focus to the toggle', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 })
   await page.goto('/')
+  await waitForHydration(page)
   const toggle = page.getByRole('button', { name: 'Open menu' })
   await toggle.focus()
   await page.keyboard.press('Enter')
