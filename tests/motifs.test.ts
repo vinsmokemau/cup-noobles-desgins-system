@@ -40,10 +40,12 @@ test('REQ-029 AC1: both components are aria-hidden, take no label, and hold no f
     assert.match(source, /aria-hidden="true"/)
     assert.doesNotMatch(source, /\b(tabindex|role|aria-label|aria-labelledby|<button|<a\b|<input|<select|<textarea)\b/i)
   }
-  // The frame draws no artwork of its own while the sticker border is missing (TBD-18).
-  assert.doesNotMatch(frame, /<img|<svg|<path|v-html|UIcon|i-ph-/)
+  // The frame draws no artwork of its own: the supplied file is shown as an image (ADR-0024, ADR-0025).
+  assert.doesNotMatch(frame, /<svg|<path|v-html|UIcon|i-ph-/)
+  assert.match(frame, /<img\s[^>]*alt=""[^>]*aria-hidden="true"/)
   // The frame wraps arbitrary content, so `inert` is what makes "no focusable children" true whatever the slot holds.
-  assert.match(frame, /<div class="cn-sticker-frame" aria-hidden="true" inert>\s*<slot \/>/)
+  assert.match(frame, /<div class="cn-sticker-frame" aria-hidden="true" inert>/)
+  assert.match(frame, /<div class="cn-sticker-frame__content">\s*<slot \/>/)
   assert.doesNotMatch(frame, /defineProps/)
   // The sparkle takes one prop, `animated`, and no slot.
   assert.match(sparkle, /defineProps<\{ animated\?: boolean \}>\(\)/)
@@ -232,7 +234,7 @@ test('ADR-0023: the arcade lines file is the owner file, transparent, safe to se
   assert.deepEqual(colours, ['#000000', '#ef80ae', '#fff488', '#ffffff'])
 })
 
-// The sticker border the owner chose (ADR-0024). `CnStickerFrame` does not render it yet, so only the file itself is locked here.
+// The sticker border the owner chose (ADR-0024). `CnStickerFrame` renders it unmodified (T7.17, ADR-0025), so its bytes are locked here.
 const STICKER_BORDER = [
   'Sticker-Border-CN.svg',
   '1425523e51729b84a7b9bcff8a91c4bacf018fd7fe215e50df2f113861ef2c54',
@@ -264,6 +266,23 @@ test('ADR-0024: the sticker border file is the cleaned owner file, transparent w
   // Pink, yellow, and black are the brand values. White is allowed only for the shine marks (ADR-0024).
   const colours = [...new Set([...svg.matchAll(/#[0-9a-fA-F]{3,8}\b/g)].map((m) => m[0].toLowerCase()))].sort()
   assert.deepEqual(colours, ['#000000', '#ef80ae', '#fff488', '#ffffff'])
+
+  // The frame renders exactly this file, as an image, and its box has the ratio of the file's viewBox (ADR-0025).
+  const frame = read('packages/nuxt/components/CnStickerFrame.vue')
+  assert.match(frame, new RegExp(`new URL\\('\\.\\./assets/brand/${file}', import\\.meta\\.url\\)\\.href`))
+  const [, , , width, height] = svg.match(/viewBox="([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)"/)!.map(Number)
+  assert.match(ownCss, new RegExp(`aspect-ratio: ${width} / ${height};`))
+})
+
+test('the sticker frame placeholder is gone: no outline, token, contrast pair, or callout remains from T7.8', () => {
+  for (const path of ['motif.placeholder.bg', 'motif.placeholder.border', 'border.width.motif', 'radius.motif'])
+    assert.equal(byPath.has(path), false, `${path} was removed`)
+  assert.equal(existsSync(join(root, 'tokens/component/motif.json')), false)
+  assert.doesNotMatch(ownCss, /cn-motif-|border-width-motif|radius-motif/)
+  assert.doesNotMatch(read('tokens/contrast-pairs.json'), /motif\./)
+  // The frame is drawn by the artwork alone: it declares no colour, stroke, radius, or padding of its own (ADR-0025).
+  const frame = ownCss.slice(ownCss.indexOf('.cn-sticker-frame {'), ownCss.indexOf('@media'))
+  assert.doesNotMatch(frame, /(^|\s)(background[\w-]*|padding[\w-]*|border[\w-]*|color):/m)
 })
 
 test('the sparkle placeholder is gone: no text, token, or rule remains from T7.8', () => {
@@ -283,75 +302,56 @@ test('REQ-029 AC2: the fade is declared once, only for an animated sparkle, and 
   assert.doesNotMatch(frame, /animation|transition/)
 })
 
-test('the component tokens reference semantic tokens, and every placeholder is marked tbd', () => {
+test('the rules read only tokens that exist', () => {
   assert.deepEqual(problems, [])
-  for (const [path, semantic, tbd] of [
-    ['border.width.motif', 'border.width.interactive', ['TBD-11', 'TBD-18']],
-    ['radius.motif', 'radius.interactive', ['TBD-10', 'TBD-18']],
-    ['motif.placeholder.border', 'color.border.default', ['TBD-05', 'TBD-18']],
-  ] as const) {
-    const token = byPath.get(path)
-    assert.equal(token?.tier, 'component', path)
-    assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, 'tbd', path)
-    assert.deepEqual(token?.cn?.tbd, tbd, path)
-  }
-  // The black surface follows a brand value, so it is stable.
-  assert.equal(byPath.get('motif.placeholder.bg')?.value, '{color.bg.base}')
-  assert.equal(byPath.get('motif.placeholder.bg')?.cn?.status, 'stable')
-})
-
-test('the rules read only tokens that exist, and each motif token is read', () => {
   const names = new Set(tokens.map((t) => cssVariable(t.path)))
   for (const [, name] of ownCss.matchAll(/var\((--cn-[a-z0-9-]+)\)/g)) assert.ok(names.has(name!), `${name} is a token`)
-  for (const path of ['motif.placeholder.bg', 'motif.placeholder.border', 'border.width.motif', 'radius.motif'])
-    assert.ok(ownCss.includes(`var(${cssVariable(path)})`), `${path} is read`)
   // The sparkle takes its height from the text beside it, so it adds no size of its own (ADR-0017).
   assert.match(ownCss, /height: var\(--sparkle-size, 1em\)/)
-  // The frame fits its content and never overflows its container (REQ-028 AC1).
+  // The frame keeps the ratio of its artwork, is as wide as its container unless a page sets --sticker-frame-width, and
+  // never overflows it (REQ-028 AC1). Its content is clipped at the edge of the empty centre (ADR-0025).
   const frame = ownCss.slice(ownCss.indexOf('.cn-sticker-frame {'), ownCss.indexOf('@media'))
+  assert.match(frame, /width: var\(--sticker-frame-width, 100%\)/)
   assert.match(frame, /max-width: 100%/)
+  assert.match(frame, /inset: 11% 6\.8%/)
   assert.match(frame, /overflow: hidden/)
   assert.match(frame, /overflow-wrap: anywhere/)
 })
 
-test('REQ-015: the sticker frame outline pair is declared and reported as unverified', () => {
+test('REQ-015: no contrast pair is declared for the motifs, because they are artwork and decoration', () => {
   const report = checkContrast(root)
   assert.equal(report.problems.length, 0)
-  const pair = report.pairs.find(
-    (p) => p.foreground === 'motif.placeholder.border' && p.background === 'motif.placeholder.bg',
-  )
-  assert.equal(pair?.usage, 'ui')
-  assert.equal(pair?.result, 'unverified')
-  assert.equal(pair?.ratio, 7.98)
-  // The sparkle is brand artwork, so no contrast pair is declared for it (REQ-015 does not apply to decoration).
+  const names = (p: { foreground: string; background: string }) => [p.foreground, p.background]
   assert.equal(
-    report.pairs.some((p) => p.foreground.startsWith('sparkle') || p.background.startsWith('sparkle')),
+    report.pairs.some((p) => names(p).some((n) => /^(sparkle|motif)\b/.test(n))),
     false,
   )
 })
 
-test('REQ-020 AC1, AC2, REQ-009: both docs are draft custom components with a "Why custom" paragraph', () => {
+test('REQ-020 AC1, AC2, REQ-009: both docs are custom components with a "Why custom" paragraph', () => {
   for (const slug of SLUGS) {
     const data = frontmatter(slug)
     assert.equal(data.layer, 'component', slug)
     assert.equal(data.level, 'atom', slug)
     assert.equal(data.source, 'custom', slug)
     assert.equal(data.component, COMPONENT[slug], slug)
-    // Both stay drafts (REQ-009): the sparkle's fade duration follows a placeholder (TBD-14), and the
-    // sticker border artwork is still missing (TBD-18).
-    assert.equal(data.status, 'draft', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
     assert.match(docOf(slug), /\*\*Why custom:\*\*[^\n]*Nuxt UI has no equivalent/, slug)
     assert.doesNotMatch(docOf(slug), /Content pending/, slug)
   }
-  // The sparkle has its artwork now (ADR-0017), so TBD-18 is gone from it; the sticker frame still waits on it.
+  // The sparkle stays a draft (REQ-009): its fade duration follows a placeholder (TBD-14).
+  assert.equal(frontmatter('sparkle').status, 'draft')
   assert.deepEqual(frontmatter('sparkle').tbd, ['TBD-14'])
   assert.doesNotMatch(docOf('sparkle'), /> \*\*TBD \(TBD-18\):\*\*/)
   assert.match(docOf('sparkle'), /ADR-0017/)
-  assert.ok((frontmatter('sticker-frame').tbd as string[]).includes('TBD-18'))
-  assert.match(docOf('sticker-frame'), /> \*\*TBD \(TBD-18\):\*\*/)
-  assert.deepEqual(frontmatter('sticker-frame').tokens, ['motif'])
+  // The sticker frame has its artwork (ADR-0024) and reads no placeholder token, so no TBD is left on it (ADR-0025).
+  assert.equal(frontmatter('sticker-frame').status, 'stable')
+  assert.deepEqual(frontmatter('sticker-frame').tbd, [])
+  assert.deepEqual(frontmatter('sticker-frame').tokens, [])
+  assert.doesNotMatch(docOf('sticker-frame'), /> \*\*TBD|TBD-\d\d|placeholder/)
+  assert.match(docOf('sticker-frame'), /ADR-0024/)
+  assert.match(docOf('sticker-frame'), /ADR-0025/)
+  assert.match(docOf('sticker-frame'), /Sticker-Border-CN\.svg/)
 })
 
 test('REQ-026 AC1, AC2: each doc lists the states that apply, and its state matrix demo shows the same ones', () => {
@@ -400,9 +400,10 @@ test('the docs point to each other, and the foundation docs name the supplied sp
     assert.match(doc, /ADR-0023/, path)
     assert.match(doc, /Sticker-Border-CN\.svg/, path)
     assert.match(doc, /ADR-0024/, path)
-    // TBD-18 stays open until `CnStickerFrame` renders the border file, so both docs keep their callout and stay drafts.
-    assert.match(doc, /> \*\*TBD \(TBD-18\):\*\*/, path)
-    assert.ok((readFrontmatter(doc).data as Record<string, unknown>).tbd, path)
+    // TBD-18 is resolved (ADR-0025): `CnStickerFrame` renders the border file, so neither doc keeps the callout.
+    assert.doesNotMatch(doc, /> \*\*TBD \(TBD-18\):\*\*/, path)
+    assert.ok(!((readFrontmatter(doc).data as Record<string, unknown>).tbd as string[]).includes('TBD-18'), path)
+    assert.match(doc, /ADR-0025/, path)
   }
   assert.doesNotMatch(read('docs/01-foundations/imagery-and-motifs.md'), /Motif pending \(TBD-18\)/)
 })

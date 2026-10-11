@@ -200,6 +200,7 @@ test('the brand identity doc states the rules, names the files, and the docs poi
   for (const file of ['Icon-CN.svg', 'LogoVertical-CN.svg', 'LogoHorizontal-CN.svg'])
     assert.ok(brand.includes(file), file)
   assert.doesNotMatch(brand, /Not supplied/)
-  assert.deepEqual((readFrontmatter(brand).data as Record<string, unknown>).tbd, ['TBD-18'])
+  // TBD-18 is resolved (ADR-0025), so the brand identity doc keeps no TBD item.
+  assert.deepEqual((readFrontmatter(brand).data as Record<string, unknown>).tbd, [])
   assert.match(doc, /brand-identity\.md/)
 })

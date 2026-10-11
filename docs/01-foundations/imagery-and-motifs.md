@@ -5,7 +5,7 @@ layer: foundation
 status: draft
 lang: en
 brandRules: [BR-04, BR-05, BR-12, BR-13, BR-14]
-tbd: [TBD-18, TBD-20]
+tbd: [TBD-20]
 related: [brand-identity, sparkle, sticker-frame, media-card, motion, iconography]
 since: 0.1.0
 updated: 2026-10-10
@@ -15,7 +15,7 @@ updated: 2026-10-10
 
 ## Purpose
 
-This doc defines the images in Cup Noobles UI: the decorative motifs of BR-14, and the photography and thumbnails shown in content such as the featured media card (BR-12). Motifs give the UI its geek, gaming, and arcade character (BR-04) and are decorative only: they never carry meaning (REQ-029). The motif artwork (TBD-18) and the photography and thumbnail standards (TBD-20) are not defined yet.
+This doc defines the images in Cup Noobles UI: the decorative motifs of BR-14, and the photography and thumbnails shown in content such as the featured media card (BR-12). Motifs give the UI its geek, gaming, and arcade character (BR-04) and are decorative only: they never carry meaning (REQ-029). The motif artwork is supplied (ADR-0017 to ADR-0024). The photography and thumbnail standards (TBD-20) are not defined yet.
 
 ## Tokens and specs
 
@@ -40,14 +40,14 @@ Not applicable.
 | Motif (BR-14) | Rendered by | Artwork |
 |---|---|---|
 | Sparkles and stars | `CnSparkle` (see [Sparkle](../02-components/atoms/sparkle.md)) | `Sparkle-CN.svg` (ADR-0017) |
-| Sticker-style borders | `CnStickerFrame` (see [Sticker frame](../02-components/atoms/sticker-frame.md)), not yet rendering the file | `Sticker-Border-CN.svg` (ADR-0024) |
+| Sticker-style borders | `CnStickerFrame` (see [Sticker frame](../02-components/atoms/sticker-frame.md)) | `Sticker-Border-CN.svg` (ADR-0024, ADR-0025) |
 | A pink ramen cup with gamer details (the core brand icon) | Motif SVG, not yet in a component | `Ramen-Cup-CN.svg` (ADR-0019) |
 | Noodle-inspired curves and waves | Motif SVG, not yet in a component | `Noodle-Wave-CN.svg` (ADR-0022) |
 | A golden d20 | Motif SVG, not yet in a component | `D20-CN.svg` (ADR-0021) |
 | Chopsticks | Motif SVG, not yet in a component | `Chopsticks-CN.svg` (ADR-0020) |
 | Arcade-inspired shapes and dynamic lines | Motif SVG, not yet in a component | `Arcade-Lines-CN.svg` (ADR-0023) |
 
-The artwork is supplied by the owner as SVG files and lives in `packages/nuxt/assets/brand/` (§4.1). BR-13 applies to it: "thick, clean, and high-contrast" line work. Until the files arrive, no motif is drawn, traced, or approximated. The sparkle is supplied: `CnSparkle` renders `Sparkle-CN.svg`, filled with `color.brand.yellow` and sized to the text beside it (ADR-0017). The ramen cup is supplied as `Ramen-Cup-CN.svg` (ADR-0019): brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, on a transparent background, with no component yet. The golden d20 is supplied as `D20-CN.svg` (ADR-0021): brand yellow (`color.brand.yellow`) with black outlines, flat, with no shine marks, on a transparent background, with no component yet. The chopsticks are supplied as `Chopsticks-CN.svg` (ADR-0020): brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, with white only for the shine marks, on a transparent background, with no component yet. The noodle curves and waves are supplied as `Noodle-Wave-CN.svg` (ADR-0022): four stacked waves with curled ends in brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, with white only for the shine marks, on a transparent background, with no component yet. The arcade shapes and dynamic lines are supplied as `Arcade-Lines-CN.svg` (ADR-0023): a pink cross, a yellow round button, and a pink square button with yellow speed lines and a yellow sticker edge, in brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, with white only for the shine marks, on a transparent background, with no component yet. The sticker border is supplied as `Sticker-Border-CN.svg` (ADR-0024): a frame of about 8:5 with a yellow outer edge, a pink inner band, and notched corners, in brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, with white only for the shine marks, on a transparent background and with an empty centre. All seven motifs have their artwork now. `CnStickerFrame` stays a plain outline around its content until a later task renders the file.
+The artwork is supplied by the owner as SVG files and lives in `packages/nuxt/assets/brand/` (§4.1). BR-13 applies to it: "thick, clean, and high-contrast" line work. Until the files arrive, no motif is drawn, traced, or approximated. The sparkle is supplied: `CnSparkle` renders `Sparkle-CN.svg`, filled with `color.brand.yellow` and sized to the text beside it (ADR-0017). The ramen cup is supplied as `Ramen-Cup-CN.svg` (ADR-0019): brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, on a transparent background, with no component yet. The golden d20 is supplied as `D20-CN.svg` (ADR-0021): brand yellow (`color.brand.yellow`) with black outlines, flat, with no shine marks, on a transparent background, with no component yet. The chopsticks are supplied as `Chopsticks-CN.svg` (ADR-0020): brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, with white only for the shine marks, on a transparent background, with no component yet. The noodle curves and waves are supplied as `Noodle-Wave-CN.svg` (ADR-0022): four stacked waves with curled ends in brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, with white only for the shine marks, on a transparent background, with no component yet. The arcade shapes and dynamic lines are supplied as `Arcade-Lines-CN.svg` (ADR-0023): a pink cross, a yellow round button, and a pink square button with yellow speed lines and a yellow sticker edge, in brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, with white only for the shine marks, on a transparent background, with no component yet. The sticker border is supplied as `Sticker-Border-CN.svg` (ADR-0024): a frame of about 8:5 with a yellow outer edge, a pink inner band, and notched corners, in brand pink (`color.brand.pink`), brand yellow (`color.brand.yellow`), and black outlines, with white only for the shine marks, on a transparent background and with an empty centre. All seven motifs have their artwork now. `CnStickerFrame` renders the sticker border as a fixed frame that keeps the ratio of the file and holds its content in the empty centre (ADR-0025).
 
 ### Motifs are decorative only
 
@@ -74,7 +74,7 @@ Whatever TBD-20 defines, every thumbnail has `alt` text, or is explicitly marked
 ### When not to use
 
 - Never use a motif to carry meaning, such as a status, a rating, or a button. Use a component built for it, and text.
-- Never draw, trace, recolor, or approximate a motif. The artwork is TBD-18, and only the owner can supply it.
+- Never draw, trace, recolor, or approximate a motif. The artwork is the owner's, and only the supplied files are used.
 - Never let a motif cover, crowd, or reduce the contrast of text or a control. The UI stays legible (BR-06).
 - Never use motifs so densely that the UI reads as childish or generic (BR-05).
 - Never set photography or thumbnail rules on your own. They are TBD-20.
@@ -109,7 +109,7 @@ In email, a motif is a static image, never animated, and marked as decorative wi
 
 | Where | What |
 |---|---|
-| `packages/nuxt/assets/brand/` | The motif SVG files, once supplied (TBD-18). |
+| `packages/nuxt/assets/brand/` | The motif SVG files supplied by the owner. |
 | `CnSparkle`, `CnStickerFrame` | The motif components (T7.8). Documented in [Sparkle](../02-components/atoms/sparkle.md) and [Sticker frame](../02-components/atoms/sticker-frame.md). |
 | `CnMediaCard` | The featured media card with its thumbnail (T8.2). Documented in [Media card](../02-components/molecules/media-card.md). |
 
@@ -123,8 +123,6 @@ In email, a motif is a static image, never animated, and marked as decorative wi
 
 ## Open items
 
-> **TBD (TBD-18):** The artwork for all seven BR-14 motifs is supplied: the sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle waves (ADR-0022), the arcade lines (ADR-0023), and the sticker border (ADR-0024). No motif except the sparkle is rendered by a component yet, and `CnStickerFrame` still draws a plain placeholder outline. Owner input needed: none for the artwork. The component wiring is a later task.
->
 > **TBD (TBD-20):** Photography and thumbnail standards are not defined: subject, style, aspect ratios, and crops. This is the same open item as decision D11 in the e-commerce plan. Owner input needed: guidelines.
 
 ## Changelog
@@ -138,3 +136,4 @@ In email, a motif is a static image, never animated, and marked as decorative wi
 - 0.1.0 — The noodle curves and waves artwork is supplied as `Noodle-Wave-CN.svg`; the other two motifs stay open (T7.14) — ADR-0022
 - 0.1.0 — The arcade shapes and dynamic lines artwork is supplied as `Arcade-Lines-CN.svg`; the other motif stays open (T7.15) — ADR-0023
 - 0.1.0 — The sticker border artwork is supplied as `Sticker-Border-CN.svg`; all seven motifs have their artwork, and `CnStickerFrame` is not wired to it yet (T7.16) — ADR-0024
+- 0.1.0 — `CnStickerFrame` renders `Sticker-Border-CN.svg` as a fixed 8:5 frame; TBD-18 is resolved (T7.17) — ADR-0025

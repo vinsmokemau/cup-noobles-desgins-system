@@ -68,6 +68,5 @@
   { "foreground": "formField.label.fg", "background": "color.bg.base", "usage": "text" },
   { "foreground": "formField.description.fg", "background": "color.bg.base", "usage": "text" },
   { "foreground": "formField.help.fg", "background": "color.bg.base", "usage": "text" },
-  { "foreground": "formField.error.fg", "background": "color.bg.base", "usage": "text" },
-  { "foreground": "motif.placeholder.border", "background": "motif.placeholder.bg", "usage": "ui" }
+  { "foreground": "formField.error.fg", "background": "color.bg.base", "usage": "text" }
 ]

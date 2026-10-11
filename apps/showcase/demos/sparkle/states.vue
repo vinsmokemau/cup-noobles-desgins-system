@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // The state matrix of the sparkle (REQ-026 AC2). A sparkle is decorative and not interactive, so it has no hover, focus,
 // active, or disabled state. It has two: `default`, which is still, and `animated`, which fades slowly. The fade stops under
-// reduced motion (REQ-029 AC2). The motif artwork is not supplied (TBD-18), so each cell shows the placeholder. A sparkle is
-// hidden from assistive technology and holds no focusable element (REQ-029 AC1).
+// reduced motion (REQ-029 AC2). Each cell shows the supplied sparkle artwork (ADR-0017). A sparkle is hidden from assistive
+// technology and holds no focusable element (REQ-029 AC1).
 const states = ['default', 'animated'] as const
 </script>
 

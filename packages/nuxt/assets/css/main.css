@@ -451,10 +451,13 @@
  * through --sparkle-size. It fades when it is `animated`, over ten base durations (the placeholder duration, TBD-14), and
  * the fade is off under reduced motion (REQ-029 AC2).
  *
- * The sticker border artwork is still missing (TBD-18), so the frame stays a plain outline drawn from the --cn-motif-*
- * tokens and the shape tokens border.width.motif and radius.motif, with no artwork that could be mistaken for a brand
- * motif. The frame fits its content, never grows wider than its container, and clips what is wider than itself, so it
- * cannot cause horizontal overflow (REQ-028 AC1).
+ * T7.17 (ADR-0024, ADR-0025): the sticker frame is the supplied Sticker-Border-CN.svg, shown as an image and never edited,
+ * recoloured, or stretched. The file is a fixed frame (viewBox 1415.74 x 885.87, about 8:5) with an empty centre, so the
+ * frame keeps that ratio and its width is the container's, or --sticker-frame-width when a page sets one. Its slot content
+ * is centred in the empty centre, which starts 6.8% in from the left and right edges and 11% in from the top and bottom
+ * (the band is 96 viewBox units thick, measured from the file). Content larger than the centre is clipped at its edge,
+ * and long words break, so nothing can cause horizontal overflow (REQ-028 AC1). These geometry values come from the
+ * artwork, not from the brand, so they are not tokens and no color, stroke, or radius is declared here.
  */
 .cn-sparkle {
   display: inline-block;
@@ -475,14 +478,27 @@
 }
 
 .cn-sticker-frame {
+  position: relative;
   display: block;
-  width: fit-content;
+  width: var(--sticker-frame-width, 100%);
   max-width: 100%;
+  aspect-ratio: 1415.74 / 885.87;
   box-sizing: border-box;
-  padding: calc(var(--cn-space-base) * 2);
-  background-color: var(--cn-motif-placeholder-bg);
-  border: var(--cn-border-width-motif) solid var(--cn-motif-placeholder-border);
-  border-radius: var(--cn-radius-motif);
+}
+
+.cn-sticker-frame__artwork {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cn-sticker-frame__content {
+  position: absolute;
+  inset: 11% 6.8%;
+  display: grid;
+  place-items: center;
   overflow: hidden;
   overflow-wrap: anywhere;
 }

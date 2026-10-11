@@ -144,19 +144,53 @@ test('the sticker frame playground wraps each kind of content', async ({ page })
   await expectNoA11yViolations(page, { label: 'sticker frame playground, wide' })
 })
 
-test('the motif rules read their tokens: overriding them changes the outline and the padding', async ({ page }) => {
+test('ADR-0024, ADR-0025: every sticker frame shows the supplied artwork, unmodified, as an aria-hidden image', async ({
+  page,
+}) => {
+  await openDemo(page, 'sticker-frame', 'states')
+  const artworks = page.locator('.cn-sticker-frame > .cn-sticker-frame__artwork')
+  await expect(artworks).toHaveCount(3)
+  for (const artwork of await artworks.all()) {
+    await expect(artwork).toHaveAttribute('aria-hidden', 'true')
+    await expect(artwork).toHaveAttribute('alt', '')
+    // Served either as its own file or, if the bundler inlined it, as a data URI. Either way it is an image.
+    const src = (await artwork.getAttribute('src')) ?? ''
+    expect(src).toMatch(/Sticker-Border-CN[^/]*\.svg$|^data:image\/svg\+xml[,;]/)
+    expect(await artwork.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true)
+  }
+  // The plain outline is gone, and the file is never inlined.
+  await expect(page.locator('.cn-sticker-frame svg')).toHaveCount(0)
+  const frame = page.locator('.cn-sticker-frame').first()
+  expect(await frame.evaluate((el) => getComputedStyle(el).borderTopWidth)).toBe('0px')
+})
+
+test('ADR-0025: the frame keeps the 8:5 ratio of the artwork, and --sticker-frame-width sets its width', async ({
+  page,
+}) => {
   await openDemo(page, 'sticker-frame', 'states')
   const frame = page.locator('.cn-sticker-frame').first()
-  await page.evaluate(() => {
-    const root = document.documentElement.style
-    root.setProperty('--cn-border-width-motif', '5px')
-    root.setProperty('--cn-radius-motif', '9px')
-  })
-  const measured = await frame.evaluate((el) => {
-    const style = getComputedStyle(el)
-    return { border: style.borderTopWidth, radius: style.borderTopLeftRadius }
-  })
-  expect(measured).toEqual({ border: '5px', radius: '9px' })
+  const ratio = async () => {
+    const box = (await frame.boundingBox())!
+    return box.width / box.height
+  }
+  expect(await ratio()).toBeCloseTo(1415.74 / 885.87, 1)
+  const full = (await frame.boundingBox())!.width
+  await frame.evaluate((el) => (el as HTMLElement).style.setProperty('--sticker-frame-width', '50%'))
+  const half = (await frame.boundingBox())!.width
+  expect(half).toBeCloseTo(full / 2, 0)
+  expect(await ratio()).toBeCloseTo(1415.74 / 885.87, 1)
+})
+
+test('ADR-0025: content is centred in the empty centre, and what does not fit is clipped inside it', async ({
+  page,
+}) => {
+  await openDemo(page, 'sticker-frame', 'states')
+  const frame = page.locator('.cn-sticker-frame').nth(2)
+  const content = frame.locator('.cn-sticker-frame__content')
+  const [outer, inner] = [(await frame.boundingBox())!, (await content.boundingBox())!]
+  expect(inner.x - outer.x).toBeCloseTo(outer.width * 0.068, 0)
+  expect(inner.y - outer.y).toBeCloseTo(outer.height * 0.11, 0)
+  expect(await content.evaluate((el) => getComputedStyle(el).overflow)).toBe('hidden')
 })
 
 test('REQ-027 AC1: axe is clean on every motif demo', async ({ page }) => {
