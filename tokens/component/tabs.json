@@ -1,0 +1,116 @@
+{
+  "border": {
+    "width": {
+      "tabs": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Stroke width of the rule under the tab list and of the underline under the active tab (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "tabs": {
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.muted}",
+      "$description": "Label color of a tab that is not selected. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    },
+    "fgHover": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Label color of a tab that is not selected, while hovered. Draft: the hover color is not part of ADR-0028. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-04"],
+          "status": "tbd"
+        }
+      }
+    },
+    "rule": {
+      "$type": "color",
+      "$value": "{color.border.default}",
+      "$description": "Color of the rule under the whole tab list. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "tbd": ["TBD-05"],
+          "status": "tbd"
+        }
+      }
+    },
+    "active": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Label color of the selected tab: brand pink on the black page, 8.37:1 (BR-01, ADR-0028).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "indicator": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Color of the thick underline under the selected tab: brand pink (BR-01, ADR-0028). It is what keeps the selected tab from being told apart by color alone (WCAG 1.4.1).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of a tab (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of a tab (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between a tab and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of a tab (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

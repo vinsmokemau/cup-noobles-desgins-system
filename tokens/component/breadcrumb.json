@@ -1,0 +1,95 @@
+{
+  "breadcrumb": {
+    "link": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Text color of a breadcrumb link: brand pink on the black page, 8.37:1, always underlined like every link (BR-01, ADR-0011, ADR-0028).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "fgHover": {
+        "$type": "color",
+        "$value": "{color.brand.primaryHover}",
+        "$description": "Text color of a breadcrumb link while hovered. Draft: the hover color is not part of ADR-0028. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-08"],
+            "status": "derived-pending"
+          }
+        }
+      }
+    },
+    "current": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.default}",
+        "$description": "Text color of the current page, the last item: plain bold text, not underlined (ADR-0028). TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-04"],
+            "status": "tbd"
+          }
+        }
+      }
+    },
+    "separator": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.muted}",
+        "$description": "Color of the caret between two items. It is decorative and hidden from assistive technology. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-05"],
+            "status": "tbd"
+          }
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of a breadcrumb link (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of a breadcrumb link (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between a breadcrumb link and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of a breadcrumb link (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

@@ -33,9 +33,11 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `border.width.interactive` | `--cn-border-width-interactive` | `1px` | tbd (TBD-11) |
 | `border.width.mediaCard` | `--cn-border-width-media-card` | `1px` | tbd (TBD-11) |
 | `border.width.overlay` | `--cn-border-width-overlay` | `1px` | tbd (TBD-11) |
+| `border.width.pagination` | `--cn-border-width-pagination` | `1px` | tbd (TBD-11) |
 | `border.width.progress` | `--cn-border-width-progress` | `1px` | tbd (TBD-11) |
 | `border.width.separator` | `--cn-border-width-separator` | `1px` | tbd (TBD-11) |
 | `border.width.skeleton` | `--cn-border-width-skeleton` | `1px` | tbd (TBD-11) |
+| `border.width.tabs` | `--cn-border-width-tabs` | `1px` | tbd (TBD-11) |
 | `radius.badge` | `--cn-radius-badge` | `0.375rem` | tbd (TBD-10) |
 | `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
 | `radius.card` | `--cn-radius-card` | `0.375rem` | tbd (TBD-10) |
@@ -46,6 +48,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `radius.md` | `--cn-radius-md` | `0.375rem` | tbd (TBD-10) |
 | `radius.mediaCard` | `--cn-radius-media-card` | `0.375rem` | tbd (TBD-10) |
 | `radius.overlay` | `--cn-radius-overlay` | `0.375rem` | tbd (TBD-10) |
+| `radius.pagination` | `--cn-radius-pagination` | `0.375rem` | tbd (TBD-10) |
 | `radius.skeleton` | `--cn-radius-skeleton` | `0.375rem` | tbd (TBD-10) |
 | `radius.sm` | `--cn-radius-sm` | `0.25rem` | tbd (TBD-10) |
 

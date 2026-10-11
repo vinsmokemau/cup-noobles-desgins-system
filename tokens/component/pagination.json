@@ -1,0 +1,140 @@
+{
+  "radius": {
+    "pagination": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of a page number and of the previous and next controls (BR-10). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$extensions": {
+        "cn": {
+          "status": "tbd",
+          "tbd": ["TBD-10"]
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "pagination": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline stroke width of a page number and of the previous and next controls (BR-13). TBD-11: \"thick\" has no values; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-11"]
+          }
+        }
+      }
+    }
+  },
+  "pagination": {
+    "item": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.default}",
+        "$description": "Number or icon color of a page that is not the current one. TBD-04: the body text color is not decided; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-04"],
+            "status": "tbd"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border.default}",
+        "$description": "Outline color of a page that is not the current one. TBD-05: the neutral scale is not defined; this follows a placeholder, not a brand value.",
+        "$extensions": {
+          "cn": {
+            "tbd": ["TBD-05"],
+            "status": "tbd"
+          }
+        }
+      },
+      "borderHover": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline color of a page that is not the current one, while hovered: brand pink (BR-01). Draft: the hover look is not part of ADR-0028.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "current": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Fill of the current page: a brand pink chip, like the primary button (BR-01, ADR-0028).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.text.inverted}",
+        "$description": "Number color of the current page: black on the pink chip, 8.37:1 (SPEC.md §2.1 derived facts).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline color of the current page: brand pink, the same as its fill (BR-01).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of a page control (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of a page control (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between a page control and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of a page control (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

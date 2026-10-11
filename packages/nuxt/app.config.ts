@@ -202,5 +202,35 @@ export default {
         { side: 'left', inset: false, class: { content: 'cn-overlay-panel--edge-left' } },
       ],
     },
+    // T8.4 (REQ-020, REQ-024, REQ-028): tabs, breadcrumb, and pagination, with the look the owner chose in ADR-0028. UTabs has
+    // one brand look, the `link` variant: a pink underline under the selected tab on a rule. Nuxt UI's `pill` variant fills
+    // the selected tab, which is not the chosen look, so the theme makes `link` the default. UBreadcrumb shows the links in
+    // pink and underlined and the current page as plain bold text. UPagination draws its numbers and controls with UButton,
+    // so the `.cn-pagination` hook restyles the buttons inside it: a neutral outline and no glow, and a pink chip for the
+    // current page. The rules are in assets/css/main.css and read only --cn-tabs-*, --cn-breadcrumb-*, and
+    // --cn-pagination-* tokens.
+    tabs: {
+      slots: {
+        list: 'cn-tabs__list',
+        trigger: 'cn-tabs__trigger',
+        indicator: 'cn-tabs__indicator',
+        content: 'cn-tabs__content',
+      },
+      defaultVariants: {
+        variant: 'link',
+      },
+    },
+    breadcrumb: {
+      slots: {
+        link: 'cn-breadcrumb__link',
+        separatorIcon: 'cn-breadcrumb__separator',
+      },
+    },
+    pagination: {
+      slots: {
+        root: 'cn-pagination',
+        list: 'cn-pagination__list',
+      },
+    },
   },
 } satisfies AppConfigInput

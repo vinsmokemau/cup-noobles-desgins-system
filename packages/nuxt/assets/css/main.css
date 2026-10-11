@@ -730,3 +730,140 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+/*
+ * T8.4 (REQ-020, REQ-024, REQ-028): tabs, breadcrumb, and pagination (ADR-0028). app.config.ts puts the `.cn-tabs__*`,
+ * `.cn-breadcrumb__*`, and `.cn-pagination` hook classes on UTabs, UBreadcrumb, and UPagination. Every value is a
+ * --cn-tabs-*, --cn-breadcrumb-*, or --cn-pagination-* token. The rules are not in a cascade layer, so they win over Nuxt UI's
+ * own utility classes (`data-[state=active]:text-primary`, `focus-visible:outline-3`) without `!important`.
+ *
+ * Tabs: a neutral rule under the list, and the selected tab is pink, bold, and carries a thick pink underline, so it is not
+ * told apart by color alone (WCAG 1.4.1). The underline is Nuxt UI's sliding indicator, which Nuxt UI switches off under
+ * reduced motion. Breadcrumb: links are pink and underlined, and the current page, the last item,
+ * is plain bold text with `aria-current="page"`. Pagination: a page that is not the current one is a neutral outline with no
+ * glow, and the current page is a pink chip with a black number. Pagination buttons are UButton, so these rules sit under
+ * `.cn-pagination` and are more specific than the button rules.
+ *
+ * Keyboard focus is a yellow outline from the focus tokens, never a glow (REQ-024 AC1). `[data-cn-state]` forces a state for
+ * the documentation, as it does for the button: a state matrix cell carries it, and the rule marks one named part (the second
+ * tab, the first breadcrumb link, the page after the current one). Application code never sets it.
+ */
+.cn-tabs__list {
+  border-color: var(--cn-tabs-rule);
+}
+
+.cn-tabs__list[data-orientation='horizontal'] {
+  border-bottom-width: var(--cn-border-width-tabs);
+  margin-bottom: calc(var(--cn-border-width-tabs) * -1);
+}
+
+.cn-tabs__list[data-orientation='vertical'] {
+  border-inline-start-width: var(--cn-border-width-tabs);
+  margin-inline-start: calc(var(--cn-border-width-tabs) * -1);
+}
+
+.cn-tabs__indicator {
+  background-color: var(--cn-tabs-active-indicator);
+  border-radius: 0;
+}
+
+.cn-tabs__list[data-orientation='horizontal'] .cn-tabs__indicator {
+  bottom: calc(var(--cn-border-width-tabs) * -1);
+  height: var(--cn-border-width-tabs);
+}
+
+.cn-tabs__list[data-orientation='vertical'] .cn-tabs__indicator {
+  inset-inline-start: calc(var(--cn-border-width-tabs) * -1);
+  width: var(--cn-border-width-tabs);
+}
+
+.cn-tabs__trigger {
+  color: var(--cn-tabs-fg);
+}
+
+.cn-tabs__trigger[data-state='inactive']:not(:disabled):hover,
+[data-cn-state='hover'] .cn-tabs__trigger[data-state='inactive']:nth-of-type(2) {
+  color: var(--cn-tabs-fg-hover);
+}
+
+.cn-tabs__trigger[data-state='active'] {
+  color: var(--cn-tabs-active-fg);
+  font-weight: 700;
+}
+
+.cn-tabs__trigger:focus-visible,
+[data-cn-state='focus-visible'] .cn-tabs__trigger:nth-of-type(2),
+.cn-tabs__content:focus-visible {
+  outline: var(--cn-tabs-focus-width) var(--cn-tabs-focus-style) var(--cn-tabs-focus-color);
+  outline-offset: var(--cn-tabs-focus-offset);
+}
+
+.cn-breadcrumb__link {
+  min-height: calc(var(--cn-space-base) * 6);
+  color: var(--cn-breadcrumb-current-fg);
+}
+
+.cn-breadcrumb__link[href] {
+  color: var(--cn-breadcrumb-link-fg);
+  text-decoration-line: underline;
+}
+
+.cn-breadcrumb__link[href]:hover,
+[data-cn-state='hover'] [data-slot='item']:first-child .cn-breadcrumb__link[href] {
+  color: var(--cn-breadcrumb-link-fg-hover);
+}
+
+.cn-breadcrumb__link[aria-current='page'] {
+  color: var(--cn-breadcrumb-current-fg);
+  font-weight: 700;
+  text-decoration-line: none;
+}
+
+.cn-breadcrumb__link:focus-visible,
+[data-cn-state='focus-visible'] [data-slot='item']:first-child .cn-breadcrumb__link {
+  outline: var(--cn-breadcrumb-focus-width) var(--cn-breadcrumb-focus-style) var(--cn-breadcrumb-focus-color);
+  outline-offset: var(--cn-breadcrumb-focus-offset);
+}
+
+.cn-breadcrumb__separator {
+  color: var(--cn-breadcrumb-separator-fg);
+}
+
+/* The list wraps instead of overflowing at 360 px (REQ-028 AC1). */
+.cn-pagination__list {
+  flex-wrap: wrap;
+}
+
+.cn-pagination .cn-button {
+  min-width: calc(var(--cn-space-base) * 6);
+  min-height: calc(var(--cn-space-base) * 6);
+  color: var(--cn-pagination-item-fg);
+  background-color: transparent;
+  border-width: var(--cn-border-width-pagination);
+  border-color: var(--cn-pagination-item-border);
+  border-radius: var(--cn-radius-pagination);
+  box-shadow: none;
+}
+
+/* The ellipsis is a div, not a control: it keeps the size of a page and draws no outline. */
+.cn-pagination div.cn-button {
+  border-color: transparent;
+}
+
+.cn-pagination .cn-button:not(:disabled, div):hover,
+[data-cn-state='hover'] .cn-pagination [aria-current='page'] + [data-type='page'] {
+  border-color: var(--cn-pagination-item-border-hover);
+}
+
+.cn-pagination .cn-button.cn-button--primary[aria-current='page'] {
+  color: var(--cn-pagination-current-fg);
+  background-color: var(--cn-pagination-current-bg);
+  border-color: var(--cn-pagination-current-border);
+  font-weight: 700;
+}
+
+.cn-pagination .cn-button:focus-visible,
+[data-cn-state='focus-visible'] .cn-pagination [aria-current='page'] + [data-type='page'] {
+  outline: var(--cn-pagination-focus-width) var(--cn-pagination-focus-style) var(--cn-pagination-focus-color);
+  outline-offset: var(--cn-pagination-focus-offset);
+}

@@ -76,5 +76,21 @@
   { "foreground": "overlay.fg", "background": "overlay.bg", "usage": "text" },
   { "foreground": "overlay.fgMuted", "background": "overlay.bg", "usage": "text" },
   { "foreground": "overlay.highlight", "background": "overlay.bg", "usage": "ui" },
-  { "foreground": "overlay.divider", "background": "overlay.bg", "usage": "ui" }
+  { "foreground": "overlay.divider", "background": "overlay.bg", "usage": "ui" },
+  { "foreground": "tabs.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "tabs.fgHover", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "tabs.active.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "tabs.active.indicator", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "tabs.rule", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "tabs.focus.color", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "breadcrumb.link.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "breadcrumb.link.fgHover", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "breadcrumb.current.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "breadcrumb.focus.color", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "pagination.item.fg", "background": "color.bg.base", "usage": "text" },
+  { "foreground": "pagination.item.border", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "pagination.item.borderHover", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "pagination.current.fg", "background": "pagination.current.bg", "usage": "text" },
+  { "foreground": "pagination.current.border", "background": "color.bg.base", "usage": "ui" },
+  { "foreground": "pagination.focus.color", "background": "color.bg.base", "usage": "ui" }
 ]
