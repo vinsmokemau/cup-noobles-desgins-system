@@ -2,7 +2,7 @@
 title: "ADR-0043: The global search is UContentSearch with its own palette and a prerendered data file"
 slug: adr-0043-global-search-composition
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: []
 tbd: []
@@ -40,4 +40,5 @@ T11.1 built it and found four more things:
 - `/search-sections.json` is a build output next to the pages and is not one of the doc routes. The route count test and the link crawl are unchanged.
 - The two attributes are set from the page and not by a prop. If a later Nuxt UI release names the listbox or makes the list focusable itself, `dressPalette` in `SiteSearch.vue` can go.
 - Screen readers read the result rows as "Components > Button UButton", because the row template puts a space between its three parts. Nuxt UI's own row joins them without one.
-- This ADR is `draft` until the owner has seen it. It changes no decision of ADR-0002, and it settles the three items that ADR left to T11.1.
+- It changes no decision of ADR-0002, and it settles the three items that ADR left to T11.1.
+- The owner approved this decision in chat on 2026-10-11, so the ADR is `stable`.
