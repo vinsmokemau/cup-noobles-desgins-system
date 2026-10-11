@@ -1234,7 +1234,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 
 ### P11 — Search, governance, and release tooling
 
-- [ ] **T11.1 — Global search**
+- [x] **T11.1 — Global search** (2026-10-11, be511ba)
   - REQs: REQ-056
   - Depends on: T6.1, T8.7
   - Done when: Ctrl+K or Cmd+K opens the search; queries for a doc title, a heading, a token path, and a component name each return the right result and anchor; and the search is keyboard-operable with axe clean.
