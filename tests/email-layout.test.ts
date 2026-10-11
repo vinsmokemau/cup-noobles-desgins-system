@@ -209,8 +209,12 @@ test('REQ-009, REQ-037: the doc is a draft with a Draft callout and its TBD item
   const data = readFrontmatter(doc).data as Record<string, unknown>
   assert.equal(data.status, 'draft')
   assert.equal(data.layer, 'email')
-  assert.match(section('Open items'), /^> \*\*Draft:\*\*/m)
-  assert.match(section('Open items'), /ADR-0042/)
+  // ADR-0042: the owner approved the layout, so no Draft callout remains; the open TBD items keep the doc a draft.
+  assert.doesNotMatch(doc, /^> \*\*Draft:\*\*/m)
+  assert.match(
+    doc,
+    /^- 0\.1\.0 — Part order, plain-text blocks, and logo clear space approved by the owner[^\n]* — ADR-0042$/m,
+  )
   assert.doesNotMatch(doc, /Content pending/)
   for (const id of ['TBD-01', 'TBD-03', 'TBD-09', 'TBD-10']) {
     assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
@@ -222,12 +226,12 @@ test('REQ-009, REQ-037: the doc is a draft with a Draft callout and its TBD item
   assert.match(doc, /^- 0\.1\.0 — First draft: .*\(T10\.4, REQ-043\)/m)
 })
 
-test('ADR-0042 is a draft, links its context, and the decision log lists it', () => {
+test('ADR-0042 is stable, links its context, and the decision log lists it', () => {
   const adr = readFileSync(
     join(root, 'docs/06-governance/decisions/0042-email-layout-includes-and-clear-space.md'),
     'utf8',
   )
-  assert.equal((readFrontmatter(adr).data as Record<string, unknown>).status, 'draft')
+  assert.equal((readFrontmatter(adr).data as Record<string, unknown>).status, 'stable')
   for (const heading of ['Context', 'Decision', 'Consequences']) assert.match(adr, new RegExp(`^## ${heading}$`, 'm'))
   assert.match(adr, /ADR-0041/)
   const log = readFileSync(join(root, 'docs/06-governance/decision-log.md'), 'utf8')

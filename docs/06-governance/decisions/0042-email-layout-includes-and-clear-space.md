@@ -2,7 +2,7 @@
 title: "ADR-0042: The email build expands includes and multiplies tokens"
 slug: adr-0042-email-layout-includes-and-clear-space
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: [BR-16]
 tbd: []
@@ -33,4 +33,4 @@ The header uses the product as the padding of the logo, so it has the clear spac
 - `reference.mjml` is the source of the reference layout, and `dist/reference.html` is its output. The component sources stay the only place where a component's markup lives.
 - The header's padding is the clear space, 9px, in place of `space.base`. The header is about 1 px taller per side than before, and the clear space follows the logo tokens if they change.
 - SPEC.md §4.9 names `$cn(path)` as the build-time syntax. This ADR adds the product form to that syntax without changing the `$cn(path)` form. If the owner wants §4.9 to say so, that is an amendment for the owner (SPEC.md §8).
-- This ADR is a `draft` until the owner approves it. The email docs name it as awaiting approval.
+- The owner approved this decision, and the part order and plain-text blocks of `email-layouts.md`, in chat on 2026-10-11, so the ADR is `stable`.

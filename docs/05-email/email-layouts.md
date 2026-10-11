@@ -134,8 +134,6 @@ Centro de ayuda: https://example.com/ayuda
 
 ## Open items
 
-> **Draft:** The order of the parts, the plain-text blocks, and the way the header gets its clear space are proposed here, and they are not brand values. This awaits owner approval (ADR-0042).
->
 > **TBD (TBD-09):** The spacing scale is not defined, so every padding in the layout is `space.base`, a placeholder, and the parts have no larger steps between them. Owner input needed: the base unit and the scale.
 >
 > **TBD (TBD-01):** The display typeface is not defined, so the headings use the ADR-0006 placeholder stack. Owner input needed: a font name and its license (OD-06).
@@ -149,3 +147,4 @@ Real-client rendering is not verified here (R-05). It belongs to the consuming p
 ## Changelog
 
 - 0.1.0 — First draft: the reference layout of the six components, its widths, the logo clear space, and the plain-text counterpart (T10.4, REQ-043)
+- 0.1.0 — Part order, plain-text blocks, and logo clear space approved by the owner. The doc stays a draft while TBD-01, TBD-03, TBD-09, and TBD-10 are open — ADR-0042
