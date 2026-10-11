@@ -41,6 +41,7 @@ updated: 2026-09-27
 - [ADR-0020: Chopsticks motif artwork](decisions/0020-chopsticks-motif-artwork.md)
 - [ADR-0021: Golden d20 motif artwork](decisions/0021-golden-d20-motif-artwork.md)
 - [ADR-0022: Noodle curves and waves motif artwork](decisions/0022-noodle-wave-motif-artwork.md)
+- [ADR-0023: Arcade shapes and dynamic lines motif artwork](decisions/0023-arcade-lines-motif-artwork.md)
 
 ## Open items
 

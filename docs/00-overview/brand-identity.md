@@ -15,7 +15,7 @@ updated: 2026-10-10
 
 ## Purpose
 
-This doc lists the Cup Noobles brand assets (BR-16) and the decorative motifs (BR-14), and it sets the rules for showing them. Its clear-space and minimum-size rules are what `CnLogo` applies to the supplied logo files (REQ-030 AC3, ADR-0016). Of the motifs, the sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), and the noodle curves and waves (ADR-0022) are supplied; the other two are still open (TBD-18).
+This doc lists the Cup Noobles brand assets (BR-16) and the decorative motifs (BR-14), and it sets the rules for showing them. Its clear-space and minimum-size rules are what `CnLogo` applies to the supplied logo files (REQ-030 AC3, ADR-0016). Of the motifs, the sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle curves and waves (ADR-0022), and the arcade shapes and dynamic lines (ADR-0023) are supplied; the other one is still open (TBD-18).
 
 ## Usage rules
 
@@ -67,13 +67,13 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 | Noodle-inspired curves and waves | `Noodle-Wave-CN.svg` (ADR-0022), not yet in a component |
 | A golden d20 | `D20-CN.svg` (ADR-0021), not yet in a component |
 | Chopsticks | `Chopsticks-CN.svg` (ADR-0020), not yet in a component |
-| Arcade-inspired shapes and dynamic lines | Motif artwork (TBD-18) |
+| Arcade-inspired shapes and dynamic lines | `Arcade-Lines-CN.svg` (ADR-0023), not yet in a component |
 
 - Motifs are decorative only. They carry no meaning, render with `aria-hidden="true"`, and contain no focusable element (REQ-029 AC1).
 - A motif that animates stops, or reduces to a non-moving state, under `prefers-reduced-motion: reduce`, and never flashes more than 3 times per second (REQ-029 AC2, AC3).
 - [Imagery and motifs](../01-foundations/imagery-and-motifs.md) holds the full motif rules.
 
-> **TBD (TBD-18):** The artwork for two of the seven BR-14 motifs is not defined. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), and the noodle waves (ADR-0022) are supplied. Owner input needed: the remaining SVG files.
+> **TBD (TBD-18):** The artwork for one of the seven BR-14 motifs is not defined. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle waves (ADR-0022), and the arcade lines (ADR-0023) are supplied. Owner input needed: the remaining SVG files.
 
 ### When to use
 
@@ -88,7 +88,7 @@ The owner chose these rules (ADR-0016). They apply to all three logos.
 
 ## Open items
 
-> **TBD (TBD-18):** Artwork as SVG for the two motifs other than the sparkle, the ramen cup, the golden d20, the chopsticks, and the noodle waves. Owner input needed.
+> **TBD (TBD-18):** Artwork as SVG for the motif other than the sparkle, the ramen cup, the golden d20, the chopsticks, the noodle waves, and the arcade lines. Owner input needed.
 
 ## Changelog
 
