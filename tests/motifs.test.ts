@@ -171,6 +171,37 @@ test('ADR-0020: the chopsticks file is the owner file, transparent, safe to serv
   assert.deepEqual(colours, ['#000000', '#ef80ae', '#fff488', '#ffffff'])
 })
 
+// The noodle curves and waves the owner chose (ADR-0022). No component renders it yet, so only the file itself is locked here.
+const NOODLE_WAVE = ['Noodle-Wave-CN.svg', '49504853feee891ff6b686297a789ebcd797c23c716e9655631949705fab328e'] as const
+
+test('ADR-0022: the noodle wave file is the owner file, transparent, safe to serve, and drawn in brand colours only', () => {
+  const [file, hash] = NOODLE_WAVE
+  const path = `packages/nuxt/assets/brand/${file}`
+  assert.ok(existsSync(join(root, path)), path)
+  assert.equal(
+    createHash('sha256')
+      .update(readFileSync(join(root, path)))
+      .digest('hex'),
+    hash,
+    `${file} was modified`,
+  )
+
+  const svg = read(path)
+  assert.match(svg, /<svg [^>]*viewBox="[^"]+"/, 'the noodle waves have a viewBox')
+  assert.doesNotMatch(svg, /<svg [^>]*\s(width|height)=/, 'the size comes from the page, not the file')
+  assert.doesNotMatch(
+    svg,
+    /<script|href=|<image|<text|<filter|foreignObject|onload|data:image/,
+    `${file} is safe to serve`,
+  )
+  // No editor metadata, no style block, and no background shape: every drawn element is a path.
+  assert.doesNotMatch(svg, /<metadata|xpacket|<style|<\?xml|\sid="Capa_|class="cls-/, `${file} carries no editor data`)
+  assert.doesNotMatch(svg, /<(rect|use|g)\b/, `${file} has no background rectangle`)
+  // Pink, yellow, and black are the brand values. White is allowed only for the shine marks (ADR-0022).
+  const colours = [...new Set([...svg.matchAll(/#[0-9a-fA-F]{3,8}\b/g)].map((m) => m[0].toLowerCase()))].sort()
+  assert.deepEqual(colours, ['#000000', '#ef80ae', '#fff488', '#ffffff'])
+})
+
 test('the sparkle placeholder is gone: no text, token, or rule remains from T7.8', () => {
   const sparkle = read('packages/nuxt/components/CnSparkle.vue')
   assert.doesNotMatch(sparkle, /Motif pending|PLACEHOLDER/)
@@ -286,7 +317,7 @@ test('REQ-055: the playground controls are a valid schema that each playground d
   }
 })
 
-test('the docs point to each other, and the foundation docs name the supplied sparkle, ramen cup, d20, and chopsticks files', () => {
+test('the docs point to each other, and the foundation docs name the supplied sparkle, ramen cup, d20, chopsticks, and noodle wave files', () => {
   assert.match(docOf('sparkle'), /sticker-frame/)
   assert.match(docOf('sticker-frame'), /sparkle/)
   for (const path of ['docs/01-foundations/imagery-and-motifs.md', 'docs/00-overview/brand-identity.md']) {
@@ -299,7 +330,9 @@ test('the docs point to each other, and the foundation docs name the supplied sp
     assert.match(doc, /ADR-0021/, path)
     assert.match(doc, /Chopsticks-CN\.svg/, path)
     assert.match(doc, /ADR-0020/, path)
-    // TBD-18 stays open for the other three motifs, so both docs keep their callout and stay drafts.
+    assert.match(doc, /Noodle-Wave-CN\.svg/, path)
+    assert.match(doc, /ADR-0022/, path)
+    // TBD-18 stays open for the other two motifs, so both docs keep their callout and stay drafts.
     assert.match(doc, /> \*\*TBD \(TBD-18\):\*\*/, path)
     assert.ok((readFrontmatter(doc).data as Record<string, unknown>).tbd, path)
   }
