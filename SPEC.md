@@ -1222,7 +1222,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T10.2
   - Done when: the 6 components compile, every slot is documented in `email-components.md`, and the button uses a solid border in place of the glow, per REQ-040. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
 
-- [ ] **T10.4 — Reference layout and `email-layouts.md`**
+- [x] **T10.4 — Reference layout and `email-layouts.md`** (2026-10-11, 5cfc856)
   - REQs: REQ-043
   - Depends on: T10.3
   - Done when: the layout renders at 320 and 600 px with no horizontal scroll, and the plain-text structure is documented. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T10.5 runs it for all five.
