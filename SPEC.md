@@ -1155,7 +1155,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T8.1, T7.3
   - Done when: the thumbnail, title, and tag badges render; a card missing both `alt` and `decorative` fails the type check or the development warning test; a linked card has exactly one tab stop; and the layout holds at 360 px with a long title. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T8.6 runs it for all four.
 
-- [ ] **T8.3 — Alert, Toast, and Tooltip**
+- [x] **T8.3 — Alert, Toast, and Tooltip** (2026-10-10, fd02cff)
   - REQs: REQ-020, REQ-026, REQ-027
   - Depends on: T7.3
   - Done when: each feedback variant uses feedback tokens (TBD-07 placeholders); the toast is announced by a live region; and the tooltip opens on focus as well as hover. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T8.6 runs it for all four.
