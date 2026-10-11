@@ -146,7 +146,9 @@ test('Done when: the repository passes, and the report lists every callout in ev
   }
   const listed = [...report.callouts, ...report.contentPending].map((c) => `${c.file}:${c.line}`)
   assert.deepEqual(listed.sort(), expected.sort())
-  assert.ok(report.contentPending.length > 0)
+  // T11.2 wrote the last content-pending stubs, so none are left in the repository. The fixtures above still cover
+  // the content-pending callout.
+  assert.equal(report.contentPending.length, 0)
   // TBD-01 to TBD-21, minus the items the owner has resolved since T2.4, each through an existing ADR (§4.4).
   const resolved = report.items.filter((i) => i.resolved)
   assert.deepEqual(

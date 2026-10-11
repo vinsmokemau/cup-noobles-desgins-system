@@ -2,21 +2,28 @@
 title: Decision log
 slug: decision-log
 layer: governance
-status: tbd
+status: draft
 lang: en
+tbd: []
+related: [contribution, ownership, versioning-and-releases, deprecation]
 since: 0.1.0
-updated: 2026-09-27
+updated: 2026-10-11
 ---
 
 # Decision log
 
 ## Purpose
 
-> **TBD:** Content pending (T11.2).
+This is the index of every architecture decision record (ADR). An ADR records one decision, the context it was made in, and what follows from it, so a value or a rule can always be traced to its source (REQ-073). The index links every ADR, and `check-links` reports an ADR that is missing from it (REQ-001 AC2).
 
 ## Policy and process
 
-> **TBD:** Content pending (T11.2).
+- ADRs live in `docs/06-governance/decisions/NNNN-title.md` and start from [the ADR template](decisions/0000-adr-template.md) (REQ-073 AC1).
+- Numbers are given in order and never reused. A decision that is replaced keeps its number, and the new ADR names the one it replaces.
+- Every TBD resolution and every open decision names an ADR (REQ-073 AC2).
+- Add each new ADR to the list below in the same change that creates it. The steps are in [Contribution](contribution.md).
+
+### Index
 
 - [ADR template](decisions/0000-adr-template.md)
 - [ADR-0001: Nuxt UI version, theming, and dark mode](decisions/0001-nuxt-ui-spike.md)
@@ -65,8 +72,8 @@ updated: 2026-09-27
 
 ## Open items
 
-> **TBD:** Content pending (T11.2).
+> **Draft:** The policy above follows REQ-073. The doc stays `draft` until the owner approves it in an ADR.
 
 ## Changelog
 
-> **TBD:** Content pending (T11.2).
+- 0.1.0 — First draft: the ADR policy and the index of ADR-0001 through ADR-0043 (T11.2, REQ-073) — awaiting owner approval
