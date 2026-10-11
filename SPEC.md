@@ -1184,7 +1184,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 
 ### P9 — Patterns and content
 
-- [ ] **T9.1 — Forms, feedback, and loading patterns**
+- [x] **T9.1 — Forms, feedback, and loading patterns** (2026-10-11, daad71b)
   - REQs: REQ-035, REQ-009
   - Depends on: T8.7
   - Done when: 3 pattern docs (at `draft` status at minimum) exist, each with at least one composed demo using neutral content only (the domain-term test passes on demos), and axe is clean. `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T9.2 runs it for T9.1 and T9.2.
