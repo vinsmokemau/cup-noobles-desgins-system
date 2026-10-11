@@ -1123,7 +1123,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
   - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Chopsticks-CN.svg`; the review in step 6 finds no problem; and `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T7.16 runs it for all the motifs.
 
-- [ ] **T7.14 — Motif artwork: noodle curves and waves**
+- [x] **T7.14 — Motif artwork: noodle curves and waves** (2026-10-10, 4200eab)
   - REQs: REQ-029, REQ-021, REQ-022
   - Depends on: T7.10 (TBD-18 partly supplied, ADR-0017)
   - Done when: the prompt, the selection page, and the ADR exist; the owner's SVG is stored as `packages/nuxt/assets/brand/Noodle-Wave-CN.svg`; the review in step 6 finds no problem; and `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-10); T7.16 runs it for all the motifs.
