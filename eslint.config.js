@@ -44,8 +44,18 @@ export default defineConfig(
     // Nuxt auto-imports Nuxt Content's `queryCollection` (T5.4); apps/showcase/shims.d.ts declares it for the typecheck.
     files: ['apps/showcase/**/*.{ts,vue}'],
     // T7.1: `definePageMeta` is a Nuxt compiler macro, and the demo frame talks to its iframe through the browser's window.
+    // T11.1: `useContentSearch` is Nuxt UI's, and the search data route (server/routes/) uses Nitro's auto-imports; all
+    // are declared in apps/showcase/shims.d.ts for the typecheck.
     languageOptions: {
-      globals: { ...globals.browser, queryCollection: 'readonly', definePageMeta: 'readonly', useToast: 'readonly' },
+      globals: {
+        ...globals.browser,
+        queryCollection: 'readonly',
+        queryCollectionSearchSections: 'readonly',
+        defineEventHandler: 'readonly',
+        definePageMeta: 'readonly',
+        useToast: 'readonly',
+        useContentSearch: 'readonly',
+      },
     },
   },
   {

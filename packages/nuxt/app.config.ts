@@ -178,6 +178,19 @@ export default {
         error: 'cn-form-field__error',
       },
     },
+    // T11.1 (REQ-056, REQ-024): the command palette inside the showcase's global search (`UContentSearch`). Its panel is the
+    // modal above. Two things in Nuxt UI's own look do not hold on the black page, so they are replaced with parts that
+    // already exist, and no color is added. The keyboard-active result is a fill (`bg-elevated`) that reads the page black,
+    // so it takes the select list's focus ring (`.cn-select-item`, T7.4). A matched part of a label is tinted
+    // (`bg-primary/15`), a shade of pink that is not a token (C-06), so the match is the same text, bold and underlined.
+    commandPalette: {
+      slots: {
+        item: 'cn-select-item',
+        itemLabelBase: '[&>mark]:bg-transparent [&>mark]:font-bold [&>mark]:underline',
+        itemLabelSuffix: '[&>mark]:bg-transparent [&>mark]:font-bold [&>mark]:underline',
+        itemDescription: '[&>mark]:bg-transparent [&>mark]:font-bold [&>mark]:underline',
+      },
+    },
     // T8.5 (REQ-020, REQ-026, REQ-027): the modal and the slideover share one look (ADR-0029), the `.cn-overlay-*` rules in
     // assets/css/main.css, which read the --cn-overlay-* tokens: a dimmed backdrop and a black panel with a thick pink
     // outline. Nuxt UI's own dialog gives the behavior (focus trap and restore, Escape, an inert page behind), so nothing

@@ -12,6 +12,7 @@ import type { ModuleOptions } from '@nuxt/content'
 import { parseDesignNav } from './lib/design-nav'
 import { prerenderRoutes } from './lib/doc-routes'
 import { scanDemos, scanDocMeta, scanDocs, scanPreviewBlocks } from './lib/doc-scan'
+import { SEARCH_DATA_FILE } from './lib/search'
 import { siteBase } from './lib/site'
 
 // `nuxt prepare` writes this augmentation into .nuxt/; the root typecheck runs without it, so it is declared here.
@@ -70,7 +71,9 @@ export default defineNuxtConfig({
   },
   nitro: {
     // Every route is listed, so a broken link in a doc cannot add or hide a page. The route crawl test finds broken links.
-    prerender: { crawlLinks: false, routes: prerenderRoutes(docs, demos) },
+    // T11.1: the global search reads its data from a file, so the file is written at build time (not a page, so it is
+    // listed here and not in `prerenderRoutes`, which is the list of pages).
+    prerender: { crawlLinks: false, routes: [...prerenderRoutes(docs, demos), `/${SEARCH_DATA_FILE}`] },
     ...(outDir ? { output: { dir: outDir, publicDir: join(outDir, 'public') } } : {}),
   },
   // T7.1: the demo registry reads the demo files through this alias (lib/demo-registry.ts).

@@ -16,6 +16,7 @@ import {
 } from '../apps/showcase/lib/doc-routes'
 import { demoRoutes } from '../apps/showcase/lib/demos'
 import { scanDemos, scanDocs } from '../apps/showcase/lib/doc-scan'
+import { SEARCH_DATA_FILE } from '../apps/showcase/lib/search'
 import nuxtConfig from '../apps/showcase/nuxt.config'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -95,7 +96,8 @@ test('REQ-052 AC1: the static build prerenders the pages, every section index, a
     ...docs.map((doc) => doc.route),
   ]
   assert.deepEqual([...routes].sort(), [...new Set(expected)].sort())
-  assert.deepEqual([...(nuxtConfig.nitro?.prerender?.routes ?? [])].sort(), [...routes].sort())
+  // T11.1: the build also writes the data file of the global search. It is a file, not a page, so it is not a route above.
+  assert.deepEqual([...(nuxtConfig.nitro?.prerender?.routes ?? [])].sort(), [...routes, `/${SEARCH_DATA_FILE}`].sort())
   assert.equal(routes.includes('/overview'), false, 'SPEC.md §4.6 has no /overview index')
 })
 

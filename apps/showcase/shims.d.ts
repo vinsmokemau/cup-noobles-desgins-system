@@ -26,6 +26,8 @@ interface DocPage {
   source: 'nuxt-ui' | 'custom' | null
   level: 'atom' | 'molecule' | 'organism' | null
   slug: string | null
+  nuxtUi?: string | null
+  component?: string | null
   demos?: string[] | null
   body: { type: string; value: unknown[]; toc?: { links?: TocLink[] } }
 }
@@ -33,11 +35,21 @@ interface DocPage {
 interface DocQuery {
   path(path: string): DocQuery
   where(field: string, operator: '=', value: string): DocQuery
+  select(...fields: string[]): DocQuery
   first(): Promise<DocPage | null>
   all(): Promise<DocPage[]>
 }
 
 declare function queryCollection(collection: 'docs'): DocQuery
+
+// T11.1: the server route of the search data (server/routes/search-sections.json.ts) uses Nitro's auto-imports, whose
+// types `nuxt prepare` writes to .nuxt/. They take the request event first, where the client's `queryCollection` does not.
+declare function queryCollection(event: object, collection: 'docs'): DocQuery
+declare function queryCollectionSearchSections(
+  event: object,
+  collection: 'docs',
+): Promise<{ id: string; title: string; titles: string[]; level: number; content: string }[]>
+declare function defineEventHandler<T>(handler: (event: object) => T | Promise<T>): unknown
 
 // T7.1: a compiler macro of Nuxt's pages module, which `nuxt prepare` types.
 declare function definePageMeta(meta: { layout?: string | false }): void
@@ -54,3 +66,6 @@ interface ToastInput {
 }
 
 declare function useToast(): { add(toast: ToastInput): unknown }
+
+// T11.1: the open state that Nuxt UI's `UContentSearch` and `UContentSearchButton` share.
+declare function useContentSearch(): { open: import('vue').Ref<boolean> }

@@ -18,6 +18,9 @@ test('the build has routes to audit', () => {
 
 for (const route of [...routes, missing]) {
   test(`${route}: the route checks`, async ({ page, viewport }) => {
+    // T11.1: /tokens has about 700 buttons to hydrate and to measure. Its checks take 15 s alone, and past 30 s when the
+    // other projects share the machine, so its budget is tripled (the CI config gives every test more time for the same reason).
+    if (route === '/tokens') test.slow()
     const failures: string[] = []
     // Runs one check as a named step. The step title is the report's name for the criterion; the message of a failure
     // starts with the route, the width, and the criterion.

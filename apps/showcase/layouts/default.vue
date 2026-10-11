@@ -28,12 +28,16 @@ const version = useRuntimeConfig().public.version as string
       :ui="{ toggle: 'md:hidden', content: 'md:hidden', overlay: 'md:hidden' }"
     >
       <template #right>
+        <!-- T11.1 (REQ-056): icon only, so it fits at 360 px. The palette itself is <SiteSearch /> below. -->
+        <UContentSearchButton aria-keyshortcuts="Control+K Meta+K" />
         <UBadge :label="`v${version}`" color="neutral" variant="outline" data-testid="version" />
       </template>
       <template #body>
         <DocsNav />
       </template>
     </UHeader>
+
+    <SiteSearch />
 
     <div class="mx-auto flex w-full max-w-(--ui-container)">
       <aside
