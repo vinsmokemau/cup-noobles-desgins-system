@@ -1,4 +1,4 @@
-// T9.1 end-to-end checks of the forms, feedback, and loading patterns (REQ-035 AC2, REQ-027, REQ-009). They run against the
+// T9.1 and T9.2 end-to-end checks of the seven patterns (REQ-035 AC2, REQ-027, REQ-009). They run against the
 // isolated `composed` demo pages and against the pattern pages, in the `functional` project at 1280 px. The same demo
 // pages are audited at 360, 768, and 1280 px in patterns.matrix.ts.
 import type { Page } from '@playwright/test'
@@ -7,16 +7,18 @@ import { waitForPage } from './helpers/ready'
 import { openDemo } from './helpers/states'
 import { expect, test } from './helpers/test'
 
-const SLUGS = ['forms', 'feedback', 'loading'] as const
+// Six are stable (ADR-0033, ADR-0034). Responsive behavior stays a draft while TBD-13 is open (REQ-009, REQ-037).
+const STABLE = ['forms', 'feedback', 'loading', 'navigation', 'empty-states', 'error-pages']
+const DRAFT = ['responsive-behavior']
 
 test.describe('the pattern pages', () => {
-  for (const slug of SLUGS) {
-    test(`REQ-035 AC2: /patterns/${slug} shows its composed demo, as a stable doc, with no axe violation`, async ({
+  for (const slug of [...STABLE, ...DRAFT]) {
+    test(`REQ-035 AC2: /patterns/${slug} shows its composed demo, with the right status, and no axe violation`, async ({
       page,
     }) => {
       await page.goto(`/patterns/${slug}`)
       await waitForPage(page)
-      await expect(page.getByTestId('status-banner')).toHaveCount(0) // stable (ADR-0033)
+      await expect(page.getByTestId('status-banner')).toHaveCount(STABLE.includes(slug) ? 0 : 1)
       const panel = page.getByTestId('composed-demo')
       await expect(panel.getByRole('heading', { name: 'Composed demo' })).toBeVisible()
       await expect(panel.locator('iframe')).toBeVisible()
@@ -169,5 +171,78 @@ test.describe('loading', () => {
     await openDemo(page, 'loading', 'composed')
     await expect(page.getByRole('progressbar', { name: 'Subiendo portada' })).toHaveAttribute('aria-valuenow', '62')
     await expect(page.getByRole('progressbar', { name: 'Procesando imagen' })).not.toHaveAttribute('aria-valuenow')
+  })
+})
+
+test.describe('navigation', () => {
+  test('the header marks the current page, and no other link', async ({ page }) => {
+    await openDemo(page, 'navigation', 'composed')
+    const main = page.getByRole('navigation', { name: 'Principal' })
+    await expect(main.getByRole('link', { name: 'Eventos' })).toHaveAttribute('aria-current', 'page')
+    await expect(main.getByRole('link', { name: 'Juegos' })).not.toHaveAttribute('aria-current')
+    await expect(page.locator('[aria-current="page"]')).toHaveCount(3) // the header link, the breadcrumb's current page, and the current page number
+  })
+
+  test('the breadcrumb ends on the current page, and the current page number is named', async ({ page }) => {
+    await openDemo(page, 'navigation', 'composed')
+    const crumbs = page.getByRole('navigation', { name: 'Ruta de navegación' })
+    await expect(crumbs.getByRole('link', { name: 'Inicio' })).toBeVisible()
+    await expect(crumbs.getByRole('link', { name: 'Noche de juegos' })).toHaveCount(0)
+    await expect(page.getByRole('button', { name: 'Página 2' })).toHaveAttribute('aria-current', 'page')
+    await expectNoA11yViolations(page, { label: '/_demo/navigation/composed' })
+  })
+
+  test('the arrow keys move between tabs', async ({ page }) => {
+    await openDemo(page, 'navigation', 'composed')
+    await page.getByRole('tab', { name: 'Reglas' }).focus()
+    await page.keyboard.press('ArrowRight')
+    await expect(page.getByRole('tab', { name: 'Mesas' })).toBeFocused()
+  })
+})
+
+test.describe('empty states', () => {
+  test('first use explains the list and offers one action, and the action fills the list', async ({ page }) => {
+    await openDemo(page, 'empty-states', 'composed')
+    const state = page.getByTestId('empty-first-use')
+    await expect(state.getByRole('heading', { name: 'Aún no tienes partidas' })).toBeVisible()
+    await expect(state.getByRole('button')).toHaveCount(1)
+    await expectNoA11yViolations(page, { label: '/_demo/empty-states/composed, first use' })
+
+    await state.getByRole('button', { name: 'Crear partida' }).click()
+    await expect(page.getByTestId('empty-first-use')).toHaveCount(0)
+    await expect(page.getByRole('list', { name: 'Partidas' }).getByRole('listitem')).toHaveCount(3)
+  })
+
+  test('a search with no match names the search, announces it, and one action clears it', async ({ page }) => {
+    await openDemo(page, 'empty-states', 'composed')
+    await page.getByRole('button', { name: 'Crear partida' }).click()
+    await page.getByRole('textbox', { name: 'Buscar partida' }).fill('xyz')
+
+    const state = page.getByTestId('empty-no-results')
+    await expect(state.getByRole('status')).toContainText('Sin resultados para «xyz»')
+    await expectNoA11yViolations(page, { label: '/_demo/empty-states/composed, no results' })
+
+    await state.getByRole('button', { name: 'Limpiar búsqueda' }).click()
+    await expect(page.getByTestId('empty-no-results')).toHaveCount(0)
+    await expect(page.getByRole('list', { name: 'Partidas' }).getByRole('listitem')).toHaveCount(3)
+  })
+})
+
+test.describe('error pages', () => {
+  test('both pages have the four parts: a status, one h1, a sentence, and one action, with no technical detail', async ({
+    page,
+  }) => {
+    await openDemo(page, 'error-pages', 'composed')
+    await expect(page.getByTestId('error-page')).toHaveCount(2)
+    await expect(page.getByTestId('error-status')).toHaveText(['404', '500'])
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText([
+      'No encontramos esta página',
+      'Algo salió mal de nuestro lado',
+    ])
+    for (const region of await page.getByRole('region').all()) {
+      await expect(region.getByRole('link')).toHaveCount(1)
+    }
+    await expect(page.locator('body')).not.toContainText(/stack|exception|undefined|at \w+\.\w+/i)
+    await expectNoA11yViolations(page, { label: '/_demo/error-pages/composed' })
   })
 })
