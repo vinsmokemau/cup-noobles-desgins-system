@@ -12,6 +12,9 @@ export const STATES_DEMO = 'states'
 /** The demo whose props the playground controls set. It declares a prop for each control (`controls.ts`). */
 export const PLAYGROUND_DEMO = 'playground'
 
+/** T9.1 (REQ-035 AC2): the demo of a pattern doc. It composes design system parts on neutral content, and it appears after "Code reference". */
+export const COMPOSED_DEMO = 'composed'
+
 /** The heading after which the state matrix appears, and the one after which the playground appears (SPEC.md §4.5). */
 export const STATES_HEADING = 'States'
 export const PLAYGROUND_HEADING = 'Code reference'

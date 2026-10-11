@@ -9,7 +9,14 @@ import { FIXED_TITLES, rewriteDocLinks, type DocEntry } from '../lib/doc-routes'
 import type { FlatToken } from '../lib/token-filter'
 import { toPreviews } from '../lib/token-preview'
 import { demoControls, demoSource } from '../lib/demo-registry'
-import { PLAYGROUND_DEMO, PLAYGROUND_HEADING, splitAfterSections, STATES_DEMO, STATES_HEADING } from '../lib/demos'
+import {
+  COMPOSED_DEMO,
+  PLAYGROUND_DEMO,
+  PLAYGROUND_HEADING,
+  splitAfterSections,
+  STATES_DEMO,
+  STATES_HEADING,
+} from '../lib/demos'
 
 const BANNERS: Record<string, string> = {
   tbd: 'This doc has no content yet. Its sections are placeholders.',
@@ -51,17 +58,20 @@ const isEmail = entry.route.startsWith('/email/')
 const demoNames = page.value.demos ?? []
 const hasStates = demoNames.includes(STATES_DEMO)
 const hasPlayground = demoNames.includes(PLAYGROUND_DEMO)
+// T9.1: a pattern doc lists a `composed` demo, which follows "Code reference" too, where the playground would be.
+const hasComposed = demoNames.includes(COMPOSED_DEMO)
 const { data: demoData } = await useAsyncData(`demos:${entry.route}`, async () => {
   const slug = page.value!.slug!
   return {
     states: hasStates ? await demoSource(slug, STATES_DEMO) : '',
     playground: hasPlayground ? await demoSource(slug, PLAYGROUND_DEMO) : '',
+    composed: hasComposed ? await demoSource(slug, COMPOSED_DEMO) : '',
     controls: hasPlayground ? await demoControls(slug) : [],
   }
 })
 const segments = computed(() => {
   const current = page.value!
-  if (!hasStates && !hasPlayground) return [{ page: current, panels: [] as string[] }]
+  if (!hasStates && !hasPlayground && !hasComposed) return [{ page: current, panels: [] as string[] }]
   return splitAfterSections(current.body.value, [STATES_HEADING, PLAYGROUND_HEADING]).map((segment) => ({
     page: { ...current, body: { ...current.body, value: segment.nodes } },
     panels: segment.panels,
@@ -94,6 +104,11 @@ const segments = computed(() => {
           :slug="page.slug!"
           :controls="demoData!.controls"
           :source="demoData!.playground"
+        />
+        <ComposedDemo
+          v-if="hasComposed && segment.panels.includes(PLAYGROUND_HEADING)"
+          :slug="page.slug!"
+          :source="demoData!.composed"
         />
       </template>
       <ColorPreviews v-if="hasColorPreviews" />

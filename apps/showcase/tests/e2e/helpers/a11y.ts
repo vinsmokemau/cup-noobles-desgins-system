@@ -47,6 +47,9 @@ export async function expectTargetSize(page: Page, label = page.url()) {
         const box = el.getBoundingClientRect()
         if (box.width === 0 || box.height === 0) return false
         if (el.closest('.sr-only') || getComputedStyle(el).display === 'inline') return false
+        // A control that is hidden from assistive technology and skipped by Tab is not a target: Reka UI's native
+        // `<select>` that mirrors a select inside a form is one, and it is one pixel wide.
+        if (el.closest('[aria-hidden="true"]') && el.tabIndex === -1) return false
         return box.width < 24 || box.height < 24
       })
       .map(

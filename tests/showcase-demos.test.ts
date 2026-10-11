@@ -159,7 +159,7 @@ test('REQ-055: the registry is driven by the frontmatter, and a listed demo with
 })
 
 test('the real docs list the demos that exist, so the real build has a demo route for each', () => {
-  // T7.2 adds the button's, T7.3 the badge's, the icon's, and the link's, T7.4 the input's, the select's, and the textarea's, T7.5 the checkbox's, the radio group's, and the switch's, T7.6 the progress bar's, the separator's, and the skeleton's, T7.7 the logo's, T7.8 the sparkle's and the sticker frame's, T8.1 the card's and the form field's, and T8.2 the media card's, and T8.5 the modal's and the slideover's, T8.4 the tabs', the breadcrumb's, and the pagination's, T8.3 the alert's, the toast's, and the tooltip's, and T8.6 the site header's and the site footer's. Each component task adds its own entry here, and no doc lists a demo that has no file.
+  // T7.2 adds the button's, T7.3 the badge's, the icon's, and the link's, T7.4 the input's, the select's, and the textarea's, T7.5 the checkbox's, the radio group's, and the switch's, T7.6 the progress bar's, the separator's, and the skeleton's, T7.7 the logo's, T7.8 the sparkle's and the sticker frame's, T8.1 the card's and the form field's, and T8.2 the media card's, and T8.5 the modal's and the slideover's, T8.4 the tabs', the breadcrumb's, and the pagination's, T8.3 the alert's, the toast's, and the tooltip's, and T8.6 the site header's and the site footer's, and T9.1 the composed demos of the forms, feedback, and loading patterns. Each component task adds its own entry here, and no doc lists a demo that has no file.
   assert.deepEqual(
     scanDemos(join(import.meta.dirname, '../docs'), join(import.meta.dirname, '../apps/showcase/demos')),
     {
@@ -169,10 +169,13 @@ test('the real docs list the demos that exist, so the real build has a demo rout
       button: ['states', 'playground'],
       card: ['states', 'playground'],
       checkbox: ['states', 'playground'],
+      feedback: ['composed'],
       'form-field': ['states', 'playground'],
+      forms: ['composed'],
       icon: ['states', 'playground'],
       input: ['states', 'playground'],
       link: ['states', 'playground'],
+      loading: ['composed'],
       logo: ['states', 'playground'],
       'media-card': ['states', 'playground'],
       modal: ['states', 'playground'],

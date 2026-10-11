@@ -244,6 +244,23 @@ export function collectNames(root: string): Name[] {
   return names
 }
 
+// T9.1 (REQ-035 AC2): the composed demos of the pattern docs use neutral, non-commerce content. Their text is not a name
+// that a component declares, so every word of the file counts: the copy, the identifiers, and the comments. The one
+// exception is Nuxt UI's own `variant` prop (`variant="solid"`, or the key `variant: 'ghost'` in an object it takes): it
+// is the library's API, with no commerce meaning, and every component doc and demo passes it, so that use is skipped and
+// the word is still caught anywhere else.
+export function findDemoDomainTerms(root: string, terms = readDomainTerms(root)): string[] {
+  return listFiles(root, 'apps/showcase/demos', /^composed\.vue$/).flatMap((file) => {
+    const text = readFileSync(join(root, file), 'utf8').replace(/:?\bvariant(?:=|:\s*)(?:"[^"]*"|'[^']*')/g, '')
+    const found = new Set<string>()
+    for (const [word] of text.matchAll(/[\p{L}\p{N}]+/gu)) {
+      const term = matchDomainTerm(word, terms)
+      if (term) found.add(`${file}: "${word}" contains "${term}"`)
+    }
+    return [...found]
+  })
+}
+
 export function findDomainTerms(root: string, terms = readDomainTerms(root)): string[] {
   return collectNames(root).flatMap(({ kind, name, file }) => {
     const term = matchDomainTerm(name, terms)
