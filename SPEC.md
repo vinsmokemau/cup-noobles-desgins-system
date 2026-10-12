@@ -1257,7 +1257,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 
 ### P12 — Release readiness
 
-- [ ] **T12.1 — Publish 0.x and consume it from the registry**
+- [x] **T12.1 — Publish 0.x and consume it from the registry** (2026-10-11, 5777e82)
   - REQs: REQ-070, REQ-071 (AC2)
   - Depends on: P6–P11 complete
   - Done when: `0.x.0` is published, and the fixture, switched to install from the registry, passes its end-to-end suite in CI.
