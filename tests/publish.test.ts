@@ -2,7 +2,7 @@
 // tarball holds is what a consumer needs and nothing else.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -54,6 +54,12 @@ test('T12.1: a tarball holds built output or layer sources, never build caches o
   assert.deepEqual(files.nuxt, ['nuxt.config.ts', 'app.config.ts', 'assets', 'components', 'utils'])
   for (const list of Object.values(files)) {
     for (const entry of list) assert.doesNotMatch(entry, /node_modules|\.nuxt|\.output/)
+  }
+})
+
+test('T12.1: each package directory has a CHANGELOG.md, which the Changesets action reads to build the version PR', () => {
+  for (const { dir } of PACKAGES) {
+    assert.ok(existsSync(join(root, `packages/${dir}/CHANGELOG.md`)), `packages/${dir}/CHANGELOG.md is missing`)
   }
 })
 
