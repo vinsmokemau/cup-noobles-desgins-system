@@ -2,9 +2,10 @@
 // tarball holds is what a consumer needs and nothing else.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { parse } from 'yaml'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const read = (path: string) => readFileSync(join(root, path), 'utf8')
@@ -74,16 +75,35 @@ test('REQ-071 AC2: the scope points at GitHub Packages, no token is committed, a
   const npmrc = read('.npmrc')
   assert.match(npmrc, /^@vinsmokemau:registry=https:\/\/npm\.pkg\.github\.com$/m)
   assert.doesNotMatch(npmrc, /^[^#\n]*_authToken/m, 'a token must never be committed')
-  for (const file of ['ci.yml', 'deploy-showcase.yml', 'release.yml']) {
-    const text = read(`.github/workflows/${file}`)
-    assert.match(text, /^ {2}packages: (read|write)$/m, `${file}: needs the packages permission`)
-    assert.match(text, /registry-url: https:\/\/npm\.pkg\.github\.com/, `${file}: setup-node registry`)
-    assert.match(
-      text,
-      /- run: pnpm install --frozen-lockfile\r?\n\s+env:\r?\n\s+NODE_AUTH_TOKEN: \$\{\{ secrets\.GITHUB_TOKEN \}\}/,
-      `${file}: the install step has the token`,
-    )
+  // Every job of every workflow that installs the workspace: the fixture's dependency is on the private registry, so
+  // each such job needs the packages permission, the scope's token from setup-node, and the token on the install.
+  interface Step {
+    uses?: string
+    run?: string
+    with?: Record<string, string>
+    env?: Record<string, string>
   }
+  interface Workflow {
+    permissions?: Record<string, string>
+    jobs: Record<string, { permissions?: Record<string, string>; steps?: Step[] }>
+  }
+  let installs = 0
+  for (const file of readdirSync(join(root, '.github/workflows')).filter((name) => name.endsWith('.yml'))) {
+    const workflow = parse(read(`.github/workflows/${file}`)) as Workflow
+    for (const [name, job] of Object.entries(workflow.jobs)) {
+      const where = `${file} > ${name}`
+      for (const step of (job.steps ?? []).filter((s) => /^pnpm install\b/m.test(s.run ?? ''))) {
+        installs++
+        const permissions = job.permissions ?? workflow.permissions ?? {}
+        assert.match(permissions.packages ?? '', /^(read|write)$/, `${where}: needs the packages permission`)
+        const setup = (job.steps ?? []).find((s) => s.uses?.startsWith('actions/setup-node@'))
+        assert.equal(setup?.with?.['registry-url'], 'https://npm.pkg.github.com', `${where}: setup-node registry`)
+        assert.equal(setup?.with?.scope, '@vinsmokemau', `${where}: setup-node scope`)
+        assert.equal(step.env?.NODE_AUTH_TOKEN, '${{ secrets.GITHUB_TOKEN }}', `${where}: the install has the token`)
+      }
+    }
+  }
+  assert.ok(installs >= 4, `found ${installs} install steps; expected ci, deploy build, deploy verify, and release`)
 })
 
 test('T12.1: each package directory has a CHANGELOG.md, which the Changesets action reads to build the version PR', () => {
