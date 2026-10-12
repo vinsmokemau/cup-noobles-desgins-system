@@ -81,11 +81,17 @@ test('REQ-070 AC1: the dry run of the real repository versions in lockstep and c
   const before = readdirSync(join(root, '.changeset')).sort()
   const changelogBefore = read('CHANGELOG.md')
   const versionBefore = read('packages/nuxt/package.json')
+  // Right after a release, the "Version packages" pull request has consumed every changeset, so there is nothing to
+  // version, and the dry run says so. Any later change brings a changeset, and the checks below apply again.
+  if (pendingEntries(root).length === 0) {
+    assert.throws(() => dryRun(root, '2026-10-12'), /no changeset to version/i)
+    assert.equal(read('CHANGELOG.md'), changelogBefore)
+    return
+  }
   const release = dryRun(root, '2026-10-12')
   assert.equal(new Set(Object.values(release.packages)).size, 1)
   assert.equal(Object.keys(release.packages).length, 3)
   assert.equal(release.entries.length, pendingEntries(root).length)
-  assert.ok(release.entries.length > 0, 'the repository has pending changesets')
   assert.deepEqual(readdirSync(join(root, '.changeset')).sort(), before)
   assert.equal(read('CHANGELOG.md'), changelogBefore)
   assert.equal(read('packages/nuxt/package.json'), versionBefore)
@@ -129,7 +135,8 @@ test('a changeset with no packages is empty, and a broken one is reported by fil
 })
 
 test('REQ-062 AC2: the new release goes above the older ones, and the "no release yet" line goes away', () => {
-  const changelog = read('CHANGELOG.md')
+  // The empty state, as the file was before the first release: the repository's own file has releases by now.
+  const changelog = `# Changelog\n\nEvery release of the three packages.\n\n${NO_RELEASES}\n`
   assert.ok(changelog.includes(NO_RELEASES), 'the file starts with the empty state')
   const first = insertRelease(
     changelog,
@@ -147,7 +154,8 @@ test('REQ-062 AC2: the new release goes above the older ones, and the "no releas
 })
 
 test('REQ-062 AC2: CHANGELOG.md is the file the showcase renders at /changelog', () => {
-  assert.match(read('CHANGELOG.md'), /^# Changelog\n/)
+  // `\r?`: a Windows checkout turns the line endings into CRLF.
+  assert.match(read('CHANGELOG.md'), /^# Changelog\r?\n/)
   const config = read('apps/showcase/content.config.ts')
   assert.match(config, /changelog: defineCollection/)
   assert.match(config, /include: 'CHANGELOG\.md'/)
