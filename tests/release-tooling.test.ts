@@ -157,7 +157,7 @@ test('REQ-062 AC2: CHANGELOG.md is the file the showcase renders at /changelog',
   assert.doesNotMatch(page, /data-doc-source/, 'a changelog is not one of the docs (REQ-051 AC2)')
 })
 
-test('REQ-070: the release workflow opens the version pull request with `pnpm version-packages`, and does not publish', () => {
+test('REQ-070: the release workflow opens the version pull request with `pnpm version-packages`, then publishes', () => {
   const workflow = parse(read('.github/workflows/release.yml')) as {
     on: { push: { branches: string[] } }
     permissions: Record<string, string>
@@ -165,12 +165,20 @@ test('REQ-070: the release workflow opens the version pull request with `pnpm ve
   }
   assert.deepEqual(workflow.on.push.branches, ['main'])
   assert.equal(workflow.permissions['pull-requests'], 'write')
+  assert.equal(workflow.permissions.packages, 'write', 'publishing to GitHub Packages needs packages: write')
   const steps = Object.values(workflow.jobs).flatMap((job) => job.steps)
   for (const step of steps) if (step.uses) assert.match(step.uses, /@[0-9a-f]{40}$/, `${step.uses} is pinned`)
   const action = steps.find((step) => step.uses?.startsWith('changesets/action@'))
   assert.ok(action, 'the workflow runs changesets/action')
   assert.equal(action.with?.version, 'pnpm version-packages')
-  assert.equal(action.with?.publish, undefined, 'publishing is T12.1')
+  assert.equal(
+    action.with?.publish,
+    'pnpm release:publish',
+    'T12.1: the action publishes after the version pull request',
+  )
+  const setup = steps.find((step) => step.uses?.startsWith('actions/setup-node@'))
+  assert.equal(setup?.with?.['registry-url'], 'https://npm.pkg.github.com')
+  assert.equal(setup?.with?.scope, '@vinsmokemau')
   assert.ok(steps.some((step) => step.run === 'pnpm install --frozen-lockfile'))
 })
 

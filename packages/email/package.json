@@ -2,6 +2,18 @@
   "name": "@vinsmokemau/cup-noobles-email",
   "version": "0.1.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinsmokemau/cup-noobles-desgins-system.git",
+    "directory": "packages/email"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "pnpm --filter @vinsmokemau/cup-noobles-tokens build && node build.ts"
   },

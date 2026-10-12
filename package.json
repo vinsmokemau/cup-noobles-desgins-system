@@ -20,6 +20,7 @@
     "sync:docs": "node scripts/sync-docs.ts",
     "changeset": "changeset",
     "version-packages": "node scripts/version-packages.ts",
+    "release:publish": "pnpm build:tokens && pnpm build:email && changeset publish",
     "test": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm check:docs && pnpm check:tokens && pnpm check:tbd && pnpm sync:docs --check",
     "build:tokens": "pnpm --filter @vinsmokemau/cup-noobles-tokens build",
     "build:email": "pnpm --filter @vinsmokemau/cup-noobles-email build",

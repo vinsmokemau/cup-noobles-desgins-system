@@ -1,6 +1,8 @@
 # Release (T11.3, REQ-070, SPEC.md §4.8): when changes reach `main`, this opens or updates the "Version packages" pull
 # request. Merging it bumps the three packages in lockstep and updates CHANGELOG.md (`pnpm version-packages`).
-# Publishing to GitHub Packages and tagging are T12.1; no `publish` command is set here on purpose.
+# T12.1 (OD-03): when no changeset is pending (the "Version packages" pull request was just merged), the same action
+# runs `pnpm release:publish`, which builds the tokens and email outputs and publishes the three packages that are not
+# yet on GitHub Packages, then pushes their tags. It authenticates with the workflow's GITHUB_TOKEN.
 # Setup the owner does once, in the repository settings: Settings > Actions > General > Workflow permissions >
 # "Allow GitHub Actions to create and approve pull requests".
 name: Release
@@ -12,6 +14,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  packages: write
 
 # One run at a time. A newer push waits, so two runs never fight over the version branch.
 concurrency:
@@ -30,11 +33,18 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+          # Writes the user-level .npmrc that sends the @vinsmokemau scope, and the token, to GitHub Packages.
+          registry-url: https://npm.pkg.github.com
+          scope: '@vinsmokemau'
       - run: pnpm install --frozen-lockfile
       - uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
         with:
           version: pnpm version-packages
+          publish: pnpm release:publish
           title: Version packages
           commit: Version packages
+          # One lockstep release makes three tags; no GitHub Release page is made for them.
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
