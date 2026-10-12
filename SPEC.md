@@ -1250,7 +1250,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T11.2
   - Done when: a test changeset produces a lockstep version pull request in a dry run; `/changelog` renders `CHANGELOG.md`; and the deprecation helper warns in development only (tested). `pnpm test` and `pnpm check:docs` pass. `pnpm test:all` is not required for this task (owner decision, 2026-10-11); T11.4 runs it for T11.2 through T11.4.
 
-- [ ] **T11.4 — `release-check`**
+- [x] **T11.4 — `release-check`** (2026-10-11, 3381de0)
   - REQs: REQ-018
   - Depends on: T11.3
   - Done when: `pnpm release:check` fails on any stable component that reaches a TBD token, listing each one, and passes on a fixture where every token is stable. It passes on the repository today, because no stable component doc reaches a TBD token (owner decision, 2026-10-11). `pnpm test:all` is green, covering T11.2 and T11.3 as well.
