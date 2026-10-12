@@ -126,9 +126,10 @@ test('REQ-057 AC1: a status banner shows on exactly the docs whose status is dra
 test('REQ-057 AC1: the banner names the status, and a stable doc has none', async ({ page }) => {
   await page.goto('/foundations/color')
   await expect(page.getByTestId('status-banner')).toContainText('Status: draft')
-  // T10.4 wrote the last email doc, so a doc that no task has written yet, the ownership doc (T11.2), stands for `tbd`.
+  // No doc has status `tbd` any more (T11.2 wrote the last ones, and ADR-0044 made them stable), so the loop above
+  // is what proves every non-stable status shows a banner. The ownership doc is stable, so it has none.
   await page.goto('/governance/ownership')
-  await expect(page.getByTestId('status-banner')).toContainText('Status: tbd')
+  await expect(page.getByTestId('status-banner')).toHaveCount(0)
   await page.goto('/governance/decisions/adr-0009-focus-indicator')
   await expect(page.getByTestId('status-banner')).toHaveCount(0)
   await page.goto('/overview/brand-context-source')

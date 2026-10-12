@@ -1,0 +1,10 @@
+{
+  "card": {
+    "$type": "color",
+    "border": {
+      "$value": "{color.neutral.500}",
+      "$description": "Fixture card border.",
+      "$extensions": { "cn": { "status": "stable" } }
+    }
+  }
+}

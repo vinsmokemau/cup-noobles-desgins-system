@@ -15,6 +15,7 @@
     "check:docs": "node scripts/check-docs.ts && pnpm check:links",
     "check:links": "node scripts/check-links.ts",
     "check:tbd": "node scripts/check-tbd.ts",
+    "release:check": "node scripts/release-check.ts",
     "check:tokens": "node scripts/check-tokens.ts && node scripts/check-contrast.ts",
     "sync:docs": "node scripts/sync-docs.ts",
     "changeset": "changeset",

@@ -1,0 +1,12 @@
+{
+  "color": {
+    "$type": "color",
+    "text": {
+      "muted": {
+        "$value": "{color.neutral.500}",
+        "$description": "Fixture muted text.",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    }
+  }
+}

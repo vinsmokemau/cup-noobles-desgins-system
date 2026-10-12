@@ -1,0 +1,12 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "pink": {
+        "$value": "#ef80ae",
+        "$description": "Fixture brand shade, filled with the single hex.",
+        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+      }
+    }
+  }
+}

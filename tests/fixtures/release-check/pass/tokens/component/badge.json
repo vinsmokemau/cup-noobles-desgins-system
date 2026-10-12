@@ -1,0 +1,10 @@
+{
+  "badge": {
+    "$type": "color",
+    "bg": {
+      "$value": "{color.brand.pink}",
+      "$description": "Fixture badge fill.",
+      "$extensions": { "cn": { "status": "stable" } }
+    }
+  }
+}

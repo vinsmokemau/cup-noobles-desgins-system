@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.35 |
+| Spec version | 1.36 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1253,7 +1253,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 - [ ] **T11.4 — `release-check`**
   - REQs: REQ-018
   - Depends on: T11.3
-  - Done when: `pnpm release:check` fails today, listing every stable component that reaches a TBD token, and passes on a fixture where every token is stable. `pnpm test:all` is green, covering T11.2 and T11.3 as well.
+  - Done when: `pnpm release:check` fails on any stable component that reaches a TBD token, listing each one, and passes on a fixture where every token is stable. It passes on the repository today, because no stable component doc reaches a TBD token (owner decision, 2026-10-11). `pnpm test:all` is green, covering T11.2 and T11.3 as well.
 
 ### P12 — Release readiness
 
@@ -1356,6 +1356,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.33 | 2026-10-11 | T10.1 through T10.4: the definition of done requires `pnpm test` and `pnpm check:docs` instead of `pnpm test:all`; T10.5 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 | 1.34 | 2026-10-11 | Added T3.7 (email width token) to P3: the maximum email width of 600 px, chosen by the owner and confirming A-08, becomes the tokens `email.width.max` and `layout.email.width.max`. A-08 is unchanged. No existing task changes. | Owner request in chat (T10.1 open question 1); ADR-0038, ADR-0039 |
 | 1.35 | 2026-10-11 | T11.2 and T11.3: the definition of done requires `pnpm test` and `pnpm check:docs` instead of `pnpm test:all`; T11.4 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
+| 1.36 | 2026-10-11 | T11.4: "Done when" no longer says `release:check` fails today. All ten stable component docs reach only stable tokens, so the gate passes on the repository; it fails on a fixture with a stable component that reaches a TBD token. REQ-018 and every other task are unchanged. | Owner decision in chat (T11.4, option A) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

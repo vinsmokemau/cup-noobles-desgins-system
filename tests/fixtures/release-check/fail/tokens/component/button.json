@@ -1,0 +1,10 @@
+{
+  "button": {
+    "$type": "color",
+    "fg": {
+      "$value": "{color.text.muted}",
+      "$description": "Fixture button label.",
+      "$extensions": { "cn": { "status": "stable" } }
+    }
+  }
+}

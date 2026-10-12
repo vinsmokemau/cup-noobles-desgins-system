@@ -1,0 +1,19 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "pink": {
+        "$value": "#ef80ae",
+        "$description": "Fixture brand pink.",
+        "$extensions": { "cn": { "status": "stable", "source": "BR-01" } }
+      }
+    },
+    "neutral": {
+      "500": {
+        "$value": "#808080",
+        "$description": "Fixture neutral.",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    }
+  }
+}

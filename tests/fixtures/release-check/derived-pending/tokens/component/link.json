@@ -1,0 +1,10 @@
+{
+  "link": {
+    "$type": "color",
+    "fg": {
+      "$value": "{color.brand.pink}",
+      "$description": "Fixture link color.",
+      "$extensions": { "cn": { "status": "stable" } }
+    }
+  }
+}
