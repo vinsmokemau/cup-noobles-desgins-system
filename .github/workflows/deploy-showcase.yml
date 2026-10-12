@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 # One deploy at a time. A newer push waits for the running deploy instead of cancelling it half way.
 concurrency:
@@ -28,7 +29,12 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+          # The workspace install also installs the consumer fixture, which reads the packages from GitHub Packages.
+          registry-url: https://npm.pkg.github.com
+          scope: '@vinsmokemau'
       - run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm build:tokens
       - run: pnpm build:nuxt
       # The home and status pages import reports/tbd-report.json, which is git-ignored, so it must be written first.

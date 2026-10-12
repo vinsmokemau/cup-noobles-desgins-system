@@ -57,6 +57,35 @@ test('T12.1: a tarball holds built output or layer sources, never build caches o
   }
 })
 
+test('REQ-071 AC2: the fixture installs the layer from the registry at an exact published version, not from the workspace', () => {
+  const fixture = JSON.parse(read('apps/consumer-fixture/package.json')) as { dependencies: Record<string, string> }
+  const wanted = fixture.dependencies['@vinsmokemau/cup-noobles-nuxt']!
+  assert.match(wanted, /^\d+\.\d+\.\d+$/, 'an exact version, so the install cannot fall back to the workspace')
+  assert.notEqual(wanted, '0.1.0', '0.1.0 was never published')
+  const current = PACKAGES[0]!.manifest.version
+  const [a, b] = [wanted, current].map((v) => v.split('.').map(Number) as [number, number, number])
+  assert.ok(
+    a![0] < b![0] || (a![0] === b![0] && (a![1] < b![1] || (a![1] === b![1] && a![2] <= b![2]))),
+    'newer than the workspace',
+  )
+})
+
+test('REQ-071 AC2: the scope points at GitHub Packages, no token is committed, and every CI install carries one', () => {
+  const npmrc = read('.npmrc')
+  assert.match(npmrc, /^@vinsmokemau:registry=https:\/\/npm\.pkg\.github\.com$/m)
+  assert.doesNotMatch(npmrc, /^[^#\n]*_authToken/m, 'a token must never be committed')
+  for (const file of ['ci.yml', 'deploy-showcase.yml', 'release.yml']) {
+    const text = read(`.github/workflows/${file}`)
+    assert.match(text, /^ {2}packages: (read|write)$/m, `${file}: needs the packages permission`)
+    assert.match(text, /registry-url: https:\/\/npm\.pkg\.github\.com/, `${file}: setup-node registry`)
+    assert.match(
+      text,
+      /- run: pnpm install --frozen-lockfile\r?\n\s+env:\r?\n\s+NODE_AUTH_TOKEN: \$\{\{ secrets\.GITHUB_TOKEN \}\}/,
+      `${file}: the install step has the token`,
+    )
+  }
+})
+
 test('T12.1: each package directory has a CHANGELOG.md, which the Changesets action reads to build the version PR', () => {
   for (const { dir } of PACKAGES) {
     assert.ok(existsSync(join(root, `packages/${dir}/CHANGELOG.md`)), `packages/${dir}/CHANGELOG.md is missing`)

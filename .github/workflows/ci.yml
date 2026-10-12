@@ -9,6 +9,8 @@ on:
 
 permissions:
   contents: read
+  # T12.1 (REQ-071 AC2): the consumer fixture installs the published packages from GitHub Packages.
+  packages: read
 
 jobs:
   test-all:
@@ -28,5 +30,10 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+          # Writes the user-level .npmrc that adds the token for the @vinsmokemau scope (the scope's registry is in .npmrc).
+          registry-url: https://npm.pkg.github.com
+          scope: '@vinsmokemau'
       - run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm test:all

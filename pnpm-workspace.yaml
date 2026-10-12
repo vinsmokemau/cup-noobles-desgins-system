@@ -6,3 +6,6 @@ packages:
 allowBuilds:
   esbuild: false
   vue-demi: false
+# T12.1: the owner's own packages are published by this repository's workflow, so a fresh release is trusted at once.
+minimumReleaseAgeExclude:
+  - '@vinsmokemau/*'
