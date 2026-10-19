@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.36 |
+| Spec version | 1.37 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1272,6 +1272,34 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T12.2
   - Done when: the `release:check` output and the open TBD list have been presented to the owner, and the owner decides in writing to release 1.0.0 or stay on 0.x (ADR). Claude Code does not release 1.0.0 without that decision.
 
+### P13 — Close the TBD register for 1.0.0
+
+The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each item has an ADR with the owner's decision. These tasks apply those ADRs to this spec, the docs, and the tokens, in the order below.
+
+- [ ] **T13.1 — Apply the typography decisions (TBD-01, TBD-02, TBD-03)**
+  - REQs: REQ-005, REQ-009, REQ-014
+  - Depends on: T12.3, ADR-0046, ADR-0047, ADR-0048
+  - Scope: set TBD-01, TBD-02, and TBD-03 to `Resolved (ADR-NNNN)` in §2.4, and OD-06 to decided in §7.2; set the font family, size, line height, weight, and letter spacing tokens to the ADR values and mark them `stable` with the ADR as source; self-host Titan One and Rubik with their OFL license text; remove the three TBD callouts from `typography.md` and move it to `stable` through its changelog; record the email fallback stack, which the owner confirms, in `email-foundations.md`; test the hyphenation remedy for long headings from ADR-0048, or bring the owner another option.
+  - Done when: `pnpm check:tbd` lists none of the three; the showcase renders both families with no fallback glyphs in es-MX; a changeset exists; `pnpm test:all` is green, with visual baselines regenerated in the pinned Linux container.
+
+- [ ] **T13.2 — Apply the color and effects decisions (TBD-06, TBD-08, TBD-12, TBD-15)**
+  - REQs: REQ-005, REQ-009, REQ-014, REQ-015, REQ-023, REQ-024
+  - Depends on: T13.1, ADR-0051, ADR-0052, ADR-0053, ADR-0054, ADR-0055
+  - Scope: set the four items to `Resolved (ADR-NNNN)` in §2.4, OD-04 and OD-05 to decided in §7.2, and C-05 and C-06 to resolved in §2.2; the card and overlay surfaces become `color.bg.base`; the four derived tones become the pink and yellow steps, with the hover and pressed tokens; the glow tokens take the ADR-0051 values; the elevation, scrim, and z-index tokens take the ADR-0054 values; the glow rule of ADR-0052 becomes stable in `effects.md`; add the new contrast pairs to `tokens/contrast-pairs.json`; remove Nuxt UI's partial-opacity classes from the theme, or bring the owner each case (C-06).
+  - Done when: `pnpm check:tbd` lists none of the four; `check-contrast` passes with the new pairs; `pnpm release:check` passes; a changeset exists; `pnpm test:all` is green, with visual baselines regenerated.
+
+- [ ] **T13.3 — Apply the shape and spacing decisions (TBD-09, TBD-10)**
+  - REQs: REQ-005, REQ-009, REQ-014
+  - Depends on: T13.2, ADR-0049, ADR-0050
+  - Scope: set both items to `Resolved (ADR-NNNN)` in §2.4; add the seven spacing steps above the base token; set the radius tokens from ADR-0050, and assign each of the six undecided radius tokens a step, asking the owner if a case is unclear; update the email components and layout that use `space.base` for every padding.
+  - Done when: `pnpm check:tbd` lists neither; the email reference layout still renders at 320 and 600 px with no horizontal scroll; a changeset exists; `pnpm test:all` is green, with visual baselines regenerated.
+
+- [ ] **T13.4 — Apply the imagery decision (TBD-20)**
+  - REQs: REQ-005, REQ-009, REQ-025
+  - Depends on: T13.3, ADR-0056, ADR-0057
+  - Scope: set TBD-20 to `Resolved (ADR-NNNN)` in §2.4; the 4:3 whole-picture frame in `CnMediaCard`; the brand d20 as the fallback for a missing picture; the written standards in `imagery-and-motifs.md` and `media-card.md`.
+  - Done when: `pnpm check:tbd` reports 0 open items; an end-to-end test shows no crop for a 3:2, a 5:7, and a 1:1 source; a changeset exists; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1357,6 +1385,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.34 | 2026-10-11 | Added T3.7 (email width token) to P3: the maximum email width of 600 px, chosen by the owner and confirming A-08, becomes the tokens `email.width.max` and `layout.email.width.max`. A-08 is unchanged. No existing task changes. | Owner request in chat (T10.1 open question 1); ADR-0038, ADR-0039 |
 | 1.35 | 2026-10-11 | T11.2 and T11.3: the definition of done requires `pnpm test` and `pnpm check:docs` instead of `pnpm test:all`; T11.4 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 | 1.36 | 2026-10-11 | T11.4: "Done when" no longer says `release:check` fails today. All ten stable component docs reach only stable tokens, so the gate passes on the repository; it fails on a fixture with a stable component that reaches a TBD token. REQ-018 and every other task are unchanged. | Owner decision in chat (T11.4, option A) |
+| 1.37 | 2026-10-18 | Added P13 (T13.1 through T13.4) after T12.3: each applies the owner's TBD decisions to this spec, the docs, and the tokens. The owner stays on 0.x until every TBD item is closed. No existing requirement or task changes. | Owner decisions in chat; ADR-0045 through ADR-0057 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1372,26 +1401,26 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-002 | T2.1, T2.2 |
 | REQ-003 | T2.1, T2.2 |
 | REQ-004 | T2.2, T3.6 |
-| REQ-005 | T2.4, T3.2, T4.3 |
+| REQ-005 | T2.4, T3.2, T4.3, T13.1, T13.2, T13.3, T13.4 |
 | REQ-006 | T1.5, T4.1 |
 | REQ-007 | T2.2, T9.3 |
 | REQ-008 | T0.2, T2.2, T12.2 |
-| REQ-009 | T2.4, T4.1, T4.3, T9.1, T9.2, T9.3 |
+| REQ-009 | T2.4, T4.1, T4.3, T9.1, T9.2, T9.3, T13.1, T13.2, T13.3, T13.4 |
 | REQ-010 | T0.3, T3.1 |
 | REQ-011 | T3.2, T3.3, T3.4, T3.7, T4.2 |
 | REQ-012 | T3.3, T4.2, T5.2 |
 | REQ-013 | T0.3, T1.1, T3.4 |
-| REQ-014 | T3.1 |
-| REQ-015 | T3.3, T3.5, T4.2 |
+| REQ-014 | T3.1, T13.1, T13.2, T13.3 |
+| REQ-015 | T3.3, T3.5, T4.2, T13.2 |
 | REQ-016 | T1.3, T5.1 |
 | REQ-017 | T3.1, T3.4 |
 | REQ-018 | T11.4, T12.3 |
 | REQ-020 | T0.1, T1.3, T5.1, T7.3, T7.4, T7.5, T7.6, T8.3, T8.4, T8.5, T8.6, T8.7 |
 | REQ-021 | T1.3, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2 |
 | REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T8.6, T8.7 |
-| REQ-023 | T4.4, T7.2 |
-| REQ-024 | T4.4, T7.2, T7.4, T7.5 |
-| REQ-025 | T8.1, T8.2 |
+| REQ-023 | T4.4, T7.2, T13.2 |
+| REQ-024 | T4.4, T7.2, T7.4, T7.5, T13.2 |
+| REQ-025 | T8.1, T8.2, T13.4 |
 | REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
 | REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
 | REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T7.9, T7.17, T8.1, T8.2, T8.4, T8.6 |
