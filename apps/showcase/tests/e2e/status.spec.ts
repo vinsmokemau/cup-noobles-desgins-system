@@ -32,7 +32,6 @@ test.beforeEach(async ({ page }) => {
 
 test('REQ-057 AC2: every count equals the one in tbd-report.json', async ({ page }) => {
   const s = report.summary
-  expect(s.openItems).toBeGreaterThan(0)
   for (const [id, value] of [
     ['open-items', s.openItems],
     ['tbd-tokens', s.tokens],

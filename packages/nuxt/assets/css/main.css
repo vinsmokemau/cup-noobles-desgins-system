@@ -906,7 +906,8 @@ h3 {
  * T8.2 (REQ-020, REQ-025 AC2, AC3, AC4): CnMediaCard, the featured media card. Every value is a --cn-media-card-* token
  * (ADR-0026). The look is the standard card's (ADR-0018): the black page, a thick brand pink outline as the neon highlight,
  * and no glow. Its fill is color.surface.card, the same black (ADR-0053, C-05). The
- * thumbnail keeps its own proportions, because the photography standards are TBD-20, so no aspect ratio is declared.
+ * thumbnail is a 4:3 frame at every width, and the picture is scaled to fit inside it, never cropped, so any space around it
+ * is the card's black (ADR-0056). A missing picture shows the brand d20 in the same frame (ADR-0057).
  *
  * A linked card has one tab stop: the title is the link, and its ::after covers the whole card, so a click anywhere follows
  * it. Hover and active underline the title, which is a change that does not rely on color (WCAG 1.4.1), so no hover color is
@@ -927,6 +928,8 @@ h3 {
 }
 
 .cn-media-card__thumbnail {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
   border-bottom: var(--cn-border-width-media-card) solid var(--cn-media-card-divider);
 }
 
@@ -934,7 +937,8 @@ h3 {
   display: block;
   width: 100%;
   max-width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .cn-media-card__body {

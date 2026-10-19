@@ -202,3 +202,70 @@ test('REQ-027 AC1: axe is clean on both demos', async ({ page }) => {
   await openDemo(page, 'media-card', 'playground')
   await expectNoA11yViolations(page, { label: '/_demo/media-card/playground' })
 })
+
+// ADR-0056: the thumbnail is a 4:3 frame and shows the whole picture. The stand-ins are plain grey pictures of 3:2, 5:7, and
+// 1:1 (example content). With `object-fit: contain` and a centered position, the picture drawn inside the frame keeps its
+// own ratio and fits within the frame on both axes, so no edge is cut off.
+for (const [source, width, height] of [
+  ['3:2', 3, 2],
+  ['5:7', 5, 7],
+  ['1:1', 1, 1],
+] as const) {
+  for (const viewport of [360, 1280]) {
+    test(`ADR-0056: a ${source} picture shows whole in a 4:3 frame at ${viewport} px, with no crop`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: viewport, height: 900 })
+      await openDemo(page, 'media-card', 'playground')
+      await setProps(page, { source })
+      const image = page.locator('.cn-media-card__thumbnail img')
+      await expect(image).toHaveAttribute('src', /^data:image\/svg\+xml/)
+      await expect.poll(() => image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true)
+      const result = await page.locator('.cn-media-card__thumbnail').evaluate((frame) => {
+        const img = frame.querySelector('img')!
+        const box = frame.getBoundingClientRect()
+        const style = getComputedStyle(img)
+        const scale = Math.min(img.clientWidth / img.naturalWidth, img.clientHeight / img.naturalHeight)
+        return {
+          fit: style.objectFit,
+          position: style.objectPosition,
+          ratio: box.width / box.height,
+          drawnWidth: img.naturalWidth * scale,
+          drawnHeight: img.naturalHeight * scale,
+          imageWidth: img.clientWidth,
+          imageHeight: img.clientHeight,
+          fallback: img.classList.contains('cn-media-card__image--fallback'),
+        }
+      })
+      expect(result.fit).toBe('contain')
+      expect(result.position).toBe('50% 50%')
+      expect(result.fallback).toBe(false)
+      // The frame is 4:3 (the 3 px divider under it is outside the picture box).
+      expect(result.ratio).toBeGreaterThan(4 / 3 - 0.03)
+      expect(result.ratio).toBeLessThan(4 / 3 + 0.03)
+      // The whole picture fits inside the frame, at its own ratio.
+      expect(result.drawnWidth).toBeLessThanOrEqual(result.imageWidth + 0.5)
+      expect(result.drawnHeight).toBeLessThanOrEqual(result.imageHeight + 0.5)
+      expect(result.drawnWidth / result.drawnHeight).toBeCloseTo(width / height, 2)
+    })
+  }
+}
+
+test('ADR-0057: a missing picture and a picture that fails to load show the brand d20, decorative, in the same frame', async ({
+  page,
+}) => {
+  await openDemo(page, 'media-card', 'playground')
+  for (const source of ['missing', 'broken']) {
+    await setProps(page, { source })
+    const image = page.locator('.cn-media-card__thumbnail img')
+    await expect(image).toHaveClass(/cn-media-card__image--fallback/)
+    await expect(image).toHaveAttribute('src', /D20-CN/)
+    await expect(image).toHaveAttribute('alt', '')
+    await expect(image).toHaveAttribute('aria-hidden', 'true')
+    expect(await image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true)
+    const ratio = await page.locator('.cn-media-card__thumbnail').evaluate((el) => el.clientWidth / el.clientHeight)
+    expect(ratio).toBeGreaterThan(4 / 3 - 0.03)
+    expect(ratio).toBeLessThan(4 / 3 + 0.03)
+    await expectNoA11yViolations(page, { label: `/_demo/media-card/playground (${source})` })
+  }
+})

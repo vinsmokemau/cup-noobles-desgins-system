@@ -41,7 +41,6 @@ test('REQ-062 AC1: the open-TBD count equals the open items of tbd-report.json, 
 }) => {
   const open = report.items.filter((item) => !item.resolved).length
   expect(open).toBe(report.summary.openItems)
-  expect(open).toBeGreaterThan(0)
   await expect(page.getByTestId('home-open-tbd')).toHaveText(String(open))
   await expect(page.getByRole('link', { name: 'See what is open' })).toHaveAttribute('href', withBase('/status'))
 })

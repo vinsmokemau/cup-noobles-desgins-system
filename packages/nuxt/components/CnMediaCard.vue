@@ -3,6 +3,9 @@
 // link target. Nuxt UI has no equivalent (REQ-020 AC2), so it is custom, but it composes ULink and UBadge. The look is the
 // standard card's (ADR-0018, ADR-0026): the black page, a thick pink outline, no glow.
 //
+// The thumbnail sits in a 4:3 frame and the whole picture shows, never cropped (ADR-0056). A missing picture, or one that
+// fails to load, shows the brand d20 on black, marked decorative, and never a broken-image icon (ADR-0057).
+//
 // The thumbnail needs `alt`, or the explicit `decorative` flag (REQ-025 AC2). The types ask for it in a consumer's templates, and
 // the development warning below (`thumbnailProblem`, utils/media-card.ts) also covers a thumbnail given through the `thumbnail`\n// slot, and a call that bypasses the types.
 //
@@ -10,6 +13,8 @@
 // card has exactly one focusable element and its accessible name is the title. Nothing else in the card is focusable. The
 // component holds no text of its own (A-11). The layer declares no `vue` dependency (Nuxt provides it).
 import { thumbnailProblem } from '../utils/media-card'
+
+const FALLBACK = new URL('../assets/brand/D20-CN.svg', import.meta.url).href
 
 type Base = {
   title: string
@@ -31,6 +36,27 @@ const slots = defineSlots<{
   thumbnail?(props: { alt?: string; decorative: boolean }): unknown
 }>()
 
+// A picture that fails to load, including one that failed before the page hydrated, is swapped for the fallback in place.
+type Picture = {
+  src: string
+  alt: string
+  complete: boolean
+  naturalWidth: number
+  classList: { add(name: string): void; contains(name: string): boolean }
+  setAttribute(name: string, value: string): void
+}
+const FALLBACK_CLASS = 'cn-media-card__image--fallback'
+function showFallback(picture: Picture) {
+  if (picture.classList.contains(FALLBACK_CLASS)) return
+  picture.src = FALLBACK
+  picture.alt = ''
+  picture.setAttribute('aria-hidden', 'true')
+  picture.classList.add(FALLBACK_CLASS)
+}
+function checkLoaded(picture: Picture) {
+  if (picture.complete && picture.naturalWidth === 0) showFallback(picture)
+}
+
 if (process.env.NODE_ENV !== 'production') {
   const problem = thumbnailProblem({
     hasThumbnail: Boolean(props.src) || Boolean(slots.thumbnail),
@@ -43,14 +69,17 @@ if (process.env.NODE_ENV !== 'production') {
 
 <template>
   <article class="cn-media-card" :data-linked="to ? 'true' : undefined">
-    <div v-if="src || $slots.thumbnail" class="cn-media-card__thumbnail">
+    <div class="cn-media-card__thumbnail">
       <slot name="thumbnail" :alt="alt" :decorative="Boolean(decorative)">
         <img
           class="cn-media-card__image"
-          :src="src"
-          :alt="decorative ? '' : alt"
-          :aria-hidden="decorative ? 'true' : undefined"
+          :class="{ 'cn-media-card__image--fallback': !src }"
+          :src="src || FALLBACK"
+          :alt="src && !decorative ? alt : ''"
+          :aria-hidden="!src || decorative ? 'true' : undefined"
           draggable="false"
+          @error="showFallback($event.target as Picture)"
+          @vue:mounted="({ el }: { el: Picture }) => src && checkLoaded(el)"
         />
       </slot>
     </div>

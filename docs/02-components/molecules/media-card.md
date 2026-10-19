@@ -10,7 +10,7 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [mediaCard, radius.mediaCard, border.width.mediaCard, color.surface.card]
 demos: [states, playground]
-tbd: [TBD-20]
+tbd: []
 related: [card, badge, link, imagery-and-motifs, accessibility, shape]
 since: 0.1.0
 updated: 2026-10-19
@@ -27,10 +27,18 @@ updated: 2026-10-19
 ## Anatomy
 
 1. **container**: the framed block, an `<article>`. It has the page's black fill, the pink outline, and the rounded corners.
-2. **thumbnail**: the picture at the top, from the `src` prop or the `thumbnail` slot. It keeps its own proportions.
-3. **divider**: the pink line between the thumbnail and the text. It is drawn only when a thumbnail exists.
+2. **thumbnail**: the picture at the top, from the `src` prop or the `thumbnail` slot, in a 4:3 frame. The whole picture shows and is never cropped. When there is no picture, or it fails to load, the brand d20 shows in its place.
+3. **divider**: the pink line between the thumbnail and the text.
 4. **title**: a heading (`h3` by default). When the card has a `to` target, the title is the link.
 5. **tags**: one yellow tag badge for each label in `tags`. They are not interactive.
+
+### Thumbnail
+
+The thumbnail frame is 4:3 at every screen width, and the picture is scaled to fit inside it, never cropped (`object-fit: contain`, ADR-0056). A 3:2 photo, a 5:7 trading card, and a square box all show whole; the space left around them is black, the color of the card (ADR-0053). On a 360 px phone the picture area is about 322 × 242 px.
+
+A missing picture shows the brand golden d20 on black, marked decorative, and never a broken-image icon. The d20 also replaces a picture that fails to load (ADR-0057).
+
+The written standards for the pictures that go in a thumbnail are in [Imagery and motifs](../../01-foundations/imagery-and-motifs.md#photography-and-thumbnails). No photo style (a color grade, a filter, or a treatment) is defined.
 
 ## Tokens and specs
 
@@ -77,7 +85,7 @@ The tag badges use the `tag` badge pairs, which pass: black on yellow is 18.55:1
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-The neon highlight is the pink outline and the pink line under the thumbnail. There is no glow on the card (ADR-0018). Pink on black is 8.37:1 (SPEC.md §2.1). The thumbnail has no declared aspect ratio, because the photography and thumbnail standards are TBD-20.
+The neon highlight is the pink outline and the pink line under the thumbnail. There is no glow on the card (ADR-0018). Pink on black is 8.37:1 (SPEC.md §2.1). The thumbnail frame is 4:3, and any space around the picture is the card's black (ADR-0056).
 
 ## Variants
 
@@ -106,6 +114,7 @@ The `hover`, `focus-visible`, and `active` states exist only on a linked card. A
 - Use a media card to feature one item that has a picture, a name, and a few categories.
 - Give `to` when the whole card goes to one page. Leave it out when the card only shows content.
 - Give every thumbnail `alt`, or set `decorative` when the title already says everything the image shows (REQ-025 AC2).
+- Use a picture with one clear, well-lit subject on a plain or dark background, at least twice the displayed width (ADR-0057).
 - Keep tag labels to one or two words.
 - Pass every text through a prop or a slot. The component never holds copy (A-11).
 
@@ -116,7 +125,7 @@ The `hover`, `focus-visible`, and `active` states exist only on a linked card. A
 - Never make a tag badge a filter or a link inside the card.
 - Never write a color, radius, or width literally on the card. Read the tokens (REQ-016).
 - Never add a glow to a card. The glow belongs to buttons (BR-10).
-- Never set a fixed thumbnail ratio or crop on your own. Those are TBD-20.
+- Never crop a thumbnail or change its 4:3 frame (ADR-0056). Keep anything important away from the edges of a picture, and put no text inside a picture (ADR-0057).
 
 ## Do and don't
 
@@ -131,7 +140,7 @@ The `hover`, `focus-visible`, and `active` states exist only on a linked card. A
 
 - The card is an `<article>`. The title is a heading, so assistive technology can navigate to it. Pass `as` to match the heading level of the page.
 - A linked card has exactly one focusable element: the title link (REQ-025 AC4). The thumbnail, the tags, and the card container take no focus and add no tab stop. The link's text is the title, so the card's accessible name is its title.
-- The thumbnail is an `<img>` with `alt`, or with an empty `alt` and `aria-hidden="true"` when `decorative`. A card with a thumbnail and neither `alt` nor `decorative` is a type error in a consumer's template, and it logs a warning in development, also for a thumbnail given in the `thumbnail` slot.
+- The thumbnail is an `<img>` with `alt`, or with an empty `alt` and `aria-hidden="true"` when `decorative`. The fallback d20 is always decorative. A card with a thumbnail and neither `alt` nor `decorative` is a type error in a consumer's template, and it logs a warning in development, also for a thumbnail given in the `thumbnail` slot.
 - The focus indicator is a yellow ring around the whole card on the black page, 18.55:1, never the glow (REQ-024 AC1). It shows on keyboard focus only (`:focus-visible`).
 - The pink outline is 8.37:1 against the page, so the card boundary is perceivable (REQ-015, WCAG 1.4.11). Hover is shown by an underline, so it does not rely on color (WCAG 1.4.1).
 - The hit area of the link is the whole card, so the target is far larger than 24 × 24 px (REQ-028 AC2).
@@ -166,7 +175,7 @@ Imagen
 
 ## Responsive behavior
 
-The card fills the width of its container and the thumbnail scales with it, keeping its own proportions (TBD-20). A long title breaks inside the card and never causes horizontal overflow at 360, 768, and 1280 px (REQ-028 AC1, ER-05, A-09). The tags wrap onto more lines. Stack cards in one column at 360 px.
+The card fills the width of its container and the 4:3 thumbnail scales with it and shows the whole picture (ADR-0056). A long title breaks inside the card and never causes horizontal overflow at 360, 768, and 1280 px (REQ-028 AC1, ER-05, A-09). The tags wrap onto more lines. Stack cards in one column at 360 px.
 
 ## Email notes
 
@@ -184,7 +193,7 @@ Not applicable.
 | Prop | Type | Notes |
 |---|---|---|
 | `title` | `string` | Required. The title, and the accessible name of a linked card. |
-| `src` | `string` | The thumbnail image. Needs `alt` or `decorative`. |
+| `src` | `string` | The thumbnail image. Needs `alt` or `decorative`. Without it, or if it fails to load, the brand d20 shows. |
 | `alt` | `string` | The thumbnail's text alternative. |
 | `decorative` | `boolean` | Marks the thumbnail as decoration. It is hidden from assistive technology. |
 | `tags` | `string[]` | One tag badge for each label. |
@@ -207,12 +216,11 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-20):** Photography and thumbnail standards are not defined: subject, style, aspect ratios, and crops. The thumbnail keeps its own proportions until then. Owner input needed: guidelines.
->
-> **Draft:** The look of the card (a pink outline, an underlined title on hover, and the yellow focus ring around the card, with no glow) is approved (ADR-0026). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the card (a pink outline, an underlined title on hover, and the yellow focus ring around the card, with no glow) is approved (ADR-0026), and so are the thumbnail frame and standards (ADR-0056, ADR-0057). No open item is left. The doc stays a draft until the owner moves it to stable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `CnMediaCard` with a thumbnail, a title, tag badges, an optional link with one tab stop, the component tokens, and the demos (T8.2) — ADR-0026
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — The card surface is the pure-black page, set by the owner, and the placeholder for it is gone — ADR-0053
+- 0.1.0 — The thumbnail is a 4:3 frame that shows the whole picture, with the brand d20 for a missing picture, and its placeholder is gone — ADR-0056, ADR-0057

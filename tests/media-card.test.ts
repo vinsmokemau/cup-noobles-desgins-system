@@ -41,7 +41,7 @@ test('REQ-020 AC1, AC2: the doc is a custom molecule that says why it is custom,
   assert.equal(data.component, 'CnMediaCard')
   assert.equal(data.status, 'draft')
   assert.deepEqual(data.demos, ['states', 'playground'])
-  assert.deepEqual(data.tbd, ['TBD-20'])
+  assert.deepEqual(data.tbd, [])
   assert.match(doc, /\*\*Why custom:\*\* Nuxt UI has no equivalent\./)
 })
 
@@ -53,8 +53,8 @@ test('REQ-025 AC2: the thumbnail takes src and a title, tags, and an optional li
   assert.match(component, /tags\?: string\[\]/)
   assert.match(component, /to\?: string/)
   // A named thumbnail is an image with `alt`; a decorative one has an empty alt and is hidden.
-  assert.match(template, /:alt="decorative \? '' : alt"/)
-  assert.match(template, /:aria-hidden="decorative \? 'true' : undefined"/)
+  assert.match(template, /:alt="src && !decorative \? alt : ''"/)
+  assert.match(template, /:aria-hidden="!src \|\| decorative \? 'true' : undefined"/)
   // The tags are tag badges (ADR-0011).
   assert.match(template, /<UBadge[^>]*color="secondary"[^>]*variant="solid"/)
 })
@@ -132,8 +132,10 @@ test('REQ-025 AC3, C-05: the rules read only tokens that exist, never the card s
   assert.doesNotMatch(ownCss, /surface/, 'the card renders on color.bg.base, not color.surface.card')
   assert.match(ownCss.slice(ownCss.indexOf('.cn-media-card {')).split('}')[0]!, /box-shadow: none/)
   assert.doesNotMatch(ownCss, /effect-glow/)
-  // The thumbnail keeps its own proportions (TBD-20): no aspect ratio or fixed height is declared.
-  assert.doesNotMatch(ownCss, /aspect-ratio|object-fit/)
+  // The thumbnail is a 4:3 frame that shows the whole picture (ADR-0056).
+  assert.match(ownCss, /\.cn-media-card__thumbnail \{\s*aspect-ratio: 4 \/ 3;/)
+  assert.match(ownCss, /\.cn-media-card__image \{[^}]*object-fit: contain;/)
+  assert.doesNotMatch(ownCss, /object-fit: (cover|fill)/)
   // The card does not animate, so reduced motion has nothing to switch off.
   assert.doesNotMatch(ownCss, /animation|transition|@keyframes/)
 })
@@ -168,10 +170,10 @@ test('REQ-026 AC1, AC2: the doc lists the states, and its state matrix demo show
   assert.deepEqual(shown, expected)
 })
 
-test('REQ-025 AC3: the doc shows color.surface.card as stable and marks the thumbnail ratio as TBD-20', () => {
-  // T13.2, ADR-0053: TBD-06 is resolved, so the surface token is stable and the callout is gone.
-  assert.doesNotMatch(doc, /TBD-06/)
-  assert.match(doc, /> \*\*TBD \(TBD-20\):\*\*/)
+test('REQ-025 AC3: the doc shows color.surface.card as stable and no TBD callout is left', () => {
+  // T13.2, ADR-0053: TBD-06 is resolved, so the surface token is stable and the callout is gone. T13.4, ADR-0056 and
+  // ADR-0057: TBD-20 is resolved too.
+  assert.doesNotMatch(doc, /TBD-06|TBD-20/)
   assert.match(doc, /\| `color\.surface\.card` \| `--cn-color-surface-card` \| `#000000` \| stable \|/)
 })
 
@@ -181,4 +183,36 @@ test('ADR-0026 is recorded in the decision log, and the playground controls matc
   const valid = assertControls((await import('../apps/showcase/demos/media-card/controls')).default, 'controls.ts')
   const playground = read('apps/showcase/demos/media-card/playground.vue')
   for (const control of valid) assert.match(playground, new RegExp(`\\b${control.name}\\??:`), control.name)
+})
+
+test('ADR-0056, ADR-0057: a missing or failed picture shows the brand d20 as a decorative image, never a broken icon', () => {
+  assert.match(component, /new URL\('\.\.\/assets\/brand\/D20-CN\.svg', import\.meta\.url\)\.href/)
+  assert.match(template, /:src="src \|\| FALLBACK"/)
+  assert.match(template, /:alt="src && !decorative \? alt : ''"/)
+  assert.match(template, /:aria-hidden="!src \|\| decorative \? 'true' : undefined"/)
+  // A picture that fails to load, also before hydration, is swapped for the fallback, which is decorative.
+  assert.match(template, /@error="showFallback\(\$event\.target as Picture\)"/)
+  assert.match(template, /@vue:mounted="[^"]*checkLoaded\(el\)"/)
+  assert.match(component, /picture\.alt = ''[\s\S]*setAttribute\('aria-hidden', 'true'\)/)
+  // The frame is drawn for every card, so a card without a picture keeps the same shape.
+  assert.doesNotMatch(template, /v-if="src \|\| \$slots\.thumbnail"/)
+  assert.ok(existsSync(join(root, 'packages/nuxt/assets/brand/D20-CN.svg')))
+})
+
+test('ADR-0056, ADR-0057: the docs state the frame, the crop rule, and the written standards, and TBD-20 is resolved', () => {
+  const imagery = read('docs/01-foundations/imagery-and-motifs.md')
+  assert.match(read('SPEC.md'), /\| TBD-20 \|[^\n]*Resolved \(ADR-0056, ADR-0057\)/)
+  for (const text of [imagery, doc]) {
+    assert.match(text, /4:3/)
+    assert.match(text, /never cropped/)
+    assert.doesNotMatch(text, /> \*\*TBD \(TBD-20\)/)
+  }
+  for (const standard of [
+    /one clear, well-lit subject on a plain or dark background/i,
+    /no text inside the image/i,
+    /at least twice the displayed width/i,
+    /brand golden d20 on black/i,
+    /No photo style/,
+  ])
+    assert.match(imagery, standard, String(standard))
 })

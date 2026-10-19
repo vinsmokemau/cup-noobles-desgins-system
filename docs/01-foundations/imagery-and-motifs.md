@@ -5,7 +5,7 @@ layer: foundation
 status: draft
 lang: en
 brandRules: [BR-04, BR-05, BR-12, BR-13, BR-14]
-tbd: [TBD-20]
+tbd: []
 related: [brand-identity, sparkle, sticker-frame, media-card, motion, iconography]
 since: 0.1.0
 updated: 2026-10-10
@@ -15,7 +15,7 @@ updated: 2026-10-10
 
 ## Purpose
 
-This doc defines the images in Cup Noobles UI: the decorative motifs of BR-14, and the photography and thumbnails shown in content such as the featured media card (BR-12). Motifs give the UI its geek, gaming, and arcade character (BR-04) and are decorative only: they never carry meaning (REQ-029). The motif artwork is supplied (ADR-0017 to ADR-0024). The photography and thumbnail standards (TBD-20) are not defined yet.
+This doc defines the images in Cup Noobles UI: the decorative motifs of BR-14, and the photography and thumbnails shown in content such as the featured media card (BR-12). Motifs give the UI its geek, gaming, and arcade character (BR-04) and are decorative only: they never carry meaning (REQ-029). The motif artwork is supplied (ADR-0017 to ADR-0024). The photography and thumbnail standards are set by the owner (ADR-0056, ADR-0057).
 
 ## Tokens and specs
 
@@ -61,9 +61,22 @@ Motion values are in [Motion](motion.md), and the brand assets are in [Brand ide
 
 ### Photography and thumbnails
 
-The featured media card has a thumbnail (BR-12), rendered by `CnMediaCard` (see [Media card](../02-components/molecules/media-card.md)). The standards for photography and thumbnails are TBD-20, the same open item as decision D11 in the e-commerce plan. They include what images show, their style, and their aspect ratios and crops.
+The featured media card has a thumbnail (BR-12), rendered by `CnMediaCard` (see [Media card](../02-components/molecules/media-card.md)). The owner approved the standards below (ADR-0056, ADR-0057). They are the owner's choice for an open item, not brand values from the brand context.
 
-Whatever TBD-20 defines, every thumbnail has `alt` text, or is explicitly marked `decorative` (REQ-025 AC2). The alt text arrives through a prop, never hardcoded (A-11).
+**Frame.** The thumbnail is a 4:3 frame at every screen width. The picture is scaled to fit inside it and is never cropped, so a 3:2 photo, a 5:7 trading card, and a square box all show whole. Any space around the picture is black, the color of the card.
+
+**Pictures.**
+
+- Show one clear, well-lit subject on a plain or dark background. A bright background shows as a visible rectangle inside the black frame.
+- Put no text inside the image, because baked-in words cannot be translated or read by assistive technology. The title and the tag carry the text.
+- Use a source at least twice the displayed width, so the picture stays sharp on high-density screens.
+- Keep anything important away from the edges of the picture. The picture is never cropped, but its edges meet the frame.
+
+**Text alternative.** Every thumbnail has `alt` text that says what the image shows, or is explicitly marked `decorative` when the title already says it all (REQ-025 AC2). The alt text arrives through a prop, never hardcoded (A-11).
+
+**Missing picture.** A card with no picture, or whose picture fails to load, shows the brand golden d20 on black, marked decorative. It never shows a broken-image icon.
+
+**Photo style.** No photo style (a color grade, a filter, or a treatment) is defined, because the owner has not supplied one. Do not invent one. A style needs its own decision and ADR.
 
 ### When to use
 
@@ -77,7 +90,7 @@ Whatever TBD-20 defines, every thumbnail has `alt` text, or is explicitly marked
 - Never draw, trace, recolor, or approximate a motif. The artwork is the owner's, and only the supplied files are used.
 - Never let a motif cover, crowd, or reduce the contrast of text or a control. The UI stays legible (BR-06).
 - Never use motifs so densely that the UI reads as childish or generic (BR-05).
-- Never set photography or thumbnail rules on your own. They are TBD-20.
+- Never crop a thumbnail, change its 4:3 frame, or add a photo style of your own (ADR-0056, ADR-0057).
 
 ## Do and don't
 
@@ -99,7 +112,7 @@ Whatever TBD-20 defines, every thumbnail has `alt` text, or is explicitly marked
 
 ## Responsive behavior
 
-Motifs and thumbnails never cause horizontal overflow at 360, 768, or 1280 px (REQ-028 AC1, A-09). A motif that does not fit next to content at 360 px (ER-05) must not push the content aside. How thumbnails crop at each width is part of TBD-20.
+Motifs and thumbnails never cause horizontal overflow at 360, 768, or 1280 px (REQ-028 AC1, A-09). A motif that does not fit next to content at 360 px (ER-05) must not push the content aside. The thumbnail frame is 4:3 at every width and never crops the picture (ADR-0056).
 
 ## Email notes
 
@@ -123,7 +136,7 @@ In email, a motif is a static image, never animated, and marked as decorative wi
 
 ## Open items
 
-> **TBD (TBD-20):** Photography and thumbnail standards are not defined: subject, style, aspect ratios, and crops. This is the same open item as decision D11 in the e-commerce plan. Owner input needed: guidelines.
+Not applicable.
 
 ## Changelog
 
@@ -137,3 +150,4 @@ In email, a motif is a static image, never animated, and marked as decorative wi
 - 0.1.0 — The arcade shapes and dynamic lines artwork is supplied as `Arcade-Lines-CN.svg`; the other motif stays open (T7.15) — ADR-0023
 - 0.1.0 — The sticker border artwork is supplied as `Sticker-Border-CN.svg`; all seven motifs have their artwork, and `CnStickerFrame` is not wired to it yet (T7.16) — ADR-0024
 - 0.1.0 — `CnStickerFrame` renders `Sticker-Border-CN.svg` as a fixed 8:5 frame; TBD-18 is resolved (T7.17) — ADR-0025
+- 0.1.0 — The photography and thumbnail standards (the 4:3 frame, no crop, the d20 fallback, and the picture rules) are set by the owner, and the TBD-20 placeholder is gone — ADR-0056, ADR-0057
