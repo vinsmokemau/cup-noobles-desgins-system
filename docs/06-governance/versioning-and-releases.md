@@ -7,7 +7,7 @@ lang: en
 tbd: []
 related: [ownership, contribution, deprecation, decision-log]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Versioning and releases
@@ -27,9 +27,9 @@ This doc says how the three packages are numbered and how a release reaches peop
 | `@vinsmokemau/cup-noobles-email` | The email components and the reference layout, as static HTML |
 
 - The three packages are released **in lockstep**: one version number for all of them, with semantic versioning (REQ-070 AC1).
-- Versions start at `0.1.0` and stay `0.x` until the 1.0 gate passes (A-04, REQ-018).
-- While the version is `0.x`, a minor release may contain breaking changes. Each one is still listed under **Breaking** in `CHANGELOG.md`, with a migration note (REQ-072 AC2).
-- From `1.0.0`: a major release for a breaking change, a minor release for an addition, and a patch release for a fix.
+- Versions started at `0.1.0` and stayed `0.x` until the 1.0 gate passed (A-04, REQ-018). `1.0.0` was released on 2026-10-19 (ADR-0061).
+- While the version was `0.x`, a minor release could contain breaking changes. Each one is still listed under **Breaking** in `CHANGELOG.md`, with a migration note (REQ-072 AC2).
+- From `1.0.0` on: a major release for a breaking change, a minor release for an addition, and a patch release for a fix.
 
 ### The 1.0 gate
 
@@ -38,7 +38,7 @@ This doc says how the three packages are numbered and how a release reaches peop
 - It fails if any component whose doc is `stable` reaches, directly or through a chain, a token whose status is `tbd` or `derived-pending`.
 - For a `1.0.0` version, it fails if any doc under `01-foundations/` has status `tbd`.
 
-Passing the gate is necessary, not sufficient. The owner decides in writing, in an ADR, whether to release `1.0.0` (T12.3).
+Passing the gate is necessary, not sufficient. The owner decided in writing, in an ADR, to release `1.0.0` (T12.3, ADR-0061).
 
 ### Release flow
 
@@ -65,3 +65,4 @@ Not applicable.
 
 - 0.1.0 — First draft: lockstep versioning, the 1.0 gate, the release flow, and the changelog format (T11.2, REQ-070) — awaiting owner approval
 - 0.1.0 — Approved as stable by the owner — ADR-0044
+- 0.1.0 — Says the 1.0.0 release has happened — ADR-0061 (T14.2)

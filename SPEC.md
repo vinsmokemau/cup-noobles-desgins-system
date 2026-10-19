@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.45 |
+| Spec version | 1.46 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -164,7 +164,7 @@ The owner can override any of these. Each assumption is recorded as an ADR in T0
 | A-01 | A single maintainer runs the system with Claude Code. Governance is sized for one person, with no review board. |
 | A-02 | The theme is dark-only, because BR-03 makes pure black the base. There is no color-mode toggle. |
 | A-03 | Tooling is pnpm workspaces, the current Node LTS, and TypeScript in strict mode. |
-| A-04 | All three packages are versioned in lockstep, starting at `0.1.0`. `1.0.0` is blocked by REQ-018. |
+| A-04 | All three packages are versioned in lockstep, starting at `0.1.0`. `1.0.0` was blocked by REQ-018 until the gate passed. The owner decided to release it on 2026-10-19 (ADR-0061). |
 | A-05 | The showcase is generated statically and hosted publicly on GitHub Pages (OD-02). |
 | A-06 | Docs are in English (ER-10). Every UI copy example is es-MX (ER-04) and labeled with its locale. |
 | A-07 | There is no Figma source of truth. The DTCG token JSON is the master. |
@@ -1428,6 +1428,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.43 | 2026-10-19 | Added T13.7 to P13: it records the owner's approval of `color.md` and `accessibility.md` and moves both docs to stable. No existing requirement or task changes. | Owner decision in chat (B and B); ADR-0059 |
 | 1.44 | 2026-10-19 | §7.2: OD-07 is decided (ADR-0032). The row was missed when v1.30 resolved TBD-04, TBD-05, and TBD-07. No requirement or task changes. | Owner decision in chat; ADR-0032 |
 | 1.45 | 2026-10-19 | Added P14 with T14.1 (approve the draft component docs) and T14.2 (release 1.0.0). No existing requirement or task changes. | Owner decisions in chat (release B; 1A 2A 3A 4A 5A 6A 7B); ADR-0060 |
+| 1.46 | 2026-10-19 | A-04 says the 1.0.0 release has happened. No requirement or task changes. | Owner decision in chat (A); ADR-0061 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

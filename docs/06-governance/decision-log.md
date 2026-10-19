@@ -86,6 +86,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0058: The email font fallback stack uses Arial Black and Arial](decisions/0058-email-font-fallback-stack.md)
 - [ADR-0059: The color and accessibility docs are approved](decisions/0059-color-and-accessibility-docs-approved.md)
 - [ADR-0060: The draft component docs are approved](decisions/0060-component-docs-approved.md)
+- [ADR-0061: Release 1.0.0](decisions/0061-release-1-0-0.md)
 
 ## Open items
 
@@ -111,3 +112,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0058 (email font fallback stack)
 - 0.1.0 — Index extended with ADR-0059 (color and accessibility docs approved)
 - 0.1.0 — Index extended with ADR-0060 (component docs approved)
+- 0.1.0 — Index extended with ADR-0061 (release 1.0.0)
