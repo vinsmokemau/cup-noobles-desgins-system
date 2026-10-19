@@ -224,8 +224,8 @@ importers:
   apps/consumer-fixture:
     dependencies:
       '@vinsmokemau/cup-noobles-nuxt':
-        specifier: 0.2.0
-        version: 0.2.0(4428f4858be098c6b77e5b2d4b14920d)
+        specifier: 1.0.0
+        version: 1.0.0(4428f4858be098c6b77e5b2d4b14920d)
       nuxt:
         specifier: 4.5.2
         version: 4.5.2(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7(supports-color@10.2.2)))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.7(supports-color@10.2.2)))(@oxc-project/types@0.151.0)(@types/node@24.13.6)(@vue/compiler-sfc@3.5.43)(commander@14.0.3)(db0@0.3.4)(esbuild@0.28.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ioredis@5.11.1(supports-color@10.2.2))(lightningcss@1.33.0)(magicast@0.5.5)(optionator@0.9.4)(oxc-parser@0.139.0)(rolldown@1.2.11)(rollup-plugin-visualizer@7.1.1(rolldown@1.2.11)(rollup@4.63.5))(rollup@4.63.5)(srvx@0.11.22)(supports-color@10.2.2)(terser@5.51.2)(typescript@6.0.3)(vite@8.3.1(@types/node@24.13.6)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))(vue-tsc@3.3.11(typescript@6.0.3))(yaml@2.9.1)
@@ -2400,11 +2400,11 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vinsmokemau/cup-noobles-nuxt@0.2.0':
-    resolution: {integrity: sha512-1a3hgzYw90TcPMtyAhObsYwYwxiTTSkXdkJMEjN+duVHvH0dmc26OILLbqS4XuCMKGuJSCDcNsLGcvAHT0Rkbw==, tarball: https://npm.pkg.github.com/download/@vinsmokemau/cup-noobles-nuxt/0.2.0/4cfbb1fb37cf58547751281129c63e5a1d4838e2}
+  '@vinsmokemau/cup-noobles-nuxt@1.0.0':
+    resolution: {integrity: sha512-dqEwZl+oQvrhy/GDC9c2h0aeMJWsTY7hvzJYJ8Hlz52rRp0HzJoAYU6RBsMGXSXjZWtvnwZuB1qeeykQnln98w==, tarball: https://npm.pkg.github.com/download/@vinsmokemau/cup-noobles-nuxt/1.0.0/61d7e1d42170b62d9373ec01c5aea2936d885e2d}
 
-  '@vinsmokemau/cup-noobles-tokens@0.2.0':
-    resolution: {integrity: sha512-LWy/bmrtXAQCN6jwlXzrEx8BId0+D1/pS9Cd2w3ZDT/MEYW+duBPGPk/igj846ciqDQQvFMxE9+DRFshZSZMUg==, tarball: https://npm.pkg.github.com/download/@vinsmokemau/cup-noobles-tokens/0.2.0/3a0a2efc20d464a006b29c7df4f06c7f2aa6992e}
+  '@vinsmokemau/cup-noobles-tokens@1.0.0':
+    resolution: {integrity: sha512-v5NXMV2WbYBYtBI9Ho3/YeDAxX0h45EQlkGKxvohkCNS36kImAbXQnu/oyFOgjj6EDjXatsuxVCrPVlBKJzruw==, tarball: https://npm.pkg.github.com/download/@vinsmokemau/cup-noobles-tokens/1.0.0/c2ae242f8aaceb47b3ea3974fd226c8544ece7b3}
 
   '@vitejs/plugin-vue-jsx@5.1.6':
     resolution: {integrity: sha512-YXvi4as2clxt6DFw5+a0tTA97ntiQXm/raR8ofNj3aNwwdlVGTiG2gp7EvfZW17P50acL/9bP0ccF4XnqNmlgA==}
@@ -9837,11 +9837,11 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vinsmokemau/cup-noobles-nuxt@0.2.0(4428f4858be098c6b77e5b2d4b14920d)':
+  '@vinsmokemau/cup-noobles-nuxt@1.0.0(4428f4858be098c6b77e5b2d4b14920d)':
     dependencies:
       '@iconify-json/ph': 1.2.2
       '@nuxt/ui': 4.11.2(9d8c9a2af67df7736b7a3211203e55c6)
-      '@vinsmokemau/cup-noobles-tokens': 0.2.0
+      '@vinsmokemau/cup-noobles-tokens': 1.0.0
       tailwindcss: 4.3.3
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -9924,7 +9924,7 @@ snapshots:
       - yup
       - zod
 
-  '@vinsmokemau/cup-noobles-tokens@0.2.0': {}
+  '@vinsmokemau/cup-noobles-tokens@1.0.0': {}
 
   '@vitejs/plugin-vue-jsx@5.1.6(supports-color@10.2.2)(vite@8.3.1(@types/node@24.13.6)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))(vue@3.5.43(typescript@5.9.3))':
     dependencies:

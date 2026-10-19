@@ -7,7 +7,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@vinsmokemau/cup-noobles-nuxt": "0.2.0",
+    "@vinsmokemau/cup-noobles-nuxt": "1.0.0",
     "nuxt": "4.5.2"
   },
   "devDependencies": {
