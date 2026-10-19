@@ -72,6 +72,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0044: Governance docs move to stable](decisions/0044-governance-docs-stable.md)
 - [ADR-0045: Stay on 0.x until every TBD item is closed](decisions/0045-stay-on-0x-until-all-tbd-closed.md)
 - [ADR-0046: The display typeface is Titan One](decisions/0046-display-typeface-titan-one.md)
+- [ADR-0047: The body typeface is Rubik](decisions/0047-body-typeface-rubik.md)
 
 ## Open items
 
@@ -83,3 +84,4 @@ Not applicable.
 - 0.1.0 — Approved as stable by the owner — ADR-0044
 - 0.1.0 — Index extended with ADR-0045 (T12.3)
 - 0.1.0 — Index extended with ADR-0046 (TBD-01 decision)
+- 0.1.0 — Index extended with ADR-0047 (TBD-02 decision)
