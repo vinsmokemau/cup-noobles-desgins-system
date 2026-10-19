@@ -4,6 +4,9 @@
 //      Changesets itself can only write "Major/Minor/Patch Changes" into per-package files, so the root CHANGELOG.md
 //      is written here (REQ-070 AC2). `.changeset/config.json` sets `changelog: false` for that reason.
 //   2. It runs `changeset version`, which bumps the three packages in lockstep (the `fixed` group) and consumes the files.
+//      It then puts back every `apps/*/package.json` that `changeset version` rewrote. An app installs the published
+//      packages, and the new version is not on the registry yet, so pointing it there would make `pnpm install
+//      --frozen-lockfile` fail in the pull request and in the publish run (T14.2). A later commit moves the app on.
 // `--dry-run` does the same in a throwaway copy and prints the result, so nothing in the repository changes.
 //
 // A changeset picks its group with a prefix: `Breaking:`, `Added:`, `Changed:`, `Deprecated:`, or `Fixed:`. Without
@@ -113,9 +116,16 @@ function readVersions(root: string): Record<string, string> {
 export function versionPackages(root: string, date: string = new Date().toISOString().slice(0, 10)): Release {
   const entries = pendingEntries(root)
   if (entries.length === 0) throw new Error('There is no changeset to version. Run `pnpm changeset` first.')
+  const apps = join(root, 'apps')
+  const appFiles = (existsSync(apps) ? readdirSync(apps, { withFileTypes: true }) : []).flatMap((entry) => {
+    const file = join(apps, entry.name, 'package.json')
+    return entry.isDirectory() && existsSync(file) ? [[file, readFileSync(file, 'utf8')] as const] : []
+  })
   const bin = join(repoRoot, 'node_modules/@changesets/cli/bin.js')
   const run = spawnSync(process.execPath, [bin, 'version'], { cwd: root, encoding: 'utf8' })
   if (run.status !== 0) throw new Error(`changeset version failed:\n${run.stdout}${run.stderr}`)
+
+  for (const [file, text] of appFiles) writeFileSync(file, text)
 
   const packages = readVersions(root)
   const versions = new Set(Object.values(packages))

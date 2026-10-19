@@ -153,6 +153,22 @@ test('REQ-062 AC2: the new release goes above the older ones, and the "no releas
   assert.doesNotMatch(second, /\n{3,}/)
 })
 
+test('REQ-070 AC1: versioning leaves an app on the published version it installs (T14.2)', () => {
+  const dir = fixture({ 'major.md': changeset('major', 'Release it.') })
+  try {
+    const app = join(dir, 'apps', 'consumer')
+    mkdirSync(app, { recursive: true })
+    const manifest = JSON.stringify({ name: 'consumer', dependencies: { [PACKAGES[1]!]: '0.1.0' } })
+    writeFileSync(join(app, 'package.json'), manifest)
+    writeFileSync(join(dir, 'pnpm-workspace.yaml'), 'packages:\n  - packages/*\n  - apps/*\n')
+    versionPackages(dir, '2026-10-19')
+    assert.equal(versionOf(dir, 'nuxt'), '1.0.0', 'the packages are bumped')
+    assert.equal(readFileSync(join(app, 'package.json'), 'utf8'), manifest, 'the app keeps the published version')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
 test('REQ-062 AC2: CHANGELOG.md is the file the showcase renders at /changelog', () => {
   // `\r?`: a Windows checkout turns the line endings into CRLF.
   assert.match(read('CHANGELOG.md'), /^# Changelog\r?\n/)
