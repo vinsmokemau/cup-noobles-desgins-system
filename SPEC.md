@@ -1300,7 +1300,7 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: set TBD-20 to `Resolved (ADR-NNNN)` in §2.4; the 4:3 whole-picture frame in `CnMediaCard`; the brand d20 as the fallback for a missing picture; the written standards in `imagery-and-motifs.md` and `media-card.md`.
   - Done when: `pnpm check:tbd` reports 0 open items; an end-to-end test shows no crop for a 3:2, a 5:7, and a 1:1 source; a changeset exists; `pnpm test:all` is green.
 
-- [ ] **T13.5 — Put the layer's off-scale spacing on the Rhythm of 8**
+- [x] **T13.5 — Put the layer's off-scale spacing on the Rhythm of 8** (2026-10-19, 55b86e2)
   - REQs: REQ-005, REQ-016
   - Depends on: T13.3, ADR-0049
   - Scope: in `packages/nuxt/assets/css/main.css`, replace each spacing built as a multiple of `--cn-space-base` that is not a step of the scale (for example the media card gap of 3 base units, 12 px) with a `--cn-space-*` step, asking the owner when the nearest step is unclear; use the named step in place of `calc(var(--cn-space-base) * N)` where the result is a step (for example 24 px as `--cn-space-lg`).
