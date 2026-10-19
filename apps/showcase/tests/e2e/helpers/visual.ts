@@ -12,6 +12,11 @@ export const visualEnabled = process.platform === 'linux'
  * (T7.3, ADR-0012). The glyphs are decoded here, then the page is given two frames to paint them.
  */
 async function settleIcons(page: Page) {
+  // An icon's rule is added to the page by the client, so right after hydration an icon can still have no mask, and
+  // the loop below would find no glyph to wait for (T13.6: two baselines were committed with their icons missing).
+  await page.waitForFunction(() =>
+    [...document.querySelectorAll<HTMLElement>('.iconify')].every((el) => getComputedStyle(el).maskImage !== 'none'),
+  )
   await page.evaluate(async () => {
     const urls = new Set<string>()
     for (const el of document.querySelectorAll<HTMLElement>('.iconify')) {
