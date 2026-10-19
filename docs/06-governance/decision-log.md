@@ -70,6 +70,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0042: The email build expands includes and multiplies tokens](decisions/0042-email-layout-includes-and-clear-space.md)
 - [ADR-0043: The global search is UContentSearch with its own palette and a prerendered data file](decisions/0043-global-search-composition.md)
 - [ADR-0044: Governance docs move to stable](decisions/0044-governance-docs-stable.md)
+- [ADR-0045: Stay on 0.x until every TBD item is closed](decisions/0045-stay-on-0x-until-all-tbd-closed.md)
 
 ## Open items
 
@@ -79,3 +80,4 @@ Not applicable.
 
 - 0.1.0 — First draft: the ADR policy and the index of ADR-0001 through ADR-0043 (T11.2, REQ-073) — awaiting owner approval
 - 0.1.0 — Approved as stable by the owner — ADR-0044
+- 0.1.0 — Index extended with ADR-0045 (T12.3)
