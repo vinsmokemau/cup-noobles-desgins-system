@@ -1262,7 +1262,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: P6–P11 complete
   - Done when: `0.x.0` is published, and the fixture, switched to install from the registry, passes its end-to-end suite in CI.
 
-- [ ] **T12.2 — Consumer documentation and manual checks**
+- [x] **T12.2 — Consumer documentation and manual checks** (2026-10-18, b2fd619)
   - REQs: REQ-001, REQ-008 (AC3), REQ-074 (AC2)
   - Depends on: T12.1
   - Done when: `using-the-system.md` has install steps verified against the registry, and the manual checks for REQ-008 AC3 and REQ-074 AC2 are recorded in ADR-0007.
