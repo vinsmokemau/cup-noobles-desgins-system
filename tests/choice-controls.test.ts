@@ -92,9 +92,9 @@ test('the rules read only tokens that exist, and the focus indicator is an outli
   const body = focus.slice(0, focus.indexOf('}'))
   assert.match(body, /outline:[^;]*--cn-choice-focus-width[^;]*--cn-choice-focus-color/)
   assert.doesNotMatch(body, /box-shadow/)
-  // REQ-028 AC2: a control is at least 24 px, six space units.
-  assert.match(choiceCss, /min-width: calc\(var\(--cn-space-base\) \* 6\)/)
-  assert.match(choiceCss, /min-height: calc\(var\(--cn-space-base\) \* 6\)/)
+  // REQ-028 AC2: a control is at least 24 px, the `lg` space step.
+  assert.match(choiceCss, /min-width: var\(--cn-space-lg\)/)
+  assert.match(choiceCss, /min-height: var\(--cn-space-lg\)/)
 })
 
 test('REQ-015: the outline, checked, and focus pairs of the choice controls are declared, and all but the neutral pass', () => {

@@ -449,7 +449,7 @@ h3 {
  * rule too. The focus indicator is a yellow outline, never the glow (REQ-024 AC1). A disabled control is natively
  * disabled and ignores hover; Nuxt UI dims it.
  *
- * A control is at least 24 px square (REQ-028 AC2): six space units. The switch keeps Nuxt UI's 2 px track border because
+ * A control is at least 24 px square (REQ-028 AC2): the `lg` space step. The switch keeps Nuxt UI's 2 px track border because
  * its thumb travel is tuned to it; only its color is a token.
  *
  * `[data-cn-state]` forces a state for the documentation, as it does for the button. A radio group cannot take the
@@ -457,8 +457,8 @@ h3 {
  * sets it.
  */
 .cn-choice {
-  min-width: calc(var(--cn-space-base) * 6);
-  min-height: calc(var(--cn-space-base) * 6);
+  min-width: var(--cn-space-lg);
+  min-height: var(--cn-space-lg);
   background-color: var(--cn-choice-bg);
   border-color: var(--cn-choice-border);
   box-shadow: none;
@@ -701,8 +701,8 @@ h3 {
 /* The close buttons keep the text color and show the same focus ring as every other control. */
 .cn-alert__close,
 .cn-toast__close {
-  min-width: calc(var(--cn-space-base) * 6);
-  min-height: calc(var(--cn-space-base) * 6);
+  min-width: var(--cn-space-lg);
+  min-height: var(--cn-space-lg);
   justify-content: center;
   box-shadow: none;
 }
@@ -735,7 +735,7 @@ h3 {
   box-shadow: none;
   /* Nuxt UI fixes the height; a thick border and wrapped text need it to follow the content. */
   height: auto;
-  min-height: calc(var(--cn-space-base) * 6);
+  min-height: var(--cn-space-lg);
   max-width: 100%;
   overflow-wrap: anywhere;
 }
@@ -944,8 +944,8 @@ h3 {
 .cn-media-card__body {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--cn-space-base) * 3);
-  padding: calc(var(--cn-space-base) * 4);
+  gap: var(--cn-space-md);
+  padding: var(--cn-space-md);
 }
 
 .cn-media-card__title {
@@ -959,7 +959,7 @@ h3 {
 .cn-media-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--cn-space-base) * 2);
+  gap: var(--cn-space-sm);
 }
 
 .cn-media-card__link {
@@ -1113,7 +1113,7 @@ h3 {
 }
 
 .cn-breadcrumb__link {
-  min-height: calc(var(--cn-space-base) * 6);
+  min-height: var(--cn-space-lg);
   color: var(--cn-breadcrumb-current-fg);
 }
 
@@ -1149,8 +1149,8 @@ h3 {
 }
 
 .cn-pagination .cn-button {
-  min-width: calc(var(--cn-space-base) * 6);
-  min-height: calc(var(--cn-space-base) * 6);
+  min-width: var(--cn-space-lg);
+  min-height: var(--cn-space-lg);
   color: var(--cn-pagination-item-fg);
   background-color: transparent;
   border-width: var(--cn-border-width-pagination);
