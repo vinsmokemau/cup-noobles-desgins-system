@@ -183,6 +183,6 @@ test('Done when: the repository passes, and the report lists every callout in ev
 test('REQ-073 AC2: every decided OD in SPEC.md names an existing ADR', () => {
   const spec = readFileSync(join(root, 'SPEC.md'), 'utf8')
   const decided = spec.split(/\r?\n/).filter((line) => /^\| OD-\d{2} \|.*\*\*Decided\b/.test(line))
-  assert.equal(decided.length, 12)
+  assert.equal(decided.length, 13)
   for (const line of decided) assert.match(line, /\bADR-\d{4}\b/, line.slice(0, 8))
 })
