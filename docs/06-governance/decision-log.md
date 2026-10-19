@@ -80,6 +80,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0052: Glow goes on component edges only, never on text](decisions/0052-glow-on-edges-only.md)
 - [ADR-0053: Card and overlay surfaces are pure black](decisions/0053-card-surface-pure-black.md)
 - [ADR-0054: Overlays lift with an outline only](decisions/0054-elevation-outline-only.md)
+- [ADR-0055: Brand shades are minimal derived](decisions/0055-brand-shades-minimal-derived.md)
 
 ## Open items
 
@@ -99,3 +100,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0052 (glow rule approved)
 - 0.1.0 — Index extended with ADR-0053 (TBD-06 decision)
 - 0.1.0 — Index extended with ADR-0054 (TBD-15 decision)
+- 0.1.0 — Index extended with ADR-0055 (TBD-08 decision)

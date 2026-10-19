@@ -6,7 +6,7 @@ status: stable
 lang: en
 brandRules: [BR-03, BR-13]
 tbd: []
-related: [effects, adr-0006-placeholder-values, adr-0029-modal-and-slideover-look, adr-0053-card-surface-pure-black, adr-0045-stay-on-0x-until-all-tbd-closed]
+related: [effects, adr-0006-placeholder-values, adr-0029-overlay-look, adr-0053-card-surface-pure-black, adr-0045-stay-on-0x-until-all-tbd-closed]
 since: 0.1.0
 updated: 2026-10-18
 ---
