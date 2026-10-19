@@ -1312,7 +1312,7 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: the icon at 360 px (`link-icon-badge.visual.ts`) and the site header at 768 px (`molecules.visual.ts`) fail against their committed baselines in the pinned Playwright container, and they failed the same way at 7fb5cea, before T13.5. Find the cause first: a rendering difference between the container run and CI, a baseline left stale by an earlier task, or a flaky capture. Fix a stale baseline by regenerating it in the pinned container; fix a flaky capture in the spec. Ask the owner if the screenshot shows a real visual change.
   - Done when: all visual specs pass in the pinned container with no update flag; the cause is written in the task report; a changeset exists if a published file changed; `pnpm test:all` is green.
 
-- [ ] **T13.7 — Approve the color and accessibility docs**
+- [x] **T13.7 — Approve the color and accessibility docs** (2026-10-19, e6399b4)
   - REQs: REQ-009, REQ-018
   - Depends on: T13.6, ADR-0059
   - Scope: record the owner's approval in ADR-0059 and add the ADR to the decision log; update the stale wording about unverified pairs and TBD-13 in `color.md` and `accessibility.md`; move both docs to `stable` with a changelog line each.
