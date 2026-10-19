@@ -1322,7 +1322,7 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
 
 The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft component docs before the release (option B, ADR-0060).
 
-- [ ] **T14.1 — Approve the draft component docs**
+- [x] **T14.1 — Approve the draft component docs** (2026-10-19, fa4e217)
   - REQs: REQ-009, REQ-018
   - Depends on: T13.7, ADR-0060
   - Scope: record the owner's answers in ADR-0060 and add it to the decision log; remove the `> **Draft:**` callouts from the 17 draft component docs, writing the accepted select limit and the toast and backdrop rules into their usage and accessibility sections; move those docs to `stable`; set ADR-0000 to ADR-0005 to `stable` and ADR-0006 to `deprecated`.
