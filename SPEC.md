@@ -1267,7 +1267,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
   - Depends on: T12.1
   - Done when: `using-the-system.md` has install steps verified against the registry, and the manual checks for REQ-008 AC3 and REQ-074 AC2 are recorded in ADR-0007.
 
-- [ ] **T12.3 — 1.0 readiness review**
+- [x] **T12.3 — 1.0 readiness review** (2026-10-18, 797937f)
   - REQs: REQ-018
   - Depends on: T12.2
   - Done when: the `release:check` output and the open TBD list have been presented to the owner, and the owner decides in writing to release 1.0.0 or stay on 0.x (ADR). Claude Code does not release 1.0.0 without that decision.
