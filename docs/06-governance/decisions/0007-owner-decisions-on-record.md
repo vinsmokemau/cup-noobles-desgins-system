@@ -8,7 +8,7 @@ brandRules: []
 tbd: []
 related: [adr-0004-mjml-email-spike, adr-0005-baseline-assumptions-and-conflicts]
 since: 0.1.0
-updated: 2026-09-27
+updated: 2026-10-18
 ---
 
 # ADR-0007: Owner decisions on record
@@ -40,3 +40,12 @@ OD-12 (MJML for email, OA-6) stays recorded in ADR-0004. OD-04 to OD-10 are stil
 
 - SPEC.md 1.11 cites this ADR on the six §7.2 rows above, and `check-tbd` (T2.4) fails when a decided OD or a resolved TBD row in SPEC.md names no existing ADR.
 - Changing any of these decisions takes a new ADR that supersedes the matching row here, and a SPEC.md amendment.
+
+### Manual checks (T12.2)
+
+Two requirements depend on the repository host, so they are checked by hand. The owner confirmed both in chat on 2026-10-18.
+
+| Requirement | Check | Evidence | Result |
+|---|---|---|---|
+| REQ-008 AC3 | Three docs render correctly in GitHub's Markdown preview on `main`: `docs/01-foundations/color.md`, `docs/02-components/atoms/button.md`, and `docs/03-patterns/feedback.md`. | The owner opened the three files in GitHub's preview. Claude Code could only read the pages as extracted text, which showed no `::` MDC syntax. | Passed. Confirmed by the owner. |
+| REQ-074 AC2 | Branch protection on `main` requires a pull request and the `test:all` check before merging (OD-03, OD-13, and OD-14 make this possible on a public repository). | The GitHub API reports `protected: true` for `main`. The owner checked Settings > Branches: a pull request and the `test:all` status check are required. | Passed. Confirmed by the owner. |

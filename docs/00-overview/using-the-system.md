@@ -8,7 +8,7 @@ brandRules: []
 tbd: []
 related: [principles, brand-identity, glossary]
 since: 0.1.0
-updated: 2026-09-27
+updated: 2026-10-18
 ---
 
 # Using the system
@@ -37,18 +37,36 @@ The packages are published privately on GitHub Packages under the `@vinsmokemau`
 
 1. Create a GitHub personal access token (classic) with the `read:packages` scope. GitHub Packages' npm registry accepts classic tokens only.
 2. Keep the token out of the repository. Expose it to your shell, and to CI as a secret, in the environment variable `NODE_AUTH_TOKEN`.
-3. Add an `.npmrc` file at the root of the consuming project. It points the scope at GitHub Packages and reads the token from the environment:
+3. Add an `.npmrc` file at the root of the consuming project. It points the scope at GitHub Packages, and it holds no token, so it is safe to commit:
 
    ```ini
    @vinsmokemau:registry=https://npm.pkg.github.com
+   ```
+
+4. Put the token line in your user-level `.npmrc` (`~/.npmrc`), not in the project file. It reads the token from the environment:
+
+   ```ini
    //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
    ```
 
-4. Install the packages the project needs:
+   In GitHub Actions, `actions/setup-node` with `registry-url: https://npm.pkg.github.com` and `scope: '@vinsmokemau'` writes this line for you. Pass the token as `NODE_AUTH_TOKEN` to the install step. A token line in the project `.npmrc` makes pnpm 12 fail on the package download with HTTP 401, even though it resolves the package first.
+5. If the project uses pnpm, tell it not to run the install scripts of `esbuild` and `vue-demi`. Neither is needed, and without this setting `pnpm add` ends with `ERR_PNPM_IGNORED_BUILDS` and a non-zero exit code. In `pnpm-workspace.yaml`:
+
+   ```yaml
+   allowBuilds:
+     esbuild: false
+     vue-demi: false
+   ```
+
+6. Install the packages the project needs:
 
    ```sh
    pnpm add @vinsmokemau/cup-noobles-nuxt @vinsmokemau/cup-noobles-tokens
    ```
+
+   Add `@vinsmokemau/cup-noobles-email` the same way when the project sends email.
+
+These steps were run against the registry on 2026-10-18, with version `0.2.0` of the three packages, pnpm 12.6.0, and a clean store and cache. Every file this doc names was present in the installed packages.
 
 ### Consume the packages
 
@@ -105,9 +123,10 @@ The packages are published privately on GitHub Packages under the `@vinsmokemau`
 
 ## Open items
 
-The install steps have not been verified against the registry yet, because no package is published until T12.1. T12.2 verifies them.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: packages, install from GitHub Packages, consumption rules, how to read the docs, and how to report a TBD item (T4.1) — awaiting owner approval
 - 0.1.0 — Approved without changes; status `stable` — owner approval in chat, 2026-09-27
+- 0.2.0 — Install steps verified against GitHub Packages: the token line moves to the user-level `.npmrc`, and the pnpm `allowBuilds` setting is added (T12.2) — ADR-0007
