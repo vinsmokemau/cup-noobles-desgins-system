@@ -154,6 +154,9 @@ test('Done when: the repository passes, and the report lists every callout in ev
   assert.deepEqual(
     resolved.map((i) => `${i.id} ${i.adrs.join(',')}`),
     [
+      'TBD-01 ADR-0046',
+      'TBD-02 ADR-0047',
+      'TBD-03 ADR-0048',
       'TBD-04 ADR-0032',
       'TBD-05 ADR-0032',
       'TBD-07 ADR-0032',
@@ -173,6 +176,6 @@ test('Done when: the repository passes, and the report lists every callout in ev
 test('REQ-073 AC2: every decided OD in SPEC.md names an existing ADR', () => {
   const spec = readFileSync(join(root, 'SPEC.md'), 'utf8')
   const decided = spec.split(/\r?\n/).filter((line) => /^\| OD-\d{2} \|.*\*\*Decided\b/.test(line))
-  assert.equal(decided.length, 9)
+  assert.equal(decided.length, 10)
   for (const line of decided) assert.match(line, /\bADR-\d{4}\b/, line.slice(0, 8))
 })

@@ -3,125 +3,235 @@
     "family": {
       "$type": "fontFamily",
       "display": {
-        "$value": "{placeholder.font.family.sans}",
-        "$description": "Display typeface. TBD-01: the family and license are not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-01"] } }
+        "$value": ["Titan One", "Arial Black", "Arial Bold", "Gadget", "sans-serif"],
+        "$description": "Display typeface: Titan One, for H1 to H3, button labels, and badges (BR-07). The fallbacks are the email stack (ADR-0058). Titan One has one weight (ADR-0046, TBD-01).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0046"
+          }
+        }
       },
       "body": {
-        "$value": "{placeholder.font.family.sans}",
-        "$description": "Body typeface. TBD-02: not defined, or covered by the display family; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-02"] } }
+        "$value": ["Rubik", "Arial", "Helvetica", "sans-serif"],
+        "$description": "Body typeface: Rubik, for body text, captions, form fields, tables, and prices. The fallbacks are the email stack (ADR-0058). Never use the 300 weight (ADR-0047, TBD-02).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0047"
+          }
+        }
       }
     },
     "size": {
       "$type": "dimension",
       "h1": {
-        "$value": "{placeholder.font.size.h1}",
-        "$description": "H1 font size. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "2.5rem",
+        "$description": "H1 font size from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "h2": {
-        "$value": "{placeholder.font.size.h2}",
-        "$description": "H2 font size. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "1.875rem",
+        "$description": "H2 font size from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "h3": {
-        "$value": "{placeholder.font.size.h3}",
-        "$description": "H3 font size. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "1.375rem",
+        "$description": "H3 font size from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "body": {
-        "$value": "{placeholder.font.size.body}",
-        "$description": "Body font size. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "1rem",
+        "$description": "Body font size from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "caption": {
-        "$value": "{placeholder.font.size.caption}",
-        "$description": "Caption font size. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "0.8125rem",
+        "$description": "Caption font size from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       }
     },
     "lineHeight": {
       "$type": "dimension",
       "h1": {
-        "$value": "{placeholder.font.lineHeight.h1}",
-        "$description": "H1 line height. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "2.75rem",
+        "$description": "H1 line height from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "h2": {
-        "$value": "{placeholder.font.lineHeight.h2}",
-        "$description": "H2 line height. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "2.125rem",
+        "$description": "H2 line height from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "h3": {
-        "$value": "{placeholder.font.lineHeight.h3}",
-        "$description": "H3 line height. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "1.625rem",
+        "$description": "H3 line height from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "body": {
-        "$value": "{placeholder.font.lineHeight.body}",
-        "$description": "Body line height. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "1.625rem",
+        "$description": "Body line height from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "caption": {
-        "$value": "{placeholder.font.lineHeight.caption}",
-        "$description": "Caption line height. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "1.125rem",
+        "$description": "Caption line height from the Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       }
     },
     "weight": {
       "$type": "fontWeight",
       "h1": {
-        "$value": "{placeholder.font.weight.h1}",
-        "$description": "H1 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": 400,
+        "$description": "H1 font weight: 400. Titan One has one weight (ADR-0046), and Rubik 300 is not used (ADR-0047). Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "h2": {
-        "$value": "{placeholder.font.weight.h2}",
-        "$description": "H2 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": 400,
+        "$description": "H2 font weight: 400. Titan One has one weight (ADR-0046), and Rubik 300 is not used (ADR-0047). Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "h3": {
-        "$value": "{placeholder.font.weight.h3}",
-        "$description": "H3 font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": 400,
+        "$description": "H3 font weight: 400. Titan One has one weight (ADR-0046), and Rubik 300 is not used (ADR-0047). Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "body": {
-        "$value": "{placeholder.font.weight.body}",
-        "$description": "Body font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": 400,
+        "$description": "Body font weight: 400. Titan One has one weight (ADR-0046), and Rubik 300 is not used (ADR-0047). Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "caption": {
-        "$value": "{placeholder.font.weight.caption}",
-        "$description": "Caption font weight. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": 400,
+        "$description": "Caption font weight: 400. Titan One has one weight (ADR-0046), and Rubik 300 is not used (ADR-0047). Balanced type scale (ADR-0048, TBD-03).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       }
     },
     "letterSpacing": {
       "h1": {
-        "$value": "{placeholder.font.letterSpacing}",
-        "$description": "H1 letter spacing. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "0em",
+        "$description": "H1 letter spacing from the Balanced type scale (ADR-0048, TBD-03). Untyped, because DTCG dimensions allow only px and rem (ADR-0008).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "h2": {
-        "$value": "{placeholder.font.letterSpacing}",
-        "$description": "H2 letter spacing. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "0em",
+        "$description": "H2 letter spacing from the Balanced type scale (ADR-0048, TBD-03). Untyped, because DTCG dimensions allow only px and rem (ADR-0008).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "h3": {
-        "$value": "{placeholder.font.letterSpacing}",
-        "$description": "H3 letter spacing. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "0em",
+        "$description": "H3 letter spacing from the Balanced type scale (ADR-0048, TBD-03). Untyped, because DTCG dimensions allow only px and rem (ADR-0008).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "body": {
-        "$value": "{placeholder.font.letterSpacing}",
-        "$description": "Body letter spacing. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "0em",
+        "$description": "Body letter spacing from the Balanced type scale (ADR-0048, TBD-03). Untyped, because DTCG dimensions allow only px and rem (ADR-0008).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       },
       "caption": {
-        "$value": "{placeholder.font.letterSpacing}",
-        "$description": "Caption letter spacing. TBD-03: the type scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
+        "$value": "0em",
+        "$description": "Caption letter spacing from the Balanced type scale (ADR-0048, TBD-03). Untyped, because DTCG dimensions allow only px and rem (ADR-0008).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0048"
+          }
+        }
       }
     }
   }

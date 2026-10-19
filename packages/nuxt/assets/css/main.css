@@ -7,6 +7,55 @@
 @import '@vinsmokemau/cup-noobles-tokens/tokens.css';
 
 /*
+ * T13.1 (ADR-0046, ADR-0047): the two typefaces, self-hosted. Both are under the SIL Open Font License 1.1; the license
+ * texts are in assets/fonts/ and ship with this package. The files are the latin and latin-ext subsets, which cover
+ * every es-MX character (ER-04). Rubik is one variable file for weights 400 to 700.
+ */
+@font-face {
+  font-family: 'Titan One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/titan-one-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Titan One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/titan-one-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/rubik-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/rubik-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
  * The scales that app.config.ts names. Each Nuxt UI color alias reads all 11 shades (ADR-0001 §3).
  * primary and secondary read the derived-pending shade tokens, which all repeat the single brand value (C-06, TBD-08).
  * The feedback scales repeat their feedback token (ADR-0032). The neutral scale reads the neutral roles, so its shades
@@ -97,6 +146,10 @@
   --color-cn-neutral-900: var(--cn-color-border-divider);
   --color-cn-neutral-950: var(--cn-color-bg-base);
 
+  /* Tailwind's default font, and so every utility without a font class, is the body family (ADR-0047). */
+  --font-sans: var(--cn-font-body-family);
+  --default-font-family: var(--cn-font-body-family);
+
   /* Every Tailwind transition utility (	ransition, 	ransition-colors) reads the motion tokens (ADR-0032). */
   --default-transition-duration: var(--cn-motion-duration-default);
   --default-transition-timing-function: var(--cn-motion-easing-default);
@@ -132,7 +185,60 @@
   body {
     background-color: var(--ui-bg);
     color: var(--ui-text);
+    font-family: var(--cn-font-body-family);
+    font-size: var(--cn-font-body-size);
+    font-weight: var(--cn-font-body-weight);
+    line-height: var(--cn-font-body-line-height);
+    letter-spacing: var(--cn-font-body-letter-spacing);
   }
+}
+
+/*
+ * T13.1 (ADR-0046, ADR-0048): the headings, and the labels of buttons and badges, are set in the display family.
+ * Titan One has one weight, so these rules also fix the weight; a bold utility would only fake a heavier face. The
+ * rules are not in a cascade layer, so they win over Nuxt UI's prose utilities (`text-4xl font-bold`).
+ *
+ * Long words are hyphenated (ADR-0048, follow-up): a heading is never scaled down to fit, and a word of 15 letters or
+ * more does not fit in 328 px at the H1 size. `hyphens: auto` needs the page language, so a page sets `lang`.
+ * `overflow-wrap` catches a word the dictionary cannot split, so nothing scrolls sideways.
+ */
+h1,
+h2,
+h3 {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-family: var(--cn-font-h1-family);
+  font-size: var(--cn-font-h1-size);
+  font-weight: var(--cn-font-h1-weight);
+  line-height: var(--cn-font-h1-line-height);
+  letter-spacing: var(--cn-font-h1-letter-spacing);
+}
+
+h2 {
+  font-family: var(--cn-font-h2-family);
+  font-size: var(--cn-font-h2-size);
+  font-weight: var(--cn-font-h2-weight);
+  line-height: var(--cn-font-h2-line-height);
+  letter-spacing: var(--cn-font-h2-letter-spacing);
+}
+
+h3 {
+  font-family: var(--cn-font-h3-family);
+  font-size: var(--cn-font-h3-size);
+  font-weight: var(--cn-font-h3-weight);
+  line-height: var(--cn-font-h3-line-height);
+  letter-spacing: var(--cn-font-h3-letter-spacing);
+}
+
+/* Labels are at least 14 px (ADR-0046). The body size is 16 px, so they read at the body size. */
+.cn-button,
+.cn-badge {
+  font-family: var(--cn-font-family-display);
+  font-size: var(--cn-font-body-size);
+  font-weight: var(--cn-font-h3-weight);
 }
 
 /*

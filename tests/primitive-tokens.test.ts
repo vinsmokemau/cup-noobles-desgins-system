@@ -14,7 +14,7 @@ const inFile = (file: string) => tokens.filter((t) => t.file === `tokens/primiti
 const tbdIds = (text: string) => [...text.matchAll(/\bTBD-\d{2}\b/g)].map((m) => m[0])
 
 // §4.1: the primitive files, and §4.7: every primitive group other than color is TBD in T3.2.
-const TBD_FILES = ['font', 'space', 'radius', 'effect', 'z'].map((f) => `${f}.json`)
+const TBD_FILES = ['space', 'radius', 'effect', 'z'].map((f) => `${f}.json`)
 // Groups resolved by the owner since T3.2, each holding stable raw values from its ADR (§4.4 resolution, ADR-0008 §4).
 const RESOLVED_FILES = {
   'focus.json': 'ADR-0009',
@@ -23,6 +23,7 @@ const RESOLVED_FILES = {
   'motion.json': 'ADR-0032',
   'breakpoint.json': 'ADR-0035',
   'email.json': 'ADR-0038',
+  'font.json': 'ADR-0046',
 }
 
 test('§4.1: tokens/primitive/ holds exactly the listed files', () => {
@@ -49,6 +50,24 @@ test('ADR-0016: the logo primitives hold the owner values, stable, with the ADR 
     ['logo.rule.minHeight.vertical', '80px', 'stable', 'ADR-0016'],
     ['logo.rule.minHeight.horizontal', '36px', 'stable', 'ADR-0016'],
   ])
+})
+
+test('ADR-0046 to ADR-0048: the font primitives hold the owner values, stable, with the ADR as source', () => {
+  const font = inFile('font.json').map((t) => [t.path, css(t.value), t.cn?.status, t.cn?.source])
+  const level = (group: string, values: (string | number)[], adr: string) =>
+    ['h1', 'h2', 'h3', 'body', 'caption'].map((role, i) => [`font.${group}.${role}`, String(values[i]), 'stable', adr])
+  assert.deepEqual(font, [
+    ['font.family.display', "'Titan One', 'Arial Black', 'Arial Bold', Gadget, sans-serif", 'stable', 'ADR-0046'],
+    ['font.family.body', 'Rubik, Arial, Helvetica, sans-serif', 'stable', 'ADR-0047'],
+    ...level('size', ['2.5rem', '1.875rem', '1.375rem', '1rem', '0.8125rem'], 'ADR-0048'),
+    ...level('lineHeight', ['2.75rem', '2.125rem', '1.625rem', '1.625rem', '1.125rem'], 'ADR-0048'),
+    ...level('weight', [400, 400, 400, 400, 400], 'ADR-0048'),
+    ...level('letterSpacing', ['0em', '0em', '0em', '0em', '0em'], 'ADR-0048'),
+  ])
+  // ADR-0046: labels are at least 14 px. ADR-0047: captions are at least 13 px, and the 300 weight is not used.
+  const px = (name: string) => Number.parseFloat(String(tokens.find((t) => t.path === name)?.value)) * 16
+  assert.ok(px('font.size.caption') >= 13)
+  for (const name of ['font.size.h3', 'font.size.body']) assert.ok(px(name) >= 14, name)
 })
 
 test('ADR-0038: the email maximum width holds the owner value, stable, with the ADR as source', () => {
@@ -119,7 +138,8 @@ test('ADR-0006: _placeholder.json holds exactly the recorded values, each labele
   // ADR-0032 resolved TBD-11 and TBD-14, so the stroke width and the two motion placeholders are struck through in
   // ADR-0006 and deleted from _placeholder.json (policy 5).
   // ADR-0035 resolved TBD-13, so the five breakpoints and the container width are struck through and deleted too.
-  assert.equal(rows.length, 36 - 3 - 6, 'every placeholder row in ADR-0006')
+  // ADR-0046, ADR-0047, and ADR-0048 resolved TBD-01 to TBD-03, so the 17 typography placeholders are struck through too.
+  assert.equal(rows.length, 36 - 3 - 6 - 17, 'every placeholder row in ADR-0006')
   const placeholders = tokens.filter((t) => t.file === PLACEHOLDER_FILE)
   assert.deepEqual(placeholders.map((t) => t.path).sort(), rows.map((r) => r.path).sort())
 

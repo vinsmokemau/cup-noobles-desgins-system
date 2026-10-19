@@ -164,6 +164,19 @@ test('ADR-0004: an MJML default that reaches the output fails the build', async 
   for (const value of MJML_DEFAULTS) assert.ok(!html(outA, 'button').includes(value), value)
 })
 
+test('T13.1: the 13px MJML default passes only when a font size token sets 13px', () => {
+  const page = '<html lang="es-MX"><p style="font-size:13px">'
+  const withToken = { ...tokens, 'font.size.caption': '0.8125rem' }
+  const without = { ...tokens, 'font.size.caption': '0.875rem' }
+  assert.deepEqual(checkOutput('x', page, withToken), [])
+  assert.deepEqual(checkOutput('x', page, without), [
+    'x: the output has the MJML default "font-size:13px" (set it from a token)',
+  ])
+  // A border width of 3px does not excuse the border-radius default.
+  const radius = '<html lang="es-MX"><p style="border-radius:3px">'
+  assert.equal(checkOutput('x', radius, { ...tokens, 'border.width.default': '3px' }).length, 1)
+})
+
 test('two sources with the same file name fail the build, because dist/ is flat', async () => {
   await assert.rejects(compile('duplicate'), /would both build to button\.html/)
 })

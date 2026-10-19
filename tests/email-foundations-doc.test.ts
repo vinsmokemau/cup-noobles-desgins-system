@@ -94,12 +94,19 @@ test('REQ-009, REQ-037: the doc is a draft with its TBD items listed, and carrie
   assert.doesNotMatch(text, /^> \*\*Draft:\*\*/m)
   assert.match(text, /^- 0\.1\.0 — Rules approved by the owner[^\n]* — ADR-0039$/m)
   assert.equal(data.layer, 'email')
-  for (const id of ['TBD-01', 'TBD-03', 'TBD-10', 'TBD-12']) {
+  // T13.1: TBD-01 and TBD-03 are resolved (ADR-0046, ADR-0048), so their callouts are gone.
+  for (const id of ['TBD-10', 'TBD-12']) {
     assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
     assert.match(section('Open items'), new RegExp(`\\*\\*TBD \\(${id}\\):\\*\\*`), `${id} has a callout`)
   }
   const prose = text.replace(/<!-- cn:generated[\s\S]*?<!-- \/cn:generated -->/g, '')
   assert.doesNotMatch(prose, /#[0-9a-fA-F]{3,8}\b/)
   // ADR-0004 names the MJML default; the doc may say "MJML default font", never the family itself.
-  assert.doesNotMatch(prose, /\b(?:Ubuntu|Helvetica|Arial|Roboto|Segoe)\b/)
+  assert.doesNotMatch(prose, /\b(?:Ubuntu|Roboto|Segoe)\b/)
+  // T13.1 (ADR-0058): the fallback stack section is the one place the doc names the fallback families.
+  const stackSection = section('Font fallback stack', 3)
+  assert.match(stackSection, /'Titan One', 'Arial Black', 'Arial Bold', Gadget, sans-serif/)
+  assert.match(stackSection, /Rubik, Arial, Helvetica, sans-serif/)
+  const outside = prose.replace(stackSection, '').replace(section('Changelog'), '')
+  assert.doesNotMatch(outside, /\b(?:Helvetica|Arial)\b/)
 })

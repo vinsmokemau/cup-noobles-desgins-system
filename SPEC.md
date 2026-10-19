@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.37 |
+| Spec version | 1.38 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -182,9 +182,9 @@ These values are **not defined** in any source. Each one is a token or doc field
 
 | ID | Item | Blocks | Owner input needed |
 |---|---|---|---|
-| TBD-01 | Display typeface: family, license, and web and email availability. It must match BR-07. | typography.md, `font.family.display` | Font name and license |
-| TBD-02 | Body typeface, or confirmation that one family covers both display and body | `font.family.body` | Font name |
-| TBD-03 | Type scale: sizes, line heights, weights, and letter spacing for H1, H2, H3, body, and caption | `font.size.*`, `font.lineHeight.*` | Values or approval of a proposal |
+| TBD-01 | Display typeface: family, license, and web and email availability. It must match BR-07. | typography.md, `font.family.display` | Resolved (ADR-0046) |
+| TBD-02 | Body typeface, or confirmation that one family covers both display and body | `font.family.body` | Resolved (ADR-0047) |
+| TBD-03 | Type scale: sizes, line heights, weights, and letter spacing for H1, H2, H3, body, and caption | `font.size.*`, `font.lineHeight.*` | Resolved (ADR-0048) |
 | TBD-04 | Body text color: pure white or an off-white | `color.text.default` | Resolved (ADR-0032) |
 | TBD-05 | Neutral scale for secondary text, borders, disabled states, and dividers | `color.neutral.*` | Resolved (ADR-0032) |
 | TBD-06 | Card and elevated surface colors (see C-05) | `color.surface.*` | Decision OD-05 |
@@ -1332,7 +1332,7 @@ The owner must decide these. Each decision becomes an ADR.
 | OD-03 | Package distribution | Private registry (GitHub Packages), public npm, or git-referenced layer | **Decided: GitHub Packages, private** (OA-9, ADR-0007). Consumers install with a GitHub token that has `read:packages`, documented in T12.2. | T12.1 |
 | OD-04 | Brand color shades (C-06, TBD-08) | (a) The brand supplies full scales; (b) approve an algorithmic derivation such as OKLCH lightness steps, recorded in an ADR; (c) use the single hex for every shade | (a) or (b). Both need owner sign-off. (c) is the temporary default. | Before 1.0 (T5.1 uses the default) |
 | OD-05 | Card surface (C-05, TBD-06) | (a) Pure black, separated by an outline only; (b) a distinct near-black surface token | Undecided: (a) best respects BR-03, and (b) better matches "dark surface" in BR-12. | T8.1 (placeholder allowed) |
-| OD-06 | Typefaces (TBD-01, TBD-02) | Any font meeting the criteria set in T4.3 | Owner supplies | T4.3 (placeholder allowed), before 1.0 |
+| OD-06 | Typefaces (TBD-01, TBD-02) | Any font meeting the criteria set in T4.3 | **Decided: Titan One for display, Rubik for body** (owner, ADR-0046, ADR-0047). The email fallback stack is ADR-0058. | T4.3 (placeholder allowed), before 1.0 |
 | OD-07 | Text, neutral, and feedback colors (TBD-04, 05, 07) | Owner supplies, or approves a proposal | Owner supplies | Before 1.0 |
 | OD-08 | Logo and motif SVG delivery (TBD-17, TBD-18) | Owner supplies SVGs plus clear-space and minimum-size rules | **Decided for the logos (TBD-17):** the owner supplied the three SVGs, and chose a clear space of 25% of the logo height and minimum heights of 64 px (icon), 80 px (vertical), and 36 px (horizontal) (ADR-0016). **Decided for the sparkle:** the owner chose the sparkle artwork, recoloured to `color.brand.yellow`, sized to the text beside it (ADR-0017). **Decided for the other six motifs of BR-14:** the owner chose the ramen cup (ADR-0019), the chopsticks (ADR-0020), the golden d20 (ADR-0021), the noodle curves and waves (ADR-0022), the arcade shapes and dynamic lines (ADR-0023), and the sticker border (ADR-0024). | Logos: T7.9. Sparkle: T7.10. Other motifs: T7.11 to T7.16 |
 | OD-09 | Icon set (TBD-19) | Any Iconify collection with a stroke style consistent with BR-13, or custom icons | **Decided: Phosphor Bold** (owner, ADR-0012). | Before T7.3 can be `stable` |
@@ -1386,6 +1386,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.35 | 2026-10-11 | T11.2 and T11.3: the definition of done requires `pnpm test` and `pnpm check:docs` instead of `pnpm test:all`; T11.4 runs the full suite. §0.2 and every other task are unchanged. | Owner request in chat |
 | 1.36 | 2026-10-11 | T11.4: "Done when" no longer says `release:check` fails today. All ten stable component docs reach only stable tokens, so the gate passes on the repository; it fails on a fixture with a stable component that reaches a TBD token. REQ-018 and every other task are unchanged. | Owner decision in chat (T11.4, option A) |
 | 1.37 | 2026-10-18 | Added P13 (T13.1 through T13.4) after T12.3: each applies the owner's TBD decisions to this spec, the docs, and the tokens. The owner stays on 0.x until every TBD item is closed. No existing requirement or task changes. | Owner decisions in chat; ADR-0045 through ADR-0057 |
+| 1.38 | 2026-10-18 | §2.4: TBD-01, TBD-02, and TBD-03 are resolved by ADR-0046, ADR-0047, and ADR-0048 (Titan One, Rubik, and the Balanced type scale), and §7.2: OD-06 is decided. The email fallback stack is ADR-0058. No requirement or task changes. | Owner decisions in chat; ADR-0046, ADR-0047, ADR-0048, ADR-0058 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

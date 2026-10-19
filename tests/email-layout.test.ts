@@ -216,7 +216,7 @@ test('REQ-009, REQ-037: the doc is a draft with a Draft callout and its TBD item
     /^- 0\.1\.0 — Part order, plain-text blocks, and logo clear space approved by the owner[^\n]* — ADR-0042$/m,
   )
   assert.doesNotMatch(doc, /Content pending/)
-  for (const id of ['TBD-01', 'TBD-03', 'TBD-09', 'TBD-10']) {
+  for (const id of ['TBD-09', 'TBD-10']) {
     assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
     assert.match(section('Open items'), new RegExp(`\\*\\*TBD \\(${id}\\):\\*\\*`), `${id} has a callout`)
   }

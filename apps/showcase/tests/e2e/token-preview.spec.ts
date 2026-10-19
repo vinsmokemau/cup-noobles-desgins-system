@@ -152,3 +152,61 @@ test('the token previews are not on the color page, which has its own, or on a d
   await page.goto('/overview/brand-identity')
   await expect(page.getByTestId('token-previews')).toHaveCount(0)
 })
+
+// T13.1 (ADR-0046, ADR-0047): the specimens render in Titan One and Rubik, and every glyph of the es-MX sample comes from
+// those files. Chromium reports the fonts it used for a node, so a fallback glyph would list a second family.
+test('T13.1: the specimens render in Titan One and Rubik, with no fallback glyphs in es-MX', async ({ page }) => {
+  await page.goto('/foundations/typography')
+  await page.evaluate(() => document.fonts.ready)
+  const cdp = await page.context().newCDPSession(page)
+  await cdp.send('DOM.enable')
+  await cdp.send('CSS.enable')
+  const { root } = await cdp.send('DOM.getDocument', { depth: 0 })
+  const expected = { H1: 'Titan One', H2: 'Titan One', H3: 'Titan One', body: 'Rubik', caption: 'Rubik' }
+  for (const [label, family] of Object.entries(expected)) {
+    const selector = `[data-testid="preview"][data-label="${label}"] [data-testid="specimen"]`
+    const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector })
+    const { fonts } = await cdp.send('CSS.getPlatformFontsForNode', { nodeId })
+    // Rubik is one variable file, and Chromium names its default instance "Rubik Light", so the name is matched by prefix.
+    expect(fonts.length, `${label} uses one font`).toBe(1)
+    expect(fonts[0]!.familyName.startsWith(family), `${label} uses ${family}, not ${fonts[0]!.familyName}`).toBe(true)
+    expect(fonts[0]!.isCustomFont, label).toBe(true)
+    // The sample holds the Spanish letters, so the glyph count covers them.
+    expect(fonts[0]!.glyphCount, label).toBeGreaterThan(DIACRITICS.length)
+  }
+})
+
+// T13.1 (ADR-0048): a long Spanish word in a heading does not scroll sideways at 360 px. Without hyphenation the same
+// word overflows, so the test shows both the problem and the remedy.
+test('T13.1: long words in es-MX headings hyphenate at 360 px instead of overflowing', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 800 })
+  await page.goto('/foundations/typography')
+  await page.evaluate(() => document.fonts.ready)
+  const results = await page.evaluate(async () => {
+    const box = document.createElement('div')
+    box.style.cssText = 'width:328px;position:absolute;top:0;left:16px'
+    box.lang = 'es-MX'
+    document.body.append(box)
+    const out: Record<string, { plain: boolean; hyphenated: boolean; lines: number }> = {}
+    for (const word of ['Extraordinarios', 'Responsabilidades', 'Inscripciones']) {
+      const h1 = document.createElement('h1')
+      h1.textContent = word
+      box.append(h1)
+      h1.style.hyphens = 'manual'
+      h1.style.overflowWrap = 'normal'
+      const plain = h1.scrollWidth > h1.clientWidth
+      h1.style.hyphens = ''
+      h1.style.overflowWrap = ''
+      await document.fonts.ready
+      const lines = Math.round(h1.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(h1).lineHeight))
+      out[word] = { plain, hyphenated: h1.scrollWidth <= h1.clientWidth, lines }
+    }
+    return out
+  })
+  // A word of 15 letters or more overflows without the rule, and wraps to two lines with it.
+  expect(results['Extraordinarios']).toEqual({ plain: true, hyphenated: true, lines: 2 })
+  expect(results['Responsabilidades']).toEqual({ plain: true, hyphenated: true, lines: 2 })
+  // The 13-letter word fits on one line either way (ADR-0048).
+  expect(results['Inscripciones']).toEqual({ plain: false, hyphenated: true, lines: 1 })
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+})

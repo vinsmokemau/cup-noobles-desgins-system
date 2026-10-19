@@ -141,8 +141,9 @@ test('REQ-054 AC4: the status of a preview is the worst of its tokens, with thei
   assert.equal(aggregateStatus(['stable']), 'stable')
   assert.equal(aggregateStatus([null]), null)
   const h1 = previewsOf('typography')[0]!
-  assert.equal(h1.status, 'tbd')
-  assert.deepEqual(h1.tbd, ['TBD-01', 'TBD-03'])
+  // T13.1 resolved TBD-01 and TBD-03 (ADR-0046, ADR-0048), so the typography preview is stable.
+  assert.equal(h1.status, 'stable')
+  assert.deepEqual(h1.tbd, [])
   assert.deepEqual(previewsOf('spacing')[0]!.tbd, ['TBD-09'])
 })
 

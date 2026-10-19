@@ -6,10 +6,10 @@ status: draft
 lang: en
 brandRules: [BR-01, BR-03, BR-06, BR-10, BR-13, BR-16]
 tokens: [font.family, layout.email, color.bg.base, color.brand.black, color.brand.primary, color.text, border.width.button, effect.glow.button, radius.button, radius.card, logo.rule]
-tbd: [TBD-01, TBD-03, TBD-10, TBD-12]
+tbd: [TBD-10, TBD-12]
 related: [typography, color, shape, effects, brand-identity, logo, accessibility, email-components, email-layouts]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Email foundations
@@ -20,7 +20,7 @@ This doc lists every limitation of email clients that changes how the Cup Nooble
 
 ## Tokens and specs
 
-The tokens the fallbacks use are generated below. The email build reads them from `dist/email/email-tokens.json` with `$cn(token.path)` (§4.9, REQ-042). Several of them are `tbd`, and their values are ADR-0006 placeholders, not brand values.
+The tokens the fallbacks use are generated below. The email build reads them from `dist/email/email-tokens.json` with `$cn(token.path)` (§4.9, REQ-042). Some of them are `tbd`, and their values are ADR-0006 placeholders, not brand values.
 
 <!-- cn:generated tokens="font.family color.bg.base color.brand.black color.brand.primary color.text button.primary.border border.width.button border.width.card effect.glow.button radius.button radius.card logo.rule layout.email" format="table" -->
 
@@ -37,8 +37,8 @@ The tokens the fallbacks use are generated below. The email build reads them fro
 | `color.text.inverted` | `--cn-color-text-inverted` | `#000000` | stable |
 | `color.text.muted` | `--cn-color-text-muted` | `#bdbdbd` | stable |
 | `effect.glow.button` | `--cn-effect-glow-button` | `none` | tbd (TBD-12) |
-| `font.family.body` | `--cn-font-family-body` | `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'` | tbd (TBD-02) |
-| `font.family.display` | `--cn-font-family-display` | `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'` | tbd (TBD-01) |
+| `font.family.body` | `--cn-font-family-body` | `Rubik, Arial, Helvetica, sans-serif` | stable |
+| `font.family.display` | `--cn-font-family-display` | `'Titan One', 'Arial Black', 'Arial Bold', Gadget, sans-serif` | stable |
 | `layout.email.width.max` | `--cn-layout-email-width-max` | `600px` | stable |
 | `logo.rule.clearSpace` | `--cn-logo-rule-clear-space` | `0.25` | stable |
 | `logo.rule.minHeight.horizontal` | `--cn-logo-rule-min-height-horizontal` | `36px` | stable |
@@ -78,11 +78,8 @@ Most email clients ignore web fonts (R-05), and the build compiles with `fonts: 
 - Headings use `font.family.display`, and text uses `font.family.body`. The email build injects the whole stack as one value, so the fallback order is the order in the token.
 - No MJML default font reaches a component. MJML fills an unset font with its own default, which is not a brand value (ADR-0004), so every component sets `font-family` from a token.
 - The type sizes, line heights, and weights come from the `font.*` tokens, so the hierarchy of BR-08 holds in the fallback font too. Heading and text sizes do not change with the font that ends up rendering.
-- When the display typeface is chosen, its ADR records the email fallback stack (typography selection criterion 4). That stack must end in the generic `sans-serif` keyword, so a client that has none of the named families still shows a sans-serif.
-
-> **TBD (TBD-01):** The display typeface is not defined, so `font.family.display` holds the ADR-0006 placeholder stack, and the email fallback stack cannot be set to a final value. Owner input needed: a font name and its license (OD-06).
->
-> **TBD (TBD-03):** The type scale is not defined, so the `font.*` sizes, line heights, and weights hold ADR-0006 placeholders. Owner input needed: values or approval of a proposal.
+- The stack is chosen by the owner (ADR-0058). Headings use `'Titan One', 'Arial Black', 'Arial Bold', Gadget, sans-serif`, and text uses `Rubik, Arial, Helvetica, sans-serif`. Arial Black is a heavy face, so a heading keeps its punch when Titan One does not load, because Titan One has one weight. Android phones have no Arial Black and show their own sans-serif.
+- Both stacks end in the generic `sans-serif` keyword, so a client that has none of the named families still shows a sans-serif.
 
 ### Glow fallback
 
@@ -202,16 +199,12 @@ The smallest use of a token in an MJML source:
 
 ## Open items
 
-> **TBD (TBD-01):** The display typeface, and so the final email fallback stack, are not defined. Owner input needed: a font name and its license (OD-06).
->
-> **TBD (TBD-03):** The type scale is not defined. Owner input needed: values or approval of a proposal.
->
 > **TBD (TBD-10):** The corner radius is not defined. Owner input needed: values.
 >
 > **TBD (TBD-12):** The glow parameters are not defined. Email uses a solid border in place of the glow in any case. Owner input needed: values.
 >
 
-The doc stays a draft only because of the four TBD items above. A stable doc holds no `TBD` callout (REQ-037), so it moves to `stable` when TBD-01, TBD-03, TBD-10, and TBD-12 are resolved. The owner approved its rules (ADR-0039).
+The doc stays a draft only because of the two TBD items above. A stable doc holds no `TBD` callout (REQ-037), so it moves to `stable` when TBD-10 and TBD-12 are resolved. The owner approved its rules (ADR-0039).
 
 Real-client rendering is not verified here. R-05 puts it with the consuming project, and an optional rendering service is a future ADR. Until then, the generated contrast pairs describe the colors as defined, and not as an inverting client shows them.
 
@@ -220,3 +213,4 @@ Real-client rendering is not verified here. R-05 puts it with the consuming proj
 - 0.1.0 — First draft: the font fallback stack, glow fallback, radius tolerance, dark-mode inversion, images-off behavior, and maximum width, with every fallback mapped to a token (T10.1, REQ-040) — awaiting owner approval
 - 0.1.0 — Maximum width of 600 px chosen by the owner, confirming A-08 — ADR-0038
 - 0.1.0 — Rules approved by the owner: dark-mode inversion, images-off behavior, and radius tolerance. The width token `layout.email.width.max` is added. The doc stays a draft while TBD-01, TBD-03, TBD-10, and TBD-12 are open — ADR-0039
+- 0.1.0 — The email font fallback stack is recorded: Arial Black behind Titan One, and Arial behind Rubik. The TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-10 and TBD-12 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058

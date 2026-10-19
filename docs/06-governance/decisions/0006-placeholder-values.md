@@ -59,23 +59,25 @@ C-05 still applies: until OD-05 is decided, cards render on `color.bg.base` (`#0
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.font.family.sans` | `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'` | Tailwind 4.3.3 `--font-sans`, which Nuxt UI uses when `ui.fonts: false` (ADR-0001 Consequences) | TBD-01 (`font.family.display`), TBD-02 (`font.family.body`) | not a brand value |
-| `placeholder.font.size.h1` | `2.25rem` | Nuxt UI prose `h1`: `text-4xl` | TBD-03 | not a brand value |
-| `placeholder.font.lineHeight.h1` | `2.5rem` | Tailwind `--text-4xl--line-height: calc(2.5 / 2.25)` at 2.25rem | TBD-03 | not a brand value |
-| `placeholder.font.weight.h1` | `700` | Nuxt UI prose `h1`: `font-bold` | TBD-03 | not a brand value |
-| `placeholder.font.size.h2` | `1.5rem` | Nuxt UI prose `h2`: `text-2xl` | TBD-03 | not a brand value |
-| `placeholder.font.lineHeight.h2` | `2rem` | Tailwind `--text-2xl--line-height: calc(2 / 1.5)` at 1.5rem | TBD-03 | not a brand value |
-| `placeholder.font.weight.h2` | `700` | Nuxt UI prose `h2`: `font-bold` | TBD-03 | not a brand value |
-| `placeholder.font.size.h3` | `1.25rem` | Nuxt UI prose `h3`: `text-xl` | TBD-03 | not a brand value |
-| `placeholder.font.lineHeight.h3` | `1.75rem` | Tailwind `--text-xl--line-height: calc(1.75 / 1.25)` at 1.25rem | TBD-03 | not a brand value |
-| `placeholder.font.weight.h3` | `700` | Nuxt UI prose `h3`: `font-bold` | TBD-03 | not a brand value |
-| `placeholder.font.size.body` | `1rem` | Tailwind `--text-base`; Nuxt UI prose `p` sets no size | TBD-03 | not a brand value |
-| `placeholder.font.lineHeight.body` | `1.75rem` | Nuxt UI prose `p`: `leading-7` (7 × `--spacing` 0.25rem) | TBD-03 | not a brand value |
-| `placeholder.font.weight.body` | `400` | Tailwind `--font-weight-normal`; Nuxt UI prose `p` sets no weight | TBD-03 | not a brand value |
-| `placeholder.font.size.caption` | `0.875rem` | Tailwind `--text-sm`, which Nuxt UI uses for description slots (for example `description: "… text-muted text-sm"`) | TBD-03 | not a brand value |
-| `placeholder.font.lineHeight.caption` | `1.25rem` | Tailwind `--text-sm--line-height: calc(1.25 / 0.875)` at 0.875rem | TBD-03 | not a brand value |
-| `placeholder.font.weight.caption` | `400` | Tailwind `--font-weight-normal`; the description slots set no weight | TBD-03 | not a brand value |
-| `placeholder.font.letterSpacing` | `0em` | Tailwind `--tracking-normal`; Nuxt UI prose `h1` to `h3` and `p` set no tracking | TBD-03 | not a brand value |
+| ~~`placeholder.font.family.sans`~~ | ~~`-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`~~ | Tailwind 4.3.3 `--font-sans`, which Nuxt UI uses when `ui.fonts: false` (ADR-0001 Consequences) | TBD-01 (`font.family.display`), TBD-02 (`font.family.body`) | deleted (ADR-0046, ADR-0047) |
+| ~~`placeholder.font.size.h1`~~ | ~~`2.25rem`~~ | Nuxt UI prose `h1`: `text-4xl` | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.lineHeight.h1`~~ | ~~`2.5rem`~~ | Tailwind `--text-4xl--line-height: calc(2.5 / 2.25)` at 2.25rem | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.weight.h1`~~ | ~~`700`~~ | Nuxt UI prose `h1`: `font-bold` | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.size.h2`~~ | ~~`1.5rem`~~ | Nuxt UI prose `h2`: `text-2xl` | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.lineHeight.h2`~~ | ~~`2rem`~~ | Tailwind `--text-2xl--line-height: calc(2 / 1.5)` at 1.5rem | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.weight.h2`~~ | ~~`700`~~ | Nuxt UI prose `h2`: `font-bold` | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.size.h3`~~ | ~~`1.25rem`~~ | Nuxt UI prose `h3`: `text-xl` | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.lineHeight.h3`~~ | ~~`1.75rem`~~ | Tailwind `--text-xl--line-height: calc(1.75 / 1.25)` at 1.25rem | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.weight.h3`~~ | ~~`700`~~ | Nuxt UI prose `h3`: `font-bold` | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.size.body`~~ | ~~`1rem`~~ | Tailwind `--text-base`; Nuxt UI prose `p` sets no size | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.lineHeight.body`~~ | ~~`1.75rem`~~ | Nuxt UI prose `p`: `leading-7` (7 × `--spacing` 0.25rem) | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.weight.body`~~ | ~~`400`~~ | Tailwind `--font-weight-normal`; Nuxt UI prose `p` sets no weight | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.size.caption`~~ | ~~`0.875rem`~~ | Tailwind `--text-sm`, which Nuxt UI uses for description slots (for example `description: "… text-muted text-sm"`) | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.lineHeight.caption`~~ | ~~`1.25rem`~~ | Tailwind `--text-sm--line-height: calc(1.25 / 0.875)` at 0.875rem | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.weight.caption`~~ | ~~`400`~~ | Tailwind `--font-weight-normal`; the description slots set no weight | TBD-03 | deleted (ADR-0048) |
+| ~~`placeholder.font.letterSpacing`~~ | ~~`0em`~~ | Tailwind `--tracking-normal`; Nuxt UI prose `h1` to `h3` and `p` set no tracking | TBD-03 | deleted (ADR-0048) |
+
+TBD-01, TBD-02, and TBD-03 are resolved by ADR-0046, ADR-0047, and ADR-0048. Under policy 5, these 17 placeholders were deleted, and the font tokens became stable.
 
 #### Spacing, shape, and line work
 

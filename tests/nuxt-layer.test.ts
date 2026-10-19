@@ -3,7 +3,7 @@
 // The build itself runs in `pnpm test:all` (build:nuxt); these tests read the sources and the package metadata.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { ESLint } from 'eslint'
@@ -74,8 +74,11 @@ test('app.config.ts points every Nuxt UI color alias at a cn-* scale', () => {
 })
 
 test('C-03 and REQ-016: every scale step is one var() of an existing --cn-* token, 11 shades per alias', () => {
-  // Beside the scales, @theme carries the two Tailwind transition defaults, which read the motion tokens (ADR-0032).
-  assert.equal(theme.size, ALIASES.length * SHADES.length + 2, 'main.css declares nothing else in @theme')
+  // Beside the scales, @theme carries the two Tailwind transition defaults, which read the motion tokens (ADR-0032), and
+  // the two font defaults, which read the body family (ADR-0047).
+  assert.equal(theme.size, ALIASES.length * SHADES.length + 4, 'main.css declares nothing else in @theme')
+  assert.equal(theme.get('--font-sans'), 'var(--cn-font-body-family)')
+  assert.equal(theme.get('--default-font-family'), 'var(--cn-font-body-family)')
   assert.equal(theme.get('--default-transition-duration'), 'var(--cn-motion-duration-default)')
   assert.equal(theme.get('--default-transition-timing-function'), 'var(--cn-motion-easing-default)')
   for (const alias of ALIASES)
@@ -144,7 +147,49 @@ test('REQ-012 and §2.1: Nuxt UI roles read the page background and the black la
     const ref = value.match(/^var\((--cn-[a-z0-9-]+)\)$/)?.[1]
     assert.ok(name.startsWith('--ui-') && ref && tokenVars.has(ref), `${name}: ${value}`)
   }
-  assert.match(mainCss, /body\s*\{\s*background-color: var\(--ui-bg\);\s*color: var\(--ui-text\);\s*\}/)
+  assert.match(mainCss, /body\s*\{\s*background-color: var\(--ui-bg\);\s*color: var\(--ui-text\);/)
+})
+
+test('T13.1: the layer self-hosts Titan One and Rubik, with the OFL text of each, and sets headings and labels from the tokens', () => {
+  const fonts = join(layer, 'assets/fonts')
+  for (const file of [
+    'titan-one-latin.woff2',
+    'titan-one-latin-ext.woff2',
+    'rubik-latin.woff2',
+    'rubik-latin-ext.woff2',
+    'OFL-TitanOne.txt',
+    'OFL-Rubik.txt',
+  ])
+    assert.ok(existsSync(join(fonts, file)), file)
+  assert.match(
+    readFileSync(join(fonts, 'OFL-TitanOne.txt'), 'utf8'),
+    /Rodrigo Fuenzalida[\s\S]*SIL Open Font License, Version 1\.1/,
+  )
+  assert.match(
+    readFileSync(join(fonts, 'OFL-Rubik.txt'), 'utf8'),
+    /The Rubik Project Authors[\s\S]*SIL Open Font License, Version 1\.1/,
+  )
+  const faces = [...mainCss.matchAll(/@font-face\s*\{([^}]*)\}/g)].map((m) => m[1]!)
+  assert.equal(faces.length, 4)
+  for (const face of faces) {
+    const file = face.match(/url\('\.\.\/fonts\/([\w-]+\.woff2)'\)/)?.[1]
+    assert.ok(file && existsSync(join(fonts, file)), 'every @font-face points at a shipped file')
+    assert.match(face, /font-display: swap/)
+  }
+  assert.equal(faces.filter((f) => f.includes("font-family: 'Titan One'")).length, 2)
+  assert.equal(faces.filter((f) => /font-family: 'Rubik'[\s\S]*font-weight: 400 700/.test(f)).length, 2)
+  // Headings and labels read the display tokens, with one weight; the page reads the body tokens (ADR-0046, ADR-0047).
+  for (const level of ['h1', 'h2', 'h3'])
+    assert.match(
+      mainCss,
+      new RegExp(
+        `^${level} \\{[^}]*font-family: var\\(--cn-font-${level}-family\\);[^}]*font-weight: var\\(--cn-font-${level}-weight\\);`,
+        'm',
+      ),
+      level,
+    )
+  assert.match(mainCss, /\.cn-button,\s*\.cn-badge \{[^}]*font-family: var\(--cn-font-family-display\);/)
+  assert.match(mainCss, /h1,\s*h2,\s*h3 \{\s*hyphens: auto;\s*overflow-wrap: break-word;/)
 })
 
 test('REQ-016 AC1: the layer sources pass cn/no-raw-values', async () => {

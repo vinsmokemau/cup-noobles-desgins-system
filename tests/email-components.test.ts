@@ -162,7 +162,7 @@ test('REQ-009, REQ-037: the doc is a draft with a Draft callout and its TBD item
   assert.doesNotMatch(doc, /^> \*\*Draft:\*\*/m)
   assert.match(doc, /^- 0\.1\.0 — Component-to-token mapping approved by the owner[^\n]* — ADR-0041$/m)
   assert.doesNotMatch(doc, /Content pending/)
-  for (const id of ['TBD-01', 'TBD-03', 'TBD-09', 'TBD-10', 'TBD-12']) {
+  for (const id of ['TBD-09', 'TBD-10', 'TBD-12']) {
     assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
     assert.match(section('Open items'), new RegExp(`\\*\\*TBD \\(${id}\\):\\*\\*`), `${id} has a callout`)
   }

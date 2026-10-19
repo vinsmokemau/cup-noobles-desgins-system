@@ -160,7 +160,15 @@ export function checkOutput(name: string, html: string, tokens: EmailTokens): st
   if (strays.size > 0) {
     findings.push(`${name}: the output has hex values that are not in email-tokens.json: ${[...strays].join(', ')}`)
   }
+  // A default font size is not a stray when a font size token sets the same value: the Balanced caption size
+  // (ADR-0048) is 13px, which is also MJML's default. Every other default, and any other size, still fails.
+  const fontSizes = new Set(
+    Object.entries(tokens)
+      .filter(([path]) => path.startsWith('font.size.'))
+      .map(([, value]) => `font-size:${remToPx(String(value))}`),
+  )
   for (const value of MJML_DEFAULTS) {
+    if (fontSizes.has(value)) continue
     if (html.includes(value)) findings.push(`${name}: the output has the MJML default "${value}" (set it from a token)`)
   }
   return findings

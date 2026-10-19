@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     // Without @nuxtjs/color-mode, no color-mode toggle component is registered and useColorMode() reports
     // { forced: true } (ADR-0001 §4).
     colorMode: false,
-    // @nuxt/fonts would fetch a default typeface; the display and body families are TBD-01 and TBD-02.
+    // @nuxt/fonts would fetch a default typeface. Titan One and Rubik are self-hosted by assets/css/main.css (ADR-0046, ADR-0047).
     fonts: false,
   },
   app: {

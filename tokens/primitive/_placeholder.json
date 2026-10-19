@@ -6,119 +6,12 @@
         "$type": "color",
         "$value": "#90a1b9",
         "$description": "Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-06 (the surface colors). Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-06"] } }
-      }
-    },
-    "font": {
-      "family": {
-        "sans": {
-          "$type": "fontFamily",
-          "$value": [
-            "-apple-system",
-            "BlinkMacSystemFont",
-            "Segoe UI",
-            "Roboto",
-            "Helvetica Neue",
-            "Noto Sans",
-            "Arial",
-            "sans-serif",
-            "Apple Color Emoji",
-            "Segoe UI Emoji",
-            "Segoe UI Symbol",
-            "Noto Color Emoji"
-          ],
-          "$description": "Placeholder, not a brand value. Stands in for TBD-01 and TBD-02. Source: Tailwind 4.3.3 --font-sans, split into DTCG font names (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-01", "TBD-02"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-06"]
+          }
         }
-      },
-      "size": {
-        "$type": "dimension",
-        "h1": {
-          "$value": "2.25rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h1, text-4xl (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "h2": {
-          "$value": "1.5rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h2, text-2xl (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "h3": {
-          "$value": "1.25rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h3, text-xl (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "body": {
-          "$value": "1rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --text-base (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "caption": {
-          "$value": "0.875rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --text-sm (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        }
-      },
-      "lineHeight": {
-        "$type": "dimension",
-        "h1": {
-          "$value": "2.5rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --text-4xl--line-height at 2.25rem (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "h2": {
-          "$value": "2rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --text-2xl--line-height at 1.5rem (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "h3": {
-          "$value": "1.75rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --text-xl--line-height at 1.25rem (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "body": {
-          "$value": "1.75rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose p, leading-7 (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "caption": {
-          "$value": "1.25rem",
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --text-sm--line-height at 0.875rem (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        }
-      },
-      "weight": {
-        "$type": "fontWeight",
-        "h1": {
-          "$value": 700,
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h1, font-bold (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "h2": {
-          "$value": 700,
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h2, font-bold (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "h3": {
-          "$value": 700,
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Nuxt UI prose h3, font-bold (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "body": {
-          "$value": 400,
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --font-weight-normal (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        },
-        "caption": {
-          "$value": 400,
-          "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --font-weight-normal (ADR-0006).",
-          "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
-        }
-      },
-      "letterSpacing": {
-        "$value": "0em",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-03. Source: Tailwind --tracking-normal (ADR-0006). Untyped, because DTCG dimensions allow only px and rem (ADR-0008).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-03"] } }
       }
     },
     "space": {
@@ -126,7 +19,12 @@
         "$type": "dimension",
         "$value": "0.25rem",
         "$description": "Placeholder, not a brand value. Stands in for TBD-09. Source: Tailwind --spacing (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-09"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-09"]
+          }
+        }
       }
     },
     "radius": {
@@ -134,50 +32,90 @@
       "sm": {
         "$value": "0.25rem",
         "$description": "Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --ui-radius, --radius-sm (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-10"]
+          }
+        }
       },
       "md": {
         "$value": "0.375rem",
         "$description": "Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --radius-md (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-10"]
+          }
+        }
       },
       "lg": {
         "$value": "0.5rem",
         "$description": "Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --radius-lg (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-10"]
+          }
+        }
       }
     },
     "effect": {
       "glow": {
         "$value": "none",
         "$description": "Placeholder, not a brand value. Stands in for TBD-12. Source: Nuxt UI UButton has no glow (ADR-0006). Untyped (ADR-0008).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-12"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-12"]
+          }
+        }
       },
       "scrimOpacity": {
         "$type": "number",
         "$value": 0.75,
         "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI UModal and USlideover overlay, bg-elevated/75 (ADR-0029).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-15"]
+          }
+        }
       }
     },
     "elevation": {
       "overlay": {
         "$value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
         "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Tailwind --shadow-lg, used by UModal and USlideover (ADR-0006). Untyped (ADR-0008).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-15"]
+          }
+        }
       }
     },
     "z": {
       "overlay": {
         "$value": "auto",
         "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI sets no z-index on UModal or USlideover (ADR-0006). Untyped (ADR-0008).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-15"]
+          }
+        }
       },
       "toast": {
         "$type": "number",
         "$value": 100,
         "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+        "$extensions": {
+          "cn": {
+            "status": "tbd",
+            "tbd": ["TBD-15"]
+          }
+        }
       }
     }
   }

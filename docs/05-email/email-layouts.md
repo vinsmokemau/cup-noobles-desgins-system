@@ -6,10 +6,10 @@ status: draft
 lang: en
 brandRules: [BR-01, BR-03, BR-10, BR-13, BR-15, BR-16]
 tokens: [layout.email, logo.rule, space, color.bg.base, siteHeader, siteFooter, card, separator]
-tbd: [TBD-01, TBD-03, TBD-09, TBD-10]
+tbd: [TBD-09, TBD-10]
 related: [email-foundations, email-components, logo, spacing, layout, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Email layouts
@@ -136,10 +136,6 @@ Centro de ayuda: https://example.com/ayuda
 
 > **TBD (TBD-09):** The spacing scale is not defined, so every padding in the layout is `space.base`, a placeholder, and the parts have no larger steps between them. Owner input needed: the base unit and the scale.
 >
-> **TBD (TBD-01):** The display typeface is not defined, so the headings use the ADR-0006 placeholder stack. Owner input needed: a font name and its license (OD-06).
->
-> **TBD (TBD-03):** The type scale is not defined, so every size, line height, and weight is an ADR-0006 placeholder. Owner input needed: values or approval of a proposal.
->
 > **TBD (TBD-10):** The corner radius is not defined, so the button and the card use the ADR-0006 placeholder. Owner input needed: values.
 
 Real-client rendering is not verified here (R-05). It belongs to the consuming project.
@@ -148,3 +144,4 @@ Real-client rendering is not verified here (R-05). It belongs to the consuming p
 
 - 0.1.0 — First draft: the reference layout of the six components, its widths, the logo clear space, and the plain-text counterpart (T10.4, REQ-043)
 - 0.1.0 — Part order, plain-text blocks, and logo clear space approved by the owner. The doc stays a draft while TBD-01, TBD-03, TBD-09, and TBD-10 are open — ADR-0042
+- 0.1.0 — The display typeface and the type scale are set by the owner, so the TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-09 and TBD-10 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
