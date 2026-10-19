@@ -2,6 +2,42 @@
 
 Every release of `@vinsmokemau/cup-noobles-tokens`, `@vinsmokemau/cup-noobles-nuxt`, and `@vinsmokemau/cup-noobles-email`. The three packages share one version number. Each release groups its entries as Breaking, Added, Changed, Deprecated, and Fixed.
 
+## 1.0.0 (2026-10-19)
+
+### Breaking
+
+- Release 1.0.0 (ADR-0061). The TBD register is closed, every doc is stable, and the 1.0 gate passes. From this version, a breaking change is a major release, an addition is a minor release, and a fix is a patch release. No token, value, or style changes.
+
+### Added
+
+- Apply the color and effects decisions. Card and overlay surfaces are the pure-black page, and the pink and yellow scales have a lighter tone for hover and a darker tone for pressed (ADR-0053, ADR-0055). Buttons glow in Neon tube, pink around pink and ghost buttons and yellow around secondary ones, stronger on hover, and never on text (ADR-0051, ADR-0052). Overlays have no shadow, a black backdrop at 85%, and stacking orders of 50 for overlays and 100 for toasts (ADR-0054). A ghost button hovers with the glow only. The layer removes Nuxt UI's partial-opacity color classes from its themes, so no translucent brand color is drawn except the glow. `effects.md` is stable.
+- Apply the imagery decision. The thumbnail of `CnMediaCard` is a 4:3 frame at every width, and the picture is scaled to fit inside it and never cropped (ADR-0056). A card with no picture, or whose picture fails to load, shows the brand golden d20 on black, marked decorative, and never a broken-image icon (ADR-0057). The photography and thumbnail standards are written in `imagery-and-motifs.md` and `media-card.md`: one clear subject on a plain or dark background, no text inside the image, a source at least twice the displayed width, and no photo style.
+
+  The media card and imagery and motifs docs are stable.
+- Apply the shape and spacing decisions. The spacing scale is the Rhythm of 8: a 4 px base and seven steps above it, `space.sm` to `space.xxxxl` (ADR-0049). The corner radius is Chunky: `radius.sm`, `radius.md`, and `radius.lg` are 8, 12, and 20 px (ADR-0050), and components read them through the `radius.compact`, `radius.interactive`, and `radius.container` roles. Buttons, text fields, pagination, alerts, and toasts are 12 px, badges, checkboxes, and tooltips are 8 px, and cards, media cards, and overlay panels are 20 px. Email components take their padding from the scale in place of `space.base`. The ADR-0006 placeholder file is gone.
+
+  The shape, spacing, badge, and three email docs are stable.
+- Apply the typography decisions. The display family is Titan One, the body family is Rubik, and the type scale is Balanced, all stable. The layer self-hosts both typefaces with their OFL license text, sets headings, button labels, and badges in the display family, and hyphenates long headings. The email fallback stack is Arial Black behind Titan One and Arial behind Rubik (ADR-0058). `typography.md` is stable.
+
+### Fixed
+
+- Approve the color and accessibility foundation docs (ADR-0059). Both move from draft to stable, with their wording about unverified contrast pairs and the breakpoints brought up to date. No token, value, or rule changes.
+- Approve the 17 draft component docs (ADR-0060). They move from draft to stable, with the owner's answers written into them: the select's accepted library limit, and the rule not to open a toast while a modal or a slideover is open. No token, value, or style changes.
+- Record the owner's body typeface choice, Rubik, and its usage rules in ADR-0047. The tokens and docs change in a later task.
+- Record the owner's brand shades choice, minimal derived, in ADR-0055. The tokens and docs change in a later task.
+- Record the owner's card surface choice, pure black separated by an outline, in ADR-0053. The tokens and docs change in a later task.
+- Record the owner's corner radius choice, Chunky, in ADR-0050. The tokens and docs change in a later task.
+- Record the owner's display typeface choice, Titan One, and its usage rules in ADR-0046. The tokens and docs change in a later task.
+- Record the owner's elevation choice, outline only with 85% dimming, in ADR-0054. The tokens and docs change in a later task.
+- Record the owner's approval of the glow rule, edges only and never on text, in ADR-0052. The docs change in a later task.
+- Record the owner's neon glow choice, Neon tube, in ADR-0051. The tokens and docs change in a later task.
+- Record the owner's approval of the photo and thumbnail written standards in ADR-0057. The docs change in a later task.
+- Record the 1.0 readiness review in ADR-0045: the packages stay on 0.x until every TBD item is closed.
+- Put the layer's spacing on the Rhythm of 8 (ADR-0049). Every spacing that was a multiple of `--cn-space-base` now uses a named step: `--cn-space-lg` for the 24 px minimum size of controls, `--cn-space-md` for the media card padding, and `--cn-space-sm` for the gap between its tags. The gap between the media card title and its tags was 12 px, which is not a step; it is now `--cn-space-md` (16 px).
+- Record the owner's spacing scale choice, the rhythm of 8, in ADR-0049. The tokens and docs change in a later task.
+- Record the owner's thumbnail frame choice, 4:3 with the whole picture shown, in ADR-0056. The docs change in a later task.
+- Record the owner's type scale choice, Balanced, in ADR-0048. The tokens and docs change in a later task.
+
 ## 0.2.0 (2026-10-12)
 
 ### Added
