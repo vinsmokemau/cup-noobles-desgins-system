@@ -82,6 +82,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0054: Overlays lift with an outline only](decisions/0054-elevation-outline-only.md)
 - [ADR-0055: Brand shades are minimal derived](decisions/0055-brand-shades-minimal-derived.md)
 - [ADR-0056: Thumbnails use a 4:3 frame and are never cropped](decisions/0056-thumbnail-frame-4x3-contain.md)
+- [ADR-0057: Photo and thumbnail written standards approved](decisions/0057-photo-standards-approved.md)
 
 ## Open items
 
@@ -103,3 +104,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0054 (TBD-15 decision)
 - 0.1.0 — Index extended with ADR-0055 (TBD-08 decision)
 - 0.1.0 — Index extended with ADR-0056 (TBD-20 frame and crop decision)
+- 0.1.0 — Index extended with ADR-0057 (TBD-20 standards approved)
