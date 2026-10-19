@@ -2,7 +2,7 @@
 title: Color
 slug: color
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-02, BR-03, BR-06]
 tokens: [color]
@@ -100,7 +100,7 @@ BR-03 says the tertiary color is pure black, used for the base and background, a
 
 ### Contrast
 
-The block below is generated from `tokens/contrast-pairs.json` and `tokens/contrast-forbidden.json`, and it is the same report `check-contrast` prints (REQ-015). A pair that involves a `tbd` token would be `unverified`, never `pass`, until the real value arrives (REQ-015 AC4); no declared pair does today.
+The block below is generated from `tokens/contrast-pairs.json` and `tokens/contrast-forbidden.json`, and it is the same report `check-contrast` prints (REQ-015). A pair that involves a `tbd` token is `unverified`, never `pass` (REQ-015 AC4). No declared pair uses a `tbd` token, so none is unverified.
 
 <!-- cn:generated tokens="color" format="contrast" -->
 
@@ -256,7 +256,7 @@ Nuxt UI's default classes that use partial opacity, for example `hover:bg-primar
 
 ## Responsive behavior
 
-Color does not change between viewports. The same tokens apply at 360, 768, and 1280 px, and at every breakpoint once TBD-13 is resolved. There is no light theme and no color-mode toggle (A-02).
+Color does not change between viewports. The same tokens apply at 360, 768, and 1280 px, and at every breakpoint token (ADR-0035). There is no light theme and no color-mode toggle (A-02).
 
 ## Email notes
 
@@ -291,3 +291,4 @@ Not applicable.
 - 0.1.0 — The 22 `derived-pending` shade tokens exist, and the Nuxt layer's `primary` and `secondary` aliases read them (T5.1, C-06)
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — Pure-black card and overlay surfaces, and the minimal derived brand shades, are set by the owner, and the placeholders for them are gone. No TBD item is left in the doc — ADR-0053, ADR-0055
+- 0.1.0 — The doc moves to stable on the owner's approval, and the wording about unverified pairs and TBD-13 is brought up to date. No value or rule changes — ADR-0059

@@ -2,7 +2,7 @@
 title: Accessibility
 slug: accessibility
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-03, BR-06]
 tokens: [focus, color]
@@ -110,7 +110,7 @@ The focus tokens are `stable` (ADR-0009). The contrast pairs declared for every 
 
 <!-- /cn:generated -->
 
-A pair that involves a `tbd` token is `unverified`, never `pass`, until the owner supplies the real value (REQ-015 AC4). The ratios of `unverified` pairs come from the ADR-0006 placeholder, which is **not a brand value**.
+A pair that involves a `tbd` token is `unverified`, never `pass` (REQ-015 AC4). No declared pair uses a `tbd` token, so none is unverified.
 
 ## Usage rules
 
@@ -164,7 +164,7 @@ The suite runs in `pnpm test:all`, which CI runs on every push and pull request 
 - Never ship a component or a route with an axe violation. Fix the cause; never disable the rule.
 - Never use a forbidden pair from SPEC.md §2.1.
 - Never remove the focus outline, and never use the glow as the only focus indicator (REQ-024).
-- Never treat an `unverified` contrast pair as passing. It is checked again when the owner supplies the value.
+- Never treat an `unverified` contrast pair as passing. It stays unverified until the token it uses is `stable`.
 - Never shrink a target below 24 × 24 CSS px, on any viewport.
 
 ## Do and don't
@@ -183,7 +183,7 @@ This whole doc is the system's accessibility reference. Each foundation doc appl
 
 ## Responsive behavior
 
-Every rule applies at 360, 768, and 1280 px (A-09), and at every breakpoint once TBD-13 is resolved. At 360 px (ER-05), targets keep their 24 × 24 CSS px minimum, nothing scrolls horizontally, and the focus indicator stays fully visible.
+Every rule applies at 360, 768, and 1280 px (A-09), and at every breakpoint token (ADR-0035). At 360 px (ER-05), targets keep their 24 × 24 CSS px minimum, nothing scrolls horizontally, and the focus indicator stays fully visible.
 
 ## Email notes
 
@@ -224,3 +224,4 @@ Not applicable. The surface colors are decided (ADR-0053), so every declared pai
 - 0.1.0 — First draft: the WCAG 2.2 AA target (A-10), the contrast, focus, keyboard, target-size, reflow, reduced-motion, flashing, and decorative-content rules, the axe gate (REQ-027, REQ-060), and the unverified pairs for TBD-04 to TBD-07 (T4.6); the axe helper and the route matrix are built (T5.5) — awaiting owner approval
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — The card and overlay surfaces are the pure-black page, so the pairs on `color.surface.*` are verified and the TBD-06 callout is gone — ADR-0053
+- 0.1.0 — The doc moves to stable on the owner's approval, and the wording about unverified pairs and TBD-13 is brought up to date. No rule changes — ADR-0059

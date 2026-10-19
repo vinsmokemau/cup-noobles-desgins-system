@@ -24,8 +24,8 @@ function block(format: string): { tokens: string; body: string[] } {
   return { tokens, body: lines.slice(open + 1, close).filter((line) => line.trim() !== '') }
 }
 
-test('frontmatter: draft, BR-01 to BR-03, no TBD item left (TBD-04 to TBD-08 are resolved), tokens `color`', () => {
-  assert.equal(fm.status, 'draft')
+test('frontmatter: stable, BR-01 to BR-03, no TBD item left (TBD-04 to TBD-08 are resolved), tokens `color`', () => {
+  assert.equal(fm.status, 'stable')
   for (const id of ['BR-01', 'BR-02', 'BR-03']) assert.ok((fm.brandRules as string[]).includes(id), id)
   assert.deepEqual(fm.tbd, [])
   assert.deepEqual(fm.tokens, ['color'])

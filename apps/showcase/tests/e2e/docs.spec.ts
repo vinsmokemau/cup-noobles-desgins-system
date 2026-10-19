@@ -124,7 +124,8 @@ test('REQ-057 AC1: a status banner shows on exactly the docs whose status is dra
 })
 
 test('REQ-057 AC1: the banner names the status, and a stable doc has none', async ({ page }) => {
-  await page.goto('/foundations/color')
+  // The color doc became stable (ADR-0059), so a component doc that is still a draft carries the banner.
+  await page.goto('/components/button')
   await expect(page.getByTestId('status-banner')).toContainText('Status: draft')
   // No doc has status `tbd` any more (T11.2 wrote the last ones, and ADR-0044 made them stable), so the loop above
   // is what proves every non-stable status shows a banner. The ownership doc is stable, so it has none.

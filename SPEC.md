@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.42 |
+| Spec version | 1.43 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1312,6 +1312,12 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: the icon at 360 px (`link-icon-badge.visual.ts`) and the site header at 768 px (`molecules.visual.ts`) fail against their committed baselines in the pinned Playwright container, and they failed the same way at 7fb5cea, before T13.5. Find the cause first: a rendering difference between the container run and CI, a baseline left stale by an earlier task, or a flaky capture. Fix a stale baseline by regenerating it in the pinned container; fix a flaky capture in the spec. Ask the owner if the screenshot shows a real visual change.
   - Done when: all visual specs pass in the pinned container with no update flag; the cause is written in the task report; a changeset exists if a published file changed; `pnpm test:all` is green.
 
+- [ ] **T13.7 — Approve the color and accessibility docs**
+  - REQs: REQ-009, REQ-018
+  - Depends on: T13.6, ADR-0059
+  - Scope: record the owner's approval in ADR-0059 and add the ADR to the decision log; update the stale wording about unverified pairs and TBD-13 in `color.md` and `accessibility.md`; move both docs to `stable` with a changelog line each.
+  - Done when: no doc under `docs/01-foundations/` is `draft` or `tbd`; `pnpm check:docs`, `pnpm check:tbd`, and `pnpm release:check` pass; a changeset exists; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1403,6 +1409,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.40 | 2026-10-19 | §2.4: TBD-09 and TBD-10 are resolved by ADR-0049 and ADR-0050 (the Rhythm of 8 spacing scale and the Chunky corner radius). No requirement or task changes. | Owner decisions in chat; ADR-0049, ADR-0050 |
 | 1.41 | 2026-10-19 | Added T13.5 to P13: it puts the layer's off-scale spacing on the Rhythm of 8. No existing requirement or task changes. | Owner decision in chat (T13.3 open question 4) |
 | 1.42 | 2026-10-19 | Added T13.6 to P13: it brings two visual baselines that fail in the pinned Linux container back in line. No existing requirement or task changes. | Owner request in chat (T13.5 open question) |
+| 1.43 | 2026-10-19 | Added T13.7 to P13: it records the owner's approval of `color.md` and `accessibility.md` and moves both docs to stable. No existing requirement or task changes. | Owner decision in chat (B and B); ADR-0059 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
