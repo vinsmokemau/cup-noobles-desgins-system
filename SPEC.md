@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.41 |
+| Spec version | 1.42 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1306,6 +1306,12 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: in `packages/nuxt/assets/css/main.css`, replace each spacing built as a multiple of `--cn-space-base` that is not a step of the scale (for example the media card gap of 3 base units, 12 px) with a `--cn-space-*` step, asking the owner when the nearest step is unclear; use the named step in place of `calc(var(--cn-space-base) * N)` where the result is a step (for example 24 px as `--cn-space-lg`).
   - Done when: no spacing in the layer is a multiple of the base that is not a step; the visual baselines are regenerated in the pinned Linux container and the owner has seen any component whose spacing changed; a changeset exists; `pnpm test:all` is green.
 
+- [ ] **T13.6 — Fix the two visual baselines that fail in the pinned container**
+  - REQs: REQ-026 (AC3)
+  - Depends on: T13.5
+  - Scope: the icon at 360 px (`link-icon-badge.visual.ts`) and the site header at 768 px (`molecules.visual.ts`) fail against their committed baselines in the pinned Playwright container, and they failed the same way at 7fb5cea, before T13.5. Find the cause first: a rendering difference between the container run and CI, a baseline left stale by an earlier task, or a flaky capture. Fix a stale baseline by regenerating it in the pinned container; fix a flaky capture in the spec. Ask the owner if the screenshot shows a real visual change.
+  - Done when: all visual specs pass in the pinned container with no update flag; the cause is written in the task report; a changeset exists if a published file changed; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1396,6 +1402,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.39 | 2026-10-18 | §2.4: TBD-06, TBD-08, TBD-12, and TBD-15 are resolved by ADR-0053, ADR-0055, ADR-0051, and ADR-0054 (pure-black surfaces, the minimal derived brand shades, the Neon tube glow, and Outline only elevation). §2.2: C-05 and C-06 are resolved. §7.2: OD-04 and OD-05 are decided. No requirement or task changes. | Owner decisions in chat; ADR-0051, ADR-0052, ADR-0053, ADR-0054, ADR-0055 |
 | 1.40 | 2026-10-19 | §2.4: TBD-09 and TBD-10 are resolved by ADR-0049 and ADR-0050 (the Rhythm of 8 spacing scale and the Chunky corner radius). No requirement or task changes. | Owner decisions in chat; ADR-0049, ADR-0050 |
 | 1.41 | 2026-10-19 | Added T13.5 to P13: it puts the layer's off-scale spacing on the Rhythm of 8. No existing requirement or task changes. | Owner decision in chat (T13.3 open question 4) |
+| 1.42 | 2026-10-19 | Added T13.6 to P13: it brings two visual baselines that fail in the pinned Linux container back in line. No existing requirement or task changes. | Owner request in chat (T13.5 open question) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1431,7 +1438,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-023 | T4.4, T7.2, T13.2 |
 | REQ-024 | T4.4, T7.2, T7.4, T7.5, T13.2 |
 | REQ-025 | T8.1, T8.2, T13.4 |
-| REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
+| REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5, T13.6 |
 | REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
 | REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T7.9, T7.17, T8.1, T8.2, T8.4, T8.6 |
 | REQ-029 | T4.5, T4.6, T7.6, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17 |
