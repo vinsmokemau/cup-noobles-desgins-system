@@ -1276,7 +1276,7 @@ Rule for T7.11 through T7.16 (one per missing BR-14 motif, TBD-18): each task se
 
 The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each item has an ADR with the owner's decision. These tasks apply those ADRs to this spec, the docs, and the tokens, in the order below.
 
-- [ ] **T13.1 — Apply the typography decisions (TBD-01, TBD-02, TBD-03)**
+- [x] **T13.1 — Apply the typography decisions (TBD-01, TBD-02, TBD-03)** (2026-10-18, cab907b)
   - REQs: REQ-005, REQ-009, REQ-014
   - Depends on: T12.3, ADR-0046, ADR-0047, ADR-0048
   - Scope: set TBD-01, TBD-02, and TBD-03 to `Resolved (ADR-NNNN)` in §2.4, and OD-06 to decided in §7.2; set the font family, size, line height, weight, and letter spacing tokens to the ADR values and mark them `stable` with the ADR as source; self-host Titan One and Rubik with their OFL license text; remove the three TBD callouts from `typography.md` and move it to `stable` through its changelog; record the email fallback stack, which the owner confirms, in `email-foundations.md`; test the hyphenation remedy for long headings from ADR-0048, or bring the owner another option.
