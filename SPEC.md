@@ -1288,7 +1288,7 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: set the four items to `Resolved (ADR-NNNN)` in §2.4, OD-04 and OD-05 to decided in §7.2, and C-05 and C-06 to resolved in §2.2; the card and overlay surfaces become `color.bg.base`; the four derived tones become the pink and yellow steps, with the hover and pressed tokens; the glow tokens take the ADR-0051 values; the elevation, scrim, and z-index tokens take the ADR-0054 values; the glow rule of ADR-0052 becomes stable in `effects.md`; add the new contrast pairs to `tokens/contrast-pairs.json`; remove Nuxt UI's partial-opacity classes from the theme, or bring the owner each case (C-06).
   - Done when: `pnpm check:tbd` lists none of the four; `check-contrast` passes with the new pairs; `pnpm release:check` passes; a changeset exists; `pnpm test:all` is green, with visual baselines regenerated.
 
-- [ ] **T13.3 — Apply the shape and spacing decisions (TBD-09, TBD-10)**
+- [x] **T13.3 — Apply the shape and spacing decisions (TBD-09, TBD-10)** (2026-10-19, 1711626)
   - REQs: REQ-005, REQ-009, REQ-014
   - Depends on: T13.2, ADR-0049, ADR-0050
   - Scope: set both items to `Resolved (ADR-NNNN)` in §2.4; add the seven spacing steps above the base token; set the radius tokens from ADR-0050, and assign each of the six undecided radius tokens a step, asking the owner if a case is unclear; update the email components and layout that use `space.base` for every padding.
