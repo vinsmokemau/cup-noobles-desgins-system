@@ -2,19 +2,34 @@
   "radius": {
     "$type": "dimension",
     "sm": {
-      "$value": "{placeholder.radius.sm}",
-      "$description": "Small corner radius. TBD-10: \"rounded\" (BR-10) has no values; this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+      "$value": "0.5rem",
+      "$description": "Corner radius step, 8 px (ADR-0050, TBD-10): the Chunky radius.",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0050"
+        }
+      }
     },
     "md": {
-      "$value": "{placeholder.radius.md}",
-      "$description": "Medium corner radius. TBD-10: \"rounded\" (BR-10) has no values; this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+      "$value": "0.75rem",
+      "$description": "Corner radius step, 12 px (ADR-0050, TBD-10): the Chunky radius.",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0050"
+        }
+      }
     },
     "lg": {
-      "$value": "{placeholder.radius.lg}",
-      "$description": "Large corner radius. TBD-10: \"rounded\" (BR-10) has no values; this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+      "$value": "1.25rem",
+      "$description": "Corner radius step, 20 px (ADR-0050, TBD-10): the Chunky radius.",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0050"
+        }
+      }
     }
   }
 }

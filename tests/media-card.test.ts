@@ -41,7 +41,7 @@ test('REQ-020 AC1, AC2: the doc is a custom molecule that says why it is custom,
   assert.equal(data.component, 'CnMediaCard')
   assert.equal(data.status, 'draft')
   assert.deepEqual(data.demos, ['states', 'playground'])
-  assert.deepEqual(data.tbd, ['TBD-10', 'TBD-20'])
+  assert.deepEqual(data.tbd, ['TBD-20'])
   assert.match(doc, /\*\*Why custom:\*\* Nuxt UI has no equivalent\./)
 })
 
@@ -86,16 +86,16 @@ test('REQ-025 AC4: the card has one link, and it is the title, so the name is th
   assert.match(ownCss, /:has\(\.cn-media-card__link:focus-visible\)/)
 })
 
-test('ADR-0026: the media card tokens reference semantic tokens, and the placeholders are tbd', () => {
+test('ADR-0026: the media card tokens reference semantic tokens, and the shape tokens are stable', () => {
   assert.deepEqual(problems, [])
   for (const [path, semantic] of [
-    ['radius.mediaCard', 'radius.interactive'],
+    ['radius.mediaCard', 'radius.container'],
     ['border.width.mediaCard', 'border.width.interactive'],
   ] as const) {
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
+    assert.equal(token?.cn?.status, 'stable', path)
   }
   for (const [path, value, status] of [
     ['mediaCard.bg', '{color.surface.card}', 'stable'],

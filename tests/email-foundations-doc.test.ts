@@ -90,16 +90,15 @@ test('REQ-040 AC2: every token the doc names in a code span is in email-tokens.j
 test('REQ-009, REQ-037: the doc is a draft with its TBD items listed, and carries no hex literal or typeface name', () => {
   const data = readFrontmatter(text).data as Record<string, unknown>
   assert.equal(data.status, 'draft')
-  // ADR-0039: the owner approved the rules, so no Draft callout remains; the open TBD items keep the doc a draft.
+  // ADR-0039: the owner approved the rules, so no Draft callout remains; the doc stays a draft until the owner moves it to stable.
   assert.doesNotMatch(text, /^> \*\*Draft:\*\*/m)
   assert.match(text, /^- 0\.1\.0 — Rules approved by the owner[^\n]* — ADR-0039$/m)
   assert.equal(data.layer, 'email')
   // T13.1: TBD-01 and TBD-03 are resolved (ADR-0046, ADR-0048), so their callouts are gone.
   // T13.2: TBD-12 is resolved (ADR-0051), so its callouts are gone; email keeps its solid border in place of the glow.
-  for (const id of ['TBD-10']) {
-    assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
-    assert.match(section('Open items'), new RegExp(`\\*\\*TBD \\(${id}\\):\\*\\*`), `${id} has a callout`)
-  }
+  // T13.3: TBD-10 is resolved (ADR-0050), so the doc lists no TBD item and has no callout.
+  assert.deepEqual(data.tbd, [])
+  assert.doesNotMatch(section('Open items'), /TBD-(?:09|10)/)
   assert.ok(!(data.tbd as string[]).includes('TBD-12'))
   assert.doesNotMatch(text, /\*\*TBD \(TBD-12\)/)
   const prose = text.replace(/<!-- cn:generated[\s\S]*?<!-- \/cn:generated -->/g, '')

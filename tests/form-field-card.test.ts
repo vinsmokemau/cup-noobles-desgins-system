@@ -40,16 +40,16 @@ test('REQ-020 AC1: both docs are nuxt-ui molecules named for their Nuxt UI compo
   }
 })
 
-test('the card and form field tokens reference semantic tokens, and the placeholders are tbd', () => {
+test('the card and form field tokens reference semantic tokens, and the shape tokens are stable', () => {
   assert.deepEqual(problems, [])
   for (const [path, semantic] of [
-    ['radius.card', 'radius.interactive'],
+    ['radius.card', 'radius.container'],
     ['border.width.card', 'border.width.interactive'],
   ] as const) {
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
+    assert.equal(token?.cn?.status, 'stable', path)
   }
   for (const [path, value, status] of [
     ['card.bg', '{color.surface.card}', 'stable'],
@@ -134,7 +134,7 @@ test('REQ-025 AC1, AC3: the card is documented with header, body, and footer slo
   // T13.2, ADR-0053: TBD-06 is resolved, so the surface token is stable and the callout is gone.
   assert.doesNotMatch(doc, /TBD-06/)
   assert.match(doc, /\| `color\.surface\.card` \| `--cn-color-surface-card` \| `#000000` \| stable \|/)
-  assert.deepEqual(frontmatter('card').tbd, ['TBD-10'])
+  assert.deepEqual(frontmatter('card').tbd, [])
   const demo = read('apps/showcase/demos/card/states.vue')
   for (const slot of ['#header', '#footer']) assert.ok(demo.includes(slot), `demo uses ${slot}`)
 })

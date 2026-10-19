@@ -65,7 +65,16 @@ test('REQ-054 AC2: a specimen is set only with var() of its own role tokens', ()
 
 test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get a preview per token', () => {
   const kinds = (doc: string) => previewsOf(doc).map((p) => `${p.kind}:${p.label}`)
-  assert.deepEqual(kinds('spacing'), ['space:space.base'])
+  assert.deepEqual(kinds('spacing'), [
+    'space:space.base',
+    'space:space.lg',
+    'space:space.md',
+    'space:space.sm',
+    'space:space.xl',
+    'space:space.xxl',
+    'space:space.xxxl',
+    'space:space.xxxxl',
+  ])
   assert.deepEqual(kinds('shape'), [
     'stroke:border.width.alert',
     'stroke:border.width.badge',
@@ -91,6 +100,8 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'radius:radius.button',
     'radius:radius.card',
     'radius:radius.choice',
+    'radius:radius.compact',
+    'radius:radius.container',
     'radius:radius.input',
     'radius:radius.interactive',
     'radius:radius.lg',
@@ -151,7 +162,7 @@ test('REQ-054 AC4: the status of a preview is the worst of its tokens, with thei
   // T13.1 resolved TBD-01 and TBD-03 (ADR-0046, ADR-0048), so the typography preview is stable.
   assert.equal(h1.status, 'stable')
   assert.deepEqual(h1.tbd, [])
-  assert.deepEqual(previewsOf('spacing')[0]!.tbd, ['TBD-09'])
+  assert.deepEqual(previewsOf('spacing')[0]!.tbd, [])
 })
 
 test('the sections come in the page order and only the ones with previews', () => {

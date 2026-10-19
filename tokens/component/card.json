@@ -2,12 +2,12 @@
   "radius": {
     "card": {
       "$type": "dimension",
-      "$value": "{radius.interactive}",
-      "$description": "Corner radius of the standard card (BR-12). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$value": "{radius.container}",
+      "$description": "Corner radius of the standard card (BR-12). Uses the `container` radius role, the `radius.lg` step (ADR-0050, TBD-10).",
       "$extensions": {
         "cn": {
-          "status": "tbd",
-          "tbd": ["TBD-10"]
+          "status": "stable",
+          "source": "ADR-0050"
         }
       }
     }

@@ -36,29 +36,29 @@ test('REQ-020 AC1: the three docs are nuxt-ui components named for their Nuxt UI
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
     // The outline color, the stroke widths, the radius, and the motion are placeholders (REQ-009).
-    assert.equal(data.status, slug === 'skeleton' ? 'draft' : 'stable', slug) // ADR-0033; the skeleton radius is TBD-10
+    assert.equal(data.status, slug === 'skeleton' ? 'draft' : 'stable', slug) // ADR-0033; the skeleton doc awaits the owner moving it to stable
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
     assert.deepEqual(data.tokens, [slug], slug)
     assert.match(docOf(slug), new RegExp(`\`${NUXT_UI[slug]}\``), `${slug} doc names its Nuxt UI component`)
   }
 })
 
-test('the component tokens reference semantic tokens, and only the radius is a placeholder', () => {
+test('the component tokens reference semantic tokens, and the radius is stable', () => {
   assert.deepEqual(problems, [])
-  for (const [path, semantic, tbd] of [
-    ['border.width.progress', 'border.width.interactive', 'TBD-11'],
-    ['border.width.skeleton', 'border.width.interactive', 'TBD-11'],
-    ['border.width.separator', 'border.width.interactive', 'TBD-11'],
-    ['radius.skeleton', 'radius.interactive', 'TBD-10'],
-    ['progress.border', 'color.border.default', 'TBD-05'],
-    ['skeleton.border', 'color.border.default', 'TBD-05'],
-    ['separator.color', 'color.border.default', 'TBD-05'],
+  for (const [path, semantic] of [
+    ['border.width.progress', 'border.width.interactive'],
+    ['border.width.skeleton', 'border.width.interactive'],
+    ['border.width.separator', 'border.width.interactive'],
+    ['radius.skeleton', 'radius.interactive'],
+    ['progress.border', 'color.border.default'],
+    ['skeleton.border', 'color.border.default'],
+    ['separator.color', 'color.border.default'],
   ] as const) {
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, path.startsWith('radius') ? 'tbd' : 'stable', path)
-    assert.deepEqual(token?.cn?.tbd, path.startsWith('radius') ? [tbd] : undefined, path)
+    assert.equal(token?.cn?.status, 'stable', path)
+    assert.deepEqual(token?.cn?.tbd, undefined, path)
   }
   // The black fill and the pink fill follow brand values, so they are stable.
   for (const [path, semantic] of [

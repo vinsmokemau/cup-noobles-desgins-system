@@ -1,10 +1,85 @@
 {
   "space": {
+    "$type": "dimension",
     "base": {
-      "$type": "dimension",
-      "$value": "{placeholder.space.base}",
-      "$description": "Spacing base unit. TBD-09: the base unit and scale are not defined; this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-09"] } }
+      "$value": "0.25rem",
+      "$description": "Spacing step, 4 px, the `xs` step of ADR-0049 and the base unit of the scale (ADR-0049, TBD-09).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0049"
+        }
+      }
+    },
+    "sm": {
+      "$value": "0.5rem",
+      "$description": "Spacing step, 8 px (ADR-0049, TBD-09).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0049"
+        }
+      }
+    },
+    "md": {
+      "$value": "1rem",
+      "$description": "Spacing step, 16 px (ADR-0049, TBD-09).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0049"
+        }
+      }
+    },
+    "lg": {
+      "$value": "1.5rem",
+      "$description": "Spacing step, 24 px (ADR-0049, TBD-09).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0049"
+        }
+      }
+    },
+    "xl": {
+      "$value": "2rem",
+      "$description": "Spacing step, 32 px (ADR-0049, TBD-09).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0049"
+        }
+      }
+    },
+    "xxl": {
+      "$value": "3rem",
+      "$description": "Spacing step, 48 px, the `2xl` step of ADR-0049 (ADR-0049, TBD-09). The path segment cannot start with a digit (REQ-017 AC2, ADR-0006 policy 6).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0049"
+        }
+      }
+    },
+    "xxxl": {
+      "$value": "4rem",
+      "$description": "Spacing step, 64 px, the `3xl` step of ADR-0049 (ADR-0049, TBD-09). The path segment cannot start with a digit (REQ-017 AC2, ADR-0006 policy 6).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0049"
+        }
+      }
+    },
+    "xxxxl": {
+      "$value": "6rem",
+      "$description": "Spacing step, 96 px, the `4xl` step of ADR-0049 (ADR-0049, TBD-09). The path segment cannot start with a digit (REQ-017 AC2, ADR-0006 policy 6).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0049"
+        }
+      }
     }
   }
 }

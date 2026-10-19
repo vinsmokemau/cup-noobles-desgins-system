@@ -52,16 +52,16 @@ test("Done when: each feedback variant of the alert and the toast uses a feedbac
   }
 })
 
-test('the alert, toast, and tooltip tokens reference semantic tokens, and only the radius is a placeholder', () => {
+test('the alert, toast, and tooltip tokens reference semantic tokens, and the shape tokens are stable', () => {
   for (const slug of SLUGS) {
     for (const [path, semantic] of [
-      [`radius.${slug}`, 'radius.interactive'],
+      [`radius.${slug}`, slug === 'tooltip' ? 'radius.compact' : 'radius.interactive'],
       [`border.width.${slug}`, 'border.width.interactive'],
     ] as const) {
       const token = byPath.get(path)
       assert.equal(token?.tier, 'component', path)
       assert.equal(token?.value, `{${semantic}}`, path)
-      assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
+      assert.equal(token?.cn?.status, 'stable', path)
     }
     assert.equal(byPath.get(`${slug}.bg`)?.value, '{color.bg.base}', `${slug}.bg`)
     assert.equal(byPath.get(`${slug}.bg`)?.cn?.status, 'stable', `${slug}.bg`)

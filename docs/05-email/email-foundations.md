@@ -6,10 +6,10 @@ status: draft
 lang: en
 brandRules: [BR-01, BR-03, BR-06, BR-10, BR-13, BR-16]
 tokens: [font.family, layout.email, color.bg.base, color.brand.black, color.brand.primary, color.text, border.width.button, effect.glow.button, radius.button, radius.card, logo.rule]
-tbd: [TBD-10]
+tbd: []
 related: [typography, color, shape, effects, brand-identity, logo, accessibility, email-components, email-layouts]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Email foundations
@@ -20,7 +20,7 @@ This doc lists every limitation of email clients that changes how the Cup Nooble
 
 ## Tokens and specs
 
-The tokens the fallbacks use are generated below. The email build reads them from `dist/email/email-tokens.json` with `$cn(token.path)` (§4.9, REQ-042). Some of them are `tbd`, and their values are ADR-0006 placeholders, not brand values.
+The tokens the fallbacks use are generated below. The email build reads them from `dist/email/email-tokens.json` with `$cn(token.path)` (§4.9, REQ-042). All of them are `stable`.
 
 <!-- cn:generated tokens="font.family color.bg.base color.brand.black color.brand.primary color.text button.primary.border border.width.button border.width.card effect.glow.button radius.button radius.card logo.rule layout.email" format="table" -->
 
@@ -44,8 +44,8 @@ The tokens the fallbacks use are generated below. The email build reads them fro
 | `logo.rule.minHeight.horizontal` | `--cn-logo-rule-min-height-horizontal` | `36px` | stable |
 | `logo.rule.minHeight.icon` | `--cn-logo-rule-min-height-icon` | `64px` | stable |
 | `logo.rule.minHeight.vertical` | `--cn-logo-rule-min-height-vertical` | `80px` | stable |
-| `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
-| `radius.card` | `--cn-radius-card` | `0.375rem` | tbd (TBD-10) |
+| `radius.button` | `--cn-radius-button` | `0.75rem` | stable |
+| `radius.card` | `--cn-radius-card` | `1.25rem` | stable |
 
 <!-- /cn:generated -->
 
@@ -100,8 +100,6 @@ Outlook's support for `border-radius` is limited (R-05). A client that ignores t
 - Never let a layout, a label, or a boundary depend on a corner being round. The solid border (BR-13) is the boundary in both cases.
 - Keep enough padding that a label never touches a corner, round or square.
 - Every radius in an email comes from a token. MJML fills an unset radius with its own default, which is not a brand value (ADR-0004).
-
-> **TBD (TBD-10):** The corner radius is not defined, so the `radius.*` tokens hold ADR-0006 placeholders. Owner input needed: values.
 
 ### Dark-mode inversion
 
@@ -199,9 +197,7 @@ The smallest use of a token in an MJML source:
 
 ## Open items
 
-> **TBD (TBD-10):** The corner radius is not defined. Owner input needed: values.
-
-The doc stays a draft only because of the TBD item above. A stable doc holds no `TBD` callout (REQ-037), so it moves to `stable` when TBD-10 is resolved. The owner approved its rules (ADR-0039).
+The corner radius is set (ADR-0050), so no `TBD` callout remains (REQ-037). The doc stays a draft until the owner moves it to `stable`. The owner approved its rules (ADR-0039).
 
 Real-client rendering is not verified here. R-05 puts it with the consuming project, and an optional rendering service is a future ADR. Until then, the generated contrast pairs describe the colors as defined, and not as an inverting client shows them.
 
@@ -212,3 +208,4 @@ Real-client rendering is not verified here. R-05 puts it with the consuming proj
 - 0.1.0 — Rules approved by the owner: dark-mode inversion, images-off behavior, and radius tolerance. The width token `layout.email.width.max` is added. The doc stays a draft while TBD-01, TBD-03, TBD-10, and TBD-12 are open — ADR-0039
 - 0.1.0 — The email font fallback stack is recorded: Arial Black behind Titan One, and Arial behind Rubik. The TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-10 and TBD-12 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
 - 0.1.0 — The glow is chosen for the web and email keeps its solid border, so the TBD-12 callouts are gone. The doc stays a draft while TBD-10 is open — ADR-0051
+- 0.1.0 — The corner radius is set by the owner, so the TBD-10 callouts are gone. Outlook still shows square corners, and the solid border stays the boundary — ADR-0050

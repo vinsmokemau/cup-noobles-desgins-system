@@ -3,8 +3,35 @@
     "interactive": {
       "$type": "dimension",
       "$value": "{radius.md}",
-      "$description": "Corner radius of interactive elements such as buttons (BR-10). TBD-10: \"rounded\" has no values; this references a placeholder, not a brand value.",
-      "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-10"] } }
+      "$description": "Corner radius of interactive elements such as buttons (BR-10): the `radius.md` step, 12 px (ADR-0050, TBD-10; the step is assigned by T13.3).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0050"
+        }
+      }
+    },
+    "compact": {
+      "$type": "dimension",
+      "$value": "{radius.sm}",
+      "$description": "Corner radius of small elements such as badges, checkboxes, and tooltips: the `radius.sm` step, 8 px (ADR-0050, TBD-10).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0050"
+        }
+      }
+    },
+    "container": {
+      "$type": "dimension",
+      "$value": "{radius.lg}",
+      "$description": "Corner radius of large containers such as cards, media cards, and overlay panels: the `radius.lg` step, 20 px (ADR-0050, TBD-10).",
+      "$extensions": {
+        "cn": {
+          "status": "stable",
+          "source": "ADR-0050"
+        }
+      }
     }
   },
   "border": {
@@ -13,7 +40,11 @@
         "$type": "dimension",
         "$value": "{border.width.default}",
         "$description": "Outline stroke width of interactive elements such as buttons (BR-10, BR-13): 3 px (ADR-0032, TBD-11).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     }
   }

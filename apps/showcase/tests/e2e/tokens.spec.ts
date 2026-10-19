@@ -88,10 +88,10 @@ test('REQ-053 AC2: filtering by group', async ({ page }) => {
 })
 
 test('REQ-053 AC2: filtering by status', async ({ page }) => {
-  await choose(page, 'Status', 'tbd')
-  const expected = all.filter((token) => token.status === 'tbd').map((token) => token.path)
+  // T13.3: no token is tbd now (TBD-09 and TBD-10 were the last), so the filter is tried with the stable status.
+  await choose(page, 'Status', 'stable')
+  const expected = all.filter((token) => token.status === 'stable').map((token) => token.path)
   expect(expected.length).toBeGreaterThan(0)
-  expect(expected.length).toBeLessThan(all.length)
   expect(await shownPaths(page)).toEqual(expected)
 })
 

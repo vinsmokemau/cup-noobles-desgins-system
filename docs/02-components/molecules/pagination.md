@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-01, BR-10, BR-13]
 tokens: [pagination, radius.pagination, border.width.pagination]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [tabs, breadcrumb, button, navigation, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Pagination
@@ -46,11 +46,11 @@ Pagination moves between pages of results and shows which page the person is on.
 | `pagination.item.border` | `--cn-pagination-item-border` | `#8c8c8c` | stable |
 | `pagination.item.borderHover` | `--cn-pagination-item-border-hover` | `#ef80ae` | stable |
 | `pagination.item.fg` | `--cn-pagination-item-fg` | `#f5f5f5` | stable |
-| `radius.pagination` | `--cn-radius-pagination` | `0.375rem` | tbd (TBD-10) |
+| `radius.pagination` | `--cn-radius-pagination` | `0.75rem` | stable |
 
 <!-- /cn:generated -->
 
-The pagination tokens reference semantic tokens only (REQ-010 AC2). The current page chip and the focus ring are `stable`: brand pink, black, and brand yellow (BR-01, BR-03, BR-02). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The text color, the outline color, and the stroke width are `stable` (ADR-0032).
+The pagination tokens reference semantic tokens only (REQ-010 AC2). The current page chip and the focus ring are `stable`: brand pink, black, and brand yellow (BR-01, BR-03, BR-02). The corner radius is `stable`: pagination uses the medium radius step, the same as a button (ADR-0050; the step is assigned by T13.3). The text color, the outline color, and the stroke width are `stable` (ADR-0032).
 
 Contrast pairs declared for the pagination (REQ-015):
 
@@ -187,8 +187,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **Draft:** The look (a neutral outline and a pink chip with a black number on the current page, with no glow) is approved (ADR-0028). The hover look is a draft. The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog

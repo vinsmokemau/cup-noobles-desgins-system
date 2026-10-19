@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [toast, radius.toast, border.width.toast]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [alert, tooltip, button, accessibility, motion, color]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Toast
@@ -39,7 +39,7 @@ The toast is a brief message that appears over the page after an action and goes
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `border.width.toast` | `--cn-border-width-toast` | `3px` | stable |
-| `radius.toast` | `--cn-radius-toast` | `0.375rem` | tbd (TBD-10) |
+| `radius.toast` | `--cn-radius-toast` | `0.75rem` | stable |
 | `toast.bg` | `--cn-toast-bg` | `#000000` | stable |
 | `toast.error.color` | `--cn-toast-error-color` | `#ff5c5c` | stable |
 | `toast.fg` | `--cn-toast-fg` | `#f5f5f5` | stable |
@@ -54,7 +54,7 @@ The toast is a brief message that appears over the page after an action and goes
 
 <!-- /cn:generated -->
 
-The toast tokens mirror the alert's, because the two share one look (ADR-0027). They reference semantic tokens only (REQ-010 AC2). The radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The four feedback colors, the text colors, and the stroke width are `stable` (ADR-0032). The fill and the focus ring are `stable`.
+The toast tokens mirror the alert's, because the two share one look (ADR-0027). They reference semantic tokens only (REQ-010 AC2). The radius is `stable`: the toast uses the medium radius step, the same as the alert (ADR-0050; the step is assigned by T13.3). The four feedback colors, the text colors, and the stroke width are `stable` (ADR-0032). The fill and the focus ring are `stable`.
 
 Contrast pairs declared for the toast (REQ-015):
 
@@ -200,8 +200,6 @@ toast.add({
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **Draft:** The toaster keeps Nuxt UI's bottom-right position. A toast above a modal should not cover the modal's actions, because the toast's outline meets the modal's pink one (ADR-0054).
 >
 > **Draft:** The look of the toast (a black fill with a thick outline and an icon in the feedback color) is approved (ADR-0027). The doc stays a draft until the placeholder in the TBD callout above is replaced.

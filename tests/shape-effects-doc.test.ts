@@ -1,5 +1,5 @@
 // T4.4 checks: docs/01-foundations/shape.md and effects.md quote BR-10 and BR-13, cover the radius, stroke-width, glow,
-// elevation, z-index, and focus token groups, keep TBD-10 as a callout (REQ-005; TBD-11, 12, 15, and 16 are resolved), state that focus
+// elevation, z-index, and focus token groups, hold no TBD callout (REQ-005; TBD-10, 11, 12, 15, and 16 are resolved), state that focus
 // is never the glow alone (REQ-024), and hold the R-04 glow rule as a stable rule (ADR-0052).
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
@@ -22,7 +22,7 @@ const block = (text: string, tokens: string, format = 'table') =>
 test('frontmatter: shape is draft and effects is stable, with their BR IDs, TBD IDs, and token groups', () => {
   assert.equal(fm(shape).status, 'draft')
   assert.deepEqual(fm(shape).brandRules, ['BR-10', 'BR-13'])
-  assert.deepEqual(fm(shape).tbd, ['TBD-10'])
+  assert.deepEqual(fm(shape).tbd, [])
   assert.deepEqual(fm(shape).tokens, ['radius', 'border'])
   // T13.2: effects.md holds no TBD item and its glow rule is approved (ADR-0052), so it is stable.
   assert.equal(fm(effects).status, 'stable')
@@ -32,9 +32,9 @@ test('frontmatter: shape is draft and effects is stable, with their BR IDs, TBD 
   assert.deepEqual(fm(effects).tokens, ['effect', 'z', 'focus'])
 })
 
-test('Done when: only TBD-10 has a callout; TBD-11, 12, 15, and 16 are resolved (ADR-0032, ADR-0051, ADR-0054, ADR-0009)', () => {
-  assert.match(shape, callout('TBD-10'), 'shape.md TBD-10')
-  assert.doesNotMatch(shape, callout('TBD-11'))
+test('Done when: no TBD item has a callout; TBD-10, 11, 12, 15, and 16 are resolved (ADR-0050, ADR-0032, ADR-0051, ADR-0054, ADR-0009)', () => {
+  for (const id of ['TBD-10', 'TBD-11']) assert.doesNotMatch(shape, callout(id), `shape.md ${id}`)
+  assert.doesNotMatch(shape, /^> \*\*TBD/m)
   for (const id of ['TBD-12', 'TBD-15', 'TBD-16']) assert.doesNotMatch(effects, callout(id), `effects.md ${id}`)
   assert.doesNotMatch(effects, /^> \*\*TBD/m)
 })
@@ -48,11 +48,7 @@ test('scope: generated blocks cover radius, stroke width, glow, elevation, z-ind
   assert.ok(block(effects, 'effect z focus'))
   assert.ok(block(effects, 'focus', 'contrast'))
   for (const token of ['radius.sm', 'radius.md', 'radius.lg'])
-    assert.match(
-      shape,
-      new RegExp(`^\\| \`${token.replace(/\./g, '\\.')}\` \\|.*\\| tbd \\(TBD-10\\) \\|$`, 'm'),
-      token,
-    )
+    assert.match(shape, new RegExp(`^\\| \`${token.replace(/\./g, '\\.')}\` \\|.*\\| stable \\|$`, 'm'), token)
   assert.match(shape, /^\| `border\.width\.default` \|.*\| stable \|$/m, 'border.width.default')
   for (const token of ['effect.glow.interactive', 'effect.elevation.overlay', 'effect.zIndex.toast'])
     assert.match(effects, new RegExp(`^\\| \`${token.replace(/\./g, '\\.')}\` \\|.*\\| stable \\|$`, 'm'), token)

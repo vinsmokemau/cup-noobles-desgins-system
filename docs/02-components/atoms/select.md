@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-10, BR-13]
 tokens: [input]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [input, textarea, button, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Select
@@ -184,11 +184,9 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** The corner radius follows the ADR-0006 placeholder. See the [input doc](input.md#open-items).
->
 > **Draft:** While the list is open, Reka UI (under Nuxt UI) hides the rest of the page with `aria-hidden` and leaves the trigger focusable, so axe reports `aria-hidden-focus` on that open state. axe is clean in every state of the matrix, where the list is closed. This is the library's behavior, and the select does not change it.
 >
-> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholder in the TBD callout above is replaced.
+> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The corner radius is set (ADR-0050), so the doc stays a draft only until the owner moves it to stable.
 
 ## Changelog
 

@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [skeleton]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [progress, separator, accessibility, motion]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Skeleton
@@ -37,7 +37,7 @@ The skeleton is a stand-in shape shown in the place where content will appear, s
 
 <!-- /cn:generated -->
 
-The shape reads a neutral outline (ADR-0032), so it is `stable`. Its stroke width is the token `border.width.skeleton` on the shape page, and it is `stable` too. Its radius is `radius.skeleton`, which follows a placeholder (TBD-10). The fade lasts one shimmer cycle, `motion.duration.shimmer` (ADR-0032). The depth of the fade, half opacity, is Nuxt UI's own default for the component, not a brand value.
+The shape reads a neutral outline (ADR-0032), so it is `stable`. Its stroke width is the token `border.width.skeleton` on the shape page, and it is `stable` too. Its radius is `radius.skeleton`, which is `stable` and uses the medium radius step (ADR-0050; the step is assigned by T13.3). The fade lasts one shimmer cycle, `motion.duration.shimmer` (ADR-0032). The depth of the fade, half opacity, is Nuxt UI's own default for the component, not a brand value.
 
 ### Brand rules
 
@@ -139,9 +139,7 @@ Not applicable. Email has no loading state.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The shape radius follows a placeholder. Owner input needed: values.
->
-> **Draft:** The look (outlined shapes with a slow fade) is approved (ADR-0015). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look (outlined shapes with a slow fade) is approved (ADR-0015). The corner radius is set (ADR-0050), so the doc stays a draft only until the owner moves it to stable.
 
 ## Changelog
 

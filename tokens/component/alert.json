@@ -3,11 +3,11 @@
     "alert": {
       "$type": "dimension",
       "$value": "{radius.interactive}",
-      "$description": "Corner radius of the alert. TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$description": "Corner radius of the alert. Uses the `interactive` radius role, the `radius.md` step (ADR-0050, TBD-10).",
       "$extensions": {
         "cn": {
-          "status": "tbd",
-          "tbd": ["TBD-10"]
+          "status": "stable",
+          "source": "ADR-0050"
         }
       }
     }

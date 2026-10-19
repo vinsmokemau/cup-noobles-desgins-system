@@ -76,7 +76,8 @@ test('REQ-057 AC2: every doc link and token link on the page leads to a real pag
     .evaluateAll((els) => [...new Set(els.map((el) => el.getAttribute('href')!))])
   const tokenHrefs = hrefs.filter((href) => href.includes('/tokens#'))
   const docHrefs = hrefs.filter((href) => href.startsWith(withBase('/')) && !href.includes('#'))
-  expect(tokenHrefs.length).toBeGreaterThan(0)
+  // T13.3: no token is tbd now, so the page may list no token link; every link it has must still be real.
+  if (report.tokens.length > 0) expect(tokenHrefs.length).toBeGreaterThan(0)
   expect(docHrefs.length).toBeGreaterThan(0)
   for (const href of docHrefs) expect((await request.get(href)).status(), href).toBe(200)
   for (const href of tokenHrefs) {
@@ -84,7 +85,7 @@ test('REQ-057 AC2: every doc link and token link on the page leads to a real pag
     expect(flat, `${href} names no token`).toHaveProperty([path])
   }
   // One real navigation, to prove the anchor lands on its row.
-  const first = report.tokens[0]!.path
+  const first = report.tokens[0]?.path ?? Object.keys(flat)[0]!
   await page.goto(`/tokens#token-${first}`)
   await expect(page.locator(`[data-testid="token-row"][data-path="${first}"]`)).toBeAttached()
 })

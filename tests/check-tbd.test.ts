@@ -162,6 +162,8 @@ test('Done when: the repository passes, and the report lists every callout in ev
       'TBD-06 ADR-0053',
       'TBD-07 ADR-0032',
       'TBD-08 ADR-0055',
+      'TBD-09 ADR-0049',
+      'TBD-10 ADR-0050',
       'TBD-11 ADR-0032',
       'TBD-12 ADR-0051',
       'TBD-13 ADR-0035',

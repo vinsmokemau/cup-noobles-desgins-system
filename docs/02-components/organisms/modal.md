@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [overlay, radius.overlay, border.width.overlay, effect.scrim]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [slideover, card, button, effects, accessibility]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Modal
@@ -48,11 +48,11 @@ The modal is a dialog that opens on top of the page and asks for one decision or
 | `overlay.scrimOpacity` | `--cn-overlay-scrim-opacity` | `0.85` | stable |
 | `overlay.shadow` | `--cn-overlay-shadow` | `none` | stable |
 | `overlay.z` | `--cn-overlay-z` | `50` | stable |
-| `radius.overlay` | `--cn-radius-overlay` | `0.375rem` | tbd (TBD-10) |
+| `radius.overlay` | `--cn-radius-overlay` | `1.25rem` | stable |
 
 <!-- /cn:generated -->
 
-The overlay tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the dividers, and the backdrop color are `stable`: black and brand pink (BR-01, BR-03). The backdrop amount (0.85), the shadow (none), and the stacking order (50) are `stable` (ADR-0054). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The fill is `color.surface.elevated`, the pure-black page (ADR-0053). The text colors and the stroke width are `stable` (ADR-0032). The slideover reads the same tokens.
+The overlay tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the dividers, and the backdrop color are `stable`: black and brand pink (BR-01, BR-03). The backdrop amount (0.85), the shadow (none), and the stacking order (50) are `stable` (ADR-0054). The corner radius is `stable`: the panel uses the large radius step, the same as the card (ADR-0050; the step is assigned by T13.3). The fill is `color.surface.elevated`, the pure-black page (ADR-0053). The text colors and the stroke width are `stable` (ADR-0032). The slideover reads the same tokens.
 
 Contrast pairs declared for the modal and the slideover (REQ-015):
 
@@ -192,8 +192,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **Draft:** At 85% the page behind the modal is nearly invisible, which gives little context. A toast above a modal should not cover the modal's actions, because the toast's pink outline meets the modal's pink one (ADR-0054).
 >
 > **Draft:** The look of the modal (a pink outline and pink dividers on the black page, over a dimmed backdrop, with no glow) is approved (ADR-0029). The doc stays a draft until the placeholder in the TBD callout above is replaced.

@@ -158,15 +158,14 @@ test('REQ-009, REQ-037: the doc is a draft with a Draft callout and its TBD item
   const data = readFrontmatter(doc).data as Record<string, unknown>
   assert.equal(data.status, 'draft')
   assert.equal(data.layer, 'email')
-  // ADR-0041: the owner approved the mapping, so no Draft callout remains; the open TBD items keep the doc a draft.
+  // ADR-0041: the owner approved the mapping, so no Draft callout remains; the doc stays a draft until the owner moves it to stable.
   assert.doesNotMatch(doc, /^> \*\*Draft:\*\*/m)
   assert.match(doc, /^- 0\.1\.0 — Component-to-token mapping approved by the owner[^\n]* — ADR-0041$/m)
   assert.doesNotMatch(doc, /Content pending/)
   // T13.2: TBD-12 is resolved (ADR-0051), so its callout is gone; the email button keeps its solid outline.
-  for (const id of ['TBD-09', 'TBD-10']) {
-    assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
-    assert.match(section('Open items'), new RegExp(`\\*\\*TBD \\(${id}\\):\\*\\*`), `${id} has a callout`)
-  }
+  // T13.3: TBD-09 and TBD-10 are resolved (ADR-0049, ADR-0050), so the doc lists no TBD item and has no callout.
+  assert.deepEqual(data.tbd, [])
+  assert.doesNotMatch(section('Open items'), /TBD-(?:09|10)/)
   assert.ok(!(data.tbd as string[]).includes('TBD-12'))
   assert.doesNotMatch(section('Open items'), /TBD-12/)
   const prose = doc.replace(/<!-- cn:generated[\s\S]*?<!-- \/cn:generated -->/g, '')

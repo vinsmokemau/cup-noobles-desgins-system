@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13, BR-15]
 tokens: [overlay, radius.overlay, border.width.overlay, effect.scrim]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [modal, card, button, effects, accessibility]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Slideover
@@ -48,11 +48,11 @@ The slideover is a panel that slides in from one edge of the screen on top of th
 | `overlay.scrimOpacity` | `--cn-overlay-scrim-opacity` | `0.85` | stable |
 | `overlay.shadow` | `--cn-overlay-shadow` | `none` | stable |
 | `overlay.z` | `--cn-overlay-z` | `50` | stable |
-| `radius.overlay` | `--cn-radius-overlay` | `0.375rem` | tbd (TBD-10) |
+| `radius.overlay` | `--cn-radius-overlay` | `1.25rem` | stable |
 
 <!-- /cn:generated -->
 
-The slideover reads the same tokens as the modal, so a change to the overlay look changes both. The fill, the outline, the dividers, and the backdrop color are `stable`. The backdrop amount (0.85), the shadow (none), and the stacking order (50) are `stable` (ADR-0054). The corner radius follows a placeholder (TBD-10). The fill is `color.surface.elevated`, the pure-black page (ADR-0053). The text colors and the stroke width are `stable` (ADR-0032).
+The slideover reads the same tokens as the modal, so a change to the overlay look changes both. The fill, the outline, the dividers, and the backdrop color are `stable`. The backdrop amount (0.85), the shadow (none), and the stacking order (50) are `stable` (ADR-0054). The corner radius is `stable`: the panel uses the large radius step, the same as the modal (ADR-0050; the step is assigned by T13.3). The fill is `color.surface.elevated`, the pure-black page (ADR-0053). The text colors and the stroke width are `stable` (ADR-0032).
 
 Contrast pairs declared for the overlays (REQ-015) are listed in [Modal](modal.md#tokens-and-specs).
 
@@ -183,8 +183,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **Draft:** At 85% the page behind the slideover is nearly invisible, which gives little context. A toast above a slideover should not cover its actions (ADR-0054).
 >
 > **Draft:** The look of the slideover (the modal's look: a pink outline and pink dividers on the black page, over a dimmed backdrop, with no glow) is approved (ADR-0029). The doc stays a draft until the placeholder in the TBD callout above is replaced.

@@ -57,16 +57,16 @@ test('ADR-0012: every Nuxt UI icon name is set to a Phosphor Bold glyph, and no 
   assert.equal(layer.dependencies['@iconify-json/ph'], '1.2.2')
 })
 
-test('the link and badge component tokens reference semantic tokens, and the shape tokens are tbd placeholders', () => {
+test('the link and badge component tokens reference semantic tokens, and the shape tokens are stable', () => {
   assert.deepEqual(problems, [])
   for (const [path, semantic] of [
-    ['radius.badge', 'radius.interactive'],
+    ['radius.badge', 'radius.compact'],
     ['border.width.badge', 'border.width.interactive'],
   ] as const) {
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
+    assert.equal(token?.cn?.status, 'stable', path)
   }
   assert.equal(byPath.get('link.fg')?.value, '{color.brand.primary}')
   for (const part of ['color', 'width', 'offset', 'style'])

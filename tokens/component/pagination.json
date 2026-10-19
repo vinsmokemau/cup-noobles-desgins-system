@@ -3,11 +3,11 @@
     "pagination": {
       "$type": "dimension",
       "$value": "{radius.interactive}",
-      "$description": "Corner radius of a page number and of the previous and next controls (BR-10). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$description": "Corner radius of a page number and of the previous and next controls (BR-10). Uses the `interactive` radius role, the `radius.md` step (ADR-0050; the step is assigned by T13.3, as the ADR leaves it to the task, TBD-10).",
       "$extensions": {
         "cn": {
-          "status": "tbd",
-          "tbd": ["TBD-10"]
+          "status": "stable",
+          "source": "ADR-0050"
         }
       }
     }

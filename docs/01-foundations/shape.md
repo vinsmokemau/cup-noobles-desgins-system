@@ -6,17 +6,17 @@ status: draft
 lang: en
 brandRules: [BR-10, BR-13]
 tokens: [radius, border]
-tbd: [TBD-10]
+tbd: []
 related: [effects, color, button, card]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Shape
 
 ## Purpose
 
-This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-contrast line work. It implements the shape part of BR-10 (rounded corners and a thick outline stroke) and BR-13 (thick, clean line work). The stroke width is 3 px (ADR-0032). The radius values (TBD-10) are not defined yet, so the radius tokens hold an ADR-0006 placeholder that is not a brand value.
+This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-contrast line work. It implements the shape part of BR-10 (rounded corners and a thick outline stroke) and BR-13 (thick, clean line work). The stroke width is 3 px (ADR-0032). The radius is Chunky (ADR-0050): 8, 12, and 20 px.
 
 ## Tokens and specs
 
@@ -43,26 +43,28 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `border.width.tabs` | `--cn-border-width-tabs` | `3px` | stable |
 | `border.width.toast` | `--cn-border-width-toast` | `3px` | stable |
 | `border.width.tooltip` | `--cn-border-width-tooltip` | `3px` | stable |
-| `radius.alert` | `--cn-radius-alert` | `0.375rem` | tbd (TBD-10) |
-| `radius.badge` | `--cn-radius-badge` | `0.375rem` | tbd (TBD-10) |
-| `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
-| `radius.card` | `--cn-radius-card` | `0.375rem` | tbd (TBD-10) |
-| `radius.choice` | `--cn-radius-choice` | `0.375rem` | tbd (TBD-10) |
-| `radius.input` | `--cn-radius-input` | `0.375rem` | tbd (TBD-10) |
-| `radius.interactive` | `--cn-radius-interactive` | `0.375rem` | tbd (TBD-10) |
-| `radius.lg` | `--cn-radius-lg` | `0.5rem` | tbd (TBD-10) |
-| `radius.md` | `--cn-radius-md` | `0.375rem` | tbd (TBD-10) |
-| `radius.mediaCard` | `--cn-radius-media-card` | `0.375rem` | tbd (TBD-10) |
-| `radius.overlay` | `--cn-radius-overlay` | `0.375rem` | tbd (TBD-10) |
-| `radius.pagination` | `--cn-radius-pagination` | `0.375rem` | tbd (TBD-10) |
-| `radius.skeleton` | `--cn-radius-skeleton` | `0.375rem` | tbd (TBD-10) |
-| `radius.sm` | `--cn-radius-sm` | `0.25rem` | tbd (TBD-10) |
-| `radius.toast` | `--cn-radius-toast` | `0.375rem` | tbd (TBD-10) |
-| `radius.tooltip` | `--cn-radius-tooltip` | `0.375rem` | tbd (TBD-10) |
+| `radius.alert` | `--cn-radius-alert` | `0.75rem` | stable |
+| `radius.badge` | `--cn-radius-badge` | `0.5rem` | stable |
+| `radius.button` | `--cn-radius-button` | `0.75rem` | stable |
+| `radius.card` | `--cn-radius-card` | `1.25rem` | stable |
+| `radius.choice` | `--cn-radius-choice` | `0.5rem` | stable |
+| `radius.compact` | `--cn-radius-compact` | `0.5rem` | stable |
+| `radius.container` | `--cn-radius-container` | `1.25rem` | stable |
+| `radius.input` | `--cn-radius-input` | `0.75rem` | stable |
+| `radius.interactive` | `--cn-radius-interactive` | `0.75rem` | stable |
+| `radius.lg` | `--cn-radius-lg` | `1.25rem` | stable |
+| `radius.md` | `--cn-radius-md` | `0.75rem` | stable |
+| `radius.mediaCard` | `--cn-radius-media-card` | `1.25rem` | stable |
+| `radius.overlay` | `--cn-radius-overlay` | `1.25rem` | stable |
+| `radius.pagination` | `--cn-radius-pagination` | `0.75rem` | stable |
+| `radius.skeleton` | `--cn-radius-skeleton` | `0.75rem` | stable |
+| `radius.sm` | `--cn-radius-sm` | `0.5rem` | stable |
+| `radius.toast` | `--cn-radius-toast` | `0.75rem` | stable |
+| `radius.tooltip` | `--cn-radius-tooltip` | `0.5rem` | stable |
 
 <!-- /cn:generated -->
 
-The radius rows are `tbd`. They hold the ADR-0006 placeholders taken from Nuxt UI's default radii, and **none of them is a brand value.** BR-10 asks for "rounded" corners, and a placeholder is still only a placeholder. They exist only so the tokens build and the showcase renders. The stroke-width row is `stable`: BR-13 asks for "thick" lines, and the owner chose 3 px (ADR-0032).
+The radius rows are `stable`: BR-10 asks for "rounded" corners, and the owner chose the Chunky radius (ADR-0050). The stroke-width row is `stable` too: BR-13 asks for "thick" lines, and the owner chose 3 px (ADR-0032).
 
 The component tokens that apply shape to a component are added by that component's task. The button's are `radius.button` and `border.width.button` (REQ-023 AC2, see [Button](../02-components/atoms/button.md)).
 
@@ -78,9 +80,15 @@ The glow in BR-10 is covered in [Effects](effects.md).
 
 | Token group | Source | Role |
 |---|---|---|
-| `radius.sm`, `radius.md`, `radius.lg` | BR-10, values TBD-10 | Corner radius steps, from small elements to large containers. |
+| `radius.sm` | BR-10, ADR-0050 | 0.5rem (8 px): badges, checkboxes, and tooltips. |
+| `radius.md` | BR-10, ADR-0050 | 0.75rem (12 px): buttons, text fields, pagination, alerts, and toasts. |
+| `radius.lg` | BR-10, ADR-0050 | 1.25rem (20 px): cards, media cards, and overlay panels. |
 
-BR-10 names rounded corners on buttons only. Whether other components are rounded, and how much, is part of TBD-10.
+The three steps are the whole scale. There is no fully round step, so a component never takes a pill shape from a radius token. A radio is round and a switch is pill-shaped by their own shape, not by a radius.
+
+Components read a step through a role in the semantic tier (REQ-010 AC2): `radius.compact` is `radius.sm`, `radius.interactive` is `radius.md`, and `radius.container` is `radius.lg`. The owner chose the radius of the button, badge, input, checkbox, card, media card, and alert (ADR-0050). The overlay, pagination, skeleton, toast, tooltip, and the interactive role were left to the task that applied the decision (T13.3), which gave each the step of the closest component the owner chose.
+
+A badge with an 8 px radius looks nearly round when it is short, so badges keep a minimum height (ADR-0050).
 
 ### Stroke width
 
@@ -102,8 +110,7 @@ BR-13 applies to "all UI and illustration", so every outline, divider, and illus
 
 ### When not to use
 
-- Never make up a radius or a stroke width. The stroke width is in ADR-0032. The radius is TBD-10, and only the owner can supply it.
-- Never treat the ADR-0006 placeholders as brand values, and never copy them into another project.
+- Never make up a radius or a stroke width. The stroke width is in ADR-0032. The radius is in ADR-0050. A new component takes one of the three steps and never adds a fourth.
 - Never draw hairline or low-contrast lines; they contradict BR-13.
 
 ## Do and don't
@@ -132,7 +139,7 @@ Email templates use the resolved literals from `dist/email/email-tokens.json`, i
 
 | Where | What |
 |---|---|
-| `tokens/primitive/radius.json` | The radius steps, all `tbd` (TBD-10). |
+| `tokens/primitive/radius.json` | The three radius steps, `stable` (ADR-0050). |
 | `tokens/primitive/border.json` | The stroke width, `stable` (ADR-0032). |
 | `@vinsmokemau/cup-noobles-tokens`, `dist/css/tokens.css` | The CSS custom properties, such as `--cn-radius-md` (REQ-017). |
 | `packages/nuxt/assets/css/main.css` | Maps Nuxt UI's base radius (`--ui-radius`) to the `--cn-*` variables (§4.7, ADR-0001). |
@@ -146,9 +153,10 @@ Email templates use the resolved literals from `dist/email/email-tokens.json`, i
 
 ## Open items
 
-> **TBD (TBD-10):** Corner radius values are not defined ("rounded" in BR-10). `radius.sm`, `radius.md`, and `radius.lg` hold ADR-0006 placeholders. Owner input needed: values, and which components besides buttons are rounded.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-10 and BR-13, the radius and stroke-width groups, and TBD-10 and TBD-11 (T4.4) — awaiting owner approval
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — The radius is Chunky, set by the owner, and the placeholders for it are gone. The remaining radius tokens take a step — ADR-0050

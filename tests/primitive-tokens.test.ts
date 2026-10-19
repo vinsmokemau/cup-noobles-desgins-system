@@ -6,15 +6,14 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { checkTbd } from '../scripts/check-tbd'
-import { checkTokens, PLACEHOLDER_FILE, type Token } from '../scripts/check-tokens'
+import { checkTokens, PLACEHOLDER_FILE } from '../scripts/check-tokens'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const { tokens } = checkTokens(root)
 const inFile = (file: string) => tokens.filter((t) => t.file === `tokens/primitive/${file}`)
 const tbdIds = (text: string) => [...text.matchAll(/\bTBD-\d{2}\b/g)].map((m) => m[0])
 
-// §4.1: the primitive files, and §4.7: every primitive group other than color is TBD in T3.2.
-const TBD_FILES = ['space', 'radius'].map((f) => `${f}.json`)
+// §4.1: the primitive files. Every group other than color was TBD in T3.2, and none is now (T13.3).
 // Groups resolved by the owner since T3.2, each holding stable raw values from its ADR (§4.4 resolution, ADR-0008 §4).
 const RESOLVED_FILES = {
   'focus.json': 'ADR-0009',
@@ -26,12 +25,14 @@ const RESOLVED_FILES = {
   'font.json': 'ADR-0046',
   'effect.json': 'ADR-0051',
   'z.json': 'ADR-0054',
+  'space.json': 'ADR-0049',
+  'radius.json': 'ADR-0050',
 }
 
 test('§4.1: tokens/primitive/ holds exactly the listed files', () => {
   assert.deepEqual(
     readdirSync(join(root, 'tokens/primitive')).sort(),
-    ['_placeholder.json', 'color.json', ...TBD_FILES, ...Object.keys(RESOLVED_FILES)].sort(),
+    ['color.json', ...Object.keys(RESOLVED_FILES)].sort(),
   )
 })
 
@@ -162,7 +163,10 @@ test('ADR-0006: _placeholder.json holds exactly the recorded values, each labele
   // ADR-0046, ADR-0047, and ADR-0048 resolved TBD-01 to TBD-03, so the 17 typography placeholders are struck through too.
   // ADR-0053, ADR-0051, and ADR-0054 resolved TBD-06, TBD-12, and TBD-15, so the neutral color, the glow, the backdrop
   // amount, the overlay shadow, and the two z-index placeholders are struck through and deleted too.
-  assert.equal(rows.length, 36 - 3 - 6 - 17 - 6, 'every placeholder row in ADR-0006')
+  // ADR-0049 and ADR-0050 resolved TBD-09 and TBD-10, so the spacing base and the three radii are struck through too, and
+  // `_placeholder.json` has nothing left, so it is deleted.
+  assert.equal(rows.length, 36 - 3 - 6 - 17 - 6 - 4, 'every placeholder row in ADR-0006')
+  assert.equal(existsSync(join(root, PLACEHOLDER_FILE)), false, 'no placeholder is left')
   const placeholders = tokens.filter((t) => t.file === PLACEHOLDER_FILE)
   assert.deepEqual(placeholders.map((t) => t.path).sort(), rows.map((r) => r.path).sort())
 
@@ -178,26 +182,80 @@ test('ADR-0006: _placeholder.json holds exactly the recorded values, each labele
   }
 })
 
-test('REQ-005 AC2 and §4.4: every other primitive is tbd, references a placeholder, and names its TBD IDs', () => {
-  const placeholders = new Set(tokens.filter((t) => t.file === PLACEHOLDER_FILE).map((t) => t.path))
-  const others: Token[] = TBD_FILES.flatMap(inFile)
-  for (const file of TBD_FILES) assert.ok(inFile(file).length, `${file} holds tokens`)
-  const primitives = tokens.filter((t) => t.tier === 'primitive')
-  const resolved = Object.keys(RESOLVED_FILES).flatMap(inFile)
-  assert.equal(others.length + inFile('color.json').length + resolved.length + placeholders.size, primitives.length)
-
-  for (const token of others) {
-    assert.equal(token.cn?.status, 'tbd', token.path)
-    const ref = String(token.value).match(/^\{(placeholder\.[^{}]+)\}$/)?.[1]
-    assert.ok(ref && placeholders.has(ref), `${token.path} references a placeholder`)
-    const ids = token.cn?.tbd as string[]
-    assert.ok(ids.length, token.path)
-    for (const id of ids) assert.ok(String(token.description).includes(id), `${token.path} description names ${id}`)
-    // A token stands in for a subset of what its placeholder stands in for.
-    const placeholder = tokens.find((t) => t.path === ref)!
-    for (const id of ids) assert.ok((placeholder.cn?.tbd as string[]).includes(id), `${token.path}: ${id}`)
+test('ADR-0049: the space primitives hold the Rhythm of 8, stable, with the ADR as source', () => {
+  const space = inFile('space.json').map((t) => [t.path, t.value, t.cn?.status, t.cn?.source])
+  // ADR-0006 policy 6: a path segment cannot start with a digit, so 2xl, 3xl, and 4xl are xxl, xxxl, and xxxxl.
+  assert.deepEqual(space, [
+    ['space.base', '0.25rem', 'stable', 'ADR-0049'],
+    ['space.sm', '0.5rem', 'stable', 'ADR-0049'],
+    ['space.md', '1rem', 'stable', 'ADR-0049'],
+    ['space.lg', '1.5rem', 'stable', 'ADR-0049'],
+    ['space.xl', '2rem', 'stable', 'ADR-0049'],
+    ['space.xxl', '3rem', 'stable', 'ADR-0049'],
+    ['space.xxxl', '4rem', 'stable', 'ADR-0049'],
+    ['space.xxxxl', '6rem', 'stable', 'ADR-0049'],
+  ])
+  // Every step is a multiple of the 4 px base.
+  for (const token of inFile('space.json')) {
+    const rem = Number.parseFloat(String(token.value))
+    assert.equal(Number.isInteger(rem / 0.25), true, token.path)
   }
-  assert.ok(existsSync(join(root, PLACEHOLDER_FILE)))
+})
+
+test('ADR-0050: the radius primitives hold the Chunky radius, and the roles and components take a step', () => {
+  const radius = inFile('radius.json').map((t) => [t.path, t.value, t.cn?.status, t.cn?.source])
+  assert.deepEqual(radius, [
+    ['radius.sm', '0.5rem', 'stable', 'ADR-0050'],
+    ['radius.md', '0.75rem', 'stable', 'ADR-0050'],
+    ['radius.lg', '1.25rem', 'stable', 'ADR-0050'],
+  ])
+  // The semantic roles are the only readers of the steps (REQ-010 AC2), and a component reads a role.
+  const roles = { interactive: 'radius.md', compact: 'radius.sm', container: 'radius.lg' }
+  for (const [role, step] of Object.entries(roles)) {
+    const token = tokens.find((t) => t.path === `radius.${role}` && t.tier === 'semantic')
+    assert.equal(token?.value, `{${step}}`, role)
+    assert.equal(token?.cn?.status, 'stable', role)
+  }
+  // The values the owner chose in ADR-0050, by component, and the steps T13.3 assigned to the six it left open.
+  const px = { sm: 8, md: 12, lg: 20 }
+  const byComponent: Record<string, keyof typeof px> = {
+    button: 'md',
+    badge: 'sm',
+    input: 'md',
+    choice: 'sm',
+    card: 'lg',
+    mediaCard: 'lg',
+    alert: 'md',
+    overlay: 'lg',
+    pagination: 'md',
+    skeleton: 'md',
+    toast: 'md',
+    tooltip: 'sm',
+  }
+  const byPath = new Map(tokens.map((t) => [t.path + ':' + t.tier, t]))
+  const resolve = (path: string, tier: string): number => {
+    let token = byPath.get(path + ':' + tier)!
+    while (typeof token.value === 'string' && token.value.startsWith('{')) {
+      const next = token.value.slice(1, -1)
+      token = [...byPath.values()].find((t) => t.path === next && t.tier !== tier)!
+      tier = token.tier
+    }
+    return Number.parseFloat(String(token.value)) * 16
+  }
+  for (const [component, step] of Object.entries(byComponent)) {
+    const token = tokens.find((t) => t.path === `radius.${component}` && t.tier === 'component')
+    assert.equal(token?.cn?.status, 'stable', component)
+    assert.equal(resolve(`radius.${component}`, 'component'), px[step], component)
+  }
+})
+
+test('REQ-005 AC2 and §4.4: no primitive is tbd and no placeholder is left', () => {
+  assert.equal(existsSync(join(root, PLACEHOLDER_FILE)), false)
+  assert.deepEqual(
+    tokens.filter((t) => t.tier === 'primitive' && t.cn?.status === 'tbd'),
+    [],
+  )
+  assert.deepEqual(checkTbd(root).problems, [])
 })
 
 // Done when: `check:tokens` passes, and `check:tbd` lists every TBD-03 through TBD-16 token.

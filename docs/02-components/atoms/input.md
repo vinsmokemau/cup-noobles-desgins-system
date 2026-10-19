@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-10, BR-13]
 tokens: [input]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [textarea, select, button, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Input
@@ -50,7 +50,7 @@ The input is a single-line text field: the place where a person types a short an
 
 <!-- /cn:generated -->
 
-The text-field tokens are shared by the input, the textarea, and the select, so the three always match. The component tokens only reference semantic tokens (REQ-010 AC2). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The text, placeholder, outline, and error colors and the stroke width are `stable` (ADR-0032), and so are the fill, the hover outline, and the focus tokens.
+The text-field tokens are shared by the input, the textarea, and the select, so the three always match. The component tokens only reference semantic tokens (REQ-010 AC2). The corner radius is `stable`: the text fields use the medium radius step (ADR-0050). The text, placeholder, outline, and error colors and the stroke width are `stable` (ADR-0032), and so are the fill, the hover outline, and the focus tokens.
 
 Contrast pairs declared for the text fields (REQ-015):
 
@@ -187,8 +187,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog

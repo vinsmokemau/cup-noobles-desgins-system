@@ -209,17 +209,16 @@ test('REQ-009, REQ-037: the doc is a draft with a Draft callout and its TBD item
   const data = readFrontmatter(doc).data as Record<string, unknown>
   assert.equal(data.status, 'draft')
   assert.equal(data.layer, 'email')
-  // ADR-0042: the owner approved the layout, so no Draft callout remains; the open TBD items keep the doc a draft.
+  // ADR-0042: the owner approved the layout, so no Draft callout remains; the doc stays a draft until the owner moves it to stable.
   assert.doesNotMatch(doc, /^> \*\*Draft:\*\*/m)
   assert.match(
     doc,
     /^- 0\.1\.0 — Part order, plain-text blocks, and logo clear space approved by the owner[^\n]* — ADR-0042$/m,
   )
   assert.doesNotMatch(doc, /Content pending/)
-  for (const id of ['TBD-09', 'TBD-10']) {
-    assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
-    assert.match(section('Open items'), new RegExp(`\\*\\*TBD \\(${id}\\):\\*\\*`), `${id} has a callout`)
-  }
+  // T13.3: TBD-09 and TBD-10 are resolved (ADR-0049, ADR-0050), so the doc lists no TBD item and has no callout.
+  assert.deepEqual(data.tbd, [])
+  assert.doesNotMatch(section('Open items'), /TBD-(?:09|10)/)
   const prose = doc.replace(/<!-- cn:generated[\s\S]*?<!-- \/cn:generated -->/g, '')
   assert.doesNotMatch(prose, /#[0-9a-fA-F]{3,8}\b/)
   assert.doesNotMatch(prose, /\b(?:Ubuntu|Helvetica|Arial|Roboto|Segoe)\b/)

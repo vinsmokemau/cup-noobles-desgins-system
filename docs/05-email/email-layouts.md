@@ -6,10 +6,10 @@ status: draft
 lang: en
 brandRules: [BR-01, BR-03, BR-10, BR-13, BR-15, BR-16]
 tokens: [layout.email, logo.rule, space, color.bg.base, siteHeader, siteFooter, card, separator]
-tbd: [TBD-09, TBD-10]
+tbd: []
 related: [email-foundations, email-components, logo, spacing, layout, accessibility]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Email layouts
@@ -20,9 +20,9 @@ This doc describes the one reference layout of a Cup Noobles email, and the plai
 
 ## Tokens and specs
 
-The layout introduces no value of its own. It reads the tokens of its components, and the three below set its frame: the body width, the base, and the logo clear space.
+The layout introduces no value of its own. It reads the tokens of its components, and the tokens below set its frame: the body width, the base, the logo clear space, and the three spacing steps its parts use.
 
-<!-- cn:generated tokens="layout.email.width.max color.bg.base logo.rule.clearSpace logo.rule.minHeight.horizontal space.base" format="table" -->
+<!-- cn:generated tokens="layout.email.width.max color.bg.base logo.rule.clearSpace logo.rule.minHeight.horizontal space.sm space.md space.lg" format="table" -->
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
@@ -30,7 +30,9 @@ The layout introduces no value of its own. It reads the tokens of its components
 | `layout.email.width.max` | `--cn-layout-email-width-max` | `600px` | stable |
 | `logo.rule.clearSpace` | `--cn-logo-rule-clear-space` | `0.25` | stable |
 | `logo.rule.minHeight.horizontal` | `--cn-logo-rule-min-height-horizontal` | `36px` | stable |
-| `space.base` | `--cn-space-base` | `0.25rem` | tbd (TBD-09) |
+| `space.lg` | `--cn-space-lg` | `1.5rem` | stable |
+| `space.md` | `--cn-space-md` | `1rem` | stable |
+| `space.sm` | `--cn-space-sm` | `0.5rem` | stable |
 
 <!-- /cn:generated -->
 
@@ -47,7 +49,7 @@ The layout has one column, at most `layout.email.width.max` wide, and it shrinks
 | 5 | Break | `divider` | None |
 | 6 | Closing line and link | `footer` | `{{ footer_text }}`, `{{ footer_link_url }}`, `{{ footer_link_label }}` |
 
-The page base is `color.bg.base` in every part, set as both the `bgcolor` attribute and the inline `background` (see [Email foundations](email-foundations.md)). Every padding is `space.base` today, so the parts have no larger steps between them (TBD-09).
+The page base is `color.bg.base` in every part, set as both the `bgcolor` attribute and the inline `background` (see [Email foundations](email-foundations.md)). Every padding is a step of the spacing scale (ADR-0049): text blocks and the button use `space.md`, the card and the footer use `space.lg`, and the divider section uses `space.sm`. The header keeps the logo clear space, below. The layout shrinks to 320 px with no horizontal scroll.
 
 ### Logo clear space
 
@@ -134,10 +136,6 @@ Centro de ayuda: https://example.com/ayuda
 
 ## Open items
 
-> **TBD (TBD-09):** The spacing scale is not defined, so every padding in the layout is `space.base`, a placeholder, and the parts have no larger steps between them. Owner input needed: the base unit and the scale.
->
-> **TBD (TBD-10):** The corner radius is not defined, so the button and the card use the ADR-0006 placeholder. Owner input needed: values.
-
 Real-client rendering is not verified here (R-05). It belongs to the consuming project.
 
 ## Changelog
@@ -145,3 +143,4 @@ Real-client rendering is not verified here (R-05). It belongs to the consuming p
 - 0.1.0 — First draft: the reference layout of the six components, its widths, the logo clear space, and the plain-text counterpart (T10.4, REQ-043)
 - 0.1.0 — Part order, plain-text blocks, and logo clear space approved by the owner. The doc stays a draft while TBD-01, TBD-03, TBD-09, and TBD-10 are open — ADR-0042
 - 0.1.0 — The display typeface and the type scale are set by the owner, so the TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-09 and TBD-10 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
+- 0.1.0 — The spacing scale and the corner radius are set by the owner, so the TBD-09 and TBD-10 callouts are gone. The parts take their padding from the scale (T13.3) — ADR-0049, ADR-0050

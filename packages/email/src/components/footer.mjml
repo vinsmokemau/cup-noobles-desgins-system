@@ -7,7 +7,7 @@
         line-height="$cn(font.lineHeight.body)"
         font-weight="$cn(font.weight.body)"
         color="$cn(color.text.default)"
-        padding="$cn(space.base)"
+        padding="$cn(space.md)"
         container-background-color="$cn(color.bg.base)"
       />
     </mj-attributes>
@@ -16,7 +16,7 @@
     <mj-section
       background-color="$cn(siteFooter.bg)"
       border-top="$cn(border.width.siteFooter) solid $cn(siteFooter.line)"
-      padding="$cn(space.base)"
+      padding="$cn(space.lg)"
     >
       <mj-column background-color="$cn(siteFooter.bg)">
         <mj-text

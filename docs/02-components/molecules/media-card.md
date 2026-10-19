@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [mediaCard, radius.mediaCard, border.width.mediaCard, color.surface.card]
 demos: [states, playground]
-tbd: [TBD-10, TBD-20]
+tbd: [TBD-20]
 related: [card, badge, link, imagery-and-motifs, accessibility, shape]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Media card
@@ -48,11 +48,11 @@ updated: 2026-10-18
 | `mediaCard.focus.style` | `--cn-media-card-focus-style` | `solid` | stable |
 | `mediaCard.focus.width` | `--cn-media-card-focus-width` | `3px` | stable |
 | `mediaCard.highlight` | `--cn-media-card-highlight` | `#ef80ae` | stable |
-| `radius.mediaCard` | `--cn-radius-media-card` | `0.375rem` | tbd (TBD-10) |
+| `radius.mediaCard` | `--cn-radius-media-card` | `1.25rem` | stable |
 
 <!-- /cn:generated -->
 
-The media card tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the divider, and the focus ring are `stable`: black and brand pink, and the brand yellow of the focus indicator (BR-01, BR-02, BR-03). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The title color and the stroke width are `stable` (ADR-0032).
+The media card tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the divider, and the focus ring are `stable`: black and brand pink, and the brand yellow of the focus indicator (BR-01, BR-02, BR-03). The corner radius is `stable`: the media card uses the large radius step, the same as the card (ADR-0050). The title color and the stroke width are `stable` (ADR-0032).
 
 The card fill is `color.surface.card`, which is the pure-black page (ADR-0053, C-05). The outline, never a different fill, separates it from the page.
 
@@ -207,8 +207,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **TBD (TBD-20):** Photography and thumbnail standards are not defined: subject, style, aspect ratios, and crops. The thumbnail keeps its own proportions until then. Owner input needed: guidelines.
 >
 > **Draft:** The look of the card (a pink outline, an underlined title on hover, and the yellow focus ring around the card, with no glow) is approved (ADR-0026). The doc stays a draft until the placeholders in the TBD callouts above are replaced.

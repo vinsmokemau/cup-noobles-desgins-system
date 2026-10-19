@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.39 |
+| Spec version | 1.40 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -190,8 +190,8 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-06 | Card and elevated surface colors (see C-05) | `color.surface.*` | Resolved (ADR-0053) |
 | TBD-07 | Feedback colors for success, warning, error, and info | `color.feedback.*` | Resolved (ADR-0032) |
 | TBD-08 | Tints and shades of pink and yellow (see C-06) | Nuxt UI alias scales | Resolved (ADR-0055) |
-| TBD-09 | Spacing base unit and scale | `space.*` | Base unit |
-| TBD-10 | Corner radius values ("rounded" in BR-10) | `radius.*` | Values |
+| TBD-09 | Spacing base unit and scale | `space.*` | Resolved (ADR-0049) |
+| TBD-10 | Corner radius values ("rounded" in BR-10) | `radius.*` | Resolved (ADR-0050) |
 | TBD-11 | Stroke widths ("thick" in BR-10 and BR-13) | `border.width.*` | Resolved (ADR-0032) |
 | TBD-12 | Neon glow parameters: blur, spread, opacity, and which color is used per state ("subtle" in BR-10) | `effect.glow.*` | Resolved (ADR-0051) |
 | TBD-13 | Breakpoints and container widths. The 360 px minimum is fixed by ER-05. | `breakpoint.*` | Resolved (ADR-0035) |
@@ -1388,6 +1388,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.37 | 2026-10-18 | Added P13 (T13.1 through T13.4) after T12.3: each applies the owner's TBD decisions to this spec, the docs, and the tokens. The owner stays on 0.x until every TBD item is closed. No existing requirement or task changes. | Owner decisions in chat; ADR-0045 through ADR-0057 |
 | 1.38 | 2026-10-18 | §2.4: TBD-01, TBD-02, and TBD-03 are resolved by ADR-0046, ADR-0047, and ADR-0048 (Titan One, Rubik, and the Balanced type scale), and §7.2: OD-06 is decided. The email fallback stack is ADR-0058. No requirement or task changes. | Owner decisions in chat; ADR-0046, ADR-0047, ADR-0048, ADR-0058 |
 | 1.39 | 2026-10-18 | §2.4: TBD-06, TBD-08, TBD-12, and TBD-15 are resolved by ADR-0053, ADR-0055, ADR-0051, and ADR-0054 (pure-black surfaces, the minimal derived brand shades, the Neon tube glow, and Outline only elevation). §2.2: C-05 and C-06 are resolved. §7.2: OD-04 and OD-05 are decided. No requirement or task changes. | Owner decisions in chat; ADR-0051, ADR-0052, ADR-0053, ADR-0054, ADR-0055 |
+| 1.40 | 2026-10-19 | §2.4: TBD-09 and TBD-10 are resolved by ADR-0049 and ADR-0050 (the Rhythm of 8 spacing scale and the Chunky corner radius). No requirement or task changes. | Owner decisions in chat; ADR-0049, ADR-0050 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

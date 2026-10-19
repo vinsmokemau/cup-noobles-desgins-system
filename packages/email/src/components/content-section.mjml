@@ -7,13 +7,13 @@
         line-height="$cn(font.lineHeight.body)"
         font-weight="$cn(font.weight.body)"
         color="$cn(color.text.default)"
-        padding="$cn(space.base)"
+        padding="$cn(space.md)"
         container-background-color="$cn(color.bg.base)"
       />
     </mj-attributes>
   </mj-head>
   <mj-body width="$cn(layout.email.width.max)" background-color="$cn(color.bg.base)">
-    <mj-section background-color="$cn(color.bg.base)" padding="$cn(space.base)">
+    <mj-section background-color="$cn(color.bg.base)" padding="$cn(space.md)">
       <mj-column background-color="$cn(color.bg.base)">
         <mj-text
           ><h2

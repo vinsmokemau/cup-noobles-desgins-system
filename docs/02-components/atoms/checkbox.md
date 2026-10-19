@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [choice]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [radio-group, switch, input, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Checkbox
@@ -49,7 +49,7 @@ The checkbox lets a person turn one option on or off, or pick any number of opti
 
 <!-- /cn:generated -->
 
-The choice tokens are shared by the checkbox, the radio group, and the switch, so the three always match. The component tokens only reference semantic tokens (REQ-010 AC2). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The unchecked outline reads the neutral border color, and the stroke width is 3 px (ADR-0032). The fill, the hover outline, the checked colors, and the focus tokens are `stable`.
+The choice tokens are shared by the checkbox, the radio group, and the switch, so the three always match. The component tokens only reference semantic tokens (REQ-010 AC2). The corner radius is `stable`: the checkbox box uses the small radius step (ADR-0050). The unchecked outline reads the neutral border color, and the stroke width is 3 px (ADR-0032). The fill, the hover outline, the checked colors, and the focus tokens are `stable`.
 
 Contrast pairs declared for the choice controls (REQ-015):
 
@@ -181,8 +181,6 @@ Not applicable. Email has no form controls.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The checkbox corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **Draft:** The look of the choice controls (an outlined box that turns pink on hover and fills pink with a black mark when checked, with the yellow focus ring) is approved (ADR-0014). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog

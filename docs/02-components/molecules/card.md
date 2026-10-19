@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [card, radius.card, border.width.card, color.surface.card]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [media-card, badge, button, form-field, color, shape]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Card
@@ -43,11 +43,11 @@ The card groups related content into one framed block with an optional header, a
 | `card.fgMuted` | `--cn-card-fg-muted` | `#bdbdbd` | stable |
 | `card.highlight` | `--cn-card-highlight` | `#ef80ae` | stable |
 | `color.surface.card` | `--cn-color-surface-card` | `#000000` | stable |
-| `radius.card` | `--cn-radius-card` | `0.375rem` | tbd (TBD-10) |
+| `radius.card` | `--cn-radius-card` | `1.25rem` | stable |
 
 <!-- /cn:generated -->
 
-The card tokens reference semantic tokens only (REQ-010 AC2). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The text colors and the stroke width are `stable` (ADR-0032), and so are the fill, the outline, and the dividers: black and brand pink (BR-01, BR-03).
+The card tokens reference semantic tokens only (REQ-010 AC2). The corner radius is `stable`: the card uses the large radius step (ADR-0050). The text colors and the stroke width are `stable` (ADR-0032), and so are the fill, the outline, and the dividers: black and brand pink (BR-01, BR-03).
 
 The card fill is `color.surface.card`, which is the pure-black page (ADR-0053, C-05). The outline, never a different fill, separates it from the page.
 
@@ -171,8 +171,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **Draft:** The look of the card (a pink outline and pink dividers on the black page, with no glow) is approved (ADR-0018). The doc stays a draft until the placeholder in the TBD callout above is replaced.
 
 ## Changelog

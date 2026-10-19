@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [choice]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [checkbox, radio-group, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Switch
@@ -178,9 +178,7 @@ Not applicable. Email has no form controls.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The switch is pill-shaped by shape, but the choice token group also holds the checkbox radius, which follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **Draft:** The look of the choice controls (an outlined track that turns pink on hover and fills pink with a black thumb when on, with the yellow focus ring) is approved (ADR-0014). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the choice controls (an outlined track that turns pink on hover and fills pink with a black thumb when on, with the yellow focus ring) is approved (ADR-0014). The corner radius is set (ADR-0050), so the doc stays a draft only until the owner moves it to stable.
 
 ## Changelog
 

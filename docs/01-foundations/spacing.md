@@ -6,17 +6,17 @@ status: draft
 lang: en
 brandRules: [BR-06, BR-15]
 tokens: [space]
-tbd: [TBD-09]
+tbd: []
 related: [layout, typography, shape, responsive-behavior]
 since: 0.1.0
-updated: 2026-09-28
+updated: 2026-10-19
 ---
 
 # Spacing
 
 ## Purpose
 
-This doc defines how space is measured in Cup Noobles UI: one base unit, and a scale of steps built from it, used for every padding, gap, and margin. Consistent spacing keeps the UI legible (BR-06) and lets the same components work on mobile and web/dashboard layouts (BR-15). The base unit and the scale are not defined yet (TBD-09), so the spacing token holds an ADR-0006 placeholder that is not a brand value.
+This doc defines how space is measured in Cup Noobles UI: one base unit, and a scale of steps built from it, used for every padding, gap, and margin. Consistent spacing keeps the UI legible (BR-06) and lets the same components work on mobile and web/dashboard layouts (BR-15). The scale is the Rhythm of 8 (ADR-0049): a 4 px base and eight steps, each a multiple of it.
 
 ## Tokens and specs
 
@@ -24,13 +24,37 @@ This doc defines how space is measured in Cup Noobles UI: one base unit, and a s
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `space.base` | `--cn-space-base` | `0.25rem` | tbd (TBD-09) |
+| `space.base` | `--cn-space-base` | `0.25rem` | stable |
+| `space.lg` | `--cn-space-lg` | `1.5rem` | stable |
+| `space.md` | `--cn-space-md` | `1rem` | stable |
+| `space.sm` | `--cn-space-sm` | `0.5rem` | stable |
+| `space.xl` | `--cn-space-xl` | `2rem` | stable |
+| `space.xxl` | `--cn-space-xxl` | `3rem` | stable |
+| `space.xxxl` | `--cn-space-xxxl` | `4rem` | stable |
+| `space.xxxxl` | `--cn-space-xxxxl` | `6rem` | stable |
 
 <!-- /cn:generated -->
 
-The row above is `tbd`. It holds the ADR-0006 placeholder taken from Tailwind's `--spacing`, the base unit of every Nuxt UI padding and gap class. **It is not a brand value.** It exists only so the tokens build and the showcase renders stock Nuxt UI spacing.
+The base unit is 0.25rem (4 px), the same as Tailwind's `--spacing`, so every stock Nuxt UI padding and gap class keeps its size. The owner chose a 4 px base because a larger one would double each of them (ADR-0049).
 
-Only the base unit exists as a token today. The steps of the scale, such as small, medium, and large gaps, are part of TBD-09 and are added when the owner supplies them. The component tokens that apply spacing to a component, such as a button's padding, are added by that component's task.
+### Steps
+
+Each step is a multiple of the base, and the scale is the same at every viewport. The first step is the base token itself.
+
+| Step | Token | Value | Pixels |
+|---|---|---|---|
+| xs | `space.base` | 0.25rem | 4 |
+| sm | `space.sm` | 0.5rem | 8 |
+| md | `space.md` | 1rem | 16 |
+| lg | `space.lg` | 1.5rem | 24 |
+| xl | `space.xl` | 2rem | 32 |
+| 2xl | `space.xxl` | 3rem | 48 |
+| 3xl | `space.xxxl` | 4rem | 64 |
+| 4xl | `space.xxxxl` | 6rem | 96 |
+
+A token path segment cannot start with a digit (REQ-017 AC2), so the steps `2xl`, `3xl`, and `4xl` are named `xxl`, `xxxl`, and `xxxxl`, the way the `2xl` breakpoint is named `xxl`.
+
+The roles the owner saw on the comparison page (icon to text, between buttons, card padding, between cards, and so on) were examples. Each component task decides which step it uses, and no task may add a step outside this scale (ADR-0049). The component tokens that apply spacing to a component, such as a button's padding, are added by that component's task.
 
 ### Brand rules
 
@@ -50,8 +74,7 @@ The brand context defines no spacing values. How the layout adapts between viewp
 
 ### When not to use
 
-- Never make up a base unit or a scale step. They are TBD-09, and only the owner can supply them.
-- Never treat the ADR-0006 placeholder as a brand value, and never copy it into another project.
+- Never make up a spacing step or a value between two steps. The scale is in ADR-0049, and only the owner can change it.
 - Never remove spacing to make content fit at 360 px. Let the layout reflow instead (see [Layout](layout.md)).
 
 ## Do and don't
@@ -59,7 +82,7 @@ The brand context defines no spacing values. How the layout adapts between viewp
 | Do | Don't |
 |---|---|
 | Set the gap between two cards with a `space.*` token. | Type a pixel gap into the component. |
-| Wait for TBD-09 before adding a spacing step. | Add a "slightly bigger" step by eye because the placeholder feels tight. |
+| Pick the nearest step of the scale. | Add a "slightly bigger" step by eye because the scale feels tight. |
 | Keep the same spacing tokens at every viewport. | Shrink padding at 360 px until the text touches the outline. |
 
 ## Accessibility
@@ -70,7 +93,7 @@ The brand context defines no spacing values. How the layout adapts between viewp
 
 ## Responsive behavior
 
-Spacing tokens do not change between viewports until TBD-09 and TBD-13 define whether the scale varies by breakpoint. The same tokens apply at 360, 768, and 1280 px (A-09). At 360 px (ER-05), content reflows rather than losing its spacing.
+Spacing tokens do not change between viewports (ADR-0049). The same tokens apply at 360, 768, and 1280 px (A-09). At 360 px (ER-05), content reflows rather than losing its spacing.
 
 ## Email notes
 
@@ -80,20 +103,20 @@ Email templates use the resolved literals from `dist/email/email-tokens.json`, i
 
 | Where | What |
 |---|---|
-| `tokens/primitive/space.json` | The base unit, `tbd` (TBD-09). |
-| `tokens/primitive/_placeholder.json` | `placeholder.space.base`, recorded in ADR-0006. |
+| `tokens/primitive/space.json` | The base unit and the seven steps above it, `stable` (ADR-0049). |
 | `@vinsmokemau/cup-noobles-tokens`, `dist/css/tokens.css` | The CSS custom properties, such as `--cn-space-base` (REQ-017). |
 
 ```css
 .example {
-  padding: var(--cn-space-base);
+  padding: var(--cn-space-md);
 }
 ```
 
 ## Open items
 
-> **TBD (TBD-09):** The spacing base unit and scale are not defined. `space.base` holds the ADR-0006 placeholder. Owner input needed: the base unit, and the steps of the scale.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-06 and BR-15, the spacing group, and TBD-09 (T4.5) — awaiting owner approval
+- 0.1.0 — The spacing scale is the Rhythm of 8, set by the owner, and the placeholder for it is gone. The seven steps above the base are tokens — ADR-0049

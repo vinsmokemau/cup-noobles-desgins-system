@@ -41,11 +41,11 @@ test('REQ-020 AC1: the three docs are nuxt-ui molecules named for their Nuxt UI 
   }
 })
 
-test('the tabs, breadcrumb, and pagination tokens reference semantic tokens, and the placeholders are tbd', () => {
+test('the tabs, breadcrumb, and pagination tokens reference semantic tokens, and the radius is stable', () => {
   assert.deepEqual(problems, [])
   for (const [path, value, status] of [
     ['border.width.tabs', '{border.width.interactive}', 'stable'],
-    ['radius.pagination', '{radius.interactive}', 'tbd'],
+    ['radius.pagination', '{radius.interactive}', 'stable'],
     ['border.width.pagination', '{border.width.interactive}', 'stable'],
     ['tabs.fg', '{color.text.muted}', 'stable'],
     ['tabs.fgHover', '{color.text.default}', 'stable'],

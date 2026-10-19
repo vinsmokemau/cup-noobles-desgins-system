@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [tooltip, radius.tooltip, border.width.tooltip]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [button, link, alert, toast, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Tooltip
@@ -35,14 +35,14 @@ The tooltip is a short hint that appears beside a control when the person hovers
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `border.width.tooltip` | `--cn-border-width-tooltip` | `3px` | stable |
-| `radius.tooltip` | `--cn-radius-tooltip` | `0.375rem` | tbd (TBD-10) |
+| `radius.tooltip` | `--cn-radius-tooltip` | `0.5rem` | stable |
 | `tooltip.bg` | `--cn-tooltip-bg` | `#000000` | stable |
 | `tooltip.border` | `--cn-tooltip-border` | `#ef80ae` | stable |
 | `tooltip.fg` | `--cn-tooltip-fg` | `#f5f5f5` | stable |
 
 <!-- /cn:generated -->
 
-The outline is brand pink (BR-01) and the fill is the black page (BR-03), so both are `stable`. The radius follows a placeholder (TBD-10), so it is `tbd`. The text color and the stroke width are `stable` (ADR-0032).
+The outline is brand pink (BR-01) and the fill is the black page (BR-03), so both are `stable`. The radius is `stable`: the tooltip uses the small radius step (ADR-0050; the step is assigned by T13.3). The text color and the stroke width are `stable` (ADR-0032).
 
 Contrast pairs declared for the tooltip (REQ-015):
 
@@ -163,9 +163,7 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
-> **Draft:** The look of the tooltip (a black bubble with a brand pink outline) is approved (ADR-0027). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the tooltip (a black bubble with a brand pink outline) is approved (ADR-0027). The corner radius is set (ADR-0050), so the doc stays a draft only until the owner moves it to stable.
 
 ## Changelog
 

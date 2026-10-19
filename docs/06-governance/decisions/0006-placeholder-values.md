@@ -81,11 +81,13 @@ TBD-01, TBD-02, and TBD-03 are resolved by ADR-0046, ADR-0047, and ADR-0048. Und
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.space.base` | `0.25rem` | Tailwind `--spacing` (the base unit of every Nuxt UI padding and gap class) | TBD-09 (`space.*`) | not a brand value |
-| `placeholder.radius.sm` | `0.25rem` | Nuxt UI `--ui-radius`; `--radius-sm: var(--ui-radius)`, used by `UTooltip` (`rounded-sm`) | TBD-10 (`radius.*`) | not a brand value |
-| `placeholder.radius.md` | `0.375rem` | Nuxt UI `--radius-md: calc(var(--ui-radius) * 1.5)`, used by `UButton` and `UInput` (`rounded-md`) | TBD-10 | not a brand value |
-| `placeholder.radius.lg` | `0.5rem` | Nuxt UI `--radius-lg: calc(var(--ui-radius) * 2)`, used by `UCard` and `UModal` (`rounded-lg`) | TBD-10 | not a brand value |
+| ~~`placeholder.space.base`~~ | ~~`0.25rem`~~ | Tailwind `--spacing` (the base unit of every Nuxt UI padding and gap class) | TBD-09 (`space.*`) | deleted (ADR-0049) |
+| ~~`placeholder.radius.sm`~~ | ~~`0.25rem`~~ | Nuxt UI `--ui-radius`; `--radius-sm: var(--ui-radius)`, used by `UTooltip` (`rounded-sm`) | TBD-10 (`radius.*`) | deleted (ADR-0050) |
+| ~~`placeholder.radius.md`~~ | ~~`0.375rem`~~ | Nuxt UI `--radius-md: calc(var(--ui-radius) * 1.5)`, used by `UButton` and `UInput` (`rounded-md`) | TBD-10 | deleted (ADR-0050) |
+| ~~`placeholder.radius.lg`~~ | ~~`0.5rem`~~ | Nuxt UI `--radius-lg: calc(var(--ui-radius) * 2)`, used by `UCard` and `UModal` (`rounded-lg`) | TBD-10 | deleted (ADR-0050) |
 | ~~`placeholder.border.width`~~ | ~~`1px`~~ | Nuxt UI outlines use Tailwind `ring`, which is `calc(1px + var(--tw-ring-offset-width))` with a zero offset | TBD-11 (`border.width.*`) | deleted (ADR-0032) |
+
+TBD-09 is resolved by ADR-0049, and TBD-10 by ADR-0050. Under policy 5, the four placeholders above that stood in for them were deleted, and the spacing and radius tokens became stable. `_placeholder.json` was the last holder of placeholders, so the file was deleted.
 
 #### Effects, elevation, and layering
 

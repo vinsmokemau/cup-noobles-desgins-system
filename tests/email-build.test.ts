@@ -109,8 +109,8 @@ test('REQ-042 AC1: the injected values are the token values, in px for rem dimen
   assert.ok(text.includes(`background:${tokens['button.primary.bg']}`))
   assert.ok(text.includes(`color:${tokens['button.primary.fg']}`))
   assert.ok(text.includes(`border:${tokens['border.width.button']} solid ${tokens['button.primary.border']}`))
-  assert.equal(tokens['radius.button'], '0.375rem', 'the placeholder radius is in rem')
-  assert.ok(text.includes('border-radius:6px'), 'rem is written as px at 16 px per rem')
+  assert.equal(tokens['radius.button'], '0.75rem', 'the Chunky radius is in rem (ADR-0050)')
+  assert.ok(text.includes('border-radius:12px'), 'rem is written as px at 16 px per rem')
   assert.ok(text.includes(`font-family:${tokens['font.family.body']}`))
 })
 

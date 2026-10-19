@@ -292,29 +292,27 @@
   --cn-pagination-item-border: #8c8c8c; /** Outline color of a page that is not the current one. */
   --cn-pagination-item-border-hover: #ef80ae; /** Outline color of a page that is not the current one, while hovered: brand pink (BR-01). Draft: the hover look is not part of ADR-0028. */
   --cn-pagination-item-fg: #f5f5f5; /** Number or icon color of a page that is not the current one. */
-  --cn-placeholder-radius-lg: 0.5rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --radius-lg (ADR-0006). */
-  --cn-placeholder-radius-md: 0.375rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --radius-md (ADR-0006). */
-  --cn-placeholder-radius-sm: 0.25rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --ui-radius, --radius-sm (ADR-0006). */
-  --cn-placeholder-space-base: 0.25rem; /** Placeholder, not a brand value. Stands in for TBD-09. Source: Tailwind --spacing (ADR-0006). */
   --cn-progress-bg: #000000; /** Fill of the empty part of the progress track: the pure black page (BR-03). The track is separated from the page by its outline (C-05). */
   --cn-progress-border: #8c8c8c; /** Outline color of the progress track. */
   --cn-progress-fill: #ef80ae; /** Fill of the finished part of the progress bar: brand pink (BR-01). */
-  --cn-radius-alert: 0.375rem; /** Corner radius of the alert. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-badge: 0.375rem; /** Corner radius of the badge (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-button: 0.375rem; /** Corner radius of the button (BR-10, REQ-023 AC2). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-card: 0.375rem; /** Corner radius of the standard card (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-choice: 0.375rem; /** Corner radius of the checkbox box (BR-10). The radio and the switch are round by shape. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-input: 0.375rem; /** Corner radius of the text fields: input, textarea, and select (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-interactive: 0.375rem; /** Corner radius of interactive elements such as buttons (BR-10). TBD-10: "rounded" has no values; this references a placeholder, not a brand value. */
-  --cn-radius-lg: 0.5rem; /** Large corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
-  --cn-radius-md: 0.375rem; /** Medium corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
-  --cn-radius-media-card: 0.375rem; /** Corner radius of the featured media card (BR-12). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-overlay: 0.375rem; /** Corner radius of the modal and slideover panel (BR-12 look, ADR-0029). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-pagination: 0.375rem; /** Corner radius of a page number and of the previous and next controls (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-skeleton: 0.375rem; /** Corner radius of a skeleton shape (BR-10). TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-sm: 0.25rem; /** Small corner radius. TBD-10: "rounded" (BR-10) has no values; this references a placeholder, not a brand value. */
-  --cn-radius-toast: 0.375rem; /** Corner radius of the toast. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
-  --cn-radius-tooltip: 0.375rem; /** Corner radius of the tooltip. TBD-10: "rounded" has no values; this follows a placeholder, not a brand value. */
+  --cn-radius-alert: 0.75rem; /** Corner radius of the alert. Uses the `interactive` radius role, the `radius.md` step (ADR-0050, TBD-10). */
+  --cn-radius-badge: 0.5rem; /** Corner radius of the badge (BR-12). Uses the `compact` radius role, the `radius.sm` step (ADR-0050, TBD-10). */
+  --cn-radius-button: 0.75rem; /** Corner radius of the button (BR-10, REQ-023 AC2). Uses the `interactive` radius role, the `radius.md` step (ADR-0050, TBD-10). */
+  --cn-radius-card: 1.25rem; /** Corner radius of the standard card (BR-12). Uses the `container` radius role, the `radius.lg` step (ADR-0050, TBD-10). */
+  --cn-radius-choice: 0.5rem; /** Corner radius of the checkbox box (BR-10). The radio and the switch are round by shape. Uses the `compact` radius role, the `radius.sm` step (ADR-0050, TBD-10). */
+  --cn-radius-compact: 0.5rem; /** Corner radius of small elements such as badges, checkboxes, and tooltips: the `radius.sm` step, 8 px (ADR-0050, TBD-10). */
+  --cn-radius-container: 1.25rem; /** Corner radius of large containers such as cards, media cards, and overlay panels: the `radius.lg` step, 20 px (ADR-0050, TBD-10). */
+  --cn-radius-input: 0.75rem; /** Corner radius of the text fields: input, textarea, and select (BR-10). Uses the `interactive` radius role, the `radius.md` step (ADR-0050, TBD-10). */
+  --cn-radius-interactive: 0.75rem; /** Corner radius of interactive elements such as buttons (BR-10): the `radius.md` step, 12 px (ADR-0050, TBD-10; the step is assigned by T13.3). */
+  --cn-radius-lg: 1.25rem; /** Corner radius step, 20 px (ADR-0050, TBD-10): the Chunky radius. */
+  --cn-radius-md: 0.75rem; /** Corner radius step, 12 px (ADR-0050, TBD-10): the Chunky radius. */
+  --cn-radius-media-card: 1.25rem; /** Corner radius of the featured media card (BR-12). Uses the `container` radius role, the `radius.lg` step (ADR-0050, TBD-10). */
+  --cn-radius-overlay: 1.25rem; /** Corner radius of the modal and slideover panel (BR-12 look, ADR-0029). Uses the `container` radius role, the `radius.lg` step (ADR-0050; the step is assigned by T13.3, as the ADR leaves it to the task, TBD-10). */
+  --cn-radius-pagination: 0.75rem; /** Corner radius of a page number and of the previous and next controls (BR-10). Uses the `interactive` radius role, the `radius.md` step (ADR-0050; the step is assigned by T13.3, as the ADR leaves it to the task, TBD-10). */
+  --cn-radius-skeleton: 0.75rem; /** Corner radius of a skeleton shape (BR-10). Uses the `interactive` radius role, the `radius.md` step (ADR-0050; the step is assigned by T13.3, as the ADR leaves it to the task, TBD-10). */
+  --cn-radius-sm: 0.5rem; /** Corner radius step, 8 px (ADR-0050, TBD-10): the Chunky radius. */
+  --cn-radius-toast: 0.75rem; /** Corner radius of the toast. Uses the `interactive` radius role, the `radius.md` step (ADR-0050; the step is assigned by T13.3, as the ADR leaves it to the task, TBD-10). */
+  --cn-radius-tooltip: 0.5rem; /** Corner radius of the tooltip. Uses the `compact` radius role, the `radius.sm` step (ADR-0050; the step is assigned by T13.3, as the ADR leaves it to the task, TBD-10). */
   --cn-separator-bg: #000000; /** The surface a separator line sits on: the pure black page (BR-03). */
   --cn-separator-color: #8c8c8c; /** Color of the separator line. */
   --cn-site-footer-bg: #000000; /** Fill of the site footer: the pure black page (BR-03). The footer is separated from the page by its line, not by a surface color (C-05). */
@@ -324,7 +322,14 @@
   --cn-site-header-fg: #f5f5f5; /** Text in the site header, such as the title. */
   --cn-site-header-line: #ef80ae; /** Color of the line under the site header: brand pink, like the card outline (BR-01, ADR-0018). Chosen by the owner in ADR-0030. */
   --cn-skeleton-border: #8c8c8c; /** Outline color of a skeleton shape. The shape has no fill, because there is no surface color yet (C-05). */
-  --cn-space-base: 0.25rem; /** Spacing base unit. TBD-09: the base unit and scale are not defined; this references a placeholder, not a brand value. */
+  --cn-space-base: 0.25rem; /** Spacing step, 4 px, the `xs` step of ADR-0049 and the base unit of the scale (ADR-0049, TBD-09). */
+  --cn-space-lg: 1.5rem; /** Spacing step, 24 px (ADR-0049, TBD-09). */
+  --cn-space-md: 1rem; /** Spacing step, 16 px (ADR-0049, TBD-09). */
+  --cn-space-sm: 0.5rem; /** Spacing step, 8 px (ADR-0049, TBD-09). */
+  --cn-space-xl: 2rem; /** Spacing step, 32 px (ADR-0049, TBD-09). */
+  --cn-space-xxl: 3rem; /** Spacing step, 48 px, the `2xl` step of ADR-0049 (ADR-0049, TBD-09). The path segment cannot start with a digit (REQ-017 AC2, ADR-0006 policy 6). */
+  --cn-space-xxxl: 4rem; /** Spacing step, 64 px, the `3xl` step of ADR-0049 (ADR-0049, TBD-09). The path segment cannot start with a digit (REQ-017 AC2, ADR-0006 policy 6). */
+  --cn-space-xxxxl: 6rem; /** Spacing step, 96 px, the `4xl` step of ADR-0049 (ADR-0049, TBD-09). The path segment cannot start with a digit (REQ-017 AC2, ADR-0006 policy 6). */
   --cn-tabs-active-fg: #ef80ae; /** Label color of the selected tab: brand pink on the black page, 8.37:1 (BR-01, ADR-0028). */
   --cn-tabs-active-indicator: #ef80ae; /** Color of the thick underline under the selected tab: brand pink (BR-01, ADR-0028). It is what keeps the selected tab from being told apart by color alone (WCAG 1.4.1). */
   --cn-tabs-fg: #bdbdbd; /** Label color of a tab that is not selected. */

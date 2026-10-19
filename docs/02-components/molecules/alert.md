@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [alert, radius.alert, border.width.alert]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [toast, tooltip, card, form-field, button, accessibility, color]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Alert
@@ -49,11 +49,11 @@ The alert is an inline message that stays on the page until the person closes it
 | `alert.success.color` | `--cn-alert-success-color` | `#34d399` | stable |
 | `alert.warning.color` | `--cn-alert-warning-color` | `#ff9f43` | stable |
 | `border.width.alert` | `--cn-border-width-alert` | `3px` | stable |
-| `radius.alert` | `--cn-radius-alert` | `0.375rem` | tbd (TBD-10) |
+| `radius.alert` | `--cn-radius-alert` | `0.75rem` | stable |
 
 <!-- /cn:generated -->
 
-The alert tokens reference semantic tokens only (REQ-010 AC2). The radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The four feedback colors, the text colors, and the stroke width are `stable` (ADR-0032). The fill and the focus ring are `stable` too: black, and the yellow focus ring (ADR-0009).
+The alert tokens reference semantic tokens only (REQ-010 AC2). The radius is `stable`: the alert uses the medium radius step (ADR-0050). The four feedback colors, the text colors, and the stroke width are `stable` (ADR-0032). The fill and the focus ring are `stable` too: black, and the yellow focus ring (ADR-0009).
 
 Contrast pairs declared for the alert (REQ-015):
 
@@ -200,8 +200,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
->
 > **Draft:** The look of the alert (a black fill with a thick outline and an icon in the feedback color) is approved (ADR-0027). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
 
 ## Changelog

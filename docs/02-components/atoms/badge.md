@@ -10,17 +10,17 @@ lang: en
 brandRules: [BR-01, BR-02, BR-12, BR-13]
 tokens: [badge, radius.badge, border.width.badge]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [button, link, icon, media-card, shape]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-19
 ---
 
 # Badge
 
 ## Purpose
 
-The badge is a small label that names a category, a status, or a count. It includes the **tag badge** that sits on the featured media card (BR-12), which is the variant the media card uses. It is a themed Nuxt UI `UBadge`, styled only through tokens (C-03). The corner radius (TBD-10) is not defined yet, so that token holds an ADR-0006 placeholder that is not a brand value. The stroke width is 3 px (ADR-0032). The brand context does not say how a badge looks, so the three variants in this doc come from the owner (ADR-0011).
+The badge is a small label that names a category, a status, or a count. It includes the **tag badge** that sits on the featured media card (BR-12), which is the variant the media card uses. It is a themed Nuxt UI `UBadge`, styled only through tokens (C-03). The corner radius is the small radius step, 8 px (ADR-0050). The stroke width is 3 px (ADR-0032). The brand context does not say how a badge looks, so the three variants in this doc come from the owner (ADR-0011).
 
 ## Anatomy
 
@@ -45,11 +45,11 @@ The badge is a small label that names a category, a status, or a count. It inclu
 | `badge.tag.border` | `--cn-badge-tag-border` | `#fff488` | stable |
 | `badge.tag.fg` | `--cn-badge-tag-fg` | `#000000` | stable |
 | `border.width.badge` | `--cn-border-width-badge` | `3px` | stable |
-| `radius.badge` | `--cn-radius-badge` | `0.375rem` | tbd (TBD-10) |
+| `radius.badge` | `--cn-radius-badge` | `0.5rem` | stable |
 
 <!-- /cn:generated -->
 
-The component tokens only reference semantic tokens (REQ-010 AC2). The radius token is `tbd`: it follows the ADR-0006 placeholder (Nuxt UI's default radius), and **it is not a brand value**. The fill, label, outline, and stroke width tokens are `stable`. A badge has no glow and no focus ring, because it is not interactive.
+The component tokens only reference semantic tokens (REQ-010 AC2). The radius token is `stable`: it uses the small radius step (ADR-0050). The fill, label, outline, and stroke width tokens are `stable`. A badge has no glow and no focus ring, because it is not interactive.
 
 Contrast pairs declared for the badge (REQ-015):
 
@@ -169,7 +169,7 @@ The email equivalent is a small inline label inside the MJML components, describ
 
 ## Open items
 
-> **TBD (TBD-10):** The corner radius is not defined ("rounded" in BR-10). `radius.badge` follows an ADR-0006 placeholder. Owner input needed.
+Not applicable.
 
 ## Changelog
 

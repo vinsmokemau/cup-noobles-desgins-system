@@ -31,24 +31,24 @@ test('REQ-020 AC1: both docs are nuxt-ui organisms named for their Nuxt UI compo
     assert.equal(data.level, 'organism', slug)
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
-    // The corner radius is still a placeholder (TBD-10), which keeps the docs drafts (REQ-009).
+    // The corner radius is set (ADR-0050); the docs stay drafts until the owner moves them to stable (REQ-009).
     assert.equal(data.status, 'draft', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
-    assert.deepEqual(data.tbd, ['TBD-10'], slug)
+    assert.deepEqual(data.tbd, [], slug)
     assert.match(docOf(slug), new RegExp(`\`${NUXT_UI[slug]}\``), `${slug} doc names its Nuxt UI component`)
   }
 })
 
-test('the overlay tokens reference semantic tokens, the brand ones are stable, and the placeholders are tbd', () => {
+test('the overlay tokens reference semantic tokens, the brand ones are stable, and the shape tokens are stable', () => {
   assert.deepEqual(problems, [])
   for (const [path, semantic] of [
-    ['radius.overlay', 'radius.interactive'],
+    ['radius.overlay', 'radius.container'],
     ['border.width.overlay', 'border.width.interactive'],
   ] as const) {
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
+    assert.equal(token?.cn?.status, 'stable', path)
   }
   for (const [path, value, status] of [
     ['overlay.bg', '{color.surface.elevated}', 'stable'],

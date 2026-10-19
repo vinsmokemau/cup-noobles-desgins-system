@@ -32,8 +32,8 @@ test('REQ-023 AC2: the radius, the outline width, and the glow are component tok
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
     assert.equal(byPath.get(semantic)?.tier, 'semantic', semantic)
-    // The radius is TBD-10, so it follows a placeholder; the stroke width is ADR-0032 and the glow is ADR-0051.
-    assert.equal(token?.cn?.status, path === 'radius.button' ? 'tbd' : 'stable', path)
+    // The radius is ADR-0050, the stroke width is ADR-0032, and the glow is ADR-0051.
+    assert.equal(token?.cn?.status, 'stable', path)
   }
 })
 
@@ -186,11 +186,11 @@ test('REQ-023 AC4, REQ-026 AC1: the doc lists the six states, and the state matr
 
 test('the doc is a draft that lists its demos and names the tokens it renders', () => {
   const data = readFrontmatter(doc).data as Record<string, unknown>
-  assert.equal(data.status, 'draft', 'TBD tokens keep the doc a draft')
+  assert.equal(data.status, 'draft', 'the doc awaits the owner moving it to stable')
   assert.deepEqual(data.demos, ['states', 'playground'])
   assert.equal(data.source, 'nuxt-ui')
   assert.equal(data.nuxtUi, 'UButton')
-  assert.deepEqual(data.tbd, ['TBD-10'], 'the glow (TBD-12) and the shades (TBD-08) are resolved')
+  assert.deepEqual(data.tbd, [], 'the radius (TBD-10), the glow (TBD-12), and the shades (TBD-08) are resolved')
 })
 
 test('REQ-055: the playground controls are a valid schema that the playground demo declares as props', async () => {

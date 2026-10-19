@@ -30,14 +30,14 @@ test('REQ-020 AC1: the three docs are nuxt-ui components named for their Nuxt UI
     assert.equal(data.level, 'atom', slug)
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
-    // The colors, radius, and stroke width are placeholders, and the look is unapproved (REQ-009).
+    // The radius is set (ADR-0050); the doc stays a draft until the owner moves it to stable (REQ-009).
     assert.equal(data.status, 'draft', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
     assert.deepEqual(data.tokens, ['input'], slug)
   }
 })
 
-test('the text-field component tokens reference semantic tokens, and the shape tokens are tbd placeholders', () => {
+test('the text-field component tokens reference semantic tokens, and the shape tokens are stable', () => {
   assert.deepEqual(problems, [])
   for (const [path, semantic] of [
     ['radius.input', 'radius.interactive'],
@@ -46,7 +46,7 @@ test('the text-field component tokens reference semantic tokens, and the shape t
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
+    assert.equal(token?.cn?.status, 'stable', path)
   }
   assert.equal(byPath.get('input.bg')?.value, '{color.bg.base}')
   assert.equal(byPath.get('input.borderHover')?.value, '{color.brand.primary}')

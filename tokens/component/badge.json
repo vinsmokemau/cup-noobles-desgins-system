@@ -2,12 +2,12 @@
   "radius": {
     "badge": {
       "$type": "dimension",
-      "$value": "{radius.interactive}",
-      "$description": "Corner radius of the badge (BR-12). TBD-10: \"rounded\" has no values; this follows a placeholder, not a brand value.",
+      "$value": "{radius.compact}",
+      "$description": "Corner radius of the badge (BR-12). Uses the `compact` radius role, the `radius.sm` step (ADR-0050, TBD-10).",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-10"],
-          "status": "tbd"
+          "status": "stable",
+          "source": "ADR-0050"
         }
       }
     }

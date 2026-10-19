@@ -10,17 +10,17 @@ lang: en
 brandRules: [BR-01, BR-02, BR-10, BR-11, BR-13]
 tokens: [button, radius.button, border.width.button, effect.glow.button]
 demos: [states, playground]
-tbd: [TBD-10]
+tbd: []
 related: [link, icon, form-field, effects, shape]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Button
 
 ## Purpose
 
-The button triggers an action. It implements BR-10 (rounded corners, a subtle neon glow, and a thick outline stroke) and BR-11 (the primary, secondary, ghost, and disabled states) on top of Nuxt UI's `UButton`, themed only through tokens (C-03). The corner radius (TBD-10) is not defined yet, so that token holds an ADR-0006 placeholder that is not a brand value. The stroke width is 3 px (ADR-0032), the glow is Neon tube (ADR-0051), and the hover and pressed fills are the brand tones of ADR-0055.
+The button triggers an action. It implements BR-10 (rounded corners, a subtle neon glow, and a thick outline stroke) and BR-11 (the primary, secondary, ghost, and disabled states) on top of Nuxt UI's `UButton`, themed only through tokens (C-03). The corner radius is the medium radius step, 12 px (ADR-0050). The stroke width is 3 px (ADR-0032), the glow is Neon tube (ADR-0051), and the hover and pressed fills are the brand tones of ADR-0055.
 
 ## Anatomy
 
@@ -66,11 +66,11 @@ The button triggers an action. It implements BR-10 (rounded corners, a subtle ne
 | `button.secondary.glow` | `--cn-button-secondary-glow` | `0px 0px 12px 1px rgba(255, 244, 136, 0.6)` | stable |
 | `button.secondary.glowHover` | `--cn-button-secondary-glow-hover` | `0px 0px 20px 2px rgba(255, 244, 136, 0.8509803921568627)` | stable |
 | `effect.glow.button` | `--cn-effect-glow-button` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
-| `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
+| `radius.button` | `--cn-radius-button` | `0.75rem` | stable |
 
 <!-- /cn:generated -->
 
-The component tokens only reference semantic tokens (REQ-010 AC2). The radius token is `tbd`: it follows the ADR-0006 placeholder (Nuxt UI's default radius), and **it is not a brand value**. The glow tokens (`button.<variant>.glow` and `glowHover`) are `stable` and give each variant its own glow color, pink around pink and ghost buttons and yellow around the secondary one (ADR-0051). The hover and pressed fills are `stable`: the lighter and darker tones of ADR-0055. The label, outline, and focus tokens are `stable`.
+The component tokens only reference semantic tokens (REQ-010 AC2). The radius token is `stable`: it uses the medium radius step, 12 px (ADR-0050). The glow tokens (`button.<variant>.glow` and `glowHover`) are `stable` and give each variant its own glow color, pink around pink and ghost buttons and yellow around the secondary one (ADR-0051). The hover and pressed fills are `stable`: the lighter and darker tones of ADR-0055. The label, outline, and focus tokens are `stable`.
 
 Contrast pairs declared for the button (REQ-015, REQ-023 AC3):
 
@@ -220,8 +220,6 @@ The email button is a separate MJML component, described in [Email components](.
 
 ## Open items
 
-> **TBD (TBD-10):** The corner radius is not defined ("rounded" in BR-10). `radius.button` follows an ADR-0006 placeholder. Owner input needed.
->
 > **Draft:** The pressed state and the dimming of a disabled or loading button are not decided. The pressed button keeps the hover glow and takes the darker tone (a ghost button fills with it), which T13.2 proposed because ADR-0051 and ADR-0055 decide the rest and hover states only. The dimming is Nuxt UI's default. This awaits owner approval.
 
 ## Changelog

@@ -6,10 +6,10 @@ status: draft
 lang: en
 brandRules: [BR-01, BR-03, BR-10, BR-12, BR-13, BR-16]
 tokens: [button.primary, border.width.button, radius.button, card, border.width.card, radius.card, siteHeader, border.width.siteHeader, siteFooter, border.width.siteFooter, separator, border.width.separator, link.fg, font.family, font.h2, font.h3, color.bg.base, color.text, logo.rule, layout.email, space]
-tbd: [TBD-09, TBD-10]
+tbd: []
 related: [email-foundations, email-layouts, button, card, separator, site-header, site-footer, logo, typography, spacing]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Email components
@@ -22,7 +22,7 @@ Each component reads the tokens of its web counterpart: the button reads the pri
 
 ## Tokens and specs
 
-The tokens the components read are generated below. The build replaces each `$cn(token.path)` in a source with the literal in `email-tokens.json`, and writes a `rem` dimension as px (ADR-0040). Several of them are `tbd`, and their values are ADR-0006 placeholders, not brand values.
+The tokens the components read are generated below. The build replaces each `$cn(token.path)` in a source with the literal in `email-tokens.json`, and writes a `rem` dimension as px (ADR-0040). All of them are `stable`.
 
 <!-- cn:generated tokens="button.primary border.width.button radius.button card border.width.card radius.card siteHeader border.width.siteHeader siteFooter border.width.siteFooter separator border.width.separator link.fg" format="table" -->
 
@@ -46,8 +46,8 @@ The tokens the components read are generated below. The build replaces each `$cn
 | `card.fgMuted` | `--cn-card-fg-muted` | `#bdbdbd` | stable |
 | `card.highlight` | `--cn-card-highlight` | `#ef80ae` | stable |
 | `link.fg` | `--cn-link-fg` | `#ef80ae` | stable |
-| `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
-| `radius.card` | `--cn-radius-card` | `0.375rem` | tbd (TBD-10) |
+| `radius.button` | `--cn-radius-button` | `0.75rem` | stable |
+| `radius.card` | `--cn-radius-card` | `1.25rem` | stable |
 | `separator.bg` | `--cn-separator-bg` | `#000000` | stable |
 | `separator.color` | `--cn-separator-color` | `#8c8c8c` | stable |
 | `siteFooter.bg` | `--cn-site-footer-bg` | `#000000` | stable |
@@ -82,7 +82,13 @@ The type, color, and layout tokens are the ones of [Email foundations](email-fou
 | Footer | Fill, line above it, text | `siteFooter.bg`, `siteFooter.line`, `siteFooter.fg` |
 | Footer | Line width | `border.width.siteFooter` |
 | Footer | Link | `link.fg` |
-| All | Page base, body width, padding | `color.bg.base`, `layout.email.width.max`, `space.base` |
+| Button | Padding around the button, and inside it | `space.md`, `space.md` |
+| Header | Padding around the logo | the logo clear space, above |
+| Content section | Padding of the section, and of each text block | `space.md`, `space.md` |
+| Card | Padding of the card, and around the line between body and footer | `space.lg`, `space.md` |
+| Divider | Padding of the section, and around the line | `space.sm`, `space.md` |
+| Footer | Padding of the section | `space.lg` |
+| All | Page base, body width | `color.bg.base`, `layout.email.width.max` |
 
 ### Brand rules
 
@@ -183,10 +189,6 @@ File: `footer.mjml`. A closing line and one link, centered, on the footer fill w
 
 ## Open items
 
-> **TBD (TBD-09):** The spacing scale is not defined, and the email build can inject a token only as it is. Every padding is therefore `space.base`, a placeholder, and the components have no larger steps between parts. Owner input needed: the base unit and the scale.
->
-> **TBD (TBD-10):** The corner radius is not defined, so the button and the card use the ADR-0006 placeholder. Owner input needed: values.
-
 The header keeps the logo clear space of ADR-0016: `logo.rule.clearSpace` is a share of the logo height, and the build turns it into a length with `$cn(logo.rule.clearSpace*logo.rule.minHeight.horizontal)`, 25% of `logo.rule.minHeight.horizontal` (ADR-0042, which settles the question ADR-0041 left to T10.4). Real-client rendering is not verified here (R-05).
 
 ## Changelog
@@ -196,3 +198,4 @@ The header keeps the logo clear space of ADR-0016: `logo.rule.clearSpace` is a s
 - 0.1.0 — The header takes its logo clear space from the tokens, in place of `space.base` (T10.4, REQ-043) — ADR-0042
 - 0.1.0 — The display typeface and the type scale are set by the owner, so the TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-09, TBD-10, and TBD-12 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
 - 0.1.0 — The glow is chosen for the web and the email button keeps its solid outline, so the TBD-12 callout is gone. The doc stays a draft while TBD-09 and TBD-10 are open — ADR-0051
+- 0.1.0 — The spacing scale and the corner radius are set by the owner, so the TBD-09 and TBD-10 callouts are gone. Every padding takes a step of the scale, and the button and the card take their radius (T13.3) — ADR-0049, ADR-0050

@@ -41,16 +41,16 @@ test('REQ-020 AC1: the three docs are nuxt-ui components named for their Nuxt UI
   }
 })
 
-test('the choice component tokens reference semantic tokens, and the shape tokens are tbd placeholders', () => {
+test('the choice component tokens reference semantic tokens, and the shape tokens are stable', () => {
   assert.deepEqual(problems, [])
   for (const [path, semantic] of [
-    ['radius.choice', 'radius.interactive'],
+    ['radius.choice', 'radius.compact'],
     ['border.width.choice', 'border.width.interactive'],
   ] as const) {
     const token = byPath.get(path)
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
-    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
+    assert.equal(token?.cn?.status, 'stable', path)
   }
   assert.equal(byPath.get('choice.bg')?.value, '{color.bg.base}')
   assert.equal(byPath.get('choice.borderHover')?.value, '{color.brand.primary}')
