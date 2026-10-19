@@ -2,7 +2,7 @@
 title: Imagery and motifs
 slug: imagery-and-motifs
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-04, BR-05, BR-12, BR-13, BR-14]
 tbd: []
@@ -151,3 +151,4 @@ Not applicable.
 - 0.1.0 — The sticker border artwork is supplied as `Sticker-Border-CN.svg`; all seven motifs have their artwork, and `CnStickerFrame` is not wired to it yet (T7.16) — ADR-0024
 - 0.1.0 — `CnStickerFrame` renders `Sticker-Border-CN.svg` as a fixed 8:5 frame; TBD-18 is resolved (T7.17) — ADR-0025
 - 0.1.0 — The photography and thumbnail standards (the 4:3 frame, no crop, the d20 fallback, and the picture rules) are set by the owner, and the TBD-20 placeholder is gone — ADR-0056, ADR-0057
+- 0.1.0 — Moved to stable: the doc has no open item left — owner decision, 2026-10-19

@@ -34,12 +34,12 @@ test('REQ-021 AC1, REQ-020 AC3, REQ-022 AC1: CnMediaCard is named Cn*, hand-roll
   assert.deepEqual(findDomainTerms(root), [])
 })
 
-test('REQ-020 AC1, AC2: the doc is a custom molecule that says why it is custom, and it is a draft', () => {
+test('REQ-020 AC1, AC2: the doc is a custom molecule that says why it is custom, and it is stable', () => {
   assert.equal(data.layer, 'component')
   assert.equal(data.level, 'molecule')
   assert.equal(data.source, 'custom')
   assert.equal(data.component, 'CnMediaCard')
-  assert.equal(data.status, 'draft')
+  assert.equal(data.status, 'stable')
   assert.deepEqual(data.demos, ['states', 'playground'])
   assert.deepEqual(data.tbd, [])
   assert.match(doc, /\*\*Why custom:\*\* Nuxt UI has no equivalent\./)

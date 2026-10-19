@@ -43,7 +43,7 @@ The inventory lists every component in the system, with its level, its source, i
 | [Breadcrumb](molecules/breadcrumb.md) | molecule | nuxt-ui | `UBreadcrumb` | draft | — |
 | [Card](molecules/card.md) | molecule | nuxt-ui | `UCard` | draft | — |
 | [Form field](molecules/form-field.md) | molecule | nuxt-ui | `UFormField` | stable | — |
-| [Media card](molecules/media-card.md) | molecule | custom | `CnMediaCard` | draft | — |
+| [Media card](molecules/media-card.md) | molecule | custom | `CnMediaCard` | stable | — |
 | [Pagination](molecules/pagination.md) | molecule | nuxt-ui | `UPagination` | draft | — |
 | [Tabs](molecules/tabs.md) | molecule | nuxt-ui | `UTabs` | stable | — |
 | [Toast](molecules/toast.md) | molecule | nuxt-ui | `UToast` | draft | — |

@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: custom
 component: CnMediaCard
-status: draft
+status: stable
 lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [mediaCard, radius.mediaCard, border.width.mediaCard, color.surface.card]
@@ -216,7 +216,7 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look of the card (a pink outline, an underlined title on hover, and the yellow focus ring around the card, with no glow) is approved (ADR-0026), and so are the thumbnail frame and standards (ADR-0056, ADR-0057). No open item is left. The doc stays a draft until the owner moves it to stable.
+Not applicable.
 
 ## Changelog
 
@@ -224,3 +224,4 @@ Not applicable.
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — The card surface is the pure-black page, set by the owner, and the placeholder for it is gone — ADR-0053
 - 0.1.0 — The thumbnail is a 4:3 frame that shows the whole picture, with the brand d20 for a missing picture, and its placeholder is gone — ADR-0056, ADR-0057
+- 0.1.0 — Moved to stable: the doc has no open item left — owner decision, 2026-10-19
