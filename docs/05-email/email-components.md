@@ -6,7 +6,7 @@ status: draft
 lang: en
 brandRules: [BR-01, BR-03, BR-10, BR-12, BR-13, BR-16]
 tokens: [button.primary, border.width.button, radius.button, card, border.width.card, radius.card, siteHeader, border.width.siteHeader, siteFooter, border.width.siteFooter, separator, border.width.separator, link.fg, font.family, font.h2, font.h3, color.bg.base, color.text, logo.rule, layout.email, space]
-tbd: [TBD-09, TBD-10, TBD-12]
+tbd: [TBD-09, TBD-10]
 related: [email-foundations, email-layouts, button, card, separator, site-header, site-footer, logo, typography, spacing]
 since: 0.1.0
 updated: 2026-10-18
@@ -34,10 +34,12 @@ The tokens the components read are generated below. The build replaces each `$cn
 | `border.width.siteFooter` | `--cn-border-width-site-footer` | `3px` | stable |
 | `border.width.siteHeader` | `--cn-border-width-site-header` | `3px` | stable |
 | `button.primary.bg` | `--cn-button-primary-bg` | `#ef80ae` | stable |
-| `button.primary.bgActive` | `--cn-button-primary-bg-active` | `#ef80ae` | derived-pending (TBD-08) |
-| `button.primary.bgHover` | `--cn-button-primary-bg-hover` | `#ef80ae` | derived-pending (TBD-08) |
+| `button.primary.bgActive` | `--cn-button-primary-bg-active` | `#d06c96` | stable |
+| `button.primary.bgHover` | `--cn-button-primary-bg-hover` | `#fea0c5` | stable |
 | `button.primary.border` | `--cn-button-primary-border` | `#ef80ae` | stable |
 | `button.primary.fg` | `--cn-button-primary-fg` | `#000000` | stable |
+| `button.primary.glow` | `--cn-button-primary-glow` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
+| `button.primary.glowHover` | `--cn-button-primary-glow-hover` | `0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627)` | stable |
 | `card.bg` | `--cn-card-bg` | `#000000` | stable |
 | `card.divider` | `--cn-card-divider` | `#ef80ae` | stable |
 | `card.fg` | `--cn-card-fg` | `#f5f5f5` | stable |
@@ -184,8 +186,6 @@ File: `footer.mjml`. A closing line and one link, centered, on the footer fill w
 > **TBD (TBD-09):** The spacing scale is not defined, and the email build can inject a token only as it is. Every padding is therefore `space.base`, a placeholder, and the components have no larger steps between parts. Owner input needed: the base unit and the scale.
 >
 > **TBD (TBD-10):** The corner radius is not defined, so the button and the card use the ADR-0006 placeholder. Owner input needed: values.
->
-> **TBD (TBD-12):** The glow parameters are not defined. The email button uses a solid outline in place of the glow in any case. Owner input needed: only if the owner wants a different email treatment.
 
 The header keeps the logo clear space of ADR-0016: `logo.rule.clearSpace` is a share of the logo height, and the build turns it into a length with `$cn(logo.rule.clearSpace*logo.rule.minHeight.horizontal)`, 25% of `logo.rule.minHeight.horizontal` (ADR-0042, which settles the question ADR-0041 left to T10.4). Real-client rendering is not verified here (R-05).
 
@@ -195,3 +195,4 @@ The header keeps the logo clear space of ADR-0016: `logo.rule.clearSpace` is a s
 - 0.1.0 — Component-to-token mapping approved by the owner. The doc stays a draft while TBD-01, TBD-03, TBD-09, TBD-10, and TBD-12 are open — ADR-0041
 - 0.1.0 — The header takes its logo clear space from the tokens, in place of `space.base` (T10.4, REQ-043) — ADR-0042
 - 0.1.0 — The display typeface and the type scale are set by the owner, so the TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-09, TBD-10, and TBD-12 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
+- 0.1.0 — The glow is chosen for the web and the email button keeps its solid outline, so the TBD-12 callout is gone. The doc stays a draft while TBD-09 and TBD-10 are open — ADR-0051

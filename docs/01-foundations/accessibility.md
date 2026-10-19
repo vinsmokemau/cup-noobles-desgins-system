@@ -6,10 +6,10 @@ status: draft
 lang: en
 brandRules: [BR-03, BR-06]
 tokens: [focus, color]
-tbd: [TBD-06]
+tbd: []
 related: [color, effects, layout, motion, iconography, imagery-and-motifs]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Accessibility
@@ -48,31 +48,37 @@ The focus tokens are `stable` (ADR-0009). The contrast pairs declared for every 
 | `color.brand.secondary` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `color.text.inverted` (`#000000`) | `color.brand.primary` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
 | `color.text.inverted` (`#000000`) | `color.brand.secondary` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
-| `color.text.inverted` (`#000000`) | `color.brand.primaryHover` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
-| `color.text.inverted` (`#000000`) | `color.brand.primaryActive` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
-| `color.text.inverted` (`#000000`) | `color.brand.secondaryHover` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
-| `color.text.inverted` (`#000000`) | `color.brand.secondaryActive` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
+| `color.text.inverted` (`#000000`) | `color.brand.primaryHover` (`#fea0c5`) | text | 11.05:1 | 4.50:1 | pass |
+| `color.text.inverted` (`#000000`) | `color.brand.primaryActive` (`#d06c96`) | text | 6.27:1 | 4.50:1 | pass |
+| `color.text.inverted` (`#000000`) | `color.brand.secondaryHover` (`#fff7a3`) | text | 19.09:1 | 4.50:1 | pass |
+| `color.text.inverted` (`#000000`) | `color.brand.secondaryActive` (`#dacf6d`) | text | 13.13:1 | 4.50:1 | pass |
 | `color.border.default` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
+| `color.brand.primaryHover` (`#fea0c5`) | `color.bg.base` (`#000000`) | ui | 11.05:1 | 3.00:1 | pass |
+| `color.brand.primaryActive` (`#d06c96`) | `color.bg.base` (`#000000`) | ui | 6.27:1 | 3.00:1 | pass |
+| `color.brand.secondaryHover` (`#fff7a3`) | `color.bg.base` (`#000000`) | ui | 19.09:1 | 3.00:1 | pass |
+| `color.brand.secondaryActive` (`#dacf6d`) | `color.bg.base` (`#000000`) | ui | 13.13:1 | 3.00:1 | pass |
+| `color.brand.secondary` (`#fff488`) | `color.surface.elevated` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
+| `color.brand.primary` (`#ef80ae`) | `color.surface.elevated` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `color.text.disabled` (`#5c5c5c`) | `color.bg.base` (`#000000`) | ui | 3.14:1 | 3.00:1 | pass |
-| `color.text.default` (`#f5f5f5`) | `color.surface.card` (`#90a1b9`) | text | 2.41:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
-| `color.text.muted` (`#bdbdbd`) | `color.surface.card` (`#90a1b9`) | text | 1.40:1 | 4.50:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
-| `color.brand.primary` (`#ef80ae`) | `color.surface.card` (`#90a1b9`) | ui | 1.05:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
-| `color.text.default` (`#f5f5f5`) | `color.surface.elevated` (`#90a1b9`) | text | 2.41:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `placeholder.color.neutral`) |
-| `color.text.muted` (`#bdbdbd`) | `color.surface.elevated` (`#90a1b9`) | text | 1.40:1 | 4.50:1 | unverified (tbd: `color.surface.elevated`, `placeholder.color.neutral`) |
+| `color.text.default` (`#f5f5f5`) | `color.surface.card` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `color.text.muted` (`#bdbdbd`) | `color.surface.card` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
+| `color.brand.primary` (`#ef80ae`) | `color.surface.card` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
+| `color.text.default` (`#f5f5f5`) | `color.surface.elevated` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
+| `color.text.muted` (`#bdbdbd`) | `color.surface.elevated` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
 | `color.feedback.success` (`#34d399`) | `color.bg.base` (`#000000`) | text | 10.92:1 | 4.50:1 | pass |
 | `color.feedback.warning` (`#ff9f43`) | `color.bg.base` (`#000000`) | text | 10.29:1 | 4.50:1 | pass |
 | `color.feedback.error` (`#ff5c5c`) | `color.bg.base` (`#000000`) | text | 6.94:1 | 4.50:1 | pass |
 | `color.feedback.info` (`#5cc8ff`) | `color.bg.base` (`#000000`) | text | 11.16:1 | 4.50:1 | pass |
 | `focus.ring.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
-| `focus.ring.color` (`#fff488`) | `color.surface.card` (`#90a1b9`) | ui | 2.32:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
+| `focus.ring.color` (`#fff488`) | `color.surface.card` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `button.primary.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `button.secondary.border` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `button.ghost.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
 | `button.ghost.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `button.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `link.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `link.fgHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `link.fgActive` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
+| `link.fgHover` (`#fea0c5`) | `color.bg.base` (`#000000`) | text | 11.05:1 | 4.50:1 | pass |
+| `link.fgActive` (`#d06c96`) | `color.bg.base` (`#000000`) | text | 6.27:1 | 4.50:1 | pass |
 | `link.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `badge.primary.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `badge.outline.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
@@ -89,7 +95,7 @@ The focus tokens are `stable` (ADR-0009). The contrast pairs declared for every 
 | `tabs.rule` (`#8c8c8c`) | `color.bg.base` (`#000000`) | ui | 6.25:1 | 3.00:1 | pass |
 | `tabs.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `breadcrumb.link.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `breadcrumb.link.fgHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
+| `breadcrumb.link.fgHover` (`#fea0c5`) | `color.bg.base` (`#000000`) | text | 11.05:1 | 4.50:1 | pass |
 | `breadcrumb.current.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `breadcrumb.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `pagination.item.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
@@ -211,11 +217,10 @@ Email templates follow the same contrast rules, using the resolved values from `
 
 ## Open items
 
-The contrast pairs below are `unverified` until their colors are defined. Each one is checked again when the owner supplies the value.
-
-> **TBD (TBD-06):** Card and elevated surface colors are not defined, so every pair on `color.surface.*` is unverified, including the focus ring on a card. Owner input needed: decision OD-05.
+Not applicable. The surface colors are decided (ADR-0053), so every declared pair is verified.
 
 ## Changelog
 
 - 0.1.0 — First draft: the WCAG 2.2 AA target (A-10), the contrast, focus, keyboard, target-size, reflow, reduced-motion, flashing, and decorative-content rules, the axe gate (REQ-027, REQ-060), and the unverified pairs for TBD-04 to TBD-07 (T4.6); the axe helper and the route matrix are built (T5.5) — awaiting owner approval
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — The card and overlay surfaces are the pure-black page, so the pairs on `color.surface.*` are verified and the TBD-06 callout is gone — ADR-0053

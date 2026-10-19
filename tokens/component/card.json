@@ -29,8 +29,8 @@
   "card": {
     "bg": {
       "$type": "color",
-      "$value": "{color.bg.base}",
-      "$description": "Fill of the standard card: the pure black page (BR-03). The card is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card until TBD-06 is resolved.",
+      "$value": "{color.surface.card}",
+      "$description": "Fill of the standard card: the pure black page (BR-03, ADR-0053), through `color.surface.card`. It is separated from the page by its outline, never by a different fill (C-05).",
       "$extensions": {
         "cn": {
           "status": "stable"

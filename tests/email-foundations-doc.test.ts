@@ -95,10 +95,13 @@ test('REQ-009, REQ-037: the doc is a draft with its TBD items listed, and carrie
   assert.match(text, /^- 0\.1\.0 — Rules approved by the owner[^\n]* — ADR-0039$/m)
   assert.equal(data.layer, 'email')
   // T13.1: TBD-01 and TBD-03 are resolved (ADR-0046, ADR-0048), so their callouts are gone.
-  for (const id of ['TBD-10', 'TBD-12']) {
+  // T13.2: TBD-12 is resolved (ADR-0051), so its callouts are gone; email keeps its solid border in place of the glow.
+  for (const id of ['TBD-10']) {
     assert.ok((data.tbd as string[]).includes(id), `${id} is listed`)
     assert.match(section('Open items'), new RegExp(`\\*\\*TBD \\(${id}\\):\\*\\*`), `${id} has a callout`)
   }
+  assert.ok(!(data.tbd as string[]).includes('TBD-12'))
+  assert.doesNotMatch(text, /\*\*TBD \(TBD-12\)/)
   const prose = text.replace(/<!-- cn:generated[\s\S]*?<!-- \/cn:generated -->/g, '')
   assert.doesNotMatch(prose, /#[0-9a-fA-F]{3,8}\b/)
   // ADR-0004 names the MJML default; the doc may say "MJML default font", never the family itself.

@@ -71,17 +71,19 @@ test('REQ-054 AC3: radius boxes carry their radius and stroke lines their thickn
 
 test('REQ-054 AC3: glow and elevation are sample boxes carrying their token as a shadow', async ({ page }) => {
   await page.goto('/foundations/effects')
-  // effect.glow.default, effect.glow.interactive, and the button's effect.glow.button (T7.2).
-  await expect(page.getByTestId('previews-glow').getByTestId('shadow-box')).toHaveCount(3)
+  // The glow tokens: default, button, and the interactive and secondary ones with their hover form, and the pink and
+  // yellow rest and hover glows they alias (ADR-0051).
+  await expect(page.getByTestId('previews-glow').getByTestId('shadow-box')).toHaveCount(10)
   await expect(page.getByTestId('previews-elevation').getByTestId('shadow-box')).toHaveCount(2)
-  const none = await card(page, 'effect.glow.default')
+  const glow = await card(page, 'effect.glow.default')
     .getByTestId('shadow-box')
     .evaluate((el) => getComputedStyle(el).boxShadow)
-  expect(none).toBe('none')
+  expect(glow).toBe('rgba(239, 128, 174, 0.6) 0px 0px 12px 1px')
+  // ADR-0054: Outline only, so the overlay has no shadow.
   const shadow = await card(page, 'effect.shadow.overlay')
     .getByTestId('shadow-box')
     .evaluate((el) => getComputedStyle(el).boxShadow)
-  expect(shadow).toContain('rgba(0, 0, 0, 0.1)')
+  expect(shadow).toBe('none')
 })
 
 test('REQ-054 AC3: the motion demo plays on demand and moves, when motion is allowed', async ({ page }) => {

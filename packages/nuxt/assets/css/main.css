@@ -57,7 +57,8 @@
 
 /*
  * The scales that app.config.ts names. Each Nuxt UI color alias reads all 11 shades (ADR-0001 §3).
- * primary and secondary read the derived-pending shade tokens, which all repeat the single brand value (C-06, TBD-08).
+ * primary and secondary read the shade tokens: shade 400 is the brand color, steps 50 to 300 are the lighter tone, and
+ * steps 500 to 950 the darker tone (ADR-0055). Nothing else is derived from a brand color.
  * The feedback scales repeat their feedback token (ADR-0032). The neutral scale reads the neutral roles, so its shades
  * group by role: text, secondary text, border, disabled, divider, and the page. No tint or shade is generated.
  */
@@ -160,17 +161,16 @@
  * cascade layer, so these win. The page background stays pure black (BR-03, REQ-012), and labels on brand fills are
  * black (SPEC.md §2.1 derived facts, ADR-0001 Consequences). Roles without a token keep reading the neutral scale.
  *
- * The raised surfaces (muted, elevated, accented) read the same black. No surface color is defined (TBD-06), so left
- * alone they would paint a grey under the text. Until OD-05 is decided, surfaces sit on color.bg.base and the outline
- * carries the boundary (C-05).
+ * The raised surfaces (muted, elevated, accented) read the surface tokens, which are the same black (ADR-0053). Left
+ * alone they would paint a grey under the text. Surfaces sit on the black page and the outline carries the boundary (C-05).
  */
 @layer theme {
   :root,
   .dark {
     --ui-bg: var(--cn-color-bg-base);
-    --ui-bg-muted: var(--cn-color-bg-base);
-    --ui-bg-elevated: var(--cn-color-bg-base);
-    --ui-bg-accented: var(--cn-color-bg-base);
+    --ui-bg-muted: var(--cn-color-surface-card);
+    --ui-bg-elevated: var(--cn-color-surface-elevated);
+    --ui-bg-accented: var(--cn-color-surface-card);
     --ui-text: var(--cn-color-text-default);
     --ui-text-muted: var(--cn-color-text-muted);
     --ui-text-inverted: var(--cn-color-text-inverted);
@@ -247,9 +247,11 @@ h3 {
  * neon glow (BR-10), the colors of each variant and state, and the focus ring. The rules are not in a cascade layer, so
  * they win over Nuxt UI's own utility classes (`hover:bg-primary/75`, `focus-visible:outline-3`) without `!important`.
  *
- * The glow is a box-shadow and the focus indicator is an outline, so a focused button always shows a ring that is more
- * than the glow (REQ-024 AC1). A disabled button, native or `aria-disabled`, has no glow (REQ-023 AC5). A loading
- * button is natively disabled, but it keeps its look and its glow: it is busy, not unavailable.
+ * The glow is Neon tube (ADR-0051): a box-shadow around the edge of the button in the button's own brand color, stronger on
+ * hover. A pressed button keeps the hover glow. The focus indicator is an outline, so a focused button always shows a ring
+ * that is more than the glow (REQ-024 AC1). A disabled button, native or `aria-disabled`, has no glow (REQ-023 AC5). A
+ * loading button is natively disabled, but it keeps its look and its glow: it is busy, not unavailable. The glow goes on
+ * the edge only, never on text (ADR-0052).
  *
  * `[data-cn-state]` forces a state for the documentation. The state matrix on a component page cannot hover or press a
  * button, so it marks each cell with the state it shows. Application code never sets it.
@@ -265,50 +267,60 @@ h3 {
   color: var(--cn-button-primary-fg);
   background-color: var(--cn-button-primary-bg);
   border-color: var(--cn-button-primary-border);
+  box-shadow: var(--cn-button-primary-glow);
 }
 
 .cn-button--primary:not(:disabled, [aria-disabled='true']):is(:hover, [data-cn-state='hover']) {
   background-color: var(--cn-button-primary-bg-hover);
   border-color: var(--cn-button-primary-bg-hover);
+  box-shadow: var(--cn-button-primary-glow-hover);
 }
 
 .cn-button--primary:not(:disabled, [aria-disabled='true']):is(:active, [data-cn-state='active']) {
   background-color: var(--cn-button-primary-bg-active);
   border-color: var(--cn-button-primary-bg-active);
+  box-shadow: var(--cn-button-primary-glow-hover);
 }
 
 .cn-button--secondary {
   color: var(--cn-button-secondary-fg);
   background-color: var(--cn-button-secondary-bg);
   border-color: var(--cn-button-secondary-border);
+  box-shadow: var(--cn-button-secondary-glow);
 }
 
 .cn-button--secondary:not(:disabled, [aria-disabled='true']):is(:hover, [data-cn-state='hover']) {
   background-color: var(--cn-button-secondary-bg-hover);
   border-color: var(--cn-button-secondary-bg-hover);
+  box-shadow: var(--cn-button-secondary-glow-hover);
 }
 
 .cn-button--secondary:not(:disabled, [aria-disabled='true']):is(:active, [data-cn-state='active']) {
   background-color: var(--cn-button-secondary-bg-active);
   border-color: var(--cn-button-secondary-bg-active);
+  box-shadow: var(--cn-button-secondary-glow-hover);
 }
 
 .cn-button--ghost {
   color: var(--cn-button-ghost-fg);
   background-color: transparent;
   border-color: var(--cn-button-ghost-border);
+  box-shadow: var(--cn-button-ghost-glow);
 }
 
+/* The ghost button hovers with the glow only, on the black page (ADR-0055). */
 .cn-button--ghost:not(:disabled, [aria-disabled='true']):is(:hover, [data-cn-state='hover']) {
   color: var(--cn-button-ghost-fg-hover);
   background-color: var(--cn-button-ghost-bg-hover);
-  border-color: var(--cn-button-ghost-bg-hover);
+  border-color: var(--cn-button-ghost-border);
+  box-shadow: var(--cn-button-ghost-glow-hover);
 }
 
 .cn-button--ghost:not(:disabled, [aria-disabled='true']):is(:active, [data-cn-state='active']) {
-  color: var(--cn-button-ghost-fg-hover);
+  color: var(--cn-button-ghost-fg-active);
   background-color: var(--cn-button-ghost-bg-active);
   border-color: var(--cn-button-ghost-bg-active);
+  box-shadow: var(--cn-button-ghost-glow-hover);
 }
 
 .cn-button:is(:focus-visible, [data-cn-state='focus-visible']) {
@@ -728,6 +740,11 @@ h3 {
   overflow-wrap: anywhere;
 }
 
+/* The toast viewport sits at the toast stacking order, above every overlay (ADR-0054). */
+.cn-toaster {
+  z-index: var(--cn-z-toast);
+}
+
 /* Nuxt UI's open and close animations are not behind `motion-safe`, so they stop here (REQ-029 AC2). */
 @media (prefers-reduced-motion: reduce) {
   .cn-tooltip,
@@ -838,7 +855,7 @@ h3 {
  * a cascade layer, so they win over Nuxt UI's own utility classes without `!important`.
  *
  * The card sits on the pure black page, color.bg.base, and its brand pink outline is the neon highlight (BR-12, BR-13). It
- * never reads color.surface.card: no surface color is defined until TBD-06 is resolved (C-05). Nuxt UI draws its outline
+ * reads its fill from color.surface.card, which is that same black (ADR-0053, C-05). Nuxt UI draws its outline
  * variant with a ring, which is a box-shadow, and divides the parts with `divide-y`; the outline and the dividers here are
  * real borders from the tokens, and there is no glow. The card is not interactive, so it has no hover or focus state. A
  * focusable control inside it draws its own focus ring.
@@ -888,12 +905,12 @@ h3 {
 /*
  * T8.2 (REQ-020, REQ-025 AC2, AC3, AC4): CnMediaCard, the featured media card. Every value is a --cn-media-card-* token
  * (ADR-0026). The look is the standard card's (ADR-0018): the black page, a thick brand pink outline as the neon highlight,
- * and no glow. It never reads color.surface.card: no surface color is defined until TBD-06 is resolved (C-05). The
+ * and no glow. Its fill is color.surface.card, the same black (ADR-0053, C-05). The
  * thumbnail keeps its own proportions, because the photography standards are TBD-20, so no aspect ratio is declared.
  *
  * A linked card has one tab stop: the title is the link, and its ::after covers the whole card, so a click anywhere follows
- * it. Hover and active underline the title, which is a change that does not rely on color (WCAG 1.4.1); no shade is defined
- * for hover (TBD-08). The focus ring is drawn around the whole card from the focus tokens, never the glow (REQ-024 AC1), so
+ * it. Hover and active underline the title, which is a change that does not rely on color (WCAG 1.4.1), so no hover color is
+ * needed. The focus ring is drawn around the whole card from the focus tokens, never the glow (REQ-024 AC1), so
  * the link itself draws none. `[data-cn-state]` forces a state for the documentation; application code never sets it.
  */
 .cn-media-card {
@@ -970,8 +987,8 @@ h3 {
  * T8.5 (REQ-020, REQ-026, REQ-027): the modal and the slideover. app.config.ts puts `.cn-overlay-scrim` on the backdrop and
  * `.cn-overlay-panel` on the panel of both UModal and USlideover. Every value is an --cn-overlay-* token (ADR-0029). The look
  * is the cards' (ADR-0018): the black page color, a thick brand pink outline as the neon highlight, and no glow. The backdrop
- * is black at a placeholder amount (TBD-15). The panel never reads a card color: no such color is defined until TBD-06 is
- * resolved (C-05). Nuxt UI paints the panel with a fill, a ring, and divider lines in its own neutral colors; the rules
+ * is black at 85% (ADR-0054). The panel fill is color.surface.elevated, the same black (ADR-0053, C-05), and an overlay has
+ * no shadow: its outline and the backdrop lift it off the page. Nuxt UI paints the panel with a fill, a ring, and divider lines in its own neutral colors; the rules
  * below replace them with real borders from the tokens. The behavior (focus trap, Escape, the inert page) is Reka UI's.
  */
 .cn-overlay-scrim {
@@ -1165,7 +1182,7 @@ h3 {
  * T8.6 (REQ-020, REQ-022, REQ-028): the site header and the site footer. app.config.ts puts `.cn-site-header` on the root of
  * UHeader and `.cn-site-footer` on the root of UFooter. Every value is a --cn-site-header-* or --cn-site-footer-* token
  * (ADR-0030). The look is an opaque black bar with a thick brand pink line: under the header and above the footer. There is no
- * glow, and the bar never reads a card color, because none is defined until TBD-06 is resolved (C-05). Nuxt UI draws the
+ * glow, and the bar is not set apart by a fill: it is the same black as the page (ADR-0053, C-05). Nuxt UI draws the
  * header at 75% over a blur and with its own neutral border; the rules below replace them, so page content that scrolls under
  * the sticky header never shows through. The links and buttons inside keep their own looks (ADR-0010, ADR-0011), and the
  * mobile menu is UHeader's own slideover, which takes the overlay look (ADR-0029).

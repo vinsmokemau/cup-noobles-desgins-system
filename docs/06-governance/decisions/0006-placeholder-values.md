@@ -26,7 +26,7 @@ Sources used:
 - **Nuxt UI 4.11.2** and **Tailwind CSS 4.3.3**, the versions pinned in ADR-0001, read from `spikes/0001-nuxt-ui/` (`@nuxt/ui` theme definitions and `dist/runtime/index.css`, Tailwind `theme.css`, and the spike's built CSS).
 - **The owner in chat, 2026-09-25**, for the single neutral color: Nuxt UI's default neutral scale (`slate`), shade 400. SPEC.md §4.4 names no color value, so the owner chose it.
 
-TBD-08 (brand tints and shades) has no placeholder here. C-06 covers it: every Nuxt UI alias shade is the single brand hex with status `derived-pending` (ADR-0001 §3, ADR-0005). TBD-17 to TBD-21 are artwork, icon, imagery, and voice items, not token values. REQ-030 AC2 and the TBD callouts cover them.
+TBD-08 (brand tints and shades) has no placeholder here. C-06 covered it: every Nuxt UI alias shade was the single brand hex with status `derived-pending` (ADR-0001 §3, ADR-0005), until ADR-0055 set the shades. TBD-17 to TBD-21 are artwork, icon, imagery, and voice items, not token values. REQ-030 AC2 and the TBD callouts cover them.
 
 ## Decision
 
@@ -47,13 +47,11 @@ Every row below is labeled **not a brand value**.
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.color.neutral` | `#90a1b9` | Tailwind 4.3.3 `--color-slate-400: oklch(70.4% 0.04 256.788)`, converted to 8-bit sRGB hex. `slate` is Nuxt UI's default `neutral` alias (ADR-0001 §2). Chosen by the owner in chat, 2026-09-25. | TBD-06 (`color.surface.*`); formerly also the focus indicator color, until ADR-0009, and the text, neutral, and feedback colors, until ADR-0032 | not a brand value |
+| ~~`placeholder.color.neutral`~~ | ~~`#90a1b9`~~ | Tailwind 4.3.3 `--color-slate-400: oklch(70.4% 0.04 256.788)`, converted to 8-bit sRGB hex. `slate` is Nuxt UI's default `neutral` alias (ADR-0001 §2). Chosen by the owner in chat, 2026-09-25. | TBD-06 (`color.surface.*`); formerly also the focus indicator color, until ADR-0009, and the text, neutral, and feedback colors, until ADR-0032 | deleted (ADR-0053) |
 
 The value is stored as hex, not OKLCH, because the email output resolves to literals for email clients (REQ-013 AC1, §4.9).
 
-Measured with the WCAG 2.x relative-luminance formula, for information only: `#90a1b9` on `#000000` is 7.98:1, and `#ffffff` on `#90a1b9` is 2.63:1. Under REQ-015 AC4, any pair that uses this placeholder is reported as "unverified", not as passing.
-
-C-05 still applies: until OD-05 is decided, cards render on `color.bg.base` (`#000000`), not on `color.surface.card`. The surface token references this placeholder only so the token exists and builds.
+TBD-06 is resolved by ADR-0053. Under policy 5, this placeholder was deleted: `color.surface.card` and `color.surface.elevated` are the pure black page, and C-05 is resolved.
 
 #### Typography
 
@@ -93,11 +91,11 @@ TBD-01, TBD-02, and TBD-03 are resolved by ADR-0046, ADR-0047, and ADR-0048. Und
 
 | Path in `_placeholder.json` | Value | Source | Stands in for | Label |
 |---|---|---|---|---|
-| `placeholder.effect.glow` | `none` | Nuxt UI's `UButton` theme has no shadow or glow class | TBD-12 (`effect.glow.*`) | not a brand value |
-| `placeholder.effect.scrimOpacity` | `0.75` | Nuxt UI `UModal` and `USlideover` overlay: `bg-elevated/75`. Added by ADR-0029 | TBD-15 (`effect.scrim.*`) | not a brand value |
-| `placeholder.elevation.overlay` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | Tailwind `--shadow-lg`, used by `UModal` and `USlideover` (`shadow-lg`) | TBD-15 (`elevation.*`) | not a brand value |
-| `placeholder.z.overlay` | `auto` | Nuxt UI sets no z-index on `UModal` or `USlideover`; they stack by portal order | TBD-15 (`z.*`) | not a brand value |
-| `placeholder.z.toast` | `100` | Nuxt UI toaster viewport: `z-[100]` | TBD-15 (`z.*`) | not a brand value |
+| ~~`placeholder.effect.glow`~~ | ~~`none`~~ | Nuxt UI's `UButton` theme has no shadow or glow class | TBD-12 (`effect.glow.*`) | deleted (ADR-0051) |
+| ~~`placeholder.effect.scrimOpacity`~~ | ~~`0.75`~~ | Nuxt UI `UModal` and `USlideover` overlay: `bg-elevated/75`. Added by ADR-0029 | TBD-15 (`effect.scrim.*`) | deleted (ADR-0054) |
+| ~~`placeholder.elevation.overlay`~~ | ~~`0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)`~~ | Tailwind `--shadow-lg`, used by `UModal` and `USlideover` (`shadow-lg`) | TBD-15 (`elevation.*`) | deleted (ADR-0054) |
+| ~~`placeholder.z.overlay`~~ | ~~`auto`~~ | Nuxt UI sets no z-index on `UModal` or `USlideover`; they stack by portal order | TBD-15 (`z.*`) | deleted (ADR-0054) |
+| ~~`placeholder.z.toast`~~ | ~~`100`~~ | Nuxt UI toaster viewport: `z-[100]` | TBD-15 (`z.*`) | deleted (ADR-0054) |
 
 #### Focus
 
@@ -106,6 +104,8 @@ TBD-01, TBD-02, and TBD-03 are resolved by ADR-0046, ADR-0047, and ADR-0048. Und
 | ~~`placeholder.focus.width`~~ | ~~`3px`~~ | Nuxt UI `UButton`: `focus-visible:outline-3` | TBD-16 (`focus.*`) | deleted (ADR-0009) |
 | ~~`placeholder.focus.offset`~~ | ~~`0`~~ | Nuxt UI base CSS: `a:focus-visible { outline-offset: 0 }`; `UButton` sets no offset | TBD-16 | deleted (ADR-0009) |
 | ~~`placeholder.focus.style`~~ | ~~`solid`~~ | Tailwind `outline-3` sets `outline-style: solid` by default | TBD-16 | deleted (ADR-0009) |
+
+TBD-12 is resolved by ADR-0051, and TBD-15 by ADR-0054. Under policy 5, the five effect, elevation, and layering placeholders above were deleted, and those tokens became stable.
 
 TBD-16 is resolved by ADR-0009. Under policy 5, these three placeholders were deleted, and `placeholder.color.neutral` no longer stands in for the focus color.
 

@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [mediaCard, radius.mediaCard, border.width.mediaCard, color.surface.card]
 demos: [states, playground]
-tbd: [TBD-06, TBD-10, TBD-20]
+tbd: [TBD-10, TBD-20]
 related: [card, badge, link, imagery-and-motifs, accessibility, shape]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Media card
@@ -39,7 +39,7 @@ updated: 2026-10-11
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `border.width.mediaCard` | `--cn-border-width-media-card` | `3px` | stable |
-| `color.surface.card` | `--cn-color-surface-card` | `#90a1b9` | tbd (TBD-06) |
+| `color.surface.card` | `--cn-color-surface-card` | `#000000` | stable |
 | `mediaCard.bg` | `--cn-media-card-bg` | `#000000` | stable |
 | `mediaCard.divider` | `--cn-media-card-divider` | `#ef80ae` | stable |
 | `mediaCard.fg` | `--cn-media-card-fg` | `#f5f5f5` | stable |
@@ -54,7 +54,7 @@ updated: 2026-10-11
 
 The media card tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the divider, and the focus ring are `stable`: black and brand pink, and the brand yellow of the focus indicator (BR-01, BR-02, BR-03). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The title color and the stroke width are `stable` (ADR-0032).
 
-The card does not read `color.surface.card`. The table lists it so the open item is visible: no card surface color is defined (TBD-06, C-05), and the card renders on `color.bg.base` until OD-05 is decided.
+The card fill is `color.surface.card`, which is the pure-black page (ADR-0053, C-05). The outline, never a different fill, separates it from the page.
 
 Contrast pairs declared for the media card (REQ-015):
 
@@ -95,7 +95,7 @@ The media card has one brand look. It has one structural variant: linked or not 
 | `default` | Black fill, pink outline, pink line under the thumbnail, yellow tag badges. | `mediaCard.bg`, `mediaCard.highlight`, `mediaCard.divider`, `radius.mediaCard`, `border.width.mediaCard` |
 | `hover` | The title is underlined. Nothing changes color. | None |
 | `focus-visible` | A yellow ring surrounds the whole card, outside the outline. The ring shows for keyboard focus, never on a mouse click. | `mediaCard.focus.color`, `mediaCard.focus.width`, `mediaCard.focus.offset`, `mediaCard.focus.style` |
-| `active` | The title stays underlined. No shade is defined for a pressed card (TBD-08), so it looks like hover. | None |
+| `active` | The title stays underlined. A pressed card looks like hover, because nothing changes color. | None |
 
 The `hover`, `focus-visible`, and `active` states exist only on a linked card. A card has no `disabled` state: a card that must not be followed is simply not given a `to`. The thumbnail and the tags are not interactive.
 
@@ -207,8 +207,6 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-06):** Card and elevated surface colors are not defined (C-05). The card renders on `color.bg.base`, separated by its outline, until OD-05 is decided. Owner input needed: decision OD-05.
->
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
 >
 > **TBD (TBD-20):** Photography and thumbnail standards are not defined: subject, style, aspect ratios, and crops. The thumbnail keeps its own proportions until then. Owner input needed: guidelines.
@@ -219,3 +217,4 @@ Not applicable.
 
 - 0.1.0 — First draft: `CnMediaCard` with a thumbnail, a title, tag badges, an optional link with one tab stop, the component tokens, and the demos (T8.2) — ADR-0026
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — The card surface is the pure-black page, set by the owner, and the placeholder for it is gone — ADR-0053

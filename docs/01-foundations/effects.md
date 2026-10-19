@@ -2,21 +2,21 @@
 title: Effects
 slug: effects
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-10, BR-13]
 tokens: [effect, z, focus]
-tbd: [TBD-12, TBD-15]
+tbd: []
 related: [shape, color, accessibility, motion, button]
 since: 0.1.0
-updated: 2026-09-27
+updated: 2026-10-18
 ---
 
 # Effects
 
 ## Purpose
 
-This doc defines the Cup Noobles effects: the neon glow, elevation, stacking order (z-index), and the focus indicator. It implements the glow in BR-10 and keeps it compatible with BR-06 ("high-contrast, vibrant, and legible") and BR-13. It also states REQ-024: the focus indicator is never the glow alone. The focus indicator is defined by the owner (ADR-0009). The glow parameters (TBD-12) and the elevation and z-index scales (TBD-15) are not defined yet, so those tokens hold ADR-0006 placeholders that are not brand values.
+This doc defines the Cup Noobles effects: the neon glow, elevation, stacking order (z-index), and the focus indicator. It implements the glow in BR-10 and keeps it compatible with BR-06 ("high-contrast, vibrant, and legible") and BR-13. It also states REQ-024: the focus indicator is never the glow alone. The owner defined the focus indicator (ADR-0009), the glow (ADR-0051, ADR-0052), and the elevation and z-index scales (ADR-0054).
 
 ## Tokens and specs
 
@@ -24,15 +24,22 @@ This doc defines the Cup Noobles effects: the neon glow, elevation, stacking ord
 
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
-| `effect.elevation.overlay` | `--cn-effect-elevation-overlay` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | tbd (TBD-15) |
-| `effect.glow.button` | `--cn-effect-glow-button` | `none` | tbd (TBD-12) |
-| `effect.glow.default` | `--cn-effect-glow-default` | `none` | tbd (TBD-12) |
-| `effect.glow.interactive` | `--cn-effect-glow-interactive` | `none` | tbd (TBD-12) |
-| `effect.opacity.scrim` | `--cn-effect-opacity-scrim` | `0.75` | tbd (TBD-15) |
-| `effect.scrim.opacity` | `--cn-effect-scrim-opacity` | `0.75` | tbd (TBD-15) |
-| `effect.shadow.overlay` | `--cn-effect-shadow-overlay` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | tbd (TBD-15) |
-| `effect.zIndex.overlay` | `--cn-effect-z-index-overlay` | `auto` | tbd (TBD-15) |
-| `effect.zIndex.toast` | `--cn-effect-z-index-toast` | `100` | tbd (TBD-15) |
+| `effect.elevation.overlay` | `--cn-effect-elevation-overlay` | `none` | stable |
+| `effect.glow.button` | `--cn-effect-glow-button` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
+| `effect.glow.default` | `--cn-effect-glow-default` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
+| `effect.glow.interactive` | `--cn-effect-glow-interactive` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
+| `effect.glow.interactiveHover` | `--cn-effect-glow-interactive-hover` | `0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627)` | stable |
+| `effect.glow.pink.hover` | `--cn-effect-glow-pink-hover` | `0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627)` | stable |
+| `effect.glow.pink.rest` | `--cn-effect-glow-pink-rest` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
+| `effect.glow.secondary` | `--cn-effect-glow-secondary` | `0px 0px 12px 1px rgba(255, 244, 136, 0.6)` | stable |
+| `effect.glow.secondaryHover` | `--cn-effect-glow-secondary-hover` | `0px 0px 20px 2px rgba(255, 244, 136, 0.8509803921568627)` | stable |
+| `effect.glow.yellow.hover` | `--cn-effect-glow-yellow-hover` | `0px 0px 20px 2px rgba(255, 244, 136, 0.8509803921568627)` | stable |
+| `effect.glow.yellow.rest` | `--cn-effect-glow-yellow-rest` | `0px 0px 12px 1px rgba(255, 244, 136, 0.6)` | stable |
+| `effect.opacity.scrim` | `--cn-effect-opacity-scrim` | `0.85` | stable |
+| `effect.scrim.opacity` | `--cn-effect-scrim-opacity` | `0.85` | stable |
+| `effect.shadow.overlay` | `--cn-effect-shadow-overlay` | `none` | stable |
+| `effect.zIndex.overlay` | `--cn-effect-z-index-overlay` | `50` | stable |
+| `effect.zIndex.toast` | `--cn-effect-z-index-toast` | `100` | stable |
 | `focus.offset.default` | `--cn-focus-offset-default` | `3px` | stable |
 | `focus.ring.color` | `--cn-focus-ring-color` | `#fff488` | stable |
 | `focus.ring.offset` | `--cn-focus-ring-offset` | `3px` | stable |
@@ -40,14 +47,14 @@ This doc defines the Cup Noobles effects: the neon glow, elevation, stacking ord
 | `focus.ring.width` | `--cn-focus-ring-width` | `3px` | stable |
 | `focus.style.default` | `--cn-focus-style-default` | `solid` | stable |
 | `focus.width.default` | `--cn-focus-width-default` | `3px` | stable |
-| `z.overlay` | `--cn-z-overlay` | `auto` | tbd (TBD-15) |
-| `z.toast` | `--cn-z-toast` | `100` | tbd (TBD-15) |
+| `z.overlay` | `--cn-z-overlay` | `50` | stable |
+| `z.toast` | `--cn-z-toast` | `100` | stable |
 
 <!-- /cn:generated -->
 
-The `focus.ring.*` rows are `stable` (ADR-0009). Every other row is `tbd`. The glow placeholder is `none`, because Nuxt UI's button has no glow; the elevation and z-index placeholders come from Nuxt UI and Tailwind defaults (ADR-0006). **None of the placeholders is a brand value**, and none may be copied into another project. They exist only so the tokens build and the showcase renders.
+Every row is `stable`. The glow values are the owner's choice, Neon tube (ADR-0051). The overlay shadow, the dimming amount, and the stacking numbers are the owner's choice, Outline only (ADR-0054). The focus ring is ADR-0009. None of these is a brand value from the brand context; each is a value the owner chose for an open item.
 
-The primitive tokens (`effect.glow.default`, `effect.shadow.overlay`, `z.*`, `focus.width.default`, `focus.offset.default`, `focus.style.default`) hold the raw values. The semantic tokens (`effect.glow.interactive`, `effect.elevation.*`, `effect.zIndex.*`, `focus.ring.*`) give them roles. Components and apps use the semantic tokens only. The component tokens are added by each component's task. The button's glow is `effect.glow.button` (REQ-023 AC2, see [Button](../02-components/atoms/button.md)).
+The primitive tokens (`effect.glow.pink.*`, `effect.glow.yellow.*`, `effect.shadow.overlay`, `effect.opacity.scrim`, `z.*`, `focus.width.default`, `focus.offset.default`, `focus.style.default`) hold the raw values. The semantic tokens (`effect.glow.interactive`, `effect.glow.secondary`, `effect.elevation.*`, `effect.scrim.opacity`, `effect.zIndex.*`, `focus.ring.*`) give them roles. Components and apps use the semantic tokens only. The component tokens are added by each component's task. The button's glow is `effect.glow.button` and the per-variant `button.*.glow` tokens (REQ-023 AC2, see [Button](../02-components/atoms/button.md)).
 
 ### Brand rules
 
@@ -61,9 +68,22 @@ The rounded corners and the outline stroke in BR-10 are covered in [Shape](shape
 
 ### Glow
 
-BR-10 gives buttons "a subtle neon glow". Its blur, spread, opacity, and the color used in each state are TBD-12. A disabled button has no glow (REQ-023 AC5).
+BR-10 gives buttons "a subtle neon glow". The owner chose **Neon tube** (ADR-0051):
 
-> **Draft:** Glow applies to component edges only, such as the outline of a button or a card. It is never applied to body text or captions, as a text shadow or otherwise. A neon glow on a pure-black base causes halation that hurts text legibility, which would conflict with BR-06 (R-04). This rule awaits owner approval.
+| State | Glow |
+|---|---|
+| Default (rest) | blur 12 px, spread 1 px, opacity 60% |
+| Hover | blur 20 px, spread 2 px, opacity 85% |
+| Pressed | the hover glow (proposed by T13.2; ADR-0051 did not decide it) |
+| Loading | the rest glow, because a loading button is busy, not unavailable |
+| Keyboard focus | the rest glow, plus the separate focus ring (ADR-0009) |
+| Disabled | none (REQ-023 AC5) |
+
+The glow color is the exact brand color of the element, with only its opacity set: `color.brand.pink` around pink elements and `color.brand.yellow` around yellow ones. The tokens `color.glow.pink.*` and `color.glow.yellow.*` hold those two translucent colors. ADR-0051 approves the translucent use of the two brand colors for the glow and for nothing else (C-06). Hover opacity is written as the alpha byte `d9`, which is 85.1%.
+
+> **Rule (ADR-0052):** Glow applies to component edges only, such as the outline of a button or a card. It is never applied to body text, captions, or any other text, as a text shadow or otherwise. A neon glow on a pure-black base causes halation that hurts text legibility, which would conflict with BR-06 (R-04). A change to this rule needs a new ADR.
+
+Measured at hover, the strongest state, light body text beside the glow keeps at least 9.9:1 and grey caption text at least 5.0:1, 4 px from the button edge, against a 4.5:1 minimum (ADR-0051).
 
 ### Elevation and stacking
 
@@ -73,7 +93,16 @@ BR-10 gives buttons "a subtle neon glow". Its blur, spread, opacity, and the col
 | `effect.zIndex.overlay` | The stacking order of overlays. |
 | `effect.zIndex.toast` | The stacking order of toasts, above overlays. |
 
-The elevation and z-index scales are TBD-15. On a pure-black base (BR-03) a dark shadow is barely visible, so overlays also rely on their outline (BR-13) to separate from the page. How elevation is expressed is part of TBD-15.
+The owner chose **Outline only** (ADR-0054). On a pure-black base (BR-03) a dark shadow is invisible, and card and overlay surfaces are the same black (ADR-0053), so an overlay is lifted off the page by its 3 px outline and by the dimming layer.
+
+| Token role | Value |
+|---|---|
+| Overlay shadow (`effect.shadow.overlay`, `effect.elevation.overlay`) | none |
+| Dimming layer (`effect.opacity.scrim`, `effect.scrim.opacity`, `overlay.scrimOpacity`) | 0.85, black at 85% |
+| Overlay stacking order (`z.overlay`, `effect.zIndex.overlay`) | 50 |
+| Toast stacking order (`z.toast`, `effect.zIndex.toast`) | 100 |
+
+A toast always sits above an overlay. There is no shadow in the system, so a shadow value never needs to be written in a component (REQ-016). Every overlay must keep its outline: without it the overlay has no edge against the black page. At 85% the page behind an overlay is nearly invisible, and a toast above a modal should not cover the modal's actions.
 
 ### Focus
 
@@ -81,14 +110,14 @@ REQ-024 AC1: every interactive component shows a focus-visible indicator that is
 
 The focus indicator is a solid brand-yellow ring (BR-02), 3 px wide, drawn 3 px outside the component (ADR-0009). The gap shows the container behind the component, so on the pure-black page the ring only ever touches black, at 18.55:1. It never touches a pink or yellow fill: yellow on pink is a forbidden pair (SPEC.md §2.1), and yellow on yellow has no contrast. The ring is yellow, not Nuxt UI's default translucent pink outline, so it stays distinct from a pink glow (REQ-024) and derives no new color from BR-01 (C-06).
 
-A focusable component on a container that is not black needs its own check, because the gap then shows that container's color. The contrast pairs declared for the focus color are generated below. The pair on `color.surface.card` is `unverified` until TBD-06 is resolved (REQ-015 AC4).
+A focusable component on a container that is not black needs its own check, because the gap then shows that container's color. The contrast pairs declared for the focus color are generated below. `color.surface.card` is the same black as the page (ADR-0053), so its pair passes as well.
 
 <!-- cn:generated tokens="focus" format="contrast" -->
 
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
 | `focus.ring.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
-| `focus.ring.color` (`#fff488`) | `color.surface.card` (`#90a1b9`) | ui | 2.32:1 | 3.00:1 | unverified (tbd: `color.surface.card`, `placeholder.color.neutral`) |
+| `focus.ring.color` (`#fff488`) | `color.surface.card` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
 
@@ -105,17 +134,17 @@ A focusable component on a container that is not black needs its own check, beca
 
 - Never use the glow as the only focus indicator, and never show focus on a mouse click alone (REQ-024).
 - Never give a disabled button a glow (REQ-023 AC5).
-- Never make up glow, elevation, or z-index values. They are TBD-12 and TBD-15, and only the owner can supply them. Never change the focus values without a new ADR (ADR-0009).
+- Never make up glow, elevation, or z-index values. They are set by ADR-0051 and ADR-0054, and a change needs a new ADR. Never change the focus values without a new ADR (ADR-0009).
+- Never put a glow on text, or add a shadow to an overlay (ADR-0052, ADR-0054).
 - Never set the focus offset to `0` or draw the ring inside a component: the gap is what keeps yellow off the pink and yellow fills.
-- Never treat the ADR-0006 placeholders as brand values, and never copy them into another project.
-- Never derive a focus or glow color from a brand color, for example a translucent pink, without an approved ADR (C-06).
+- Never derive a translucent brand color for anything except the glow tokens of ADR-0051 (C-06).
 
 ## Do and don't
 
 | Do | Don't |
 |---|---|
 | Show a `focus.ring.*` outline on keyboard focus, in addition to any glow. | Make the glow brighter on focus and call that the focus indicator. |
-| Keep the glow on a button's edge. | Put a glow on a paragraph or a caption (draft rule, R-04). |
+| Keep the glow on a button's edge. | Put a glow on a paragraph or a caption (ADR-0052). |
 | Remove the glow from a disabled button. | Keep the glow on a disabled button so it still looks "on brand". |
 | Stack overlays with `effect.zIndex.*`. | Type a z-index number into a component. |
 
@@ -125,7 +154,7 @@ A focusable component on a container that is not black needs its own check, beca
 - The focus indicator is always visible on keyboard focus, uses `focus.ring.*`, and is never the glow alone (REQ-024 AC1). It has at least 3:1 contrast against adjacent colors (WCAG 1.4.11). The focus contrast pairs are declared in `tokens/contrast-pairs.json` and checked by `check-contrast`.
 - Focus appears on `:focus-visible` only (REQ-024 AC2). Every interactive component has a Playwright keyboard test for it.
 - The glow is decorative. It never carries meaning or state on its own.
-- Glow stays off body text so text remains legible on black (BR-06, draft rule for R-04).
+- Glow stays off body text so text remains legible on black (BR-06, ADR-0052).
 - An animated glow stops, or reduces to a non-moving state, under `prefers-reduced-motion: reduce`, and never flashes more than 3 times per second (REQ-029). Motion values are in [Motion](motion.md).
 
 ## Responsive behavior
@@ -140,9 +169,9 @@ Effects do not change between viewports. The same tokens apply at 360, 768, and 
 
 | Where | What |
 |---|---|
-| `tokens/primitive/effect.json` | The glow and the overlay shadow, both `tbd` (TBD-12, TBD-15). |
-| `tokens/primitive/z.json` | The z-index values, `tbd` (TBD-15). |
-| `tokens/semantic/effect.json` | The roles: `effect.glow.interactive`, `effect.elevation.overlay`, and `effect.zIndex.*`. |
+| `tokens/primitive/effect.json` | The glow, the overlay shadow, and the dimming amount, `stable` (ADR-0051, ADR-0054). |
+| `tokens/primitive/z.json` | The z-index values, `stable` (ADR-0054). |
+| `tokens/semantic/effect.json` | The roles: `effect.glow.interactive`, `effect.glow.secondary`, `effect.elevation.overlay`, `effect.scrim.opacity`, and `effect.zIndex.*`. |
 | `tokens/primitive/focus.json` | The focus ring width, offset, and line style, `stable` (ADR-0009). |
 | `tokens/semantic/focus.json` | The focus indicator: `focus.ring.color`, `width`, `offset`, and `style`, all `stable` (ADR-0009). |
 | `@vinsmokemau/cup-noobles-tokens`, `dist/css/tokens.css` | The CSS custom properties, such as `--cn-focus-ring-color` (REQ-017). |
@@ -162,11 +191,10 @@ Effects do not change between viewports. The same tokens apply at 360, 768, and 
 
 ## Open items
 
-> **TBD (TBD-12):** Neon glow parameters are not defined: blur, spread, opacity, and which color is used per state ("subtle" in BR-10). `effect.glow.default` and `effect.glow.interactive` hold the ADR-0006 placeholder `none`. Owner input needed: values.
->
-> **TBD (TBD-15):** The elevation and z-index scales are not defined. `effect.shadow.overlay`, `effect.elevation.overlay`, `z.*`, and `effect.zIndex.*` hold ADR-0006 placeholders. Owner input needed: values.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-10 glow, BR-06 and BR-13, the glow, elevation, z-index, and focus groups, the REQ-024 focus rule, a draft rule for R-04, and TBD-12, TBD-15, and TBD-16 (T4.4) — awaiting owner approval
 - 0.1.0 — Focus indicator defined by the owner: a solid yellow ring, 3 px wide, with a 3 px gap (ADR-0009, TBD-16 resolved)
+- 0.1.0 — Neon tube, Outline only, and the edges-only glow rule are set by the owner, and the placeholders for them are gone. The doc moves to stable — ADR-0051, ADR-0052, ADR-0054

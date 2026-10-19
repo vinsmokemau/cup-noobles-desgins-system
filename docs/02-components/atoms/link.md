@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-01, BR-06, BR-13]
 tokens: [link]
 demos: [states, playground]
-tbd: [TBD-08]
+tbd: []
 related: [button, icon, badge, accessibility]
 since: 0.1.0
-updated: 2026-10-09
+updated: 2026-10-18
 ---
 
 # Link
@@ -36,8 +36,8 @@ The link takes a person to another page, another part of the page, or another si
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `link.fg` | `--cn-link-fg` | `#ef80ae` | stable |
-| `link.fgActive` | `--cn-link-fg-active` | `#ef80ae` | derived-pending (TBD-08) |
-| `link.fgHover` | `--cn-link-fg-hover` | `#ef80ae` | derived-pending (TBD-08) |
+| `link.fgActive` | `--cn-link-fg-active` | `#d06c96` | stable |
+| `link.fgHover` | `--cn-link-fg-hover` | `#fea0c5` | stable |
 | `link.focus.color` | `--cn-link-focus-color` | `#fff488` | stable |
 | `link.focus.offset` | `--cn-link-focus-offset` | `3px` | stable |
 | `link.focus.style` | `--cn-link-focus-style` | `solid` | stable |
@@ -45,7 +45,7 @@ The link takes a person to another page, another part of the page, or another si
 
 <!-- /cn:generated -->
 
-The component tokens only reference semantic tokens (REQ-010 AC2). The hover and pressed colors are `derived-pending`: each reads a shade token that repeats the single brand pink, so a hovered or pressed link does not change color yet (C-06, TBD-08). The text color and the focus tokens are `stable`.
+The component tokens only reference semantic tokens (REQ-010 AC2). The hover and pressed colors are `stable`: a hovered link takes the lighter pink tone (11.05:1 on the black page) and a pressed one the darker tone (6.27:1), both from ADR-0055. The text color and the focus tokens are `stable`.
 
 Contrast pairs declared for the link (REQ-015):
 
@@ -54,8 +54,8 @@ Contrast pairs declared for the link (REQ-015):
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
 | `link.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `link.fgHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `link.fgActive` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
+| `link.fgHover` (`#fea0c5`) | `color.bg.base` (`#000000`) | text | 11.05:1 | 4.50:1 | pass |
+| `link.fgActive` (`#d06c96`) | `color.bg.base` (`#000000`) | text | 6.27:1 | 4.50:1 | pass |
 | `link.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -177,9 +177,7 @@ The email link is plain `<a>` markup inside the MJML components, described in [E
 
 ## Open items
 
-> **TBD (TBD-08):** Tints and shades of pink and yellow are not defined. The hover and pressed colors read shade tokens that repeat the brand pink, so they look the same as the default color. Owner input needed: decision OD-04.
->
-> **Draft:** The hover and pressed colors of the link use the shade tokens (TBD-08), and the dimming of a disabled link is Nuxt UI's default. The pink, underlined look is approved (ADR-0011). This awaits owner approval.
+> **Draft:** The hover and pressed colors of the link are the pink tones of ADR-0055, which T13.2 applied to links because the ADR names buttons, links, and breadcrumbs. The dimming of a disabled link is Nuxt UI's default. The pink, underlined look is approved (ADR-0011). This awaits owner approval.
 
 ## Changelog
 

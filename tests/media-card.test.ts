@@ -41,7 +41,7 @@ test('REQ-020 AC1, AC2: the doc is a custom molecule that says why it is custom,
   assert.equal(data.component, 'CnMediaCard')
   assert.equal(data.status, 'draft')
   assert.deepEqual(data.demos, ['states', 'playground'])
-  assert.deepEqual(data.tbd, ['TBD-06', 'TBD-10', 'TBD-20'])
+  assert.deepEqual(data.tbd, ['TBD-10', 'TBD-20'])
   assert.match(doc, /\*\*Why custom:\*\* Nuxt UI has no equivalent\./)
 })
 
@@ -98,7 +98,7 @@ test('ADR-0026: the media card tokens reference semantic tokens, and the placeho
     assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   for (const [path, value, status] of [
-    ['mediaCard.bg', '{color.bg.base}', 'stable'],
+    ['mediaCard.bg', '{color.surface.card}', 'stable'],
     ['mediaCard.highlight', '{color.brand.primary}', 'stable'],
     ['mediaCard.divider', '{color.brand.primary}', 'stable'],
     ['mediaCard.fg', '{color.text.default}', 'stable'],
@@ -168,10 +168,11 @@ test('REQ-026 AC1, AC2: the doc lists the states, and its state matrix demo show
   assert.deepEqual(shown, expected)
 })
 
-test('REQ-025 AC3: the doc marks color.surface.card as TBD-06 and the thumbnail ratio as TBD-20', () => {
-  assert.match(doc, /> \*\*TBD \(TBD-06\):\*\*[^\n]*C-05/)
+test('REQ-025 AC3: the doc shows color.surface.card as stable and marks the thumbnail ratio as TBD-20', () => {
+  // T13.2, ADR-0053: TBD-06 is resolved, so the surface token is stable and the callout is gone.
+  assert.doesNotMatch(doc, /TBD-06/)
   assert.match(doc, /> \*\*TBD \(TBD-20\):\*\*/)
-  assert.match(doc, /\| `color\.surface\.card` \| `--cn-color-surface-card` \| `#[0-9a-f]{6}` \| tbd \(TBD-06\) \|/)
+  assert.match(doc, /\| `color\.surface\.card` \| `--cn-color-surface-card` \| `#000000` \| stable \|/)
 })
 
 test('ADR-0026 is recorded in the decision log, and the playground controls match the demo props', async () => {

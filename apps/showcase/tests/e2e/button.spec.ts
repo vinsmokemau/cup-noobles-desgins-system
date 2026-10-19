@@ -25,6 +25,16 @@ const BLACK = 'rgb(0, 0, 0)'
 const PINK = 'rgb(239, 128, 174)'
 const YELLOW = 'rgb(255, 244, 136)'
 const CLEAR = 'rgba(0, 0, 0, 0)'
+// ADR-0055: the lighter tone is the hover fill, and the darker tone is the pressed fill.
+const PINK_HOVER = 'rgb(254, 160, 197)'
+const PINK_ACTIVE = 'rgb(208, 108, 150)'
+const YELLOW_HOVER = 'rgb(255, 247, 163)'
+const YELLOW_ACTIVE = 'rgb(218, 207, 109)'
+// ADR-0051: the glow is the brand color of the button at 60% at rest, and at 85% (the alpha byte d9) on hover.
+const PINK_GLOW = 'rgba(239, 128, 174, 0.6) 0px 0px 12px 1px'
+const PINK_GLOW_HOVER = 'rgba(239, 128, 174, 0.85) 0px 0px 20px 2px'
+const YELLOW_GLOW = 'rgba(255, 244, 136, 0.6) 0px 0px 12px 1px'
+const YELLOW_GLOW_HOVER = 'rgba(255, 244, 136, 0.85) 0px 0px 20px 2px'
 
 const cell = (page: Page, state: string) => page.locator(`[data-state="${state}"]`)
 const button = (page: Page, state: string, label: string) => cell(page, state).getByRole('button', { name: label })
@@ -57,7 +67,8 @@ async function setProps(page: Page, props: object) {
 async function setTokens(page: Page) {
   await page.evaluate(() => {
     const root = document.documentElement.style
-    root.setProperty('--cn-effect-glow-button', '0 0 9px 2px rgb(1, 2, 3)')
+    for (const variant of ['primary', 'secondary', 'ghost'])
+      root.setProperty(`--cn-button-${variant}-glow`, '0 0 9px 2px rgb(1, 2, 3)')
     root.setProperty('--cn-radius-button', '11px')
     root.setProperty('--cn-border-width-button', '5px')
   })
@@ -76,19 +87,32 @@ test('REQ-026 AC1, AC2: the state matrix shows exactly the states the doc lists'
 test('REQ-023 AC3, Done when: the label on a brand fill is black, in every state', async ({ page }) => {
   await openDemo(page, 'button', 'states')
   for (const state of STATES) {
+    // ADR-0055: the lighter tone on hover and the darker tone while pressed. The label is black on every one.
+    const fills: Record<string, [string, string]> = {
+      hover: [PINK_HOVER, YELLOW_HOVER],
+      active: [PINK_ACTIVE, YELLOW_ACTIVE],
+    }
     const primary = await styleOf(button(page, state, PRIMARY), ['color', 'background-color'])
-    expect(primary, `primary in ${state}`).toEqual({ color: BLACK, 'background-color': PINK })
+    expect(primary, `primary in ${state}`).toEqual({ color: BLACK, 'background-color': fills[state]?.[0] ?? PINK })
     const secondary = await styleOf(button(page, state, SECONDARY), ['color', 'background-color'])
-    expect(secondary, `secondary in ${state}`).toEqual({ color: BLACK, 'background-color': YELLOW })
+    expect(secondary, `secondary in ${state}`).toEqual({
+      color: BLACK,
+      'background-color': fills[state]?.[1] ?? YELLOW,
+    })
   }
-  // The ghost button has no fill. Its label is pink on the page, and turns black over the pink fill on hover.
+  // The ghost button has no fill. Its label is pink on the page, it hovers with the glow only on the black page
+  // (ADR-0055), and while pressed it fills with the darker pink and turns black.
   expect(await styleOf(button(page, 'default', GHOST), ['color', 'background-color'])).toEqual({
     color: PINK,
     'background-color': CLEAR,
   })
   expect(await styleOf(button(page, 'hover', GHOST), ['color', 'background-color'])).toEqual({
+    color: PINK,
+    'background-color': BLACK,
+  })
+  expect(await styleOf(button(page, 'active', GHOST), ['color', 'background-color'])).toEqual({
     color: BLACK,
-    'background-color': PINK,
+    'background-color': PINK_ACTIVE,
   })
 })
 
@@ -103,11 +127,11 @@ test('REQ-023 AC2: the rounded corners, the thick outline, and the glow come fro
     'border-top-color',
     'box-shadow',
   ]
-  // As built, the tokens are placeholders: the glow is `none` (TBD-12).
-  const placeholder = await styleOf(button(page, 'default', PRIMARY), properties)
-  expect(placeholder['border-top-style']).toBe('solid')
-  expect(placeholder['border-top-color']).toBe(PINK)
-  expect(placeholder['box-shadow']).toBe('none')
+  // As built, the glow is Neon tube (ADR-0051): the brand color of the button at 60%.
+  const built = await styleOf(button(page, 'default', PRIMARY), properties)
+  expect(built['border-top-style']).toBe('solid')
+  expect(built['border-top-color']).toBe(PINK)
+  expect(built['box-shadow']).toBe(PINK_GLOW)
   // Change only the tokens' variables, and every part follows: the button holds no value of its own.
   await setTokens(page)
   for (const label of [PRIMARY, SECONDARY, GHOST]) {
@@ -116,6 +140,27 @@ test('REQ-023 AC2: the rounded corners, the thick outline, and the glow come fro
     expect(styled['border-top-width'], `${label} outline width`).toBe('5px')
     expect(styled['box-shadow'], `${label} glow`).toContain(GLOW)
   }
+})
+
+test('ADR-0051: each variant glows in its own brand color, and the hover and pressed glow is the stronger one', async ({
+  page,
+}) => {
+  await openDemo(page, 'button', 'states')
+  const glow = (state: string, label: string) =>
+    styleOf(button(page, state, label), ['box-shadow']).then((s) => s['box-shadow']!)
+  for (const state of ['default', 'focus-visible', 'loading']) {
+    expect(await glow(state, PRIMARY), `primary ${state}`).toBe(PINK_GLOW)
+    expect(await glow(state, SECONDARY), `secondary ${state}`).toBe(YELLOW_GLOW)
+    expect(await glow(state, GHOST), `ghost ${state}`).toBe(PINK_GLOW)
+  }
+  for (const state of ['hover', 'active']) {
+    expect(await glow(state, PRIMARY), `primary ${state}`).toBe(PINK_GLOW_HOVER)
+    expect(await glow(state, SECONDARY), `secondary ${state}`).toBe(YELLOW_GLOW_HOVER)
+    expect(await glow(state, GHOST), `ghost ${state}`).toBe(PINK_GLOW_HOVER)
+  }
+  // ADR-0052: the glow is on the edge, so the label carries no text shadow.
+  for (const state of STATES)
+    expect((await styleOf(button(page, state, PRIMARY), ['text-shadow']))['text-shadow'], state).toBe('none')
 })
 
 test('REQ-023 AC5, Done when: a disabled button has no glow, and is still disabled to assistive technology', async ({

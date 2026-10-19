@@ -61,9 +61,11 @@ test('REQ-026 AC1, AC2: the link state matrix shows exactly the states the doc l
 
 test('the link is brand pink and always underlined, in every state', async ({ page }) => {
   await openDemo(page, 'link', 'states')
+  // ADR-0055: a hovered link takes the lighter pink tone, and a pressed one the darker tone.
+  const tones: Record<string, string> = { hover: 'rgb(254, 160, 197)', active: 'rgb(208, 108, 150)' }
   for (const state of statesOf('link').filter((s) => s !== 'disabled')) {
     const style = await styleOf(textLink(page, state), ['color', 'text-decoration-line'])
-    expect(style, state).toEqual({ color: PINK, 'text-decoration-line': 'underline' })
+    expect(style, state).toEqual({ color: tones[state] ?? PINK, 'text-decoration-line': 'underline' })
   }
   expect((await styleOf(textLink(page, 'disabled'), ['text-decoration-line']))['text-decoration-line']).toBe(
     'underline',

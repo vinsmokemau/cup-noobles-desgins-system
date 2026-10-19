@@ -173,9 +173,9 @@ for (const { slug, title, description } of OVERLAYS) {
       expect(base['background-color']).toBe('rgb(0, 0, 0)')
       const header = panel.locator('[data-slot="header"]')
       expect((await styleOf(header, ['border-bottom-color']))['border-bottom-color']).toBe(PINK)
-      // The backdrop is black at the placeholder amount, 0.75.
+      // The backdrop is black at 85% (ADR-0054).
       const overlay = page.locator('[data-slot="overlay"]')
-      expect((await styleOf(overlay, ['background-color']))['background-color']).toMatch(/0\.75/)
+      expect((await styleOf(overlay, ['background-color']))['background-color']).toMatch(/0\.85/)
 
       await page.evaluate(() => {
         const style = document.documentElement.style

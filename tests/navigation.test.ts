@@ -53,7 +53,7 @@ test('the tabs, breadcrumb, and pagination tokens reference semantic tokens, and
     ['tabs.active.fg', '{color.brand.primary}', 'stable'],
     ['tabs.active.indicator', '{color.brand.primary}', 'stable'],
     ['breadcrumb.link.fg', '{color.brand.primary}', 'stable'],
-    ['breadcrumb.link.fgHover', '{color.brand.primaryHover}', 'derived-pending'],
+    ['breadcrumb.link.fgHover', '{color.brand.primaryHover}', 'stable'],
     ['breadcrumb.current.fg', '{color.text.default}', 'stable'],
     ['breadcrumb.separator.fg', '{color.text.muted}', 'stable'],
     ['pagination.item.fg', '{color.text.default}', 'stable'],

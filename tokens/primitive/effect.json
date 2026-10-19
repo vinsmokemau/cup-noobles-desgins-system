@@ -2,24 +2,111 @@
   "effect": {
     "glow": {
       "default": {
-        "$value": "{placeholder.effect.glow}",
-        "$description": "Neon glow. TBD-12: blur, spread, opacity, and color per state are not defined (\"subtle\" in BR-10); this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-12"] } }
+        "$type": "shadow",
+        "$value": "{effect.glow.pink.rest}",
+        "$description": "Neon glow at rest: Neon tube around a pink element (ADR-0051, BR-10). Edges only, never text (ADR-0052).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "pink": {
+        "rest": {
+          "$type": "shadow",
+          "$value": {
+            "color": "{color.glow.pink.rest}",
+            "offsetX": "0px",
+            "offsetY": "0px",
+            "blur": "12px",
+            "spread": "1px"
+          },
+          "$description": "Rest neon glow around pink elements: blur 12px, spread 1px, 60% opacity (ADR-0051, Neon tube). Edges only, never text (ADR-0052).",
+          "$extensions": {
+            "cn": {
+              "status": "stable",
+              "source": "ADR-0051"
+            }
+          }
+        },
+        "hover": {
+          "$type": "shadow",
+          "$value": {
+            "color": "{color.glow.pink.hover}",
+            "offsetX": "0px",
+            "offsetY": "0px",
+            "blur": "20px",
+            "spread": "2px"
+          },
+          "$description": "Hover neon glow around pink elements: blur 20px, spread 2px, 85% opacity (ADR-0051, Neon tube). Edges only, never text (ADR-0052).",
+          "$extensions": {
+            "cn": {
+              "status": "stable",
+              "source": "ADR-0051"
+            }
+          }
+        }
+      },
+      "yellow": {
+        "rest": {
+          "$type": "shadow",
+          "$value": {
+            "color": "{color.glow.yellow.rest}",
+            "offsetX": "0px",
+            "offsetY": "0px",
+            "blur": "12px",
+            "spread": "1px"
+          },
+          "$description": "Rest neon glow around yellow elements: blur 12px, spread 1px, 60% opacity (ADR-0051, Neon tube). Edges only, never text (ADR-0052).",
+          "$extensions": {
+            "cn": {
+              "status": "stable",
+              "source": "ADR-0051"
+            }
+          }
+        },
+        "hover": {
+          "$type": "shadow",
+          "$value": {
+            "color": "{color.glow.yellow.hover}",
+            "offsetX": "0px",
+            "offsetY": "0px",
+            "blur": "20px",
+            "spread": "2px"
+          },
+          "$description": "Hover neon glow around yellow elements: blur 20px, spread 2px, 85% opacity (ADR-0051, Neon tube). Edges only, never text (ADR-0052).",
+          "$extensions": {
+            "cn": {
+              "status": "stable",
+              "source": "ADR-0051"
+            }
+          }
+        }
       }
     },
     "opacity": {
       "scrim": {
         "$type": "number",
-        "$value": "{placeholder.effect.scrimOpacity}",
-        "$description": "How much of the page the overlay backdrop covers, from 0 to 1. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value (ADR-0029).",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+        "$value": 0.85,
+        "$description": "How much of the page the overlay backdrop covers, from 0 to 1: black at 85% (ADR-0054).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0054"
+          }
+        }
       }
     },
     "shadow": {
       "overlay": {
-        "$value": "{placeholder.elevation.overlay}",
-        "$description": "Overlay shadow. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-15"] } }
+        "$value": "none",
+        "$description": "Overlay shadow: none. An overlay is lifted off the page by its outline and the dimming layer, and there is no shadow anywhere in the system (ADR-0054). Untyped, because `none` is not a DTCG shadow (ADR-0008).",
+        "$extensions": {
+          "cn": {
+            "status": "stable",
+            "source": "ADR-0054"
+          }
+        }
       }
     }
   }

@@ -159,10 +159,14 @@ test('Done when: the repository passes, and the report lists every callout in ev
       'TBD-03 ADR-0048',
       'TBD-04 ADR-0032',
       'TBD-05 ADR-0032',
+      'TBD-06 ADR-0053',
       'TBD-07 ADR-0032',
+      'TBD-08 ADR-0055',
       'TBD-11 ADR-0032',
+      'TBD-12 ADR-0051',
       'TBD-13 ADR-0035',
       'TBD-14 ADR-0032',
+      'TBD-15 ADR-0054',
       'TBD-16 ADR-0009',
       'TBD-17 ADR-0016',
       'TBD-18 ADR-0017,ADR-0019,ADR-0021,ADR-0020,ADR-0022,ADR-0023,ADR-0024,ADR-0025',
@@ -176,6 +180,6 @@ test('Done when: the repository passes, and the report lists every callout in ev
 test('REQ-073 AC2: every decided OD in SPEC.md names an existing ADR', () => {
   const spec = readFileSync(join(root, 'SPEC.md'), 'utf8')
   const decided = spec.split(/\r?\n/).filter((line) => /^\| OD-\d{2} \|.*\*\*Decided\b/.test(line))
-  assert.equal(decided.length, 10)
+  assert.equal(decided.length, 12)
   for (const line of decided) assert.match(line, /\bADR-\d{4}\b/, line.slice(0, 8))
 })

@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [overlay, radius.overlay, border.width.overlay, effect.scrim]
 demos: [states, playground]
-tbd: [TBD-10, TBD-15]
+tbd: [TBD-10]
 related: [slideover, card, button, effects, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Modal
@@ -24,7 +24,7 @@ The modal is a dialog that opens on top of the page and asks for one decision or
 
 ## Anatomy
 
-1. **backdrop**: the dimmed layer over the page. It is pure black at a placeholder amount.
+1. **backdrop**: the dimmed layer over the page. It is pure black at 85% (ADR-0054).
 2. **panel**: the framed dialog. It has the page's black fill, the pink outline, and the rounded corners.
 3. **header**: the title and the description, with the close button at the end.
 4. **body**: the main content, passed to the `body` slot.
@@ -38,21 +38,21 @@ The modal is a dialog that opens on top of the page and asks for one decision or
 | Token | CSS variable | Value | Status |
 |---|---|---|---|
 | `border.width.overlay` | `--cn-border-width-overlay` | `3px` | stable |
-| `effect.scrim.opacity` | `--cn-effect-scrim-opacity` | `0.75` | tbd (TBD-15) |
+| `effect.scrim.opacity` | `--cn-effect-scrim-opacity` | `0.85` | stable |
 | `overlay.bg` | `--cn-overlay-bg` | `#000000` | stable |
 | `overlay.divider` | `--cn-overlay-divider` | `#ef80ae` | stable |
 | `overlay.fg` | `--cn-overlay-fg` | `#f5f5f5` | stable |
 | `overlay.fgMuted` | `--cn-overlay-fg-muted` | `#bdbdbd` | stable |
 | `overlay.highlight` | `--cn-overlay-highlight` | `#ef80ae` | stable |
 | `overlay.scrim` | `--cn-overlay-scrim` | `#000000` | stable |
-| `overlay.scrimOpacity` | `--cn-overlay-scrim-opacity` | `0.75` | tbd (TBD-15) |
-| `overlay.shadow` | `--cn-overlay-shadow` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | tbd (TBD-15) |
-| `overlay.z` | `--cn-overlay-z` | `auto` | tbd (TBD-15) |
+| `overlay.scrimOpacity` | `--cn-overlay-scrim-opacity` | `0.85` | stable |
+| `overlay.shadow` | `--cn-overlay-shadow` | `none` | stable |
+| `overlay.z` | `--cn-overlay-z` | `50` | stable |
 | `radius.overlay` | `--cn-radius-overlay` | `0.375rem` | tbd (TBD-10) |
 
 <!-- /cn:generated -->
 
-The overlay tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the dividers, and the backdrop color are `stable`: black and brand pink (BR-01, BR-03). The corner radius, the backdrop amount, the shadow, and the stacking order follow placeholders (TBD-10, TBD-15), so they are `tbd` until the owner supplies them. The text colors and the stroke width are `stable` (ADR-0032). The slideover reads the same tokens.
+The overlay tokens reference semantic tokens only (REQ-010 AC2). The fill, the outline, the dividers, and the backdrop color are `stable`: black and brand pink (BR-01, BR-03). The backdrop amount (0.85), the shadow (none), and the stacking order (50) are `stable` (ADR-0054). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The fill is `color.surface.elevated`, the pure-black page (ADR-0053). The text colors and the stroke width are `stable` (ADR-0032). The slideover reads the same tokens.
 
 Contrast pairs declared for the modal and the slideover (REQ-015):
 
@@ -73,7 +73,7 @@ Contrast pairs declared for the modal and the slideover (REQ-015):
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-The brand context does not describe a dialog. The panel takes the card's look so the system reads as one thing (ADR-0029): a pink outline and pink dividers on the black page, with no glow. Pink on black is 8.37:1 (SPEC.md §2.1). The page behind is pure black (BR-03), so the backdrop only dims the colored content on it.
+The brand context does not describe a dialog. The panel takes the card's look so the system reads as one thing (ADR-0029): a pink outline and pink dividers on the black page, with no glow and no shadow. The outline and the backdrop lift the panel off the page (ADR-0054). Pink on black is 8.37:1 (SPEC.md §2.1). The page behind is pure black (BR-03), so the backdrop only dims the colored content on it.
 
 ## Variants
 
@@ -194,9 +194,9 @@ Not applicable.
 
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
 >
-> **TBD (TBD-15):** The elevation and z-index scales are not defined, and no item names the backdrop amount. The shadow, the stacking order, and the backdrop amount (0.75) follow placeholders (ADR-0029). Owner input needed: values, or approval of 0.75.
+> **Draft:** At 85% the page behind the modal is nearly invisible, which gives little context. A toast above a modal should not cover the modal's actions, because the toast's pink outline meets the modal's pink one (ADR-0054).
 >
-> **Draft:** The look of the modal (a pink outline and pink dividers on the black page, over a dimmed backdrop, with no glow) is approved (ADR-0029). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the modal (a pink outline and pink dividers on the black page, over a dimmed backdrop, with no glow) is approved (ADR-0029). The doc stays a draft until the placeholder in the TBD callout above is replaced.
 
 ## Changelog
 

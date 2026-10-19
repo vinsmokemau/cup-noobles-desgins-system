@@ -90,10 +90,10 @@ test('C-03 and REQ-016: every scale step is one var() of an existing --cn-* toke
     }
 })
 
-test('C-06: primary and secondary read the derived-pending shade tokens of the single brand pink and yellow', () => {
-  for (const [alias, color] of [
-    ['primary', 'pink'],
-    ['secondary', 'yellow'],
+test('C-06, ADR-0055: primary and secondary read the shade tokens: two derived tones around the brand color', () => {
+  for (const [alias, color, light, dark] of [
+    ['primary', 'pink', '#fea0c5', '#d06c96'],
+    ['secondary', 'yellow', '#fff7a3', '#dacf6d'],
   ] as const)
     for (const shade of SHADES) {
       const path = `color.brand.${color}-${shade}`
@@ -101,9 +101,12 @@ test('C-06: primary and secondary read the derived-pending shade tokens of the s
       const token = tokens.find((t) => t.path === path)
       assert.ok(token, `${path} exists`)
       assert.equal(token.tier, 'primitive', path)
-      assert.equal(token.value, `{color.brand.${color}}`, `${path} repeats the brand value; no tint is generated`)
-      assert.equal(token.cn?.status, 'derived-pending', path)
-      assert.deepEqual(token.cn?.tbd, ['TBD-08'], path)
+      // Shade 400 is the brand color itself; the lighter tone sits below it and the darker tone above it.
+      const expected = Number(shade) < 400 ? light : Number(shade) > 400 ? dark : `{color.brand.${color}}`
+      assert.equal(token.value, expected, path)
+      assert.equal(token.cn?.status, 'stable', path)
+      assert.equal(token.cn?.tbd, undefined, path)
+      if (Number(shade) !== 400) assert.equal(token.cn?.source, 'ADR-0055', path)
     }
 })
 

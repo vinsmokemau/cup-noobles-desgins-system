@@ -6,7 +6,7 @@ status: draft
 lang: en
 brandRules: [BR-01, BR-03, BR-06, BR-10, BR-13, BR-16]
 tokens: [font.family, layout.email, color.bg.base, color.brand.black, color.brand.primary, color.text, border.width.button, effect.glow.button, radius.button, radius.card, logo.rule]
-tbd: [TBD-10, TBD-12]
+tbd: [TBD-10]
 related: [typography, color, shape, effects, brand-identity, logo, accessibility, email-components, email-layouts]
 since: 0.1.0
 updated: 2026-10-18
@@ -36,7 +36,7 @@ The tokens the fallbacks use are generated below. The email build reads them fro
 | `color.text.disabled` | `--cn-color-text-disabled` | `#5c5c5c` | stable |
 | `color.text.inverted` | `--cn-color-text-inverted` | `#000000` | stable |
 | `color.text.muted` | `--cn-color-text-muted` | `#bdbdbd` | stable |
-| `effect.glow.button` | `--cn-effect-glow-button` | `none` | tbd (TBD-12) |
+| `effect.glow.button` | `--cn-effect-glow-button` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
 | `font.family.body` | `--cn-font-family-body` | `Rubik, Arial, Helvetica, sans-serif` | stable |
 | `font.family.display` | `--cn-font-family-display` | `'Titan One', 'Arial Black', 'Arial Bold', Gadget, sans-serif` | stable |
 | `layout.email.width.max` | `--cn-layout-email-width-max` | `600px` | stable |
@@ -90,7 +90,7 @@ Most email clients ignore web fonts (R-05), and the build compiles with `fonts: 
 - Never emit a `box-shadow`, a `text-shadow`, or a `filter` in an email. `effect.glow.button` is not referenced from email sources.
 - Cards and dividers use their component border tokens, for example `border.width.card`, in the same way.
 
-> **TBD (TBD-12):** The glow parameters are not defined, so `effect.glow.button` holds the ADR-0006 placeholder `none`. In email the glow is not used even after TBD-12 is resolved, because the fallback is a solid border. Owner input needed: only if the owner wants a different email treatment.
+The owner chose the glow for the web (ADR-0051), but email does not use it, because the fallback is a solid border.
 
 ### Radius tolerance
 
@@ -124,8 +124,8 @@ The system is dark-only (A-02), and its base is the pure black of BR-03, held by
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
 | `button.primary.fg` (`#000000`) | `button.primary.bg` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
-| `button.primary.fg` (`#000000`) | `button.primary.bgHover` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
-| `button.primary.fg` (`#000000`) | `button.primary.bgActive` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
+| `button.primary.fg` (`#000000`) | `button.primary.bgHover` (`#fea0c5`) | text | 11.05:1 | 4.50:1 | pass |
+| `button.primary.fg` (`#000000`) | `button.primary.bgActive` (`#d06c96`) | text | 6.27:1 | 4.50:1 | pass |
 | `button.primary.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 
 <!-- /cn:generated -->
@@ -200,11 +200,8 @@ The smallest use of a token in an MJML source:
 ## Open items
 
 > **TBD (TBD-10):** The corner radius is not defined. Owner input needed: values.
->
-> **TBD (TBD-12):** The glow parameters are not defined. Email uses a solid border in place of the glow in any case. Owner input needed: values.
->
 
-The doc stays a draft only because of the two TBD items above. A stable doc holds no `TBD` callout (REQ-037), so it moves to `stable` when TBD-10 and TBD-12 are resolved. The owner approved its rules (ADR-0039).
+The doc stays a draft only because of the TBD item above. A stable doc holds no `TBD` callout (REQ-037), so it moves to `stable` when TBD-10 is resolved. The owner approved its rules (ADR-0039).
 
 Real-client rendering is not verified here. R-05 puts it with the consuming project, and an optional rendering service is a future ADR. Until then, the generated contrast pairs describe the colors as defined, and not as an inverting client shows them.
 
@@ -214,3 +211,4 @@ Real-client rendering is not verified here. R-05 puts it with the consuming proj
 - 0.1.0 — Maximum width of 600 px chosen by the owner, confirming A-08 — ADR-0038
 - 0.1.0 — Rules approved by the owner: dark-mode inversion, images-off behavior, and radius tolerance. The width token `layout.email.width.max` is added. The doc stays a draft while TBD-01, TBD-03, TBD-10, and TBD-12 are open — ADR-0039
 - 0.1.0 — The email font fallback stack is recorded: Arial Black behind Titan One, and Arial behind Rubik. The TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-10 and TBD-12 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
+- 0.1.0 — The glow is chosen for the web and email keeps its solid border, so the TBD-12 callouts are gone. The doc stays a draft while TBD-10 is open — ADR-0051

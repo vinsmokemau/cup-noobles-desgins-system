@@ -66,7 +66,10 @@ test('REQ-054 AC1: the swatch is painted with the token itself', async ({ page }
 
 test('REQ-054 AC4: a tbd token shows the hatched overlay and its TBD badge, and is not measured', async ({ page }) => {
   const tbd = colors.filter(([, token]) => token.status === 'tbd')
-  expect(tbd.length).toBeGreaterThan(0)
+  // T13.2: the surfaces (ADR-0053) and the shades (ADR-0055) are decided, so no color token is tbd today. The loop stays
+  // for the next one, and the page shows no hatch while there is none.
+  expect(tbd).toEqual([])
+  await expect(page.getByTestId('hatch')).toHaveCount(0)
   for (const [path, token] of tbd) {
     const item = swatch(page, path)
     await expect(item.getByTestId('hatch'), path).toHaveCount(1)
@@ -81,7 +84,9 @@ test('REQ-054 AC4: a tbd token shows the hatched overlay and its TBD badge, and 
 
 test('REQ-054 AC4: a derived-pending token shows its status badge and its TBD id, with no hatch', async ({ page }) => {
   const pending = colors.filter(([, token]) => token.status === 'derived-pending')
-  expect(pending.length).toBeGreaterThan(0)
+  // T13.2: ADR-0055 set the 22 brand shades, so none is derived-pending today and the page shows no TBD badge.
+  expect(pending).toEqual([])
+  await expect(page.getByTestId('tbd-badge')).toHaveCount(0)
   for (const [path, token] of pending) {
     const item = swatch(page, path)
     await expect(item.getByTestId('status-badge'), path).toHaveText('derived-pending')

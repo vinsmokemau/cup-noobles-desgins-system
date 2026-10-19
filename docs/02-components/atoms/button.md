@@ -10,17 +10,17 @@ lang: en
 brandRules: [BR-01, BR-02, BR-10, BR-11, BR-13]
 tokens: [button, radius.button, border.width.button, effect.glow.button]
 demos: [states, playground]
-tbd: [TBD-08, TBD-10, TBD-12]
+tbd: [TBD-10]
 related: [link, icon, form-field, effects, shape]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Button
 
 ## Purpose
 
-The button triggers an action. It implements BR-10 (rounded corners, a subtle neon glow, and a thick outline stroke) and BR-11 (the primary, secondary, ghost, and disabled states) on top of Nuxt UI's `UButton`, themed only through tokens (C-03). The corner radius (TBD-10) and the glow (TBD-12) are not defined yet, so those tokens hold ADR-0006 placeholders that are not brand values. The stroke width is 3 px (ADR-0032).
+The button triggers an action. It implements BR-10 (rounded corners, a subtle neon glow, and a thick outline stroke) and BR-11 (the primary, secondary, ghost, and disabled states) on top of Nuxt UI's `UButton`, themed only through tokens (C-03). The corner radius (TBD-10) is not defined yet, so that token holds an ADR-0006 placeholder that is not a brand value. The stroke width is 3 px (ADR-0032), the glow is Neon tube (ADR-0051), and the hover and pressed fills are the brand tones of ADR-0055.
 
 ## Anatomy
 
@@ -43,27 +43,34 @@ The button triggers an action. It implements BR-10 (rounded corners, a subtle ne
 | `button.focus.offset` | `--cn-button-focus-offset` | `3px` | stable |
 | `button.focus.style` | `--cn-button-focus-style` | `solid` | stable |
 | `button.focus.width` | `--cn-button-focus-width` | `3px` | stable |
-| `button.ghost.bgActive` | `--cn-button-ghost-bg-active` | `#ef80ae` | derived-pending (TBD-08) |
-| `button.ghost.bgHover` | `--cn-button-ghost-bg-hover` | `#ef80ae` | derived-pending (TBD-08) |
+| `button.ghost.bgActive` | `--cn-button-ghost-bg-active` | `#d06c96` | stable |
+| `button.ghost.bgHover` | `--cn-button-ghost-bg-hover` | `#000000` | stable |
 | `button.ghost.border` | `--cn-button-ghost-border` | `#ef80ae` | stable |
 | `button.ghost.fg` | `--cn-button-ghost-fg` | `#ef80ae` | stable |
-| `button.ghost.fgHover` | `--cn-button-ghost-fg-hover` | `#000000` | stable |
+| `button.ghost.fgActive` | `--cn-button-ghost-fg-active` | `#000000` | stable |
+| `button.ghost.fgHover` | `--cn-button-ghost-fg-hover` | `#ef80ae` | stable |
+| `button.ghost.glow` | `--cn-button-ghost-glow` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
+| `button.ghost.glowHover` | `--cn-button-ghost-glow-hover` | `0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627)` | stable |
 | `button.primary.bg` | `--cn-button-primary-bg` | `#ef80ae` | stable |
-| `button.primary.bgActive` | `--cn-button-primary-bg-active` | `#ef80ae` | derived-pending (TBD-08) |
-| `button.primary.bgHover` | `--cn-button-primary-bg-hover` | `#ef80ae` | derived-pending (TBD-08) |
+| `button.primary.bgActive` | `--cn-button-primary-bg-active` | `#d06c96` | stable |
+| `button.primary.bgHover` | `--cn-button-primary-bg-hover` | `#fea0c5` | stable |
 | `button.primary.border` | `--cn-button-primary-border` | `#ef80ae` | stable |
 | `button.primary.fg` | `--cn-button-primary-fg` | `#000000` | stable |
+| `button.primary.glow` | `--cn-button-primary-glow` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
+| `button.primary.glowHover` | `--cn-button-primary-glow-hover` | `0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627)` | stable |
 | `button.secondary.bg` | `--cn-button-secondary-bg` | `#fff488` | stable |
-| `button.secondary.bgActive` | `--cn-button-secondary-bg-active` | `#fff488` | derived-pending (TBD-08) |
-| `button.secondary.bgHover` | `--cn-button-secondary-bg-hover` | `#fff488` | derived-pending (TBD-08) |
+| `button.secondary.bgActive` | `--cn-button-secondary-bg-active` | `#dacf6d` | stable |
+| `button.secondary.bgHover` | `--cn-button-secondary-bg-hover` | `#fff7a3` | stable |
 | `button.secondary.border` | `--cn-button-secondary-border` | `#fff488` | stable |
 | `button.secondary.fg` | `--cn-button-secondary-fg` | `#000000` | stable |
-| `effect.glow.button` | `--cn-effect-glow-button` | `none` | tbd (TBD-12) |
+| `button.secondary.glow` | `--cn-button-secondary-glow` | `0px 0px 12px 1px rgba(255, 244, 136, 0.6)` | stable |
+| `button.secondary.glowHover` | `--cn-button-secondary-glow-hover` | `0px 0px 20px 2px rgba(255, 244, 136, 0.8509803921568627)` | stable |
+| `effect.glow.button` | `--cn-effect-glow-button` | `0px 0px 12px 1px rgba(239, 128, 174, 0.6)` | stable |
 | `radius.button` | `--cn-radius-button` | `0.375rem` | tbd (TBD-10) |
 
 <!-- /cn:generated -->
 
-The component tokens only reference semantic tokens (REQ-010 AC2). The radius and glow tokens are `tbd`: they follow the ADR-0006 placeholders (Nuxt UI's default radius and no glow), and **none of them is a brand value**. The hover and pressed fills are `derived-pending`: each reads a shade token that repeats the single brand color, so a hovered or pressed button does not change color yet (C-06, TBD-08). The label, outline, and focus tokens are `stable`.
+The component tokens only reference semantic tokens (REQ-010 AC2). The radius token is `tbd`: it follows the ADR-0006 placeholder (Nuxt UI's default radius), and **it is not a brand value**. The glow tokens (`button.<variant>.glow` and `glowHover`) are `stable` and give each variant its own glow color, pink around pink and ghost buttons and yellow around the secondary one (ADR-0051). The hover and pressed fills are `stable`: the lighter and darker tones of ADR-0055. The label, outline, and focus tokens are `stable`.
 
 Contrast pairs declared for the button (REQ-015, REQ-023 AC3):
 
@@ -72,16 +79,16 @@ Contrast pairs declared for the button (REQ-015, REQ-023 AC3):
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
 | `button.primary.fg` (`#000000`) | `button.primary.bg` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
-| `button.primary.fg` (`#000000`) | `button.primary.bgHover` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
-| `button.primary.fg` (`#000000`) | `button.primary.bgActive` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
+| `button.primary.fg` (`#000000`) | `button.primary.bgHover` (`#fea0c5`) | text | 11.05:1 | 4.50:1 | pass |
+| `button.primary.fg` (`#000000`) | `button.primary.bgActive` (`#d06c96`) | text | 6.27:1 | 4.50:1 | pass |
 | `button.primary.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `button.secondary.fg` (`#000000`) | `button.secondary.bg` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
-| `button.secondary.fg` (`#000000`) | `button.secondary.bgHover` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
-| `button.secondary.fg` (`#000000`) | `button.secondary.bgActive` (`#fff488`) | text | 18.55:1 | 4.50:1 | pass |
+| `button.secondary.fg` (`#000000`) | `button.secondary.bgHover` (`#fff7a3`) | text | 19.09:1 | 4.50:1 | pass |
+| `button.secondary.fg` (`#000000`) | `button.secondary.bgActive` (`#dacf6d`) | text | 13.13:1 | 4.50:1 | pass |
 | `button.secondary.border` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `button.ghost.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `button.ghost.fgHover` (`#000000`) | `button.ghost.bgHover` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
-| `button.ghost.fgHover` (`#000000`) | `button.ghost.bgActive` (`#ef80ae`) | text | 8.37:1 | 4.50:1 | pass |
+| `button.ghost.fgHover` (`#ef80ae`) | `button.ghost.bgHover` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
+| `button.ghost.fgActive` (`#000000`) | `button.ghost.bgActive` (`#d06c96`) | text | 6.27:1 | 4.50:1 | pass |
 | `button.ghost.border` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
 | `button.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
@@ -93,7 +100,7 @@ Contrast pairs declared for the button (REQ-015, REQ-023 AC3):
 >
 > **BR-11:** Button states are primary, secondary, ghost, and disabled.
 
-The labels on pink and yellow fills are black, because white on pink is 2.51:1, yellow on pink is 2.22:1, and white on yellow is 1.13:1 (SPEC.md §2.1). The focus ring is brand yellow (BR-02) and sits 3 px away from the container, so it only touches the page behind the button (ADR-0009).
+The labels on pink and yellow fills are black, because white on pink is 2.51:1, yellow on pink is 2.22:1, and white on yellow is 1.13:1 (SPEC.md §2.1). The focus ring is brand yellow (BR-02) and sits 3 px away from the container, so it only touches the page behind the button (ADR-0009). The glow goes on the edge only, never on the label (ADR-0052).
 
 ## Variants
 
@@ -113,14 +120,14 @@ Any other Nuxt UI `color` or `variant` falls back to Nuxt UI's defaults and is n
 
 | State | What changes | Tokens |
 |---|---|---|
-| `default` | The variant's fill, label, outline, and glow. | `button.<variant>.bg`, `button.<variant>.fg`, `button.<variant>.border`, `radius.button`, `border.width.button`, `effect.glow.button` |
-| `hover` | The fill. A ghost button also fills and turns its label black. | `button.<variant>.bgHover`, `button.ghost.fgHover` |
+| `default` | The variant's fill, label, outline, and glow (blur 12 px, spread 1 px, 60% opacity). | `button.<variant>.bg`, `button.<variant>.fg`, `button.<variant>.border`, `button.<variant>.glow`, `radius.button`, `border.width.button` |
+| `hover` | A primary or secondary button takes the lighter tone and a stronger glow (blur 20 px, spread 2 px, 85% opacity). A ghost button hovers with the stronger glow only, on the black page. | `button.<variant>.bgHover`, `button.<variant>.glowHover` |
 | `focus-visible` | A yellow ring outside the container, on top of the glow. | `button.focus.color`, `button.focus.width`, `button.focus.offset`, `button.focus.style` |
-| `active` | The fill while pressed. | `button.<variant>.bgActive` |
+| `active` | The darker tone while pressed, with the hover glow. A ghost button fills with the darker pink and turns its label black. | `button.<variant>.bgActive`, `button.<variant>.glowHover`, `button.ghost.fgActive` |
 | `disabled` | The glow is removed. The button is natively disabled, so it is skipped by Tab and ignores clicks. Nuxt UI dims it. | none |
 | `loading` | A spinner replaces the leading icon, and the button is disabled while it spins. It keeps its glow. | none |
 
-The state matrix on the component page shows every row in the three variants, and each state has a visual baseline.
+The state matrix on the component page shows every row in the three variants, and each state has a visual baseline. The yellow hover tone is very close to the rest yellow, so on the secondary button the glow carries the hover state (ADR-0055).
 
 ## Usage rules
 
@@ -140,6 +147,7 @@ The state matrix on the component page shows every row in the three variants, an
 - Never put white or yellow text on a pink fill, or white text on a yellow fill (SPEC.md §2.1).
 - Never give a disabled button a glow (REQ-023 AC5).
 - Never write a radius, width, or glow literally in a button. Read the tokens (REQ-016).
+- Never put the glow on the label or on any text (ADR-0052).
 - Never remove the focus ring or replace it with the glow (REQ-024).
 
 ## Do and don't
@@ -214,14 +222,11 @@ The email button is a separate MJML component, described in [Email components](.
 
 > **TBD (TBD-10):** The corner radius is not defined ("rounded" in BR-10). `radius.button` follows an ADR-0006 placeholder. Owner input needed.
 >
-> **TBD (TBD-12):** The glow is not defined ("subtle" in BR-10): its blur, spread, opacity, and color per state. `effect.glow.button` follows the placeholder `none`, so no button glows yet. Owner input needed.
->
-> **TBD (TBD-08):** Tints and shades of pink and yellow are not defined. The hover and pressed fills read shade tokens that repeat the brand color, so they look the same as the default fill. Owner input needed: decision OD-04.
->
-> **Draft:** The hover and pressed behavior, and the dimming of a disabled or loading button, are not defined by BC. The hover and pressed fills use the shade tokens (TBD-08), and the dimming is Nuxt UI's default. This awaits owner approval.
+> **Draft:** The pressed state and the dimming of a disabled or loading button are not decided. The pressed button keeps the hover glow and takes the darker tone (a ghost button fills with it), which T13.2 proposed because ADR-0051 and ADR-0055 decide the rest and hover states only. The dimming is Nuxt UI's default. This awaits owner approval.
 
 ## Changelog
 
 - 0.1.0 — First draft: BR-10 and BR-11 on `UButton`, the three brand variants, the six states, the component tokens, and the demos (T7.2) — awaiting owner approval
+- 0.1.0 — The glow is Neon tube and the hover and pressed fills are the brand tones, set by the owner, and the placeholders for them are gone. A ghost button hovers with the glow only — ADR-0051, ADR-0052, ADR-0055
 - 0.1.0 — The mapping of the primary, secondary, and ghost variants to fills is approved by the owner (option A); the draft callout is removed — ADR-0010
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032

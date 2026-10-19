@@ -88,7 +88,7 @@ BR-10 names rounded corners on buttons only. Whether other components are rounde
 |---|---|---|
 | `border.width.default` | BR-10 and BR-13, value ADR-0032 | The outline stroke of buttons and the line work of the UI. |
 
-BR-13 applies to "all UI and illustration", so every outline, divider, and illustrated line uses a stroke-width token. Until OD-05 is decided, cards are set apart from the pure-black page by this outline, not by a fill (C-05, see [Color](color.md)).
+BR-13 applies to "all UI and illustration", so every outline, divider, and illustrated line uses a stroke-width token. Cards and overlays are set apart from the pure-black page by this outline, not by a fill (C-05, ADR-0053, see [Color](color.md)).
 
 ## Usage rules
 

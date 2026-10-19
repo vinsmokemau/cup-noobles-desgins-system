@@ -107,6 +107,13 @@ test('REQ-054 AC3: spacing, stroke, radius, glow, elevation, and motion each get
     'glow:effect.glow.button',
     'glow:effect.glow.default',
     'glow:effect.glow.interactive',
+    'glow:effect.glow.interactiveHover',
+    'glow:effect.glow.pink.hover',
+    'glow:effect.glow.pink.rest',
+    'glow:effect.glow.secondary',
+    'glow:effect.glow.secondaryHover',
+    'glow:effect.glow.yellow.hover',
+    'glow:effect.glow.yellow.rest',
     'elevation:effect.elevation.overlay',
     'elevation:effect.shadow.overlay',
   ])

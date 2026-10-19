@@ -3,6 +3,7 @@
 import { fileURLToPath } from 'node:url'
 import { defineNuxtConfig } from 'nuxt/config'
 import type { ModuleOptions } from '@nuxt/ui'
+import { stripPartialOpacity } from './utils/partial-opacity'
 
 // `nuxt prepare` writes this augmentation into .nuxt/; the root typecheck runs without it, so it is declared here.
 declare module 'nuxt/schema' {
@@ -27,6 +28,17 @@ export default defineNuxtConfig({
     head: {
       // Rendered by the server, so the dark variables apply before any JavaScript runs (ADR-0001 §4).
       htmlAttrs: { class: 'dark' },
+    },
+  },
+  hooks: {
+    // T13.2 (C-06, ADR-0055): the generated Nuxt UI themes (`ui/*.ts`) lose their partial-opacity color classes, such as
+    // `hover:bg-primary/75`. Those make translucent brand colors, which the owner approved only for the glow (ADR-0051).
+    'app:templates'(app) {
+      for (const template of app.templates) {
+        const { getContents } = template
+        if (!/^ui\/.+\.ts$/.test(template.filename ?? '') || !getContents) continue
+        template.getContents = async (data) => stripPartialOpacity(await getContents(data))
+      }
     },
   },
   compatibilityDate: '2026-09-28',

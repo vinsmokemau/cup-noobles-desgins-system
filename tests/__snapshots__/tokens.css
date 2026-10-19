@@ -47,7 +47,7 @@
   --cn-breadcrumb-focus-style: solid; /** Focus ring line style of a breadcrumb link (REQ-024 AC1, ADR-0009). */
   --cn-breadcrumb-focus-width: 3px; /** Focus ring width of a breadcrumb link (REQ-024 AC1, ADR-0009). */
   --cn-breadcrumb-link-fg: #ef80ae; /** Text color of a breadcrumb link: brand pink on the black page, 8.37:1, always underlined like every link (BR-01, ADR-0011, ADR-0028). */
-  --cn-breadcrumb-link-fg-hover: #ef80ae; /** Text color of a breadcrumb link while hovered. Draft: the hover color is not part of ADR-0028. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-breadcrumb-link-fg-hover: #fea0c5; /** Text color of a breadcrumb link while hovered: the lighter pink tone (ADR-0055). Draft: the hover color is not part of ADR-0028. */
   --cn-breadcrumb-separator-fg: #bdbdbd; /** Color of the caret between two items. It is decorative and hidden from assistive technology. */
   --cn-breakpoint-lg: 64rem; /** Large breakpoint, 1024 px: the owner kept Tailwind's step as final (ADR-0035, TBD-13). The site header shows its links in the bar from here. It is not a brand value. */
   --cn-breakpoint-md: 48rem; /** Medium breakpoint, 768 px, the middle reference viewport (A-09): the owner kept Tailwind's step as final (ADR-0035, TBD-13). It is not a brand value. */
@@ -58,22 +58,29 @@
   --cn-button-focus-offset: 3px; /** Gap between the button and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-button-focus-style: solid; /** Focus ring line style of the button (REQ-024 AC1, ADR-0009). */
   --cn-button-focus-width: 3px; /** Focus ring width of the button (REQ-024 AC1, ADR-0009). */
-  --cn-button-ghost-bg-active: #ef80ae; /** Fill of the ghost button while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
-  --cn-button-ghost-bg-hover: #ef80ae; /** Fill of the ghost button while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-button-ghost-bg-active: #d06c96; /** Fill of the ghost button while pressed: the darker pink tone (ADR-0055). Proposed by T13.2: ADR-0055 decides the ghost hover only. */
+  --cn-button-ghost-bg-hover: #000000; /** Fill of the ghost button while hovered: the black page. The ghost button hovers with the glow only (ADR-0055). */
   --cn-button-ghost-border: #ef80ae; /** Outline color of the ghost button: brand pink (BR-01, BR-10). */
   --cn-button-ghost-fg: #ef80ae; /** Label of the ghost button: brand pink on the page (BR-01, BR-11). */
-  --cn-button-ghost-fg-hover: #000000; /** Label of the ghost button while hovered or pressed: black on the pink fill (SPEC.md section 2.1). */
+  --cn-button-ghost-fg-active: #000000; /** Label of the ghost button while pressed: black on the darker pink fill (SPEC.md section 2.1). */
+  --cn-button-ghost-fg-hover: #ef80ae; /** Label of the ghost button while hovered: brand pink on the black page. The ghost button hovers with the glow only (ADR-0055). */
+  --cn-button-ghost-glow: 0px 0px 12px 1px rgba(239, 128, 174, 0.6); /** Neon glow of the ghost button at rest: pink, 12 px blur, 1 px spread, 60% opacity (ADR-0051). */
+  --cn-button-ghost-glow-hover: 0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627); /** Neon glow of the ghost button while hovered or pressed: pink, 20 px blur, 2 px spread, 85% opacity (ADR-0051). */
   --cn-button-primary-bg: #ef80ae; /** Fill of the primary button: brand pink (BR-01, BR-11). */
-  --cn-button-primary-bg-active: #ef80ae; /** Fill of the primary button while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
-  --cn-button-primary-bg-hover: #ef80ae; /** Fill of the primary button while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-button-primary-bg-active: #d06c96; /** Fill of the primary button while pressed: the darker pink tone (ADR-0055). */
+  --cn-button-primary-bg-hover: #fea0c5; /** Fill of the primary button while hovered: the lighter pink tone (ADR-0055). */
   --cn-button-primary-border: #ef80ae; /** Outline color of the primary button: brand pink (BR-01, BR-10). */
   --cn-button-primary-fg: #000000; /** Label of the primary button: black on the pink fill (SPEC.md section 2.1, REQ-023 AC3). */
+  --cn-button-primary-glow: 0px 0px 12px 1px rgba(239, 128, 174, 0.6); /** Neon glow of the primary button at rest: pink, 12 px blur, 1 px spread, 60% opacity (ADR-0051). */
+  --cn-button-primary-glow-hover: 0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627); /** Neon glow of the primary button while hovered or pressed: pink, 20 px blur, 2 px spread, 85% opacity (ADR-0051). */
   --cn-button-secondary-bg: #fff488; /** Fill of the secondary button: brand yellow (BR-02, BR-11). */
-  --cn-button-secondary-bg-active: #fff488; /** Fill of the secondary button while pressed. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02). */
-  --cn-button-secondary-bg-hover: #fff488; /** Fill of the secondary button while hovered. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02). */
+  --cn-button-secondary-bg-active: #dacf6d; /** Fill of the secondary button while pressed: the darker yellow tone (ADR-0055). */
+  --cn-button-secondary-bg-hover: #fff7a3; /** Fill of the secondary button while hovered: the lighter yellow tone (ADR-0055). It is close to the rest yellow, so the glow carries the hover state. */
   --cn-button-secondary-border: #fff488; /** Outline color of the secondary button: brand yellow (BR-02, BR-10). */
   --cn-button-secondary-fg: #000000; /** Label of the secondary button: black on the yellow fill (SPEC.md section 2.1). */
-  --cn-card-bg: #000000; /** Fill of the standard card: the pure black page (BR-03). The card is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card until TBD-06 is resolved. */
+  --cn-button-secondary-glow: 0px 0px 12px 1px rgba(255, 244, 136, 0.6); /** Neon glow of the secondary button at rest: yellow, 12 px blur, 1 px spread, 60% opacity (ADR-0051). */
+  --cn-button-secondary-glow-hover: 0px 0px 20px 2px rgba(255, 244, 136, 0.8509803921568627); /** Neon glow of the secondary button while hovered or pressed: yellow, 20 px blur, 2 px spread, 85% opacity (ADR-0051). */
+  --cn-card-bg: #000000; /** Fill of the standard card: the pure black page (BR-03, ADR-0053), through `color.surface.card`. It is separated from the page by its outline, never by a different fill (C-05). */
   --cn-card-divider: #ef80ae; /** Color of the lines between the header, body, and footer of the standard card: brand pink, like the outline (ADR-0018). */
   --cn-card-fg: #f5f5f5; /** Title and body text of the standard card. */
   --cn-card-fg-muted: #bdbdbd; /** Description text of the standard card. */
@@ -93,39 +100,43 @@
   --cn-color-border-divider: #3a3a3a; /** Thin divider lines (ADR-0032, TBD-05). A divider is decorative and exempt from contrast minimums. */
   --cn-color-brand-black: #000000; /** Brand black, the tertiary color for the base and background. It stays pure black, never dark gray (BR-03). */
   --cn-color-brand-pink: #ef80ae; /** Brand pink, the primary, protagonist color (BR-01). */
-  --cn-color-brand-pink-100: #ef80ae; /** Brand pink, shade 100 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-200: #ef80ae; /** Brand pink, shade 200 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-300: #ef80ae; /** Brand pink, shade 300 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-400: #ef80ae; /** Brand pink, shade 400 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-50: #ef80ae; /** Brand pink, shade 50 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-500: #ef80ae; /** Brand pink, shade 500 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-600: #ef80ae; /** Brand pink, shade 600 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-700: #ef80ae; /** Brand pink, shade 700 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-800: #ef80ae; /** Brand pink, shade 800 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-900: #ef80ae; /** Brand pink, shade 900 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-pink-950: #ef80ae; /** Brand pink, shade 950 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-01); no tint or shade is generated. */
+  --cn-color-brand-pink-100: #fea0c5; /** Brand pink, shade 100 of the scale a Nuxt UI color alias reads: the lighter tone, used for hover (ADR-0055). Derived from BR-01 by raising lightness in OKLCH with the hue kept; steps 50 to 300 share it. */
+  --cn-color-brand-pink-200: #fea0c5; /** Brand pink, shade 200 of the scale a Nuxt UI color alias reads: the lighter tone, used for hover (ADR-0055). Derived from BR-01 by raising lightness in OKLCH with the hue kept; steps 50 to 300 share it. */
+  --cn-color-brand-pink-300: #fea0c5; /** Brand pink, shade 300 of the scale a Nuxt UI color alias reads: the lighter tone, used for hover (ADR-0055). Derived from BR-01 by raising lightness in OKLCH with the hue kept; steps 50 to 300 share it. */
+  --cn-color-brand-pink-400: #ef80ae; /** Brand pink, shade 400 of the scale a Nuxt UI color alias reads: the brand color itself (BR-01, ADR-0055). Nuxt UI uses shade 400 as its primary color in dark mode. */
+  --cn-color-brand-pink-50: #fea0c5; /** Brand pink, shade 50 of the scale a Nuxt UI color alias reads: the lighter tone, used for hover (ADR-0055). Derived from BR-01 by raising lightness in OKLCH with the hue kept; steps 50 to 300 share it. */
+  --cn-color-brand-pink-500: #d06c96; /** Brand pink, shade 500 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-01 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-pink-600: #d06c96; /** Brand pink, shade 600 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-01 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-pink-700: #d06c96; /** Brand pink, shade 700 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-01 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-pink-800: #d06c96; /** Brand pink, shade 800 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-01 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-pink-900: #d06c96; /** Brand pink, shade 900 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-01 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-pink-950: #d06c96; /** Brand pink, shade 950 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-01 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
   --cn-color-brand-primary: #ef80ae; /** Primary brand role: the protagonist color that dominates the identity (BR-01). */
-  --cn-color-brand-primary-active: #ef80ae; /** Primary brand fill while pressed. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the pink shade token, which repeats the single brand value (BR-01); no tint or shade is generated. */
-  --cn-color-brand-primary-hover: #ef80ae; /** Primary brand fill while hovered. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the pink shade token, which repeats the single brand value (BR-01); no tint or shade is generated. */
+  --cn-color-brand-primary-active: #d06c96; /** Primary brand fill while pressed: the darker pink tone (ADR-0055). A black label on it is 6.27:1. */
+  --cn-color-brand-primary-hover: #fea0c5; /** Primary brand fill while hovered: the lighter pink tone (ADR-0055). A black label on it is 11.05:1. */
   --cn-color-brand-secondary: #fff488; /** Secondary brand role: the luminous, premium accent (BR-02). */
-  --cn-color-brand-secondary-active: #fff488; /** Secondary brand fill while pressed. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the yellow shade token, which repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-secondary-hover: #fff488; /** Secondary brand fill while hovered. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the yellow shade token, which repeats the single brand value (BR-02); no tint or shade is generated. */
+  --cn-color-brand-secondary-active: #dacf6d; /** Secondary brand fill while pressed: the darker yellow tone (ADR-0055). A black label on it is 13.13:1. */
+  --cn-color-brand-secondary-hover: #fff7a3; /** Secondary brand fill while hovered: the lighter yellow tone (ADR-0055). A black label on it is 19.09:1. It is close to the rest yellow, so the glow carries the hover state (ADR-0051). */
   --cn-color-brand-yellow: #fff488; /** Brand yellow, the secondary, luminous premium accent (BR-02). */
-  --cn-color-brand-yellow-100: #fff488; /** Brand yellow, shade 100 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-200: #fff488; /** Brand yellow, shade 200 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-300: #fff488; /** Brand yellow, shade 300 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-400: #fff488; /** Brand yellow, shade 400 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-50: #fff488; /** Brand yellow, shade 50 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-500: #fff488; /** Brand yellow, shade 500 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-600: #fff488; /** Brand yellow, shade 600 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-700: #fff488; /** Brand yellow, shade 700 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-800: #fff488; /** Brand yellow, shade 800 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-900: #fff488; /** Brand yellow, shade 900 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
-  --cn-color-brand-yellow-950: #fff488; /** Brand yellow, shade 950 of the scale a Nuxt UI color alias reads. TBD-08: tints and shades are not defined (C-06, OD-04), so every shade repeats the single brand value (BR-02); no tint or shade is generated. */
+  --cn-color-brand-yellow-100: #fff7a3; /** Brand yellow, shade 100 of the scale a Nuxt UI color alias reads: the lighter tone, used for hover (ADR-0055). Derived from BR-02 by raising lightness in OKLCH with the hue kept; steps 50 to 300 share it. */
+  --cn-color-brand-yellow-200: #fff7a3; /** Brand yellow, shade 200 of the scale a Nuxt UI color alias reads: the lighter tone, used for hover (ADR-0055). Derived from BR-02 by raising lightness in OKLCH with the hue kept; steps 50 to 300 share it. */
+  --cn-color-brand-yellow-300: #fff7a3; /** Brand yellow, shade 300 of the scale a Nuxt UI color alias reads: the lighter tone, used for hover (ADR-0055). Derived from BR-02 by raising lightness in OKLCH with the hue kept; steps 50 to 300 share it. */
+  --cn-color-brand-yellow-400: #fff488; /** Brand yellow, shade 400 of the scale a Nuxt UI color alias reads: the brand color itself (BR-02, ADR-0055). Nuxt UI uses shade 400 as its primary color in dark mode. */
+  --cn-color-brand-yellow-50: #fff7a3; /** Brand yellow, shade 50 of the scale a Nuxt UI color alias reads: the lighter tone, used for hover (ADR-0055). Derived from BR-02 by raising lightness in OKLCH with the hue kept; steps 50 to 300 share it. */
+  --cn-color-brand-yellow-500: #dacf6d; /** Brand yellow, shade 500 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-02 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-yellow-600: #dacf6d; /** Brand yellow, shade 600 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-02 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-yellow-700: #dacf6d; /** Brand yellow, shade 700 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-02 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-yellow-800: #dacf6d; /** Brand yellow, shade 800 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-02 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-yellow-900: #dacf6d; /** Brand yellow, shade 900 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-02 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
+  --cn-color-brand-yellow-950: #dacf6d; /** Brand yellow, shade 950 of the scale a Nuxt UI color alias reads: the darker tone, used for pressed (ADR-0055). Derived from BR-02 by lowering lightness in OKLCH with the hue kept; steps 500 to 950 share it. */
   --cn-color-feedback-error: #ff5c5c; /** Error feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1). */
   --cn-color-feedback-info: #5cc8ff; /** Info feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1). */
   --cn-color-feedback-success: #34d399; /** Success feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1). */
   --cn-color-feedback-warning: #ff9f43; /** Warning feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1). */
+  --cn-color-glow-pink-hover: rgba(239, 128, 174, 0.8509803921568627); /** The brand pink at 85% opacity, the color of the hover glow around pink elements (ADR-0051). The only translucent use of this color; it is for the glow and for nothing else (C-06). */
+  --cn-color-glow-pink-rest: rgba(239, 128, 174, 0.6); /** The brand pink at 60% opacity, the color of the rest glow around pink elements (ADR-0051). The only translucent use of this color; it is for the glow and for nothing else (C-06). */
+  --cn-color-glow-yellow-hover: rgba(255, 244, 136, 0.8509803921568627); /** The brand yellow at 85% opacity, the color of the hover glow around yellow elements (ADR-0051). The only translucent use of this color; it is for the glow and for nothing else (C-06). */
+  --cn-color-glow-yellow-rest: rgba(255, 244, 136, 0.6); /** The brand yellow at 60% opacity, the color of the rest glow around yellow elements (ADR-0051). The only translucent use of this color; it is for the glow and for nothing else (C-06). */
   --cn-color-neutral-grey-dark: #5c5c5c; /** Dark grey, the color of disabled text and borders (ADR-0032, TBD-05). 3.14:1 against black; disabled controls are exempt from contrast minimums. */
   --cn-color-neutral-grey-deep: #3a3a3a; /** Deep grey, the color of thin dividers (ADR-0032, TBD-05). 1.85:1 against black; a divider is decorative and exempt. */
   --cn-color-neutral-grey-light: #bdbdbd; /** Light grey, the secondary text color (ADR-0032, TBD-05). 11.18:1 against black. */
@@ -135,22 +146,29 @@
   --cn-color-signal-green: #34d399; /** Signal green, the success feedback color (ADR-0032, TBD-07). 10.92:1 against black. */
   --cn-color-signal-orange: #ff9f43; /** Signal orange, the warning feedback color (ADR-0032, TBD-07). 10.29:1 against black, and clearly not the brand yellow. */
   --cn-color-signal-red: #ff5c5c; /** Signal red, the error feedback color (ADR-0032, TBD-07). 6.94:1 against black. */
-  --cn-color-surface-card: #90a1b9; /** Card surface. TBD-06: no surface color is defined (C-05, OD-05); until then cards render on color.bg.base. This references a placeholder, not a brand value. */
-  --cn-color-surface-elevated: #90a1b9; /** Elevated surface (overlays). TBD-06: no surface color is defined (C-05, OD-05); this references a placeholder, not a brand value. */
+  --cn-color-surface-card: #000000; /** Card surface: the pure black page (ADR-0053, BR-03, C-05). A card is separated from the page by its outline, never by a different fill. */
+  --cn-color-surface-elevated: #000000; /** Elevated surface (overlays): the pure black page (ADR-0053, BR-03, C-05). An overlay is separated from the page by its outline and the dimming layer, never by a different fill. */
   --cn-color-text-default: #f5f5f5; /** Body text color: soft white on the black page (ADR-0032, TBD-04). */
   --cn-color-text-disabled: #5c5c5c; /** Text and borders of disabled controls (ADR-0032, TBD-05). Disabled controls are exempt from contrast minimums. */
   --cn-color-text-inverted: #000000; /** Text on a primary or secondary fill. Labels on primary-filled buttons must be black (SPEC.md §2.1 derived facts, BR-03). */
   --cn-color-text-muted: #bdbdbd; /** Secondary text color: help text, hints, and descriptions (ADR-0032, TBD-05). */
   --cn-container-max: 80rem; /** Maximum content container width, 1280 px: the owner kept Nuxt UI's width as final (ADR-0035, TBD-13). It is not a brand value. */
-  --cn-effect-elevation-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Shadow of overlays (modal, slideover). TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
-  --cn-effect-glow-button: none; /** Neon glow of the button (BR-10, REQ-023 AC2). TBD-12: the glow has no values; this follows a placeholder, not a brand value. A disabled button shows no glow (REQ-023 AC5). */
-  --cn-effect-glow-default: none; /** Neon glow. TBD-12: blur, spread, opacity, and color per state are not defined ("subtle" in BR-10); this references a placeholder, not a brand value. */
-  --cn-effect-glow-interactive: none; /** Neon glow on interactive elements such as buttons (BR-10). TBD-12: blur, spread, opacity, and color per state are not defined; this references a placeholder, not a brand value. */
-  --cn-effect-opacity-scrim: 0.75; /** How much of the page the overlay backdrop covers, from 0 to 1. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value (ADR-0029). */
-  --cn-effect-scrim-opacity: 0.75; /** How much of the page the backdrop of an overlay (modal, slideover) covers. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value (ADR-0029). */
-  --cn-effect-shadow-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Overlay shadow. TBD-15: the elevation scale is not defined; this references a placeholder, not a brand value. */
-  --cn-effect-z-index-overlay: auto; /** Stacking order of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
-  --cn-effect-z-index-toast: 100; /** Stacking order of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
+  --cn-effect-elevation-overlay: none; /** Shadow of overlays (modal, slideover): none (ADR-0054). The outline lifts an overlay off the black page (ADR-0053). */
+  --cn-effect-glow-button: 0px 0px 12px 1px rgba(239, 128, 174, 0.6); /** Neon glow of the button at rest, the pink one (BR-10, REQ-023 AC2, ADR-0051). Each variant reads its own glow below. A disabled button shows no glow (REQ-023 AC5). */
+  --cn-effect-glow-default: 0px 0px 12px 1px rgba(239, 128, 174, 0.6); /** Neon glow at rest: Neon tube around a pink element (ADR-0051, BR-10). Edges only, never text (ADR-0052). */
+  --cn-effect-glow-interactive: 0px 0px 12px 1px rgba(239, 128, 174, 0.6); /** Neon glow at rest on interactive elements such as buttons (BR-10, ADR-0051): pink. Edges only, never text (ADR-0052). */
+  --cn-effect-glow-interactive-hover: 0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627); /** Neon glow on a hovered pink interactive element (BR-10, ADR-0051). Edges only, never text (ADR-0052). */
+  --cn-effect-glow-pink-hover: 0px 0px 20px 2px rgba(239, 128, 174, 0.8509803921568627); /** Hover neon glow around pink elements: blur 20px, spread 2px, 85% opacity (ADR-0051, Neon tube). Edges only, never text (ADR-0052). */
+  --cn-effect-glow-pink-rest: 0px 0px 12px 1px rgba(239, 128, 174, 0.6); /** Rest neon glow around pink elements: blur 12px, spread 1px, 60% opacity (ADR-0051, Neon tube). Edges only, never text (ADR-0052). */
+  --cn-effect-glow-secondary: 0px 0px 12px 1px rgba(255, 244, 136, 0.6); /** Neon glow at rest around a yellow interactive element (BR-10, ADR-0051). Edges only, never text (ADR-0052). */
+  --cn-effect-glow-secondary-hover: 0px 0px 20px 2px rgba(255, 244, 136, 0.8509803921568627); /** Neon glow on a hovered yellow interactive element (BR-10, ADR-0051). Edges only, never text (ADR-0052). */
+  --cn-effect-glow-yellow-hover: 0px 0px 20px 2px rgba(255, 244, 136, 0.8509803921568627); /** Hover neon glow around yellow elements: blur 20px, spread 2px, 85% opacity (ADR-0051, Neon tube). Edges only, never text (ADR-0052). */
+  --cn-effect-glow-yellow-rest: 0px 0px 12px 1px rgba(255, 244, 136, 0.6); /** Rest neon glow around yellow elements: blur 12px, spread 1px, 60% opacity (ADR-0051, Neon tube). Edges only, never text (ADR-0052). */
+  --cn-effect-opacity-scrim: 0.85; /** How much of the page the overlay backdrop covers, from 0 to 1: black at 85% (ADR-0054). */
+  --cn-effect-scrim-opacity: 0.85; /** How much of the page the backdrop of an overlay (modal, slideover) covers: 0.85 (ADR-0054, ADR-0029). */
+  --cn-effect-shadow-overlay: none; /** Overlay shadow: none. An overlay is lifted off the page by its outline and the dimming layer, and there is no shadow anywhere in the system (ADR-0054). Untyped, because `none` is not a DTCG shadow (ADR-0008). */
+  --cn-effect-z-index-overlay: 50; /** Stacking order of overlays (modal, slideover): 50 (ADR-0054). */
+  --cn-effect-z-index-toast: 100; /** Stacking order of toasts: 100, above every overlay (ADR-0054). */
   --cn-email-width-max: 600px; /** Maximum width of an email body, 600 px: the owner chose it, which confirms A-08 (ADR-0038). It is a technical convention of email, not a brand value. */
   --cn-focus-offset-default: 3px; /** Focus ring offset: the gap between the component and the ring, chosen by the owner (ADR-0009). */
   --cn-focus-ring-color: #fff488; /** Focus indicator color: brand yellow (BR-02), separated from the component by the offset gap so it only touches the container background. It must differ from the glow (REQ-024, ADR-0009). */
@@ -228,8 +246,8 @@
   --cn-layout-logo-min-height-icon: 64px; /** Minimum height of the icon logo (ADR-0016). */
   --cn-layout-logo-min-height-vertical: 80px; /** Minimum height of the vertical lockup (ADR-0016). */
   --cn-link-fg: #ef80ae; /** Text color of a link: brand pink on the black page (BR-01), 8.37:1. */
-  --cn-link-fg-active: #ef80ae; /** Text color of a link while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
-  --cn-link-fg-hover: #ef80ae; /** Text color of a link while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01). */
+  --cn-link-fg-active: #d06c96; /** Text color of a link while pressed: the darker pink tone (ADR-0055), 6.27:1 on the black page. */
+  --cn-link-fg-hover: #fea0c5; /** Text color of a link while hovered: the lighter pink tone (ADR-0055), 11.05:1 on the black page. */
   --cn-link-focus-color: #fff488; /** Focus ring color of the link (REQ-024 AC1, ADR-0009). */
   --cn-link-focus-offset: 3px; /** Gap between the link and its focus ring (REQ-024 AC1, ADR-0009). */
   --cn-link-focus-style: solid; /** Focus ring line style of the link (REQ-024 AC1, ADR-0009). */
@@ -242,7 +260,7 @@
   --cn-logo-rule-min-height-horizontal: 36px; /** Minimum height of the horizontal wordmark, chosen by the owner (ADR-0016). */
   --cn-logo-rule-min-height-icon: 64px; /** Minimum height of the icon logo, chosen by the owner (ADR-0016). */
   --cn-logo-rule-min-height-vertical: 80px; /** Minimum height of the vertical lockup, chosen by the owner (ADR-0016). */
-  --cn-media-card-bg: #000000; /** Fill of the featured media card: the pure black page (BR-03). The card is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card until TBD-06 is resolved. */
+  --cn-media-card-bg: #000000; /** Fill of the featured media card: the pure black page (BR-03, ADR-0053), through `color.surface.card`. It is separated from the page by its outline, never by a different fill (C-05). */
   --cn-media-card-divider: #ef80ae; /** Color of the line between the thumbnail and the text of the featured media card: brand pink, like the outline (ADR-0018, ADR-0026). */
   --cn-media-card-fg: #f5f5f5; /** Title text of the featured media card. */
   --cn-media-card-focus-color: #fff488; /** Focus ring color of the linked featured media card (REQ-024 AC1, ADR-0009). The ring surrounds the whole card. */
@@ -255,15 +273,15 @@
   --cn-motion-duration-shimmer: 1500ms; /** One cycle of the loading shimmer and of decorative fades (ADR-0032, TBD-14). */
   --cn-motion-duration-slow: 300ms; /** Slow transition: large panels and overlays (ADR-0032, TBD-14). */
   --cn-motion-easing-default: cubic-bezier(0.2, 0, 0, 1); /** Transition easing: quick start, soft landing (ADR-0032, TBD-14). */
-  --cn-overlay-bg: #000000; /** Fill of the modal and slideover panel: the pure black page (BR-03). The panel is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card or color.surface.elevated until TBD-06 is resolved. */
+  --cn-overlay-bg: #000000; /** Fill of the modal and slideover panel: the pure black page (BR-03, ADR-0053), through `color.surface.elevated`. It is separated from the page by its outline, never by a different fill (C-05). */
   --cn-overlay-divider: #ef80ae; /** Color of the lines between the header, body, and footer of the modal and slideover: brand pink, like the outline (ADR-0018, ADR-0029). */
   --cn-overlay-fg: #f5f5f5; /** Title and body text of the modal and slideover. */
   --cn-overlay-fg-muted: #bdbdbd; /** Description text of the modal and slideover. */
   --cn-overlay-highlight: #ef80ae; /** The neon highlight of the modal and slideover panel: its outline is brand pink, like the cards (BR-01, BR-12, ADR-0018). Chosen by the owner in ADR-0029. */
   --cn-overlay-scrim: #000000; /** Color of the backdrop that dims the page behind a modal or slideover: pure black (BR-03). How much of it shows is overlay.scrimOpacity. Chosen by the owner in ADR-0029. */
-  --cn-overlay-scrim-opacity: 0.75; /** How much of the backdrop color covers the page, from 0 to 1. TBD-15: the dimming amount is not decided; this follows a placeholder, not a brand value (ADR-0029). */
-  --cn-overlay-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Elevation shadow of the modal and slideover panel. It is not a glow (ADR-0029). TBD-15: the elevation scale is not defined; this follows a placeholder, not a brand value. */
-  --cn-overlay-z: auto; /** Stacking order of the modal and slideover backdrop and panel. TBD-15: the z-index scale is not defined; this follows a placeholder, not a brand value. */
+  --cn-overlay-scrim-opacity: 0.85; /** How much of the backdrop color covers the page, from 0 to 1: 0.85, black at 85% (ADR-0054, ADR-0029). */
+  --cn-overlay-shadow: none; /** Elevation shadow of the modal and slideover panel: none. The outline lifts the panel off the black page, and there is no shadow in the system (ADR-0054). */
+  --cn-overlay-z: 50; /** Stacking order of the modal and slideover backdrop and panel: 50 (ADR-0054). A toast sits above it. */
   --cn-pagination-current-bg: #ef80ae; /** Fill of the current page: a brand pink chip, like the primary button (BR-01, ADR-0028). */
   --cn-pagination-current-border: #ef80ae; /** Outline color of the current page: brand pink, the same as its fill (BR-01). */
   --cn-pagination-current-fg: #000000; /** Number color of the current page: black on the pink chip, 8.37:1 (SPEC.md §2.1 derived facts). */
@@ -274,16 +292,10 @@
   --cn-pagination-item-border: #8c8c8c; /** Outline color of a page that is not the current one. */
   --cn-pagination-item-border-hover: #ef80ae; /** Outline color of a page that is not the current one, while hovered: brand pink (BR-01). Draft: the hover look is not part of ADR-0028. */
   --cn-pagination-item-fg: #f5f5f5; /** Number or icon color of a page that is not the current one. */
-  --cn-placeholder-color-neutral: #90a1b9; /** Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-06 (the surface colors). Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006). */
-  --cn-placeholder-effect-glow: none; /** Placeholder, not a brand value. Stands in for TBD-12. Source: Nuxt UI UButton has no glow (ADR-0006). Untyped (ADR-0008). */
-  --cn-placeholder-effect-scrim-opacity: 0.75; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI UModal and USlideover overlay, bg-elevated/75 (ADR-0029). */
-  --cn-placeholder-elevation-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /** Placeholder, not a brand value. Stands in for TBD-15. Source: Tailwind --shadow-lg, used by UModal and USlideover (ADR-0006). Untyped (ADR-0008). */
   --cn-placeholder-radius-lg: 0.5rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --radius-lg (ADR-0006). */
   --cn-placeholder-radius-md: 0.375rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --radius-md (ADR-0006). */
   --cn-placeholder-radius-sm: 0.25rem; /** Placeholder, not a brand value. Stands in for TBD-10. Source: Nuxt UI --ui-radius, --radius-sm (ADR-0006). */
   --cn-placeholder-space-base: 0.25rem; /** Placeholder, not a brand value. Stands in for TBD-09. Source: Tailwind --spacing (ADR-0006). */
-  --cn-placeholder-z-overlay: auto; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI sets no z-index on UModal or USlideover (ADR-0006). Untyped (ADR-0008). */
-  --cn-placeholder-z-toast: 100; /** Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006). */
   --cn-progress-bg: #000000; /** Fill of the empty part of the progress track: the pure black page (BR-03). The track is separated from the page by its outline (C-05). */
   --cn-progress-border: #8c8c8c; /** Outline color of the progress track. */
   --cn-progress-fill: #ef80ae; /** Fill of the finished part of the progress bar: brand pink (BR-01). */
@@ -336,6 +348,6 @@
   --cn-tooltip-bg: #000000; /** Fill of the tooltip: the pure black page (BR-03). */
   --cn-tooltip-border: #ef80ae; /** Outline of the tooltip: brand pink on the black page (BR-01), 8.37:1 (ADR-0027). */
   --cn-tooltip-fg: #f5f5f5; /** Text of the tooltip. */
-  --cn-z-overlay: auto; /** Z-index of overlays (modal, slideover). TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
-  --cn-z-toast: 100; /** Z-index of toasts. TBD-15: the z-index scale is not defined; this references a placeholder, not a brand value. */
+  --cn-z-overlay: 50; /** Z-index of overlays (modal, slideover): 50 (ADR-0054). A toast always sits above an overlay. */
+  --cn-z-toast: 100; /** Z-index of toasts: 100 (ADR-0054). A toast always sits above an overlay. */
 }

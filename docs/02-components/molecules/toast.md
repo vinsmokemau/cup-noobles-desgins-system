@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-13]
 tokens: [toast, radius.toast, border.width.toast]
 demos: [states, playground]
-tbd: [TBD-10, TBD-15]
+tbd: [TBD-10]
 related: [alert, tooltip, button, accessibility, motion, color]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Toast
@@ -171,7 +171,7 @@ Haz clic aquí para cerrar
 
 ## Responsive behavior
 
-The toaster is `calc(100% - 2rem)` wide below `sm`, and fixed in the bottom-right corner above it (Nuxt UI default, TBD-15). At 360 px a toast wraps its text inside the viewport and never causes horizontal overflow (REQ-028 AC1). Toasts stack and collapse behind the front one.
+The toaster is `calc(100% - 2rem)` wide below `sm`, and fixed in the bottom-right corner above it (Nuxt UI default). Its stacking order is `z.toast`, 100, above every overlay, which sit at 50 (ADR-0054). At 360 px a toast wraps its text inside the viewport and never causes horizontal overflow (REQ-028 AC1). Toasts stack and collapse behind the front one.
 
 ## Email notes
 
@@ -202,9 +202,9 @@ toast.add({
 
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
 >
-> **TBD (TBD-15):** The elevation and z-index scale are not defined. The toaster keeps Nuxt UI's `z-index` and its bottom-right position. Owner input needed: values.
+> **Draft:** The toaster keeps Nuxt UI's bottom-right position. A toast above a modal should not cover the modal's actions, because the toast's outline meets the modal's pink one (ADR-0054).
 >
-> **Draft:** The look of the toast (a black fill with a thick outline and an icon in the feedback color) is approved (ADR-0027). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the toast (a black fill with a thick outline and an icon in the feedback color) is approved (ADR-0027). The doc stays a draft until the placeholder in the TBD callout above is replaced.
 
 ## Changelog
 

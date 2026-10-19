@@ -101,13 +101,16 @@ test('REQ-015: the repository pairs pass or are unverified, and every tbd pair i
     assert.notEqual(pair.result, 'fail', `${pair.foreground} on ${pair.background}`)
     assert.equal(pair.result === 'unverified', pair.tbd.length > 0, `${pair.foreground} on ${pair.background}`)
   }
-  for (const path of ['color.surface.card'])
+  // T13.2, ADR-0053: the surfaces are the pure-black page, so every pair on them is verified and passes.
+  for (const path of ['color.surface.card', 'color.surface.elevated']) {
+    const pairs = report.pairs.filter((p) => p.foreground === path || p.background === path)
+    assert.ok(pairs.length, `${path} is in a declared pair`)
     assert.ok(
-      report.pairs
-        .filter((p) => p.foreground === path || p.background === path)
-        .every((p) => p.result === 'unverified'),
-      `${path} pairs are unverified`,
+      pairs.every((p) => p.result === 'pass'),
+      `${path} pairs pass`,
     )
+    for (const pair of pairs) assert.ok([pair.foregroundValue, pair.backgroundValue].includes('#000000'), path)
+  }
 })
 
 test('REQ-015 AC2: the ratios come from the same resolved values the token build writes', () => {

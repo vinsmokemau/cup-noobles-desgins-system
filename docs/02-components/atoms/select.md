@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-06, BR-10, BR-13]
 tokens: [input]
 demos: [states, playground]
-tbd: [TBD-06, TBD-10]
+tbd: [TBD-10]
 related: [input, textarea, button, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Select
@@ -73,7 +73,7 @@ Contrast pairs declared for the text fields (REQ-015):
 
 > **BR-06:** The UI is high-contrast, vibrant, and legible.
 
-The outline is the boundary of the trigger on the pure-black page (BR-03, BR-13, C-05). The list sits on the same black page color until the elevated surface is decided (TBD-06), and its boundary is Nuxt UI's neutral ring.
+The outline is the boundary of the trigger on the pure-black page (BR-03, BR-13, C-05). The list sits on the elevated surface, which is the same black (ADR-0053), and its boundary is Nuxt UI's neutral ring.
 
 ## Variants
 
@@ -186,11 +186,9 @@ Not applicable.
 
 > **TBD (TBD-10):** The corner radius follows the ADR-0006 placeholder. See the [input doc](input.md#open-items).
 >
-> **TBD (TBD-06):** The list uses Nuxt UI's own ring and the page black as its surface, because the elevated surface color is not defined.
->
 > **Draft:** While the list is open, Reka UI (under Nuxt UI) hides the rest of the page with `aria-hidden` and leaves the trigger focusable, so axe reports `aria-hidden-focus` on that open state. axe is clean in every state of the matrix, where the list is closed. This is the library's behavior, and the select does not change it.
 >
-> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholder in the TBD callout above is replaced.
 
 ## Changelog
 

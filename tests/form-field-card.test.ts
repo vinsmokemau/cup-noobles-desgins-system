@@ -52,7 +52,7 @@ test('the card and form field tokens reference semantic tokens, and the placehol
     assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   for (const [path, value, status] of [
-    ['card.bg', '{color.bg.base}', 'stable'],
+    ['card.bg', '{color.surface.card}', 'stable'],
     ['card.highlight', '{color.brand.primary}', 'stable'],
     ['card.divider', '{color.brand.primary}', 'stable'],
     ['card.fg', '{color.text.default}', 'stable'],
@@ -128,12 +128,13 @@ test('REQ-026 AC1, AC2: each doc lists the states, and its state matrix demo sho
   }
 })
 
-test('REQ-025 AC1, AC3: the card is documented with header, body, and footer slots and marks color.surface.card as TBD-06', () => {
+test('REQ-025 AC1, AC3: the card is documented with header, body, and footer slots and a pure-black stable surface', () => {
   const doc = docOf('card')
   for (const part of ['**header**', '**body**', '**footer**']) assert.ok(doc.includes(part), part)
-  assert.match(doc, /> \*\*TBD \(TBD-06\):\*\*[^\n]*C-05/)
-  assert.match(doc, /\| `color\.surface\.card` \| `--cn-color-surface-card` \| `#[0-9a-f]{6}` \| tbd \(TBD-06\) \|/)
-  assert.deepEqual(frontmatter('card').tbd, ['TBD-06', 'TBD-10'])
+  // T13.2, ADR-0053: TBD-06 is resolved, so the surface token is stable and the callout is gone.
+  assert.doesNotMatch(doc, /TBD-06/)
+  assert.match(doc, /\| `color\.surface\.card` \| `--cn-color-surface-card` \| `#000000` \| stable \|/)
+  assert.deepEqual(frontmatter('card').tbd, ['TBD-10'])
   const demo = read('apps/showcase/demos/card/states.vue')
   for (const slot of ['#header', '#footer']) assert.ok(demo.includes(slot), `demo uses ${slot}`)
 })

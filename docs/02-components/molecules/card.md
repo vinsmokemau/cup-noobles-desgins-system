@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [card, radius.card, border.width.card, color.surface.card]
 demos: [states, playground]
-tbd: [TBD-06, TBD-10]
+tbd: [TBD-10]
 related: [media-card, badge, button, form-field, color, shape]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Card
@@ -42,14 +42,14 @@ The card groups related content into one framed block with an optional header, a
 | `card.fg` | `--cn-card-fg` | `#f5f5f5` | stable |
 | `card.fgMuted` | `--cn-card-fg-muted` | `#bdbdbd` | stable |
 | `card.highlight` | `--cn-card-highlight` | `#ef80ae` | stable |
-| `color.surface.card` | `--cn-color-surface-card` | `#90a1b9` | tbd (TBD-06) |
+| `color.surface.card` | `--cn-color-surface-card` | `#000000` | stable |
 | `radius.card` | `--cn-radius-card` | `0.375rem` | tbd (TBD-10) |
 
 <!-- /cn:generated -->
 
 The card tokens reference semantic tokens only (REQ-010 AC2). The corner radius follows a placeholder (TBD-10), so it is `tbd` until the owner supplies it. The text colors and the stroke width are `stable` (ADR-0032), and so are the fill, the outline, and the dividers: black and brand pink (BR-01, BR-03).
 
-The card does not read `color.surface.card`. The table lists it so the open item is visible: no card surface color is defined (TBD-06, C-05), and the card renders on `color.bg.base` until OD-05 is decided.
+The card fill is `color.surface.card`, which is the pure-black page (ADR-0053, C-05). The outline, never a different fill, separates it from the page.
 
 Contrast pairs declared for the card (REQ-015):
 
@@ -70,7 +70,7 @@ Contrast pairs declared for the card (REQ-015):
 >
 > **BR-13:** Line work is thick, clean, and high-contrast throughout all UI and illustration.
 
-The neon highlight is the pink outline and the pink dividers. There is no glow on the card, so the glow rule (TBD-12) does not affect it (ADR-0018). Pink on black is 8.37:1 (SPEC.md §2.1).
+The neon highlight is the pink outline and the pink dividers. There is no glow on the card, so the glow rule (ADR-0051, ADR-0052) does not affect it (ADR-0018). Pink on black is 8.37:1 (SPEC.md §2.1).
 
 ## Variants
 
@@ -112,7 +112,7 @@ A card shows content. It is not a control, so it has no hover, focus-visible, ac
 | Give the card a short title: "Noche de juegos". | Leave the header empty and put a heading in the body. |
 | Put the main action in the footer. | Spread actions across the header and the body. |
 | Keep a long title wrapping inside the card. | Truncate a title that people need to read. |
-| Use the pink outline as the only boundary. | Add a separate surface color until TBD-06 is decided. |
+| Use the pink outline as the only boundary. | Add a separate surface color: the surface is the pure-black page (ADR-0053). |
 
 ## Accessibility
 
@@ -171,13 +171,12 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-06):** Card and elevated surface colors are not defined (C-05). The card renders on `color.bg.base`, separated by its outline, until OD-05 is decided. Owner input needed: decision OD-05.
->
 > **TBD (TBD-10):** "Rounded" has no values. The corner radius follows the ADR-0006 placeholder. Owner input needed: values.
 >
-> **Draft:** The look of the card (a pink outline and pink dividers on the black page, with no glow) is approved (ADR-0018). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look of the card (a pink outline and pink dividers on the black page, with no glow) is approved (ADR-0018). The doc stays a draft until the placeholder in the TBD callout above is replaced.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UCard` themed with the pink outline look, the component tokens, and the demos (T8.1) — ADR-0018
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — The card surface is the pure-black page, set by the owner, and the placeholder for it is gone — ADR-0053

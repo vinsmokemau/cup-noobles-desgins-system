@@ -24,10 +24,10 @@ function block(format: string): { tokens: string; body: string[] } {
   return { tokens, body: lines.slice(open + 1, close).filter((line) => line.trim() !== '') }
 }
 
-test('frontmatter: draft (TBD callouts keep it from stable), BR-01 to BR-03, TBD-04 to TBD-08, tokens `color`', () => {
+test('frontmatter: draft, BR-01 to BR-03, no TBD item left (TBD-04 to TBD-08 are resolved), tokens `color`', () => {
   assert.equal(fm.status, 'draft')
   for (const id of ['BR-01', 'BR-02', 'BR-03']) assert.ok((fm.brandRules as string[]).includes(id), id)
-  assert.deepEqual(fm.tbd, ['TBD-06', 'TBD-08'])
+  assert.deepEqual(fm.tbd, [])
   assert.deepEqual(fm.tokens, ['color'])
 })
 
@@ -89,8 +89,40 @@ test('scope: the pure-black rule (BR-03), C-05, and C-06 are explained', () => {
   assert.match(text, /^### Shades and tints \(C-06\)$/m)
 })
 
-test('scope: TBD callouts for TBD-06 and TBD-08; TBD-04, TBD-05, and TBD-07 are resolved (ADR-0032)', () => {
-  for (const id of ['TBD-04', 'TBD-05', 'TBD-07'])
-    assert.doesNotMatch(text, new RegExp(`^> \\*\\*TBD \\(${id}\\):\\*\\* `, 'm'), id)
-  for (const id of ['TBD-06', 'TBD-08']) assert.match(text, new RegExp(`^> \\*\\*TBD \\(${id}\\):\\*\\* `, 'm'), id)
+test('scope: no TBD callout is left; TBD-04 to TBD-08 are resolved (ADR-0032, ADR-0053, ADR-0055)', () => {
+  assert.doesNotMatch(text, /^> \*\*TBD/m)
+  // C-05 and C-06 are explained as the owner's decisions, with the ratios of ADR-0055.
+  const surfaces = text.slice(text.indexOf('### Card surfaces (C-05)'), text.indexOf('### Shades and tints (C-06)'))
+  assert.match(surfaces, /ADR-0053/)
+  assert.match(surfaces, /color\.surface\.card/)
+  const shades = text.slice(text.indexOf('### Shades and tints (C-06)'), text.indexOf('## Usage rules'))
+  assert.match(shades, /ADR-0055/)
+  for (const ratio of ['11.05:1', '6.27:1', '19.09:1', '13.13:1']) assert.ok(shades.includes(ratio), ratio)
+  assert.match(shades, /partial opacity/)
+})
+
+test('T13.2, ADR-0055, ADR-0053: the brand shades and the surfaces are the approved values, all stable', () => {
+  const body = block('table').body.join('\n')
+  const row = (path: string, value: string) =>
+    `| \`${path}\` | \`--cn-${path
+      .replaceAll('.', '-')
+      .replace(/([A-Z])/g, '-$1')
+      .toLowerCase()}\` | \`${value}\` | stable |`
+  for (const [name, brand, light, dark] of [
+    ['pink', '#ef80ae', '#fea0c5', '#d06c96'],
+    ['yellow', '#fff488', '#fff7a3', '#dacf6d'],
+  ] as const)
+    for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
+      const value = step < 400 ? light : step === 400 ? brand : dark
+      assert.ok(body.includes(row(`color.brand.${name}-${step}`, value)), `${name}-${step}`)
+    }
+  for (const [path, value] of [
+    ['color.brand.primaryHover', '#fea0c5'],
+    ['color.brand.primaryActive', '#d06c96'],
+    ['color.brand.secondaryHover', '#fff7a3'],
+    ['color.brand.secondaryActive', '#dacf6d'],
+    ['color.surface.card', '#000000'],
+    ['color.surface.elevated', '#000000'],
+  ] as const)
+    assert.ok(body.includes(row(path, value)), path)
 })

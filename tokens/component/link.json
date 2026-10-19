@@ -13,22 +13,20 @@
     "fgHover": {
       "$type": "color",
       "$value": "{color.brand.primaryHover}",
-      "$description": "Text color of a link while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+      "$description": "Text color of a link while hovered: the lighter pink tone (ADR-0055), 11.05:1 on the black page.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-08"],
-          "status": "derived-pending"
+          "status": "stable"
         }
       }
     },
     "fgActive": {
       "$type": "color",
       "$value": "{color.brand.primaryActive}",
-      "$description": "Text color of a link while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+      "$description": "Text color of a link while pressed: the darker pink tone (ADR-0055), 6.27:1 on the black page.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-08"],
-          "status": "derived-pending"
+          "status": "stable"
         }
       }
     },

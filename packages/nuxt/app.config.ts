@@ -6,8 +6,8 @@ import type { AppConfigInput } from 'nuxt/schema'
 export default {
   ui: {
     colors: {
-      primary: 'cn-primary', // BR-01, shades derived-pending (C-06)
-      secondary: 'cn-secondary', // BR-02, shades derived-pending (C-06)
+      primary: 'cn-primary', // BR-01, shades from ADR-0055
+      secondary: 'cn-secondary', // BR-02, shades from ADR-0055
       success: 'cn-success', // feedback color (ADR-0032)
       info: 'cn-info', // feedback color (ADR-0032)
       warning: 'cn-warning', // feedback color (ADR-0032)
@@ -300,11 +300,12 @@ export default {
         },
       },
     },
-    // The toaster only gets a hook for reduced motion: where the toast sits is a Nuxt UI default (TBD-15), and how it
+    // The toaster gets a hook for reduced motion and one for its stacking order, the z.toast token (ADR-0054). How a toast
     // moves is Nuxt UI's default animation.
     toaster: {
       slots: {
         base: 'cn-toaster__item',
+        viewport: 'cn-toaster',
       },
     },
     tooltip: {

@@ -14,11 +14,10 @@
       "fgHover": {
         "$type": "color",
         "$value": "{color.brand.primaryHover}",
-        "$description": "Text color of a breadcrumb link while hovered. Draft: the hover color is not part of ADR-0028. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$description": "Text color of a breadcrumb link while hovered: the lighter pink tone (ADR-0055). Draft: the hover color is not part of ADR-0028.",
         "$extensions": {
           "cn": {
-            "tbd": ["TBD-08"],
-            "status": "derived-pending"
+            "status": "stable"
           }
         }
       }

@@ -29,8 +29,8 @@
   "overlay": {
     "bg": {
       "$type": "color",
-      "$value": "{color.bg.base}",
-      "$description": "Fill of the modal and slideover panel: the pure black page (BR-03). The panel is separated from the page by its outline, not by a surface color (C-05). It does not read color.surface.card or color.surface.elevated until TBD-06 is resolved.",
+      "$value": "{color.surface.elevated}",
+      "$description": "Fill of the modal and slideover panel: the pure black page (BR-03, ADR-0053), through `color.surface.elevated`. It is separated from the page by its outline, never by a different fill (C-05).",
       "$extensions": {
         "cn": {
           "status": "stable"
@@ -70,31 +70,29 @@
     "scrimOpacity": {
       "$type": "number",
       "$value": "{effect.scrim.opacity}",
-      "$description": "How much of the backdrop color covers the page, from 0 to 1. TBD-15: the dimming amount is not decided; this follows a placeholder, not a brand value (ADR-0029).",
+      "$description": "How much of the backdrop color covers the page, from 0 to 1: 0.85, black at 85% (ADR-0054, ADR-0029).",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-15"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },
     "shadow": {
       "$value": "{effect.elevation.overlay}",
-      "$description": "Elevation shadow of the modal and slideover panel. It is not a glow (ADR-0029). TBD-15: the elevation scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Elevation shadow of the modal and slideover panel: none. The outline lifts the panel off the black page, and there is no shadow in the system (ADR-0054).",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-15"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },
     "z": {
+      "$type": "number",
       "$value": "{effect.zIndex.overlay}",
-      "$description": "Stacking order of the modal and slideover backdrop and panel. TBD-15: the z-index scale is not defined; this follows a placeholder, not a brand value.",
+      "$description": "Stacking order of the modal and slideover backdrop and panel: 50 (ADR-0054). A toast sits above it.",
       "$extensions": {
         "cn": {
-          "tbd": ["TBD-15"],
-          "status": "tbd"
+          "status": "stable"
         }
       }
     },

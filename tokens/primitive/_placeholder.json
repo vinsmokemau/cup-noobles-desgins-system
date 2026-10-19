@@ -1,19 +1,6 @@
 {
   "placeholder": {
     "$description": "Placeholder values from ADR-0006. None of them is a brand value; each stands in for an open SPEC.md §2.4 item.",
-    "color": {
-      "neutral": {
-        "$type": "color",
-        "$value": "#90a1b9",
-        "$description": "Placeholder, not a brand value. The single neutral color placeholder, standing in for TBD-06 (the surface colors). Source: Tailwind 4.3.3 slate-400, Nuxt UI's default neutral, chosen by the owner (ADR-0006).",
-        "$extensions": {
-          "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-06"]
-          }
-        }
-      }
-    },
     "space": {
       "base": {
         "$type": "dimension",
@@ -56,64 +43,6 @@
           "cn": {
             "status": "tbd",
             "tbd": ["TBD-10"]
-          }
-        }
-      }
-    },
-    "effect": {
-      "glow": {
-        "$value": "none",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-12. Source: Nuxt UI UButton has no glow (ADR-0006). Untyped (ADR-0008).",
-        "$extensions": {
-          "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-12"]
-          }
-        }
-      },
-      "scrimOpacity": {
-        "$type": "number",
-        "$value": 0.75,
-        "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI UModal and USlideover overlay, bg-elevated/75 (ADR-0029).",
-        "$extensions": {
-          "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-15"]
-          }
-        }
-      }
-    },
-    "elevation": {
-      "overlay": {
-        "$value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Tailwind --shadow-lg, used by UModal and USlideover (ADR-0006). Untyped (ADR-0008).",
-        "$extensions": {
-          "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-15"]
-          }
-        }
-      }
-    },
-    "z": {
-      "overlay": {
-        "$value": "auto",
-        "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI sets no z-index on UModal or USlideover (ADR-0006). Untyped (ADR-0008).",
-        "$extensions": {
-          "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-15"]
-          }
-        }
-      },
-      "toast": {
-        "$type": "number",
-        "$value": 100,
-        "$description": "Placeholder, not a brand value. Stands in for TBD-15. Source: Nuxt UI toaster viewport, z-[100] (ADR-0006).",
-        "$extensions": {
-          "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-15"]
           }
         }
       }

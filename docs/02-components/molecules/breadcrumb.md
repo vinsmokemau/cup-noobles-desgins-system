@@ -10,10 +10,10 @@ lang: en
 brandRules: [BR-01, BR-06]
 tokens: [breadcrumb]
 demos: [states, playground]
-tbd: [TBD-08]
+tbd: []
 related: [tabs, pagination, link, navigation, accessibility]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-10-18
 ---
 
 # Breadcrumb
@@ -41,12 +41,12 @@ The breadcrumb shows where the current page sits in a hierarchy and lets a perso
 | `breadcrumb.focus.style` | `--cn-breadcrumb-focus-style` | `solid` | stable |
 | `breadcrumb.focus.width` | `--cn-breadcrumb-focus-width` | `3px` | stable |
 | `breadcrumb.link.fg` | `--cn-breadcrumb-link-fg` | `#ef80ae` | stable |
-| `breadcrumb.link.fgHover` | `--cn-breadcrumb-link-fg-hover` | `#ef80ae` | derived-pending (TBD-08) |
+| `breadcrumb.link.fgHover` | `--cn-breadcrumb-link-fg-hover` | `#fea0c5` | stable |
 | `breadcrumb.separator.fg` | `--cn-breadcrumb-separator-fg` | `#bdbdbd` | stable |
 
 <!-- /cn:generated -->
 
-The breadcrumb tokens reference semantic tokens only (REQ-010 AC2). The link color and the focus ring are `stable`: brand pink and brand yellow (BR-01, BR-02). The current page text and the separator read the text and neutral colors (ADR-0032), so they are `stable`, and the link hover color is `derived-pending` because no pink shade is defined (TBD-08).
+The breadcrumb tokens reference semantic tokens only (REQ-010 AC2). The link color and the focus ring are `stable`: brand pink and brand yellow (BR-01, BR-02). The current page text and the separator read the text and neutral colors (ADR-0032), so they are `stable`, and the link hover color is `stable`: the lighter pink tone (ADR-0055).
 
 Contrast pairs declared for the breadcrumb (REQ-015):
 
@@ -55,7 +55,7 @@ Contrast pairs declared for the breadcrumb (REQ-015):
 | Foreground | Background | Usage | Ratio | Minimum | Result |
 |---|---|---|---|---|---|
 | `breadcrumb.link.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
-| `breadcrumb.link.fgHover` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |
+| `breadcrumb.link.fgHover` (`#fea0c5`) | `color.bg.base` (`#000000`) | text | 11.05:1 | 4.50:1 | pass |
 | `breadcrumb.current.fg` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `breadcrumb.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 
@@ -171,11 +171,10 @@ Not applicable.
 
 ## Open items
 
-> **TBD (TBD-08):** Tints and shades of pink are not defined (C-06, OD-04). The link hover color repeats the brand pink. Owner input needed: decision OD-04.
->
-> **Draft:** The look (pink underlined links and a plain bold current page) is approved (ADR-0028). The hover look of a link is a draft. The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+> **Draft:** The look (pink underlined links and a plain bold current page) is approved (ADR-0028). The hover look of a link is a draft: it is the lighter pink tone of ADR-0055, applied here by T13.2, and it awaits owner approval.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UBreadcrumb` themed with the pink link look, the component tokens, and the demos (T8.4) — ADR-0028
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — The link hover color is the lighter pink tone, set by the owner, and the placeholder for it is gone — ADR-0055

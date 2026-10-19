@@ -32,13 +32,59 @@ test('REQ-023 AC2: the radius, the outline width, and the glow are component tok
     assert.equal(token?.tier, 'component', path)
     assert.equal(token?.value, `{${semantic}}`, path)
     assert.equal(byPath.get(semantic)?.tier, 'semantic', semantic)
-    // The radius and the glow are TBD-10 and TBD-12, so they follow placeholders; the stroke width is ADR-0032.
-    assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
+    // The radius is TBD-10, so it follows a placeholder; the stroke width is ADR-0032 and the glow is ADR-0051.
+    assert.equal(token?.cn?.status, path === 'radius.button' ? 'tbd' : 'stable', path)
   }
 })
 
+test('T13.2, ADR-0051: each variant has a rest glow and a hover glow in its own brand color, all stable', () => {
+  for (const [path, semantic] of [
+    ['button.primary.glow', 'effect.glow.interactive'],
+    ['button.primary.glowHover', 'effect.glow.interactiveHover'],
+    ['button.secondary.glow', 'effect.glow.secondary'],
+    ['button.secondary.glowHover', 'effect.glow.secondaryHover'],
+    ['button.ghost.glow', 'effect.glow.interactive'],
+    ['button.ghost.glowHover', 'effect.glow.interactiveHover'],
+  ] as const) {
+    const token = byPath.get(path)
+    assert.equal(token?.tier, 'component', path)
+    assert.equal(token?.value, `{${semantic}}`, path)
+    assert.equal(token?.cn?.status, 'stable', path)
+  }
+  // The glow tokens are Neon tube: blur 12 px, spread 1 px, 60% rest; blur 20 px, spread 2 px, 85% hover.
+  const shadow = (path: string) => byPath.get(path)?.value as Record<string, string>
+  assert.deepEqual(shadow('effect.glow.pink.rest'), {
+    color: '{color.glow.pink.rest}',
+    offsetX: '0px',
+    offsetY: '0px',
+    blur: '12px',
+    spread: '1px',
+  })
+  assert.deepEqual(shadow('effect.glow.yellow.hover'), {
+    color: '{color.glow.yellow.hover}',
+    offsetX: '0px',
+    offsetY: '0px',
+    blur: '20px',
+    spread: '2px',
+  })
+  assert.equal(byPath.get('color.glow.pink.rest')?.value, '#ef80ae99', 'brand pink at 60%')
+  assert.equal(byPath.get('color.glow.pink.hover')?.value, '#ef80aed9', 'brand pink at 85%')
+  assert.equal(byPath.get('color.glow.yellow.rest')?.value, '#fff48899', 'brand yellow at 60%')
+  assert.equal(byPath.get('color.glow.yellow.hover')?.value, '#fff488d9', 'brand yellow at 85%')
+})
+
 test('REQ-023 AC2: the button rules read the component tokens (cn/no-raw-values lints the rest, REQ-016)', () => {
-  for (const path of ['radius.button', 'border.width.button', 'effect.glow.button'])
+  for (const path of [
+    'radius.button',
+    'border.width.button',
+    'effect.glow.button',
+    'button.primary.glow',
+    'button.primary.glowHover',
+    'button.secondary.glow',
+    'button.secondary.glowHover',
+    'button.ghost.glow',
+    'button.ghost.glowHover',
+  ])
     assert.ok(buttonCss.includes(`var(${cssVariable(path)})`), `${path} is read`)
   // Every token the rules read exists: a typo would silently drop a declaration.
   const names = new Set(tokens.map((t) => cssVariable(t.path)))
@@ -65,11 +111,32 @@ test('REQ-023 AC3: the label on a pink fill is black, and the contrast pair is d
     ['button.secondary.fg', 'button.secondary.bgActive'],
     ['button.ghost.fg', 'color.bg.base'],
     ['button.ghost.fgHover', 'button.ghost.bgHover'],
-    ['button.ghost.fgHover', 'button.ghost.bgActive'],
+    ['button.ghost.fgActive', 'button.ghost.bgActive'],
   ]) {
     const found = checkContrast(root).pairs.find((p) => p.foreground === foreground && p.background === background)
     assert.equal(found?.result, 'pass', `${foreground} on ${background}`)
   }
+  // ADR-0055: the measured ratios of a black label on the pink and yellow fills in each state.
+  for (const [background, ratio] of [
+    ['button.primary.bgHover', 11.05],
+    ['button.primary.bgActive', 6.27],
+    ['button.secondary.bgHover', 19.09],
+    ['button.secondary.bgActive', 13.13],
+  ] as const) {
+    const found = checkContrast(root).pairs.find(
+      (p) =>
+        p.foreground === (background.startsWith('button.primary') ? 'button.primary.fg' : 'button.secondary.fg') &&
+        p.background === background,
+    )
+    assert.equal(found?.ratio, ratio, background)
+  }
+})
+
+test('T13.2, ADR-0055: the ghost button hovers with the glow only, on the black page', () => {
+  assert.equal(byPath.get('button.ghost.bgHover')?.value, '{color.bg.base}')
+  assert.equal(byPath.get('button.ghost.fgHover')?.value, '{color.brand.primary}')
+  const hover = buttonCss.slice(buttonCss.indexOf(".cn-button--ghost:not(:disabled, [aria-disabled='true']):is(:hover"))
+  assert.match(hover.slice(0, hover.indexOf('}')), /box-shadow: var\(--cn-button-ghost-glow-hover\)/)
 })
 
 test('REQ-024 AC1: the focus ring comes from the focus tokens, and it is an outline, not the glow', () => {
@@ -123,7 +190,7 @@ test('the doc is a draft that lists its demos and names the tokens it renders', 
   assert.deepEqual(data.demos, ['states', 'playground'])
   assert.equal(data.source, 'nuxt-ui')
   assert.equal(data.nuxtUi, 'UButton')
-  for (const id of ['TBD-08', 'TBD-10', 'TBD-12']) assert.ok((data.tbd as string[]).includes(id), id)
+  assert.deepEqual(data.tbd, ['TBD-10'], 'the glow (TBD-12) and the shades (TBD-08) are resolved')
 })
 
 test('REQ-055: the playground controls are a valid schema that the playground demo declares as props', async () => {

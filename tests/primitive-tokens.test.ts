@@ -14,7 +14,7 @@ const inFile = (file: string) => tokens.filter((t) => t.file === `tokens/primiti
 const tbdIds = (text: string) => [...text.matchAll(/\bTBD-\d{2}\b/g)].map((m) => m[0])
 
 // §4.1: the primitive files, and §4.7: every primitive group other than color is TBD in T3.2.
-const TBD_FILES = ['space', 'radius', 'effect', 'z'].map((f) => `${f}.json`)
+const TBD_FILES = ['space', 'radius'].map((f) => `${f}.json`)
 // Groups resolved by the owner since T3.2, each holding stable raw values from its ADR (§4.4 resolution, ADR-0008 §4).
 const RESOLVED_FILES = {
   'focus.json': 'ADR-0009',
@@ -24,6 +24,8 @@ const RESOLVED_FILES = {
   'breakpoint.json': 'ADR-0035',
   'email.json': 'ADR-0038',
   'font.json': 'ADR-0046',
+  'effect.json': 'ADR-0051',
+  'z.json': 'ADR-0054',
 }
 
 test('§4.1: tokens/primitive/ holds exactly the listed files', () => {
@@ -70,20 +72,39 @@ test('ADR-0046 to ADR-0048: the font primitives hold the owner values, stable, w
   for (const name of ['font.size.h3', 'font.size.body']) assert.ok(px(name) >= 14, name)
 })
 
+test('ADR-0051, ADR-0054: the effect and z primitives hold the owner values, stable, with the ADR as source', () => {
+  const effect = inFile('effect.json').map((t) => [t.path, t.value, t.cn?.status, t.cn?.source])
+  const glow = (name: string, state: string, blur: string, spread: string) => [
+    `effect.glow.${name}.${state}`,
+    { color: `{color.glow.${name}.${state}}`, offsetX: '0px', offsetY: '0px', blur, spread },
+    'stable',
+    'ADR-0051',
+  ]
+  assert.deepEqual(effect, [
+    ['effect.glow.default', '{effect.glow.pink.rest}', 'stable', undefined],
+    glow('pink', 'rest', '12px', '1px'),
+    glow('pink', 'hover', '20px', '2px'),
+    glow('yellow', 'rest', '12px', '1px'),
+    glow('yellow', 'hover', '20px', '2px'),
+    ['effect.opacity.scrim', 0.85, 'stable', 'ADR-0054'],
+    ['effect.shadow.overlay', 'none', 'stable', 'ADR-0054'],
+  ])
+  const z = inFile('z.json').map((t) => [t.path, t.value, t.cn?.status, t.cn?.source])
+  assert.deepEqual(z, [
+    ['z.overlay', 50, 'stable', 'ADR-0054'],
+    ['z.toast', 100, 'stable', 'ADR-0054'],
+  ])
+})
+
 test('ADR-0038: the email maximum width holds the owner value, stable, with the ADR as source', () => {
   const email = inFile('email.json').map((t) => [t.path, t.value, t.cn?.status, t.cn?.source])
   assert.deepEqual(email, [['email.width.max', '600px', 'stable', 'ADR-0038']])
 })
 
 test('REQ-011 AC1: the three brand colors are exact, stable primitives with their BR sources', () => {
-  // T5.1 added the derived-pending shade tokens beside them (C-06); tests/nuxt-layer.test.ts checks those.
+  // ADR-0055 set the 22 shade tokens beside them, so every color token is stable; tests/nuxt-layer.test.ts checks them.
   const stable = inFile('color.json').filter((t) => t.cn?.status === 'stable')
-  assert.deepEqual(
-    inFile('color.json')
-      .filter((t) => t.cn?.status !== 'stable')
-      .map((t) => t.cn?.status),
-    Array(22).fill('derived-pending'),
-  )
+  assert.equal(stable.length, inFile('color.json').length, 'no color primitive is tbd or derived-pending')
   // ADR-0032 added the owner's neutral and signal colors, stable, beside the three brand ones.
   const brand = stable
     .filter((t) => t.cn?.source?.toString().startsWith('BR-'))
@@ -139,7 +160,9 @@ test('ADR-0006: _placeholder.json holds exactly the recorded values, each labele
   // ADR-0006 and deleted from _placeholder.json (policy 5).
   // ADR-0035 resolved TBD-13, so the five breakpoints and the container width are struck through and deleted too.
   // ADR-0046, ADR-0047, and ADR-0048 resolved TBD-01 to TBD-03, so the 17 typography placeholders are struck through too.
-  assert.equal(rows.length, 36 - 3 - 6 - 17, 'every placeholder row in ADR-0006')
+  // ADR-0053, ADR-0051, and ADR-0054 resolved TBD-06, TBD-12, and TBD-15, so the neutral color, the glow, the backdrop
+  // amount, the overlay shadow, and the two z-index placeholders are struck through and deleted too.
+  assert.equal(rows.length, 36 - 3 - 6 - 17 - 6, 'every placeholder row in ADR-0006')
   const placeholders = tokens.filter((t) => t.file === PLACEHOLDER_FILE)
   assert.deepEqual(placeholders.map((t) => t.path).sort(), rows.map((r) => r.path).sort())
 
@@ -195,13 +218,13 @@ test('Done when: check-tokens passes, and check-tbd lists every tbd token with c
   assert.ok(resolved.has('TBD-16'), 'TBD-16 is resolved (ADR-0009)')
   for (let n = 3; n <= 16; n++) {
     const id = `TBD-${String(n).padStart(2, '0')}`
-    // TBD-08 has no placeholder (ADR-0006): its tokens are the 22 derived-pending alias shades from T5.1 (C-06), and the
+    // TBD-08 has no placeholder (ADR-0006): its tokens were the 22 derived-pending alias shades from T5.1 (C-06), and the
     // hover and pressed fills that read them (T7.2). A resolved item has no tbd tokens left (§4.4).
     if (id === 'TBD-08') assert.equal(counts[id], derivedPending.length)
     else if (resolved.has(id)) assert.equal(counts[id], 0)
     else assert.ok(counts[id]! > 0, `${id} has tokens`)
   }
   assert.equal(report.summary.tokens, tbd.length)
-  assert.ok(derivedPending.length >= 22, 'the 22 alias shades are derived-pending')
+  assert.equal(derivedPending.length, 0, 'ADR-0055 set the 22 alias shades, so none is derived-pending')
   assert.equal(report.summary.derivedPendingTokens, derivedPending.length)
 })

@@ -34,13 +34,13 @@ This glossary defines the terms used across the Cup Noobles docs, tokens, and pa
 | Consumer fixture | `apps/consumer-fixture`, a generic Nuxt app that installs the packages to prove they are reusable (REQ-071). |
 | Contrast pair | A foreground token and a background token that are meant to be used together, listed with their usage in `tokens/contrast-pairs.json` and checked against WCAG minimums (REQ-015). |
 | Content-pending callout | `> **TBD:** Content pending (Tn.n).`, which marks a doc section that task `Tn.n` has not written yet (SPEC.md §4.4). |
-| `derived-pending` | The status of a token that repeats a single brand color where Nuxt UI expects a full shade scale, until the owner decides how shades are made (C-06, OD-04). |
+| `derived-pending` | The status of a token that repeats a single brand color where Nuxt UI expects a full shade scale, until the owner decides how shades are made (C-06, OD-04). No token has this status since ADR-0055. |
 | Draft | A doc status, and a callout (`> **Draft:** …`), for a rule that the owner has not approved yet (REQ-009). |
 | DTCG | The W3C Design Tokens Community Group format, used for every token file (A-13). |
 | Email tokens | `dist/email/email-tokens.json`: token values resolved to plain literals, because email clients do not support CSS custom properties (REQ-013). |
 | Forbidden pair | A color combination that fails contrast and must never be used, listed in `tokens/contrast-forbidden.json` (REQ-015 AC3). |
 | Generated block | The part of a doc between `cn:generated` marker comments. `pnpm sync:docs` writes it from the token files (REQ-004). |
-| Glow | The subtle neon glow on buttons (BR-10). Its values are TBD-12. |
+| Glow | The subtle neon glow on buttons (BR-10). Its values are Neon tube (ADR-0051). |
 | Layer (doc) | The part of the system a doc belongs to: overview, foundation, component, pattern, content, email, governance, or ADR. It sets the doc's required headings (§4.2). |
 | Layer (Nuxt) | A Nuxt project that another Nuxt app extends. `@vinsmokemau/cup-noobles-nuxt` is the system's Nuxt layer. |
 | Line work | The thick, clean, high-contrast outlines used throughout UI and illustration (BR-13). |

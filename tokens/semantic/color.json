@@ -5,107 +5,183 @@
       "primary": {
         "$value": "{color.brand.pink}",
         "$description": "Primary brand role: the protagonist color that dominates the identity (BR-01).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "secondary": {
         "$value": "{color.brand.yellow}",
         "$description": "Secondary brand role: the luminous, premium accent (BR-02).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "primaryHover": {
-        "$value": "{color.brand.pink-600}",
-        "$description": "Primary brand fill while hovered. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the pink shade token, which repeats the single brand value (BR-01); no tint or shade is generated.",
-        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+        "$value": "{color.brand.pink-300}",
+        "$description": "Primary brand fill while hovered: the lighter pink tone (ADR-0055). A black label on it is 11.05:1.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "primaryActive": {
-        "$value": "{color.brand.pink-700}",
-        "$description": "Primary brand fill while pressed. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the pink shade token, which repeats the single brand value (BR-01); no tint or shade is generated.",
-        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+        "$value": "{color.brand.pink-600}",
+        "$description": "Primary brand fill while pressed: the darker pink tone (ADR-0055). A black label on it is 6.27:1.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "secondaryHover": {
-        "$value": "{color.brand.yellow-600}",
-        "$description": "Secondary brand fill while hovered. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the yellow shade token, which repeats the single brand value (BR-02); no tint or shade is generated.",
-        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+        "$value": "{color.brand.yellow-300}",
+        "$description": "Secondary brand fill while hovered: the lighter yellow tone (ADR-0055). A black label on it is 19.09:1. It is close to the rest yellow, so the glow carries the hover state (ADR-0051).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "secondaryActive": {
-        "$value": "{color.brand.yellow-700}",
-        "$description": "Secondary brand fill while pressed. TBD-08: tints and shades are not defined (C-06, OD-04), so this reads the yellow shade token, which repeats the single brand value (BR-02); no tint or shade is generated.",
-        "$extensions": { "cn": { "status": "derived-pending", "tbd": ["TBD-08"] } }
+        "$value": "{color.brand.yellow-600}",
+        "$description": "Secondary brand fill while pressed: the darker yellow tone (ADR-0055). A black label on it is 13.13:1.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     },
     "bg": {
       "base": {
         "$value": "{color.brand.black}",
         "$description": "Page background. It stays pure black, never dark gray (BR-03, REQ-012).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     },
     "text": {
       "default": {
         "$value": "{color.neutral.white-soft}",
         "$description": "Body text color: soft white on the black page (ADR-0032, TBD-04).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "muted": {
         "$value": "{color.neutral.grey-light}",
         "$description": "Secondary text color: help text, hints, and descriptions (ADR-0032, TBD-05).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "inverted": {
         "$value": "{color.brand.black}",
         "$description": "Text on a primary or secondary fill. Labels on primary-filled buttons must be black (SPEC.md §2.1 derived facts, BR-03).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "disabled": {
         "$value": "{color.neutral.grey-dark}",
         "$description": "Text and borders of disabled controls (ADR-0032, TBD-05). Disabled controls are exempt from contrast minimums.",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     },
     "border": {
       "default": {
         "$value": "{color.neutral.grey-mid}",
         "$description": "Border color of controls (ADR-0032, TBD-05).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "divider": {
         "$value": "{color.neutral.grey-deep}",
         "$description": "Thin divider lines (ADR-0032, TBD-05). A divider is decorative and exempt from contrast minimums.",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     },
     "surface": {
       "card": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Card surface. TBD-06: no surface color is defined (C-05, OD-05); until then cards render on color.bg.base. This references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-06"] } }
+        "$value": "{color.brand.black}",
+        "$description": "Card surface: the pure black page (ADR-0053, BR-03, C-05). A card is separated from the page by its outline, never by a different fill.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "elevated": {
-        "$value": "{placeholder.color.neutral}",
-        "$description": "Elevated surface (overlays). TBD-06: no surface color is defined (C-05, OD-05); this references a placeholder, not a brand value.",
-        "$extensions": { "cn": { "status": "tbd", "tbd": ["TBD-06"] } }
+        "$value": "{color.brand.black}",
+        "$description": "Elevated surface (overlays): the pure black page (ADR-0053, BR-03, C-05). An overlay is separated from the page by its outline and the dimming layer, never by a different fill.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     },
     "feedback": {
       "success": {
         "$value": "{color.signal.green}",
         "$description": "Success feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "warning": {
         "$value": "{color.signal.orange}",
         "$description": "Warning feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "error": {
         "$value": "{color.signal.red}",
         "$description": "Error feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       },
       "info": {
         "$value": "{color.signal.blue}",
         "$description": "Info feedback color (ADR-0032, TBD-07). Never the only signal: the icon and the title say the type too (WCAG 1.4.1).",
-        "$extensions": { "cn": { "status": "stable" } }
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     }
   }

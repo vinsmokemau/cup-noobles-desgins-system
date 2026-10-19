@@ -59,12 +59,20 @@ test('REQ-054 AC1: every swatch gets a pass or fail, a tbd token is unverified, 
   }
 })
 
-test('REQ-054 AC4: tbd and derived-pending tokens are in the model with their status and TBD ids', () => {
-  assert.ok(swatches.some((swatch) => swatch.status === 'tbd'))
-  assert.equal(byPath.get('color.surface.card')!.status, 'tbd')
-  assert.deepEqual(byPath.get('color.surface.card')!.tbd, ['TBD-06'])
-  assert.equal(byPath.get('color.brand.pink-100')!.status, 'derived-pending')
-  assert.deepEqual(byPath.get('color.brand.pink-100')!.tbd, ['TBD-08'])
+test('REQ-054 AC4: a tbd token keeps its status and TBD ids in the model, and no color token is open today', () => {
+  // T13.2: the surfaces (ADR-0053) and the shades (ADR-0055) are decided, so every color token is stable.
+  assert.ok(swatches.every((swatch) => swatch.status === 'stable'))
+  assert.equal(byPath.get('color.surface.card')!.status, 'stable')
+  assert.equal(byPath.get('color.brand.pink-100')!.value, '#fea0c5')
+  // The model still handles an open token, so the next one cannot pass as measured.
+  const open = toSwatches({
+    ...flat,
+    'color.example.open': { ...flat['color.surface.card']!, status: 'tbd', tbd: ['TBD-99'], value: '#90a1b9' },
+  })
+  const swatch = open.find((s) => s.path === 'color.example.open')!
+  assert.equal(swatch.verdict, 'unverified')
+  assert.equal(swatch.ratio, null)
+  assert.deepEqual(swatch.tbd, ['TBD-99'])
 })
 
 test('the ratio is shown with two decimals', () => {

@@ -29,12 +29,12 @@
   "effect": {
     "glow": {
       "button": {
+        "$type": "shadow",
         "$value": "{effect.glow.interactive}",
-        "$description": "Neon glow of the button (BR-10, REQ-023 AC2). TBD-12: the glow has no values; this follows a placeholder, not a brand value. A disabled button shows no glow (REQ-023 AC5).",
+        "$description": "Neon glow of the button at rest, the pink one (BR-10, REQ-023 AC2, ADR-0051). Each variant reads its own glow below. A disabled button shows no glow (REQ-023 AC5).",
         "$extensions": {
           "cn": {
-            "status": "tbd",
-            "tbd": ["TBD-12"]
+            "status": "stable"
           }
         }
       }
@@ -97,22 +97,20 @@
       "bgHover": {
         "$type": "color",
         "$value": "{color.brand.primaryHover}",
-        "$description": "Fill of the primary button while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$description": "Fill of the primary button while hovered: the lighter pink tone (ADR-0055).",
         "$extensions": {
           "cn": {
-            "status": "derived-pending",
-            "tbd": ["TBD-08"]
+            "status": "stable"
           }
         }
       },
       "bgActive": {
         "$type": "color",
         "$value": "{color.brand.primaryActive}",
-        "$description": "Fill of the primary button while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$description": "Fill of the primary button while pressed: the darker pink tone (ADR-0055).",
         "$extensions": {
           "cn": {
-            "status": "derived-pending",
-            "tbd": ["TBD-08"]
+            "status": "stable"
           }
         }
       },
@@ -135,6 +133,26 @@
             "status": "stable"
           }
         }
+      },
+      "glow": {
+        "$type": "shadow",
+        "$value": "{effect.glow.interactive}",
+        "$description": "Neon glow of the primary button at rest: pink, 12 px blur, 1 px spread, 60% opacity (ADR-0051).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "glowHover": {
+        "$type": "shadow",
+        "$value": "{effect.glow.interactiveHover}",
+        "$description": "Neon glow of the primary button while hovered or pressed: pink, 20 px blur, 2 px spread, 85% opacity (ADR-0051).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     },
     "secondary": {
@@ -151,22 +169,20 @@
       "bgHover": {
         "$type": "color",
         "$value": "{color.brand.secondaryHover}",
-        "$description": "Fill of the secondary button while hovered. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02).",
+        "$description": "Fill of the secondary button while hovered: the lighter yellow tone (ADR-0055). It is close to the rest yellow, so the glow carries the hover state.",
         "$extensions": {
           "cn": {
-            "status": "derived-pending",
-            "tbd": ["TBD-08"]
+            "status": "stable"
           }
         }
       },
       "bgActive": {
         "$type": "color",
         "$value": "{color.brand.secondaryActive}",
-        "$description": "Fill of the secondary button while pressed. TBD-08: no shade is defined, so it repeats the brand yellow (BR-02).",
+        "$description": "Fill of the secondary button while pressed: the darker yellow tone (ADR-0055).",
         "$extensions": {
           "cn": {
-            "status": "derived-pending",
-            "tbd": ["TBD-08"]
+            "status": "stable"
           }
         }
       },
@@ -189,6 +205,26 @@
             "status": "stable"
           }
         }
+      },
+      "glow": {
+        "$type": "shadow",
+        "$value": "{effect.glow.secondary}",
+        "$description": "Neon glow of the secondary button at rest: yellow, 12 px blur, 1 px spread, 60% opacity (ADR-0051).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "glowHover": {
+        "$type": "shadow",
+        "$value": "{effect.glow.secondaryHover}",
+        "$description": "Neon glow of the secondary button while hovered or pressed: yellow, 20 px blur, 2 px spread, 85% opacity (ADR-0051).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
       }
     },
     "ghost": {
@@ -204,8 +240,8 @@
       },
       "fgHover": {
         "$type": "color",
-        "$value": "{color.text.inverted}",
-        "$description": "Label of the ghost button while hovered or pressed: black on the pink fill (SPEC.md section 2.1).",
+        "$value": "{color.brand.primary}",
+        "$description": "Label of the ghost button while hovered: brand pink on the black page. The ghost button hovers with the glow only (ADR-0055).",
         "$extensions": {
           "cn": {
             "status": "stable"
@@ -214,23 +250,21 @@
       },
       "bgHover": {
         "$type": "color",
-        "$value": "{color.brand.primaryHover}",
-        "$description": "Fill of the ghost button while hovered. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$value": "{color.bg.base}",
+        "$description": "Fill of the ghost button while hovered: the black page. The ghost button hovers with the glow only (ADR-0055).",
         "$extensions": {
           "cn": {
-            "status": "derived-pending",
-            "tbd": ["TBD-08"]
+            "status": "stable"
           }
         }
       },
       "bgActive": {
         "$type": "color",
         "$value": "{color.brand.primaryActive}",
-        "$description": "Fill of the ghost button while pressed. TBD-08: no shade is defined, so it repeats the brand pink (BR-01).",
+        "$description": "Fill of the ghost button while pressed: the darker pink tone (ADR-0055). Proposed by T13.2: ADR-0055 decides the ghost hover only.",
         "$extensions": {
           "cn": {
-            "status": "derived-pending",
-            "tbd": ["TBD-08"]
+            "status": "stable"
           }
         }
       },
@@ -238,6 +272,36 @@
         "$type": "color",
         "$value": "{color.brand.primary}",
         "$description": "Outline color of the ghost button: brand pink (BR-01, BR-10).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "glow": {
+        "$type": "shadow",
+        "$value": "{effect.glow.interactive}",
+        "$description": "Neon glow of the ghost button at rest: pink, 12 px blur, 1 px spread, 60% opacity (ADR-0051).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "glowHover": {
+        "$type": "shadow",
+        "$value": "{effect.glow.interactiveHover}",
+        "$description": "Neon glow of the ghost button while hovered or pressed: pink, 20 px blur, 2 px spread, 85% opacity (ADR-0051).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "fgActive": {
+        "$type": "color",
+        "$value": "{color.text.inverted}",
+        "$description": "Label of the ghost button while pressed: black on the darker pink fill (SPEC.md section 2.1).",
         "$extensions": {
           "cn": {
             "status": "stable"

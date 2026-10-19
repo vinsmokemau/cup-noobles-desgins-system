@@ -31,10 +31,10 @@ test('REQ-020 AC1: both docs are nuxt-ui organisms named for their Nuxt UI compo
     assert.equal(data.level, 'organism', slug)
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
-    // The text colors, the radius, the stroke, the backdrop amount, and the shadow are placeholders (REQ-009).
+    // The corner radius is still a placeholder (TBD-10), which keeps the docs drafts (REQ-009).
     assert.equal(data.status, 'draft', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
-    assert.deepEqual(data.tbd, ['TBD-10', 'TBD-15'], slug)
+    assert.deepEqual(data.tbd, ['TBD-10'], slug)
     assert.match(docOf(slug), new RegExp(`\`${NUXT_UI[slug]}\``), `${slug} doc names its Nuxt UI component`)
   }
 })
@@ -51,25 +51,31 @@ test('the overlay tokens reference semantic tokens, the brand ones are stable, a
     assert.equal(token?.cn?.status, path.startsWith('border.width') ? 'stable' : 'tbd', path)
   }
   for (const [path, value, status] of [
-    ['overlay.bg', '{color.bg.base}', 'stable'],
+    ['overlay.bg', '{color.surface.elevated}', 'stable'],
     ['overlay.highlight', '{color.brand.primary}', 'stable'],
     ['overlay.divider', '{color.brand.primary}', 'stable'],
     ['overlay.scrim', '{color.bg.base}', 'stable'],
-    ['overlay.scrimOpacity', '{effect.scrim.opacity}', 'tbd'],
-    ['overlay.shadow', '{effect.elevation.overlay}', 'tbd'],
-    ['overlay.z', '{effect.zIndex.overlay}', 'tbd'],
+    ['overlay.scrimOpacity', '{effect.scrim.opacity}', 'stable'],
+    ['overlay.shadow', '{effect.elevation.overlay}', 'stable'],
+    ['overlay.z', '{effect.zIndex.overlay}', 'stable'],
     ['overlay.fg', '{color.text.default}', 'stable'],
     ['overlay.fgMuted', '{color.text.muted}', 'stable'],
   ] as const) {
     assert.equal(byPath.get(path)?.value, value, path)
     assert.equal(byPath.get(path)?.cn?.status, status, path)
   }
-  // ADR-0029: the backdrop amount is a placeholder with a source, filed under TBD-15, not a brand value.
-  const amount = byPath.get('placeholder.effect.scrimOpacity')
-  assert.equal(amount?.value, 0.75)
-  assert.equal(amount?.cn?.status, 'tbd')
-  assert.deepEqual(amount?.cn?.tbd, ['TBD-15'])
-  assert.match(String(amount?.description), /^Placeholder, not a brand value\./)
+  // ADR-0054: Outline only. The backdrop is black at 85%, there is no shadow, and the overlay sits at 50, below the toast.
+  for (const [path, value] of [
+    ['effect.opacity.scrim', 0.85],
+    ['effect.shadow.overlay', 'none'],
+    ['z.overlay', 50],
+    ['z.toast', 100],
+  ] as const) {
+    assert.equal(byPath.get(path)?.value, value, path)
+    assert.equal(byPath.get(path)?.cn?.status, 'stable', path)
+    assert.equal(byPath.get(path)?.cn?.source, 'ADR-0054', path)
+  }
+  assert.ok(!byPath.has('placeholder.effect.scrimOpacity'), 'the backdrop placeholder is deleted')
 })
 
 test('REQ-016, ADR-0029: the overlay rules read only tokens that exist, with no glow and no card color', () => {
@@ -89,7 +95,7 @@ test('REQ-016, ADR-0029: the overlay rules read only tokens that exist, with no 
     'border.width.overlay',
   ])
     assert.ok(ownCss.includes(`var(${cssVariable(path)})`), `${path} is read`)
-  assert.doesNotMatch(ownCss, /surface/, 'the panel renders on color.bg.base, not on a card color')
+  assert.doesNotMatch(ownCss, /surface/, 'the rules read the overlay tokens, never a surface token (ADR-0053)')
   assert.doesNotMatch(ownCss, /effect-glow/, 'ADR-0029: no glow')
   // No raw color, length, or time literal: every value is a var() or a keyword (REQ-016 AC1).
   assert.doesNotMatch(ownCss, /#[0-9a-fA-F]{3,8}\b|\brgba?\(|\bhsla?\(|\d(px|rem|ms)\b/)
@@ -186,10 +192,10 @@ test('REQ-055: the playground controls are a valid schema that each playground d
   }
 })
 
-test('ADR-0029 is recorded in the decision log, and the placeholder is in the ADR-0006 table', () => {
+test('ADR-0029 is recorded in the decision log, and its placeholder is struck from the ADR-0006 table (ADR-0054)', () => {
   assert.match(read('docs/06-governance/decision-log.md'), /\(decisions\/0029-overlay-look\.md\)/)
   assert.match(
     read('docs/06-governance/decisions/0006-placeholder-values.md'),
-    /\| `placeholder\.effect\.scrimOpacity` \| `0\.75` \|/,
+    /\| ~~`placeholder\.effect\.scrimOpacity`~~ \| ~~`0\.75`~~ \|[^\n]*deleted \(ADR-0054\)/,
   )
 })

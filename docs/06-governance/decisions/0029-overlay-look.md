@@ -55,6 +55,6 @@ The values come from the owner in chat, 2026-10-10.
 ## Consequences
 
 - `overlay.json` holds `overlay.bg`, `overlay.highlight`, `overlay.divider`, and `overlay.scrim` as `stable` tokens that reference semantic tokens, and holds the placeholders as `tbd`.
-- The semantic token `effect.scrim.opacity` and the primitive `effect.opacity.scrim` are new. Both are `tbd` (TBD-15).
+- The semantic token `effect.scrim.opacity` and the primitive `effect.opacity.scrim` are new. Both were `tbd` (TBD-15); ADR-0054 set them to 0.85, the overlay shadow to none, and the stacking order to 50, and T13.2 applied it.
 - `modal.md` and `slideover.md` stay `draft` while the placeholders are open.
 - Changing the look takes a new ADR that supersedes this one, and new visual baselines.

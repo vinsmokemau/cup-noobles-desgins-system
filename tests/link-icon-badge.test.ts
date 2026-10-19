@@ -71,8 +71,7 @@ test('the link and badge component tokens reference semantic tokens, and the sha
   assert.equal(byPath.get('link.fg')?.value, '{color.brand.primary}')
   for (const part of ['color', 'width', 'offset', 'style'])
     assert.equal(byPath.get(`link.focus.${part}`)?.value, `{focus.ring.${part}}`, part)
-  for (const path of ['link.fgHover', 'link.fgActive'])
-    assert.equal(byPath.get(path)?.cn?.status, 'derived-pending', path)
+  for (const path of ['link.fgHover', 'link.fgActive']) assert.equal(byPath.get(path)?.cn?.status, 'stable', path) // ADR-0055: the pink tones
 })
 
 test('the rules read only tokens that exist, and the link focus ring is an outline, not a glow', () => {
@@ -93,8 +92,8 @@ test('REQ-015: the label and outline pairs of the link and the badge are declare
   assert.equal(report.problems.length, 0)
   for (const [foreground, background, ratio] of [
     ['link.fg', 'color.bg.base', 8.37],
-    ['link.fgHover', 'color.bg.base', 8.37],
-    ['link.fgActive', 'color.bg.base', 8.37],
+    ['link.fgHover', 'color.bg.base', 11.05],
+    ['link.fgActive', 'color.bg.base', 6.27],
     ['link.focus.color', 'color.bg.base', 18.55],
     ['badge.primary.fg', 'badge.primary.bg', 8.37],
     ['badge.outline.fg', 'color.bg.base', 8.37],

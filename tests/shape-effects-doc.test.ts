@@ -1,6 +1,6 @@
 // T4.4 checks: docs/01-foundations/shape.md and effects.md quote BR-10 and BR-13, cover the radius, stroke-width, glow,
-// elevation, z-index, and focus token groups, keep TBD-10, 11, 12, and 15 as callouts (REQ-005; TBD-16 is resolved by ADR-0009), state that focus
-// is never the glow alone (REQ-024), and hold the R-04 glow rule as a draft callout (REQ-009 AC1).
+// elevation, z-index, and focus token groups, keep TBD-10 as a callout (REQ-005; TBD-11, 12, 15, and 16 are resolved), state that focus
+// is never the glow alone (REQ-024), and hold the R-04 glow rule as a stable rule (ADR-0052).
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
@@ -19,23 +19,24 @@ const quote = (id: string) => new RegExp(`^> \\*\\*${id}:\\*\\* `, 'm')
 const block = (text: string, tokens: string, format = 'table') =>
   new RegExp(`^<!-- cn:generated tokens="${tokens}" format="${format}" -->$`, 'm').test(text)
 
-test('frontmatter: both docs are draft, with their BR IDs, TBD IDs, and token groups', () => {
+test('frontmatter: shape is draft and effects is stable, with their BR IDs, TBD IDs, and token groups', () => {
   assert.equal(fm(shape).status, 'draft')
   assert.deepEqual(fm(shape).brandRules, ['BR-10', 'BR-13'])
   assert.deepEqual(fm(shape).tbd, ['TBD-10'])
   assert.deepEqual(fm(shape).tokens, ['radius', 'border'])
-  assert.equal(fm(effects).status, 'draft')
+  // T13.2: effects.md holds no TBD item and its glow rule is approved (ADR-0052), so it is stable.
+  assert.equal(fm(effects).status, 'stable')
   assert.deepEqual(fm(effects).brandRules, ['BR-06', 'BR-10', 'BR-13'])
-  // TBD-16 was resolved after T4.4 (ADR-0009), so its callout is gone (§4.4).
-  assert.deepEqual(fm(effects).tbd, ['TBD-12', 'TBD-15'])
+  // TBD-16 (ADR-0009), TBD-12 (ADR-0051), and TBD-15 (ADR-0054) are resolved, so their callouts are gone (§4.4).
+  assert.deepEqual(fm(effects).tbd, [])
   assert.deepEqual(fm(effects).tokens, ['effect', 'z', 'focus'])
 })
 
-test('Done when: the TBD callouts reference TBD-10, 12, and 15; TBD-11 and TBD-16 are resolved (ADR-0032, ADR-0009)', () => {
+test('Done when: only TBD-10 has a callout; TBD-11, 12, 15, and 16 are resolved (ADR-0032, ADR-0051, ADR-0054, ADR-0009)', () => {
   assert.match(shape, callout('TBD-10'), 'shape.md TBD-10')
   assert.doesNotMatch(shape, callout('TBD-11'))
-  for (const id of ['TBD-12', 'TBD-15']) assert.match(effects, callout(id), `effects.md ${id}`)
-  assert.doesNotMatch(effects, callout('TBD-16'))
+  for (const id of ['TBD-12', 'TBD-15', 'TBD-16']) assert.doesNotMatch(effects, callout(id), `effects.md ${id}`)
+  assert.doesNotMatch(effects, /^> \*\*TBD/m)
 })
 
 test('scope: BR-10 and BR-13 are quoted with their IDs in both docs', () => {
@@ -54,11 +55,7 @@ test('scope: generated blocks cover radius, stroke width, glow, elevation, z-ind
     )
   assert.match(shape, /^\| `border\.width\.default` \|.*\| stable \|$/m, 'border.width.default')
   for (const token of ['effect.glow.interactive', 'effect.elevation.overlay', 'effect.zIndex.toast'])
-    assert.match(
-      effects,
-      new RegExp(`^\\| \`${token.replace(/\./g, '\\.')}\` \\|.*\\| tbd \\(TBD-1[25]\\) \\|$`, 'm'),
-      token,
-    )
+    assert.match(effects, new RegExp(`^\\| \`${token.replace(/\./g, '\\.')}\` \\|.*\\| stable \\|$`, 'm'), token)
   for (const token of ['focus.ring.color', 'focus.ring.width', 'focus.ring.offset', 'focus.ring.style'])
     assert.match(effects, new RegExp(`^\\| \`${token.replace(/\./g, '\\.')}\` \\|.*\\| stable \\|$`, 'm'), token)
 })
@@ -72,11 +69,24 @@ test('scope: REQ-024, focus is never the glow alone and appears on :focus-visibl
   assert.match(effects, /Never use the glow as the only focus indicator/)
 })
 
-test('scope: the R-04 rule (glow on component edges, not body text) is a draft callout', () => {
-  const draft = effects.split(/\r?\n/).find((line) => line.startsWith('> **Draft:** '))
-  assert.ok(draft, 'a Draft callout exists')
-  assert.match(draft, /component edges only/)
-  assert.match(draft, /never applied to body text/)
-  assert.match(draft, /R-04/)
-  assert.match(draft, /awaits owner approval/)
+test('scope: the R-04 rule (glow on component edges, not body text) is a stable rule that cites ADR-0052', () => {
+  assert.doesNotMatch(effects, /^> \*\*Draft:\*\* /m, 'no draft callout is left')
+  const rule = effects.split(/\r?\n/).find((line) => line.startsWith('> **Rule (ADR-0052):** '))
+  assert.ok(rule, 'a Rule callout exists')
+  assert.match(rule, /component edges only/)
+  assert.match(rule, /never applied to body text/)
+  assert.match(rule, /R-04/)
+  assert.doesNotMatch(rule, /awaits owner approval/)
+})
+
+test('T13.2, ADR-0051, ADR-0054: the doc states the Neon tube glow and the Outline only elevation numbers', () => {
+  const glow = effects.slice(effects.indexOf('### Glow'), effects.indexOf('### Elevation and stacking'))
+  for (const row of [
+    '| Default (rest) | blur 12 px, spread 1 px, opacity 60% |',
+    '| Hover | blur 20 px, spread 2 px, opacity 85% |',
+    '| Disabled | none (REQ-023 AC5) |',
+  ])
+    assert.ok(glow.includes(row), row)
+  const elevation = effects.slice(effects.indexOf('### Elevation and stacking'), effects.indexOf('### Focus'))
+  for (const row of ['| 0.85, black at 85% |', '| 50 |', '| 100 |', '| none |']) assert.ok(elevation.includes(row), row)
 })

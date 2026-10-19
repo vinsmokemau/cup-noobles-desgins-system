@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.38 |
+| Spec version | 1.39 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -152,8 +152,8 @@ These are measurements, not new rules. REQ-015 enforces them.
 | C-02 | Option A, as first proposed, put commerce components (ProductCard, VariantSelector, PriceTag, AvailabilityBadge) in the design system. OA-4 requires the system to be project-agnostic. | **Default:** commerce components stay in the storefront repo and are built from design system parts. The design system ships generic parts such as Card, MediaCard, Badge, and FormField. REQ-022 enforces this with a list of forbidden domain terms. | Resolved (OD-01, OA-10) |
 | C-03 | ER-02 limits consuming apps to "Tailwind for layout only." But BR-10 and BR-13 (glow, thick outlines, rounded corners) require visual styling somewhere. | Visual styling lives **only** inside `packages/nuxt`: the Nuxt UI theme configuration and the token CSS. A consuming app keeps ER-02 as written and does no visual styling of its own. REQ-016 enforces that no raw values appear anywhere. | Resolved (OD-11, OA-10) |
 | C-04 | BC §Usage Context lists stream overlays as a use of the system. OA-4 limits scope to the storefront and emails. | Overlays are a non-goal (§1.3). The `tokens` package ships framework-free CSS and JSON, so an overlay project can adopt it later without changes. | Needs confirmation (OD-10) |
-| C-05 | BR-12 describes cards as having a "dark surface," while BR-03 says the base "must stay pure black, not dark gray." A card on a pure-black page needs *something* to separate it from the page. | No surface color is defined. The token `color.surface.card` is TBD-06. Until OD-05 is decided, cards render on `color.bg.base`, separated by a thick outline (BR-13), and the showcase marks the token TBD. | Open (OD-05) |
-| C-06 | BR-01 and BR-02 give one hex value per color. Nuxt UI color aliases probably expect a full shade scale (to be verified in T0.1). Generating shades would mean inventing colors. | No tints or shades are generated without approval. Until OD-04 is decided, every alias shade that Nuxt UI requires is filled with the single brand hex and marked `derived-pending`. | Open (OD-04) |
+| C-05 | BR-12 describes cards as having a "dark surface," while BR-03 says the base "must stay pure black, not dark gray." A card on a pure-black page needs *something* to separate it from the page. | The owner chose pure black, separated by an outline only (OD-05 option a, ADR-0053). `color.surface.card` and `color.surface.elevated` are `color.bg.base`, and a thick outline (BR-13) carries the separation. | Resolved (OD-05, ADR-0053) |
+| C-06 | BR-01 and BR-02 give one hex value per color. Nuxt UI color aliases probably expect a full shade scale (to be verified in T0.1). Generating shades would mean inventing colors. | The owner chose the minimal derived scale (OD-04 option b, ADR-0055): two extra tones per brand color, derived by OKLCH lightness only. Nothing else is derived from a brand color, and the partial-opacity classes of Nuxt UI are not used. | Resolved (OD-04, ADR-0055) |
 
 ### 2.3 Assumptions
 
@@ -187,16 +187,16 @@ These values are **not defined** in any source. Each one is a token or doc field
 | TBD-03 | Type scale: sizes, line heights, weights, and letter spacing for H1, H2, H3, body, and caption | `font.size.*`, `font.lineHeight.*` | Resolved (ADR-0048) |
 | TBD-04 | Body text color: pure white or an off-white | `color.text.default` | Resolved (ADR-0032) |
 | TBD-05 | Neutral scale for secondary text, borders, disabled states, and dividers | `color.neutral.*` | Resolved (ADR-0032) |
-| TBD-06 | Card and elevated surface colors (see C-05) | `color.surface.*` | Decision OD-05 |
+| TBD-06 | Card and elevated surface colors (see C-05) | `color.surface.*` | Resolved (ADR-0053) |
 | TBD-07 | Feedback colors for success, warning, error, and info | `color.feedback.*` | Resolved (ADR-0032) |
-| TBD-08 | Tints and shades of pink and yellow (see C-06) | Nuxt UI alias scales | Decision OD-04 |
+| TBD-08 | Tints and shades of pink and yellow (see C-06) | Nuxt UI alias scales | Resolved (ADR-0055) |
 | TBD-09 | Spacing base unit and scale | `space.*` | Base unit |
 | TBD-10 | Corner radius values ("rounded" in BR-10) | `radius.*` | Values |
 | TBD-11 | Stroke widths ("thick" in BR-10 and BR-13) | `border.width.*` | Resolved (ADR-0032) |
-| TBD-12 | Neon glow parameters: blur, spread, opacity, and which color is used per state ("subtle" in BR-10) | `effect.glow.*` | Values |
+| TBD-12 | Neon glow parameters: blur, spread, opacity, and which color is used per state ("subtle" in BR-10) | `effect.glow.*` | Resolved (ADR-0051) |
 | TBD-13 | Breakpoints and container widths. The 360 px minimum is fixed by ER-05. | `breakpoint.*` | Resolved (ADR-0035) |
 | TBD-14 | Motion durations and easing curves | `motion.*` | Resolved (ADR-0032) |
-| TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Values |
+| TBD-15 | Elevation and z-index scale | `elevation.*`, `z.*` | Resolved (ADR-0054) |
 | TBD-16 | Focus indicator style. Required by REQ-024 to differ from the glow. | `focus.*` | Resolved (ADR-0009) |
 | TBD-17 | Logo files: CN icon, vertical lockup, and horizontal wordmark, as SVG, with clear-space and minimum-size rules | `CnLogo`, brand-identity.md | Resolved (ADR-0016) |
 | TBD-18 | Motif artwork (BR-14) as SVG. The sparkle (ADR-0017), the ramen cup (ADR-0019), the golden d20 (ADR-0021), the chopsticks (ADR-0020), the noodle curves and waves (ADR-0022), the arcade shapes and dynamic lines (ADR-0023), and the sticker border (ADR-0024) are supplied, so all seven BR-14 motifs have their artwork. `CnStickerFrame` renders `Sticker-Border-CN.svg`, and its placeholder tokens are gone (T7.17). | `CnStickerFrame`, imagery-and-motifs.md | Resolved (ADR-0025) |
@@ -1330,8 +1330,8 @@ The owner must decide these. Each decision becomes an ADR.
 | OD-01 | Where do commerce components live? (C-02) | (a) In the storefront repo, built from design system parts; (b) in the design system under a separate "commerce" namespace | **Decided: (a)** (OA-10, ADR-0007). | T1.3 |
 | OD-02 | Showcase hosting and visibility | Public or private; hosted on a static host or the owner's own infrastructure | **Decided: public, on GitHub Pages** (OA-10, ADR-0007), as a project site at `https://vinsmokemau.github.io/cup-noobles-desgins-system/`. On GitHub Free, this requires a public repository (OD-14). | T5.6 |
 | OD-03 | Package distribution | Private registry (GitHub Packages), public npm, or git-referenced layer | **Decided: GitHub Packages, private** (OA-9, ADR-0007). Consumers install with a GitHub token that has `read:packages`, documented in T12.2. | T12.1 |
-| OD-04 | Brand color shades (C-06, TBD-08) | (a) The brand supplies full scales; (b) approve an algorithmic derivation such as OKLCH lightness steps, recorded in an ADR; (c) use the single hex for every shade | (a) or (b). Both need owner sign-off. (c) is the temporary default. | Before 1.0 (T5.1 uses the default) |
-| OD-05 | Card surface (C-05, TBD-06) | (a) Pure black, separated by an outline only; (b) a distinct near-black surface token | Undecided: (a) best respects BR-03, and (b) better matches "dark surface" in BR-12. | T8.1 (placeholder allowed) |
+| OD-04 | Brand color shades (C-06, TBD-08) | (a) The brand supplies full scales; (b) approve an algorithmic derivation such as OKLCH lightness steps, recorded in an ADR; (c) use the single hex for every shade | **Decided: (b), in its minimal form** (owner, ADR-0055): the lighter and darker tone of each brand color, derived by OKLCH lightness. | Before 1.0 (T5.1 uses the default) |
+| OD-05 | Card surface (C-05, TBD-06) | (a) Pure black, separated by an outline only; (b) a distinct near-black surface token | **Decided: (a), pure black separated by an outline only** (owner, ADR-0053). | T8.1 (placeholder allowed) |
 | OD-06 | Typefaces (TBD-01, TBD-02) | Any font meeting the criteria set in T4.3 | **Decided: Titan One for display, Rubik for body** (owner, ADR-0046, ADR-0047). The email fallback stack is ADR-0058. | T4.3 (placeholder allowed), before 1.0 |
 | OD-07 | Text, neutral, and feedback colors (TBD-04, 05, 07) | Owner supplies, or approves a proposal | Owner supplies | Before 1.0 |
 | OD-08 | Logo and motif SVG delivery (TBD-17, TBD-18) | Owner supplies SVGs plus clear-space and minimum-size rules | **Decided for the logos (TBD-17):** the owner supplied the three SVGs, and chose a clear space of 25% of the logo height and minimum heights of 64 px (icon), 80 px (vertical), and 36 px (horizontal) (ADR-0016). **Decided for the sparkle:** the owner chose the sparkle artwork, recoloured to `color.brand.yellow`, sized to the text beside it (ADR-0017). **Decided for the other six motifs of BR-14:** the owner chose the ramen cup (ADR-0019), the chopsticks (ADR-0020), the golden d20 (ADR-0021), the noodle curves and waves (ADR-0022), the arcade shapes and dynamic lines (ADR-0023), and the sticker border (ADR-0024). | Logos: T7.9. Sparkle: T7.10. Other motifs: T7.11 to T7.16 |
@@ -1387,6 +1387,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.36 | 2026-10-11 | T11.4: "Done when" no longer says `release:check` fails today. All ten stable component docs reach only stable tokens, so the gate passes on the repository; it fails on a fixture with a stable component that reaches a TBD token. REQ-018 and every other task are unchanged. | Owner decision in chat (T11.4, option A) |
 | 1.37 | 2026-10-18 | Added P13 (T13.1 through T13.4) after T12.3: each applies the owner's TBD decisions to this spec, the docs, and the tokens. The owner stays on 0.x until every TBD item is closed. No existing requirement or task changes. | Owner decisions in chat; ADR-0045 through ADR-0057 |
 | 1.38 | 2026-10-18 | §2.4: TBD-01, TBD-02, and TBD-03 are resolved by ADR-0046, ADR-0047, and ADR-0048 (Titan One, Rubik, and the Balanced type scale), and §7.2: OD-06 is decided. The email fallback stack is ADR-0058. No requirement or task changes. | Owner decisions in chat; ADR-0046, ADR-0047, ADR-0048, ADR-0058 |
+| 1.39 | 2026-10-18 | §2.4: TBD-06, TBD-08, TBD-12, and TBD-15 are resolved by ADR-0053, ADR-0055, ADR-0051, and ADR-0054 (pure-black surfaces, the minimal derived brand shades, the Neon tube glow, and Outline only elevation). §2.2: C-05 and C-06 are resolved. §7.2: OD-04 and OD-05 are decided. No requirement or task changes. | Owner decisions in chat; ADR-0051, ADR-0052, ADR-0053, ADR-0054, ADR-0055 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
