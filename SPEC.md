@@ -1306,7 +1306,7 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: in `packages/nuxt/assets/css/main.css`, replace each spacing built as a multiple of `--cn-space-base` that is not a step of the scale (for example the media card gap of 3 base units, 12 px) with a `--cn-space-*` step, asking the owner when the nearest step is unclear; use the named step in place of `calc(var(--cn-space-base) * N)` where the result is a step (for example 24 px as `--cn-space-lg`).
   - Done when: no spacing in the layer is a multiple of the base that is not a step; the visual baselines are regenerated in the pinned Linux container and the owner has seen any component whose spacing changed; a changeset exists; `pnpm test:all` is green.
 
-- [ ] **T13.6 — Fix the two visual baselines that fail in the pinned container**
+- [x] **T13.6 — Fix the two visual baselines that fail in the pinned container** (2026-10-19, 93b5c70)
   - REQs: REQ-026 (AC3)
   - Depends on: T13.5
   - Scope: the icon at 360 px (`link-icon-badge.visual.ts`) and the site header at 768 px (`molecules.visual.ts`) fail against their committed baselines in the pinned Playwright container, and they failed the same way at 7fb5cea, before T13.5. Find the cause first: a rendering difference between the container run and CI, a baseline left stale by an earlier task, or a flaky capture. Fix a stale baseline by regenerating it in the pinned container; fix a flaky capture in the spec. Ask the owner if the screenshot shows a real visual change.
