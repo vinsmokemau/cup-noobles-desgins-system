@@ -1294,7 +1294,7 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: set both items to `Resolved (ADR-NNNN)` in §2.4; add the seven spacing steps above the base token; set the radius tokens from ADR-0050, and assign each of the six undecided radius tokens a step, asking the owner if a case is unclear; update the email components and layout that use `space.base` for every padding.
   - Done when: `pnpm check:tbd` lists neither; the email reference layout still renders at 320 and 600 px with no horizontal scroll; a changeset exists; `pnpm test:all` is green, with visual baselines regenerated.
 
-- [ ] **T13.4 — Apply the imagery decision (TBD-20)**
+- [x] **T13.4 — Apply the imagery decision (TBD-20)** (2026-10-19, e7860bd)
   - REQs: REQ-005, REQ-009, REQ-025
   - Depends on: T13.3, ADR-0056, ADR-0057
   - Scope: set TBD-20 to `Resolved (ADR-NNNN)` in §2.4; the 4:3 whole-picture frame in `CnMediaCard`; the brand d20 as the fallback for a missing picture; the written standards in `imagery-and-motifs.md` and `media-card.md`.
