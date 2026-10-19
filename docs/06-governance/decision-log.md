@@ -77,6 +77,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0049: The spacing scale is the rhythm of 8](decisions/0049-spacing-scale-rhythm-of-8.md)
 - [ADR-0050: The corner radius is Chunky](decisions/0050-corner-radius-chunky.md)
 - [ADR-0051: The neon glow is Neon tube](decisions/0051-neon-glow-neon-tube.md)
+- [ADR-0052: Glow goes on component edges only, never on text](decisions/0052-glow-on-edges-only.md)
 
 ## Open items
 
@@ -93,3 +94,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0049 (TBD-09 decision)
 - 0.1.0 — Index extended with ADR-0050 (TBD-10 decision)
 - 0.1.0 — Index extended with ADR-0051 (TBD-12 decision)
+- 0.1.0 — Index extended with ADR-0052 (glow rule approved)
