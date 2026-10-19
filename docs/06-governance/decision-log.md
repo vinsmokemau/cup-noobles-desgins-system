@@ -74,6 +74,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0046: The display typeface is Titan One](decisions/0046-display-typeface-titan-one.md)
 - [ADR-0047: The body typeface is Rubik](decisions/0047-body-typeface-rubik.md)
 - [ADR-0048: The type scale is Balanced](decisions/0048-type-scale-balanced.md)
+- [ADR-0049: The spacing scale is the rhythm of 8](decisions/0049-spacing-scale-rhythm-of-8.md)
 
 ## Open items
 
@@ -87,3 +88,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0046 (TBD-01 decision)
 - 0.1.0 — Index extended with ADR-0047 (TBD-02 decision)
 - 0.1.0 — Index extended with ADR-0048 (TBD-03 decision)
+- 0.1.0 — Index extended with ADR-0049 (TBD-09 decision)
