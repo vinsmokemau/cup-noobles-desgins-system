@@ -33,7 +33,7 @@ test('REQ-020 AC1: the three docs are nuxt-ui components named for their Nuxt UI
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, nuxtUi, slug)
     // The icon set is open (OD-09), and the link and badge rely on placeholders and unapproved looks (REQ-009).
-    assert.equal(data.status, slug === 'icon' ? 'stable' : 'draft', slug) // ADR-0033 approved the icon
+    assert.equal(data.status, slug === 'link' ? 'draft' : 'stable', slug) // ADR-0033 approved the icon
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
   }
   // TBD-19 is resolved (ADR-0012): no doc cites it as open.

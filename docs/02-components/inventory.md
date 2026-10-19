@@ -23,7 +23,7 @@ The inventory lists every component in the system, with its level, its source, i
 
 | Component | Level | Source | Implementation | Status | Open TBD items |
 |---|---|---|---|---|---|
-| [Badge](atoms/badge.md) | atom | nuxt-ui | `UBadge` | draft | — |
+| [Badge](atoms/badge.md) | atom | nuxt-ui | `UBadge` | stable | — |
 | [Button](atoms/button.md) | atom | nuxt-ui | `UButton` | draft | — |
 | [Checkbox](atoms/checkbox.md) | atom | nuxt-ui | `UCheckbox` | draft | — |
 | [Icon](atoms/icon.md) | atom | nuxt-ui | `UIcon` | stable | — |

@@ -2,7 +2,7 @@
 title: Email layouts
 slug: email-layouts
 layer: email
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-03, BR-10, BR-13, BR-15, BR-16]
 tokens: [layout.email, logo.rule, space, color.bg.base, siteHeader, siteFooter, card, separator]
@@ -144,3 +144,4 @@ Real-client rendering is not verified here (R-05). It belongs to the consuming p
 - 0.1.0 — Part order, plain-text blocks, and logo clear space approved by the owner. The doc stays a draft while TBD-01, TBD-03, TBD-09, and TBD-10 are open — ADR-0042
 - 0.1.0 — The display typeface and the type scale are set by the owner, so the TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-09 and TBD-10 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
 - 0.1.0 — The spacing scale and the corner radius are set by the owner, so the TBD-09 and TBD-10 callouts are gone. The parts take their padding from the scale (T13.3) — ADR-0049, ADR-0050
+- 0.1.0 — No TBD item is left, and the doc moves to stable — ADR-0042, ADR-0049, ADR-0050

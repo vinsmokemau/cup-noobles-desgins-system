@@ -2,7 +2,7 @@
 title: Spacing
 slug: spacing
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-15]
 tokens: [space]
@@ -120,3 +120,4 @@ Not applicable.
 
 - 0.1.0 — First draft: BR-06 and BR-15, the spacing group, and TBD-09 (T4.5) — awaiting owner approval
 - 0.1.0 — The spacing scale is the Rhythm of 8, set by the owner, and the placeholder for it is gone. The seven steps above the base are tokens — ADR-0049
+- 0.1.0 — The scale is set, and the doc moves to stable — ADR-0049

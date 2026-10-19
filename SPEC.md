@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.40 |
+| Spec version | 1.41 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1300,6 +1300,12 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: set TBD-20 to `Resolved (ADR-NNNN)` in §2.4; the 4:3 whole-picture frame in `CnMediaCard`; the brand d20 as the fallback for a missing picture; the written standards in `imagery-and-motifs.md` and `media-card.md`.
   - Done when: `pnpm check:tbd` reports 0 open items; an end-to-end test shows no crop for a 3:2, a 5:7, and a 1:1 source; a changeset exists; `pnpm test:all` is green.
 
+- [ ] **T13.5 — Put the layer's off-scale spacing on the Rhythm of 8**
+  - REQs: REQ-005, REQ-016
+  - Depends on: T13.3, ADR-0049
+  - Scope: in `packages/nuxt/assets/css/main.css`, replace each spacing built as a multiple of `--cn-space-base` that is not a step of the scale (for example the media card gap of 3 base units, 12 px) with a `--cn-space-*` step, asking the owner when the nearest step is unclear; use the named step in place of `calc(var(--cn-space-base) * N)` where the result is a step (for example 24 px as `--cn-space-lg`).
+  - Done when: no spacing in the layer is a multiple of the base that is not a step; the visual baselines are regenerated in the pinned Linux container and the owner has seen any component whose spacing changed; a changeset exists; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1389,6 +1395,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.38 | 2026-10-18 | §2.4: TBD-01, TBD-02, and TBD-03 are resolved by ADR-0046, ADR-0047, and ADR-0048 (Titan One, Rubik, and the Balanced type scale), and §7.2: OD-06 is decided. The email fallback stack is ADR-0058. No requirement or task changes. | Owner decisions in chat; ADR-0046, ADR-0047, ADR-0048, ADR-0058 |
 | 1.39 | 2026-10-18 | §2.4: TBD-06, TBD-08, TBD-12, and TBD-15 are resolved by ADR-0053, ADR-0055, ADR-0051, and ADR-0054 (pure-black surfaces, the minimal derived brand shades, the Neon tube glow, and Outline only elevation). §2.2: C-05 and C-06 are resolved. §7.2: OD-04 and OD-05 are decided. No requirement or task changes. | Owner decisions in chat; ADR-0051, ADR-0052, ADR-0053, ADR-0054, ADR-0055 |
 | 1.40 | 2026-10-19 | §2.4: TBD-09 and TBD-10 are resolved by ADR-0049 and ADR-0050 (the Rhythm of 8 spacing scale and the Chunky corner radius). No requirement or task changes. | Owner decisions in chat; ADR-0049, ADR-0050 |
+| 1.41 | 2026-10-19 | Added T13.5 to P13: it puts the layer's off-scale spacing on the Rhythm of 8. No existing requirement or task changes. | Owner decision in chat (T13.3 open question 4) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1404,7 +1411,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-002 | T2.1, T2.2 |
 | REQ-003 | T2.1, T2.2 |
 | REQ-004 | T2.2, T3.6 |
-| REQ-005 | T2.4, T3.2, T4.3, T13.1, T13.2, T13.3, T13.4 |
+| REQ-005 | T2.4, T3.2, T4.3, T13.1, T13.2, T13.3, T13.4, T13.5 |
 | REQ-006 | T1.5, T4.1 |
 | REQ-007 | T2.2, T9.3 |
 | REQ-008 | T0.2, T2.2, T12.2 |
@@ -1415,7 +1422,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-013 | T0.3, T1.1, T3.4 |
 | REQ-014 | T3.1, T13.1, T13.2, T13.3 |
 | REQ-015 | T3.3, T3.5, T4.2, T13.2 |
-| REQ-016 | T1.3, T5.1 |
+| REQ-016 | T1.3, T5.1, T13.5 |
 | REQ-017 | T3.1, T3.4 |
 | REQ-018 | T11.4, T12.3 |
 | REQ-020 | T0.1, T1.3, T5.1, T7.3, T7.4, T7.5, T7.6, T8.3, T8.4, T8.5, T8.6, T8.7 |

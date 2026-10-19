@@ -89,7 +89,7 @@ test('REQ-040 AC2: every token the doc names in a code span is in email-tokens.j
 
 test('REQ-009, REQ-037: the doc is a draft with its TBD items listed, and carries no hex literal or typeface name', () => {
   const data = readFrontmatter(text).data as Record<string, unknown>
-  assert.equal(data.status, 'draft')
+  assert.equal(data.status, 'stable')
   // ADR-0039: the owner approved the rules, so no Draft callout remains; the doc stays a draft until the owner moves it to stable.
   assert.doesNotMatch(text, /^> \*\*Draft:\*\*/m)
   assert.match(text, /^- 0\.1\.0 — Rules approved by the owner[^\n]* — ADR-0039$/m)

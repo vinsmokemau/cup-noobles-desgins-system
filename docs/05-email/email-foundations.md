@@ -2,7 +2,7 @@
 title: Email foundations
 slug: email-foundations
 layer: email
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-03, BR-06, BR-10, BR-13, BR-16]
 tokens: [font.family, layout.email, color.bg.base, color.brand.black, color.brand.primary, color.text, border.width.button, effect.glow.button, radius.button, radius.card, logo.rule]
@@ -197,7 +197,7 @@ The smallest use of a token in an MJML source:
 
 ## Open items
 
-The corner radius is set (ADR-0050), so no `TBD` callout remains (REQ-037). The doc stays a draft until the owner moves it to `stable`. The owner approved its rules (ADR-0039).
+The corner radius is set (ADR-0050), so no `TBD` callout remains (REQ-037). The owner approved its rules (ADR-0039).
 
 Real-client rendering is not verified here. R-05 puts it with the consuming project, and an optional rendering service is a future ADR. Until then, the generated contrast pairs describe the colors as defined, and not as an inverting client shows them.
 
@@ -209,3 +209,4 @@ Real-client rendering is not verified here. R-05 puts it with the consuming proj
 - 0.1.0 — The email font fallback stack is recorded: Arial Black behind Titan One, and Arial behind Rubik. The TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-10 and TBD-12 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
 - 0.1.0 — The glow is chosen for the web and email keeps its solid border, so the TBD-12 callouts are gone. The doc stays a draft while TBD-10 is open — ADR-0051
 - 0.1.0 — The corner radius is set by the owner, so the TBD-10 callouts are gone. Outlook still shows square corners, and the solid border stays the boundary — ADR-0050
+- 0.1.0 — No TBD item is left, and the doc moves to stable — ADR-0039, ADR-0050

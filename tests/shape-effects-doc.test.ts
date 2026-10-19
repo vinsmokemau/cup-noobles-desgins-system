@@ -20,7 +20,7 @@ const block = (text: string, tokens: string, format = 'table') =>
   new RegExp(`^<!-- cn:generated tokens="${tokens}" format="${format}" -->$`, 'm').test(text)
 
 test('frontmatter: shape is draft and effects is stable, with their BR IDs, TBD IDs, and token groups', () => {
-  assert.equal(fm(shape).status, 'draft')
+  assert.equal(fm(shape).status, 'stable')
   assert.deepEqual(fm(shape).brandRules, ['BR-10', 'BR-13'])
   assert.deepEqual(fm(shape).tbd, [])
   assert.deepEqual(fm(shape).tokens, ['radius', 'border'])

@@ -156,7 +156,7 @@ test('REQ-042, REQ-040 AC2: every token the doc names in a code span is in email
 
 test('REQ-009, REQ-037: the doc is a draft with a Draft callout and its TBD items, and holds no hex literal or typeface', () => {
   const data = readFrontmatter(doc).data as Record<string, unknown>
-  assert.equal(data.status, 'draft')
+  assert.equal(data.status, 'stable')
   assert.equal(data.layer, 'email')
   // ADR-0041: the owner approved the mapping, so no Draft callout remains; the doc stays a draft until the owner moves it to stable.
   assert.doesNotMatch(doc, /^> \*\*Draft:\*\*/m)

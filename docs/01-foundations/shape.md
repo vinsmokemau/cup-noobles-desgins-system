@@ -2,7 +2,7 @@
 title: Shape
 slug: shape
 layer: foundation
-status: draft
+status: stable
 lang: en
 brandRules: [BR-10, BR-13]
 tokens: [radius, border]
@@ -160,3 +160,4 @@ Not applicable.
 - 0.1.0 — First draft: BR-10 and BR-13, the radius and stroke-width groups, and TBD-10 and TBD-11 (T4.4) — awaiting owner approval
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — The radius is Chunky, set by the owner, and the placeholders for it are gone. The remaining radius tokens take a step — ADR-0050
+- 0.1.0 — The radius and the stroke width are set, and the doc moves to stable — ADR-0050, ADR-0032

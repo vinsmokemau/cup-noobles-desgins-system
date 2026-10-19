@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: UBadge
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-02, BR-12, BR-13]
 tokens: [badge, radius.badge, border.width.badge]
@@ -176,3 +176,4 @@ Not applicable.
 - 0.1.0 — First draft: `UBadge` themed with the `primary`, `outline`, and `tag` variants, the component tokens, and the demos (T7.3) — awaiting owner approval
 - 0.1.0 — The three variants, with a yellow fill for `tag`, are approved by the owner (option A); the draft callout is removed — ADR-0011
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — The corner radius is set, and the doc moves to stable — ADR-0050

@@ -2,7 +2,7 @@
 title: Email components
 slug: email-components
 layer: email
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-03, BR-10, BR-12, BR-13, BR-16]
 tokens: [button.primary, border.width.button, radius.button, card, border.width.card, radius.card, siteHeader, border.width.siteHeader, siteFooter, border.width.siteFooter, separator, border.width.separator, link.fg, font.family, font.h2, font.h3, color.bg.base, color.text, logo.rule, layout.email, space]
@@ -199,3 +199,4 @@ The header keeps the logo clear space of ADR-0016: `logo.rule.clearSpace` is a s
 - 0.1.0 — The display typeface and the type scale are set by the owner, so the TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-09, TBD-10, and TBD-12 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
 - 0.1.0 — The glow is chosen for the web and the email button keeps its solid outline, so the TBD-12 callout is gone. The doc stays a draft while TBD-09 and TBD-10 are open — ADR-0051
 - 0.1.0 — The spacing scale and the corner radius are set by the owner, so the TBD-09 and TBD-10 callouts are gone. Every padding takes a step of the scale, and the button and the card take their radius (T13.3) — ADR-0049, ADR-0050
+- 0.1.0 — No TBD item is left, and the doc moves to stable — ADR-0041, ADR-0049, ADR-0050
