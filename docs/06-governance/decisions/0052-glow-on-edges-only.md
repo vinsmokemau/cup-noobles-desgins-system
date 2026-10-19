@@ -23,6 +23,6 @@ The owner approved the rule in chat on 2026-10-18 ("Yes to the rule"). The glow 
 
 ## Consequences
 
-- The draft callout in `effects.md` and the matching lines in its do and don't table and accessibility section become a stable rule in a later task, citing this ADR. Until then the doc stays a draft, and `pnpm check:draft` style counts still list it.
+- The draft callout in `effects.md` and the matching lines in its do and don't table and accessibility section become a stable rule in a later task, citing this ADR. Until then the doc stays a draft, and `pnpm check:tbd` still counts it among the draft docs.
 - The rule applies to the glow values in ADR-0051, which were measured for edges only.
 - A change to this rule needs a new ADR.
