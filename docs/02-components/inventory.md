@@ -24,34 +24,34 @@ The inventory lists every component in the system, with its level, its source, i
 | Component | Level | Source | Implementation | Status | Open TBD items |
 |---|---|---|---|---|---|
 | [Badge](atoms/badge.md) | atom | nuxt-ui | `UBadge` | stable | — |
-| [Button](atoms/button.md) | atom | nuxt-ui | `UButton` | draft | — |
-| [Checkbox](atoms/checkbox.md) | atom | nuxt-ui | `UCheckbox` | draft | — |
+| [Button](atoms/button.md) | atom | nuxt-ui | `UButton` | stable | — |
+| [Checkbox](atoms/checkbox.md) | atom | nuxt-ui | `UCheckbox` | stable | — |
 | [Icon](atoms/icon.md) | atom | nuxt-ui | `UIcon` | stable | — |
-| [Input](atoms/input.md) | atom | nuxt-ui | `UInput` | draft | — |
-| [Link](atoms/link.md) | atom | nuxt-ui | `ULink` | draft | — |
+| [Input](atoms/input.md) | atom | nuxt-ui | `UInput` | stable | — |
+| [Link](atoms/link.md) | atom | nuxt-ui | `ULink` | stable | — |
 | [Logo](atoms/logo.md) | atom | custom | `CnLogo` | stable | — |
 | [Progress](atoms/progress.md) | atom | nuxt-ui | `UProgress` | stable | — |
-| [Radio group](atoms/radio-group.md) | atom | nuxt-ui | `URadioGroup` | draft | — |
-| [Select](atoms/select.md) | atom | nuxt-ui | `USelect` | draft | — |
+| [Radio group](atoms/radio-group.md) | atom | nuxt-ui | `URadioGroup` | stable | — |
+| [Select](atoms/select.md) | atom | nuxt-ui | `USelect` | stable | — |
 | [Separator](atoms/separator.md) | atom | nuxt-ui | `USeparator` | stable | — |
-| [Skeleton](atoms/skeleton.md) | atom | nuxt-ui | `USkeleton` | draft | — |
+| [Skeleton](atoms/skeleton.md) | atom | nuxt-ui | `USkeleton` | stable | — |
 | [Sparkle](atoms/sparkle.md) | atom | custom | `CnSparkle` | stable | — |
 | [Sticker frame](atoms/sticker-frame.md) | atom | custom | `CnStickerFrame` | stable | — |
-| [Switch](atoms/switch.md) | atom | nuxt-ui | `USwitch` | draft | — |
-| [Textarea](atoms/textarea.md) | atom | nuxt-ui | `UTextarea` | draft | — |
-| [Alert](molecules/alert.md) | molecule | nuxt-ui | `UAlert` | draft | — |
-| [Breadcrumb](molecules/breadcrumb.md) | molecule | nuxt-ui | `UBreadcrumb` | draft | — |
-| [Card](molecules/card.md) | molecule | nuxt-ui | `UCard` | draft | — |
+| [Switch](atoms/switch.md) | atom | nuxt-ui | `USwitch` | stable | — |
+| [Textarea](atoms/textarea.md) | atom | nuxt-ui | `UTextarea` | stable | — |
+| [Alert](molecules/alert.md) | molecule | nuxt-ui | `UAlert` | stable | — |
+| [Breadcrumb](molecules/breadcrumb.md) | molecule | nuxt-ui | `UBreadcrumb` | stable | — |
+| [Card](molecules/card.md) | molecule | nuxt-ui | `UCard` | stable | — |
 | [Form field](molecules/form-field.md) | molecule | nuxt-ui | `UFormField` | stable | — |
 | [Media card](molecules/media-card.md) | molecule | custom | `CnMediaCard` | stable | — |
-| [Pagination](molecules/pagination.md) | molecule | nuxt-ui | `UPagination` | draft | — |
+| [Pagination](molecules/pagination.md) | molecule | nuxt-ui | `UPagination` | stable | — |
 | [Tabs](molecules/tabs.md) | molecule | nuxt-ui | `UTabs` | stable | — |
-| [Toast](molecules/toast.md) | molecule | nuxt-ui | `UToast` | draft | — |
-| [Tooltip](molecules/tooltip.md) | molecule | nuxt-ui | `UTooltip` | draft | — |
-| [Modal](organisms/modal.md) | organism | nuxt-ui | `UModal` | draft | — |
+| [Toast](molecules/toast.md) | molecule | nuxt-ui | `UToast` | stable | — |
+| [Tooltip](molecules/tooltip.md) | molecule | nuxt-ui | `UTooltip` | stable | — |
+| [Modal](organisms/modal.md) | organism | nuxt-ui | `UModal` | stable | — |
 | [Site footer](organisms/site-footer.md) | organism | nuxt-ui | `UFooter` | stable | — |
 | [Site header](organisms/site-header.md) | organism | nuxt-ui | `UHeader` | stable | — |
-| [Slideover](organisms/slideover.md) | organism | nuxt-ui | `USlideover` | draft | — |
+| [Slideover](organisms/slideover.md) | organism | nuxt-ui | `USlideover` | stable | — |
 
 <!-- /cn:generated -->
 

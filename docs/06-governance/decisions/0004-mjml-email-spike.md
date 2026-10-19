@@ -2,13 +2,13 @@
 title: "ADR-0004: MJML version, token injection, slot survival, inlining, and output size"
 slug: adr-0004-mjml-email-spike
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-03]
 tbd: []
 related: [adr-0003-style-dictionary-dtcg-spike]
 since: 0.1.0
-updated: 2026-09-25
+updated: 2026-10-19
 ---
 
 # ADR-0004: MJML version, token injection, slot survival, inlining, and output size

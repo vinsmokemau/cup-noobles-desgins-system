@@ -186,7 +186,7 @@ test('REQ-023 AC4, REQ-026 AC1: the doc lists the six states, and the state matr
 
 test('the doc is a draft that lists its demos and names the tokens it renders', () => {
   const data = readFrontmatter(doc).data as Record<string, unknown>
-  assert.equal(data.status, 'draft', 'the doc awaits the owner moving it to stable')
+  assert.equal(data.status, 'stable', 'the owner approved the doc (ADR-0060)')
   assert.deepEqual(data.demos, ['states', 'playground'])
   assert.equal(data.source, 'nuxt-ui')
   assert.equal(data.nuxtUi, 'UButton')

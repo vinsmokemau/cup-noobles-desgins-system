@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: nuxt-ui
 nuxtUi: UAlert
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 tokens: [alert, radius.alert, border.width.alert]
@@ -200,9 +200,10 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look of the alert (a black fill with a thick outline and an icon in the feedback color) is approved (ADR-0027). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UAlert` themed with the outline look, the four feedback types, the component tokens, and the demos (T8.3) — ADR-0027
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

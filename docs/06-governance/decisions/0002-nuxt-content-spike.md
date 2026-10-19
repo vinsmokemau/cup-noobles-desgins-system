@@ -2,13 +2,13 @@
 title: "ADR-0002: Nuxt Content version, docs source, generated blocks, and search"
 slug: adr-0002-nuxt-content-spike
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: []
 tbd: []
 related: [adr-0001-nuxt-ui-spike]
 since: 0.1.0
-updated: 2026-09-25
+updated: 2026-10-19
 ---
 
 # ADR-0002: Nuxt Content version, docs source, generated blocks, and search

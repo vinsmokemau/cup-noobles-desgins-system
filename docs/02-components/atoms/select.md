@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: USelect
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-10, BR-13]
 tokens: [input]
@@ -129,6 +129,7 @@ A select has no `active` state of its own: pressing it opens the list, which the
 - The focus ring shows on `:focus-visible` and not on a mouse press (REQ-024 AC2). After a choice the list returns focus to the trigger by script, and browsers may then treat that focus as keyboard focus and draw the ring. The ring is an outline, not the glow (REQ-024 AC1).
 - The option the keyboard is on is drawn with the focus ring, because the highlight fill reads the page black (C-05).
 - A disabled trigger is announced as unavailable and skipped by Tab.
+- Known limit of the library: while the list is open, Reka UI (under Nuxt UI) hides the rest of the page with `aria-hidden` and leaves the trigger focusable, so axe reports `aria-hidden-focus` on that open state. axe is clean in every state of the matrix, where the list is closed. The select does not change this behavior, and the owner accepted it (ADR-0060).
 
 Keyboard map (each row has a Playwright test, REQ-027 AC2):
 
@@ -184,11 +185,10 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** While the list is open, Reka UI (under Nuxt UI) hides the rest of the page with `aria-hidden` and leaves the trigger focusable, so axe reports `aria-hidden-focus` on that open state. axe is clean in every state of the matrix, where the list is closed. This is the library's behavior, and the select does not change it.
->
-> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The corner radius is set (ADR-0050), so the doc stays a draft only until the owner moves it to stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `USelect` themed with the shared text-field look, the five states, a visible keyboard highlight in the list, and the demos (T7.4) — awaiting owner approval of the placeholders
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

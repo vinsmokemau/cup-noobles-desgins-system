@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: UButton
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-02, BR-10, BR-11, BR-13]
 tokens: [button, radius.button, border.width.button, effect.glow.button]
@@ -220,7 +220,7 @@ The email button is a separate MJML component, described in [Email components](.
 
 ## Open items
 
-> **Draft:** The pressed state and the dimming of a disabled or loading button are not decided. The pressed button keeps the hover glow and takes the darker tone (a ghost button fills with it), which T13.2 proposed because ADR-0051 and ADR-0055 decide the rest and hover states only. The dimming is Nuxt UI's default. This awaits owner approval.
+Not applicable.
 
 ## Changelog
 
@@ -228,3 +228,4 @@ The email button is a separate MJML component, described in [Email components](.
 - 0.1.0 — The glow is Neon tube and the hover and pressed fills are the brand tones, set by the owner, and the placeholders for them are gone. A ghost button hovers with the glow only — ADR-0051, ADR-0052, ADR-0055
 - 0.1.0 — The mapping of the primary, secondary, and ghost variants to fills is approved by the owner (option A); the draft callout is removed — ADR-0010
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

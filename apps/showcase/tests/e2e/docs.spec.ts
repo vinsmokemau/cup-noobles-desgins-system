@@ -124,9 +124,10 @@ test('REQ-057 AC1: a status banner shows on exactly the docs whose status is dra
 })
 
 test('REQ-057 AC1: the banner names the status, and a stable doc has none', async ({ page }) => {
-  // The color doc became stable (ADR-0059), so a component doc that is still a draft carries the banner.
-  await page.goto('/components/button')
-  await expect(page.getByTestId('status-banner')).toContainText('Status: draft')
+  // Every foundation and component doc is stable now (ADR-0059, ADR-0060), so the one doc that is not stable, the
+  // deprecated placeholder-values ADR, carries the banner.
+  await page.goto('/governance/decisions/adr-0006-placeholder-values')
+  await expect(page.getByTestId('status-banner')).toContainText('Status: deprecated')
   // No doc has status `tbd` any more (T11.2 wrote the last ones, and ADR-0044 made them stable), so the loop above
   // is what proves every non-stable status shows a banner. The ownership doc is stable, so it has none.
   await page.goto('/governance/ownership')

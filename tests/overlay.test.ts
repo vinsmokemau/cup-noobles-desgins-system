@@ -32,7 +32,7 @@ test('REQ-020 AC1: both docs are nuxt-ui organisms named for their Nuxt UI compo
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
     // The corner radius is set (ADR-0050); the docs stay drafts until the owner moves them to stable (REQ-009).
-    assert.equal(data.status, 'draft', slug)
+    assert.equal(data.status, 'stable', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
     assert.deepEqual(data.tbd, [], slug)
     assert.match(docOf(slug), new RegExp(`\`${NUXT_UI[slug]}\``), `${slug} doc names its Nuxt UI component`)

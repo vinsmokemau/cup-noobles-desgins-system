@@ -2,13 +2,13 @@
 title: "ADR-0003: Style Dictionary version, DTCG configuration, custom formats, and determinism"
 slug: adr-0003-style-dictionary-dtcg-spike
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01]
 tbd: []
 related: [adr-0001-nuxt-ui-spike]
 since: 0.1.0
-updated: 2026-09-25
+updated: 2026-10-19
 ---
 
 # ADR-0003: Style Dictionary version, DTCG configuration, custom formats, and determinism

@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: nuxt-ui
 nuxtUi: UToast
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 tokens: [toast, radius.toast, border.width.toast]
@@ -117,6 +117,7 @@ A toast is not a control, so it has no hover, active, or disabled state. The sta
 - Never use a toast for the only record of something the person must act on. Use [Alert](alert.md), which stays.
 - Never put information in a toast that is not available anywhere else, because it goes away.
 - Never open several toasts for one action.
+- Never open a toast while a [Modal](../organisms/modal.md) or [Slideover](../organisms/slideover.md) is open. The toast sits above the overlay in the bottom-right corner and can cover the actions of the dialog (ADR-0054, ADR-0060).
 - Never rely on the outline color alone to say the type.
 - Never write a color, radius, or width literally on a toast. Read the tokens (REQ-016).
 
@@ -200,11 +201,10 @@ toast.add({
 
 ## Open items
 
-> **Draft:** The toaster keeps Nuxt UI's bottom-right position. A toast above a modal should not cover the modal's actions, because the toast's outline meets the modal's pink one (ADR-0054).
->
-> **Draft:** The look of the toast (a black fill with a thick outline and an icon in the feedback color) is approved (ADR-0027). The doc stays a draft until the placeholder in the TBD callout above is replaced.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UToast` themed with the outline look, the four feedback types, the component tokens, and the demos (T8.3) — ADR-0027
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

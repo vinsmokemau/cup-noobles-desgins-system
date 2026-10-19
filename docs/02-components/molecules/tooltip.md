@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: nuxt-ui
 nuxtUi: UTooltip
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 tokens: [tooltip, radius.tooltip, border.width.tooltip]
@@ -163,9 +163,10 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look of the tooltip (a black bubble with a brand pink outline) is approved (ADR-0027). The corner radius is set (ADR-0050), so the doc stays a draft only until the owner moves it to stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UTooltip` themed with the pink outline look, the component tokens, and the demos (T8.3) — ADR-0027
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

@@ -2,13 +2,13 @@
 title: "ADR-0005: Baseline assumptions and conflict resolutions"
 slug: adr-0005-baseline-assumptions-and-conflicts
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-02, BR-03, BR-10, BR-12, BR-13]
 tbd: [TBD-06, TBD-08, TBD-13]
 related: [adr-0001-nuxt-ui-spike, adr-0002-nuxt-content-spike, adr-0003-style-dictionary-dtcg-spike, adr-0004-mjml-email-spike]
 since: 0.1.0
-updated: 2026-09-25
+updated: 2026-10-19
 ---
 
 # ADR-0005: Baseline assumptions and conflict resolutions

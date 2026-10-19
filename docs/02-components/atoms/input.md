@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: UInput
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-10, BR-13]
 tokens: [input]
@@ -187,9 +187,10 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look of the fields (a neutral outline that turns pink on hover, with the yellow focus ring) is approved (ADR-0013). The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UInput` themed with the shared text-field look, the five states, the component tokens, and the demos (T7.4) — awaiting owner approval of the placeholders
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

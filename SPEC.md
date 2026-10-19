@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.44 |
+| Spec version | 1.45 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1318,6 +1318,22 @@ The owner decided to stay on 0.x until every TBD item is closed (ADR-0045). Each
   - Scope: record the owner's approval in ADR-0059 and add the ADR to the decision log; update the stale wording about unverified pairs and TBD-13 in `color.md` and `accessibility.md`; move both docs to `stable` with a changelog line each.
   - Done when: no doc under `docs/01-foundations/` is `draft` or `tbd`; `pnpm check:docs`, `pnpm check:tbd`, and `pnpm release:check` pass; a changeset exists; `pnpm test:all` is green.
 
+### P14 — Release 1.0.0
+
+The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft component docs before the release (option B, ADR-0060).
+
+- [ ] **T14.1 — Approve the draft component docs**
+  - REQs: REQ-009, REQ-018
+  - Depends on: T13.7, ADR-0060
+  - Scope: record the owner's answers in ADR-0060 and add it to the decision log; remove the `> **Draft:**` callouts from the 17 draft component docs, writing the accepted select limit and the toast and backdrop rules into their usage and accessibility sections; move those docs to `stable`; set ADR-0000 to ADR-0005 to `stable` and ADR-0006 to `deprecated`.
+  - Done when: no doc under `docs/` is `draft` or `tbd`, and ADR-0006 is the only doc that is not `stable`; `pnpm check:docs`, `pnpm check:tbd`, and `pnpm release:check` pass; a changeset exists; `pnpm test:all` is green.
+
+- [ ] **T14.2 — Release 1.0.0**
+  - REQs: REQ-018, REQ-070
+  - Depends on: T14.1
+  - Scope: add a new ADR with the owner's written decision to release 1.0.0 and a major changeset for the three packages; set `docs/06-governance/versioning-and-releases.md` and `SPEC.md` A-04 to say the release has happened; after the owner confirms each step in chat, push, and merge the "Version packages" pull request on GitHub. Claude Code does not push, merge, or publish without that confirmation.
+  - Done when: `pnpm release:check` passes at version `1.0.0`; the three packages are published at `1.0.0` to GitHub Packages, and the showcase is deployed; the consumer fixture passes its end-to-end suite against `1.0.0`; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1411,6 +1427,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.42 | 2026-10-19 | Added T13.6 to P13: it brings two visual baselines that fail in the pinned Linux container back in line. No existing requirement or task changes. | Owner request in chat (T13.5 open question) |
 | 1.43 | 2026-10-19 | Added T13.7 to P13: it records the owner's approval of `color.md` and `accessibility.md` and moves both docs to stable. No existing requirement or task changes. | Owner decision in chat (B and B); ADR-0059 |
 | 1.44 | 2026-10-19 | §7.2: OD-07 is decided (ADR-0032). The row was missed when v1.30 resolved TBD-04, TBD-05, and TBD-07. No requirement or task changes. | Owner decision in chat; ADR-0032 |
+| 1.45 | 2026-10-19 | Added P14 with T14.1 (approve the draft component docs) and T14.2 (release 1.0.0). No existing requirement or task changes. | Owner decisions in chat (release B; 1A 2A 3A 4A 5A 6A 7B); ADR-0060 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

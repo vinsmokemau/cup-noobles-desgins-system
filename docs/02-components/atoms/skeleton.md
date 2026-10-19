@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: USkeleton
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 tokens: [skeleton]
@@ -139,9 +139,10 @@ Not applicable. Email has no loading state.
 
 ## Open items
 
-> **Draft:** The look (outlined shapes with a slow fade) is approved (ADR-0015). The corner radius is set (ADR-0050), so the doc stays a draft only until the owner moves it to stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `USkeleton` themed as outlined shapes with a slow fade that stops under reduced motion, the component tokens, and the demos (T7.6) — look approved (ADR-0015), awaiting the placeholders
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

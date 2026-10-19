@@ -2,13 +2,13 @@
 title: "ADR-0006: Placeholder values for TBD tokens"
 slug: adr-0006-placeholder-values
 layer: adr
-status: draft
+status: deprecated
 lang: en
 brandRules: []
 tbd: [TBD-01, TBD-02, TBD-03, TBD-04, TBD-05, TBD-06, TBD-07, TBD-09, TBD-10, TBD-11, TBD-12, TBD-13, TBD-14, TBD-15, TBD-16]
 related: [adr-0001-nuxt-ui-spike, adr-0003-style-dictionary-dtcg-spike, adr-0004-mjml-email-spike, adr-0005-baseline-assumptions-and-conflicts, adr-0009-focus-indicator]
 since: 0.1.0
-updated: 2026-09-27
+updated: 2026-10-19
 ---
 
 # ADR-0006: Placeholder values for TBD tokens

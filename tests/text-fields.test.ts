@@ -31,7 +31,7 @@ test('REQ-020 AC1: the three docs are nuxt-ui components named for their Nuxt UI
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
     // The radius is set (ADR-0050); the doc stays a draft until the owner moves it to stable (REQ-009).
-    assert.equal(data.status, 'draft', slug)
+    assert.equal(data.status, 'stable', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
     assert.deepEqual(data.tokens, ['input'], slug)
   }

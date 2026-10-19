@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: ULink
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-06, BR-13]
 tokens: [link]
@@ -13,7 +13,7 @@ demos: [states, playground]
 tbd: []
 related: [button, icon, badge, accessibility]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Link
@@ -177,9 +177,10 @@ The email link is plain `<a>` markup inside the MJML components, described in [E
 
 ## Open items
 
-> **Draft:** The hover and pressed colors of the link are the pink tones of ADR-0055, which T13.2 applied to links because the ADR names buttons, links, and breadcrumbs. The dimming of a disabled link is Nuxt UI's default. The pink, underlined look is approved (ADR-0011). This awaits owner approval.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `ULink` themed with a pink, underlined look, the five states, the component tokens, and the demos (T7.3) — awaiting owner approval
 - 0.1.0 — The pink, always-underlined look is approved by the owner (option A); the draft callout now covers only hover, pressed, and disabled — ADR-0011
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

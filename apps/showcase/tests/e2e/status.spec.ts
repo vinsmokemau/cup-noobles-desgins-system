@@ -77,7 +77,8 @@ test('REQ-057 AC2: every doc link and token link on the page leads to a real pag
   const docHrefs = hrefs.filter((href) => href.startsWith(withBase('/')) && !href.includes('#'))
   // T13.3: no token is tbd now, so the page may list no token link; every link it has must still be real.
   if (report.tokens.length > 0) expect(tokenHrefs.length).toBeGreaterThan(0)
-  expect(docHrefs.length).toBeGreaterThan(0)
+  // T14.1: no doc is a draft now, so the page may list no doc link either.
+  if (report.drafts.docs.length > 0) expect(docHrefs.length).toBeGreaterThan(0)
   for (const href of docHrefs) expect((await request.get(href)).status(), href).toBe(200)
   for (const href of tokenHrefs) {
     const path = decodeURIComponent(href.split('#token-')[1]!)

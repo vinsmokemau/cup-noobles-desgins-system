@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: nuxt-ui
 nuxtUi: UBreadcrumb
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-06]
 tokens: [breadcrumb]
@@ -13,7 +13,7 @@ demos: [states, playground]
 tbd: []
 related: [tabs, pagination, link, navigation, accessibility]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-10-19
 ---
 
 # Breadcrumb
@@ -171,10 +171,11 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look (pink underlined links and a plain bold current page) is approved (ADR-0028). The hover look of a link is a draft: it is the lighter pink tone of ADR-0055, applied here by T13.2, and it awaits owner approval.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UBreadcrumb` themed with the pink link look, the component tokens, and the demos (T8.4) — ADR-0028
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — The link hover color is the lighter pink tone, set by the owner, and the placeholder for it is gone — ADR-0055
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

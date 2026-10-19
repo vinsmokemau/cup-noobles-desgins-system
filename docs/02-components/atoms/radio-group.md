@@ -5,7 +5,7 @@ layer: component
 level: atom
 source: nuxt-ui
 nuxtUi: URadioGroup
-status: draft
+status: stable
 lang: en
 brandRules: [BR-06, BR-13]
 tokens: [choice]
@@ -190,9 +190,10 @@ Not applicable. Email has no form controls.
 
 ## Open items
 
-> **Draft:** The look of the choice controls (an outlined circle that turns pink on hover and fills pink with a black dot when checked, with the yellow focus ring) is approved (ADR-0014). The corner radius is set (ADR-0050), so the doc stays a draft only until the owner moves it to stable.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `URadioGroup` themed with the shared choice look, the five states, the component tokens, and the demos (T7.5) — look approved (ADR-0014), awaiting the placeholders
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

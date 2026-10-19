@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: nuxt-ui
 nuxtUi: UPagination
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-10, BR-13]
 tokens: [pagination, radius.pagination, border.width.pagination]
@@ -187,9 +187,10 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look (a neutral outline and a pink chip with a black number on the current page, with no glow) is approved (ADR-0028). The hover look is a draft. The doc stays a draft until the placeholders in the TBD callouts above are replaced.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UPagination` themed with the pink chip look, the component tokens, and the demos (T8.4) — ADR-0028
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

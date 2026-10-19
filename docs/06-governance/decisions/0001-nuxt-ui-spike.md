@@ -2,13 +2,13 @@
 title: "ADR-0001: Nuxt UI version, theming, and dark mode"
 slug: adr-0001-nuxt-ui-spike
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: [BR-01, BR-03]
 tbd: [TBD-08, TBD-16]
 related: []
 since: 0.1.0
-updated: 2026-09-24
+updated: 2026-10-19
 ---
 
 # ADR-0001: Nuxt UI version, theming, and dark mode

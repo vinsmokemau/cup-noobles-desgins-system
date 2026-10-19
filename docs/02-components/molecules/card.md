@@ -5,7 +5,7 @@ layer: component
 level: molecule
 source: nuxt-ui
 nuxtUi: UCard
-status: draft
+status: stable
 lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [card, radius.card, border.width.card, color.surface.card]
@@ -171,10 +171,11 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** The look of the card (a pink outline and pink dividers on the black page, with no glow) is approved (ADR-0018). The doc stays a draft until the placeholder in the TBD callout above is replaced.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UCard` themed with the pink outline look, the component tokens, and the demos (T8.1) — ADR-0018
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — The card surface is the pure-black page, set by the owner, and the placeholder for it is gone — ADR-0053
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

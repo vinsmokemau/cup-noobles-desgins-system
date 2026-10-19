@@ -5,7 +5,7 @@ layer: component
 level: organism
 source: nuxt-ui
 nuxtUi: UModal
-status: draft
+status: stable
 lang: en
 brandRules: [BR-03, BR-12, BR-13]
 tokens: [overlay, radius.overlay, border.width.overlay, effect.scrim]
@@ -112,6 +112,8 @@ Closed, the modal renders nothing. It is not a control, so it has no hover, focu
 - Never write a color, radius, width, or z-index literally on a modal. Read the tokens (REQ-016).
 - Never add a glow to the panel. The glow belongs to buttons (BR-10).
 - Never rebuild a dialog by hand. Nuxt UI provides it (ER-01, REQ-020 AC3).
+- Never open a [Toast](../molecules/toast.md) while a modal is open. The toast sits above the modal in the bottom-right corner and can cover its actions (ADR-0054, ADR-0060).
+- Never rely on the page behind the modal for context. At 85% it is nearly invisible, which is the owner's choice (ADR-0054, ADR-0060).
 
 ## Do and don't
 
@@ -192,11 +194,10 @@ Not applicable.
 
 ## Open items
 
-> **Draft:** At 85% the page behind the modal is nearly invisible, which gives little context. A toast above a modal should not cover the modal's actions, because the toast's pink outline meets the modal's pink one (ADR-0054).
->
-> **Draft:** The look of the modal (a pink outline and pink dividers on the black page, over a dimmed backdrop, with no glow) is approved (ADR-0029). The doc stays a draft until the placeholder in the TBD callout above is replaced.
+Not applicable.
 
 ## Changelog
 
 - 0.1.0 — First draft: `UModal` themed with the pink outline look, the component tokens, and the demos (T8.5) — ADR-0029
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
+- 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060

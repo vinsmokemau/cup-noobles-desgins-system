@@ -2,13 +2,13 @@
 title: "ADR-NNNN: Short decision title"
 slug: adr-nnnn-short-decision-title
 layer: adr
-status: draft
+status: stable
 lang: en
 brandRules: []
 tbd: []
 related: []
 since: 0.1.0
-updated: 2026-09-24
+updated: 2026-10-19
 ---
 
 # ADR-NNNN: Short decision title

@@ -35,7 +35,7 @@ test('REQ-020 AC1: the three docs are nuxt-ui components named for their Nuxt UI
     assert.equal(data.source, 'nuxt-ui', slug)
     assert.equal(data.nuxtUi, NUXT_UI[slug], slug)
     // The outline color, radius, and stroke width are placeholders, and the look is unapproved (REQ-009).
-    assert.equal(data.status, 'draft', slug)
+    assert.equal(data.status, 'stable', slug)
     assert.deepEqual(data.demos, ['states', 'playground'], slug)
     assert.deepEqual(data.tokens, ['choice'], slug)
   }
