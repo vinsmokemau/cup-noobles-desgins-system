@@ -1334,7 +1334,7 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: add a new ADR with the owner's written decision to release 1.0.0 and a major changeset for the three packages; set `docs/06-governance/versioning-and-releases.md` and `SPEC.md` A-04 to say the release has happened; after the owner confirms each step in chat, push, and merge the "Version packages" pull request on GitHub. Claude Code does not push, merge, or publish without that confirmation.
   - Done when: `pnpm release:check` passes at version `1.0.0`; the three packages are published at `1.0.0` to GitHub Packages, and the showcase is deployed; the consumer fixture passes its end-to-end suite against `1.0.0`; `pnpm test:all` is green.
 
-- [ ] **T14.3 — Make the release workflow push its tags**
+- [x] **T14.3 — Make the release workflow push its tags** (2026-10-19, 54bf551)
   - REQs: REQ-070 (AC1)
   - Depends on: T14.2
   - Scope: the 1.0.0 release created its three tags in the CI runner (`Created git tags.`) and never pushed them, and 0.2.0 has no tags either, so GitHub showed no tag or release. The owner pushed the three `1.0.0` tags by hand on `6a60d64`. Find why `changesets/action` (pinned in `release.yml`) did not push them, starting with its handling of the publish output (`Successfully published:` lines, no `New tag:` lines), and fix it in `release.yml` or `scripts/` without changing what is published. Read the action's source for the pinned version before changing anything. Do not push, publish, or change GitHub settings without the owner confirming in chat.
