@@ -1328,7 +1328,7 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: record the owner's answers in ADR-0060 and add it to the decision log; remove the `> **Draft:**` callouts from the 17 draft component docs, writing the accepted select limit and the toast and backdrop rules into their usage and accessibility sections; move those docs to `stable`; set ADR-0000 to ADR-0005 to `stable` and ADR-0006 to `deprecated`.
   - Done when: no doc under `docs/` is `draft` or `tbd`, and ADR-0006 is the only doc that is not `stable`; `pnpm check:docs`, `pnpm check:tbd`, and `pnpm release:check` pass; a changeset exists; `pnpm test:all` is green.
 
-- [ ] **T14.2 — Release 1.0.0**
+- [x] **T14.2 — Release 1.0.0** (2026-10-19, a1b54e6)
   - REQs: REQ-018, REQ-070
   - Depends on: T14.1
   - Scope: add a new ADR with the owner's written decision to release 1.0.0 and a major changeset for the three packages; set `docs/06-governance/versioning-and-releases.md` and `SPEC.md` A-04 to say the release has happened; after the owner confirms each step in chat, push, and merge the "Version packages" pull request on GitHub. Claude Code does not push, merge, or publish without that confirmation.
