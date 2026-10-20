@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.46 |
+| Spec version | 1.47 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1334,6 +1334,12 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: add a new ADR with the owner's written decision to release 1.0.0 and a major changeset for the three packages; set `docs/06-governance/versioning-and-releases.md` and `SPEC.md` A-04 to say the release has happened; after the owner confirms each step in chat, push, and merge the "Version packages" pull request on GitHub. Claude Code does not push, merge, or publish without that confirmation.
   - Done when: `pnpm release:check` passes at version `1.0.0`; the three packages are published at `1.0.0` to GitHub Packages, and the showcase is deployed; the consumer fixture passes its end-to-end suite against `1.0.0`; `pnpm test:all` is green.
 
+- [ ] **T14.3 — Make the release workflow push its tags**
+  - REQs: REQ-070 (AC1)
+  - Depends on: T14.2
+  - Scope: the 1.0.0 release created its three tags in the CI runner (`Created git tags.`) and never pushed them, and 0.2.0 has no tags either, so GitHub showed no tag or release. The owner pushed the three `1.0.0` tags by hand on `6a60d64`. Find why `changesets/action` (pinned in `release.yml`) did not push them, starting with its handling of the publish output (`Successfully published:` lines, no `New tag:` lines), and fix it in `release.yml` or `scripts/` without changing what is published. Read the action's source for the pinned version before changing anything. Do not push, publish, or change GitHub settings without the owner confirming in chat.
+  - Done when: the cause is written in the task report; a test or check shows the workflow pushes the tags after a publish (a unit test of the changed script, or a dry run of the action's tag step); a changeset exists if a published file changed; `pnpm test:all` is green. Whether the next real release pushes its tags is confirmed by the owner on the Tags page after that release.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1429,6 +1435,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.44 | 2026-10-19 | §7.2: OD-07 is decided (ADR-0032). The row was missed when v1.30 resolved TBD-04, TBD-05, and TBD-07. No requirement or task changes. | Owner decision in chat; ADR-0032 |
 | 1.45 | 2026-10-19 | Added P14 with T14.1 (approve the draft component docs) and T14.2 (release 1.0.0). No existing requirement or task changes. | Owner decisions in chat (release B; 1A 2A 3A 4A 5A 6A 7B); ADR-0060 |
 | 1.46 | 2026-10-19 | A-04 says the 1.0.0 release has happened. No requirement or task changes. | Owner decision in chat (A); ADR-0061 |
+| 1.47 | 2026-10-19 | Added T14.3 to P14: it makes the release workflow push the tags it creates. The 1.0.0 release created them in the runner and did not push them. No existing requirement or task changes. | Owner request in chat (T14.2 open question) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1491,7 +1498,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-060 | T5.5, T5.7 |
 | REQ-061 | T5.5, T5.7, T8.6 |
 | REQ-062 | T6.5, T11.3 |
-| REQ-070 | T11.3, T12.1 |
+| REQ-070 | T11.3, T12.1, T14.2, T14.3 |
 | REQ-071 | T5.2, T8.7, T12.1 |
 | REQ-072 | T11.2, T11.3 |
 | REQ-073 | T0.5, T2.4, T11.2 |
