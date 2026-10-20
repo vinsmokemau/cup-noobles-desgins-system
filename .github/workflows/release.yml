@@ -45,8 +45,11 @@ jobs:
           publish: pnpm release:publish
           title: Version packages
           commit: Version packages
-          # One lockstep release makes three tags; no GitHub Release page is made for them.
+          # One lockstep release makes three tags; no GitHub Release page is made for them. The action pushes a tag only
+          # with a release page, so the step below pushes them (T14.3).
           createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # T14.3: pushes the tags `changeset publish` made in this runner. It pushes nothing when nothing was published.
+      - run: node scripts/push-tags.ts
