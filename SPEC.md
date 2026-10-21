@@ -4,6 +4,7 @@
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
 | Spec version | 1.47 |
+| 1.48 | 2026-10-20 | Added T14.4 to P14: it fixes a type error in `CnMediaCard` found by the storefront (DSR-10), type-checks the layer, and releases 1.0.1. No existing requirement or task changes. | Owner approval in chat |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1340,6 +1341,12 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: the 1.0.0 release created its three tags in the CI runner (`Created git tags.`) and never pushed them, and 0.2.0 has no tags either, so GitHub showed no tag or release. The owner pushed the three `1.0.0` tags by hand on `6a60d64`. Find why `changesets/action` (pinned in `release.yml`) did not push them, starting with its handling of the publish output (`Successfully published:` lines, no `New tag:` lines), and fix it in `release.yml` or `scripts/` without changing what is published. Read the action's source for the pinned version before changing anything. Do not push, publish, or change GitHub settings without the owner confirming in chat.
   - Done when: the cause is written in the task report; a test or check shows the workflow pushes the tags after a publish (a unit test of the changed script, or a dry run of the action's tag step); a changeset exists if a published file changed; `pnpm test:all` is green. Whether the next real release pushes its tags is confirmed by the owner on the Tags page after that release.
 
+- [ ] **T14.4 — Fix the CnMediaCard type error and type-check the layer** (storefront report DSR-10)
+  - REQs: REQ-070 (AC1), REQ-071 (AC1)
+  - Depends on: T14.3
+  - Scope: the e-commerce storefront's `nuxt typecheck` (vue-tsc) fails on `@vinsmokemau/cup-noobles-nuxt` 1.0.0 at `components/CnMediaCard.vue` line 81: `error TS2352` on `$event.target as Picture`. Fix the cast without changing runtime behavior, visuals, tokens, or API. Add a `nuxt typecheck` of the layer to the test suite so the layer's components are type-checked with Nuxt's generated types before release. Release it as patch 1.0.1 and publish it to GitHub Packages, after the owner confirms each step in chat. Claude Code does not push, merge, or publish without that confirmation. The owner approved this task in chat on 2026-10-20.
+  - Done when: `nuxt typecheck` of the layer fails on the old cast and passes on the fix; a patch changeset exists; `pnpm release:check` passes at version `1.0.1`; the three packages are published at `1.0.1`; `pnpm test:all` is green. The new version is reported to the e-commerce owner.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1498,8 +1505,8 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-060 | T5.5, T5.7 |
 | REQ-061 | T5.5, T5.7, T8.6 |
 | REQ-062 | T6.5, T11.3 |
-| REQ-070 | T11.3, T12.1, T14.2, T14.3 |
-| REQ-071 | T5.2, T8.7, T12.1 |
+| REQ-070 | T11.3, T12.1, T14.2, T14.3, T14.4 |
+| REQ-071 | T5.2, T8.7, T12.1, T14.4 |
 | REQ-072 | T11.2, T11.3 |
 | REQ-073 | T0.5, T2.4, T11.2 |
 | REQ-074 | T1.2, T1.4, T5.7, T12.2 |
