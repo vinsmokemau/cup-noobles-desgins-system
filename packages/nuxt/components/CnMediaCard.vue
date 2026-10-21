@@ -78,7 +78,7 @@ if (process.env.NODE_ENV !== 'production') {
           :alt="src && !decorative ? alt : ''"
           :aria-hidden="!src || decorative ? 'true' : undefined"
           draggable="false"
-          @error="showFallback($event.target as Picture)"
+          @error="showFallback($event.target as unknown as Picture)"
           @vue:mounted="({ el }: { el: Picture }) => src && checkLoaded(el)"
         />
       </slot>

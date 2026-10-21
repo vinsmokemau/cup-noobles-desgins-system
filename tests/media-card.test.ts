@@ -191,7 +191,7 @@ test('ADR-0056, ADR-0057: a missing or failed picture shows the brand d20 as a d
   assert.match(template, /:alt="src && !decorative \? alt : ''"/)
   assert.match(template, /:aria-hidden="!src \|\| decorative \? 'true' : undefined"/)
   // A picture that fails to load, also before hydration, is swapped for the fallback, which is decorative.
-  assert.match(template, /@error="showFallback\(\$event\.target as Picture\)"/)
+  assert.match(template, /@error="showFallback\(\$event\.target as unknown as Picture\)"/)
   assert.match(template, /@vue:mounted="[^"]*checkLoaded\(el\)"/)
   assert.match(component, /picture\.alt = ''[\s\S]*setAttribute\('aria-hidden', 'true'\)/)
   // The frame is drawn for every card, so a card without a picture keeps the same shape.
