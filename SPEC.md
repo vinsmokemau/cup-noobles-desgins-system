@@ -1346,7 +1346,7 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: the e-commerce storefront's `nuxt typecheck` (vue-tsc) fails on `@vinsmokemau/cup-noobles-nuxt` 1.0.0 at `components/CnMediaCard.vue` line 81: `error TS2352` on `$event.target as Picture`. Fix the cast without changing runtime behavior, visuals, tokens, or API. Add a `nuxt typecheck` of the layer to the test suite so the layer's components are type-checked with Nuxt's generated types before release. Release it as patch 1.0.1 and publish it to GitHub Packages, after the owner confirms each step in chat. Claude Code does not push, merge, or publish without that confirmation. The owner approved this task in chat on 2026-10-20.
   - Done when: `nuxt typecheck` of the layer fails on the old cast and passes on the fix; a patch changeset exists; `pnpm release:check` passes at version `1.0.1`; the three packages are published at `1.0.1`; `pnpm test:all` is green. The new version is reported to the e-commerce owner.
 
-- [ ] **T14.5 — Bump the consumer fixture to 1.0.1**
+- [x] **T14.5 — Bump the consumer fixture to 1.0.1** (2026-10-20, d51a748)
   - REQs: REQ-070 (AC1), REQ-071 (AC1, AC2)
   - Depends on: T14.4
   - Scope: `apps/consumer-fixture` still installs `@vinsmokemau/cup-noobles-nuxt` at `1.0.0` from GitHub Packages. Change it to `1.0.1`, the release T14.4 published, and update `pnpm-lock.yaml` to match. Change nothing else. Do not push or publish. The owner approved this task in chat on 2026-10-20.
