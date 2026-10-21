@@ -2,6 +2,12 @@
 
 Every release of `@vinsmokemau/cup-noobles-tokens`, `@vinsmokemau/cup-noobles-nuxt`, and `@vinsmokemau/cup-noobles-email`. The three packages share one version number. Each release groups its entries as Breaking, Added, Changed, Deprecated, and Fixed.
 
+## 1.0.1 (2026-10-21)
+
+### Fixed
+
+- Fix a type error in `CnMediaCard` that failed `nuxt typecheck` in a consumer app (TS2352 on the image `error` handler). The layer is now type-checked before each release. No runtime, token, value, or style changes.
+
 ## 1.0.0 (2026-10-19)
 
 ### Breaking
