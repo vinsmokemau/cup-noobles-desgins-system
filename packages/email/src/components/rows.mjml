@@ -1,0 +1,104 @@
+<mjml lang="es-MX">
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="$cn(font.family.body)" />
+      <mj-text
+        font-size="$cn(font.size.body)"
+        line-height="$cn(font.lineHeight.body)"
+        font-weight="$cn(font.weight.body)"
+        color="$cn(color.text.default)"
+        padding="$cn(space.md)"
+        container-background-color="$cn(color.bg.base)"
+      />
+    </mj-attributes>
+  </mj-head>
+  <mj-body width="$cn(layout.email.width.max)" background-color="$cn(color.bg.base)">
+    <mj-section
+      background-color="$cn(card.bg)"
+      border="$cn(border.width.card) solid $cn(card.highlight)"
+      border-radius="$cn(radius.card)"
+      padding="$cn(space.lg)"
+    >
+      <mj-column background-color="$cn(card.bg)">
+        <mj-text color="$cn(card.fg)" container-background-color="$cn(card.bg)"
+          ><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%">
+            <tr>
+              <td
+                style="
+                  padding: 0 0 $cn(space.sm) 0;
+                  text-align: left;
+                  vertical-align: top;
+                  word-break: break-word;
+                  color: $cn(card.fg);
+                "
+              >
+                {{ item_name }}
+              </td>
+              <td
+                style="
+                  padding: 0 0 $cn(space.sm) $cn(space.md);
+                  text-align: right;
+                  vertical-align: top;
+                  white-space: nowrap;
+                  color: $cn(card.fgMuted);
+                "
+              >
+                {{ item_quantity }}
+              </td>
+              <td
+                style="
+                  padding: 0 0 $cn(space.sm) $cn(space.md);
+                  text-align: right;
+                  vertical-align: top;
+                  white-space: nowrap;
+                  color: $cn(card.fg);
+                "
+              >
+                {{ item_amount }}
+              </td>
+            </tr>
+          </table></mj-text
+        >
+        <mj-text color="$cn(card.fg)" container-background-color="$cn(card.bg)"
+          ><table
+            role="presentation"
+            width="100%"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            style="width: 100%; border-top: $cn(border.width.card) solid $cn(card.divider)"
+          >
+            <tr>
+              <td
+                style="
+                  padding: $cn(space.sm) 0 0 0;
+                  text-align: left;
+                  vertical-align: top;
+                  word-break: break-word;
+                  font-family: $cn(font.h3.family);
+                  font-weight: $cn(font.h3.weight);
+                  color: $cn(card.fg);
+                "
+              >
+                {{ total_label }}
+              </td>
+              <td
+                style="
+                  padding: $cn(space.sm) 0 0 $cn(space.md);
+                  text-align: right;
+                  vertical-align: top;
+                  white-space: nowrap;
+                  font-family: $cn(font.h3.family);
+                  font-weight: $cn(font.h3.weight);
+                  color: $cn(card.fg);
+                "
+              >
+                {{ total_amount }}
+              </td>
+            </tr>
+          </table></mj-text
+        >
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

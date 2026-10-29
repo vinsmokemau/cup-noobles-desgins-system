@@ -9,14 +9,14 @@ tokens: [layout.email, logo.rule, space, color.bg.base, siteHeader, siteFooter, 
 tbd: []
 related: [email-foundations, email-components, logo, spacing, layout, accessibility]
 since: 0.1.0
-updated: 2026-10-19
+updated: 2026-10-28
 ---
 
 # Email layouts
 
 ## Purpose
 
-This doc describes the one reference layout of a Cup Noobles email, and the plain-text counterpart of every layout (REQ-043). The reference layout composes the six [email components](email-components.md) in a fixed order, on the pure-black base of BR-03, and compiles to `packages/email/dist/reference.html`. It renders with no horizontal scroll at 320 and 600 px (REQ-043 AC1), so it is safe at every width a client gives it. It keeps the logo first (BR-16) and the thick line work of BR-13, and it carries no domain content: the sending project fills every slot (ER-09).
+This doc describes the one reference layout of a Cup Noobles email, and the plain-text counterpart of every layout (REQ-043). The reference layout composes the seven [email components](email-components.md) in a fixed order, on the pure-black base of BR-03, and compiles to `packages/email/dist/reference.html`. It renders with no horizontal scroll at 320 and 600 px (REQ-043 AC1), so it is safe at every width a client gives it. It keeps the logo first (BR-16) and the thick line work of BR-13, and it carries no domain content: the sending project fills every slot (ER-09).
 
 ## Tokens and specs
 
@@ -45,6 +45,7 @@ The layout has one column, at most `layout.email.width.max` wide, and it shrinks
 | 1 | Header with the logo | `header` | `{{ home_url }}`, `{{ logo_url }}`, `{{ logo_alt }}` |
 | 2 | Heading and text | `content-section` | `{{ heading }}`, `{{ body }}` |
 | 3 | Framed group | `card` | `{{ card_title }}`, `{{ card_body }}`, `{{ card_footer }}` |
+| 3a | Lines of items and totals, inside the card between its body and its footer | `rows` | `{{ item_name }}`, `{{ item_quantity }}`, `{{ item_amount }}`, `{{ total_label }}`, `{{ total_amount }}` |
 | 4 | Main action | `button` | `{{ button_url }}`, `{{ button_label }}` |
 | 5 | Break | `divider` | None |
 | 6 | Closing line and link | `footer` | `{{ footer_text }}`, `{{ footer_link_url }}`, `{{ footer_link_label }}` |
@@ -74,7 +75,7 @@ The header keeps the clear space of ADR-0016 around the logo: 25% of the logo he
 
 ### When not to use
 
-- Never add a part that the six components do not provide, and never write a hex color, a font, or a size in a layout source (REQ-042 AC2).
+- Never add a part that the seven components do not provide, and never write a hex color, a font, or a size in a layout source (REQ-042 AC2).
 - Never set a fixed width wider than `layout.email.width.max`, and never let a block force horizontal scroll at 320 px.
 - Never use the layout for commerce parts such as a product list or a price. The sending project builds those from the components (C-02).
 - Never put a headline, a date, a code, or a link label only in an image.
@@ -89,28 +90,32 @@ The header keeps the clear space of ADR-0016 around the logo: 25% of the logo he
 
 ## Code reference
 
-Compile the layout with `pnpm --filter @vinsmokemau/cup-noobles-email build`. The source is `packages/email/src/layouts/reference.mjml`, and it becomes `packages/email/dist/reference.html`. The source holds one `<mj-include path="../components/<name>.mjml" />` for each part. The build expands each include with the content of that component before it injects tokens, so a component renders the same alone and in the layout. An included file must have the same `<mj-head>` and `<mj-body>` tag as the layout, or the build fails (ADR-0042).
+Compile the layout with `pnpm --filter @vinsmokemau/cup-noobles-email build`. The source is `packages/email/src/layouts/reference.mjml`, and it becomes `packages/email/dist/reference.html`. The source holds one `<mj-include path="../components/<name>.mjml" />` for each part. The card's include has an `insert="../components/rows.mjml"` option, which puts the rows at the `<!-- cn:insert -->` comment of the card, so they sit inside it (ADR-0062). The card alone compiles without the rows. The build expands each include with the content of that component before it injects tokens, so a component renders the same alone and in the layout. An included file must have the same `<mj-head>` and `<mj-body>` tag as the layout, or the build fails (ADR-0042).
 
-The layout has the 13 slots of its components, and the slot names are unique across components, so none clashes. The compiled file is about 20 KB, well under the roughly 102 KB at which Gmail clips a message (ADR-0004).
+The layout has the 18 slots of its components, and the slot names are unique across components, so none clashes. The compiled file is about 21 KB, well under the roughly 102 KB at which Gmail clips a message (ADR-0004).
 
 ### Plain-text counterpart
 
-Every layout has a plain-text counterpart. The sending system writes it from the same slot values as the HTML, and sends it as the `text/plain` part of the message. The reference layout's counterpart has these blocks, in order, with a blank line between blocks:
+Every layout has a plain-text counterpart. The sending system writes it from the same slot values as the HTML, and sends it as the `text/plain` part of the message. The reference layout's counterpart has these blocks, in order, with a blank line between blocks. The card is three blocks, because the rows sit between its body and its footer:
 
 | # | Block | Lines |
 |---|---|---|
 | 1 | Header | `{{ logo_alt }}: {{ home_url }}` |
 | 2 | Content section | `{{ heading }}`, then a blank line, then `{{ body }}` |
-| 3 | Card | `{{ card_title }}`, then `{{ card_body }}`, then `{{ card_footer }}` |
-| 4 | Button | `{{ button_label }}: {{ button_url }}` |
-| 5 | Divider | A line of three hyphens, `---` |
-| 6 | Footer | `{{ footer_text }}`, then `{{ footer_link_label }}: {{ footer_link_url }}` |
+| 3 | Card | `{{ card_title }}`, then `{{ card_body }}` |
+| 4 | Rows | One line for each item: `{{ item_name }}`, two spaces, `{{ item_quantity }}`, two spaces, `{{ item_amount }}`. Then one line for each total: `{{ total_label }}: {{ total_amount }}` |
+| 5 | Card footer | `{{ card_footer }}` |
+| 6 | Button | `{{ button_label }}: {{ button_url }}` |
+| 7 | Divider | A line of three hyphens, `---` |
+| 8 | Footer | `{{ footer_text }}`, then `{{ footer_link_label }}: {{ footer_link_url }}` |
 
 The rules of the counterpart:
 
 - It is plain text in UTF-8, with no markup and no images. The logo appears as its alt text.
 - Every link is written as its label, a colon, and the full address, so the address is visible and can be followed.
 - It holds every slot of the HTML except `{{ logo_url }}`, the address of an image, in the order of the parts, so no text or link of the HTML is missing from it.
+- The sending system repeats the item line for each item and the total line for each total, as it repeats the `<tr>` of the HTML. The item lines come first, then the total lines, in one block with no blank line inside it.
+- A blank line separates the rows block from the card body above it and from the card footer below it.
 - It keeps the copy in es-MX.
 
 The structure with sample es-MX values:
@@ -124,6 +129,11 @@ Hola, tu pedido salió de nuestro almacén y llegará en los próximos días.
 
 Resumen del pedido
 Tres artículos enviados a una sola dirección.
+
+Artículo de ejemplo  x2  $1,299.00 MXN
+Otro artículo de ejemplo  x1  $249.00 MXN
+Total: $1,548.00 MXN
+
 Si algo no es correcto, responde a este correo.
 
 Ver mi pedido: https://example.com/pedido
@@ -145,3 +155,4 @@ Real-client rendering is not verified here (R-05). It belongs to the consuming p
 - 0.1.0 — The display typeface and the type scale are set by the owner, so the TBD-01 and TBD-03 callouts are gone. The doc stays a draft while TBD-09 and TBD-10 are open — ADR-0046, ADR-0047, ADR-0048, ADR-0058
 - 0.1.0 — The spacing scale and the corner radius are set by the owner, so the TBD-09 and TBD-10 callouts are gone. The parts take their padding from the scale (T13.3) — ADR-0049, ADR-0050
 - 0.1.0 — No TBD item is left, and the doc moves to stable — ADR-0042, ADR-0049, ADR-0050
+- 1.1.0 — The layout composes seven components: the rows sit inside the card, the layout has 18 slots, and the plain-text counterpart has eight blocks (T14.6, DSR-04) — ADR-0062

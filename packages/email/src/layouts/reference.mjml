@@ -15,7 +15,7 @@
   <mj-body width="$cn(layout.email.width.max)" background-color="$cn(color.bg.base)">
     <mj-include path="../components/header.mjml" />
     <mj-include path="../components/content-section.mjml" />
-    <mj-include path="../components/card.mjml" />
+    <mj-include path="../components/card.mjml" insert="../components/rows.mjml" />
     <mj-include path="../components/button.mjml" />
     <mj-include path="../components/divider.mjml" />
     <mj-include path="../components/footer.mjml" />

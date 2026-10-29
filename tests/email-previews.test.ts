@@ -51,8 +51,8 @@ test('REQ-058 AC1: every email doc names previews, and each one is the output of
   }
 })
 
-test('the components doc previews all 6 components, and a doc outside the email layer has no preview', () => {
-  assert.equal(EMAIL_PREVIEWS['email-components']!.length, 6)
+test('the components doc previews all 7 components, and a doc outside the email layer has no preview', () => {
+  assert.equal(EMAIL_PREVIEWS['email-components']!.length, 7)
   assert.deepEqual(emailPreviewsFor('button'), [])
   assert.deepEqual(emailPreviewsFor(undefined), [])
 })

@@ -9,7 +9,7 @@ tokens: [font.family, layout.email, color.bg.base, color.brand.black, color.bran
 tbd: []
 related: [typography, color, shape, effects, brand-identity, logo, accessibility, email-components, email-layouts]
 since: 0.1.0
-updated: 2026-10-19
+updated: 2026-10-28
 ---
 
 # Email foundations
@@ -184,7 +184,7 @@ The email body is at most 600 px wide. The owner chose this width, which confirm
 | `packages/tokens`, `dist/email/email-tokens.json` | The flat map from token path to resolved literal. The only source of email values (REQ-013, §4.9). |
 | `packages/email/src/` | The MJML sources, which reference tokens as `$cn(path)`. Built by T10.2. |
 | `packages/email/build.ts` | Replaces `$cn(path)` with the literal, and throws on an unknown path (ADR-0004). Built by T10.2. |
-| [Email components](email-components.md) | The six components and their `{{ slot_name }}` slots. |
+| [Email components](email-components.md) | The seven components and their `{{ slot_name }}` slots. |
 | [Email layouts](email-layouts.md) | The reference layout and its plain-text counterpart. |
 
 The smallest use of a token in an MJML source:
@@ -210,3 +210,4 @@ Real-client rendering is not verified here. R-05 puts it with the consuming proj
 - 0.1.0 — The glow is chosen for the web and email keeps its solid border, so the TBD-12 callouts are gone. The doc stays a draft while TBD-10 is open — ADR-0051
 - 0.1.0 — The corner radius is set by the owner, so the TBD-10 callouts are gone. Outlook still shows square corners, and the solid border stays the boundary — ADR-0050
 - 0.1.0 — No TBD item is left, and the doc moves to stable — ADR-0039, ADR-0050
+- 1.1.0 — The list of components in the code reference counts seven, with the rows (T14.6, DSR-04) — ADR-0062

@@ -9,16 +9,16 @@ tokens: [button.primary, border.width.button, radius.button, card, border.width.
 tbd: []
 related: [email-foundations, email-layouts, button, card, separator, site-header, site-footer, logo, typography, spacing]
 since: 0.1.0
-updated: 2026-10-19
+updated: 2026-10-28
 ---
 
 # Email components
 
 ## Purpose
 
-This doc describes the six components of a Cup Noobles email: the button, the header with the logo, the content section, the card, the divider, and the footer (REQ-041 AC3). Each one is an MJML source in `packages/email/src/components/` that the email build compiles to one static HTML file, so a backend can copy its markup (§4.9). Every color, font, size, border, and radius is a token injected at build time (REQ-042), and every piece of content is a `{{ slot_name }}` placeholder (REQ-041 AC4). The components follow the fallbacks in [Email foundations](email-foundations.md): a solid thick border in place of the glow (BR-10, BR-13), a radius that may render square, and a text fallback for the logo (BR-16).
+This doc describes the seven components of a Cup Noobles email: the button, the header with the logo, the content section, the card, the rows, the divider, and the footer (REQ-041 AC3). Each one is an MJML source in `packages/email/src/components/` that the email build compiles to one static HTML file, so a backend can copy its markup (§4.9). Every color, font, size, border, and radius is a token injected at build time (REQ-042), and every piece of content is a `{{ slot_name }}` placeholder (REQ-041 AC4). The components follow the fallbacks in [Email foundations](email-foundations.md): a solid thick border in place of the glow (BR-10, BR-13), a radius that may render square, and a text fallback for the logo (BR-16).
 
-Each component reads the tokens of its web counterpart: the button reads the primary button tokens, the card reads the card tokens (ADR-0018), the header and footer read the site header and footer tokens (ADR-0030), and the divider reads the separator tokens (ADR-0015). It introduces no value of its own. The owner approved this mapping (ADR-0041).
+Each component reads the tokens of its web counterpart: the button reads the primary button tokens, the card reads the card tokens (ADR-0018), the rows read the same card tokens because they sit inside the card (ADR-0062), the header and footer read the site header and footer tokens (ADR-0030), and the divider reads the separator tokens (ADR-0015). It introduces no value of its own. The owner approved this mapping (ADR-0041) and the rows (ADR-0062).
 
 ## Tokens and specs
 
@@ -77,6 +77,10 @@ The type, color, and layout tokens are the ones of [Email foundations](email-fou
 | Card | Fill, outline, corner | `card.bg`, `card.highlight`, `radius.card`, `border.width.card` |
 | Card | Title and body, footer text | `card.fg`, `card.fgMuted` |
 | Card | Line between body and footer | `card.divider`, `border.width.card` |
+| Rows | Fill, outline, corner (when alone) | `card.bg`, `card.highlight`, `radius.card`, `border.width.card` |
+| Rows | Item name and amount, totals | `card.fg` |
+| Rows | Item quantity | `card.fgMuted` |
+| Rows | Totals typeface, line above the totals | `font.h3.family`, `font.h3.weight`, `card.divider`, `border.width.card` |
 | Divider | Line | `separator.color`, `border.width.separator` |
 | Divider | Surface | `separator.bg` |
 | Footer | Fill, line above it, text | `siteFooter.bg`, `siteFooter.line`, `siteFooter.fg` |
@@ -86,6 +90,7 @@ The type, color, and layout tokens are the ones of [Email foundations](email-fou
 | Header | Padding around the logo | the logo clear space, above |
 | Content section | Padding of the section, and of each text block | `space.md`, `space.md` |
 | Card | Padding of the card, and around the line between body and footer | `space.lg`, `space.md` |
+| Rows | Padding of the section, of each text block, between two cells, and above and below a row | `space.lg`, `space.md`, `space.md`, `space.sm` |
 | Divider | Padding of the section, and around the line | `space.sm`, `space.md` |
 | Footer | Padding of the section | `space.lg` |
 | All | Page base, body width | `color.bg.base`, `layout.email.width.max` |
@@ -102,10 +107,11 @@ Email clients do not support `box-shadow` (R-05), so the button has no glow. Its
 
 ### When to use
 
-- Build an email from these six components, and nothing else. Compose them in the order of a layout (see [Email layouts](email-layouts.md)).
+- Build an email from these seven components, and nothing else. Compose them in the order of a layout (see [Email layouts](email-layouts.md)).
 - Use the button for the one main action of an email, with a descriptive label and a link that goes where the label says.
 - Use the header once, at the top of the email, so the logo is the first thing a reader sees (BR-16).
 - Use the content section for a heading and a block of text, the card for a framed group of related content, and the divider between two parts that need a visible break.
+- Use the rows inside the card, for lines of items with a quantity and an amount, and for the totals under them. The rows hold text only, so the sending project passes plain values and no markup.
 - Use the footer once, at the end, for the closing line and one link.
 - Fill every slot with content from the sending system. A component holds no copy of its own (A-11).
 - Write copy in es-MX (ER-04).
@@ -118,6 +124,7 @@ Email clients do not support `box-shadow` (R-05), so the button has no glow. Its
 - Never put a backend template tag in a component. The slots are `{{ slot_name }}` only (REQ-044).
 - Never put white text on a pink fill, or yellow on pink (SPEC.md §2.1). The button label is black on pink.
 - Never use these components for commerce parts such as a product card or a price. The sending project builds those from these parts (C-02, ER-09).
+- Never put a table in `{{ card_body }}` to show lines of items. Use the rows.
 
 ## Accessibility
 
@@ -126,6 +133,7 @@ Email clients do not support `box-shadow` (R-05), so the button has no glow. Its
 - The logo is an `img` with an `alt` slot. When images are off, the `img` shows its alt text in the display font, at the heading size, in `color.text.default`, on `siteHeader.bg`.
 - The button is real text with a background, never an image, so it works with images off.
 - The content section's heading is an `h2`, and the card's title is an `h3`, so a reader of assistive technology gets a heading outline.
+- The rows are a layout table with `role="presentation"`. Each row reads from left to right: the name, the quantity, and the amount. The sending project writes the quantity so it makes sense alone, for example "x2", because the rows have no column heading. The text colors are `card.fg` and `card.fgMuted` on `card.bg`, the pairs of the card.
 - Link text says where the link goes. The footer link is underlined and pink, so it does not rely on color alone.
 - The root of every component sets `lang="es-MX"` (ADR-0004).
 
@@ -171,6 +179,20 @@ File: `card.mjml`. A framed group with a title, a body, a line, and a footer.
 | `{{ card_body }}` | Text block | The main content. Required. |
 | `{{ card_footer }}` | Text block under the line | The closing text, in the muted color. Required. |
 
+### rows
+
+File: `rows.mjml`. One item row and one total row, in the card fill. In the reference layout the rows sit inside the card, between the card body and the card footer (ADR-0062). Alone, they have the card frame.
+
+| Slot | Where | Content |
+|---|---|---|
+| `{{ item_name }}` | First cell of the item row | The name of one item, in `card.fg`. It wraps onto more lines when it is long. Required. |
+| `{{ item_quantity }}` | Second cell of the item row | The quantity of that item, in the muted color, for example "x2". It does not wrap. Required. |
+| `{{ item_amount }}` | Third cell of the item row | The amount of that item, with its currency. It does not wrap. Required. |
+| `{{ total_label }}` | First cell of the total row | The name of the total, in the display typeface, for example "Total". Required. |
+| `{{ total_amount }}` | Second cell of the total row | The amount of that total, with its currency, in the display typeface. Required. |
+
+A slot holds text, not markup. The sending project repeats the `<tr>` that holds `{{ item_name }}` once for each item, and the `<tr>` that holds `{{ total_label }}` once for each total, such as a subtotal and a total, with the loop of its own template language. The design system adds no loop tag (REQ-044). A thick line in `card.divider` separates the item rows from the totals.
+
 ### divider
 
 File: `divider.mjml`. A thick line across the body.
@@ -200,3 +222,4 @@ The header keeps the logo clear space of ADR-0016: `logo.rule.clearSpace` is a s
 - 0.1.0 — The glow is chosen for the web and the email button keeps its solid outline, so the TBD-12 callout is gone. The doc stays a draft while TBD-09 and TBD-10 are open — ADR-0051
 - 0.1.0 — The spacing scale and the corner radius are set by the owner, so the TBD-09 and TBD-10 callouts are gone. Every padding takes a step of the scale, and the button and the card take their radius (T13.3) — ADR-0049, ADR-0050
 - 0.1.0 — No TBD item is left, and the doc moves to stable — ADR-0041, ADR-0049, ADR-0050
+- 1.1.0 — Added the rows, a seventh component for lines of items and totals inside the card; the count changes from six to seven (T14.6, DSR-04) — ADR-0062

@@ -18,6 +18,7 @@ export const EMAIL_TITLES: Record<string, string> = {
   header: 'Header with logo',
   'content-section': 'Content section',
   card: 'Card',
+  rows: 'Rows',
   button: 'Button',
   divider: 'Divider',
   footer: 'Footer',
@@ -30,7 +31,7 @@ export const EMAIL_TITLES: Record<string, string> = {
  */
 export const EMAIL_PREVIEWS: Record<string, string[]> = {
   'email-foundations': ['reference'],
-  'email-components': ['header', 'content-section', 'card', 'button', 'divider', 'footer'],
+  'email-components': ['header', 'content-section', 'card', 'rows', 'button', 'divider', 'footer'],
   'email-layouts': ['reference'],
 }
 

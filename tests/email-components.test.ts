@@ -1,4 +1,4 @@
-// T10.3 checks: the six email components in packages/email/src/components/ (REQ-041 AC3 and AC4, REQ-042). They compile
+// T10.3 checks: the seven email components in packages/email/src/components/ (REQ-041 AC3 and AC4, REQ-042). They compile
 // with the real build, the button draws a solid border in place of a glow (REQ-040), and every `{{ slot_name }}` in a
 // source is documented in docs/05-email/email-components.md. Tokens come from a token build into a temporary directory,
 // as in tests/email-build.test.ts, so `pnpm test` needs no earlier build.
@@ -15,7 +15,7 @@ import { flatTokens } from './lib/flat-tokens'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const components = join(root, 'packages/email/src/components')
-const COMPONENTS = ['button', 'card', 'content-section', 'divider', 'footer', 'header']
+const COMPONENTS = ['button', 'card', 'content-section', 'divider', 'footer', 'header', 'rows']
 const temp = mkdtempSync(join(tmpdir(), 'cn-email-components-'))
 const tokensFile = join(temp, 'tokens/email/email-tokens.json')
 const dist = join(temp, 'dist')
@@ -38,7 +38,7 @@ beforeAll(async () => {
 }, 60_000)
 afterAll(() => rmSync(temp, { recursive: true, force: true }))
 
-test('REQ-041 AC3: the six components are button, header, content section, card, divider, and footer, and each compiles', () => {
+test('REQ-041 AC3: the seven components are button, header, content section, card, rows, divider, and footer, and each compiles', () => {
   assert.deepEqual(
     readdirSync(components)
       .filter((file) => file.endsWith('.mjml'))
@@ -93,6 +93,34 @@ test('REQ-042 AC1: the card, header, divider, and footer read the tokens of thei
   )
 })
 
+test('REQ-042 AC1, REQ-041 AC4: the rows read the card tokens, and have an item row and a total row', () => {
+  const rows = html('rows').replace(/:\s+/g, ':')
+  assert.ok(rows.includes(`border:${tokens['border.width.card']} solid ${tokens['card.highlight']}`))
+  assert.ok(rows.includes(`background:${tokens['card.bg']}`))
+  assert.ok(
+    rows.includes(`border-top:${tokens['border.width.card']} solid ${tokens['card.divider']}`),
+    'a line above the totals',
+  )
+  assert.ok(rows.includes(`color:${tokens['card.fg']}`))
+  assert.ok(rows.includes(`color:${tokens['card.fgMuted']}`), 'the quantity is muted')
+  assert.ok(rows.includes(`font-family:${tokens['font.h3.family']}`), 'the totals use the display face')
+  // MJML wraps its own tables in rows too, so a row is the innermost <tr> that holds a slot.
+  const trs = [...rows.matchAll(/<tr>((?:(?!<tr>)[\s\S])*?)<\/tr>/g)].map((m) => m[1]!)
+  const item = trs.filter((tr) => tr.includes('{{ item_name }}'))
+  const total = trs.filter((tr) => tr.includes('{{ total_label }}'))
+  assert.equal(item.length, 1, 'one item row, for the sending system to repeat')
+  assert.equal(total.length, 1, 'one total row, for the sending system to repeat')
+  assert.deepEqual(slotsOf(item[0]!), ['item_amount', 'item_name', 'item_quantity'])
+  assert.deepEqual(slotsOf(total[0]!), ['total_amount', 'total_label'])
+  assert.match(rows, /white-space:nowrap/, 'the quantity and the amount do not wrap')
+  assert.doesNotMatch(source('rows'), /effect\.glow/)
+})
+
+test('ADR-0062: the rows sit inside the card in the layout, and the card renders the same alone', () => {
+  assert.match(source('card'), /<!-- cn:insert -->/)
+  assert.doesNotMatch(html('card'), /item_name|cn:insert/)
+})
+
 test('ADR-0004, REQ-040: every component sets its body width, language, and pairs text with a background', () => {
   for (const name of COMPONENTS) {
     assert.match(
@@ -115,6 +143,13 @@ test('REQ-040: the header logo is an image with an alt text slot, and a text fal
 
 test('REQ-041 AC4, REQ-044 AC1: slots are {{ slot_name }}, and no component has a backend tag or leftover token reference', () => {
   assert.deepEqual(slotsOf(source('button')), ['button_label', 'button_url'])
+  assert.deepEqual(slotsOf(source('rows')), [
+    'item_amount',
+    'item_name',
+    'item_quantity',
+    'total_amount',
+    'total_label',
+  ])
   for (const name of COMPONENTS) {
     assert.doesNotMatch(source(name), /\{%|<%|@\{/, name)
     assert.doesNotMatch(html(name), /\{%|<%|@\{|\$cn\(/, name)

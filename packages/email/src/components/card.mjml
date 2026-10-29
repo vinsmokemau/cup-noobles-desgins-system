@@ -35,6 +35,7 @@
           </h3></mj-text
         >
         <mj-text color="$cn(card.fg)" container-background-color="$cn(card.bg)">{{ card_body }}</mj-text>
+        <!-- cn:insert -->
         <mj-divider
           border-width="$cn(border.width.card)"
           border-style="solid"

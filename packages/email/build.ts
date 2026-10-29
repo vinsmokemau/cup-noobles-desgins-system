@@ -89,7 +89,10 @@ export function injectTokens(source: string, tokens: EmailTokens, name = 'source
   })
 }
 
-const INCLUDE = /<mj-include\s+path="([^"]+)"\s*\/>/g
+const INCLUDE = /<mj-include\s+path="([^"]+)"(?:\s+insert="([^"]+)")?\s*\/>/g
+
+// Where an included component takes the content of a second one (T14.6, ADR-0062): one comment in its <mj-body>.
+export const INSERT_MARKER = '<!-- cn:insert -->'
 
 // What an included file must share with the file that includes it: its <mj-head> and the opening <mj-body> tag. Only the
 // content of the included <mj-body> is used, so a component must render the same alone and in a layout (ADR-0042).
@@ -102,9 +105,11 @@ const frameOf = (source: string) =>
 // injected, so an included component takes the same token values as its own build. MJML's own mj-include is not used,
 // because it would read the file after `$cn()` has been replaced. The path is relative to the including file, it must
 // end in .mjml, and an included file includes nothing (ADR-0042).
+// With `insert="…"`, the content of the first <mj-column> of a second file replaces INSERT_MARKER in the included file,
+// so one component can sit inside another, such as the rows inside the card (ADR-0062). The inserted file follows the
+// same rules as an included one. The marker is a comment, so the component renders the same alone.
 export function expandIncludes(source: string, dir: string, name = 'source'): string {
-  return source.replace(INCLUDE, (_match, path: string, offset: number) => {
-    const where = `${name}:${lineOf(source, offset)}`
+  const read = (path: string, where: string) => {
     if (!path.endsWith('.mjml')) throw new Error(`${where}: mj-include "${path}" is not an .mjml file`)
     let included: string
     try {
@@ -119,6 +124,17 @@ export function expandIncludes(source: string, dir: string, name = 'source'): st
       throw new Error(`${where}: mj-include "${path}" has an <mj-head> or <mj-body> tag that differs from this file`)
     }
     return body[1]!.trim()
+  }
+  return source.replace(INCLUDE, (_match, path: string, insert: string | undefined, offset: number) => {
+    const where = `${name}:${lineOf(source, offset)}`
+    const content = read(path, where)
+    if (insert === undefined) return content
+    const column = /<mj-column\b[^>]*>([\s\S]*?)<\/mj-column>/.exec(read(insert, where))
+    if (!column) throw new Error(`${where}: mj-include insert="${insert}" has no <mj-column>`)
+    if (content.split(INSERT_MARKER).length !== 2) {
+      throw new Error(`${where}: mj-include "${path}" must have exactly one ${INSERT_MARKER} for insert="${insert}"`)
+    }
+    return content.replace(INSERT_MARKER, () => column[1]!.trim())
   })
 }
 

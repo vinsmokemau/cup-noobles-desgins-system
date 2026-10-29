@@ -1,5 +1,5 @@
 // T10.4 checks: the reference email layout in packages/email/src/layouts/ (REQ-043) and the build helpers it needs
-// (ADR-0042). The layout compiles with the real build, composes the six components in order, and gives the header its
+// (ADR-0042). The layout compiles with the real build, composes the seven components in order, and gives the header its
 // logo clear space from the tokens. docs/05-email/email-layouts.md lists the plain-text counterpart (REQ-043 AC2). The
 // check that the compiled layout has no horizontal scroll at 320 and 600 px (REQ-043 AC1) needs a browser, so it is the
 // Playwright spec apps/showcase/tests/e2e/email-layout.spec.ts, which `pnpm test:all` runs. Tokens come from a token
@@ -27,8 +27,14 @@ const source = readFileSync(join(layouts, 'reference.mjml'), 'utf8')
 const slotsOf = (text: string) => [...text.matchAll(/\{\{\s*([a-z_]+)\s*\}\}/g)].map((m) => m[1]!)
 const unique = (list: string[]) => [...new Set(list)]
 const html = () => readFileSync(join(dist, 'reference.html'), 'utf8')
-// The six components of REQ-041 AC3, in the order of the layout.
+// The components of REQ-041 AC3 that the layout includes, in order. The rows are not an include of their own: they sit
+// inside the card, between its body and its footer (ADR-0062).
 const PARTS = ['header', 'content-section', 'card', 'button', 'divider', 'footer']
+const slotsIn = (name: string) => unique(slotsOf(readFileSync(join(components, `${name}.mjml`), 'utf8')))
+// The slots in the order the compiled layout has them: the card title and body, then the rows, then the card footer.
+const ORDERED_SLOTS = PARTS.flatMap((name) =>
+  name === 'card' ? [...slotsIn('card').slice(0, 2), ...slotsIn('rows'), ...slotsIn('card').slice(2)] : slotsIn(name),
+)
 
 const doc = readFileSync(join(root, 'docs/05-email/email-layouts.md'), 'utf8')
 const section = (heading: string, level = 2) =>
@@ -55,12 +61,13 @@ function tree(files: Record<string, string>) {
 const frame = '<mj-head><mj-attributes><mj-all font-family="x" /></mj-attributes></mj-head>'
 const mjml = (body: string, head = frame) => `<mjml lang="es-MX">${head}<mj-body width="600px">${body}</mj-body></mjml>`
 
-test('REQ-041 AC3, REQ-043: the layout is one source that includes the six components in order, and compiles', () => {
+test('REQ-041 AC3, REQ-043: the layout is one source that includes the components in order, with the rows inside the card, and compiles', () => {
   const includes = [...source.matchAll(/<mj-include\s+path="([^"]+)"/g)].map((m) => m[1])
   assert.deepEqual(
     includes,
     PARTS.map((name) => `../components/${name}.mjml`),
   )
+  assert.match(source, /path="\.\.\/components\/card\.mjml"\s+insert="\.\.\/components\/rows\.mjml"/)
   assert.match(source, /<mjml lang="es-MX">/)
   assert.match(source, /<mj-body width="\$cn\(layout\.email\.width\.max\)"/)
   assert.deepEqual(lintSources(), [], 'no hex literal in the layout source (REQ-042 AC2)')
@@ -71,9 +78,8 @@ test('REQ-041 AC3, REQ-043: the layout is one source that includes the six compo
 
 test('REQ-041 AC4: the layout has the slots of its components, each component once, and in the order of the parts', () => {
   const all = unique(slotsOf(html()))
-  const expected = PARTS.flatMap((name) => unique(slotsOf(readFileSync(join(components, `${name}.mjml`), 'utf8'))))
-  assert.equal(all.length, 13)
-  assert.deepEqual(all, expected, 'slots appear in the order of the parts, and none repeats or is missing')
+  assert.equal(all.length, 18)
+  assert.deepEqual(all, ORDERED_SLOTS, 'slots appear in the order of the parts, and none repeats or is missing')
   assert.deepEqual(slotsOf(html()), all, 'no slot is used twice')
 })
 
@@ -155,24 +161,80 @@ test('ADR-0042: an include of a missing file, a non-mjml file, or a file with an
   assert.doesNotThrow(() => expand('../parts/ok.mjml'))
 })
 
+test('ADR-0062: insert puts the first column of a second file at the marker of the included file', () => {
+  const dir = tree({
+    'parts/card.mjml': mjml('<mj-section><mj-column>A<!-- cn:insert -->B</mj-column></mj-section>'),
+    'parts/rows.mjml': mjml('<mj-section><mj-column> <mj-text>$cn(x)</mj-text> </mj-column></mj-section>'),
+    'parts/two.mjml': mjml('<mj-section><mj-column>A<!-- cn:insert --><!-- cn:insert --></mj-column></mj-section>'),
+    'parts/none.mjml': mjml('<mj-section><mj-column>A</mj-column></mj-section>'),
+    'parts/no-column.mjml': mjml('<mj-section />'),
+  })
+  const expand = (card: string, rows: string) =>
+    expandIncludes(
+      `\n${mjml(`<mj-include path="../parts/${card}" insert="../parts/${rows}" />`)}`,
+      join(dir, 'layouts'),
+      'l.mjml',
+    )
+  const expanded = expand('card.mjml', 'rows.mjml')
+  assert.ok(expanded.includes('A<mj-text>$cn(x)</mj-text>B'), 'the column content replaces the marker')
+  assert.ok(!expanded.includes('mj-include') && !expanded.includes('cn:insert'))
+  assert.throws(() => expand('two.mjml', 'rows.mjml'), /l\.mjml:2: .*must have exactly one <!-- cn:insert -->/)
+  assert.throws(() => expand('none.mjml', 'rows.mjml'), /must have exactly one/)
+  assert.throws(() => expand('card.mjml', 'no-column.mjml'), /has no <mj-column>/)
+  assert.throws(() => expand('card.mjml', 'missing.mjml'), /cannot be read/)
+})
+
 test('REQ-043 AC2: the plain-text counterpart lists every slot of the layout but the logo image, part by part', () => {
   const part = section('Plain-text counterpart', 3)
   assert.ok(part.trim().length > 0, 'the section exists')
   const table = part.split('\n').filter((line) => /^\| \d+ \|/.test(line))
-  assert.equal(table.length, PARTS.length, 'one block per part')
+  // The card is split in three blocks around the rows, because the rows sit between its body and its footer.
+  const cardSlots = slotsIn('card')
+  const BLOCKS: [string, string[]][] = [
+    ['header', slotsIn('header')],
+    ['content-section', slotsIn('content-section')],
+    ['card', cardSlots.slice(0, 2)],
+    ['rows', slotsIn('rows')],
+    ['card footer', cardSlots.slice(2)],
+    ['button', slotsIn('button')],
+    ['divider', []],
+    ['footer', slotsIn('footer')],
+  ]
+  assert.equal(table.length, BLOCKS.length, 'one block per part')
   // The logo address is an image, which has no plain-text form. Every other slot of a part is in that part's block.
-  PARTS.forEach((name, index) => {
-    const expected = unique(slotsOf(readFileSync(join(components, `${name}.mjml`), 'utf8')))
-      .filter((slot) => slot !== 'logo_url')
-      .sort()
+  BLOCKS.forEach(([name, slots], index) => {
+    const expected = slots.filter((slot) => slot !== 'logo_url').sort()
     assert.deepEqual(unique(slotsOf(table[index]!)).sort(), expected, `${name}: its block holds its slots`)
   })
   assert.doesNotMatch(table.join('\n'), /logo_url/)
   assert.match(part, /except `\{\{ logo_url \}\}`/)
-  assert.match(table[4]!, /`---`/, 'the divider is a line of three hyphens')
-  for (const rule of ['plain text', 'UTF-8', 'no markup', 'no images', 'full address', 'es-MX']) {
+  assert.match(table[6]!, /`---`/, 'the divider is a line of three hyphens')
+  for (const rule of ['plain text', 'UTF-8', 'no markup', 'no images', 'full address', 'es-MX', 'blank line']) {
     assert.ok(part.toLowerCase().includes(rule.toLowerCase()), `the rules mention "${rule}"`)
   }
+})
+
+test('T14.6, REQ-043 AC2: the plain-text rows are one line per item and one line per total, with a blank line around them', () => {
+  const part = section('Plain-text counterpart', 3)
+  assert.match(part, /one line for each item/i)
+  assert.match(part, /one line for each total/i)
+  assert.match(part, /repeat/i)
+  const block = /```copy es-MX\n([\s\S]*?)```/.exec(part)?.[1] ?? ''
+  const lines = block.split('\n')
+  const first = lines.findIndex((line) => / {2}x\d+ {2}\S/.test(line))
+  const total = lines.findIndex((line) => /^Total: \S/.test(line))
+  assert.ok(first > 0 && total > first, 'item lines come before the total line')
+  assert.equal(lines.slice(first, total).filter((line) => line.trim() === '').length, 0, 'the rows are one block')
+  assert.equal(lines[first - 1], '', 'a blank line before the rows')
+  assert.equal(lines[total + 1], '', 'a blank line after the rows')
+  assert.ok(
+    lines.slice(0, first).some((line) => line.startsWith('Resumen')),
+    'the card title comes before the rows',
+  )
+  assert.ok(
+    lines.slice(total).some((line) => line.startsWith('Si algo')),
+    'the card footer comes after the rows',
+  )
 })
 
 test('REQ-043 AC2, REQ-007: the plain-text example is a copy es-MX block, and holds the divider and a link per slot URL', () => {

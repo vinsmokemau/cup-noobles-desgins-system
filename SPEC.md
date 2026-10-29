@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.50 |
+| Spec version | 1.51 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -397,7 +397,7 @@ Format: each requirement is one verifiable statement followed by its acceptance 
 **REQ-041. Email components compile to self-contained static HTML.**
 - AC1. `pnpm --filter @vinsmokemau/cup-noobles-email build` compiles the MJML sources in `packages/email/src/` to `packages/email/dist/*.html`.
 - AC2. The compiled HTML contains no `<link rel="stylesheet">`, no `var(`, no `<script>`, and no external CSS. Check: a test.
-- AC3. The components are button, header with logo, content section, card, divider, and footer, plus one reference layout that composes them.
+- AC3. The components are button, header with logo, content section, card, rows, divider, and footer, plus one reference layout that composes them.
 - AC4. Content slots use the placeholder syntax `{{ slot_name }}`. Each component's slots are listed in `email-components.md`.
 
 **REQ-042. Email values come from tokens.**
@@ -789,7 +789,7 @@ The Nuxt UI component names below are provisional; T0.1 confirms them against th
 | P7 | Component infrastructure and atoms | State matrix, playground, code copy, viewport frame; every atom | P5, P4 | Every atom in §4.10 has a doc, demos, visual baselines, axe and keyboard tests |
 | P8 | Molecules and organisms | Every molecule and organism, the generated inventory, the fixture rendering everything | P7 | Every component in §4.10 is complete, and REQ-071 AC1 passes |
 | P9 | Patterns and content | 7 pattern docs with demos, 3 content docs | P8 | REQ-035 and REQ-036 pass |
-| P10 | Email | Email foundations, build pipeline, 6 components, reference layout, previews | P3, P5 | REQ-040 through REQ-044 and REQ-058 pass |
+| P10 | Email | Email foundations, build pipeline, 7 components, reference layout, previews | P3, P5 | REQ-040 through REQ-044 and REQ-058 pass |
 | P11 | Search, governance, release tooling | Search, governance docs, Changesets, changelog page, `release-check` | P5 | REQ-056, REQ-062, REQ-070, REQ-072, and REQ-073 pass |
 | P12 | Release readiness | 0.x published and consumed from the registry; 1.0 gate review | P6–P11 | The fixture installs from the registry and passes, and `release:check` output has been reviewed with the owner |
 
@@ -1469,6 +1469,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.48 | 2026-10-20 | Added T14.4 to P14: it fixes a type error in `CnMediaCard` found by the storefront (DSR-10), type-checks the layer, and releases 1.0.1. No existing requirement or task changes. | Owner approval in chat |
 | 1.49 | 2026-10-20 | Added T14.5 to P14: it bumps the consumer fixture to the published 1.0.1. No existing requirement or task changes. | Owner approval in chat |
 | 1.50 | 2026-10-28 | Added T14.6 (email rows component, DSR-04), T14.7 (raster logo PNG for the email header, DSR-05), and T14.8 (release 1.1.0) to P14, for requests from the e-commerce repository. The logo is the horizontal wordmark, chosen by Claude among the owner's three SVGs at the owner's request. No existing requirement or task changes. | Owner approval in chat |
+| 1.51 | 2026-10-28 | REQ-041 AC3 and §6 P10 count seven email components, with the rows added (T14.6, DSR-04), in place of six. The three email docs say seven too. No requirement or task ID changes. | Owner approval in chat (T14.6) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
