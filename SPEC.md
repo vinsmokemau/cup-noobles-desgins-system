@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.49 |
+| Spec version | 1.50 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1352,6 +1352,24 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: `apps/consumer-fixture` still installs `@vinsmokemau/cup-noobles-nuxt` at `1.0.0` from GitHub Packages. Change it to `1.0.1`, the release T14.4 published, and update `pnpm-lock.yaml` to match. Change nothing else. Do not push or publish. The owner approved this task in chat on 2026-10-20.
   - Done when: the fixture's dependency and the lockfile resolve `@vinsmokemau/cup-noobles-nuxt` to `1.0.1`; the fixture builds and its end-to-end suite passes against `1.0.1`; `pnpm test:all` is green.
 
+- [ ] **T14.6 — Add the email rows component (DSR-04)**
+  - REQs: REQ-041, REQ-042, REQ-043 (AC2), REQ-044, REQ-022 (AC1)
+  - Depends on: T14.5
+  - Scope: the e-commerce repository cannot mark slot HTML as safe by hand, so the email card needs rows for lines of items (item, quantity, amount) and for totals. Add one new component, `packages/email/src/components/rows.mjml`, that compiles to its own `dist/rows.html`, with the same conventions as the other six: every piece of content is a `{{ slot_name }}` placeholder, and every color, font, size, border, and spacing comes from a token with no hard-coded value (REQ-042). The name, the slot names, and any new token path must avoid every word in `scripts/domain-terms.txt` (REQ-022 AC1), which includes `order` and `payment` as well as `price`, `cart`, and `product`; use generic words such as item, quantity, amount, and total. Put the rows inside the card in `dist/reference.html`. Document the component in `docs/05-email/email-components.md` (its slots, tokens, and usage) and in `docs/05-email/email-layouts.md`, and extend the plain-text counterpart rules there for the rows: the order of the parts, and a blank line between blocks. REQ-041 AC3 and the "six components" wording in `email-components.md` and in §6 P10 count six components; the task asks the owner to approve the new wording (seven components) before it changes them, and the amendment goes in §8. Any new token needs a source: reuse an existing token, or register a TBD item (§4.4) and ask the owner. Do not push or publish. The owner approved this task in chat on 2026-10-28, at the request of the e-commerce repository (DSR-04).
+  - Done when: `dist/rows.html` exists and appears in `dist/reference.html`; `email-components.md` and `email-layouts.md` are updated, with the plain-text rules for the rows; the email tests (no `var(`, no backend tags, hex values in `email-tokens.json`, no horizontal scroll at 320 and 600 px) pass for the new file; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T14.7 — Ship the raster logo for the email header (DSR-05)**
+  - REQs: REQ-041 (AC4), REQ-040 (AC1), REQ-022 (AC2)
+  - Depends on: T14.6
+  - Scope: the `{{ logo_url }}` slot of the header needs a PNG, because most email clients do not render SVG, and the system ships SVG only. The logo is the horizontal wordmark, `packages/nuxt/assets/brand/LogoHorizontal-CN.svg`, because the header renders the horizontal wordmark at `logo.rule.minHeight.horizontal` (36 px high). The owner supplied the three logo SVGs (ADR-0016) and chose in chat on 2026-10-28 to let Claude pick one of them, so no new artwork is drawn: convert that SVG to PNG without redrawing or recoloring it, at twice the display size for sharp rendering on high-density screens (72 px high; the width follows the SVG's aspect ratio), on a transparent background. Add the PNG to `packages/email/` so it ships in the package (add it to `files` in `package.json` and write a script, or a build step, that regenerates it from the SVG). Record the choice of the horizontal wordmark in a new ADR, with the owner's authorization. In `email-components.md`, add a rule to the header's `{{ logo_url }}` row that names the PNG file the sending project hosts, its pixel size, the size the `img` shows it at, and says that the project hosts it at a public HTTPS address. Add the fallback behavior to `email-foundations.md` only if its images-off section needs it. Do not push or publish. The owner approved this task in chat on 2026-10-28, at the request of the e-commerce repository (DSR-05).
+  - Done when: the PNG ships in the package (a check lists it in the packed files); it is generated from `LogoHorizontal-CN.svg`, and a test compares its dimensions to the SVG's aspect ratio; the header doc names the PNG, its size, and who hosts it; the new ADR is in the decision log; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T14.8 — Release 1.1.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T14.6, T14.7
+  - Scope: release T14.6 and T14.7 together as minor 1.1.0 of the three packages, in lockstep (A-04), through Changesets. Confirm that the two minor changesets are the only pending ones, and that `CHANGELOG.md` lists the rows component and the PNG logo under Added (REQ-070 AC2). Update `docs/06-governance/versioning-and-releases.md` if it needs a changelog line. After the owner confirms each step in chat, push, merge the "Version packages" pull request on GitHub, and publish to GitHub Packages. Claude Code does not push, merge, or publish without that confirmation. The e-commerce repository pins 1.0.1 and raises its pin after this release (its T11.6), so the new version is reported to the e-commerce owner, and the consumer fixture is not changed. The owner approved this task in chat on 2026-10-28.
+  - Done when: `pnpm release:check` passes at version `1.1.0`; the three packages are published at `1.1.0` to GitHub Packages; the tags are pushed (T14.3); `pnpm test:all` is green. The new version is reported to the e-commerce owner.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1450,6 +1468,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.47 | 2026-10-19 | Added T14.3 to P14: it makes the release workflow push the tags it creates. The 1.0.0 release created them in the runner and did not push them. No existing requirement or task changes. | Owner request in chat (T14.2 open question) |
 | 1.48 | 2026-10-20 | Added T14.4 to P14: it fixes a type error in `CnMediaCard` found by the storefront (DSR-10), type-checks the layer, and releases 1.0.1. No existing requirement or task changes. | Owner approval in chat |
 | 1.49 | 2026-10-20 | Added T14.5 to P14: it bumps the consumer fixture to the published 1.0.1. No existing requirement or task changes. | Owner approval in chat |
+| 1.50 | 2026-10-28 | Added T14.6 (email rows component, DSR-04), T14.7 (raster logo PNG for the email header, DSR-05), and T14.8 (release 1.1.0) to P14, for requests from the e-commerce repository. The logo is the horizontal wordmark, chosen by Claude among the owner's three SVGs at the owner's request. No existing requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1481,7 +1500,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-018 | T11.4, T12.3 |
 | REQ-020 | T0.1, T1.3, T5.1, T7.3, T7.4, T7.5, T7.6, T8.3, T8.4, T8.5, T8.6, T8.7 |
 | REQ-021 | T1.3, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2 |
-| REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T8.6, T8.7 |
+| REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T8.6, T8.7, T14.6, T14.7 |
 | REQ-023 | T4.4, T7.2, T13.2 |
 | REQ-024 | T4.4, T7.2, T7.4, T7.5, T13.2 |
 | REQ-025 | T8.1, T8.2, T13.4 |
@@ -1494,11 +1513,11 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-035 | T9.1, T9.2 |
 | REQ-036 | T9.3 |
 | REQ-037 | T2.2 |
-| REQ-040 | T3.7, T10.1 |
-| REQ-041 | T0.4, T10.2, T10.3 |
-| REQ-042 | T10.2, T10.3 |
-| REQ-043 | T10.4 |
-| REQ-044 | T0.4, T10.2 |
+| REQ-040 | T3.7, T10.1, T14.7 |
+| REQ-041 | T0.4, T10.2, T10.3, T14.6, T14.7 |
+| REQ-042 | T10.2, T10.3, T14.6 |
+| REQ-043 | T10.4, T14.6 |
+| REQ-044 | T0.4, T10.2, T14.6 |
 | REQ-050 | T1.1, T5.3, T5.6 |
 | REQ-051 | T0.2, T5.3, T5.4 |
 | REQ-052 | T5.3, T5.4, T6.5 |
@@ -1512,7 +1531,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-060 | T5.5, T5.7 |
 | REQ-061 | T5.5, T5.7, T8.6 |
 | REQ-062 | T6.5, T11.3 |
-| REQ-070 | T11.3, T12.1, T14.2, T14.3, T14.4, T14.5 |
+| REQ-070 | T11.3, T12.1, T14.2, T14.3, T14.4, T14.5, T14.8 |
 | REQ-071 | T5.2, T8.7, T12.1, T14.4, T14.5 |
 | REQ-072 | T11.2, T11.3 |
 | REQ-073 | T0.5, T2.4, T11.2 |
