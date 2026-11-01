@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.52 |
+| Spec version | 1.53 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1451,7 +1451,7 @@ The owner must decide these. Each decision becomes an ADR.
 | OD-12 | Email authoring | MJML (A-14), or hand-written table HTML | **Decided: MJML** (OA-6). ADR-0004 records it. | T0.4 |
 | OD-13 | Repository host, owner, name, and package scope | **Decided** (OA-7, OA-8, OA-9, ADR-0007): GitHub, personal account `vinsmokemau`, repository `cup-noobles-desgins-system`, scope `@vinsmokemau` with package names `cup-noobles-tokens`, `cup-noobles-nuxt`, and `cup-noobles-email`. | — | T1.1 |
 | OD-14 | Repository visibility | (a) Public; (b) private, with a GitHub Pro subscription | **Decided: (a) public** (OA-11, ADR-0007). The repository `https://github.com/vinsmokemau/cup-noobles-desgins-system` exists, is public, and is empty. This enables GitHub Pages (OD-02) and branch protection (REQ-074 AC2) on the free plan. | T1.4 |
-| OD-15 | Scope of the photo rule "no text inside the image" for product packaging (DSR-07, C-10 of the e-commerce repository, ADR-0057) | Prepared as a visual comparison page for the owner | Open: the recommendation is given on the page | None; not code |
+| OD-15 | Scope of the photo rule "no text inside the image" for product packaging (DSR-07, C-10 of the e-commerce repository, ADR-0057) | (A) keep the rule as written; (B) allow the product's own printing and ban added text; (C) drop the rule | **Decided: (B)** (owner, ADR-0064): text you add to a photo is not allowed; text printed on the product itself may show. | None; not code |
 
 ---
 
@@ -1512,6 +1512,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.50 | 2026-10-28 | Added T14.6 (email rows component, DSR-04), T14.7 (raster logo PNG for the email header, DSR-05), and T14.8 (release 1.1.0) to P14, for requests from the e-commerce repository. The logo is the horizontal wordmark, chosen by Claude among the owner's three SVGs at the owner's request. No existing requirement or task changes. | Owner approval in chat |
 | 1.51 | 2026-10-28 | REQ-041 AC3 and §6 P10 count seven email components, with the rows added (T14.6, DSR-04), in place of six. The three email docs say seven too. No requirement or task ID changes. | Owner approval in chat (T14.6) |
 | 1.52 | 2026-11-01 | Added P15 with T15.1 to T15.6 for the e-commerce requests DSR-01, DSR-02, DSR-03, DSR-06, and DSR-09, and 1.2.0 as the release of DSR-01 to DSR-03 (T15.4). DSR-07 is the new open decision OD-15. No existing requirement or task changes. | Owner approval in chat |
+| 1.53 | 2026-11-01 | OD-15 decided: option B, text printed on a product may show in a photo and added text is not allowed (ADR-0064). No requirement or task ID changes. | Owner decision in chat (ADR-0064) |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

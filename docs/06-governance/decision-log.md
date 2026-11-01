@@ -7,7 +7,7 @@ lang: en
 tbd: []
 related: [contribution, ownership, versioning-and-releases, deprecation]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-11-01
 ---
 
 # Decision log
@@ -89,6 +89,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0061: Release 1.0.0](decisions/0061-release-1-0-0.md)
 - [ADR-0062: The email rows component sits inside the card](decisions/0062-email-rows-component.md)
 - [ADR-0063: The email header uses the horizontal wordmark as a PNG](decisions/0063-email-raster-logo.md)
+- [ADR-0064: Text printed on a product may show in a photo](decisions/0064-packaging-text-in-photos.md)
 
 ## Open items
 
@@ -117,3 +118,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0061 (release 1.0.0)
 - 0.1.0 — Index extended with ADR-0062 (email rows component)
 - 0.1.0 — Index extended with ADR-0063 (email raster logo)
+- 0.1.0 — Index extended with ADR-0064 (packaging text in photos)
