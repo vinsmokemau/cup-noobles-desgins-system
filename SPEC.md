@@ -1374,7 +1374,7 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
 
 The storefront cannot change the design system (CR-27), so each request is built here and released in a new version that the storefront pins. DSR-01, DSR-02, and DSR-03 block the storefront's catalog components, so they come first and ship together as 1.2.0. DSR-07 is a rule decision for the owner, not code (OD-15). The owner approved this phase in chat on 2026-11-01.
 
-- [ ] **T15.1 — Add a price and availability slot to `CnMediaCard` (DSR-01)**
+- [x] **T15.1 — Add a price and availability slot to `CnMediaCard` (DSR-01)** (2026-11-01, 51868c1)
   - REQs: REQ-025, REQ-022 (AC1), REQ-026, REQ-027, REQ-028
   - Depends on: T14.8
   - Scope: a generic slot in `CnMediaCard`, under the title, that takes a price and an availability badge, so the storefront product card adds no styling of its own. The slot name and its content stay generic: `price`, `cart`, `product`, `order`, and `payment` are forbidden words (REQ-022 AC1). The component contains no hardcoded copy (A-11). Update `media-card.md` (slots, usage, accessibility) and the showcase page. Any spacing or style value comes from an existing token; a new one is registered as a TBD item (§4.4) and the owner is asked. Do not push or publish.
