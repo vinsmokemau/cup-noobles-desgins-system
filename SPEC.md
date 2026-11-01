@@ -1394,7 +1394,7 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: a gallery of pictures for the storefront's product gallery. Start from Nuxt UI's carousel, themed by the layer (ER-01, C-01); a custom `Cn*` component only if it cannot serve, with an ADR. Keep the 4:3 whole-picture frame and the d20 fallback (ADR-0056, ADR-0057). Keyboard operation, visible focus, and labels that arrive through props (A-11). Add its doc and showcase page. Motion and any new value follow §4.4. Do not push or publish.
   - Done when: the doc exists; keyboard, accessibility, and visual specs pass at 360, 768, and 1280 px; a minor changeset exists; `pnpm test:all` is green.
 
-- [ ] **T15.4 — Release 1.2.0**
+- [x] **T15.4 — Release 1.2.0** (2026-11-01, 9db2aff)
   - REQs: REQ-070, REQ-018
   - Depends on: T15.3
   - Scope: release T15.1, T15.2, and T15.3 together as minor 1.2.0 of the three packages, in lockstep (A-04), the same way as T14.8. Confirm only minor changesets are pending and that `CHANGELOG.md` lists the three additions under Added. After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version and the DSR ids it covers are reported to the e-commerce owner; the consumer fixture is not changed.
