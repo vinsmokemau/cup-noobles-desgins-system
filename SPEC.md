@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.51 |
+| Spec version | 1.52 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1370,6 +1370,46 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: release T14.6 and T14.7 together as minor 1.1.0 of the three packages, in lockstep (A-04), through Changesets. Confirm that the two minor changesets are the only pending ones, and that `CHANGELOG.md` lists the rows component and the PNG logo under Added (REQ-070 AC2). Update `docs/06-governance/versioning-and-releases.md` if it needs a changelog line. After the owner confirms each step in chat, push, merge the "Version packages" pull request on GitHub, and publish to GitHub Packages. Claude Code does not push, merge, or publish without that confirmation. The e-commerce repository pins 1.0.1 and raises its pin after this release (its T11.6), so the new version is reported to the e-commerce owner, and the consumer fixture is not changed. The owner approved this task in chat on 2026-10-28.
   - Done when: `pnpm release:check` passes at version `1.1.0`; the three packages are published at `1.1.0` to GitHub Packages; the tags are pushed (T14.3); `pnpm test:all` is green. The new version is reported to the e-commerce owner.
 
+### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09)
+
+The storefront cannot change the design system (CR-27), so each request is built here and released in a new version that the storefront pins. DSR-01, DSR-02, and DSR-03 block the storefront's catalog components, so they come first and ship together as 1.2.0. DSR-07 is a rule decision for the owner, not code (OD-15). The owner approved this phase in chat on 2026-11-01.
+
+- [ ] **T15.1 — Add a price and availability slot to `CnMediaCard` (DSR-01)**
+  - REQs: REQ-025, REQ-022 (AC1), REQ-026, REQ-027, REQ-028
+  - Depends on: T14.8
+  - Scope: a generic slot in `CnMediaCard`, under the title, that takes a price and an availability badge, so the storefront product card adds no styling of its own. The slot name and its content stay generic: `price`, `cart`, `product`, `order`, and `payment` are forbidden words (REQ-022 AC1). The component contains no hardcoded copy (A-11). Update `media-card.md` (slots, usage, accessibility) and the showcase page. Any spacing or style value comes from an existing token; a new one is registered as a TBD item (§4.4) and the owner is asked. Do not push or publish.
+  - Done when: a story and tests show the slot renders under the title and an empty slot renders nothing; the accessibility and visual specs cover it at 360, 768, and 1280 px, with baselines generated in the pinned container; the doc is updated; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T15.2 — Add a key-value list component (DSR-02)**
+  - REQs: REQ-020, REQ-021, REQ-022 (AC1), REQ-026, REQ-027, REQ-028
+  - Depends on: T15.1
+  - Scope: one component for a list of attributes, each a label and a value, for the storefront's attribute table on the product page. Decide first whether Nuxt UI has an equivalent to theme (C-01, ER-01); a custom `Cn*` component only if it has none, and record the choice in an ADR. Semantic markup (a description list), no hardcoded copy, the 360 px layout stacks. Add its doc under `docs/02-components/`, with the standard sections, and its showcase page. Tokens as in T15.1. Do not push or publish.
+  - Done when: the doc exists; tests and the accessibility spec pass at 360, 768, and 1280 px; visual baselines exist; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T15.3 — Add an image gallery (DSR-03)**
+  - REQs: REQ-020, REQ-021, REQ-022 (AC1), REQ-024, REQ-026, REQ-027, REQ-028
+  - Depends on: T15.2
+  - Scope: a gallery of pictures for the storefront's product gallery. Start from Nuxt UI's carousel, themed by the layer (ER-01, C-01); a custom `Cn*` component only if it cannot serve, with an ADR. Keep the 4:3 whole-picture frame and the d20 fallback (ADR-0056, ADR-0057). Keyboard operation, visible focus, and labels that arrive through props (A-11). Add its doc and showcase page. Motion and any new value follow §4.4. Do not push or publish.
+  - Done when: the doc exists; keyboard, accessibility, and visual specs pass at 360, 768, and 1280 px; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T15.4 — Release 1.2.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T15.3
+  - Scope: release T15.1, T15.2, and T15.3 together as minor 1.2.0 of the three packages, in lockstep (A-04), the same way as T14.8. Confirm only minor changesets are pending and that `CHANGELOG.md` lists the three additions under Added. After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version and the DSR ids it covers are reported to the e-commerce owner; the consumer fixture is not changed.
+  - Done when: `pnpm release:check` passes at version `1.2.0`; the three packages are published at `1.2.0`; the tags are pushed; `pnpm test:all` is green.
+
+- [ ] **T15.5 — Dark color scheme and theme color (DSR-06)**
+  - REQs: REQ-020, REQ-071
+  - Depends on: T15.4
+  - Scope: check first whether Nuxt UI already sets `color-scheme: dark` and a `theme-color` meta in a Nuxt app (A-02), and report the finding. If it sets neither, the layer adds both. The `theme-color` value is the pure-black base (BR-03) read from the token, not a new value. Do not push or publish.
+  - Done when: the finding is written in the task report; the consumer fixture's page has both, proven by an end-to-end test; a changeset exists if a published file changed; `pnpm test:all` is green.
+
+- [ ] **T15.6 — Make the raw-value rule available to consuming apps (DSR-09)**
+  - REQs: REQ-016
+  - Depends on: T15.5
+  - Scope: ship the raw-value lint rule of REQ-016 so a consuming app runs the same check as this repository. Decide first where it ships (an export of the layer or a small separate package) and record that in an ADR, asking the owner, because a new package changes the distribution (§1.2). Write its usage in `using-the-system.md`. Do not push or publish.
+  - Done when: the consumer fixture runs the rule and a deliberate violation there fails it; the rule's own fixture tests still pass; a changeset exists; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1411,6 +1451,7 @@ The owner must decide these. Each decision becomes an ADR.
 | OD-12 | Email authoring | MJML (A-14), or hand-written table HTML | **Decided: MJML** (OA-6). ADR-0004 records it. | T0.4 |
 | OD-13 | Repository host, owner, name, and package scope | **Decided** (OA-7, OA-8, OA-9, ADR-0007): GitHub, personal account `vinsmokemau`, repository `cup-noobles-desgins-system`, scope `@vinsmokemau` with package names `cup-noobles-tokens`, `cup-noobles-nuxt`, and `cup-noobles-email`. | — | T1.1 |
 | OD-14 | Repository visibility | (a) Public; (b) private, with a GitHub Pro subscription | **Decided: (a) public** (OA-11, ADR-0007). The repository `https://github.com/vinsmokemau/cup-noobles-desgins-system` exists, is public, and is empty. This enables GitHub Pages (OD-02) and branch protection (REQ-074 AC2) on the free plan. | T1.4 |
+| OD-15 | Scope of the photo rule "no text inside the image" for product packaging (DSR-07, C-10 of the e-commerce repository, ADR-0057) | Prepared as a visual comparison page for the owner | Open: the recommendation is given on the page | None; not code |
 
 ---
 
@@ -1470,6 +1511,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.49 | 2026-10-20 | Added T14.5 to P14: it bumps the consumer fixture to the published 1.0.1. No existing requirement or task changes. | Owner approval in chat |
 | 1.50 | 2026-10-28 | Added T14.6 (email rows component, DSR-04), T14.7 (raster logo PNG for the email header, DSR-05), and T14.8 (release 1.1.0) to P14, for requests from the e-commerce repository. The logo is the horizontal wordmark, chosen by Claude among the owner's three SVGs at the owner's request. No existing requirement or task changes. | Owner approval in chat |
 | 1.51 | 2026-10-28 | REQ-041 AC3 and §6 P10 count seven email components, with the rows added (T14.6, DSR-04), in place of six. The three email docs say seven too. No requirement or task ID changes. | Owner approval in chat (T14.6) |
+| 1.52 | 2026-11-01 | Added P15 with T15.1 to T15.6 for the e-commerce requests DSR-01, DSR-02, DSR-03, DSR-06, and DSR-09, and 1.2.0 as the release of DSR-01 to DSR-03 (T15.4). DSR-07 is the new open decision OD-15. No existing requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1496,18 +1538,18 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-013 | T0.3, T1.1, T3.4 |
 | REQ-014 | T3.1, T13.1, T13.2, T13.3 |
 | REQ-015 | T3.3, T3.5, T4.2, T13.2 |
-| REQ-016 | T1.3, T5.1, T13.5 |
+| REQ-016 | T1.3, T5.1, T13.5, T15.6 |
 | REQ-017 | T3.1, T3.4 |
-| REQ-018 | T11.4, T12.3 |
-| REQ-020 | T0.1, T1.3, T5.1, T7.3, T7.4, T7.5, T7.6, T8.3, T8.4, T8.5, T8.6, T8.7 |
-| REQ-021 | T1.3, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2 |
-| REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T8.6, T8.7, T14.6, T14.7 |
+| REQ-018 | T11.4, T12.3, T15.4 |
+| REQ-020 | T0.1, T1.3, T5.1, T7.3, T7.4, T7.5, T7.6, T8.3, T8.4, T8.5, T8.6, T8.7, T15.2, T15.3, T15.5 |
+| REQ-021 | T1.3, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T15.2, T15.3 |
+| REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T8.6, T8.7, T14.6, T14.7, T15.1, T15.2, T15.3 |
 | REQ-023 | T4.4, T7.2, T13.2 |
-| REQ-024 | T4.4, T7.2, T7.4, T7.5, T13.2 |
-| REQ-025 | T8.1, T8.2, T13.4 |
-| REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5, T13.6 |
-| REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5 |
-| REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T7.9, T7.17, T8.1, T8.2, T8.4, T8.6 |
+| REQ-024 | T4.4, T7.2, T7.4, T7.5, T13.2, T15.3 |
+| REQ-025 | T8.1, T8.2, T13.4, T15.1 |
+| REQ-026 | T7.1, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5, T13.6, T15.1, T15.2, T15.3 |
+| REQ-027 | T4.6, T7.2, T7.3, T7.4, T7.5, T7.6, T7.9, T8.1, T8.2, T8.3, T8.4, T8.5, T15.1, T15.2, T15.3 |
+| REQ-028 | T4.5, T5.5, T5.7, T7.2, T7.3, T7.4, T7.5, T7.9, T7.17, T8.1, T8.2, T8.4, T8.6, T15.1, T15.2, T15.3 |
 | REQ-029 | T4.5, T4.6, T7.6, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17 |
 | REQ-030 | T4.1, T7.7, T7.9 |
 | REQ-031 | T0.1, T5.1, T5.3 |
@@ -1532,8 +1574,8 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-060 | T5.5, T5.7 |
 | REQ-061 | T5.5, T5.7, T8.6 |
 | REQ-062 | T6.5, T11.3 |
-| REQ-070 | T11.3, T12.1, T14.2, T14.3, T14.4, T14.5, T14.8 |
-| REQ-071 | T5.2, T8.7, T12.1, T14.4, T14.5 |
+| REQ-070 | T11.3, T12.1, T14.2, T14.3, T14.4, T14.5, T14.8, T15.4 |
+| REQ-071 | T5.2, T8.7, T12.1, T14.4, T14.5, T15.5 |
 | REQ-072 | T11.2, T11.3 |
 | REQ-073 | T0.5, T2.4, T11.2 |
 | REQ-074 | T1.2, T1.4, T5.7, T12.2 |
