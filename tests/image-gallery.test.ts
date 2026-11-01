@@ -3,7 +3,7 @@
 // apps/showcase/tests/e2e/image-gallery.spec.ts.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
-import { readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { checkContrast } from '../scripts/check-contrast'
@@ -249,6 +249,11 @@ test('the playground controls match the demo props, and DESIGN.md and the invent
 })
 
 test('a minor changeset for the layer exists (§4.8)', () => {
+  // Once the "Version packages" pull request has consumed the changeset, its text lives in the changelog.
+  if (!existsSync(join(root, '.changeset/image-gallery.md'))) {
+    assert.match(read('CHANGELOG.md'), /CnImageGallery/)
+    return
+  }
   const changeset = read('.changeset/image-gallery.md')
   for (const name of ['tokens', 'nuxt', 'email'])
     assert.match(changeset, new RegExp(`'@vinsmokemau/cup-noobles-${name}': minor`))
