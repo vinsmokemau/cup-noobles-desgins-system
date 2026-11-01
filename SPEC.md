@@ -1388,7 +1388,7 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: one component for a list of attributes, each a label and a value, for the storefront's attribute table on the product page. Decide first whether Nuxt UI has an equivalent to theme (C-01, ER-01); a custom `Cn*` component only if it has none, and record the choice in an ADR. Semantic markup (a description list), no hardcoded copy, the 360 px layout stacks. Add its doc under `docs/02-components/`, with the standard sections, and its showcase page. Tokens as in T15.1. Do not push or publish.
   - Done when: the doc exists; tests and the accessibility spec pass at 360, 768, and 1280 px; visual baselines exist; a minor changeset exists; `pnpm test:all` is green.
 
-- [ ] **T15.3 — Add an image gallery (DSR-03)**
+- [x] **T15.3 — Add an image gallery (DSR-03)** (2026-11-01, e3846ec)
   - REQs: REQ-020, REQ-021, REQ-022 (AC1), REQ-024, REQ-026, REQ-027, REQ-028
   - Depends on: T15.2
   - Scope: a gallery of pictures for the storefront's product gallery. Start from Nuxt UI's carousel, themed by the layer (ER-01, C-01); a custom `Cn*` component only if it cannot serve, with an ADR. Keep the 4:3 whole-picture frame and the d20 fallback (ADR-0056, ADR-0057). Keyboard operation, visible focus, and labels that arrive through props (A-11). Add its doc and showcase page. Motion and any new value follow §4.4. Do not push or publish.
