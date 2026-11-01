@@ -2,6 +2,13 @@
 
 Every release of `@vinsmokemau/cup-noobles-tokens`, `@vinsmokemau/cup-noobles-nuxt`, and `@vinsmokemau/cup-noobles-email`. The three packages share one version number. Each release groups its entries as Breaking, Added, Changed, Deprecated, and Fixed.
 
+## 1.1.0 (2026-11-01)
+
+### Added
+
+- Add the PNG logo for the email header: `assets/logo-horizontal.png` in the email package, 232 x 72 px on a transparent background, converted from `LogoHorizontal-CN.svg` and shown at 116 x 36 px. The sending project hosts it and passes its address as `{{ logo_url }}`. `pnpm --filter @vinsmokemau/cup-noobles-email build:logo` regenerates it.
+- Add the email rows component (`rows.html`): an item row (`item_name`, `item_quantity`, `item_amount`) and a total row (`total_label`, `total_amount`), which the reference layout places inside the card. The email build gets an `insert` option for `<mj-include>`.
+
 ## 1.0.1 (2026-10-21)
 
 ### Fixed
