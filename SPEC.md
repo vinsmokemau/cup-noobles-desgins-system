@@ -1381,7 +1381,7 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: a generic slot in `CnMediaCard`, under the title, that takes a price and an availability badge, so the storefront product card adds no styling of its own. The slot name and its content stay generic: `price`, `cart`, `product`, `order`, and `payment` are forbidden words (REQ-022 AC1). The component contains no hardcoded copy (A-11). Update `media-card.md` (slots, usage, accessibility) and the showcase page. Any spacing or style value comes from an existing token; a new one is registered as a TBD item (§4.4) and the owner is asked. Do not push or publish.
   - Done when: a story and tests show the slot renders under the title and an empty slot renders nothing; the accessibility and visual specs cover it at 360, 768, and 1280 px, with baselines generated in the pinned container; the doc is updated; a minor changeset exists; `pnpm test:all` is green.
 
-- [ ] **T15.2 — Add a key-value list component (DSR-02)**
+- [x] **T15.2 — Add a key-value list component (DSR-02)** (2026-11-01, b2f74a5)
   - REQs: REQ-020, REQ-021, REQ-022 (AC1), REQ-026, REQ-027, REQ-028
   - Depends on: T15.1
   - Scope: one component for a list of attributes, each a label and a value, for the storefront's attribute table on the product page. Decide first whether Nuxt UI has an equivalent to theme (C-01, ER-01); a custom `Cn*` component only if it has none, and record the choice in an ADR. Semantic markup (a description list), no hardcoded copy, the 360 px layout stacks. Add its doc under `docs/02-components/`, with the standard sections, and its showcase page. Tokens as in T15.1. Do not push or publish.
