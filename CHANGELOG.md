@@ -2,6 +2,14 @@
 
 Every release of `@vinsmokemau/cup-noobles-tokens`, `@vinsmokemau/cup-noobles-nuxt`, and `@vinsmokemau/cup-noobles-email`. The three packages share one version number. Each release groups its entries as Breaking, Added, Changed, Deprecated, and Fixed.
 
+## 1.2.0 (2026-11-01)
+
+### Added
+
+- Add `CnImageGallery`, a gallery of pictures over Nuxt UI's `UCarousel`. Each picture shows whole in a 4:3 frame, and a picture that is missing or fails to load shows the brand d20. It has previous and next buttons and one 24 px dot for each picture, and it holds no text of its own: the name of the gallery, the names of the controls, and the alternative text of each picture come through props. The slide changes at once under reduced motion. A gallery with no pictures renders nothing, and one picture shows no controls. The layer now themes `UCarousel` with a thick pink frame and no gutter between slides. New component tokens `imageGallery.*`, `radius.imageGallery`, and `border.width.imageGallery` reference existing semantic tokens only.
+- Add `CnKeyValueList`, a list of attributes, each a label and a value, as a description list (`<dl>`). It stacks each label over its value at 360 px and puts them side by side from the `md` breakpoint. It holds no text of its own, takes its rows from `items`, and has a `value` slot to draw a value another way. A list with no rows renders nothing. New component tokens `keyValueList.*` reference existing semantic tokens only.
+- Add a `meta` slot to `CnMediaCard`, under the title and above the tags, for short non-interactive details such as a value and a status badge. The slot renders nothing when it is empty, adds no text of its own, and spaces its items with the existing `space.sm` token.
+
 ## 1.1.0 (2026-11-01)
 
 ### Added
