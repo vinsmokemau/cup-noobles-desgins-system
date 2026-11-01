@@ -9,6 +9,7 @@ for (const slug of [
   'form-field',
   'card',
   'media-card',
+  'key-value-list',
   'modal',
   'slideover',
   'alert',

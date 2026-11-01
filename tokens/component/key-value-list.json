@@ -1,0 +1,56 @@
+{
+  "keyValueList": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.base}",
+      "$description": "The surface a key-value list sits on: the pure black page (BR-03). The list has no fill of its own.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "label": {
+      "$type": "color",
+      "$value": "{color.text.muted}",
+      "$description": "Color of the label of a row: the muted text color, so the value is the stronger of the two.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "value": {
+      "$type": "color",
+      "$value": "{color.text.default}",
+      "$description": "Color of the value of a row: the default text color.",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "divider": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.border.default}",
+        "$description": "Color of the line between two rows. It is the separator's line color, so it passes the 3:1 minimum for a UI element.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Stroke width of the line between two rows (BR-13). The same stroke as the separator.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

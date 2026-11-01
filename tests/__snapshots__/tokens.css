@@ -239,6 +239,11 @@
   --cn-input-focus-style: solid; /** Focus ring line style of the text fields (REQ-024 AC1, ADR-0009). */
   --cn-input-focus-width: 3px; /** Focus ring width of the text fields (REQ-024 AC1, ADR-0009). */
   --cn-input-placeholder: #bdbdbd; /** Placeholder text of a field. */
+  --cn-key-value-list-bg: #000000; /** The surface a key-value list sits on: the pure black page (BR-03). The list has no fill of its own. */
+  --cn-key-value-list-divider-color: #8c8c8c; /** Color of the line between two rows. It is the separator's line color, so it passes the 3:1 minimum for a UI element. */
+  --cn-key-value-list-divider-width: 3px; /** Stroke width of the line between two rows (BR-13). The same stroke as the separator. */
+  --cn-key-value-list-label: #bdbdbd; /** Color of the label of a row: the muted text color, so the value is the stronger of the two. */
+  --cn-key-value-list-value: #f5f5f5; /** Color of the value of a row: the default text color. */
   --cn-layout-container-max: 80rem; /** Maximum content container width, 1280 px (ADR-0035, TBD-13). The 360 px minimum is ER-05. */
   --cn-layout-email-width-max: 600px; /** Maximum width of an email body, 600 px (ADR-0038, A-08). The email build injects it as a literal. */
   --cn-layout-logo-clear-space: 0.25; /** Clear space around a logo, as a share of its height (ADR-0016). */

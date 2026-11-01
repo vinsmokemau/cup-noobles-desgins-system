@@ -53,6 +53,7 @@ Each doc's frontmatter `status` says how far along it is: `tbd`, `draft`, `stabl
 - [Form field](docs/02-components/molecules/form-field.md): a form control with its label, help text, and error message.
 - [Card](docs/02-components/molecules/card.md): the standard content card.
 - [Media card](docs/02-components/molecules/media-card.md): the featured media card with a thumbnail, title, and tag badges (custom).
+- [Key-value list](docs/02-components/molecules/key-value-list.md): a list of attributes, each a label and a value (custom).
 - [Alert](docs/02-components/molecules/alert.md): an inline feedback message.
 - [Toast](docs/02-components/molecules/toast.md): a brief feedback message that appears and goes away.
 - [Tooltip](docs/02-components/molecules/tooltip.md): a short hint shown on hover or focus.

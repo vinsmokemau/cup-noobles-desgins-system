@@ -50,7 +50,7 @@ test('Done when: the number of stubs equals the number of files listed in §4.1'
   assert.ok(listed.includes('docs/06-governance/decision-log.md'))
   assert.deepEqual(docs, listed, 'docs/ holds exactly the files in the §4.1 tree')
   assert.equal(templated.length, listed.length - NOT_STUBS.length)
-  assert.equal(templated.length, 62)
+  assert.equal(templated.length, 63)
 })
 
 const CALLOUT = /^> \*\*TBD:\*\* Content pending \((T\d+\.\d+)\)\.$/

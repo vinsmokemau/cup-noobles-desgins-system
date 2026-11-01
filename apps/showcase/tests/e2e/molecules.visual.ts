@@ -9,6 +9,7 @@ const STATES = {
   'form-field': ['default', 'hover', 'focus-visible', 'disabled', 'error'],
   card: ['default'],
   'media-card': ['default', 'hover', 'focus-visible', 'active'],
+  'key-value-list': ['default', 'empty'],
   modal: ['default'],
   slideover: ['default'],
   alert: ['default', 'success', 'warning', 'error', 'focus-visible'],

@@ -11,6 +11,8 @@ export default defineConfig({
           name: 'repo',
           include: ['tests/**/*.test.ts'],
           environment: 'node',
+          // The ESLint tests load the whole config and pass in 3 s alone, but time out at the default 5 s when 60 files run at once.
+          testTimeout: 30_000,
         },
       },
     ],

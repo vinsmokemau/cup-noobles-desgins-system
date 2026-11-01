@@ -997,6 +997,56 @@ h3 {
 }
 
 /*
+ * T15.2 (REQ-020, REQ-026, REQ-028, ADR-0065): CnKeyValueList, a description list of labels and values. Every color and the
+ * line width are --cn-key-value-list-* tokens. The list is on the black page with no fill, and a line between two rows
+ * is the only separation. At 360 px a row stacks: the label over the value. From the `md` breakpoint (breakpoint.md, ADR-0035)
+ * the label takes one third of the row and the value two thirds. Long words break inside their column, so nothing overflows.
+ */
+.cn-key-value-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+  color: var(--cn-key-value-list-value);
+  background-color: var(--cn-key-value-list-bg);
+}
+
+.cn-key-value-list__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--cn-space-sm);
+  padding-block: var(--cn-space-md);
+  border-bottom: var(--cn-key-value-list-divider-width) solid var(--cn-key-value-list-divider-color);
+
+  @variant md {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--cn-space-md);
+  }
+}
+
+.cn-key-value-list__row:first-child {
+  padding-top: 0;
+}
+
+.cn-key-value-list__row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.cn-key-value-list__label {
+  min-width: 0;
+  color: var(--cn-key-value-list-label);
+  overflow-wrap: anywhere;
+}
+
+.cn-key-value-list__value {
+  min-width: 0;
+  margin: 0;
+  color: var(--cn-key-value-list-value);
+  overflow-wrap: anywhere;
+}
+
+/*
  * T8.5 (REQ-020, REQ-026, REQ-027): the modal and the slideover. app.config.ts puts `.cn-overlay-scrim` on the backdrop and
  * `.cn-overlay-panel` on the panel of both UModal and USlideover. Every value is an --cn-overlay-* token (ADR-0029). The look
  * is the cards' (ADR-0018): the black page color, a thick brand pink outline as the neon highlight, and no glow. The backdrop

@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.53 |
+| Spec version | 1.54 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -551,7 +551,7 @@ cup-noobles-desgins-system/
 │   │   │                 checkbox.md radio-group.md switch.md progress.md skeleton.md
 │   │   │                 separator.md logo.md sparkle.md sticker-frame.md
 │   │   ├── molecules/    form-field.md card.md media-card.md alert.md toast.md tooltip.md
-│   │   │                 tabs.md breadcrumb.md pagination.md
+│   │   │                 tabs.md breadcrumb.md pagination.md key-value-list.md
 │   │   └── organisms/    modal.md slideover.md site-header.md site-footer.md
 │   ├── 03-patterns/      forms.md feedback.md loading.md navigation.md empty-states.md
 │   │                     error-pages.md responsive-behavior.md
@@ -769,6 +769,7 @@ The Nuxt UI component names below are provisional; T0.1 confirms them against th
 | sparkle · sticker-frame | atom | custom | CnSparkle · CnStickerFrame (BR-14, REQ-029) | T7.8 |
 | form-field · card | molecule | nuxt-ui | UFormField · UCard | T8.1 |
 | media-card | molecule | custom | CnMediaCard (BR-12) | T8.2 |
+| key-value-list | molecule | custom | CnKeyValueList (DSR-02, ADR-0065) | T15.2 |
 | alert · toast · tooltip | molecule | nuxt-ui | UAlert · UToast · UTooltip | T8.3 |
 | tabs · breadcrumb · pagination | molecule | nuxt-ui | UTabs · UBreadcrumb · UPagination | T8.4 |
 | modal · slideover | organism | nuxt-ui | UModal · USlideover | T8.5 |
@@ -1513,6 +1514,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.51 | 2026-10-28 | REQ-041 AC3 and §6 P10 count seven email components, with the rows added (T14.6, DSR-04), in place of six. The three email docs say seven too. No requirement or task ID changes. | Owner approval in chat (T14.6) |
 | 1.52 | 2026-11-01 | Added P15 with T15.1 to T15.6 for the e-commerce requests DSR-01, DSR-02, DSR-03, DSR-06, and DSR-09, and 1.2.0 as the release of DSR-01 to DSR-03 (T15.4). DSR-07 is the new open decision OD-15. No existing requirement or task changes. | Owner approval in chat |
 | 1.53 | 2026-11-01 | OD-15 decided: option B, text printed on a product may show in a photo and added text is not allowed (ADR-0064). No requirement or task ID changes. | Owner decision in chat (ADR-0064) |
+| 1.54 | 2026-11-01 | §4.1 and §4.10 list the key-value list (`key-value-list.md`, `CnKeyValueList`), the new component of T15.2 (DSR-02). No requirement or task ID changes. | Owner approval in chat (T15.2), ADR-0065 |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

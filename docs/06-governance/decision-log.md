@@ -90,6 +90,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0062: The email rows component sits inside the card](decisions/0062-email-rows-component.md)
 - [ADR-0063: The email header uses the horizontal wordmark as a PNG](decisions/0063-email-raster-logo.md)
 - [ADR-0064: Text printed on a product may show in a photo](decisions/0064-packaging-text-in-photos.md)
+- [ADR-0065: The key-value list is a custom component](decisions/0065-key-value-list-custom.md)
 
 ## Open items
 
@@ -119,3 +120,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0062 (email rows component)
 - 0.1.0 — Index extended with ADR-0063 (email raster logo)
 - 0.1.0 — Index extended with ADR-0064 (packaging text in photos)
+- 0.1.0 — Index extended with ADR-0065 (key-value list is custom)
