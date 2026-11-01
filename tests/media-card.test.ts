@@ -86,6 +86,24 @@ test('REQ-025 AC4: the card has one link, and it is the title, so the name is th
   assert.match(ownCss, /:has\(\.cn-media-card__link:focus-visible\)/)
 })
 
+test('T15.1 (DSR-01, REQ-022 AC1): the meta slot sits under the title, is empty-safe, and takes spacing from tokens only', () => {
+  // A generic name, between the title and the tags, rendered only when the slot is given.
+  assert.match(component, /meta\?\(\): unknown/)
+  assert.match(template, /<div v-if="slots\.meta" class="cn-media-card__meta"><slot name="meta" \/><\/div>/)
+  assert.ok(template.indexOf('cn-media-card__title') < template.indexOf('cn-media-card__meta'))
+  assert.ok(template.indexOf('cn-media-card__meta') < template.indexOf('cn-media-card__tags'))
+  // Its rule reads existing space tokens and no raw value.
+  const names = new Set(tokens.map((t) => cssVariable(t.path)))
+  const rule = ownCss.slice(ownCss.indexOf('.cn-media-card__meta {')).split('}')[0]!
+  assert.match(rule, /gap: var\(--cn-space-sm\)/)
+  for (const [, name] of rule.matchAll(/var\((--cn-[a-z0-9-]+)\)/g)) assert.ok(names.has(name!), `${name} is a token`)
+  assert.doesNotMatch(rule, /\d+(px|rem|em)\b|#[0-9a-f]{3,8}\b/i)
+  // The doc and the demos cover it.
+  assert.match(doc, /\| `meta` \|/)
+  assert.match(read('apps/showcase/demos/media-card/states.vue'), /#meta/)
+  assert.match(read('apps/showcase/demos/media-card/playground.vue'), /#meta/)
+})
+
 test('ADR-0026: the media card tokens reference semantic tokens, and the shape tokens are stable', () => {
   assert.deepEqual(problems, [])
   for (const [path, semantic] of [

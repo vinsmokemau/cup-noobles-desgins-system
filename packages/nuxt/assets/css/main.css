@@ -956,6 +956,15 @@ h3 {
   overflow-wrap: anywhere;
 }
 
+.cn-media-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cn-space-sm);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .cn-media-card__tags {
   display: flex;
   flex-wrap: wrap;

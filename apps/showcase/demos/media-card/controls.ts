@@ -6,4 +6,5 @@ export default [
   { name: 'source', type: 'select', options: ['d20', '3:2', '5:7', '1:1', 'missing', 'broken'], default: 'd20' },
   { name: 'linked', type: 'boolean', default: true },
   { name: 'tagCount', type: 'number', default: 2 },
+  { name: 'meta', type: 'boolean', default: true },
 ]

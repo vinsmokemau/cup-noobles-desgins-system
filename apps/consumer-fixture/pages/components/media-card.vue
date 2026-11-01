@@ -13,7 +13,12 @@ import thumbnail from '@vinsmokemau/cup-noobles-nuxt/assets/brand/D20-CN.svg'
         alt="Un dado de veinte caras dorado"
         :tags="['Anime', 'Cartas']"
         to="/"
-      />
+      >
+        <template #meta>
+          <span>Sábado, 19:00 h</span>
+          <UBadge label="Quedan lugares" color="primary" variant="outline" />
+        </template>
+      </CnMediaCard>
     </div>
   </main>
 </template>

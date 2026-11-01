@@ -13,14 +13,14 @@ demos: [states, playground]
 tbd: []
 related: [card, badge, link, imagery-and-motifs, accessibility, shape]
 since: 0.1.0
-updated: 2026-10-19
+updated: 2026-11-01
 ---
 
 # Media card
 
 ## Purpose
 
-`CnMediaCard` is the featured media card of BR-12: a thumbnail, a title, and one or more tag badges, optionally as one link to another page. It has the same look as the standard [Card](card.md): the pure-black page (BR-03) set apart by a thick brand-pink outline, with no glow (ADR-0018, ADR-0026). Use it to feature one item, such as an article, an event, or a show.
+`CnMediaCard` is the featured media card of BR-12: a thumbnail, a title, an optional line of details, and one or more tag badges, optionally as one link to another page. It has the same look as the standard [Card](card.md): the pure-black page (BR-03) set apart by a thick brand-pink outline, with no glow (ADR-0018, ADR-0026). Use it to feature one item, such as an article, an event, or a show.
 
 **Why custom:** Nuxt UI has no equivalent. The nearest component, `UCard`, has no thumbnail that requires a text alternative and no way to make the whole card a link with a single tab stop and the title as its name. `CnMediaCard` still composes Nuxt UI parts: `ULink` for the link and `UBadge` for the tags.
 
@@ -30,7 +30,12 @@ updated: 2026-10-19
 2. **thumbnail**: the picture at the top, from the `src` prop or the `thumbnail` slot, in a 4:3 frame. The whole picture shows and is never cropped. When there is no picture, or it fails to load, the brand d20 shows in its place.
 3. **divider**: the pink line between the thumbnail and the text.
 4. **title**: a heading (`h3` by default). When the card has a `to` target, the title is the link.
-5. **tags**: one yellow tag badge for each label in `tags`. They are not interactive.
+5. **details**: optional, from the `meta` slot. Short content under the title, such as a value and a status badge. It wraps onto more lines when it does not fit, with the gap of `space.sm`. When the slot is empty, nothing is rendered and the card looks as before.
+6. **tags**: one yellow tag badge for each label in `tags`. They are not interactive.
+
+### Details
+
+The `meta` slot takes any short, non-interactive content: text, a badge, or both. The slot adds no color, size, or weight of its own, so text takes the title color and a [Badge](../atoms/badge.md) keeps its own variant. The only value it sets is the gap between its items, `space.sm`, an existing spacing token (ADR-0049). The space between the title, the details, and the tags is `space.md`, the same as before. Pass every word through the slot (A-11).
 
 ### Thumbnail
 
@@ -100,7 +105,7 @@ The media card has one brand look. It has one structural variant: linked or not 
 
 | State | What changes | Tokens |
 |---|---|---|
-| `default` | Black fill, pink outline, pink line under the thumbnail, yellow tag badges. | `mediaCard.bg`, `mediaCard.highlight`, `mediaCard.divider`, `radius.mediaCard`, `border.width.mediaCard` |
+| `default` | Black fill, pink outline, pink line under the thumbnail, details under the title, yellow tag badges. | `mediaCard.bg`, `mediaCard.highlight`, `mediaCard.divider`, `radius.mediaCard`, `border.width.mediaCard` |
 | `hover` | The title is underlined. Nothing changes color. | None |
 | `focus-visible` | A yellow ring surrounds the whole card, outside the outline. The ring shows for keyboard focus, never on a mouse click. | `mediaCard.focus.color`, `mediaCard.focus.width`, `mediaCard.focus.offset`, `mediaCard.focus.style` |
 | `active` | The title stays underlined. A pressed card looks like hover, because nothing changes color. | None |
@@ -116,12 +121,13 @@ The `hover`, `focus-visible`, and `active` states exist only on a linked card. A
 - Give every thumbnail `alt`, or set `decorative` when the title already says everything the image shows (REQ-025 AC2).
 - Use a picture with one clear, well-lit subject on a plain or dark background, at least twice the displayed width (ADR-0057).
 - Keep tag labels to one or two words.
+- Use the `meta` slot for one short line of text and, if needed, one badge. Name the slot's content for what it is, not for the project it comes from (REQ-022).
 - Pass every text through a prop or a slot. The component never holds copy (A-11).
 
 ### When not to use
 
 - Never use a media card for plain grouped content with header, body, and footer. Use [Card](card.md).
-- Never put a link, a button, or a field inside the card. A linked card has exactly one tab stop, and a second control would nest an interactive element in a link.
+- Never put a link, a button, or a field inside the card, including inside the `meta` slot. A linked card has exactly one tab stop, and a second control would nest an interactive element in a link.
 - Never make a tag badge a filter or a link inside the card.
 - Never write a color, radius, or width literally on the card. Read the tokens (REQ-016).
 - Never add a glow to a card. The glow belongs to buttons (BR-10).
@@ -140,6 +146,7 @@ The `hover`, `focus-visible`, and `active` states exist only on a linked card. A
 
 - The card is an `<article>`. The title is a heading, so assistive technology can navigate to it. Pass `as` to match the heading level of the page.
 - A linked card has exactly one focusable element: the title link (REQ-025 AC4). The thumbnail, the tags, and the card container take no focus and add no tab stop. The link's text is the title, so the card's accessible name is its title.
+- The `meta` slot is plain content with no role of its own. Its text is read in order after the title. A badge in it keeps its text in the badge, and a status must not rely on color alone (WCAG 1.4.1). On a linked card the link covers the slot, so it must hold no focusable element.
 - The thumbnail is an `<img>` with `alt`, or with an empty `alt` and `aria-hidden="true"` when `decorative`. The fallback d20 is always decorative. A card with a thumbnail and neither `alt` nor `decorative` is a type error in a consumer's template, and it logs a warning in development, also for a thumbnail given in the `thumbnail` slot.
 - The focus indicator is a yellow ring around the whole card on the black page, 18.55:1, never the glow (REQ-024 AC1). It shows on keyboard focus only (`:focus-visible`).
 - The pink outline is 8.37:1 against the page, so the card boundary is perceivable (REQ-015, WCAG 1.4.11). Hover is shown by an underline, so it does not rely on color (WCAG 1.4.1).
@@ -175,7 +182,7 @@ Imagen
 
 ## Responsive behavior
 
-The card fills the width of its container and the 4:3 thumbnail scales with it and shows the whole picture (ADR-0056). A long title breaks inside the card and never causes horizontal overflow at 360, 768, and 1280 px (REQ-028 AC1, ER-05, A-09). The tags wrap onto more lines. Stack cards in one column at 360 px.
+The card fills the width of its container and the 4:3 thumbnail scales with it and shows the whole picture (ADR-0056). A long title breaks inside the card and never causes horizontal overflow at 360, 768, and 1280 px (REQ-028 AC1, ER-05, A-09). The details and the tags wrap onto more lines, and a long unbroken word breaks inside the card (REQ-028 AC1). Stack cards in one column at 360 px.
 
 ## Email notes
 
@@ -203,6 +210,7 @@ Not applicable.
 | Slot | Notes |
 |---|---|
 | `thumbnail` | A thumbnail of your own, in place of `src`. It receives `alt` and `decorative`, which it must apply to its image. |
+| `meta` | Short, non-interactive details under the title, above the tags. Nothing renders when it is empty. |
 
 ```vue
 <CnMediaCard
@@ -212,6 +220,17 @@ Not applicable.
   :tags="['Anime', 'Cartas']"
   to="/eventos/noche-de-juegos"
 />
+```
+
+With details under the title:
+
+```vue
+<CnMediaCard title="Noche de juegos de mesa" src="/media/dado.webp" alt="Un dado de veinte caras dorado">
+  <template #meta>
+    <span>Sábado, 19:00 h</span>
+    <UBadge label="Quedan lugares" color="primary" variant="outline" />
+  </template>
+</CnMediaCard>
 ```
 
 ## Open items
@@ -224,4 +243,5 @@ Not applicable.
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — The card surface is the pure-black page, set by the owner, and the placeholder for it is gone — ADR-0053
 - 0.1.0 — The thumbnail is a 4:3 frame that shows the whole picture, with the brand d20 for a missing picture, and its placeholder is gone — ADR-0056, ADR-0057
+- 1.2.0 — Added the `meta` slot for short details under the title, with the gap of `space.sm` — DSR-01, T15.1
 - 0.1.0 — Moved to stable: the doc has no open item left — owner decision, 2026-10-19

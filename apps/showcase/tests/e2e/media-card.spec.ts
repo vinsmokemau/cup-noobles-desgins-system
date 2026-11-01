@@ -168,6 +168,52 @@ test('REQ-026: hover underlines the title without changing its color', async ({ 
   expect(after.color).toBe(before.color)
 })
 
+// T15.1 (DSR-01, REQ-025, REQ-022 AC1): the `meta` slot sits under the title and above the tags, and an empty slot renders nothing.
+test('REQ-025: the meta slot renders under the title, above the tags, and is not a tab stop', async ({ page }) => {
+  await openDemo(page, 'media-card', 'playground')
+  const meta = page.locator('.cn-media-card__meta')
+  await expect(meta).toHaveCount(1)
+  await expect(meta).toContainText('Sábado, 19:00 h')
+  await expect(meta).toContainText('Quedan lugares')
+  const order = await page
+    .locator('.cn-media-card__body')
+    .evaluate((body) => [...body.children].map((c) => c.className))
+  expect(order).toEqual(['cn-media-card__title', 'cn-media-card__meta', 'cn-media-card__tags'])
+  // The title still is the only focusable element, and a click on the details lands on the link.
+  await expect(page.locator('.cn-media-card').locator('a, button, input, select, textarea, [tabindex]')).toHaveCount(1)
+  const hit = await meta.evaluate((el) => {
+    el.scrollIntoView({ block: 'center' })
+    const box = el.getBoundingClientRect()
+    return document
+      .elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)
+      ?.closest('a')
+      ?.textContent?.trim()
+  })
+  expect(hit).toBe('Noche de juegos de mesa')
+})
+
+test('REQ-025: an empty meta slot renders nothing, and the other parts do not move', async ({ page }) => {
+  await openDemo(page, 'media-card', 'playground')
+  await setProps(page, { meta: false })
+  await expect(page.locator('.cn-media-card__meta')).toHaveCount(0)
+  const order = await page
+    .locator('.cn-media-card__body')
+    .evaluate((body) => [...body.children].map((c) => c.className))
+  expect(order).toEqual(['cn-media-card__title', 'cn-media-card__tags'])
+  await expectNoA11yViolations(page, { label: '/_demo/media-card/playground (no meta)' })
+})
+
+test('REQ-028 AC1: long details wrap inside the card at 360 px', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 800 })
+  await openDemo(page, 'media-card', 'playground')
+  await page.locator('.cn-media-card__meta > span:first-child').evaluate((el) => {
+    el.textContent = 'Superlargapalabrasinningunespacioquedebeajustarseaanchodelacartaenpantallaspequeñas '.repeat(2)
+  })
+  const box = (await page.locator('.cn-media-card').boundingBox())!
+  expect(box.x + box.width).toBeLessThanOrEqual(360)
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+})
+
 test('REQ-055: the playground title and tags follow the controls', async ({ page }) => {
   await openDemo(page, 'media-card', 'playground')
   const target = page.locator('.cn-media-card')

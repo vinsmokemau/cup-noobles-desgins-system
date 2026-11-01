@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 // The playground of the featured media card. The controls in controls.ts set these props. `linked` makes the whole card a
-// link, `decorative` marks the thumbnail as repeating the title, and `tagCount` sets how many tag badges show. `source` picks
+// link, `decorative` marks the thumbnail as repeating the title, and `tagCount` sets how many tag badges show, and `meta` fills the `meta` slot with example content. `source` picks
 // the picture: the golden d20, a plain grey stand-in of 3:2, 5:7, or 1:1 (example content, to show that the 4:3 frame never
 // crops, ADR-0056), no picture, or a file that fails to load (both show the fallback d20, ADR-0057).
 const props = withDefaults(
@@ -11,6 +11,7 @@ const props = withDefaults(
     decorative?: boolean
     linked?: boolean
     tagCount?: number
+    meta?: boolean
     source?: 'd20' | '3:2' | '5:7' | '1:1' | 'missing' | 'broken'
   }>(),
   {
@@ -19,6 +20,7 @@ const props = withDefaults(
     decorative: false,
     linked: true,
     tagCount: 2,
+    meta: true,
     source: 'd20',
   },
 )
@@ -41,7 +43,12 @@ const tags = computed(() => TAGS.slice(0, Math.max(0, Math.min(TAGS.length, prop
 
 <template>
   <div class="p-6">
-    <CnMediaCard v-if="!src" :title="title" decorative :tags="tags" :to="linked ? '/' : undefined" />
+    <CnMediaCard v-if="!src" :title="title" decorative :tags="tags" :to="linked ? '/' : undefined">
+      <template v-if="meta" #meta>
+        <span>Sábado, 19:00 h</span>
+        <UBadge label="Quedan lugares" color="primary" variant="outline" />
+      </template>
+    </CnMediaCard>
     <CnMediaCard
       v-else-if="decorative"
       :title="title"
@@ -49,7 +56,17 @@ const tags = computed(() => TAGS.slice(0, Math.max(0, Math.min(TAGS.length, prop
       decorative
       :tags="tags"
       :to="linked ? '/' : undefined"
-    />
-    <CnMediaCard v-else :title="title" :src="src" :alt="alt" :tags="tags" :to="linked ? '/' : undefined" />
+    >
+      <template v-if="meta" #meta>
+        <span>Sábado, 19:00 h</span>
+        <UBadge label="Quedan lugares" color="primary" variant="outline" />
+      </template>
+    </CnMediaCard>
+    <CnMediaCard v-else :title="title" :src="src" :alt="alt" :tags="tags" :to="linked ? '/' : undefined">
+      <template v-if="meta" #meta>
+        <span>Sábado, 19:00 h</span>
+        <UBadge label="Quedan lugares" color="primary" variant="outline" />
+      </template>
+    </CnMediaCard>
   </div>
 </template>

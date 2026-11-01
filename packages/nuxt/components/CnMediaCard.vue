@@ -11,7 +11,8 @@
 //
 // When `to` is set the whole card is one link (REQ-025 AC4). The link is the title, and its ::after covers the card, so the
 // card has exactly one focusable element and its accessible name is the title. Nothing else in the card is focusable. The
-// component holds no text of its own (A-11). The layer declares no `vue` dependency (Nuxt provides it).
+// component holds no text of its own (A-11). The `meta` slot (T15.1) sits under the title and holds short details that are not
+// interactive, since the link already covers the card. It renders nothing when it is empty. The layer declares no `vue` dependency (Nuxt provides it).
 import { thumbnailProblem } from '../utils/media-card'
 
 const FALLBACK = new URL('../assets/brand/D20-CN.svg', import.meta.url).href
@@ -34,6 +35,8 @@ const props = defineProps<Props>()
 const slots = defineSlots<{
   /** A thumbnail of your own. It receives the `alt` and `decorative` props, which it must apply to its image. */
   thumbnail?(props: { alt?: string; decorative: boolean }): unknown
+  /** Short, non-interactive details under the title, such as a value and a status badge. Nothing renders when it is empty. */
+  meta?(): unknown
 }>()
 
 // A picture that fails to load, including one that failed before the page hydrated, is swapped for the fallback in place.
@@ -88,6 +91,7 @@ if (process.env.NODE_ENV !== 'production') {
         <ULink v-if="to" :to="to" raw class="cn-media-card__link">{{ title }}</ULink>
         <template v-else>{{ title }}</template>
       </component>
+      <div v-if="slots.meta" class="cn-media-card__meta"><slot name="meta" /></div>
       <div v-if="tags?.length" class="cn-media-card__tags">
         <UBadge v-for="tag in tags" :key="tag" :label="tag" color="secondary" variant="solid" />
       </div>
