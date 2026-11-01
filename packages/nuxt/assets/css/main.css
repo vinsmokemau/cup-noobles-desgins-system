@@ -997,6 +997,100 @@ h3 {
 }
 
 /*
+ * T15.3 (REQ-020, REQ-024, REQ-026, REQ-028, ADR-0066): CnImageGallery, a gallery of pictures over UCarousel. Every color, the
+ * stroke, and the radius are --cn-image-gallery-* tokens, and the spaces are steps of the spacing scale (ADR-0049). The look is
+ * the cards': the black page behind the pictures and a thick brand pink frame as the neon highlight, with no glow (ADR-0018,
+ * ADR-0026). `.cn-carousel*` are the hooks that app.config.ts puts on UCarousel: the frame, and the item with no gutter.
+ *
+ * Every picture sits in a 4:3 frame and is scaled to fit inside it, never cropped, so any space around it is the frame's black
+ * (ADR-0056). The dots are circles of one `space.lg` step (24 px), which is the smallest target of REQ-028 AC2. The current
+ * dot is filled and the others are hollow, so the current picture is not told by color alone (WCAG 1.4.1). The focus ring is
+ * drawn from the focus tokens around the gallery and around a dot, never the glow (REQ-024 AC1). `[data-cn-state]` forces a
+ * state for the documentation; application code never sets it.
+ */
+.cn-carousel {
+  min-width: 0;
+  overflow: hidden;
+  background-color: var(--cn-image-gallery-bg);
+  border: var(--cn-border-width-image-gallery) solid var(--cn-image-gallery-highlight);
+  border-radius: var(--cn-radius-image-gallery);
+  box-shadow: none;
+}
+
+.cn-carousel__item {
+  min-width: 0;
+}
+
+.cn-carousel:focus-visible,
+.cn-image-gallery[data-cn-state='focus-visible'] .cn-carousel {
+  outline: var(--cn-image-gallery-focus-width) var(--cn-image-gallery-focus-style) var(--cn-image-gallery-focus-color);
+  outline-offset: var(--cn-image-gallery-focus-offset);
+}
+
+.cn-image-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cn-space-md);
+  min-width: 0;
+}
+
+.cn-image-gallery__frame {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.cn-image-gallery__image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cn-image-gallery__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cn-space-md);
+}
+
+.cn-image-gallery__dots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cn-space-sm);
+  min-width: 0;
+}
+
+.cn-image-gallery__dot {
+  box-sizing: border-box;
+  width: var(--cn-space-lg);
+  height: var(--cn-space-lg);
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: var(--cn-border-width-image-gallery) solid var(--cn-image-gallery-dot-border);
+  border-radius: 50%;
+}
+
+.cn-image-gallery__dot:not([data-current='true']):hover,
+.cn-image-gallery[data-cn-state='hover'] .cn-image-gallery__dot:not([data-current='true']) {
+  border-color: var(--cn-image-gallery-dot-border-hover);
+}
+
+.cn-image-gallery__dot[data-current='true'] {
+  background-color: var(--cn-image-gallery-dot-current);
+  border-color: var(--cn-image-gallery-dot-current);
+}
+
+.cn-image-gallery__dot:focus-visible,
+.cn-image-gallery[data-cn-state='focus-visible'] .cn-image-gallery__dot[data-current='true'] {
+  outline: var(--cn-image-gallery-focus-width) var(--cn-image-gallery-focus-style) var(--cn-image-gallery-focus-color);
+  outline-offset: var(--cn-image-gallery-focus-offset);
+}
+
+/*
  * T15.2 (REQ-020, REQ-026, REQ-028, ADR-0065): CnKeyValueList, a description list of labels and values. Every color and the
  * line width are --cn-key-value-list-* tokens. The list is on the black page with no fill, and a line between two rows
  * is the only separation. At 360 px a row stacks: the label over the value. From the `md` breakpoint (breakpoint.md, ADR-0035)

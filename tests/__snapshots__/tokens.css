@@ -28,6 +28,7 @@
   --cn-border-width-card: 3px; /** Outline stroke width of the standard card, and of the dividers between its parts (BR-13). */
   --cn-border-width-choice: 3px; /** Outline stroke width of the checkbox and the radio (BR-10, BR-13). The switch track keeps Nuxt UI's own border, because its thumb travel is tuned to it. */
   --cn-border-width-default: 3px; /** Stroke width of outlines (BR-10, BR-13): 3 px, the same weight as the focus ring (ADR-0032, TBD-11). */
+  --cn-border-width-image-gallery: 3px; /** Stroke width of the frame around the pictures, and of the outline of a dot (BR-13). */
   --cn-border-width-input: 3px; /** Outline stroke width of the text fields (BR-10, BR-13). */
   --cn-border-width-interactive: 3px; /** Outline stroke width of interactive elements such as buttons (BR-10, BR-13): 3 px (ADR-0032, TBD-11). */
   --cn-border-width-media-card: 3px; /** Outline stroke width of the featured media card, and of the line between its thumbnail and its text (BR-13). */
@@ -228,6 +229,15 @@
   --cn-form-field-error-fg: #ff5c5c; /** Error message under a form field. */
   --cn-form-field-help-fg: #bdbdbd; /** Help text under a form field. */
   --cn-form-field-label-fg: #f5f5f5; /** Label text of a form field. */
+  --cn-image-gallery-bg: #000000; /** Fill behind the pictures: the pure black page (BR-03, ADR-0053), through `color.surface.card`. Any space around a picture is this black (ADR-0056). */
+  --cn-image-gallery-dot-border: #8c8c8c; /** Outline of the dot of a picture that is not showing: the neutral border color, which passes the 3:1 minimum for a UI element. */
+  --cn-image-gallery-dot-border-hover: #ef80ae; /** Outline of a dot under the pointer: brand pink, as the outline of a pagination page does on hover (ADR-0028). */
+  --cn-image-gallery-dot-current: #ef80ae; /** Fill and outline of the dot of the picture that is showing. A filled dot against hollow ones, so the current picture is not told by color alone (WCAG 1.4.1). */
+  --cn-image-gallery-focus-color: #fff488; /** Focus ring color of the gallery and of its dots (REQ-024 AC1, ADR-0009). It is never the glow. */
+  --cn-image-gallery-focus-offset: 3px; /** Gap between the gallery or a dot and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-image-gallery-focus-style: solid; /** Focus ring line style of the gallery and of its dots (REQ-024 AC1, ADR-0009). */
+  --cn-image-gallery-focus-width: 3px; /** Focus ring width of the gallery and of its dots (REQ-024 AC1, ADR-0009). */
+  --cn-image-gallery-highlight: #ef80ae; /** The neon highlight of the gallery: its frame is brand pink, like the cards (BR-01, ADR-0018, ADR-0026). */
   --cn-input-bg: #000000; /** Fill of the text fields: the pure black page (BR-03). A field is separated from the page by its outline (C-05). */
   --cn-input-border: #8c8c8c; /** Outline color of a field at rest. */
   --cn-input-border-hover: #ef80ae; /** Outline color of a field while hovered: brand pink (BR-01). */
@@ -307,6 +317,7 @@
   --cn-radius-choice: 0.5rem; /** Corner radius of the checkbox box (BR-10). The radio and the switch are round by shape. Uses the `compact` radius role, the `radius.sm` step (ADR-0050, TBD-10). */
   --cn-radius-compact: 0.5rem; /** Corner radius of small elements such as badges, checkboxes, and tooltips: the `radius.sm` step, 8 px (ADR-0050, TBD-10). */
   --cn-radius-container: 1.25rem; /** Corner radius of large containers such as cards, media cards, and overlay panels: the `radius.lg` step, 20 px (ADR-0050, TBD-10). */
+  --cn-radius-image-gallery: 1.25rem; /** Corner radius of the frame around the pictures of the image gallery. It is the `container` radius role, the same as the featured media card (ADR-0050, ADR-0066). */
   --cn-radius-input: 0.75rem; /** Corner radius of the text fields: input, textarea, and select (BR-10). Uses the `interactive` radius role, the `radius.md` step (ADR-0050, TBD-10). */
   --cn-radius-interactive: 0.75rem; /** Corner radius of interactive elements such as buttons (BR-10): the `radius.md` step, 12 px (ADR-0050, TBD-10; the step is assigned by T13.3). */
   --cn-radius-lg: 1.25rem; /** Corner radius step, 20 px (ADR-0050, TBD-10): the Chunky radius. */

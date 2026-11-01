@@ -1,0 +1,124 @@
+{
+  "radius": {
+    "imageGallery": {
+      "$type": "dimension",
+      "$value": "{radius.container}",
+      "$description": "Corner radius of the frame around the pictures of the image gallery. It is the `container` radius role, the same as the featured media card (ADR-0050, ADR-0066).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "imageGallery": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Stroke width of the frame around the pictures, and of the outline of a dot (BR-13).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  },
+  "imageGallery": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.surface.card}",
+      "$description": "Fill behind the pictures: the pure black page (BR-03, ADR-0053), through `color.surface.card`. Any space around a picture is this black (ADR-0056).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "The neon highlight of the gallery: its frame is brand pink, like the cards (BR-01, ADR-0018, ADR-0026).",
+      "$extensions": {
+        "cn": {
+          "status": "stable"
+        }
+      }
+    },
+    "dot": {
+      "border": {
+        "$type": "color",
+        "$value": "{color.border.default}",
+        "$description": "Outline of the dot of a picture that is not showing: the neutral border color, which passes the 3:1 minimum for a UI element.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "borderHover": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline of a dot under the pointer: brand pink, as the outline of a pagination page does on hover (ADR-0028).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "current": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Fill and outline of the dot of the picture that is showing. A filled dot against hollow ones, so the current picture is not told by color alone (WCAG 1.4.1).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of the gallery and of its dots (REQ-024 AC1, ADR-0009). It is never the glow.",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of the gallery and of its dots (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between the gallery or a dot and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of the gallery and of its dots (REQ-024 AC1, ADR-0009).",
+        "$extensions": {
+          "cn": {
+            "status": "stable"
+          }
+        }
+      }
+    }
+  }
+}

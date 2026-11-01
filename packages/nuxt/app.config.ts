@@ -259,6 +259,23 @@ export default {
         list: 'cn-pagination__list',
       },
     },
+    // T15.3 (REQ-020, REQ-024, ADR-0066): the carousel inside CnImageGallery. UCarousel gives the sliding, the swipe, and the
+    // arrow keys. The hooks put a thick pink frame around the viewport and a focus ring on the keyboard-focusable root, and
+    // the two overrides remove Nuxt UI's gutter between slides (`-ms-4` and `ps-4`), so each picture fills the frame. The
+    // rules are the `.cn-carousel*` rules in assets/css/main.css and read the --cn-image-gallery-* tokens. The arrows and the
+    // dots are drawn by CnImageGallery, not by UCarousel.
+    carousel: {
+      slots: {
+        root: 'cn-carousel',
+        viewport: 'cn-carousel__viewport',
+        item: 'cn-carousel__item',
+      },
+      variants: {
+        orientation: {
+          horizontal: { container: 'ms-0', item: 'ps-0' },
+        },
+      },
+    },
     // T8.3 (REQ-020, REQ-026, ADR-0027): the alert, the toast, and the tooltip. They share one look, the owner's option A:
     // the black page, a thick outline and an icon in the feedback color, and normal text. The look is the `.cn-alert*`,
     // `.cn-toast*`, and `.cn-tooltip*` rules in assets/css/main.css, which read the --cn-alert-*, --cn-toast-*, and

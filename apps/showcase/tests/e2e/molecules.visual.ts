@@ -10,6 +10,7 @@ const STATES = {
   card: ['default'],
   'media-card': ['default', 'hover', 'focus-visible', 'active'],
   'key-value-list': ['default', 'empty'],
+  'image-gallery': ['default', 'hover', 'focus-visible', 'selected', 'disabled', 'error', 'empty'],
   modal: ['default'],
   slideover: ['default'],
   alert: ['default', 'success', 'warning', 'error', 'focus-visible'],

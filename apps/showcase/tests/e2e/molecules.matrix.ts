@@ -10,6 +10,7 @@ for (const slug of [
   'card',
   'media-card',
   'key-value-list',
+  'image-gallery',
   'modal',
   'slideover',
   'alert',

@@ -30,6 +30,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `border.width.card` | `--cn-border-width-card` | `3px` | stable |
 | `border.width.choice` | `--cn-border-width-choice` | `3px` | stable |
 | `border.width.default` | `--cn-border-width-default` | `3px` | stable |
+| `border.width.imageGallery` | `--cn-border-width-image-gallery` | `3px` | stable |
 | `border.width.input` | `--cn-border-width-input` | `3px` | stable |
 | `border.width.interactive` | `--cn-border-width-interactive` | `3px` | stable |
 | `border.width.mediaCard` | `--cn-border-width-media-card` | `3px` | stable |
@@ -50,6 +51,7 @@ This doc defines the shape of Cup Noobles UI: rounded corners and thick, high-co
 | `radius.choice` | `--cn-radius-choice` | `0.5rem` | stable |
 | `radius.compact` | `--cn-radius-compact` | `0.5rem` | stable |
 | `radius.container` | `--cn-radius-container` | `1.25rem` | stable |
+| `radius.imageGallery` | `--cn-radius-image-gallery` | `1.25rem` | stable |
 | `radius.input` | `--cn-radius-input` | `0.75rem` | stable |
 | `radius.interactive` | `--cn-radius-interactive` | `0.75rem` | stable |
 | `radius.lg` | `--cn-radius-lg` | `1.25rem` | stable |
