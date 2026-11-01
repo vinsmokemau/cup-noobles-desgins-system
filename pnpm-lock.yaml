@@ -261,6 +261,9 @@ importers:
 
   packages/email:
     devDependencies:
+      '@playwright/test':
+        specifier: 1.63.0
+        version: 1.63.0
       mjml:
         specifier: 5.4.1
         version: 5.4.1(svgo@4.1.0)(terser@5.51.2)(typescript@6.0.3)

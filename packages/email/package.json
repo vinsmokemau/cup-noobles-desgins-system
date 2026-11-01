@@ -12,12 +12,15 @@
     "access": "restricted"
   },
   "files": [
-    "dist"
+    "dist",
+    "assets"
   ],
   "scripts": {
-    "build": "pnpm --filter @vinsmokemau/cup-noobles-tokens build && node build.ts"
+    "build": "pnpm --filter @vinsmokemau/cup-noobles-tokens build && node build.ts",
+    "build:logo": "node logo.ts"
   },
   "devDependencies": {
+    "@playwright/test": "1.63.0",
     "mjml": "5.4.1"
   }
 }

@@ -9,7 +9,7 @@ tokens: [button.primary, border.width.button, radius.button, card, border.width.
 tbd: []
 related: [email-foundations, email-layouts, button, card, separator, site-header, site-footer, logo, typography, spacing]
 since: 0.1.0
-updated: 2026-10-28
+updated: 2026-10-31
 ---
 
 # Email components
@@ -157,7 +157,7 @@ File: `header.mjml`. The logo, centered, on the header fill with a line under it
 | Slot | Where | Content |
 |---|---|---|
 | `{{ home_url }}` | `href` of the logo link | The address the logo opens. Required. |
-| `{{ logo_url }}` | `src` of the logo image | A raster logo image, because most email clients do not render SVG. The sending project hosts it. Required. |
+| `{{ logo_url }}` | `src` of the logo image | The address of `logo-horizontal.png`, a raster logo, because most email clients do not render SVG. The file is in `packages/email/assets/`. It is 232 x 72 px, twice the 116 x 36 px at which the `img` shows it (height `logo.rule.minHeight.horizontal`), on a transparent background. The sending project hosts it at a public HTTPS address; the package does not. Required. |
 | `{{ logo_alt }}` | `alt` of the logo image | The words "Cup Noobles". They show in the logo's place when images are off. Required. |
 
 ### content-section
@@ -223,3 +223,4 @@ The header keeps the logo clear space of ADR-0016: `logo.rule.clearSpace` is a s
 - 0.1.0 — The spacing scale and the corner radius are set by the owner, so the TBD-09 and TBD-10 callouts are gone. Every padding takes a step of the scale, and the button and the card take their radius (T13.3) — ADR-0049, ADR-0050
 - 0.1.0 — No TBD item is left, and the doc moves to stable — ADR-0041, ADR-0049, ADR-0050
 - 1.1.0 — Added the rows, a seventh component for lines of items and totals inside the card; the count changes from six to seven (T14.6, DSR-04) — ADR-0062
+- 1.1.0 — The header's `{{ logo_url }}` row names the PNG logo, its size, and who hosts it (T14.7, DSR-05) — ADR-0063
