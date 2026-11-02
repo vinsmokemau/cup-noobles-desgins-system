@@ -234,3 +234,14 @@ test('ADR-0056, ADR-0057: the docs state the frame, the crop rule, and the writt
   ])
     assert.match(imagery, standard, String(standard))
 })
+
+test('T15.8, ADR-0068: the image has width and height, loads lazily by default, and loads eagerly with priority', () => {
+  const img = template.match(/<img[\s\S]*?\/>/)?.[0] ?? ''
+  assert.match(img, /\bwidth="4"/)
+  assert.match(img, /\bheight="3"/)
+  assert.match(img, /:loading="priority \? 'eager' : 'lazy'"/)
+  assert.match(img, /:fetchpriority="priority \? 'high' : undefined"/)
+  assert.match(component, /priority\?: boolean/)
+  assert.match(doc, /\| `priority` \| `boolean` \|/)
+  assert.match(read('docs/06-governance/decision-log.md'), /\(decisions\/0068-image-dimensions-and-loading\.md\)/)
+})

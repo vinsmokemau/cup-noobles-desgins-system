@@ -6,6 +6,10 @@
 // The thumbnail sits in a 4:3 frame and the whole picture shows, never cropped (ADR-0056). A missing picture, or one that
 // fails to load, shows the brand d20 on black, marked decorative, and never a broken-image icon (ADR-0057).
 //
+// T15.8 (DSR-11, ADR-0068): the image carries `width="4"` and `height="3"`, the 4:3 ratio of the frame, so the browser reserves the
+// space before the picture arrives. They are a ratio hint only; the frame and `object-fit: contain` size the picture. The picture
+// loads lazily, and `priority` marks a card above the fold: it loads at once and asks for high fetch priority.
+//
 // The thumbnail needs `alt`, or the explicit `decorative` flag (REQ-025 AC2). The types ask for it in a consumer's templates, and
 // the development warning below (`thumbnailProblem`, utils/media-card.ts) also covers a thumbnail given through the `thumbnail`\n// slot, and a call that bypasses the types.
 //
@@ -25,6 +29,8 @@ type Base = {
   to?: string
   /** Heading level of the title. Default h3. */
   as?: 'h2' | 'h3' | 'h4'
+  /** The picture is above the fold: it loads at once, with high fetch priority. Default false, the picture loads lazily (T15.8). */
+  priority?: boolean
 }
 type Props =
   | (Base & { src: string; alt: string; decorative?: false })
@@ -80,6 +86,10 @@ if (process.env.NODE_ENV !== 'production') {
           :src="src || FALLBACK"
           :alt="src && !decorative ? alt : ''"
           :aria-hidden="!src || decorative ? 'true' : undefined"
+          width="4"
+          height="3"
+          :loading="priority ? 'eager' : 'lazy'"
+          :fetchpriority="priority ? 'high' : undefined"
           draggable="false"
           @error="showFallback($event.target as unknown as Picture)"
           @vue:mounted="({ el }: { el: Picture }) => src && checkLoaded(el)"

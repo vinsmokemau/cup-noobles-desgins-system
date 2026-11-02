@@ -259,3 +259,13 @@ test('a minor changeset for the layer exists (§4.8)', () => {
     assert.match(changeset, new RegExp(`'@vinsmokemau/cup-noobles-${name}': minor`))
   assert.match(changeset, /CnImageGallery/)
 })
+
+test('T15.8, ADR-0068: every picture has width and height, the opening one loads at once, and priority is documented', () => {
+  const img = template.match(/<img[\s\S]*?\/>/)?.[0] ?? ''
+  assert.match(img, /\bwidth="4"/)
+  assert.match(img, /\bheight="3"/)
+  assert.match(img, /:loading="index === opening \? 'eager' : 'lazy'"/)
+  assert.match(img, /:fetchpriority="priority && index === opening \? 'high' : undefined"/)
+  assert.match(component, /priority\?: boolean/)
+  assert.match(read('docs/02-components/molecules/image-gallery.md'), /\| `priority` \| `boolean` \|/)
+})

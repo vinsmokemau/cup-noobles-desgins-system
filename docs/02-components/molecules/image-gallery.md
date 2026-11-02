@@ -13,7 +13,7 @@ demos: [states, playground]
 tbd: []
 related: [media-card, button, imagery-and-motifs, pagination, motion, accessibility]
 since: 1.2.0
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Image gallery
@@ -138,6 +138,7 @@ A gallery has no `active` (pressed) state of its own: pressing a dot or an arrow
 - The current dot has `aria-current="true"` and is also the filled one, so the current picture is not told by color alone (WCAG 1.4.1). A visually hidden live region announces the position, such as "Imagen 2 de 5", each time the picture changes.
 - A picture has `alt`, or `alt=""` and `aria-hidden="true"` when it is `decorative`. The d20 fallback is always decorative.
 - The focus ring shows on `:focus-visible`: around the frame for the region, and around a dot. The ring is an outline, not the glow, and it is 18.55:1 against the page (REQ-024 AC1, AC2).
+- Every picture carries `width="4"` and `height="3"`, the ratio of the frame, so the space is reserved before it loads. The opening picture loads at once and the others lazily; `priority` adds high fetch priority to the opening one (ADR-0068). None of this changes the text alternatives or the focus order.
 - A dot is 24 × 24 px, and the arrow buttons are larger (REQ-028 AC2).
 - The previous control on the first picture and the next control on the last are disabled, so they are announced as unavailable and skipped by Tab.
 - Under `prefers-reduced-motion: reduce` the picture changes at once, with no sliding (REQ-029 AC2).
@@ -198,6 +199,8 @@ Not applicable.
 |---|---|---|
 | `items` | `{ src?: string; alt: string }[]`, or `{ src?: string; decorative: true }` | Required. The pictures, in order. Each needs `alt`, or `decorative: true`. An empty array renders nothing. |
 | `label` | `string` | Required. The accessible name of the gallery. |
+| `startIndex` | `number` | The picture the gallery opens on, counting from 0. Default 0. |
+| `priority` | `boolean` | The gallery is above the fold: the opening picture also gets `fetchpriority="high"`. Default `false`. |
 | `labels` | `{ previous, next, dots, dot(position, total), position(position, total) }` | Required. The names of the controls and the announcement of the position. |
 
 ```vue
@@ -223,4 +226,5 @@ Not applicable.
 
 ## Changelog
 
+- 1.4.0 — Every picture has `width` and `height`; the opening picture loads at once, the others lazily; the `priority` prop — DSR-11, T15.8, ADR-0068
 - 1.2.0 — First version: `CnImageGallery`, a gallery of pictures over `UCarousel` with the 4:3 whole-picture frame, the d20 fallback, and the `imageGallery` tokens, and the demos — DSR-03, T15.3, ADR-0066

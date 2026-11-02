@@ -13,7 +13,7 @@ demos: [states, playground]
 tbd: []
 related: [card, badge, link, imagery-and-motifs, accessibility, shape]
 since: 0.1.0
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Media card
@@ -42,6 +42,8 @@ The `meta` slot takes any short, non-interactive content: text, a badge, or both
 The thumbnail frame is 4:3 at every screen width, and the picture is scaled to fit inside it, never cropped (`object-fit: contain`, ADR-0056). A 3:2 photo, a 5:7 trading card, and a square box all show whole; the space left around them is black, the color of the card (ADR-0053). On a 360 px phone the picture area is about 322 × 242 px.
 
 A missing picture shows the brand golden d20 on black, marked decorative, and never a broken-image icon. The d20 also replaces a picture that fails to load (ADR-0057).
+
+The picture carries `width="4"` and `height="3"`, the ratio of the frame, so the browser reserves the space before it loads and the grid does not shift. They are a hint only; the frame sizes the picture. The picture loads lazily. Set `priority` on a card that is above the fold, such as the first row of a catalog: it loads at once with high fetch priority (ADR-0068).
 
 The written standards for the pictures that go in a thumbnail are in [Imagery and motifs](../../01-foundations/imagery-and-motifs.md#photography-and-thumbnails). No photo style (a color grade, a filter, or a treatment) is defined.
 
@@ -122,6 +124,7 @@ The `hover`, `focus-visible`, and `active` states exist only on a linked card. A
 - Use a picture with one clear, well-lit subject on a plain or dark background, at least twice the displayed width (ADR-0057).
 - Keep tag labels to one or two words.
 - Use the `meta` slot for one short line of text and, if needed, one badge. Name the slot's content for what it is, not for the project it comes from (REQ-022).
+- Set `priority` on the cards that are visible when the page opens, and leave it off for the rest (ADR-0068).
 - Pass every text through a prop or a slot. The component never holds copy (A-11).
 
 ### When not to use
@@ -150,6 +153,7 @@ The `hover`, `focus-visible`, and `active` states exist only on a linked card. A
 - The thumbnail is an `<img>` with `alt`, or with an empty `alt` and `aria-hidden="true"` when `decorative`. The fallback d20 is always decorative. A card with a thumbnail and neither `alt` nor `decorative` is a type error in a consumer's template, and it logs a warning in development, also for a thumbnail given in the `thumbnail` slot.
 - The focus indicator is a yellow ring around the whole card on the black page, 18.55:1, never the glow (REQ-024 AC1). It shows on keyboard focus only (`:focus-visible`).
 - The pink outline is 8.37:1 against the page, so the card boundary is perceivable (REQ-015, WCAG 1.4.11). Hover is shown by an underline, so it does not rely on color (WCAG 1.4.1).
+- The picture's `width`, `height`, and `loading` change no text alternative, role, or focus order. Lazy loading adds no focusable element.
 - The hit area of the link is the whole card, so the target is far larger than 24 × 24 px (REQ-028 AC2).
 
 Keyboard map (a linked card):
@@ -206,6 +210,7 @@ Not applicable.
 | `tags` | `string[]` | One tag badge for each label. |
 | `to` | `string` | The link target. When set, the whole card is one link. |
 | `as` | `'h2' \| 'h3' \| 'h4'` | The heading level of the title. Default `h3`. |
+| `priority` | `boolean` | The card is above the fold: the picture loads at once with `fetchpriority="high"`. Default `false`, the picture loads lazily. |
 
 | Slot | Notes |
 |---|---|
@@ -239,6 +244,7 @@ Not applicable.
 
 ## Changelog
 
+- 1.4.0 — The picture has `width` and `height` and loads lazily; the `priority` prop loads it at once — DSR-11, T15.8, ADR-0068
 - 0.1.0 — First draft: `CnMediaCard` with a thumbnail, a title, tag badges, an optional link with one tab stop, the component tokens, and the demos (T8.2) — ADR-0026
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — The card surface is the pure-black page, set by the owner, and the placeholder for it is gone — ADR-0053

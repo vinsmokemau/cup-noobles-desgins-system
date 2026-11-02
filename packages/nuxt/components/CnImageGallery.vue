@@ -26,6 +26,8 @@ const props = defineProps<{
   label: string
   /** The picture the gallery opens on, counting from 0. Default 0, the first. */
   startIndex?: number
+  /** The gallery is above the fold: the opening picture also asks for high fetch priority. Default false (T15.8). */
+  priority?: boolean
   /** The accessible names of the controls. All of them are copy, so all of them arrive here (A-11). */
   labels: {
     previous: string
@@ -67,6 +69,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 const carousel = useTemplateRef<{ emblaApi?: { scrollTo(index: number, jump?: boolean): void } }>('carousel')
 const selected = ref(clampPosition(props.startIndex ?? 0, props.items.length))
+// T15.8 (DSR-11, ADR-0068): the picture the gallery opens on loads at once, the others lazily. Every image carries `width="4"` and `height="3"`, the ratio of the frame, as a hint only.
+const opening = computed(() => clampPosition(props.startIndex ?? 0, props.items.length))
 const last = computed(() => props.items.length - 1)
 function onSelect(position: number) {
   selected.value = clampPosition(position, props.items.length)
@@ -102,6 +106,10 @@ function go(position: number) {
             :src="item.src || FALLBACK"
             :alt="item.src && !item.decorative ? item.alt : ''"
             :aria-hidden="!item.src || item.decorative ? 'true' : undefined"
+            width="4"
+            height="3"
+            :loading="index === opening ? 'eager' : 'lazy'"
+            :fetchpriority="priority && index === opening ? 'high' : undefined"
             draggable="false"
             @error="showFallback($event.target as unknown as Image)"
             @vue:mounted="({ el }: { el: Image }) => item.src && checkLoaded(el)"
