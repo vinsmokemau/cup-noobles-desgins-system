@@ -147,4 +147,4 @@ Not applicable.
 - 0.1.0 — Approved without changes; status `stable` — owner approval in chat, 2026-09-27
 - 0.2.0 — Install steps verified against GitHub Packages: the token line moves to the user-level `.npmrc`, and the pnpm `allowBuilds` setting is added (T12.2) — ADR-0007
 - 0.3.0 — The layer sets `color-scheme: dark` and a `theme-color` meta tag from `color.bg.base` (T15.5, DSR-06) — approved without changes; owner approval in chat, 2026-11-01
-- 0.4.0 — The layer ships the raw-value lint rule, with its usage (T15.6, DSR-09) — the owner chose where the rule ships in chat, 2026-11-01 (ADR-0067); the usage wording awaits approval
+- 0.4.0 — The layer ships the raw-value lint rule, with its usage (T15.6, DSR-09) — approved without changes; owner approval in chat, 2026-11-01 (ADR-0067)
