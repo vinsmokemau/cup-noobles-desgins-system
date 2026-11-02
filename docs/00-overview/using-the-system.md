@@ -8,7 +8,7 @@ brandRules: []
 tbd: []
 related: [principles, brand-identity, glossary]
 since: 0.1.0
-updated: 2026-10-18
+updated: 2026-11-01
 ---
 
 # Using the system
@@ -72,7 +72,7 @@ These steps were run against the registry on 2026-10-18, with version `0.2.0` of
 
 - **Nuxt apps.** Extend the layer in `nuxt.config.ts` with `extends: ['@vinsmokemau/cup-noobles-nuxt']`. The layer brings Nuxt UI, its theme, and the `Cn*` components.
 - **Keep visual styling in the layer.** A consuming app uses Tailwind for layout only, and adds no colors, borders, radii, glow, or other visual styling of its own (ER-02, C-03, OD-11).
-- **Dark only.** The theme is dark-only. Do not add a color-mode toggle (A-02, REQ-031).
+- **Dark only.** The theme is dark-only. Do not add a color-mode toggle (A-02, REQ-031). The layer also tells the browser: it sets `color-scheme: dark` (a `<meta>` tag and a CSS rule, so scrollbars and form controls are dark), and a `theme-color` meta tag with the pure-black page base, read from the `color.bg.base` token (BR-03). Nuxt UI sets neither when its color mode is off. An app that needs another `theme-color` on a page can override it with `useHead`.
 - **Text comes from the app.** Components contain no hardcoded copy. Pass every string through props or slots (A-11), and write customer-facing copy in Spanish (es-MX) (ER-04).
 - **Minimum width.** Layouts must work at 360 px wide (ER-05).
 - **Other stacks.** Use the CSS custom properties from `dist/css/tokens.css`. Each one is named `--cn-` followed by the token path with dashes, so the token `color.bg.base` is `--cn-color-bg-base` (REQ-017).
@@ -130,3 +130,4 @@ Not applicable.
 - 0.1.0 — First draft: packages, install from GitHub Packages, consumption rules, how to read the docs, and how to report a TBD item (T4.1) — awaiting owner approval
 - 0.1.0 — Approved without changes; status `stable` — owner approval in chat, 2026-09-27
 - 0.2.0 — Install steps verified against GitHub Packages: the token line moves to the user-level `.npmrc`, and the pnpm `allowBuilds` setting is added (T12.2) — ADR-0007
+- 0.3.0 — The layer sets `color-scheme: dark` and a `theme-color` meta tag from `color.bg.base` (T15.5, DSR-06)

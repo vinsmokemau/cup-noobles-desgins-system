@@ -180,6 +180,14 @@
   }
 }
 
+/*
+ * T15.5 (DSR-06, A-02): the system is dark-only, so the browser draws its own parts (scrollbars, form controls, the
+ * canvas behind the page) dark too. Nuxt UI sets no color-scheme when its color mode is off.
+ */
+:root {
+  color-scheme: dark;
+}
+
 /* Nuxt UI leaves the page itself unstyled; the layer paints it with the role variables above. */
 @layer base {
   body {

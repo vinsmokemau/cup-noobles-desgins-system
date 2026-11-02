@@ -14,7 +14,16 @@ const code = ['**/*.{js,mjs,cjs,ts,mts,cts,vue}']
 export default defineConfig(
   {
     // tests/fixtures/ holds deliberate rule violations; tests/lint-rules.test.ts lints them on purpose.
-    ignores: ['**/node_modules/', '**/dist/', '**/.nuxt/', '**/.output/', '**/.data/', 'reports/', 'tests/fixtures/'],
+    ignores: [
+      '**/node_modules/',
+      '**/dist/',
+      '**/.nuxt/',
+      '**/.output/',
+      '**/.output-workspace/',
+      '**/.data/',
+      'reports/',
+      'tests/fixtures/',
+    ],
   },
   {
     files: code,

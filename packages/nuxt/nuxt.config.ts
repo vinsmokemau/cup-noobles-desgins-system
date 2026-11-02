@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { defineNuxtConfig } from 'nuxt/config'
 import type { ModuleOptions } from '@nuxt/ui'
 import { stripPartialOpacity } from './utils/partial-opacity'
+import { themeColorModule } from './utils/theme-color'
 
 // `nuxt prepare` writes this augmentation into .nuxt/; the root typecheck runs without it, so it is declared here.
 declare module 'nuxt/schema' {
@@ -15,7 +16,8 @@ declare module 'nuxt/schema' {
 export default defineNuxtConfig({
   // SPEC.md §4.1 keeps app.config.ts, assets/, and components/ at the package root, not in Nuxt 4's app/.
   srcDir: '.',
-  modules: ['@nuxt/ui'],
+  // T15.5 (DSR-06): the module adds the `color-scheme` and `theme-color` meta tags, which Nuxt UI does not set.
+  modules: ['@nuxt/ui', themeColorModule],
   css: [fileURLToPath(new URL('./assets/css/main.css', import.meta.url))],
   ui: {
     // Without @nuxtjs/color-mode, no color-mode toggle component is registered and useColorMode() reports

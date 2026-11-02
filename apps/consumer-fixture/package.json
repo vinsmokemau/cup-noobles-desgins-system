@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build --extends ../../packages/nuxt && node -e \"const fs=require('fs');fs.rmSync('.output-workspace',{recursive:true,force:true});fs.renameSync('.output','.output-workspace')\" && nuxt build",
     "test:e2e": "playwright test"
   },
   "dependencies": {

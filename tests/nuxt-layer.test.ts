@@ -10,6 +10,7 @@ import { ESLint } from 'eslint'
 import { checkTokens, cssVariable } from '../scripts/check-tokens'
 import nuxtConfig from '../packages/nuxt/nuxt.config'
 import appConfig from '../packages/nuxt/app.config'
+import { addThemeMeta, readTokenValue, themeColorModule } from '../packages/nuxt/utils/theme-color'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const layer = join(root, 'packages/nuxt')
@@ -47,7 +48,7 @@ test('ADR-0001 §1: the layer pins @nuxt/ui 4.11.2 and Tailwind CSS 4.3.3, and i
 })
 
 test('the layer registers Nuxt UI and loads main.css; its sources sit at the §4.1 paths', () => {
-  assert.deepEqual(nuxtConfig.modules, ['@nuxt/ui'])
+  assert.deepEqual(nuxtConfig.modules, ['@nuxt/ui', themeColorModule], 'Nuxt UI, then the T15.5 meta module')
   assert.deepEqual(nuxtConfig.css, [join(layer, 'assets/css/main.css')])
   assert.equal(nuxtConfig.srcDir, '.', 'app.config.ts, assets/, and components/ live at the package root')
 })
@@ -214,4 +215,30 @@ test('Done when: `pnpm test:all` builds the tokens, then the layer', () => {
     scripts['test:all']!,
     /^pnpm test && pnpm build:tokens && (?:pnpm build:email && )?pnpm build:nuxt(?: &&|$)/,
   )
+})
+
+// T15.5 (DSR-06, A-02, BR-03). The end-to-end proof is in apps/consumer-fixture/tests/e2e/color-scheme.spec.ts.
+test('DSR-06: the layer sets `color-scheme: dark` on :root', () => {
+  assert.match(mainCss, /:root\s*\{\s*color-scheme:\s*dark;\s*\}/)
+})
+
+test('DSR-06: readTokenValue reads one declaration from the token CSS, and fails loudly when it is missing', () => {
+  const css = ':root {\n  --cn-a: #111111; /** x */\n  --cn-b: #222222;\n}'
+  assert.equal(readTokenValue(css, '--cn-a'), '#111111')
+  assert.throws(() => readTokenValue(css, '--cn-missing'), /--cn-missing/)
+})
+
+test('DSR-06, BR-03: addThemeMeta adds color-scheme dark and a theme-color read from --cn-color-bg-base', () => {
+  assert.ok(
+    tokens.some((t) => t.path === 'color.bg.base'),
+    'color.bg.base exists',
+  )
+  assert.equal(cssVariable('color.bg.base'), '--cn-color-bg-base')
+  const head = { meta: [{ name: 'viewport', content: 'x' }] as unknown[] }
+  addThemeMeta(head, ':root { --cn-color-bg-base: #123456; }')
+  assert.deepEqual(head.meta, [
+    { name: 'viewport', content: 'x' },
+    { name: 'color-scheme', content: 'dark' },
+    { name: 'theme-color', content: '#123456' },
+  ])
 })

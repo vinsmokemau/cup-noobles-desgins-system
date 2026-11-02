@@ -4,6 +4,7 @@ node_modules/
 dist/
 .nuxt/
 .output/
+.output-workspace/
 .data/
 
 # Generated reports (SPEC.md §4.1). The directory itself is kept.
