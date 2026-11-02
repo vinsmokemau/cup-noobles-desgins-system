@@ -1406,7 +1406,7 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: check first whether Nuxt UI already sets `color-scheme: dark` and a `theme-color` meta in a Nuxt app (A-02), and report the finding. If it sets neither, the layer adds both. The `theme-color` value is the pure-black base (BR-03) read from the token, not a new value. Do not push or publish.
   - Done when: the finding is written in the task report; the consumer fixture's page has both, proven by an end-to-end test; a changeset exists if a published file changed; `pnpm test:all` is green.
 
-- [ ] **T15.6 — Make the raw-value rule available to consuming apps (DSR-09)**
+- [x] **T15.6 — Make the raw-value rule available to consuming apps (DSR-09)** (2026-11-01, bd771d1)
   - REQs: REQ-016
   - Depends on: T15.5
   - Scope: ship the raw-value lint rule of REQ-016 so a consuming app runs the same check as this repository. Decide first where it ships (an export of the layer or a small separate package) and record that in an ADR, asking the owner, because a new package changes the distribution (§1.2). Write its usage in `using-the-system.md`. Do not push or publish.
