@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.56 |
+| Spec version | 1.57 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1372,7 +1372,7 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: release T14.6 and T14.7 together as minor 1.1.0 of the three packages, in lockstep (A-04), through Changesets. Confirm that the two minor changesets are the only pending ones, and that `CHANGELOG.md` lists the rows component and the PNG logo under Added (REQ-070 AC2). Update `docs/06-governance/versioning-and-releases.md` if it needs a changelog line. After the owner confirms each step in chat, push, merge the "Version packages" pull request on GitHub, and publish to GitHub Packages. Claude Code does not push, merge, or publish without that confirmation. The e-commerce repository pins 1.0.1 and raises its pin after this release (its T11.6), so the new version is reported to the e-commerce owner, and the consumer fixture is not changed. The owner approved this task in chat on 2026-10-28.
   - Done when: `pnpm release:check` passes at version `1.1.0`; the three packages are published at `1.1.0` to GitHub Packages; the tags are pushed (T14.3); `pnpm test:all` is green. The new version is reported to the e-commerce owner.
 
-### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09)
+### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09, -11)
 
 The storefront cannot change the design system (CR-27), so each request is built here and released in a new version that the storefront pins. DSR-01, DSR-02, and DSR-03 block the storefront's catalog components, so they come first and ship together as 1.2.0. DSR-07 is a rule decision for the owner, not code (OD-15). The owner approved this phase in chat on 2026-11-01.
 
@@ -1417,6 +1417,18 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Depends on: T15.6
   - Scope: release T15.5 (DSR-06) and T15.6 (DSR-09) together as minor 1.3.0 of the three packages, in lockstep (A-04), the same way as T15.4. Confirm that the only pending changesets are the two of those tasks, and that `CHANGELOG.md` lists the dark color scheme and the raw-value lint rule (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version and the DSR ids it covers (DSR-06, DSR-09) are reported to the e-commerce owner; the consumer fixture is not changed.
   - Done when: `pnpm release:check` passes at version `1.3.0`; the three packages are published at `1.3.0`; the tags are pushed; `pnpm test:all` is green.
+
+- [ ] **T15.8 — Image dimensions and loading on CnMediaCard and CnImageGallery (DSR-11)**
+  - REQs: REQ-025, REQ-024, REQ-022 (AC1), REQ-026, REQ-027, REQ-028
+  - Depends on: T15.7
+  - Scope: the storefront's /ui-review found that the <img> in `CnMediaCard` and `CnImageGallery` has no width and height and no `loading` attribute, so a catalog grid shifts while it loads and every picture loads at once. The storefront adds no markup of its own to DS components (CR-26, CR-27). (1) Both components put `width` and `height` on every <img>, matching the 4:3 frame (ADR-0056) as an aspect-ratio hint; the frame, `object-fit: contain`, and the look do not change. (2) `CnMediaCard` loads its picture lazily by default. (3) A consumer-facing prop marks a picture as above the fold: it loads eagerly and may add `fetchpriority="high"`. The prop name and the `CnImageGallery` default are owner decisions; show the options on a comparison page (CLAUDE.md, Owner decisions). (4) Keep alt-or-decorative, the d20 fallback swap on error (ADR-0057), no copy in the component (A-11), and one focusable element per card. Update `media-card.md` and `image-gallery.md` (props, usage, accessibility). If a Web Interface Guidelines rule conflicts with an ADR, the ADR wins and the conflict is written in the task report for the storefront. Do not push or publish.
+  - Done when: tests fail when width or height is missing on either component's <img>; a test covers `CnMediaCard` lazy by default and eager with the prop; the existing fallback, alt/decorative, and one-link-per-card tests pass; the visual specs show no change at 360, 768, and 1280 px; both docs are updated; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T15.9 — Release 1.4.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T15.8
+  - Scope: release T15.8 (DSR-11) as minor 1.4.0 of the three packages, in lockstep (A-04), the same way as T15.7. Confirm the only pending changeset is T15.8's, and that `CHANGELOG.md` lists the image attributes under Added (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version and the DSR id (DSR-11) are reported to the e-commerce owner, along with whether any other open DSR is resolved; the consumer fixture is not changed.
+  - Done when: `pnpm release:check` passes at version `1.4.0`; the three packages are published at `1.4.0`; the tags are pushed; `pnpm test:all` is green.
 
 ---
 ## 7. Risks and open decisions
@@ -1524,6 +1536,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.54 | 2026-11-01 | §4.1 and §4.10 list the key-value list (`key-value-list.md`, `CnKeyValueList`), the new component of T15.2 (DSR-02). No requirement or task ID changes. | Owner approval in chat (T15.2), ADR-0065 |
 | 1.55 | 2026-11-01 | §4.1 and §4.10 list the image gallery (`image-gallery.md`, `CnImageGallery`), the new component of T15.3 (DSR-03). No requirement or task ID changes. | Owner approval in chat (T15.3), ADR-0066 |
 | 1.56 | 2026-11-01 | Added T15.7, the 1.3.0 release of DSR-06 (T15.5) and DSR-09 (T15.6), to P15. No existing requirement or task changes. | Owner approval in chat |
+| 1.57 | 2026-11-02 | Added T15.8 (image dimensions and loading on `CnMediaCard` and `CnImageGallery`, DSR-11) and T15.9 (release 1.4.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
