@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.57 |
+| Spec version | 1.58 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1430,6 +1430,18 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: release T15.8 (DSR-11) as minor 1.4.0 of the three packages, in lockstep (A-04), the same way as T15.7. Confirm the only pending changeset is T15.8's, and that `CHANGELOG.md` lists the image attributes under Added (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version and the DSR id (DSR-11) are reported to the e-commerce owner, along with whether any other open DSR is resolved; the consumer fixture is not changed.
   - Done when: `pnpm release:check` passes at version `1.4.0`; the three packages are published at `1.4.0`; the tags are pushed; `pnpm test:all` is green.
 
+- [ ] **T15.10 — Number formatting for identifiers and quantities (storefront request from T12.5)**
+  - REQs: REQ-036 (AC3), REQ-070
+  - Depends on: T15.9
+  - Scope: the storefront's attribute table (built on `CnKeyValueList`) shows raw numbers, and `formatting.md` does not say how an identifier-like number (year, figure number, edition number, code) differs from a quantity. The proposal below is only a proposal: the owner has not approved the wording, so present it on a comparison page (CLAUDE.md, Owner decisions) and ask before applying it. (1) In "Numbers", an identifier is not a quantity: it is shown as plain text with no grouping (2024, not 2,024). A quantity keeps `Intl.NumberFormat('es-MX')`, with `minimumFractionDigits` and `maximumFractionDigits` set on purpose. (2) The consumer decides per attribute: quantities are formatted with `Intl.NumberFormat('es-MX')`, identifiers are passed as plain strings, and `CnKeyValueList` does not change (value in, text out, A-11). (3) Check in a real browser what `Intl.NumberFormat('es-MX')` gives for four-digit values (1200 is "1,200" or "1200"), and put only verified output in the doc. (4) Add the examples: a year (2024), a figure number, a quantity of 1200, and a quantity of 1,234,567. No component, token, or code changes. Do not push or publish.
+  - Done when: the owner has approved the wording in chat; `formatting.md` has the rule, the way to tell the two apart, and the verified examples; `pnpm check:docs` passes; a changeset exists if a published file changed; `pnpm test:all` is green.
+
+- [ ] **T15.11 — Release 1.5.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T15.10
+  - Scope: release T15.10 as minor 1.5.0 of the three packages, in lockstep (A-04), the same way as T15.9. Confirm the only pending changeset is T15.10's, and that `CHANGELOG.md` lists the formatting rule (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version is reported to the e-commerce owner; the consumer fixture is not changed.
+  - Done when: `pnpm release:check` passes at version `1.5.0`; the three packages are published at `1.5.0`; the tags are pushed; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1537,6 +1549,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.55 | 2026-11-01 | §4.1 and §4.10 list the image gallery (`image-gallery.md`, `CnImageGallery`), the new component of T15.3 (DSR-03). No requirement or task ID changes. | Owner approval in chat (T15.3), ADR-0066 |
 | 1.56 | 2026-11-01 | Added T15.7, the 1.3.0 release of DSR-06 (T15.5) and DSR-09 (T15.6), to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.57 | 2026-11-02 | Added T15.8 (image dimensions and loading on `CnMediaCard` and `CnImageGallery`, DSR-11) and T15.9 (release 1.4.0) to P15. No existing requirement or task changes. | Owner approval in chat |
+| 1.58 | 2026-11-02 | Added T15.10 (number formatting for identifiers and quantities, a storefront request) and T15.11 (release 1.5.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
