@@ -6,7 +6,7 @@ import vue from 'eslint-plugin-vue'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 import { defineConfig } from 'eslint/config'
-import cn from './scripts/eslint-plugin-cn/index.js'
+import cn from './packages/nuxt/eslint/index.js'
 
 const code = ['**/*.{js,mjs,cjs,ts,mts,cts,vue}']
 
@@ -90,8 +90,13 @@ export default defineConfig(
     languageOptions: { tolerant: true },
   },
   {
-    // REQ-016: no raw visual values in the Nuxt layer or the showcase. Tests assert computed values, so they are exempt.
-    files: ['packages/nuxt/**/*.{js,mjs,ts,vue,css}', 'apps/showcase/**/*.{js,mjs,ts,vue,css}'],
+    // REQ-016: no raw visual values in the Nuxt layer, the showcase, or the consumer fixture. The fixture stands in for a
+    // consuming app (T15.6, DSR-09). Tests assert computed values, so they are exempt.
+    files: [
+      'packages/nuxt/**/*.{js,mjs,ts,vue,css}',
+      'apps/showcase/**/*.{js,mjs,ts,vue,css}',
+      'apps/consumer-fixture/**/*.{js,mjs,ts,vue,css}',
+    ],
     ignores: ['**/tests/**', '**/*.{test,spec}.ts'],
     plugins: { cn },
     rules: { 'cn/no-raw-values': 'error' },

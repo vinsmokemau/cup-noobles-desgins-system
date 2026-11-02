@@ -75,6 +75,22 @@ These steps were run against the registry on 2026-10-18, with version `0.2.0` of
 - **Dark only.** The theme is dark-only. Do not add a color-mode toggle (A-02, REQ-031). The layer also tells the browser: it sets `color-scheme: dark` (a `<meta>` tag and a CSS rule, so scrollbars and form controls are dark), and a `theme-color` meta tag with the pure-black page base, read from the `color.bg.base` token (BR-03). Nuxt UI sets neither when its color mode is off. An app that needs another `theme-color` on a page can override it with `useHead`.
 - **Text comes from the app.** Components contain no hardcoded copy. Pass every string through props or slots (A-11), and write customer-facing copy in Spanish (es-MX) (ER-04).
 - **Minimum width.** Layouts must work at 360 px wide (ER-05).
+- **Lint for raw values.** The layer ships the lint rule of REQ-016, so an app runs the same check as this repository (ADR-0067). The rule `cn/no-raw-values` fails on a hex, `rgb()`, or `hsl()` color, and on a `px`, `rem`, or `ms` number, in script, template, `<style>`, and CSS. `0` and `var(--cn-*)` pass. Add it to the app's `eslint.config.js` (ESLint 9 or later, with `vue-eslint-parser` for `.vue` files and `@eslint/css` for `.css` files):
+
+  ```js
+  import cn from '@vinsmokemau/cup-noobles-nuxt/eslint/index.js'
+
+  export default [
+    {
+      files: ['**/*.{js,ts,vue,css}'],
+      ignores: ['**/tests/**'],
+      plugins: { cn },
+      rules: { 'cn/no-raw-values': 'error' },
+    },
+  ]
+  ```
+
+  Run `eslint .` in the app's checks. A line such as `border-radius: 12px` fails with `Raw visual value "12px"`. Use a token variable instead.
 - **Other stacks.** Use the CSS custom properties from `dist/css/tokens.css`. Each one is named `--cn-` followed by the token path with dashes, so the token `color.bg.base` is `--cn-color-bg-base` (REQ-017).
 - **Email.** Copy the compiled HTML from the email package's `dist/` folder into your backend, and fill each `{{ slot_name }}` placeholder with your template engine. [Email components](../05-email/email-components.md) lists the slots of each component (REQ-041 AC4).
 
@@ -131,3 +147,4 @@ Not applicable.
 - 0.1.0 — Approved without changes; status `stable` — owner approval in chat, 2026-09-27
 - 0.2.0 — Install steps verified against GitHub Packages: the token line moves to the user-level `.npmrc`, and the pnpm `allowBuilds` setting is added (T12.2) — ADR-0007
 - 0.3.0 — The layer sets `color-scheme: dark` and a `theme-color` meta tag from `color.bg.base` (T15.5, DSR-06) — approved without changes; owner approval in chat, 2026-11-01
+- 0.4.0 — The layer ships the raw-value lint rule, with its usage (T15.6, DSR-09) — the owner chose where the rule ships in chat, 2026-11-01 (ADR-0067); the usage wording awaits approval

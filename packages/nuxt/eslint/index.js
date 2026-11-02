@@ -1,4 +1,5 @@
-// Local ESLint plugin for the design system's custom lint rules (T1.3). Wired up in eslint.config.js.
+// The design system's ESLint plugin (T1.3). It ships in the layer package (T15.6, DSR-09, ADR-0067), so a consuming app
+// runs the same rules as this repository's eslint.config.js.
 import noHardcodedText from './no-hardcoded-text.js'
 import noRawValues from './no-raw-values.js'
 

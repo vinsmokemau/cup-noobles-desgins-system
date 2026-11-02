@@ -16,6 +16,7 @@
     "app.config.ts",
     "assets",
     "components",
+    "eslint",
     "utils"
   ],
   "main": "./nuxt.config.ts",

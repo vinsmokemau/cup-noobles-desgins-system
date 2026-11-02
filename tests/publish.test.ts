@@ -52,7 +52,7 @@ test('T12.1: a tarball holds built output or layer sources, never build caches o
   const files = Object.fromEntries(PACKAGES.map(({ dir, manifest }) => [dir, manifest.files ?? []]))
   assert.deepEqual(files.tokens, ['dist'])
   assert.deepEqual(files.email, ['dist', 'assets'])
-  assert.deepEqual(files.nuxt, ['nuxt.config.ts', 'app.config.ts', 'assets', 'components', 'utils'])
+  assert.deepEqual(files.nuxt, ['nuxt.config.ts', 'app.config.ts', 'assets', 'components', 'eslint', 'utils'])
   for (const list of Object.values(files)) {
     for (const entry of list) assert.doesNotMatch(entry, /node_modules|\.nuxt|\.output/)
   }

@@ -92,6 +92,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0064: Text printed on a product may show in a photo](decisions/0064-packaging-text-in-photos.md)
 - [ADR-0065: The key-value list is a custom component](decisions/0065-key-value-list-custom.md)
 - [ADR-0066: The image gallery is a custom component over UCarousel](decisions/0066-image-gallery-custom.md)
+- [ADR-0067: The raw-value rule ships inside the layer package](decisions/0067-raw-value-rule-ships-in-layer.md)
 
 ## Open items
 
@@ -123,3 +124,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0064 (packaging text in photos)
 - 0.1.0 — Index extended with ADR-0065 (key-value list is custom)
 - 0.1.0 — Index extended with ADR-0066 (image gallery is custom over UCarousel)
+- 0.1.0 — Index extended with ADR-0067 (raw-value rule ships inside the layer package)

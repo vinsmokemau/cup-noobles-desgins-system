@@ -3,7 +3,7 @@
 // same code in that path makes `eslint .`, and therefore `pnpm test`, fail.
 import { test } from 'vitest'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { ESLint, type Linter } from 'eslint'
@@ -56,8 +56,34 @@ test('REQ-016: zero, var(--cn-*), selectors, media queries, and comments are all
   assert.deepEqual(flagged(messages, 'cn/no-raw-values'), [])
 })
 
-test('REQ-016: the rule is scoped to packages/nuxt and apps/showcase, minus tests', async () => {
-  for (const path of ['packages/tokens/src/fixture.ts', 'apps/showcase/tests/e2e/fixture.spec.ts']) {
+// T15.6 (DSR-09): the rule ships in the layer package, and the consumer fixture, standing in for an app, runs it.
+test('REQ-016: the consumer fixture runs cn/no-raw-values, and a deliberate violation there fails it', async () => {
+  const expected = ['#123456', '12px', 'rgb(1, 2, 3)', '4px', 'hsl(1,2%,3%)', '10rem', '150ms', '6px', '-0.5rem']
+  for (const path of ['apps/consumer-fixture/pages/fixture.vue', 'apps/consumer-fixture/app.vue']) {
+    assert.deepEqual(flagged(await lint('raw-values.vue', path), 'cn/no-raw-values'), expected, path)
+  }
+  assert.deepEqual(
+    flagged(await lint('raw-values-allowed.vue', 'apps/consumer-fixture/app.vue'), 'cn/no-raw-values'),
+    [],
+  )
+})
+
+test('T15.6: the rule files ship in the layer package, and the repository lints with that same copy', () => {
+  const pkg = JSON.parse(readFileSync(join(root, 'packages/nuxt/package.json'), 'utf8')) as { files: string[] }
+  assert.ok(pkg.files.includes('eslint'), 'packages/nuxt/package.json `files` lacks "eslint"')
+  for (const file of ['index.js', 'no-raw-values.js', 'raw-values.js']) {
+    assert.ok(existsSync(join(root, 'packages/nuxt/eslint', file)), `packages/nuxt/eslint/${file} is missing`)
+  }
+  assert.match(readFileSync(join(root, 'eslint.config.js'), 'utf8'), /from '\.\/packages\/nuxt\/eslint\/index\.js'/)
+  assert.equal(existsSync(join(root, 'scripts/eslint-plugin-cn')), false, 'a second copy of the plugin remains')
+})
+
+test('REQ-016: the rule is scoped to packages/nuxt, apps/showcase, and apps/consumer-fixture, minus tests', async () => {
+  for (const path of [
+    'packages/tokens/src/fixture.ts',
+    'apps/showcase/tests/e2e/fixture.spec.ts',
+    'apps/consumer-fixture/tests/e2e/fixture.spec.ts',
+  ]) {
     assert.deepEqual(flagged(await lint('raw-values.ts', path), 'cn/no-raw-values'), [], path)
   }
 })
