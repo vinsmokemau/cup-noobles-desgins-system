@@ -1412,7 +1412,7 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: ship the raw-value lint rule of REQ-016 so a consuming app runs the same check as this repository. Decide first where it ships (an export of the layer or a small separate package) and record that in an ADR, asking the owner, because a new package changes the distribution (§1.2). Write its usage in `using-the-system.md`. Do not push or publish.
   - Done when: the consumer fixture runs the rule and a deliberate violation there fails it; the rule's own fixture tests still pass; a changeset exists; `pnpm test:all` is green.
 
-- [ ] **T15.7 — Release 1.3.0**
+- [x] **T15.7 — Release 1.3.0** (2026-11-02, 65cf16c)
   - REQs: REQ-070, REQ-018
   - Depends on: T15.6
   - Scope: release T15.5 (DSR-06) and T15.6 (DSR-09) together as minor 1.3.0 of the three packages, in lockstep (A-04), the same way as T15.4. Confirm that the only pending changesets are the two of those tasks, and that `CHANGELOG.md` lists the dark color scheme and the raw-value lint rule (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version and the DSR ids it covers (DSR-06, DSR-09) are reported to the e-commerce owner; the consumer fixture is not changed.
