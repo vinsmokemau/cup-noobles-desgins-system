@@ -1400,7 +1400,7 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: release T15.1, T15.2, and T15.3 together as minor 1.2.0 of the three packages, in lockstep (A-04), the same way as T14.8. Confirm only minor changesets are pending and that `CHANGELOG.md` lists the three additions under Added. After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version and the DSR ids it covers are reported to the e-commerce owner; the consumer fixture is not changed.
   - Done when: `pnpm release:check` passes at version `1.2.0`; the three packages are published at `1.2.0`; the tags are pushed; `pnpm test:all` is green.
 
-- [ ] **T15.5 — Dark color scheme and theme color (DSR-06)**
+- [x] **T15.5 — Dark color scheme and theme color (DSR-06)** (2026-11-01, e689821)
   - REQs: REQ-020, REQ-071
   - Depends on: T15.4
   - Scope: check first whether Nuxt UI already sets `color-scheme: dark` and a `theme-color` meta in a Nuxt app (A-02), and report the finding. If it sets neither, the layer adds both. The `theme-color` value is the pure-black base (BR-03) read from the token, not a new value. Do not push or publish.
