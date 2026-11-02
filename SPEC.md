@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.55 |
+| Spec version | 1.56 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1412,6 +1412,12 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: ship the raw-value lint rule of REQ-016 so a consuming app runs the same check as this repository. Decide first where it ships (an export of the layer or a small separate package) and record that in an ADR, asking the owner, because a new package changes the distribution (§1.2). Write its usage in `using-the-system.md`. Do not push or publish.
   - Done when: the consumer fixture runs the rule and a deliberate violation there fails it; the rule's own fixture tests still pass; a changeset exists; `pnpm test:all` is green.
 
+- [ ] **T15.7 — Release 1.3.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T15.6
+  - Scope: release T15.5 (DSR-06) and T15.6 (DSR-09) together as minor 1.3.0 of the three packages, in lockstep (A-04), the same way as T15.4. Confirm that the only pending changesets are the two of those tasks, and that `CHANGELOG.md` lists the dark color scheme and the raw-value lint rule (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version and the DSR ids it covers (DSR-06, DSR-09) are reported to the e-commerce owner; the consumer fixture is not changed.
+  - Done when: `pnpm release:check` passes at version `1.3.0`; the three packages are published at `1.3.0`; the tags are pushed; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1517,6 +1523,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.53 | 2026-11-01 | OD-15 decided: option B, text printed on a product may show in a photo and added text is not allowed (ADR-0064). No requirement or task ID changes. | Owner decision in chat (ADR-0064) |
 | 1.54 | 2026-11-01 | §4.1 and §4.10 list the key-value list (`key-value-list.md`, `CnKeyValueList`), the new component of T15.2 (DSR-02). No requirement or task ID changes. | Owner approval in chat (T15.2), ADR-0065 |
 | 1.55 | 2026-11-01 | §4.1 and §4.10 list the image gallery (`image-gallery.md`, `CnImageGallery`), the new component of T15.3 (DSR-03). No requirement or task ID changes. | Owner approval in chat (T15.3), ADR-0066 |
+| 1.56 | 2026-11-01 | Added T15.7, the 1.3.0 release of DSR-06 (T15.5) and DSR-09 (T15.6), to P15. No existing requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
@@ -1545,7 +1552,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-015 | T3.3, T3.5, T4.2, T13.2 |
 | REQ-016 | T1.3, T5.1, T13.5, T15.6 |
 | REQ-017 | T3.1, T3.4 |
-| REQ-018 | T11.4, T12.3, T15.4 |
+| REQ-018 | T11.4, T12.3, T15.4, T15.7 |
 | REQ-020 | T0.1, T1.3, T5.1, T7.3, T7.4, T7.5, T7.6, T8.3, T8.4, T8.5, T8.6, T8.7, T15.2, T15.3, T15.5 |
 | REQ-021 | T1.3, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T15.2, T15.3 |
 | REQ-022 | T1.3, T7.2, T7.7, T7.8, T7.10, T7.11, T7.12, T7.13, T7.14, T7.15, T7.16, T7.17, T8.2, T8.6, T8.7, T14.6, T14.7, T15.1, T15.2, T15.3 |
@@ -1579,7 +1586,7 @@ Generated from §6 while this spec was written. Every requirement is covered by 
 | REQ-060 | T5.5, T5.7 |
 | REQ-061 | T5.5, T5.7, T8.6 |
 | REQ-062 | T6.5, T11.3 |
-| REQ-070 | T11.3, T12.1, T14.2, T14.3, T14.4, T14.5, T14.8, T15.4 |
+| REQ-070 | T11.3, T12.1, T14.2, T14.3, T14.4, T14.5, T14.8, T15.4, T15.7 |
 | REQ-071 | T5.2, T8.7, T12.1, T14.4, T14.5, T15.5 |
 | REQ-072 | T11.2, T11.3 |
 | REQ-073 | T0.5, T2.4, T11.2 |
