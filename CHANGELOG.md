@@ -2,6 +2,12 @@
 
 Every release of `@vinsmokemau/cup-noobles-tokens`, `@vinsmokemau/cup-noobles-nuxt`, and `@vinsmokemau/cup-noobles-email`. The three packages share one version number. Each release groups its entries as Breaking, Added, Changed, Deprecated, and Fixed.
 
+## 1.5.0 (2026-11-02)
+
+### Added
+
+- Add the number formatting rule for identifiers and quantities to `formatting.md`. An identifier (a year, a figure number, an edition number, a code) is shown as plain text with no grouping, and a quantity uses `Intl.NumberFormat('es-MX')`. The consumer decides per attribute, and no component changes.
+
 ## 1.4.0 (2026-11-02)
 
 ### Added
