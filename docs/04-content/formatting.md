@@ -6,9 +6,9 @@ status: stable
 lang: en
 brandRules: []
 tbd: []
-related: [voice-and-tone, microcopy, forms, accessibility]
+related: [voice-and-tone, microcopy, forms, accessibility, key-value-list, adr-0069-identifiers-and-quantities]
 since: 0.1.0
-updated: 2026-10-11
+updated: 2026-11-02
 ---
 
 # Formatting
@@ -42,12 +42,18 @@ Pass the locale `es-MX` to every formatter, and use one API per kind of value:
 
 #### Numbers
 
-- Format every number with `Intl.NumberFormat('es-MX')`. In es-MX the comma groups thousands and the period starts the decimals.
+- A **quantity** is a number that people add, compare, or average. Format it with `Intl.NumberFormat('es-MX')`. In es-MX the comma groups thousands, including four-digit values (1200 is "1,200"), and the period starts the decimals.
+- An **identifier** is a number that names something, such as a year, a figure number, an edition number, or a code. Show it as plain text with no grouping: 2024, not 2,024.
+- To tell them apart, ask: would anyone add it to another one? If not, it is an identifier.
+- The consumer decides per attribute. Pass quantities through `Intl.NumberFormat('es-MX')` and identifiers as plain strings. A component such as `CnKeyValueList` does not change: value in, text out (A-11).
 - Set the number of decimals on purpose with `minimumFractionDigits` and `maximumFractionDigits`, so a column of numbers aligns.
 - Use `notation: 'compact'` only where space is tight, and never for a number the person must read exactly.
 - Format a percentage as a ratio, with `style: 'percent'`: pass `0.256`, not `25.6`.
 
 ```copy es-MX
+2024
+Figura 7
+1,200
 1,234,567
 1,234,567.891
 1,234.50
@@ -55,6 +61,8 @@ Pass the locale `es-MX` to every formatter, and use one API per kind of value:
 25.6%
 1.2 M
 ```
+
+The first two lines are identifiers and the rest are quantities. Chromium 153 returns "2,024" for 2024 and "1,200" for 1200 with `Intl.NumberFormat('es-MX')`, which is why an identifier must not go through the formatter.
 
 #### Currency
 
@@ -102,7 +110,6 @@ Revisa 3 campos
 ### When not to use
 
 - Never use these rules to compute a value. Formatting turns a value into text, and nothing else.
-- Never format an identifier, such as a number that names something and that nobody adds. Show it as it is.
 - Never format a value that a person types as they type it. Format it when they leave the field.
 - Never use them for another locale. A project that serves another locale passes that locale to the same APIs, and this doc is not its rule.
 
@@ -145,3 +152,4 @@ Not applicable.
 
 - 0.1.0 — First draft: numbers, currency (display-only), dates, and times for es-MX with `Intl`, with es-MX examples (T9.3) — awaiting owner approval
 - 0.1.0 — Approved as stable by the owner — ADR-0037
+- 1.5.0 — Numbers: an identifier is plain text and a quantity uses `Intl.NumberFormat('es-MX')`, with a test and verified examples — ADR-0069
