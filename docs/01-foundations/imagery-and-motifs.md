@@ -8,7 +8,7 @@ brandRules: [BR-04, BR-05, BR-12, BR-13, BR-14]
 tbd: []
 related: [brand-identity, sparkle, sticker-frame, media-card, motion, iconography]
 since: 0.1.0
-updated: 2026-10-10
+updated: 2026-11-02
 ---
 
 # Imagery and motifs
@@ -68,7 +68,7 @@ The featured media card has a thumbnail (BR-12), rendered by `CnMediaCard` (see 
 **Pictures.**
 
 - Show one clear, well-lit subject on a plain or dark background. A bright background shows as a visible rectangle inside the black frame.
-- Put no text inside the image, because baked-in words cannot be translated or read by assistive technology. The title and the tag carry the text.
+- Put no text you add inside the image. Words printed on the product itself, such as its box or label, may show. The title, the tag, and the alt text carry the text, so no one needs the picture to read it. Whether text was added is judged when a photo is uploaded, and no test can detect it (ADR-0064, which amends ADR-0057).
 - Use a source at least twice the displayed width, so the picture stays sharp on high-density screens.
 - Keep anything important away from the edges of the picture. The picture is never cropped, but its edges meet the frame.
 
@@ -152,3 +152,4 @@ Not applicable.
 - 0.1.0 — `CnStickerFrame` renders `Sticker-Border-CN.svg` as a fixed 8:5 frame; TBD-18 is resolved (T7.17) — ADR-0025
 - 0.1.0 — The photography and thumbnail standards (the 4:3 frame, no crop, the d20 fallback, and the picture rules) are set by the owner, and the TBD-20 placeholder is gone — ADR-0056, ADR-0057
 - 0.1.0 — Moved to stable: the doc has no open item left — owner decision, 2026-10-19
+- 1.6.0 — The photo rule is now "put no text you add inside the image"; words printed on the product itself may show — DSR-07, T15.12, ADR-0064

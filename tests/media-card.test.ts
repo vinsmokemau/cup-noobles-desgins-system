@@ -227,7 +227,9 @@ test('ADR-0056, ADR-0057: the docs state the frame, the crop rule, and the writt
   }
   for (const standard of [
     /one clear, well-lit subject on a plain or dark background/i,
-    /no text inside the image/i,
+    /put no text you add inside the image/i,
+    /printed on the product itself/i,
+    /ADR-0064/,
     /at least twice the displayed width/i,
     /brand golden d20 on black/i,
     /No photo style/,

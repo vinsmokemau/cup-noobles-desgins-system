@@ -134,7 +134,7 @@ The `hover`, `focus-visible`, and `active` states exist only on a linked card. A
 - Never make a tag badge a filter or a link inside the card.
 - Never write a color, radius, or width literally on the card. Read the tokens (REQ-016).
 - Never add a glow to a card. The glow belongs to buttons (BR-10).
-- Never crop a thumbnail or change its 4:3 frame (ADR-0056). Keep anything important away from the edges of a picture, and put no text inside a picture (ADR-0057).
+- Never crop a thumbnail or change its 4:3 frame (ADR-0056). Keep anything important away from the edges of a picture, and put no text you add inside a picture. Words printed on the product itself, such as its box or label, may show. The title, the tag, and the alt text carry the text, so no one needs the picture to read it. Whether text was added is judged when a photo is uploaded, and no test can detect it (ADR-0064, which amends ADR-0057).
 
 ## Do and don't
 
@@ -244,6 +244,7 @@ Not applicable.
 
 ## Changelog
 
+- 1.6.0 — The rule for text in a picture is "put no text you add"; words printed on the product itself may show — DSR-07, T15.12, ADR-0064
 - 1.4.0 — The picture has `width` and `height` and loads lazily; the `priority` prop loads it at once — DSR-11, T15.8, ADR-0068
 - 0.1.0 — First draft: `CnMediaCard` with a thumbnail, a title, tag badges, an optional link with one tab stop, the component tokens, and the demos (T8.2) — ADR-0026
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
