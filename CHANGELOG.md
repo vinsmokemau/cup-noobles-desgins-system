@@ -2,6 +2,12 @@
 
 Every release of `@vinsmokemau/cup-noobles-tokens`, `@vinsmokemau/cup-noobles-nuxt`, and `@vinsmokemau/cup-noobles-email`. The three packages share one version number. Each release groups its entries as Breaking, Added, Changed, Deprecated, and Fixed.
 
+## 1.6.0 (2026-11-03)
+
+### Added
+
+- Change the photo rule in `imagery-and-motifs.md` and `media-card.md` to "put no text you add inside the image". Words printed on the product itself, such as its box or label, may show. The rule is judged when a photo is uploaded, and no test detects it. No component changes (ADR-0064, DSR-07).
+
 ## 1.5.0 (2026-11-02)
 
 ### Added
