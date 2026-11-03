@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.58 |
+| Spec version | 1.59 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1442,6 +1442,18 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Scope: release T15.10 as minor 1.5.0 of the three packages, in lockstep (A-04), the same way as T15.9. Confirm the only pending changeset is T15.10's, and that `CHANGELOG.md` lists the formatting rule (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version is reported to the e-commerce owner; the consumer fixture is not changed.
   - Done when: `pnpm release:check` passes at version `1.5.0`; the three packages are published at `1.5.0`; the tags are pushed; `pnpm test:all` is green.
 
+- [ ] **T15.12 — Packaging text in photos: update the docs to ADR-0064 (DSR-07)**
+  - REQs: REQ-036 (AC3), REQ-070
+  - Depends on: T15.11
+  - Scope: ADR-0064, decided on 2026-11-01 (OD-15, option B), says the wording of the docs changes in a later task. (1) In `imagery-and-motifs.md` and `media-card.md`, replace "no text inside the image" with: "Put no text you add inside the image. Words printed on the product itself, such as its box or label, may show. The title, the tag, and the alt text carry the text, so no one needs the picture to read it." (2) Say that "added text" is judged when a photo is uploaded and no test can detect it. (3) Point both docs to ADR-0064 as the amendment to ADR-0057. (4) Update `tests/media-card.test.ts` (the test that requires `/no text inside the image/i` in `imagery-and-motifs.md`) so it requires the new rule. No component, token, or code change. Each doc gets one line in its changelog section and keeps the right `status`. Do not push or publish.
+  - Done when: both docs carry the ADR-0064 wording and cite it; the updated test passes; `pnpm check:docs` passes; a changeset exists because published docs changed; `pnpm test:all` is green.
+
+- [ ] **T15.13 — Release 1.6.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T15.12
+  - Scope: release T15.12 as minor 1.6.0 of the three packages, in lockstep (A-04), the same way as T15.11. Confirm the only pending changeset is T15.12's, and that `CHANGELOG.md` lists the packaging text rule (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version is reported to the e-commerce owner, who is told DSR-07 is now in the docs; the consumer fixture is not changed.
+  - Done when: `pnpm release:check` passes at version `1.6.0`; the three packages are published at `1.6.0`; the tags are pushed; `pnpm test:all` is green.
+
 ---
 ## 7. Risks and open decisions
 
@@ -1483,7 +1495,7 @@ The owner must decide these. Each decision becomes an ADR.
 | OD-12 | Email authoring | MJML (A-14), or hand-written table HTML | **Decided: MJML** (OA-6). ADR-0004 records it. | T0.4 |
 | OD-13 | Repository host, owner, name, and package scope | **Decided** (OA-7, OA-8, OA-9, ADR-0007): GitHub, personal account `vinsmokemau`, repository `cup-noobles-desgins-system`, scope `@vinsmokemau` with package names `cup-noobles-tokens`, `cup-noobles-nuxt`, and `cup-noobles-email`. | — | T1.1 |
 | OD-14 | Repository visibility | (a) Public; (b) private, with a GitHub Pro subscription | **Decided: (a) public** (OA-11, ADR-0007). The repository `https://github.com/vinsmokemau/cup-noobles-desgins-system` exists, is public, and is empty. This enables GitHub Pages (OD-02) and branch protection (REQ-074 AC2) on the free plan. | T1.4 |
-| OD-15 | Scope of the photo rule "no text inside the image" for product packaging (DSR-07, C-10 of the e-commerce repository, ADR-0057) | (A) keep the rule as written; (B) allow the product's own printing and ban added text; (C) drop the rule | **Decided: (B)** (owner, ADR-0064): text you add to a photo is not allowed; text printed on the product itself may show. | None; not code |
+| OD-15 | Scope of the photo rule "no text inside the image" for product packaging (DSR-07, C-10 of the e-commerce repository, ADR-0057) | (A) keep the rule as written; (B) allow the product's own printing and ban added text; (C) drop the rule | **Decided: (B)** (owner, ADR-0064): text you add to a photo is not allowed; text printed on the product itself may show. | None; not code. Wording applied in T15.12 |
 
 ---
 
@@ -1550,6 +1562,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.56 | 2026-11-01 | Added T15.7, the 1.3.0 release of DSR-06 (T15.5) and DSR-09 (T15.6), to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.57 | 2026-11-02 | Added T15.8 (image dimensions and loading on `CnMediaCard` and `CnImageGallery`, DSR-11) and T15.9 (release 1.4.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.58 | 2026-11-02 | Added T15.10 (number formatting for identifiers and quantities, a storefront request) and T15.11 (release 1.5.0) to P15. No existing requirement or task changes. | Owner approval in chat |
+| 1.59 | 2026-11-02 | Added T15.12 (update the docs to the ADR-0064 wording for text in photos, DSR-07) and T15.13 (release 1.6.0) to P15. No existing requirement changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
