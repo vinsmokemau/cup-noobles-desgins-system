@@ -2,6 +2,12 @@
 
 Every release of `@vinsmokemau/cup-noobles-tokens`, `@vinsmokemau/cup-noobles-nuxt`, and `@vinsmokemau/cup-noobles-email`. The three packages share one version number. Each release groups its entries as Breaking, Added, Changed, Deprecated, and Fixed.
 
+## 1.7.0 (2026-11-04)
+
+### Added
+
+- Add a 44 px size for radios and checkboxes. `UCheckbox`, `UCheckboxGroup`, and `URadioGroup` take `size="2xl"`: every row is at least 44 px tall and the label fills the row, so tapping the text toggles the control. The visible box, the text size, and the focus ring do not change, and the sizes `xs` to `xl` do not change.
+
 ## 1.6.0 (2026-11-03)
 
 ### Added
