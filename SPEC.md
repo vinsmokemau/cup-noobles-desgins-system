@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.59 |
+| Spec version | 1.60 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1372,7 +1372,7 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: release T14.6 and T14.7 together as minor 1.1.0 of the three packages, in lockstep (A-04), through Changesets. Confirm that the two minor changesets are the only pending ones, and that `CHANGELOG.md` lists the rows component and the PNG logo under Added (REQ-070 AC2). Update `docs/06-governance/versioning-and-releases.md` if it needs a changelog line. After the owner confirms each step in chat, push, merge the "Version packages" pull request on GitHub, and publish to GitHub Packages. Claude Code does not push, merge, or publish without that confirmation. The e-commerce repository pins 1.0.1 and raises its pin after this release (its T11.6), so the new version is reported to the e-commerce owner, and the consumer fixture is not changed. The owner approved this task in chat on 2026-10-28.
   - Done when: `pnpm release:check` passes at version `1.1.0`; the three packages are published at `1.1.0` to GitHub Packages; the tags are pushed (T14.3); `pnpm test:all` is green. The new version is reported to the e-commerce owner.
 
-### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09, -11)
+### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09, -11, -12)
 
 The storefront cannot change the design system (CR-27), so each request is built here and released in a new version that the storefront pins. DSR-01, DSR-02, and DSR-03 block the storefront's catalog components, so they come first and ship together as 1.2.0. DSR-07 is a rule decision for the owner, not code (OD-15). The owner approved this phase in chat on 2026-11-01.
 
@@ -1453,6 +1453,18 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Depends on: T15.12
   - Scope: release T15.12 as minor 1.6.0 of the three packages, in lockstep (A-04), the same way as T15.11. Confirm the only pending changeset is T15.12's, and that `CHANGELOG.md` lists the packaging text rule (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version is reported to the e-commerce owner, who is told DSR-07 is now in the docs; the consumer fixture is not changed.
   - Done when: `pnpm release:check` passes at version `1.6.0`; the three packages are published at `1.6.0`; the tags are pushed; `pnpm test:all` is green.
+
+- [ ] **T15.14 — A 44 px tap target for radios and checkboxes (DSR-12)**
+  - REQs: REQ-028 (AC2), REQ-026, REQ-027, REQ-021, REQ-070
+  - Depends on: T15.13
+  - Scope: the storefront needs every tap target to be at least 44 px (its CR-36), reached through a DS size prop and never by restyling. Measured on 1.6.0 at `size="xl"`: a `URadioGroup` or `UCheckboxGroup` row is 24 px tall (the box is `size-5`, 20 px, in an `h-6` container, and the label is one `text-base` line). Buttons at `xl` already reach 44 px; the card link, the text input, and the slideover close button (`:close="{ size: 'xl' }"`) need no change. (1) How the 44 px is reached is an owner decision: (A) `xl` itself becomes 44 px, (B) a new size above `xl`, (C) a documented opt-in prop. Show the options on a comparison page on real brand context, at 360 px, with the storefront cases (a horizontal group of short labels such as "M" and "negro", a sold-out label such as "blanco · Agotado", and filter labels such as "Nendoroid (2)" in a slideover) and with the effect on the existing 24 px promise (REQ-028 AC2), and ask for a one-letter reply. Record the decision in an ADR. (2) The whole row is the tap target: the label fills the row, so tapping the text toggles the control. (3) The visible box and the focus ring stay as ADR-0009 defines them. A new token is a TBD item (§4.4) and the owner is asked. (4) No horizontal overflow at 360 px, including the horizontal radio group. (5) Update `radio-group.md` (line 77) and `checkbox.md` (line 76) and the showcase pages. The change sits in `app.config.ts` and the layer CSS (`cn-choice`), not in the storefront. Do not push or publish.
+  - Done when: the owner has chosen in chat and the ADR exists; a test measures the `<label>` of each radio and checkbox at the chosen size at 360 px and finds at least 44 px; a test shows a click on the label text toggles the control; the accessibility and visual specs pass at 360, 768, and 1280 px with baselines generated in the pinned container; both docs are updated; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T15.15 — Release 1.7.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T15.14
+  - Scope: release T15.14 (DSR-12) as minor 1.7.0 of the three packages, in lockstep (A-04), the same way as T15.13. Confirm the only pending changeset is T15.14's, and that `CHANGELOG.md` lists the 44 px choice controls under Added (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version, the prop or size to use, and the release notes are reported to the e-commerce owner, who is told DSR-12 is resolved so the storefront can run its DS-upgrade task and resume T12.9; the consumer fixture is not changed.
+  - Done when: `pnpm release:check` passes at version `1.7.0`; the three packages are published at `1.7.0`; the tags are pushed; `pnpm test:all` is green.
 
 ---
 ## 7. Risks and open decisions
@@ -1563,6 +1575,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.57 | 2026-11-02 | Added T15.8 (image dimensions and loading on `CnMediaCard` and `CnImageGallery`, DSR-11) and T15.9 (release 1.4.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.58 | 2026-11-02 | Added T15.10 (number formatting for identifiers and quantities, a storefront request) and T15.11 (release 1.5.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.59 | 2026-11-02 | Added T15.12 (update the docs to the ADR-0064 wording for text in photos, DSR-07) and T15.13 (release 1.6.0) to P15. No existing requirement changes. | Owner approval in chat |
+| 1.60 | 2026-11-03 | Added T15.14 (a 44 px tap target for radios and checkboxes, DSR-12 of the e-commerce repository) and T15.15 (release 1.7.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
