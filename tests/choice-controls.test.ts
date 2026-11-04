@@ -20,8 +20,8 @@ const choiceCss = css.slice(css.indexOf('T7.5 (REQ-020, REQ-024, REQ-028)') - 3)
 const SLUGS = ['checkbox', 'radio-group', 'switch'] as const
 const NUXT_UI = { checkbox: 'UCheckbox', 'radio-group': 'URadioGroup', switch: 'USwitch' } as const
 const STATES = {
-  checkbox: ['default', 'hover', 'focus-visible', 'checked', 'indeterminate', 'disabled'],
-  'radio-group': ['default', 'hover', 'focus-visible', 'checked', 'disabled'],
+  checkbox: ['default', 'hover', 'focus-visible', 'checked', 'indeterminate', 'disabled', 'touch-target'],
+  'radio-group': ['default', 'hover', 'focus-visible', 'checked', 'disabled', 'touch-target'],
   switch: ['default', 'hover', 'focus-visible', 'checked', 'disabled'],
 } as const
 const docOf = (slug: string) => read(`docs/02-components/atoms/${slug}.md`)
@@ -172,4 +172,25 @@ test('the docs say that the three controls share one look and one token group', 
   assert.match(docOf('checkbox'), /switch\.md/)
   assert.match(docOf('radio-group'), /checkbox\.md/)
   assert.match(docOf('switch'), /checkbox\.md/)
+})
+
+test('ADR-0070: the 2xl size makes the choice rows 44 px, keeps the xl box and text, and is documented', () => {
+  const config = appConfig as unknown as { ui: Record<string, { variants?: { size?: Record<string, unknown> } }> }
+  for (const name of ['checkbox', 'checkboxGroup', 'radioGroup'])
+    assert.ok(config.ui[name]?.variants?.size?.['2xl'], `${name} has a 2xl size`)
+  const radio = JSON.stringify(config.ui.radioGroup!.variants!.size!['2xl'])
+  const checkbox = JSON.stringify(config.ui.checkbox!.variants!.size!['2xl'])
+  assert.match(radio, /min-h-11/)
+  assert.match(checkbox, /min-h-11/)
+  // The text and the box are those of xl.
+  assert.match(radio, /text-base/)
+  assert.match(radio, /size-5/)
+  assert.match(checkbox, /size-5/)
+  for (const slug of ['checkbox', 'radio-group']) {
+    const doc = docOf(slug)
+    assert.match(doc, /`2xl`/, slug)
+    assert.match(doc, /44 px/, slug)
+    assert.match(doc, /ADR-0070/, slug)
+    assert.match(doc, /^\| `touch-target` \|/m, slug)
+  }
 })

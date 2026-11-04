@@ -11,9 +11,9 @@ brandRules: [BR-06, BR-13]
 tokens: [choice]
 demos: [states, playground]
 tbd: []
-related: [checkbox, switch, select, form-field, forms, accessibility]
+related: [adr-0070-choice-controls-44px, checkbox, switch, select, form-field, forms, accessibility]
 since: 0.1.0
-updated: 2026-10-19
+updated: 2026-11-03
 ---
 
 # Radio group
@@ -74,7 +74,7 @@ Contrast pairs declared for the choice controls (REQ-015):
 
 The outline is the radio's boundary, because there is no surface color yet (C-05). The stroke width is 3 px (ADR-0032). Black on the pink fill is 8.37:1, and the yellow focus ring is 18.55:1 (SPEC.md §2.1).
 
-Each radio is at least 24 × 24 px (six space units, REQ-028 AC2), larger than Nuxt UI's 16 px default.
+Each radio is at least 24 × 24 px (six space units, REQ-028 AC2), larger than Nuxt UI's 16 px default. For touch screens, `size="2xl"` makes each row, label included, at least 44 px tall (ADR-0070).
 
 ## Variants
 
@@ -84,7 +84,7 @@ The radio group has one brand look. Nuxt UI's `color` and `variant` props are no
 |---|---|---|---|
 | default | none | Black circle, neutral outline, pink on hover | Pink circle, pink outline, black dot |
 
-The `size` prop (`xs`, `sm`, `md`, `lg`, `xl`) changes the text size; a radio never goes below 24 px. The `orientation` prop lays the options out in a `vertical` (default) or `horizontal` row. The `items` prop takes `{ label, value }` objects, and each item can be `disabled` on its own. Set `loop` so the arrow keys wrap around the ends, as a native radio group does; Nuxt UI leaves it off by default.
+The `size` prop (`xs`, `sm`, `md`, `lg`, `xl`, `2xl`) changes the text size; a radio never goes below 24 px. `2xl` has the text and radio of `xl` and a row at least 44 px tall, with the label filling the row so a tap on the text selects the radio. Use it wherever a thumb is the main input (ADR-0070). A horizontal group still wraps, so nothing overflows at 360 px. The `orientation` prop lays the options out in a `vertical` (default) or `horizontal` row. The `items` prop takes `{ label, value }` objects, and each item can be `disabled` on its own. Set `loop` so the arrow keys wrap around the ends, as a native radio group does; Nuxt UI leaves it off by default.
 
 ## States
 
@@ -95,6 +95,7 @@ The `size` prop (`xs`, `sm`, `md`, `lg`, `xl`) changes the text size; a radio ne
 | `focus-visible` | A yellow ring outside the focused radio. | `choice.focus.color`, `choice.focus.width`, `choice.focus.offset`, `choice.focus.style` |
 | `checked` | The selected radio fills pink and shows a black dot. | `choice.checked.bg`, `choice.checked.border`, `choice.checked.fg` |
 | `disabled` | The radios are natively disabled, cannot be focused, and Nuxt UI dims them. They ignore hover. A disabled group can have one radio checked. | none |
+| `touch-target` | With `size="2xl"`, every row is at least 44 px tall and the label fills it. The box and the focus ring do not change (ADR-0070). | none |
 
 A radio has no `active` state of its own: pressing it selects it, and `checked` covers that. The state matrix on the component page shows every row, and each state has a visual baseline.
 
@@ -197,3 +198,4 @@ Not applicable.
 - 0.1.0 — First draft: `URadioGroup` themed with the shared choice look, the five states, the component tokens, and the demos (T7.5) — look approved (ADR-0014), awaiting the placeholders
 - 0.1.0 — Text, neutral, feedback, stroke, and motion values are set by the owner, and the placeholders for them are gone — ADR-0032
 - 0.1.0 — Approved as stable by the owner, with every point of the draft callouts decided. No value or rule changes — ADR-0060
+- 1.7.0 — New `2xl` size: a row at least 44 px tall, the label fills it, and a `touch-target` state in the matrix — ADR-0070

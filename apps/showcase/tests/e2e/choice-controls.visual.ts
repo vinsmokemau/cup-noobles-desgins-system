@@ -6,8 +6,8 @@ import { expectStateBaselines } from './helpers/states'
 import { test } from './helpers/test'
 
 const STATES = {
-  checkbox: ['default', 'hover', 'focus-visible', 'checked', 'indeterminate', 'disabled'],
-  'radio-group': ['default', 'hover', 'focus-visible', 'checked', 'disabled'],
+  checkbox: ['default', 'hover', 'focus-visible', 'checked', 'indeterminate', 'disabled', 'touch-target'],
+  'radio-group': ['default', 'hover', 'focus-visible', 'checked', 'disabled', 'touch-target'],
   switch: ['default', 'hover', 'focus-visible', 'checked', 'disabled'],
 }
 

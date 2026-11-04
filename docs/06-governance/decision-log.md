@@ -95,6 +95,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0067: The raw-value rule ships inside the layer package](decisions/0067-raw-value-rule-ships-in-layer.md)
 - [ADR-0068: Image dimensions and loading on the media card and the gallery](decisions/0068-image-dimensions-and-loading.md)
 - [ADR-0069: Identifiers and quantities in number formatting](decisions/0069-identifiers-and-quantities.md)
+- [ADR-0070: A 44 px tap target for radios and checkboxes](decisions/0070-choice-controls-44px.md)
 
 ## Open items
 
@@ -129,3 +130,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0067 (raw-value rule ships inside the layer package)
 - 0.1.0 — Index extended with ADR-0068 (image dimensions and loading)
 - 0.1.0 — Index extended with ADR-0069 (identifiers and quantities)
+- 0.1.0 — Index extended with ADR-0070 (44 px choice controls)

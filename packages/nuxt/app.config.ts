@@ -122,14 +122,54 @@ export default {
     // T7.5 (REQ-020, REQ-024): the choice controls. UCheckbox, URadioGroup, and USwitch share one look, the `.cn-choice*`
     // rules in assets/css/main.css, which read the --cn-choice-* tokens. The state is read from Reka UI's `data-state`
     // (checked, unchecked, indeterminate) on the control, so no prop changes the look.
+    //
+    // T15.14 (DSR-12, ADR-0070): the `2xl` size. It keeps the `xl` text and the same visible box, and makes the whole row at
+    // least 44 px tall (`min-h-11`) so a thumb reaches it. The label fills the row, so a tap on the text toggles the control.
+    // Nuxt UI's own sizes (`xs` to `xl`) are not changed.
     checkbox: {
       slots: {
         base: 'cn-choice cn-choice--box cn-choice--checkbox',
+      },
+      variants: {
+        size: {
+          '2xl': {
+            root: 'min-h-11',
+            base: 'size-5',
+            icon: 'size-4.5',
+            container: 'h-11',
+            wrapper: 'text-base flex flex-col justify-center',
+            label: 'flex min-h-11 items-center',
+          },
+        },
+      },
+    },
+    checkboxGroup: {
+      variants: {
+        size: {
+          '2xl': {
+            fieldset: 'gap-y-0',
+            legend: 'text-base',
+          },
+        },
       },
     },
     radioGroup: {
       slots: {
         base: 'cn-choice cn-choice--box cn-choice--radio',
+      },
+      variants: {
+        size: {
+          '2xl': {
+            fieldset: 'gap-y-0',
+            legend: 'text-base',
+            base: 'size-5',
+            item: 'min-h-11 items-stretch text-base',
+            container: 'h-11',
+            indicator: 'after:size-2',
+            wrapper: 'flex flex-col justify-center',
+            label: 'flex min-h-11 items-center',
+          },
+        },
       },
     },
     switch: {
