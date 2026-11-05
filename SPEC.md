@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.60 |
+| Spec version | 1.61 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1372,7 +1372,7 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: release T14.6 and T14.7 together as minor 1.1.0 of the three packages, in lockstep (A-04), through Changesets. Confirm that the two minor changesets are the only pending ones, and that `CHANGELOG.md` lists the rows component and the PNG logo under Added (REQ-070 AC2). Update `docs/06-governance/versioning-and-releases.md` if it needs a changelog line. After the owner confirms each step in chat, push, merge the "Version packages" pull request on GitHub, and publish to GitHub Packages. Claude Code does not push, merge, or publish without that confirmation. The e-commerce repository pins 1.0.1 and raises its pin after this release (its T11.6), so the new version is reported to the e-commerce owner, and the consumer fixture is not changed. The owner approved this task in chat on 2026-10-28.
   - Done when: `pnpm release:check` passes at version `1.1.0`; the three packages are published at `1.1.0` to GitHub Packages; the tags are pushed (T14.3); `pnpm test:all` is green. The new version is reported to the e-commerce owner.
 
-### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09, -11, -12)
+### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09, -11, -12, -13)
 
 The storefront cannot change the design system (CR-27), so each request is built here and released in a new version that the storefront pins. DSR-01, DSR-02, and DSR-03 block the storefront's catalog components, so they come first and ship together as 1.2.0. DSR-07 is a rule decision for the owner, not code (OD-15). The owner approved this phase in chat on 2026-11-01.
 
@@ -1465,6 +1465,18 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Depends on: T15.14
   - Scope: release T15.14 (DSR-12) as minor 1.7.0 of the three packages, in lockstep (A-04), the same way as T15.13. Confirm the only pending changeset is T15.14's, and that `CHANGELOG.md` lists the 44 px choice controls under Added (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version, the prop or size to use, and the release notes are reported to the e-commerce owner, who is told DSR-12 is resolved so the storefront can run its DS-upgrade task and resume T12.9; the consumer fixture is not changed.
   - Done when: `pnpm release:check` passes at version `1.7.0`; the three packages are published at `1.7.0`; the tags are pushed; `pnpm test:all` is green.
+
+- [ ] **T15.16 — Spanish labels for Nuxt UI's built-in text (DSR-13)**
+  - REQs: REQ-020, REQ-022 (AC2), REQ-027, REQ-071, REQ-070
+  - Depends on: T15.15
+  - Scope: the storefront (ER-04, es-MX) found that `UApp` has no locale, so Nuxt UI's built-in labels are English: the close button of `USlideover` is announced as "Close", and so are the modal, toast, and alert close buttons and any other built-in text. Nuxt UI 4.11.2 reads the labels from the `locale` prop of `UApp` and falls back to English when it is not set; it has no module option for a default (`UApp`'s own `provide` hides an app-level one). The storefront cannot fix it: `ButtonProps` takes no `aria-label`, a custom `#close` slot would copy DS styling (CR-27), and a direct `@nuxt/ui` dependency breaks its P12-V27. (1) How the Spanish default is reached is an owner decision: (A) a small `CnApp` component that wraps `UApp` with `es` as the default and a `locale` prop to override it, (B) the layer replaces `UApp` so every `<UApp>` is Spanish with no change in the consumer, (C) the layer only re-exports the Nuxt UI `es` locale and each consumer passes it to `UApp`. Show the options on a comparison page on real brand context (the slideover close button, a modal, a toast, and an alert, each shown with its English label today and its Spanish label after), say in plain language what each consumer must change and what can silently go wrong, and ask for a one-letter reply. Record the decision in an ADR; if the choice is a custom component, write its "Why custom" paragraph (REQ-020 AC2). (2) The locale is the Nuxt UI `es` locale; check in a real browser and report which built-in labels it covers and whether any stays English. (3) The component or export contains no hardcoded copy of its own (A-11), no forbidden domain word (REQ-022 AC1), and a consumer can still choose another locale. (4) The consumer fixture and the showcase use the chosen way, and the docs say how a consuming app turns it on (`using-the-system.md`, and the doc of any new component). (5) A new token is a TBD item (§4.4). The storefront repository is not changed. Do not push or publish.
+  - Done when: the owner has chosen in chat and the ADR exists; an end-to-end test on the consumer fixture shows the close button of a slideover, a modal, a toast, and an alert announced in Spanish, and a test shows another locale can still be set; the accessibility spec passes at 360, 768, and 1280 px; the docs are updated; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T15.17 — Release 1.8.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T15.16
+  - Scope: release T15.16 (DSR-13) as minor 1.8.0 of the three packages, in lockstep (A-04), the same way as T15.15. Confirm the only pending changeset is T15.16's, and that `CHANGELOG.md` lists the Spanish labels under Added (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version, what the consumer changes (a component, an export, or nothing), and the release notes are reported to the e-commerce owner, who is told DSR-13 is resolved so the storefront can write its pin-raise task; the consumer fixture is changed only as T15.16 says.
+  - Done when: `pnpm release:check` passes at version `1.8.0`; the three packages are published at `1.8.0`; the tags are pushed; `pnpm test:all` is green.
 
 ---
 ## 7. Risks and open decisions
@@ -1576,6 +1588,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.58 | 2026-11-02 | Added T15.10 (number formatting for identifiers and quantities, a storefront request) and T15.11 (release 1.5.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.59 | 2026-11-02 | Added T15.12 (update the docs to the ADR-0064 wording for text in photos, DSR-07) and T15.13 (release 1.6.0) to P15. No existing requirement changes. | Owner approval in chat |
 | 1.60 | 2026-11-03 | Added T15.14 (a 44 px tap target for radios and checkboxes, DSR-12 of the e-commerce repository) and T15.15 (release 1.7.0) to P15. No existing requirement or task changes. | Owner approval in chat |
+| 1.61 | 2026-11-04 | Added T15.16 (Spanish labels for Nuxt UI's built-in text, DSR-13 of the e-commerce repository) and T15.17 (release 1.8.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
