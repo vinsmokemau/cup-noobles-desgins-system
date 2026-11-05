@@ -66,6 +66,7 @@ Each doc's frontmatter `status` says how far along it is: `tbd`, `draft`, `stabl
 
 - [Modal](docs/02-components/organisms/modal.md): a dialog over the page.
 - [Slideover](docs/02-components/organisms/slideover.md): a panel that slides in from the edge of the screen.
+- [App](docs/02-components/organisms/app.md): the root of an app, with Spanish as the default for Nuxt UI's built-in text (custom).
 - [Site header](docs/02-components/organisms/site-header.md): the page header, with logo, navigation, and action slots.
 - [Site footer](docs/02-components/organisms/site-footer.md): the page footer.
 

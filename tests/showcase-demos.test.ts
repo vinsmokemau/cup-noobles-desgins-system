@@ -164,6 +164,7 @@ test('the real docs list the demos that exist, so the real build has a demo rout
     scanDemos(join(import.meta.dirname, '../docs'), join(import.meta.dirname, '../apps/showcase/demos')),
     {
       alert: ['states', 'playground'],
+      app: ['states', 'playground'],
       badge: ['states', 'playground'],
       breadcrumb: ['states', 'playground'],
       button: ['states', 'playground'],

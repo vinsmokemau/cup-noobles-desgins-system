@@ -69,3 +69,15 @@ declare function useToast(): { add(toast: ToastInput): unknown }
 
 // T11.1: the open state that Nuxt UI's `UContentSearch` and `UContentSearchButton` share.
 declare function useContentSearch(): { open: import('vue').Ref<boolean> }
+
+// T15.16: Nuxt UI's `#ui` alias (the runtime folder) is added by its module, and the locales are imported from it. The root
+// typecheck runs without .nuxt/, so the part the apps use is declared here. Every locale has this shape.
+declare module '#ui/locale' {
+  type Locale = { name: string; code: string; dir: 'ltr' | 'rtl'; messages: Record<string, unknown> }
+  export const en: Locale
+  export const es: Locale
+}
+
+// T15.16: the fixture's root (app.vue) reads `?locale` with Nuxt's auto-imported `useRoute` and Vue's `computed`.
+declare function useRoute(): { query: Record<string, unknown> }
+declare function computed<T>(getter: () => T): { readonly value: T }

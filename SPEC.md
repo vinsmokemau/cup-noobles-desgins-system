@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.61 |
+| Spec version | 1.62 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -552,7 +552,7 @@ cup-noobles-desgins-system/
 │   │   │                 separator.md logo.md sparkle.md sticker-frame.md
 │   │   ├── molecules/    form-field.md card.md media-card.md alert.md toast.md tooltip.md
 │   │   │                 tabs.md breadcrumb.md pagination.md key-value-list.md image-gallery.md
-│   │   └── organisms/    modal.md slideover.md site-header.md site-footer.md
+│   │   └── organisms/    modal.md slideover.md site-header.md site-footer.md app.md
 │   ├── 03-patterns/      forms.md feedback.md loading.md navigation.md empty-states.md
 │   │                     error-pages.md responsive-behavior.md
 │   ├── 04-content/       voice-and-tone.md microcopy.md formatting.md
@@ -774,6 +774,7 @@ The Nuxt UI component names below are provisional; T0.1 confirms them against th
 | alert · toast · tooltip | molecule | nuxt-ui | UAlert · UToast · UTooltip | T8.3 |
 | tabs · breadcrumb · pagination | molecule | nuxt-ui | UTabs · UBreadcrumb · UPagination | T8.4 |
 | modal · slideover | organism | nuxt-ui | UModal · USlideover | T8.5 |
+| app | organism | custom | CnApp over UApp (DSR-13, ADR-0071) | T15.16 |
 | site-header · site-footer | organism | nuxt-ui | UHeader · UFooter (ADR-0001); slot-based, no domain content | T8.6 |
 
 ---
@@ -1589,6 +1590,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.59 | 2026-11-02 | Added T15.12 (update the docs to the ADR-0064 wording for text in photos, DSR-07) and T15.13 (release 1.6.0) to P15. No existing requirement changes. | Owner approval in chat |
 | 1.60 | 2026-11-03 | Added T15.14 (a 44 px tap target for radios and checkboxes, DSR-12 of the e-commerce repository) and T15.15 (release 1.7.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.61 | 2026-11-04 | Added T15.16 (Spanish labels for Nuxt UI's built-in text, DSR-13 of the e-commerce repository) and T15.17 (release 1.8.0) to P15. No existing requirement or task changes. | Owner approval in chat |
+| 1.62 | 2026-11-04 | Listed `docs/02-components/organisms/app.md` in the §4.1 file tree and the `app` row in the §4.10 inventory, for the `CnApp` component of T15.16 (DSR-13). No requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

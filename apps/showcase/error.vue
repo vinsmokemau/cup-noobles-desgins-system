@@ -5,6 +5,7 @@
 // static host serves for any unknown path.
 import { computed } from 'vue'
 import { clearError, useSeoMeta, type NuxtError } from 'nuxt/app'
+import { en } from '#ui/locale'
 
 const props = defineProps<{ error: NuxtError }>()
 
@@ -21,7 +22,7 @@ useSeoMeta({ title })
 </script>
 
 <template>
-  <UApp>
+  <CnApp :locale="en">
     <NuxtLayout>
       <!-- The layout already provides the main region. -->
       <ErrorPage
@@ -32,5 +33,5 @@ useSeoMeta({ title })
         @action="clearError({ redirect: '/' })"
       />
     </NuxtLayout>
-  </UApp>
+  </CnApp>
 </template>

@@ -99,6 +99,12 @@ test('REQ-022 AC3: each fixture page renders its component, a Nuxt UI one or a `
   for (const doc of componentDocs()) {
     const page = read(`apps/consumer-fixture/pages/components/${doc.slug}.vue`)
     // A toast has no tag: it is shown by the `useToast()` composable, into the toaster of UApp.
+    // CnApp is the root of the fixture (app.vue), so its page shows the text of the controls it translates (T15.16).
+    if (doc.implementation === 'CnApp') {
+      assert.ok(read('apps/consumer-fixture/app.vue').includes('<CnApp'), 'app.vue renders no <CnApp')
+      assert.ok(page.includes('<UModal') && page.includes('<USlideover'), 'the app page shows no built-in text')
+      continue
+    }
     const marker = doc.implementation === 'UToast' ? 'useToast()' : `<${doc.implementation}`
     assert.ok(page.includes(marker), `${doc.slug}.vue renders no ${marker}`)
   }

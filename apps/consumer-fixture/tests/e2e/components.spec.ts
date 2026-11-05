@@ -8,6 +8,10 @@ import { fileURLToPath } from 'node:url'
 import { expectNoA11yViolations, expectNoHorizontalOverflow } from '../../../showcase/tests/e2e/helpers/a11y'
 import { waitForHydration } from '../../../showcase/tests/e2e/helpers/ready'
 
+// T15.16: the pages render `CnApp`, which the installed layer (the build on port 3100) does not have until it is released, so
+// these tests run against the build with the workspace layer, as color-scheme.spec.ts does.
+test.use({ baseURL: 'http://localhost:3101' })
+
 const components = fileURLToPath(new URL('../../../../docs/02-components/', import.meta.url))
 const slugs = ['atoms', 'molecules', 'organisms'].flatMap((level) =>
   readdirSync(`${components}${level}`)
@@ -39,7 +43,7 @@ const open: Record<string, (page: Page, width: number) => Promise<void>> = {
   },
   'site-header': async (page, width) => {
     if (width >= 1024) return
-    await page.getByRole('button', { name: 'Open menu' }).click()
+    await page.getByRole('button', { name: 'Abrir menú' }).click()
     await expect(page.getByRole('dialog', { name: 'Menú' })).toBeVisible()
   },
 }

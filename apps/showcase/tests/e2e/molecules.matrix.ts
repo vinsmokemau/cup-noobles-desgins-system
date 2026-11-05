@@ -18,6 +18,7 @@ for (const slug of [
   'tooltip',
   'site-header',
   'site-footer',
+  'app',
 ]) {
   for (const demo of ['states', 'playground']) {
     test(`/_demo/${slug}/${demo}: axe, overflow, and target size`, async ({ page, viewport }) => {

@@ -73,9 +73,11 @@ export default defineConfig(
     rules: { 'vue/multi-word-component-names': 'off' },
   },
   {
-    // T8.7: the fixture's toast page calls Nuxt UI's auto-imported `useToast`, which apps/showcase/shims.d.ts types.
+    // T8.7: the fixture's toast page calls Nuxt UI's auto-imported `useToast`, and the root reads the route with `useRoute` and `computed` (T15.16); apps/showcase/shims.d.ts types them.
     files: ['apps/consumer-fixture/**/*.{ts,vue}'],
-    languageOptions: { globals: { ...globals.browser, useToast: 'readonly' } },
+    languageOptions: {
+      globals: { ...globals.browser, useToast: 'readonly', useRoute: 'readonly', computed: 'readonly' },
+    },
   },
   {
     // A component's demos are named for what they show, `states.vue` and `playground.vue` (T7.1).

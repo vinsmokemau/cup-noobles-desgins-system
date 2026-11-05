@@ -6,9 +6,9 @@ status: stable
 lang: en
 brandRules: []
 tbd: []
-related: [principles, brand-identity, glossary]
+related: [principles, brand-identity, glossary, app]
 since: 0.1.0
-updated: 2026-11-01
+updated: 2026-11-04
 ---
 
 # Using the system
@@ -73,6 +73,17 @@ These steps were run against the registry on 2026-10-18, with version `0.2.0` of
 - **Nuxt apps.** Extend the layer in `nuxt.config.ts` with `extends: ['@vinsmokemau/cup-noobles-nuxt']`. The layer brings Nuxt UI, its theme, and the `Cn*` components.
 - **Keep visual styling in the layer.** A consuming app uses Tailwind for layout only, and adds no colors, borders, radii, glow, or other visual styling of its own (ER-02, C-03, OD-11).
 - **Dark only.** The theme is dark-only. Do not add a color-mode toggle (A-02, REQ-031). The layer also tells the browser: it sets `color-scheme: dark` (a `<meta>` tag and a CSS rule, so scrollbars and form controls are dark), and a `theme-color` meta tag with the pure-black page base, read from the `color.bg.base` token (BR-03). Nuxt UI sets neither when its color mode is off. An app that needs another `theme-color` on a page can override it with `useHead`.
+- **Render `CnApp` at the root.** Nuxt UI writes some text itself, such as the name of the close button of a modal, a slideover, a toast, and an alert, and it uses English unless the root sets a locale. The layer gives you `CnApp`, which is `UApp` with Spanish (the Nuxt UI `es` locale) as the default (ADR-0071, DSR-13). In `app.vue` and in `error.vue`, replace `<UApp>` with `<CnApp>`; the props and the slot are the same:
+
+  ```vue
+  <template>
+    <CnApp>
+      <NuxtPage />
+    </CnApp>
+  </template>
+  ```
+
+  An app that keeps `<UApp>` stays English and nothing reports it, so search the app for `<UApp` after upgrading. To use another language, pass a Nuxt UI locale: `import { en } from '#ui/locale'` and `<CnApp :locale="en">`. The `#ui` alias comes with the layer, so the app adds no `@nuxt/ui` dependency. See [App](../02-components/organisms/app.md).
 - **Text comes from the app.** Components contain no hardcoded copy. Pass every string through props or slots (A-11), and write customer-facing copy in Spanish (es-MX) (ER-04).
 - **Minimum width.** Layouts must work at 360 px wide (ER-05).
 - **Lint for raw values.** The layer ships the lint rule of REQ-016, so an app runs the same check as this repository (ADR-0067). The rule `cn/no-raw-values` fails on a hex, `rgb()`, or `hsl()` color, and on a `px`, `rem`, or `ms` number, in script, template, `<style>`, and CSS. `0` and `var(--cn-*)` pass. Add it to the app's `eslint.config.js` (ESLint 9 or later, with `vue-eslint-parser` for `.vue` files and `@eslint/css` for `.css` files):
@@ -148,3 +159,4 @@ Not applicable.
 - 0.2.0 — Install steps verified against GitHub Packages: the token line moves to the user-level `.npmrc`, and the pnpm `allowBuilds` setting is added (T12.2) — ADR-0007
 - 0.3.0 — The layer sets `color-scheme: dark` and a `theme-color` meta tag from `color.bg.base` (T15.5, DSR-06) — approved without changes; owner approval in chat, 2026-11-01
 - 0.4.0 — The layer ships the raw-value lint rule, with its usage (T15.6, DSR-09) — approved without changes; owner approval in chat, 2026-11-01 (ADR-0067)
+- 0.5.0 — The layer ships `CnApp`, `UApp` with Spanish as the default for Nuxt UI's built-in text, and the doc says how an app turns it on (T15.16, DSR-13) — approved without changes; owner choice in chat, 2026-11-04 (ADR-0071)

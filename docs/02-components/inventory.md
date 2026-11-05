@@ -50,6 +50,7 @@ The inventory lists every component in the system, with its level, its source, i
 | [Tabs](molecules/tabs.md) | molecule | nuxt-ui | `UTabs` | stable | — |
 | [Toast](molecules/toast.md) | molecule | nuxt-ui | `UToast` | stable | — |
 | [Tooltip](molecules/tooltip.md) | molecule | nuxt-ui | `UTooltip` | stable | — |
+| [App](organisms/app.md) | organism | custom | `CnApp` | stable | — |
 | [Modal](organisms/modal.md) | organism | nuxt-ui | `UModal` | stable | — |
 | [Site footer](organisms/site-footer.md) | organism | nuxt-ui | `UFooter` | stable | — |
 | [Site header](organisms/site-header.md) | organism | nuxt-ui | `UHeader` | stable | — |
