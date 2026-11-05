@@ -128,6 +128,11 @@ test('DSR-13: using-the-system.md says how an app turns CnApp on, and a minor ch
   assert.match(guide, /Render `CnApp` at the root/)
   assert.match(guide, /replace `<UApp>` with `<CnApp>`/)
   assert.match(guide, /#ui\/locale/)
+  // Once the "Version packages" pull request has consumed the changeset, its text lives in the changelog.
+  if (!existsSync(join(root, '.changeset/cn-app.md'))) {
+    assert.match(read('CHANGELOG.md'), /CnApp/)
+    return
+  }
   const changeset = read('.changeset/cn-app.md')
   for (const name of ['tokens', 'nuxt', 'email']) assert.match(changeset, new RegExp(`cup-noobles-${name}': minor`))
   assert.match(changeset, /CnApp/)
