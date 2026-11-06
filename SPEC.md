@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.62 |
+| Spec version | 1.63 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -1373,7 +1373,7 @@ The owner's 1.0.0 readiness review of 2026-10-19 chose to settle the draft compo
   - Scope: release T14.6 and T14.7 together as minor 1.1.0 of the three packages, in lockstep (A-04), through Changesets. Confirm that the two minor changesets are the only pending ones, and that `CHANGELOG.md` lists the rows component and the PNG logo under Added (REQ-070 AC2). Update `docs/06-governance/versioning-and-releases.md` if it needs a changelog line. After the owner confirms each step in chat, push, merge the "Version packages" pull request on GitHub, and publish to GitHub Packages. Claude Code does not push, merge, or publish without that confirmation. The e-commerce repository pins 1.0.1 and raises its pin after this release (its T11.6), so the new version is reported to the e-commerce owner, and the consumer fixture is not changed. The owner approved this task in chat on 2026-10-28.
   - Done when: `pnpm release:check` passes at version `1.1.0`; the three packages are published at `1.1.0` to GitHub Packages; the tags are pushed (T14.3); `pnpm test:all` is green. The new version is reported to the e-commerce owner.
 
-### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09, -11, -12, -13)
+### P15 — Requests from the e-commerce repository (DSR-01, -02, -03, -06, -07, -09, -11, -12, -13, -14)
 
 The storefront cannot change the design system (CR-27), so each request is built here and released in a new version that the storefront pins. DSR-01, DSR-02, and DSR-03 block the storefront's catalog components, so they come first and ship together as 1.2.0. DSR-07 is a rule decision for the owner, not code (OD-15). The owner approved this phase in chat on 2026-11-01.
 
@@ -1478,6 +1478,18 @@ The storefront cannot change the design system (CR-27), so each request is built
   - Depends on: T15.16
   - Scope: release T15.16 (DSR-13) as minor 1.8.0 of the three packages, in lockstep (A-04), the same way as T15.15. Confirm the only pending changeset is T15.16's, and that `CHANGELOG.md` lists the Spanish labels under Added (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version, what the consumer changes (a component, an export, or nothing), and the release notes are reported to the e-commerce owner, who is told DSR-13 is resolved so the storefront can write its pin-raise task; the consumer fixture is changed only as T15.16 says.
   - Done when: `pnpm release:check` passes at version `1.8.0`; the three packages are published at `1.8.0`; the tags are pushed; `pnpm test:all` is green.
+
+- [ ] **T15.18 — A skip-to-content link component (DSR-14)**
+  - REQs: REQ-020, REQ-022 (AC2), REQ-026, REQ-027, REQ-028 (AC2), REQ-060 (AC2), REQ-071, REQ-070
+  - Depends on: T15.17
+  - Scope: the storefront (found in its T13.5 by `/ui-review`, commit ec7ed2b) has a site header before the `<main>` of every page and no skip link, and the DS offers none, so keyboard and screen-reader users tab through the header on every page (WCAG 2.4.1; Web Interface Guidelines, Accessibility: "include skip link for main content"). The storefront cannot fix it: the link must be hidden until it receives keyboard focus and then shown with visible focus styling, which is styling that only the DS supplies (CR-27, ADR-0009). Today the showcase has its own skip link written with raw utility classes in `apps/showcase/layouts/default.vue` (`sr-only focus:not-sr-only`, no tap-target size, `:focus` rather than `:focus-visible`); it is not a reusable component. (1) Names and shape are an owner decision. The storefront proposes `CnSkipLink` with a required `label` prop and a `target` prop (the id of `<main>`, default `"main"`), and leaves open the exact name, the prop names, and whether the DS also ships a layout wrapper. Show the options on a comparison page on real brand context (the site header of the showcase and a storefront-like header with a logo link and a cart badge, at 360 px and 1280 px, light and dark, with the link hidden and with it focused), say in plain language what the consumer writes and what can silently go wrong, mark contrast and 44 px as pass or fail, and ask for a one-letter reply. Record the decision in an ADR; if the choice is a custom component, write its "Why custom" paragraph (REQ-020 AC2). (2) The component renders a real `<a href="#id">` with no hardcoded copy (A-11); the consumer passes the text (the storefront passes es-MX, for example "Saltar al contenido"). It is the first focusable element of the page, hidden off-screen until `:focus-visible`, then shown above the header with the focus ring of ADR-0009, tokens only, and a tap target of at least 44 px when visible (the storefront's CR-36). Contrast meets the DS rules in light and dark mode. It works with server-side rendering and with no JavaScript. (3) Focus moves to the target on activation. Decide, and write in the docs, whether the consumer or the component gives `<main>` its `tabindex="-1"`; the docs show the exact markup a consuming app needs (the `id` on each page's `<main>`). (4) The showcase uses the new component in place of its own skip link, and its skip-link tests keep passing (REQ-060 AC2). (5) Write the doc `docs/02-components/<layer>/<name>.md` from the standard template (§4.2), add it to the §4.1 file tree and the §4.10 inventory (a spec change that needs the owner's approval), and add the showcase page and the usage note in `using-the-system.md`. (6) A new token is a TBD item (§4.4). The storefront repository is not changed. Do not push or publish.
+  - Done when: the owner has chosen in chat and the ADR exists; a keyboard test shows that Tab reveals the link as the first focusable element, that Enter moves focus to the target, and that the link is hidden again when focus leaves; a test measures the visible link at 44 px or more at 360 px; the accessibility spec passes (axe) at 360, 768, and 1280 px in light and dark, with visual baselines generated in the pinned container; a test shows the link is in the server-rendered HTML with no JavaScript; the showcase uses the component and its skip-link tests pass; the docs are updated; a minor changeset exists; `pnpm test:all` is green.
+
+- [ ] **T15.19 — Release 1.9.0**
+  - REQs: REQ-070, REQ-018
+  - Depends on: T15.18
+  - Scope: release T15.18 (DSR-14) as minor 1.9.0 of the three packages, in lockstep (A-04), the same way as T15.17. Confirm the only pending changeset is T15.18's, and that `CHANGELOG.md` lists the skip link under Added (REQ-070 AC2). After the owner confirms each step in chat, push, merge the "Version packages" pull request, and publish. Claude Code does not push, merge, or publish without that confirmation. The version, the component and its props, the `<main>` markup the consumer needs, and the release notes are reported to the e-commerce owner, who is told DSR-14 is resolved so the storefront can write its pin-raise task; the consumer fixture is changed only as T15.18 says.
+  - Done when: `pnpm release:check` passes at version `1.9.0`; the three packages are published at `1.9.0`; the tags are pushed; `pnpm test:all` is green.
 
 ---
 ## 7. Risks and open decisions
@@ -1591,6 +1603,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.60 | 2026-11-03 | Added T15.14 (a 44 px tap target for radios and checkboxes, DSR-12 of the e-commerce repository) and T15.15 (release 1.7.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.61 | 2026-11-04 | Added T15.16 (Spanish labels for Nuxt UI's built-in text, DSR-13 of the e-commerce repository) and T15.17 (release 1.8.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.62 | 2026-11-04 | Listed `docs/02-components/organisms/app.md` in the §4.1 file tree and the `app` row in the §4.10 inventory, for the `CnApp` component of T15.16 (DSR-13). No requirement or task changes. | Owner approval in chat |
+| 1.63 | 2026-11-05 | Added T15.18 (a skip-to-content link component, DSR-14 of the e-commerce repository) and T15.19 (release 1.9.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 
