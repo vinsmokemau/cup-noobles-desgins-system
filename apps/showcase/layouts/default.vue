@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// T5.3, T8.6: the app layout. A skip link, the design system's own site header and footer (themed `UHeader` and `UFooter`,
+// T5.3, T8.6, T15.18: the app layout. The layer's skip link and main region (ADR-0072), the design system's own site header and footer (themed `UHeader` and `UFooter`,
 // ADR-0030), and a sidebar from md up. Below md the same menu is the header's own slideover (REQ-061 AC2): `mode="slideover"`
 // moves the navigation into a Nuxt UI slideover, opened from the toggle, so focus is trapped, Escape closes it, and the page
 // behind is inert. Nuxt UI hides the toggle below `lg`, and the sidebar appears at `md`, so the `ui` classes hide the toggle
@@ -11,12 +11,7 @@ const version = useRuntimeConfig().public.version as string
 
 <template>
   <div>
-    <a
-      href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-default focus:p-2 focus:text-highlighted"
-    >
-      Skip to content
-    </a>
+    <CnSkipLink label="Skip to content" target="main-content" />
 
     <UHeader
       title="Cup Noobles Design System"
@@ -45,9 +40,9 @@ const version = useRuntimeConfig().public.version as string
       >
         <DocsNav />
       </aside>
-      <main id="main-content" class="min-w-0 flex-1 p-4">
+      <CnMain id="main-content" class="min-w-0 flex-1 p-4">
         <slot />
-      </main>
+      </CnMain>
     </div>
 
     <UFooter>

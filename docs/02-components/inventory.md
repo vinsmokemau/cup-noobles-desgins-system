@@ -35,6 +35,7 @@ The inventory lists every component in the system, with its level, its source, i
 | [Select](atoms/select.md) | atom | nuxt-ui | `USelect` | stable | — |
 | [Separator](atoms/separator.md) | atom | nuxt-ui | `USeparator` | stable | — |
 | [Skeleton](atoms/skeleton.md) | atom | nuxt-ui | `USkeleton` | stable | — |
+| [Skip link](atoms/skip-link.md) | atom | custom | `CnSkipLink` | stable | — |
 | [Sparkle](atoms/sparkle.md) | atom | custom | `CnSparkle` | stable | — |
 | [Sticker frame](atoms/sticker-frame.md) | atom | custom | `CnStickerFrame` | stable | — |
 | [Switch](atoms/switch.md) | atom | nuxt-ui | `USwitch` | stable | — |

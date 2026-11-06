@@ -338,6 +338,16 @@
   --cn-site-header-fg: #f5f5f5; /** Text in the site header, such as the title. */
   --cn-site-header-line: #ef80ae; /** Color of the line under the site header: brand pink, like the card outline (BR-01, ADR-0018). Chosen by the owner in ADR-0030. */
   --cn-skeleton-border: #8c8c8c; /** Outline color of a skeleton shape. The shape has no fill, because there is no surface color yet (C-05). */
+  --cn-skip-link-bg: #ef80ae; /** Fill of the skip link while it is shown: brand pink (BR-01), the fill of a primary button, so it reads as an action. */
+  --cn-skip-link-border-color: #ef80ae; /** Outline color of the skip link: the same pink as the fill, as on a primary button (BR-10). */
+  --cn-skip-link-border-width: 3px; /** Outline width of the skip link (BR-10, BR-13): the thick stroke of an interactive element. */
+  --cn-skip-link-fg: #000000; /** Text color of the skip link: black on the pink fill, 8.37:1 (BR-01, derived facts in SPEC.md §2.1). */
+  --cn-skip-link-focus-color: #fff488; /** Focus ring color of the skip link (REQ-024 AC1, ADR-0009). */
+  --cn-skip-link-focus-offset: 3px; /** Gap between the skip link and its focus ring (REQ-024 AC1, ADR-0009). */
+  --cn-skip-link-focus-style: solid; /** Focus ring line style of the skip link (REQ-024 AC1, ADR-0009). */
+  --cn-skip-link-focus-width: 3px; /** Focus ring width of the skip link (REQ-024 AC1, ADR-0009). */
+  --cn-skip-link-radius: 0.75rem; /** Corner radius of the skip link: the chunky radius of an interactive element (ADR-0050). */
+  --cn-skip-link-z: 100; /** Stacking level of the shown skip link: the highest level, so it sits above the sticky site header and above an open overlay (ADR-0072). */
   --cn-space-base: 0.25rem; /** Spacing step, 4 px, the `xs` step of ADR-0049 and the base unit of the scale (ADR-0049, TBD-09). */
   --cn-space-lg: 1.5rem; /** Spacing step, 24 px (ADR-0049, TBD-09). */
   --cn-space-md: 1rem; /** Spacing step, 16 px (ADR-0049, TBD-09). */

@@ -97,6 +97,7 @@ This is the index of every architecture decision record (ADR). An ADR records on
 - [ADR-0069: Identifiers and quantities in number formatting](decisions/0069-identifiers-and-quantities.md)
 - [ADR-0070: A 44 px tap target for radios and checkboxes](decisions/0070-choice-controls-44px.md)
 - [ADR-0071: CnApp gives the built-in text of Nuxt UI a Spanish default](decisions/0071-cn-app-spanish-default.md)
+- [ADR-0072: A skip link, CnSkipLink, with a companion CnMain](decisions/0072-skip-link-and-main.md)
 
 ## Open items
 
@@ -133,3 +134,4 @@ Not applicable.
 - 0.1.0 — Index extended with ADR-0069 (identifiers and quantities)
 - 0.1.0 — Index extended with ADR-0070 (44 px choice controls)
 - 0.1.0 — Index extended with ADR-0071 (CnApp, Spanish default for Nuxt UI's built-in text)
+- 0.1.0 — Index extended with ADR-0072 (skip link and its companion main region)

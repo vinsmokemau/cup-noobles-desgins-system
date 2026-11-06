@@ -6,9 +6,9 @@ status: stable
 lang: en
 brandRules: []
 tbd: []
-related: [principles, brand-identity, glossary, app]
+related: [principles, brand-identity, glossary, app, skip-link]
 since: 0.1.0
-updated: 2026-11-04
+updated: 2026-11-05
 ---
 
 # Using the system
@@ -84,6 +84,19 @@ These steps were run against the registry on 2026-10-18, with version `0.2.0` of
   ```
 
   An app that keeps `<UApp>` stays English and nothing reports it, so search the app for `<UApp` after upgrading. To use another language, pass a Nuxt UI locale: `import { en } from '#ui/locale'` and `<CnApp :locale="en">`. The `#ui` alias comes with the layer, so the app adds no `@nuxt/ui` dependency. See [App](../02-components/organisms/app.md).
+- **Add a skip link and `CnMain` to every page.** A keyboard user must be able to jump past the header (WCAG 2.4.1). The layer gives you `CnSkipLink`, a link that stays hidden until it receives keyboard focus, and `CnMain`, the `<main>` it jumps to (ADR-0072, DSR-14). Put the link first in the layout, before the header, and use `CnMain` for the main region of every page. `CnMain` carries the `id` and the `tabindex="-1"` that move focus, so the app writes neither:
+
+  ```vue
+  <template>
+    <CnSkipLink label="Saltar al contenido" />
+    <SiteHeader />
+    <CnMain>
+      <slot />
+    </CnMain>
+  </template>
+  ```
+
+  The two agree on the id `main` with no props; to use another id, pass it to both (`target` on the link, `id` on `CnMain`). A plain `<main>` still scrolls, but focus stays in the header, and nothing reports it. The label is yours to write, in the page language. See [Skip link](../02-components/atoms/skip-link.md).
 - **Text comes from the app.** Components contain no hardcoded copy. Pass every string through props or slots (A-11), and write customer-facing copy in Spanish (es-MX) (ER-04).
 - **Minimum width.** Layouts must work at 360 px wide (ER-05).
 - **Lint for raw values.** The layer ships the lint rule of REQ-016, so an app runs the same check as this repository (ADR-0067). The rule `cn/no-raw-values` fails on a hex, `rgb()`, or `hsl()` color, and on a `px`, `rem`, or `ms` number, in script, template, `<style>`, and CSS. `0` and `var(--cn-*)` pass. Add it to the app's `eslint.config.js` (ESLint 9 or later, with `vue-eslint-parser` for `.vue` files and `@eslint/css` for `.css` files):
@@ -160,3 +173,4 @@ Not applicable.
 - 0.3.0 — The layer sets `color-scheme: dark` and a `theme-color` meta tag from `color.bg.base` (T15.5, DSR-06) — approved without changes; owner approval in chat, 2026-11-01
 - 0.4.0 — The layer ships the raw-value lint rule, with its usage (T15.6, DSR-09) — approved without changes; owner approval in chat, 2026-11-01 (ADR-0067)
 - 0.5.0 — The layer ships `CnApp`, `UApp` with Spanish as the default for Nuxt UI's built-in text, and the doc says how an app turns it on (T15.16, DSR-13) — approved without changes; owner choice in chat, 2026-11-04 (ADR-0071)
+- 0.6.0 — The layer ships `CnSkipLink` and `CnMain`, and the doc says where they go in a layout (T15.18, DSR-14) — approved without changes; owner choice in chat, 2026-11-05 (ADR-0072)

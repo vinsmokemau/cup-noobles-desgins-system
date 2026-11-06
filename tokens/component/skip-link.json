@@ -1,0 +1,68 @@
+{
+  "skipLink": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.brand.primary}",
+      "$description": "Fill of the skip link while it is shown: brand pink (BR-01), the fill of a primary button, so it reads as an action.",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0072" } }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.text.inverted}",
+      "$description": "Text color of the skip link: black on the pink fill, 8.37:1 (BR-01, derived facts in SPEC.md §2.1).",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0072" } }
+    },
+    "border": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.brand.primary}",
+        "$description": "Outline color of the skip link: the same pink as the fill, as on a primary button (BR-10).",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0072" } }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{border.width.interactive}",
+        "$description": "Outline width of the skip link (BR-10, BR-13): the thick stroke of an interactive element.",
+        "$extensions": { "cn": { "status": "stable", "source": "ADR-0072" } }
+      }
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.interactive}",
+      "$description": "Corner radius of the skip link: the chunky radius of an interactive element (ADR-0050).",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0072" } }
+    },
+    "z": {
+      "$type": "number",
+      "$value": "{effect.zIndex.toast}",
+      "$description": "Stacking level of the shown skip link: the highest level, so it sits above the sticky site header and above an open overlay (ADR-0072).",
+      "$extensions": { "cn": { "status": "stable", "source": "ADR-0072" } }
+    },
+    "focus": {
+      "color": {
+        "$type": "color",
+        "$value": "{focus.ring.color}",
+        "$description": "Focus ring color of the skip link (REQ-024 AC1, ADR-0009).",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "{focus.ring.width}",
+        "$description": "Focus ring width of the skip link (REQ-024 AC1, ADR-0009).",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "offset": {
+        "$type": "dimension",
+        "$value": "{focus.ring.offset}",
+        "$description": "Gap between the skip link and its focus ring (REQ-024 AC1, ADR-0009).",
+        "$extensions": { "cn": { "status": "stable" } }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "$value": "{focus.ring.style}",
+        "$description": "Focus ring line style of the skip link (REQ-024 AC1, ADR-0009).",
+        "$extensions": { "cn": { "status": "stable" } }
+      }
+    }
+  }
+}

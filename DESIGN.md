@@ -45,6 +45,7 @@ Each doc's frontmatter `status` says how far along it is: `tbd`, `draft`, `stabl
 - [Skeleton](docs/02-components/atoms/skeleton.md): a placeholder shown while content loads.
 - [Separator](docs/02-components/atoms/separator.md): divides content into groups.
 - [Logo](docs/02-components/atoms/logo.md): the brand icon, lockup, and wordmark (custom).
+- [Skip link](docs/02-components/atoms/skip-link.md): jumps past the header to the main content, shown on keyboard focus (custom).
 - [Sparkle](docs/02-components/atoms/sparkle.md): the decorative sparkle and star motif (custom).
 - [Sticker frame](docs/02-components/atoms/sticker-frame.md): a sticker-style border that wraps content (custom).
 

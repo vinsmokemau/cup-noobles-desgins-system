@@ -154,6 +154,8 @@ The block below is generated from `tokens/contrast-pairs.json` and `tokens/contr
 | `formField.description.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
 | `formField.help.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
 | `formField.error.fg` (`#ff5c5c`) | `color.bg.base` (`#000000`) | text | 6.94:1 | 4.50:1 | pass |
+| `skipLink.border.color` (`#ef80ae`) | `color.bg.base` (`#000000`) | ui | 8.37:1 | 3.00:1 | pass |
+| `skipLink.focus.color` (`#fff488`) | `color.bg.base` (`#000000`) | ui | 18.55:1 | 3.00:1 | pass |
 | `tabs.fg` (`#bdbdbd`) | `color.bg.base` (`#000000`) | text | 11.18:1 | 4.50:1 | pass |
 | `tabs.fgHover` (`#f5f5f5`) | `color.bg.base` (`#000000`) | text | 19.26:1 | 4.50:1 | pass |
 | `tabs.active.fg` (`#ef80ae`) | `color.bg.base` (`#000000`) | text | 8.37:1 | 4.50:1 | pass |

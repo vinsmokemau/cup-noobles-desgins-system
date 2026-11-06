@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Document type | Requirements specification for Spec-Driven Development (SDD) with Claude Code |
-| Spec version | 1.64 |
+| Spec version | 1.65 |
 | Status | Approved for Phase 0; later phases are gated by the open decisions in §7.2 |
 | Owner | Cup Noobles design system owner (single maintainer, see A-01) |
 | Repository | `github.com/vinsmokemau/cup-noobles-desgins-system` (OA-7, OA-8, OA-9) |
@@ -549,7 +549,7 @@ cup-noobles-desgins-system/
 │   │   ├── inventory.md              # Generated table of all components (§4.10)
 │   │   ├── atoms/        button.md link.md icon.md badge.md input.md textarea.md select.md
 │   │   │                 checkbox.md radio-group.md switch.md progress.md skeleton.md
-│   │   │                 separator.md logo.md sparkle.md sticker-frame.md
+│   │   │                 separator.md logo.md sparkle.md sticker-frame.md skip-link.md
 │   │   ├── molecules/    form-field.md card.md media-card.md alert.md toast.md tooltip.md
 │   │   │                 tabs.md breadcrumb.md pagination.md key-value-list.md image-gallery.md
 │   │   └── organisms/    modal.md slideover.md site-header.md site-footer.md app.md
@@ -775,6 +775,7 @@ The Nuxt UI component names below are provisional; T0.1 confirms them against th
 | tabs · breadcrumb · pagination | molecule | nuxt-ui | UTabs · UBreadcrumb · UPagination | T8.4 |
 | modal · slideover | organism | nuxt-ui | UModal · USlideover | T8.5 |
 | app | organism | custom | CnApp over UApp (DSR-13, ADR-0071) | T15.16 |
+| skip-link | atom | custom | CnSkipLink, with its companion CnMain documented on the same page (DSR-14, ADR-0072) | T15.18 |
 | site-header · site-footer | organism | nuxt-ui | UHeader · UFooter (ADR-0001); slot-based, no domain content | T8.6 |
 
 ---
@@ -1605,6 +1606,7 @@ The owner must decide these. Each decision becomes an ADR.
 | 1.62 | 2026-11-04 | Listed `docs/02-components/organisms/app.md` in the §4.1 file tree and the `app` row in the §4.10 inventory, for the `CnApp` component of T15.16 (DSR-13). No requirement or task changes. | Owner approval in chat |
 | 1.63 | 2026-11-05 | Added T15.18 (a skip-to-content link component, DSR-14 of the e-commerce repository) and T15.19 (release 1.9.0) to P15. No existing requirement or task changes. | Owner approval in chat |
 | 1.64 | 2026-11-05 | T15.18 no longer asks for light mode: its "light and dark" wording (comparison page, contrast, accessibility spec) now reads "on the dark theme", to match REQ-031, A-02, and §1.3. No requirement changes. | Owner approval in chat |
+| 1.65 | 2026-11-05 | Listed `docs/02-components/atoms/skip-link.md` in the §4.1 file tree and the `skip-link` row in the §4.10 inventory, for the `CnSkipLink` and `CnMain` components of T15.18 (DSR-14). No requirement or task changes. | Owner approval in chat |
 
 Amendment rule: this file changes only through an ADR, or by the owner directly. Every amendment bumps the spec version, adds a row here, and keeps every REQ and task ID stable. Removed items are struck through, never renumbered.
 

@@ -1369,3 +1369,44 @@ h3 {
   background-color: var(--cn-site-footer-bg);
   border-top: var(--cn-border-width-site-footer) solid var(--cn-site-footer-line);
 }
+
+/*
+ * T15.18 (REQ-020, REQ-024, REQ-028, ADR-0072): CnSkipLink and CnMain. The skip link is hidden above the top edge of the
+ * page, still in the tab order and still read by a screen reader, and it slides into view on `:focus-visible`: fixed at the
+ * top left, above the site header (--cn-skip-link-z), as a pink button with black text and the yellow focus ring of
+ * ADR-0009 (--cn-skip-link-* tokens). It is at least 44 px tall when shown (`min-h-11`, the storefront's CR-36, which is not
+ * a brand value, as in ADR-0070). It needs no JavaScript. `[data-cn-state='focus-visible']` forces the shown state for the
+ * documentation; application code never sets it. The main region has no style, and no ring: a person never tabs to it, the
+ * skip link only moves focus there so that the next Tab starts inside the content.
+ */
+.cn-skip-link {
+  @apply min-h-11;
+  position: fixed;
+  top: var(--cn-space-sm);
+  left: var(--cn-space-sm);
+  z-index: var(--cn-skip-link-z);
+  display: inline-flex;
+  align-items: center;
+  max-width: calc(100vw - var(--cn-space-md));
+  padding-inline: var(--cn-space-md);
+  font-family: var(--cn-font-family-display);
+  font-size: var(--cn-font-body-size);
+  font-weight: var(--cn-font-h3-weight);
+  color: var(--cn-skip-link-fg);
+  text-decoration: none;
+  background-color: var(--cn-skip-link-bg);
+  border: var(--cn-skip-link-border-width) solid var(--cn-skip-link-border-color);
+  border-radius: var(--cn-skip-link-radius);
+  transform: translateY(calc(-100% - var(--cn-space-lg)));
+}
+
+.cn-skip-link:focus-visible,
+.cn-skip-link[data-cn-state='focus-visible'] {
+  transform: none;
+  outline: var(--cn-skip-link-focus-width) var(--cn-skip-link-focus-style) var(--cn-skip-link-focus-color);
+  outline-offset: var(--cn-skip-link-focus-offset);
+}
+
+.cn-main:focus {
+  outline: none;
+}
